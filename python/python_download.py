@@ -16,7 +16,7 @@ def download_length(response, output, length):
         times=times+1
     for time in range(times):
         output.write(response.read(BUFF_SIZE))
-        print("Downloaded %d" %(((time*BUFF_SIZE)/length)*100))
+        print("Downloaded %d%%" %(((time*BUFF_SIZE)/length)*100))
 
 ####O segundo metodo realiza download ignorando a resposta do servidor quanto ao tamanho do arquivo
 
@@ -28,11 +28,17 @@ def download(response, output):
         if not data: ####Ou seja, caso o arquivo nao exista ou tenha tamanho 0
             break
         output.write(data)
-        print("Downloaded {bytes}" .format(bytes=total_downloaded))
+        print("Downloaded {bytes} bytes" .format(bytes=total_downloaded))
 
 def main():
-    response=request.urlopen(sys.argv[1])
-    out_file=io.FileIO("saida.zip", mode="w")
+    #response=request.urlopen(sys.argv[1])
+    #out_file=io.FileIO("saida.zip", mode="w")
+
+    endereco="http://livropython.com.br/dados.zip"
+    nome_arquivo_final="file.zip"
+
+    response=request.urlopen(endereco)
+    out_file=io.FileIO(nome_arquivo_final, mode="w")
 
     content_length=response.getheader("Content-Length")
     if content_length:
