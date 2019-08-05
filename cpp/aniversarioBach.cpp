@@ -25,6 +25,12 @@ public:
 int main()
 {
     DayOfYear today, bachBirthday;
+    cout << "Informe a data de hoje: \n";
+    today.input(); //funcao chamada pela classe que vai pegar a data de hoje
+    cout << "A data de hoje e: "
+    today.output(); //funcao chamada pela classe que vai mostrar a data de hoje
+    cout << endl;
 
+    bachBirthday.set(3, 21); //configurando a data de aniversario de Bach
 }
 
