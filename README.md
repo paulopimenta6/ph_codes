@@ -1,5 +1,5 @@
 # meus_codigos
-Meus códigos de programação
+Meus codigos de programacao
 
 Codigos feitos por Paulo Pimenta em
 
@@ -10,6 +10,9 @@ Codigos feitos por Paulo Pimenta em
 [2] C++11
 [2.1] C++ Absoluto - Pearson
 
-[3] Contato por email: paulopimenta315@gmail.com
+[3] C
+[3.1] Algoritmos e programacao em linguagem C - Editora Saraiva
 
-[4] Fiquem a vontade para copiar, contato e sugestoes 
+[4] Contato por email: paulopimenta315@gmail.com
+
+[5] Fiquem a vontade para copiar, contato e sugestoes 
