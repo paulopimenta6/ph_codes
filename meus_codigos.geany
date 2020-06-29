@@ -29,6 +29,8 @@ long_line_column=72
 
 [files]
 current_page=0
+FILE_NAME_0=765;C;0;EUTF-8;0;1;0;%2Fhome%2Fpaulopimenta%2FDocumentos%2Fmeus_codigos%2Fph_codes%2Fc_cpp%2Famplitude.c;0;4
+FILE_NAME_1=367;C;0;EUTF-8;1;1;0;%2Fhome%2Fpaulopimenta%2FDocumentos%2Fmeus_codigos%2Fph_codes%2Fc_cpp%2Fmaiorque.c;0;4
 
 [build-menu]
 CFT_01_LB=_Build
