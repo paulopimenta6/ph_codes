@@ -18,23 +18,15 @@ detect_indent_width=false
 indent_mode=2
 
 [project]
-name=meus_codigos
-base_path=/home/paulopimenta/Documentos/meus_codigos/ph_codes
-description=
-file_patterns=
+name=meus_codigos_opi3
+base_path=/home/petrozavodsk/Documents/meus_codigos_orange_pi/ph_codes
 
 [long line marker]
 long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=0
-
-[build-menu]
-CFT_01_LB=_Build
-CFT_01_CM=gcc -Wall -lm -o "%e" "%f"
-CFT_01_WD=
-filetypes=C;
+current_page=-1
 
 [VTE]
 last_dir=/home/petrozavodsk
