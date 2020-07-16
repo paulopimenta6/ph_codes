@@ -18,8 +18,8 @@ detect_indent_width=false
 indent_mode=2
 
 [project]
-name=meus_codigos_opi3
-base_path=/home/petrozavodsk/Documents/meus_codigos_orange_pi/ph_codes
+name=codigos_ph_opi_3
+base_path=/home/petrozavodsk/Documents/ph_codes
 description=
 file_patterns=
 
@@ -28,13 +28,14 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=-1
+current_page=0
+FILE_NAME_0=0;C;0;EUTF-8;1;1;0;%2Fhome%2Fpetrozavodsk%2FDocuments%2Fph_codes%2Fc_cpp%2Fequacao2grau.c;0;4
 
 [VTE]
 last_dir=/home/petrozavodsk
 
 [build-menu]
 CFT_01_LB=_Build
-CFT_01_CM=gcc -Wall -o -lm "%e" "%f"
+CFT_01_CM=gcc -Wall -lm -o "%e" "%f"
 CFT_01_WD=
 filetypes=C;
