@@ -16,4 +16,5 @@ int main(){
 			Break;
 		}
 		else{
-			printf() 
+			printf("Deixe mensagem \n");
+			printf("Aguarde pelo ") 
