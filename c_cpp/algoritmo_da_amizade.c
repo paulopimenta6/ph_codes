@@ -10,27 +10,33 @@ int main(){
 	do{
 		printf("Alguem em casa? \n");
 		scanf("%c", &casa);
-		fflush(stdin);
+		__fpurge(stdin); /*Ao invés de usar fflsuh(stdin) está é a melhor solução para Linux. Em windows se pode usar fflush(stdin)*/		
 		
 		if(casa=='s'){
 			break;
 		}
 		else{
-			printf("Deixe mensagem \n");
-			printf("Aguarde pelo retorno \n");
-		}
+			printf("++++++++++++++++++++++++++ \n");
+			printf("++   Deixe mensagem     ++ \n");
+			printf("++ Aguarde pelo retorno ++ \n");
+			printf("++++++++++++++++++++++++++ \n");
+		} 
+		
 	}while(casa!='s');
 	
-	printf("Gostaria de compartilhar uma refeição? s/n \n");
+printf("Gostaria de compartilhar uma refeição? s/n \n");
 	scanf("%c", &refeicao);
 	
 	if(refeicao=='s'){
-		printf("Vamos jantar! \n");
-		printf("inicio da amizade!!! \n");
+		printf("++++++++++++++++++++++++++++\n");
+		printf("++     Vamos jantar!      ++\n");
+		printf("++  inicio da amizade!!!  ++\n");
+		printf("++++++++++++++++++++++++++++\n");
+		exit(1);
 	}
 	else{
 		printf("Gostaria de uma bebida quente? s/n \n");
-		fflush(stdin);
+		__fpurge(stdin);
 		scanf("%c", &bebida);
 		
 		if(bebida=='s'){
@@ -38,7 +44,7 @@ int main(){
 			printf("2 - cafe \n");
 			printf("3 - chocolate \n");
 			
-			fflush(stdin);
+			__fpurge(stdin);
 			tipo=getchar();
 			
 			switch(tipo){
@@ -54,17 +60,17 @@ int main(){
 				default:
 				    printf("Opção não válida! \n");
 				    break;
-				}
-				
 			}
-			
+			printf("Inicio de uma amizade \n");
+			exit(1);		
+		}
 		else{
 			printf("Conte-me dos seus interesses! \n");
 			scanf("%s", interesse);
 			printf("O interesse é: %s \n", interesse);
 			
 			printf("Compartilho deste interesse? \n");
-			fflush(stdin);
+			__fpurge(stdin);
 			scanf("%c", &compartilho);
 			
 			if(compartilho=='s'){
@@ -72,12 +78,13 @@ int main(){
 			}
 			else{
 				printf("Não compartilho deste interesse... \n");
+				exit(1);
 			}
 		}
+		printf("Inicio de uma amizade \n");		
+	}	
 		
-		printf("Inicio da amizade \n");
 		
-	}
 	
 	return 0;
 		
