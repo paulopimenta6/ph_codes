@@ -6,5 +6,11 @@ def raiz_quadrada(x):
         diferenca=(p-b)         
         b=p
     print(p)
+    #return p
 
-raiz_quadrada(576)
+print("++++++++++++++++++++++++++++++++++++")
+print("Programa que calcula a raiz quadrada")
+print("++++++++++++++++++++++++++++++++++++")
+print("Digite um valor: ")
+var=float(raw_input())
+raiz_quadrada(var)

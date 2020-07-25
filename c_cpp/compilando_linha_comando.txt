@@ -1,0 +1,7 @@
+#Este aquivo tem por objetivo ser um simples tutorial de compilação do GCC que ao longo do uso será sempre atualizado
+
+#1 - Como compilar no GCC usando linhas de comando?
+#R1 - O comando usado deve ser: gcc <meu_arquivo>.c -Wall -o <nome_do_executavel>
+#...Lembrando que gcc é o nome do compilador
+#...-Wall é a flag usada para habilitar comentários de possiveis erros
+#... -o é a flag que habilita a criação do nome do executável 
