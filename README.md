@@ -31,7 +31,7 @@ R1 - O comando usado deve ser: gcc <meu_arquivo>.c -Wall -o <nome_do_executavel>
 
 ... -o é a flag que habilita a criação do nome do executável
 
-P1 - Como limpar o buffer de um caracter?
+P2 - Como limpar o buffer de um caracter?
 
 R2 - Há diversos metodos na internet, como usar fflush(stdin), o qual cria um behaviour undefined e é melhor usado em saidas e não entradas
 
