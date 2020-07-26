@@ -16,15 +16,14 @@ int main(){
 		printf("\n");
 		printf("Digite um numero: \n");
 		scanf("%d", &x);
-                printf("Deseja continuar? Digite q para continuar: \n");
-		scanf("%c", &letra);
-		getchar();
+        printf("Deseja continuar? Digite q para continuar: \n");
+		scanf(" %c", &letra);
 		cont=cont+1;
-	        total=total+x;	
+	    total=total+x;	
 	}
 
 	printf("Parando...\n");
 	printf("Repetições=%d e total=%d \n", cont, total);
-        printf("O caracter de loop é: %c \n", letra);
+    printf("O caracter de loop é: %c \n", letra);
 	return 0;
 }
