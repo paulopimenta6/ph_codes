@@ -5,13 +5,14 @@ int main(){
 	
 	char casa, refeicao, bebida, compartilho;
 	char interesse[30];
-	int tipo;
+	char tipo;
 	
 	do{
 		printf("Alguem em casa? \n");
-		scanf("%c", &casa);
-		__fpurge(stdin); /*Ao invés de usar fflsuh(stdin) está é a melhor solução para Linux. Em windows se pode usar fflush(stdin)*/		
-		
+		scanf(" %c", &casa);
+		///__fpurge(stdin); ///Ao invés de usar fflsuh(stdin) está é a melhor solução para Linux. Em windows se pode usar fflush(stdin)		
+		///fflush(stdin);
+
 		if(casa=='s'){
 			break;
 		}
@@ -24,9 +25,10 @@ int main(){
 		
 	}while(casa!='s');
 	
-printf("Gostaria de compartilhar uma refeição? s/n \n");
-	scanf("%c", &refeicao);
-	
+        printf("Gostaria de compartilhar uma refeição? s/n \n");
+	scanf(" %c", &refeicao);
+	///fflush(stdin);
+
 	if(refeicao=='s'){
 		printf("++++++++++++++++++++++++++++\n");
 		printf("++     Vamos jantar!      ++\n");
@@ -36,16 +38,18 @@ printf("Gostaria de compartilhar uma refeição? s/n \n");
 	}
 	else{
 		printf("Gostaria de uma bebida quente? s/n \n");
-		__fpurge(stdin);
-		scanf("%c", &bebida);
+		///__fpurge(stdin);
+		fflush(stdin);
+		scanf(" %c", &bebida);
 		
 		if(bebida=='s'){
 			printf("1 - cha \n");
 			printf("2 - cafe \n");
 			printf("3 - chocolate \n");
 			
-			__fpurge(stdin);
-			tipo=getchar();
+			///__fpurge(stdin);
+			scanf(" %c", &tipo);
+			///tipo=getchar();
 			
 			switch(tipo){
 				case '1':
@@ -66,12 +70,14 @@ printf("Gostaria de compartilhar uma refeição? s/n \n");
 		}
 		else{
 			printf("Conte-me dos seus interesses! \n");
-			scanf("%s", interesse);
+			///fflush(stdin);
+			scanf(" %s", interesse);
 			printf("O interesse é: %s \n", interesse);
 			
 			printf("Compartilho deste interesse? \n");
-			__fpurge(stdin);
-			scanf("%c", &compartilho);
+			///__fpurge(stdin);
+			///fflush(stdin);
+			scanf(" %c", &compartilho);
 			
 			if(compartilho=='s'){
 				printf("Por que não fazemos aquilo juntos? \n");

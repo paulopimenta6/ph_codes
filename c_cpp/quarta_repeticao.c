@@ -7,16 +7,17 @@ int main(){
 
 	cont=0;
         total=0;
+
 	letra='i';
 
 	printf("Programa de repetição \n");
-
+        
         while(letra!='q'){
+		printf("\n");
 		printf("Digite um numero: \n");
 		scanf("%d", &x);
-                printf("Deseja continuar? Digite \"q\" para continuar: \n");
-		fflush(stdin);
-		scanf("%c", &letra);
+                printf("Deseja continuar? Digite q para continuar: \n");
+		scanf(" %c", &letra);
 		cont=cont+1;
 	        total=total+x;	
 	}
