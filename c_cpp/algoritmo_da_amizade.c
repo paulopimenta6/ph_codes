@@ -9,7 +9,7 @@ int main(){
 	
 	do{
 		printf("Alguem em casa? \n");
-		scanf(" %c", &casa);
+		scanf("%c", &casa);
 		///__fpurge(stdin); ///Ao invés de usar fflsuh(stdin) está é a melhor solução para Linux. Em windows se pode usar fflush(stdin)		
 		///fflush(stdin);
 
@@ -39,7 +39,7 @@ int main(){
 	else{
 		printf("Gostaria de uma bebida quente? s/n \n");
 		///__fpurge(stdin);
-		fflush(stdin);
+		///fflush(stdin);
 		scanf(" %c", &bebida);
 		
 		if(bebida=='s'){

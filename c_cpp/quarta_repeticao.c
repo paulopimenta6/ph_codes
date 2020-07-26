@@ -17,7 +17,8 @@ int main(){
 		printf("Digite um numero: \n");
 		scanf("%d", &x);
                 printf("Deseja continuar? Digite q para continuar: \n");
-		scanf(" %c", &letra);
+		scanf("%c", &letra);
+		getchar();
 		cont=cont+1;
 	        total=total+x;	
 	}
