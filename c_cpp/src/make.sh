@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 #########################################
 ### Autor: Paulo Pimenta              ###
@@ -10,15 +10,19 @@ echo "### Programa de compilacao de codigos em C/CPP   ###"
 echo "####################################################"
 
 mensagem_de_uso="$(basename "$0") [OPCOES]
-	
-	OPCOES       
 
-	-h | --help	Mostra menu de ajuda
-	-v | --versao	Mostra versão de software
-	-c | --compila	codigo a ser compilado. Codigo deve ser passado como parametro
+	\n
+	\n
+	OPCOES
+	\n
+	\n       
+
+	-h | --help	Mostra menu de ajuda \n
+	-v | --versao	Mostra versão de software \n
+	-c | --compila	codigo a ser compilado. Codigo deve ser passado como parametro \n
 "
 
-if test -n ${1}
+if test -n "${1}"
 then	
 	case "${1}" in
 
@@ -37,27 +41,25 @@ then
 			nome_executavel=$(echo "${2}" | cut -d . -f 1)
 			extensao=$(echo "${2}" | cut -d . -f 2)
 			
-			if ["${extensao}" = 'c']
+			if [ "${extensao}" = "c" ]
 			then
-				gcc ${2} -Wall -o ~/bin/${nome_executavel}
+				gcc ${2} -Wall -o -lm ${nome_executavel}
 			
-			elif ["${extensao}" = 'cpp']
+			elif [ "${extensao}" = "cpp" ]
 			then
-				g++ ${2} -Wall -o ~/bin/${nome_executavel}
+				g++ ${2} -Wall -o -lm ${nome_executavel}
 			
 			else
 				echo "Formato desconhecido"
-
+				exit 0
 			fi
-	
-			exit 0
 			;;       
 	esac
 
-else
+elif test -z "${1}" 
+then
 	echo "Parametro vazio"
-	echo ${mensagem_de_uso}
-
+	echo -e ${mensagem_de_uso}
 fi	
 
 exit 0
