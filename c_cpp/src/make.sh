@@ -9,35 +9,55 @@ echo "####################################################"
 echo "### Programa de compilacao de codigos em C/CPP   ###"
 echo "####################################################"
 
-mensagem_de_uso="$0 [-h | -v | -c]
-      
-      -h    Mostra menu de ajuda
-      -v    Mostra versão de software
-      -c    codigo a ser compilado
+mensagem_de_uso="$(basename "$0") [OPCOES]
+	
+	OPCOES       
+
+	-h | --help	Mostra menu de ajuda
+	-v | --versao	Mostra versão de software
+	-c | --compila	codigo a ser compilado. Codigo deve ser passado como parametro
 "
 
-case "${1}" in
+if test -n ${1}
+then	
+	case "${1}" in
 
-	-h)
-		echo ${mensagem_de_uso}
-		exit 0
-		
-	;;
+		-h | --help)
+			echo ${mensagem_de_uso}
+			exit 0
+			;;
 
-	-v)
-		echo "Versao 1.0"
-		exit 0
+		-v | --versao)
+			echo "Versao 1.0"
+			exit 0
+			;;
 
-	;;
+		-c | --compila)
 
-	-c)
-		echo "Insira o nome do arquivo a ser compilado (.c ou .cpp)"
-		echo "Exemplo: ./make.sh codigo.c"
-		exit 0
+			nome_executavel=$(echo "${2}" | cut -d . -f 1)
+			extensao=$(echo "${2}" | cut -d . -f 2)
+			
+			if ["${extensao}" = 'c']
+			then
+				gcc ${2} -Wall -o ~/bin/${nome_executavel}
+			
+			elif ["${extensao}" = 'cpp']
+			then
+				g++ ${2} -Wall -o ~/bin/${nome_executavel}
+			
+			else
+				echo "Formato desconhecido"
 
-	;;       
+			fi
+	
+			exit 0
+			;;       
+	esac
 
+else
+	echo "Parametro vazio"
+	echo ${mensagem_de_uso}
 
-
+fi	
 
 exit 0
