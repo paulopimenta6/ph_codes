@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 #########################################
 ### Autor: Paulo Pimenta              ###
@@ -43,14 +43,15 @@ then
 			if [ "${extensao}" = "c" ]
 			then
 				gcc ${2} -lm -Wall -o "${dir_binario}""${nome_executavel}"
-				echo -e "Compilacao concluida! \n"
+				echo "Compilacao concluida!"
+				echo "Diretorio de binarios:"
 				ls "${dir_binario}" 
 			
 			elif [ "${extensao}" = "cpp" ]
 			then
 				g++ ${2} -lm -Wall -o "${dir_binario}""${nome_executavel}"
-				echo -e "Compilacao concluida! \n"
-				echo -e "Diretorio de binarios: \n"
+				echo "Compilacao concluida!"
+				echo "Diretorio de binarios: "
 				ls "${dir_binario}"
 			else
 				echo "Formato desconhecido"
