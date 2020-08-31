@@ -9,6 +9,8 @@ echo "####################################################"
 echo "### Programa de compilacao de codigos em C/CPP   ###"
 echo "####################################################"
 
+dir_binario="../bin/"
+
 mensagem_de_uso="$(basename "$0") [OPCOES]
 
 	OPCOES:	   
@@ -40,15 +42,16 @@ then
 			
 			if [ "${extensao}" = "c" ]
 			then
-				gcc ${2} -lm -Wall -o -lm ../bin/"${nome_executavel}"
-				echo "Compilacao concluida!"
-				ls ../bin/"${nome_executavel}" 
+				gcc ${2} -lm -Wall -o "${dir_binario}""${nome_executavel}"
+				echo -e "Compilacao concluida! \n"
+				ls "${dir_binario}" 
 			
 			elif [ "${extensao}" = "cpp" ]
 			then
-				g++ ${2} -lm -Wall -o -lm ../bin/${nome_executavel}
-				echo "Compilacao concluida!"
-				ls ../bin/"${nome_executavel}"
+				g++ ${2} -lm -Wall -o "${dir_binario}""${nome_executavel}"
+				echo -e "Compilacao concluida! \n"
+				echo -e "Diretorio de binarios: \n"
+				ls "${dir_binario}"
 			else
 				echo "Formato desconhecido"
 				exit 1
@@ -66,7 +69,5 @@ else
 	echo "Parametro vazio"
 	echo -e "${mensagem_de_uso}"
 fi	
-
-rm ./'--library=m'
 
 exit 0
