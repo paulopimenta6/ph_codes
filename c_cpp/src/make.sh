@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 
 #########################################
 ### Autor: Paulo Pimenta              ###
@@ -11,11 +11,7 @@ echo "####################################################"
 
 mensagem_de_uso="$(basename "$0") [OPCOES]
 
-	\n
-	\n
-	OPCOES
-	\n
-	\n       
+	OPCOES:	   
 
 	-h | --help	Mostra menu de ajuda \n
 	-v | --versao	Mostra versão de software \n
@@ -27,7 +23,7 @@ then
 	case "${1}" in
 
 		-h | --help)
-			echo ${mensagem_de_uso}
+			echo -e "${mensagem_de_uso}"
 			exit 0
 			;;
 
@@ -37,29 +33,40 @@ then
 			;;
 
 		-c | --compila)
-
+		if test -n "${2}"
+		then			
 			nome_executavel=$(echo "${2}" | cut -d . -f 1)
 			extensao=$(echo "${2}" | cut -d . -f 2)
 			
 			if [ "${extensao}" = "c" ]
 			then
-				gcc ${2} -Wall -o -lm ${nome_executavel}
+				gcc ${2} -lm -Wall -o -lm ../bin/"${nome_executavel}"
+				echo "Compilacao concluida!"
+				ls ../bin/"${nome_executavel}" 
 			
 			elif [ "${extensao}" = "cpp" ]
 			then
-				g++ ${2} -Wall -o -lm ${nome_executavel}
-			
+				g++ ${2} -lm -Wall -o -lm ../bin/${nome_executavel}
+				echo "Compilacao concluida!"
+				ls ../bin/"${nome_executavel}"
 			else
 				echo "Formato desconhecido"
-				exit 0
+				exit 1
 			fi
+		else
+			echo -e "Falta o argumento de compilacao"
+			echo -e "Nao esqueca que e: ./make.sh -c | --compila <codigo.c/codigo.cpp>"
+			exit 1
+		fi
+
 			;;       
 	esac
 
-elif test -z "${1}" 
-then
+else
 	echo "Parametro vazio"
-	echo -e ${mensagem_de_uso}
+	echo -e "${mensagem_de_uso}"
 fi	
+
+rm ./'--library=m'
 
 exit 0
