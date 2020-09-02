@@ -1,4 +1,4 @@
-
+#include <stdlib.h>
 #include <stdio.h>
 
 int main(){
@@ -8,10 +8,13 @@ int main(){
 	printf("Digite um valor: \n");
 	scanf("%d", &valor);
 	
+	if(valor==10){
+		printf("O valor %d é igual a 10", valor);
+	}
 	if(valor>10){
 		printf("O valor é maior que 10");
 	}
-	else{
+	if(valor<10){
 		printf("Menor que 10");
 	}
 	
