@@ -73,7 +73,9 @@ void funcao_de_exibicao_de_assentos(char matriz[][coluna], int contLinha, int co
                 }
     }	
 
+void funcao_compra_de_passagem(char matriz[][coluna]){
 
+    
 
 
 
