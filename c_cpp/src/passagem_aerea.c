@@ -6,10 +6,12 @@
 
 void funcao_de_inicializacao(char matriz[][coluna], int contLinha, int contColuna); //constroi uma matriz com as passagens aereas/assentos livres
 void funcao_de_exibicao_de_assentos(char matriz[][coluna], int contLinha, int contColuna); //exibe os assentos livres e nao livres
-void funcao_compra_de_passagem(char matriz[][coluna]); //Recebe o assento a ser reservado
+void funcao_compra_de_passagem(char matriz[][coluna], int contLinha, int contColuna); //Recebe o assento a ser reservado
                                                        //verifica se o assento existe
                                                        //verifica se esta disponivel
                                                        //finaliza a compra ou termina sem compra 
+int funcao_verifica_assento(char matriz[][coluna], int assentolinha, int assentocoluna, int contLinha, int contColuna);
+
 
 int main(){
 
@@ -22,26 +24,13 @@ int main(){
     printf("Programa simples de reserva de passagens Aereas \n");
 
     funcao_de_inicializacao(assento, i, j);
-    funcao_de_exibicao_de_assentos(assento, i, j);    
+    funcao_de_exibicao_de_assentos(assento, i, j);
+    funcao_compra_de_passagem(assento, i, j);
     
+    system("clear");
     
-//    do{
-//    printf("\n");
-//    printf("Deseja escolher um assento? \n");
-//    scanf(" %c", &ans);
-
-//    if(ans=='s' || ans=='S'){
-//        printf("Escolha um assento: \n");
-//        scanf("%d %d", &i, &j);
-//        }
-//    else{
-//        printf("Saindo do sistema \n");
-//        break;
-//        } 
-                               
-     
-//    }while(ans!='n' || ans!='N');
-   
+    printf("Os assentos atualizados: \n");
+    funcao_de_exibicao_de_assentos(assento, i, j);  
 
     return 0;
     
@@ -72,10 +61,67 @@ void funcao_de_exibicao_de_assentos(char matriz[][coluna], int contLinha, int co
                 printf("\n");  
                 }
     }	
+    
+    
+int funcao_verifica_assento(char matriz[][coluna], int assentolinha, int assentocoluna, int contLinha, int contColuna){
+	
+	//verificar que o assento selecionado se encontra no limite de assentos da aeronave	
+    if(assentolinha<0 || assentolinha>(contLinha-1)){
+		return -2;
+	}
+	if(assentocoluna<0 || assentocoluna>(contColuna-1)){
+		return -1;
+	}
+	
+	//verificar se o assento esta livre
+	if(matriz[assentolinha][assentocoluna]=='L'){
+		matriz[assentolinha][assentocoluna]='O';
+		return 1;
+	}
+	else{
+		return 0;
+	}
+	
+	}		    
 
-void funcao_compra_de_passagem(char matriz[][coluna]){
+void funcao_compra_de_passagem(char matriz[][coluna], int contLinha, int contColuna){
+
+    int assentolinha, assentocoluna, resultado;
+    char ans;
 
     
+    do{
+		printf("\n");
+		printf("Deseja escolher um assento? [s/S ou n/N] \n");
+		scanf(" %c", &ans);
+
+		if(ans=='s' || ans=='S'){
+			printf("Digite o assento que deseja reservar: \n");
+			scanf("%d %d", &assentolinha, &assentocoluna); //verificar que esses assentos existem
+			resultado=funcao_verifica_assento(matriz, assentolinha, assentocoluna, contLinha, contColuna);
+			if(resultado==-2){
+				printf("Assento linha fora do limite \n");
+			}
+			else{
+			if(resultado==-1){
+				printf("Assento coluna fora do limite \n");
+			}
+				else{
+					if(resultado==1){
+						printf("Assento [%d][%d] reservado \n", assentolinha, assentocoluna);
+					}
+					else{
+						printf("Assento ja ocupado. Tente novamente \n");
+					}
+				}
+			}			
+		}
+		else{
+			printf("Saindo do sistema \n");
+			break;
+		}  
+	}while(ans!='n' || ans!='N');
+}
 
 
-
+ 
