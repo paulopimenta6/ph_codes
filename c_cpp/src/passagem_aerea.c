@@ -100,11 +100,11 @@ void funcao_compra_de_passagem(char matriz[][coluna], int contLinha, int contCol
 			scanf("%d %d", &assentolinha, &assentocoluna); //verificar que esses assentos existem
 			resultado=funcao_verifica_assento(matriz, assentolinha, assentocoluna, contLinha, contColuna);
 			if(resultado==-2){
-				printf("Assento linha fora do limite \n");
+				printf("Assento fora do limite \n");
 			}
 			else{
 			if(resultado==-1){
-				printf("Assento coluna fora do limite \n");
+				printf("Assento fora do limite \n");
 			}
 				else{
 					if(resultado==1){
