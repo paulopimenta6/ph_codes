@@ -17,30 +17,25 @@ Codigos feitos por Paulo Pimenta em
 
 [5] Fiquem a vontade para copiar, contato e sugestoes 
 
-#####DICAS E APRENDIZADOS#####
+[6]DICAS DE PROGRAMACAO EM C
 
-[6] Este aquivo tem por objetivo ser um simples tutorial de compilação do GCC que ao longo do uso será sempre atualizado
+Este aquivo tem por objetivo ser um simples tutorial de compilação do GCC que ao longo do uso será sempre atualizado
 
-P1 - Como compilar no GCC usando linhas de comando?
+[6.1] Como compilar no GCC usando linhas de comando?
 
-R1 - O comando usado deve ser: gcc <meu_arquivo>.c -Wall -o <nome_do_executavel>
-
+O comando usado deve ser: gcc <meu_arquivo>.c -Wall -o <nome_do_executavel>
 ...Lembrando que gcc é o nome do compilador
-
 ...-Wall é a flag usada para habilitar comentários de possiveis erros
+...-o é a flag que habilita a criação do nome do executável
 
-... -o é a flag que habilita a criação do nome do executável
+[6.2] Como limpar o buffer de um caracter?
 
-P2 - Como limpar o buffer de um caracter?
-
-R2 - Há diversos metodos na internet, como usar fflush(stdin), o qual cria um behaviour undefined e é melhor usado em saidas e não entradas
-
+Há diversos metodos na internet, como usar fflush(stdin), o qual cria um behaviour undefined e é melhor usado em saidas e não entradas
 ...ou __fpurge(stdin), no entando escolheu-se usar o espaço entre as aspas e o símbolo de porcentagem e simbolo do tipo tal como
-
 ...scanf(" %c", &var);
 
-P3 - Como fazer a entrada de dados com string: scanf e %s?
+[6.3] Como fazer a entrada de dados com string: scanf e %s?
 
-R3 - scanf("%s", variavel) enquanto que se for capturado caracter por caracter sera usado o indicador de tipo %c do seguinte modo
+scanf("%s", variavel) enquanto que se for capturado caracter por caracter sera usado o indicador de tipo %c do seguinte modo
 ...scanf("%c", &outraVariavel[i]). O indicador de tipo %s sugere pegar uma variavel longa, por ser uma string, tal como "abcdefghij" equanto
 ...o indicador de tipo %c pega pedado por pedaco e aloca no vetor
