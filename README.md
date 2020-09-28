@@ -10,7 +10,7 @@ Fiquem a vontade para copiar, contato e sugestoes
 
 ### Python:
 
-* Python 2 e Python 3 seguindo as orientacoes dos livros: <br />
+*Python 2 e Python 3 seguindo as orientacoes dos livros:* <br />
 * Introducao a programacao com Python - Novatec <br />
 * Python "escreva seus primeiros programas" - Casa do Codigo <br />
 * Introdução à Computação Usando Python - Um Foco no Desenvolvimento de Aplicações - LTC <br /> 
