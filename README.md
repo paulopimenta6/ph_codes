@@ -46,7 +46,7 @@ Os codigos estao armazenados em diretorios especificos da linguagem (exceto o sc
 
 * Como compilar no GCC usando linhas de comando?
 
-O comando usado deve ser: *gcc <meu_arquivo>.c -Wall -lm -o <nome_do_executavel>* Lembrando que gcc é o nome do compilador. **-Wall** é a flag usada para habilitar comentários de possiveis erros, **-o** e a flag que habilita a criação do nome do executável e a flag **-lm** e uma flag usada para compilar codigos que usam elementos da biblioteca *math.h*  
+O comando usado deve ser: *gcc <meu_arquivo>.c -Wall -lm -o <nome_do_executavel>* Lembrando que gcc é o nome do compilador. **-Wall** é a flag usada para habilitar comentários de possiveis erros, **-o** e a flag que habilita a criação do nome do executável e **-lm** e uma flag usada para compilar codigos que usam elementos da biblioteca *math.h*  
 
 * Como limpar o buffer de um caracter?
 
