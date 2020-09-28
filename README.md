@@ -31,9 +31,9 @@ Fiquem a vontade para copiar, contato e sugestoes
 
 <p>
 
-Os codigos estao armazenados em diretorios especificos da linguagem (exceto o script de compilacao C/C++ feito em Shell). <br />
+Os codigos estao armazenados em diretorios especificos da linguagem (exceto o script de compilacao C/C++ feito em Shell que esta no diretorio c_cpp). <br />
 
-* O diretorio para os codigos em C/C++ e o ~/c_cpp/src/. o script **make.sh** faz a compilacao e joga os binarios criados no diretorio ~/bin/ <br />
+* O diretorio para os codigos em C/C++ e o ~/c_cpp/src/. O script **make.sh** faz a compilacao e joga os binarios criados no diretorio ~/bin/ <br />
 * O diretorio para os codigos Python e o de mesmo nome havendo codigos tanto em Python 2 quanto em Python 3 <br />
 
 </p>
