@@ -57,7 +57,7 @@ scanf(" %c", &var)
 
 * Como fazer a entrada de dados com string: scanf e %s?
 
-scanf("%s", variavel) enquanto que se for capturado caracter por caracter sera usado o indicador de tipo %c do seguinte modo <br />
+scanf("%s", variavel) para toda uma string enquanto que se for capturado caracter por caracter sera usado o indicador de tipo %c do seguinte modo: <br />
 scanf("%c", &outraVariavel[i]). O indicador de tipo %s sugere pegar uma variavel longa, por ser uma string, tal como "abcdefghij" equanto <br />
 o indicador de tipo %c pega pedado por pedaco e aloca no vetor
 
