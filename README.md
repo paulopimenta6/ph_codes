@@ -1,4 +1,4 @@
-# Programacao em C/C++, Python e Shell
+## Programacao em C/C++, Python e Shell
 
 Codigos feitos por Paulo Pimenta
 Contato por email: *paulopimenta315@gmail.com* <br />
@@ -10,8 +10,8 @@ Fiquem a vontade para copiar, contato e sugestoes
 
 ### Python:
 
-* Python2 e Python3 seguindo as orientacoes dos livros: <br />
-* Introducao a programacao com Python - Ed. Novatec <br />
+* Python 2 e Python 3 seguindo as orientacoes dos livros: <br />
+* Introducao a programacao com Python - Novatec <br />
 * Python "escreva seus primeiros programas" - Casa do Codigo <br />
 * Introdução à Computação Usando Python - Um Foco no Desenvolvimento de Aplicações - LTC <br /> 
 
@@ -22,14 +22,27 @@ Fiquem a vontade para copiar, contato e sugestoes
 ### C:
 
 * Algoritmos e programacao em linguagem C - Editora Saraiva
+* Introducao a Programacao com a Linguagem C - NOVATEC
+* Programacao em Baixo Nivel - NOVATEC
 
 </p>
 
-## DICAS DE PROGRAMACAO EM C
+## Organizacao
 
 <p>
 
-*Este aquivo tem por objetivo ser um simples tutorial de compilação do GCC que ao longo do uso será sempre atualizado*
+Os codigos estao armazenados em diretorios especificos da linguagem (exceto o script de compilacao C/C++ feito em Shell). <br />
+
+* O diretorio para os codigos em C/C++ e o ~/c_cpp/src/. o script **make.sh** faz a compilacao e joga os binarios criados no diretorio ~/bin/ <br />
+* O diretorio para os codigos Python e o de mesmo nome havendo codigos tanto em Python 2 quanto em Python 3 <br />
+
+</p>
+
+## Dicas de programcao em C/C++
+
+<p>
+
+*Esta secao tem por objetivo ser um simples tutorial de compilação do GCC que ao longo do uso será sempre atualizado*
 
 * Como compilar no GCC usando linhas de comando?
 
