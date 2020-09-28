@@ -37,4 +37,10 @@ R2 - Há diversos metodos na internet, como usar fflush(stdin), o qual cria um b
 
 ...ou __fpurge(stdin), no entando escolheu-se usar o espaço entre as aspas e o símbolo de porcentagem e simbolo do tipo tal como
 
-...scanf(" %c", &var);  
+...scanf(" %c", &var);
+
+P3 - Como fazer a entrada de dados com string: scanf e %s?
+
+R3 - scanf("%s", variavel) enquanto que se for capturado caracter por caracter sera usado o indicador de tipo %c do seguinte modo
+...scanf("%c", &outraVariavel[i]). O indicador de tipo %s sugere pegar uma variavel longa, por ser uma string, tal como "abcdefghij" equanto
+...o indicador de tipo %c pega pedado por pedaco e aloca no vetor
