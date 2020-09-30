@@ -3,7 +3,7 @@
 #define MAX 3 
 
 void inicializa_matriz(char m[][MAX]); //Funcao que cria a matriz do jogo da velha
-void escolha_de_local(char m[][MAX]); //Escolha de indices e verificacao da matriz
+void escolha_de_jogada(char m[][MAX]); //Escolha de indices e verificacao da matriz
 
 int main(){
 
@@ -33,10 +33,13 @@ void inicializa_matriz(char m[][MAX]){
 		}
 	}
 
-void escolha_de_local(char m[][MAX]){
+void escolha_de_jogada(char m[][MAX]){
 
 	int i, j;
 	char jogada;
+
+	printf("Deseja ser jofador 1: X ou jogador 2: O? \n");
+
 
 	while(true){
 		printf("Escolha um valor de linha \n");
@@ -56,12 +59,7 @@ void escolha_de_local(char m[][MAX]){
 		}
 	}	
 
-	printf("Escolha \"X\"/\"x\"  ou \"O\"/\"o\" \n");
-	scanf(" %c", &jogada);	//continuar a partir daqui
-				//verificar se X ou O podem ser colocados
-}	
-
-
+	
 
 
 
