@@ -91,8 +91,10 @@ void escolha_jogador(char* jogador1, char* jogador2){
 
 void verifica(char m[][MAX], char jogada){
 
-	int i, j;
+	int i, j, cont;
 
+	cont=0;	
+	
 	//verificando linha
 	//exemplo:
 	//m[0][0]==m[0][1]==m[0][2]
@@ -110,17 +112,20 @@ void verifica(char m[][MAX], char jogada){
 
 	for(i=0; i<MAX; i++){
 		for(j=0; j<MAX; j++){
-			if(){
-				printf("Linha feita! %c venceu!", jogada);
-				break;
+			if(m[i][j]==jogada){
+				cont=cont+1;
+				if(cont==3){
+					printf("Linha feita! %c venceu!", jogada);
+					break;
+				}
 			}
-			else{
+		}
+		cont=0;
+	}	
+	
 		
-				//colocar outros condicionais...
-				
-			}
-		
-	}
+			
+}
 
 void faz_jogada(char m[][MAX], char jogada){
 
