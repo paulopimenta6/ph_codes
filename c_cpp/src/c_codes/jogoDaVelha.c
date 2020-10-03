@@ -11,11 +11,12 @@ int verificaLinha(char m[][MAX], char jogada); //verifica linha
 int verificaColuna(char m[][MAX], char jogada); //verifica coluna
 int verificaDiagonalPrincipal(char m[][MAX], char jogada); //verifica diagonal principal
 int verificaDiagonalSecundaria(char m[][MAX], char jogada); //verifica diagonal secundaria
+int verificaEmpate(char m[][MAX]); //verifica se houve empate 
 
 int main(){
 
 	char matrizJogodaVelha[MAX][MAX], jogador1, jogador2, jogada;
-	int i, ansLin, ansCol, ansDiaP, ansDiaS;	
+	int i, ansLin, ansCol, ansDiaP, ansDiaS, ansEmp;	
 
 	i=0;
 
@@ -40,8 +41,9 @@ int main(){
 		ansLin=verificaLinha(matrizJogodaVelha, jogada);
 		ansCol=verificaColuna(matrizJogodaVelha, jogada);
 		ansDiaP=verificaDiagonalPrincipal(matrizJogodaVelha, jogada);
-		ansDiaS=verificaDiagonalSecundaria(matrizJogodaVelha, jogada);	
-		if((ansLin==-1) || (ansCol==-1) || (ansDiaP==-1) || (ansDiaS==-1)){
+		ansDiaS=verificaDiagonalSecundaria(matrizJogodaVelha, jogada);
+		ansEmp=verificaEmpate(matrizJogodaVelha);	
+		if((ansLin==-1) || (ansCol==-1) || (ansDiaP==-1) || (ansDiaS==-1) || (ansEmp==-1)){
 			break;
 		}	
 		i=i+1;		
@@ -273,6 +275,27 @@ int verificaDiagonalSecundaria(char m[][MAX], char jogada){
 	}
 }
 
+int verificaEmpate(char m[][MAX]){
+
+	int i, j, cont;
+	cont=0;
+
+	for(i=0; i<MAX; i++){
+		for(j=0; j<MAX; j++){
+			if(m[i][j]!=' '){
+				cont=cont+1;
+			}
+		}
+	}
+
+	if(cont==MAX*MAX){
+		return -1;
+	}
+	else{
+		return 1;
+	}
+}		 
+
 void faz_jogada(char m[][MAX], char jogada){
 
 	int linha, coluna;
@@ -293,9 +316,14 @@ void faz_jogada(char m[][MAX], char jogada){
 
 	}while(coluna<0 || coluna>(MAX-1));
 
-	if(m[linha][coluna]==' '){
-		m[linha][coluna]=jogada;
-	}//implementar para o caso de uma jogada ja ter sido feita
-
-
+	while(true){	
+	
+		if(m[linha][coluna]==' '){
+			m[linha][coluna]=jogada;
+			break;
+		}
+		else{
+			printf("Local ja usado. Escolha outro: \n"); //implementar aqui para que local ja preenchido seja novamente perguntado 
+		}
+	}
 }
