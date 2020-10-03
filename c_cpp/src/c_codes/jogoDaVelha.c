@@ -3,11 +3,14 @@
 #include <stdbool.h> 
 #define MAX 3 
 
-void inicializa_matriz(char m[][MAX]); //Funcao que cria a matriz do jogo da velha
-void escolha_jogador(char* jogador1, char* jogador2); //Escolha de indices e verificacao da matriz
-void imprime_matriz(char m[][MAX]);
-void faz_jogada(char m[][MAX], char jogada);
-void verifica(char m[][MAX], char jogada);
+void inicializa_matriz(char m[][MAX]); //funcao que cria a matriz do jogo da velha
+int escolha_jogador(char* jogador1, char* jogador2); //escolha de indices e verificacao da matriz
+void imprime_matriz(char m[][MAX]); //imprime a matriz inicializada e atualizada
+void faz_jogada(char m[][MAX], char jogada); //usuario joga X ou O
+void verificaLinha(char m[][MAX], char jogada); //verifica linha
+void verificaColuna(char m[][MAX], char jogada); //verifica coluna
+void verificaDiagonalPrincipal(char m[][MAX], char jogada); //verifica diagonal principal
+void verificaDiagonalSecundaria(char m[][MAX], char jogada); //verifica diagonal secundaria
 
 int main(){
 
@@ -20,11 +23,14 @@ int main(){
 	inicializa_matriz(matrizJogodaVelha);
 	
 	escolha_jogador(&jogador1, &jogador2);
+	
+	do{
+		faz_jogada(matrizJogodaVelha, jogador1);
+		imprime_matriz(matrizJogodaVelha);
+		verificaLinha
 
-	printf("Jogador1: %c e Jogador2: %c \n", jogador1, jogador2);
+	}while
 
-	faz_jogada(matrizJogodaVelha, jogador1);
-	imprime_matriz(matrizJogodaVelha);
 
 	return 0;
 
@@ -56,7 +62,7 @@ void imprime_matriz(char m[][MAX]){
 
 	}
 
-void escolha_jogador(char* jogador1, char* jogador2){
+int escolha_jogador(char* jogador1, char* jogador2){
 	
 	int chave;
 	bool resposta;
@@ -80,16 +86,18 @@ void escolha_jogador(char* jogador1, char* jogador2){
 	if(chave==1){
 		*jogador1='X';
 		*jogador2='O';
+		return 1;
 	}
 
 	else{
 		*jogador1='O';
 		*jogador2='X';
+		return 2;
 	}		
 
 	}
 
-void verifica(char m[][MAX], char jogada){
+void verificaLinha(char m[][MAX], char jogada){
 
 	int i, j, cont;
 
@@ -103,11 +111,13 @@ void verifica(char m[][MAX], char jogada){
 	//modelo:
 	//m[i][j]==m[i][i+1]==m[i][j+2]
 
-	//verificando coluna 
+	//verificando linha 
 	//exemplo:
 	//m[0][0]==m[1][0]==m[2][0]
 	//modelo:
-	//m[i][j]==m[i][i+1]==m[i][j+2]
+	//m[i][j]==X; cont=1
+	//m[i][j+1]==X; cont=2
+	//m[i][j+2]==X; cont=3
 
 
 	for(i=0; i<MAX; i++){
@@ -121,10 +131,106 @@ void verifica(char m[][MAX], char jogada){
 			}
 		}
 		cont=0;
-	}	
+	}			
+}
+
+void verificaColuna(char m[][MAX], char jogada){
+
+	int i, j, cont;
+
+	cont=0;	
 	
-		
-			
+	//verificando coluna
+	//exemplo:
+	//m[0][0]==m[1][0]==m[2][0]
+	//m[1][0]==m[1][1]==m[2][1]
+	//m[2][0]==m[2][1]==m[2][2]
+	//modelo:
+	//m[i][j]==m[i][i+1]==m[i][j+2]
+
+	//verificando linha 
+	//exemplo:
+	//m[0][0]==m[1][0]==m[2][0]
+	//modelo:
+	//m[i][j]==X; cont=1
+	//m[i+1][j]==X; cont=2
+	//m[i+2][j]==X; cont=3
+
+
+	for(j=0; j<MAX; j++){
+		for(i=0; i<MAX; i++){
+			if(m[i][j]==jogada){
+				cont=cont+1;
+				if(cont==3){
+					printf("Coluna feita! %c venceu!", jogada);
+					break;
+				}
+			}
+		}
+		cont=0;
+	}
+}
+
+void verificaDiagonalPrincipal(char m[][MAX], char jogada){
+
+	int j, cont;
+
+	cont=0;	
+	
+	//verificando coluna
+	//exemplo:
+	//m[0][0]==m[1][1]==m[2][2]
+	//m[0][2]==m[1][1]==m[2][0]	
+	//modelo:
+	//m[i][j]==m[i][i+1]==m[i][j+2]
+
+	//verificando diagonal 
+	//exemplo:
+	//m[0][0]==jogada; cont=1
+	//m[1][1]==jogada; cont=2
+	//m[2][2]==jogada; cont=3
+
+	for(j=0; j<MAX; j++){
+		if(m[j][j]==jogada){
+			cont=cont+1;
+			if(cont==3){
+				printf("Diagonal principal feita! %c venceu!", jogada);
+				break;
+			}
+		}
+	}	
+
+}
+
+void verificaDiagonalSecundaria(char m[][MAX], char jogada){
+
+	int i, j, cont;
+
+	cont=0;	
+	
+	//verificando coluna
+	//exemplo:
+	//m[0][0]==m[1][1]==m[2][2]
+	//m[0][2]==m[1][1]==m[2][0]	
+	//modelo:
+	//m[i][j]==m[i][i+1]==m[i][j+2]
+
+	//verificando diagonal 
+	//exemplo:
+	//m[0][2]==jogada; cont=1
+	//m[1][1]==jogada; cont=2
+	//m[2][0]==jogada; cont=3
+
+	for(j=MAX, i=0; j>=0 && i<MAX; j--, i++){
+		if(m[j][j]==jogada){
+			cont=cont+1;
+			if(cont==3){
+				printf("Diagonal secundaria feita! %c venceu!", jogada);
+				break;
+			}
+		}
+	}	
+
 }
 
 void faz_jogada(char m[][MAX], char jogada){

@@ -48,7 +48,9 @@ int main(){
 		menor=menor+1;
 	}
 
+	printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ \n");
 	printf("O valor da soma dos valores entre %d e %d divisiveis por %d sao %d \n", b, c, a, soma);
+    printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ \n");
 
 	return 0;
 
