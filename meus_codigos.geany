@@ -29,7 +29,7 @@ long_line_column=72
 
 [files]
 current_page=0
-FILE_NAME_0=171;Python;0;EUTF-8;1;1;0;%2Fhome%2Fpaulopimenta%2FDocumentos%2Fmeus_codigos%2Fph_codes%2Fpython%2Ffibonacci.py;0;4
+FILE_NAME_0=210;C;0;EUTF-8;1;1;0;%2Fhome%2Fpaulopimenta%2FDocumentos%2Fmeus_codigos%2Fph_codes%2Fc_cpp%2Fsrc%2Fc_codes%2Fnumeros.c;0;4
 
 [build-menu]
 CFT_01_LB=_Build
@@ -40,7 +40,7 @@ PythonFT_00_LB=_Compile
 PythonFT_00_CM=python3 -m py_compile "%f"
 PythonFT_00_WD=
 EX_00_LB=_Execute
-EX_00_CM=python3 "%f"
+EX_00_CM=./%e
 EX_00_WD=
 PythonFT_02_LB=_Lint
 PythonFT_02_CM=pep8 --max-line-length=80 "%f"

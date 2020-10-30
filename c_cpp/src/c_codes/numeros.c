@@ -3,6 +3,7 @@
 #define tamanho 11
 
 void numero_um(); //prototipo de print do numero um
+
 void numero_dois(); 
 
 int main(){
