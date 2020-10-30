@@ -57,5 +57,3 @@ Há diversos metodos na internet, como usar fflush(stdin), o qual cria um behavi
 scanf("%s", variavel) para toda uma string enquanto que se for capturado caracter por caracter sera usado o indicador de tipo %c do seguinte modo: scanf("%c", &outraVariavel\[i]). O indicador de tipo %s sugere pegar uma variavel longa, por ser uma string, tal como "abcdefghij", equanto o indicador de tipo %c pega pedado por pedaco e aloca no vetor
 
 </p>
-
-### Estudo de simulacao numerica usando o modelo WRF (World Research in Forecasting)
