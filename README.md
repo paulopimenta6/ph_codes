@@ -1,40 +1,59 @@
-# meus_codigos
-Meus codigos de programacao
+## Programacao em C/C++, Python e Shell
 
-Codigos feitos por Paulo Pimenta em
+Codigos feitos por Paulo Pimenta
+Contato por email: *paulopimenta315@gmail.com* <br />
+Fiquem a vontade para copiar, contato e sugestoes 
 
-[1] Python2 e Python3 seguindo as orientacoes dos livros:
-[1.1] Introducao a programacao com Python - Ed. Novatec
-[1.2] Python "escreva seus primeiros programas" - Casa do Codigo
+## Referencias: 
 
-[2] C++11
-[2.1] C++ Absoluto - Pearson
+<p>
 
-[3] C
-[3.1] Algoritmos e programacao em linguagem C - Editora Saraiva
+### Python:
 
-[4] Contato por email: paulopimenta315@gmail.com
+*Python 2 e Python 3 seguindo as orientacoes dos livros:* <br />
+* Introducao a programacao com Python - Novatec <br />
+* Python "escreva seus primeiros programas" - Casa do Codigo <br />
+* Introdução à Computação Usando Python - Um Foco no Desenvolvimento de Aplicações - LTC <br /> 
 
-[5] Fiquem a vontade para copiar, contato e sugestoes 
+### C++11:
 
-#####DICAS E APRENDIZADOS#####
+* C++ Absoluto - Pearson
 
-[6] Este aquivo tem por objetivo ser um simples tutorial de compilação do GCC que ao longo do uso será sempre atualizado
+### C:
 
-P1 - Como compilar no GCC usando linhas de comando?
+* Algoritmos e programacao em linguagem C - Editora Saraiva
+* Introducao a Programacao com a Linguagem C - NOVATEC
+* Programacao em Baixo Nivel - NOVATEC
 
-R1 - O comando usado deve ser: gcc <meu_arquivo>.c -Wall -o <nome_do_executavel>
+</p>
 
-...Lembrando que gcc é o nome do compilador
+## Organizacao
 
-...-Wall é a flag usada para habilitar comentários de possiveis erros
+<p>
 
-... -o é a flag que habilita a criação do nome do executável
+Os codigos estao armazenados em diretorios especificos da linguagem (exceto o script de compilacao C/C++ feito em Shell que esta no diretorio c_cpp). <br />
 
-P2 - Como limpar o buffer de um caracter?
+* O diretorio para os codigos em C/C++ e o ~/c_cpp/src/. O script **make.sh** faz a compilacao e joga os binarios criados no diretorio ~/bin/ <br />
+* O diretorio para os codigos Python e o de mesmo nome havendo codigos tanto em Python 2 quanto em Python 3 <br />
 
-R2 - Há diversos metodos na internet, como usar fflush(stdin), o qual cria um behaviour undefined e é melhor usado em saidas e não entradas
+</p>
 
-...ou __fpurge(stdin), no entando escolheu-se usar o espaço entre as aspas e o símbolo de porcentagem e simbolo do tipo tal como
+## Dicas de programcao em C/C++
 
-...scanf(" %c", &var);  
+<p>
+
+*Esta secao tem por objetivo ser um simples tutorial de compilação do GCC que ao longo do uso será sempre atualizado*
+
+* Como compilar no GCC usando linhas de comando?
+
+O comando usado deve ser: *gcc <meu_arquivo>.c -Wall -lm -o <nome_do_executavel>* Lembrando que gcc é o nome do compilador. **-Wall** é a flag usada para habilitar comentários de possiveis erros, **-o** e a flag que habilita a criação do nome do executável e **-lm** e uma flag usada para compilar codigos que usam elementos da biblioteca *math.h*  
+
+* Como limpar o buffer de um caracter?
+
+Há diversos metodos na internet, como usar fflush(stdin), o qual cria um behaviour undefined e é melhor usado em saidas e não entradas ou \__fpurge(stdin), no entando escolheu-se usar o espaço entre as aspas e o símbolo de porcentagem e simbolo do tipo tal como scanf(" %c", &var)
+
+* Como fazer a entrada de dados com string: scanf e %s?
+
+scanf("%s", variavel) para toda uma string enquanto que se for capturado caracter por caracter sera usado o indicador de tipo %c do seguinte modo: scanf("%c", &outraVariavel\[i]). O indicador de tipo %s sugere pegar uma variavel longa, por ser uma string, tal como "abcdefghij", equanto o indicador de tipo %c pega pedado por pedaco e aloca no vetor
+
+</p>
