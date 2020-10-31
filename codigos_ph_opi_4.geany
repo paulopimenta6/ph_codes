@@ -27,8 +27,7 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=1
-FILE_NAME_0=0;C;0;EUTF-8;1;1;0;%2Fhome%2Futrecht%2FDocuments%2Frepositorio_ph%2Fph_codes%2Fc_cpp%2Fequacao2grau.c;0;4
+current_page=0
 
 [VTE]
 last_dir=/home/utrecht
