@@ -5,9 +5,9 @@
 ### email: paulopimenta315@gmail.com  ###
 #########################################
 
-####################################################
-### Programa de compilacao de codigos em C/CPP   ###
-####################################################
+echo "####################################################"
+echo "### Programa de compilacao de codigos em C/CPP   ###"
+echo "####################################################"
 
 dir_binario="../../bin/"
 
@@ -19,19 +19,6 @@ mensagem_de_uso="$(basename "$0") [OPCOES]
 	-v | --versao	Mostra versão de software \n
 	-c | --compila	codigo a ser compilado. Codigo deve ser passado como parametro \n
 "
-
-############################################################
-### Aqui sera avaliado se o diretorio de binarios existe ###
-############################################################
-
-if test -d "${dir_binario}" 
-then
-	echo "O diretorio existe"
-else
-	echo "O diretorio nao existe vamos criar o diretorio"
-	mkdir "${dir_binario}"
-	echo "A diretorio ${dir_binario} foi criado"
-fi
 
 if test -n "${1}"
 then	
@@ -48,7 +35,6 @@ then
 			;;
 
 		-c | --compila)
-
 		if test -n "${2}"
 		then			
 			nome_executavel=$(echo "${2}" | cut -d . -f 1)

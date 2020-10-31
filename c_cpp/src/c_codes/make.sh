@@ -24,7 +24,7 @@ mensagem_de_uso="$(basename "$0") [OPCOES]
 ### Aqui sera avaliado se o diretorio de binarios existe ###
 ############################################################
 
-if test -d "${dir_binario}" 
+if [ -d "${dir_binario}" ] 
 then
 	echo "O diretorio existe"
 else
