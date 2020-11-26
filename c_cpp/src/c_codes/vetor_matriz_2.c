@@ -17,7 +17,7 @@ void mostra(int s[10]){
 
 	int i;
 
-	printf("O vator ficou assim: \n");
+	printf("O vetor ficou assim: \n");
 
 	for(i=0; i<10; i++){
 		printf("| %d ", s[i]);
