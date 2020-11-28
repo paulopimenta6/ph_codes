@@ -6,12 +6,12 @@
 
 int main(){
 	
-	char *cores[]={"amarelo", "azul", "vermelho", "branco", "preto", "verde", "rosa"}; 
+	char *cores[]={"amarelo", "azul", "vermelho", "branco", "preto", "verde", "rosa", 0}; 
 	char **aponta_cores;
 	
 	aponta_cores=cores;
 	
-	while(strlen(*aponta_cores)>0){
+	while(*aponta_cores){
 		printf("Cor: %s \n", *aponta_cores); //em arquitetura ARM havera um item a mais impresso ao contrario de outras arquiteturas	
 		aponta_cores++;
 	}	

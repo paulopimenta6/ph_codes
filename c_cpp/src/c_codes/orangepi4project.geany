@@ -28,13 +28,14 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=5
+current_page=6
 FILE_NAME_0=0;C;0;EUTF-8;1;1;0;%2Fhome%2Futrecht%2FDocuments%2Frepositorio_ph%2Fph_codes%2Fc_cpp%2Fsrc%2Fc_codes%2Fpont1.c;0;4
 FILE_NAME_1=0;C;0;EUTF-8;1;1;0;%2Fhome%2Futrecht%2FDocuments%2Frepositorio_ph%2Fph_codes%2Fc_cpp%2Fsrc%2Fc_codes%2Fpont2.c;0;4
 FILE_NAME_2=0;C;0;EUTF-8;1;1;0;%2Fhome%2Futrecht%2FDocuments%2Frepositorio_ph%2Fph_codes%2Fc_cpp%2Fsrc%2Fc_codes%2Fpont3.c;0;4
-FILE_NAME_3=283;C;0;EUTF-8;1;1;0;%2Fhome%2Futrecht%2FDocuments%2Frepositorio_ph%2Fph_codes%2Fc_cpp%2Fsrc%2Fc_codes%2Fpont4.c;0;4
+FILE_NAME_3=120;C;0;EUTF-8;1;1;0;%2Fhome%2Futrecht%2FDocuments%2Frepositorio_ph%2Fph_codes%2Fc_cpp%2Fsrc%2Fc_codes%2Fpont4.c;0;4
 FILE_NAME_4=387;C;0;EUTF-8;1;1;0;%2Fhome%2Futrecht%2FDocuments%2Frepositorio_ph%2Fph_codes%2Fc_cpp%2Fsrc%2Fc_codes%2Fpont5.c;0;4
-FILE_NAME_5=1;C;0;EUTF-8;1;1;0;%2Fhome%2Futrecht%2FDocuments%2Frepositorio_ph%2Fph_codes%2Fc_cpp%2Fsrc%2Fc_codes%2Fpont6.c;0;4
+FILE_NAME_5=851;C;0;EUTF-8;1;1;0;%2Fhome%2Futrecht%2FDocuments%2Frepositorio_ph%2Fph_codes%2Fc_cpp%2Fsrc%2Fc_codes%2Fpont6.c;0;4
+FILE_NAME_6=306;C;0;EUTF-8;1;1;0;%2Fhome%2Futrecht%2FDocuments%2Frepositorio_ph%2Fph_codes%2Fc_cpp%2Fsrc%2Fc_codes%2Fpont7.c;0;4
 
 [VTE]
 last_dir=/home/utrecht
