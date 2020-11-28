@@ -63,4 +63,5 @@ scanf("%s", variavel) para toda uma string enquanto que se for capturado caracte
 <p>
 
 Os ponteiros sao importantes recursos em C/C++ o qual otimizam o uso de recursos e tornam mais eficazes um programa. Aqui vao algumas dicas de como usar um ponteiro.
+
 *declarando um ponteiro inteiro:* **int \*ptr**
