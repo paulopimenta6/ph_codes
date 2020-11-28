@@ -57,3 +57,10 @@ Há diversos metodos na internet, como usar fflush(stdin), o qual cria um behavi
 scanf("%s", variavel) para toda uma string enquanto que se for capturado caracter por caracter sera usado o indicador de tipo %c do seguinte modo: scanf("%c", &outraVariavel\[i]). O indicador de tipo %s sugere pegar uma variavel longa, por ser uma string, tal como "abcdefghij", equanto o indicador de tipo %c pega pedado por pedaco e aloca no vetor
 
 </p>
+
+## Dicas com ponteiros
+
+<p>
+
+Os ponteiros sao importantes recursos em C/C++ o qual otimizam o uso de recursos e tornam mais eficazes um programa. Aqui vao algumas dicas de como usar um ponteiro.
+*declarando um ponteiro inteiro:* **int \*ptr**
