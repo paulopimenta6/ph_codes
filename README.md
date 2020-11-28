@@ -65,6 +65,13 @@ scanf("%s", variavel) para toda uma string enquanto que se for capturado caracte
 Os ponteiros sao importantes recursos em C/C++ o qual otimizam o uso de recursos e tornam mais eficazes um programa. Aqui vao algumas dicas de como usar um ponteiro.
 
 * Declarando um ponteiro inteiro: int \*ptr -- Declarando um ponteiro chamado ptr de tipo inteiro <br />
-* ptr=&\<variavel\> -- O ponteiro prt vai receber o endereco de memoria da variavel <br />
-* int \*ptr=&variavel -- Outra maneira de se declarar um ponteiro e ainda receber seu endereco de memoria <br />
+* ptr=&\<variavel\> -- O ponteiro prt vai receber o endereco de memoria \<da variavel\> <br />
+* int \*ptr=&\<variavel\> -- Outra maneira de se declarar um ponteiro e ainda receber seu endereco de memoria <br />
 * int \*ptr=NULL -- Declarndo um ponteiro vazio <br />
+
+Para imprimir um ponteiro e preciso ter em mente os seguintes casos:
+
+* O identificador de um ponteiro e %p, ou seja, para imprimir o valor do ponteiro que ele aponta ou o seu proprio endereco de memoria
+* Imprimindo o endereco que um ponteiro aponta: printf("O valor do ponteiro pont apontado em x e: %p \n", pont);
+* Imprimindo o endereco de memoria do proprio ponteiro: printf("O endereço do ponteiro pont e: %p \n", &pont); 
+* Imprimindo o valor acessado pelo ponteiro através do ponteiro: printf("O valor de x acessado pelo ponteiro pont e: %d \n", \*pont);
