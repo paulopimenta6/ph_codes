@@ -19,26 +19,14 @@ indent_mode=2
 
 [project]
 name=raspi4project
-base_path=/home/nottingham/Documents/ph_codes
-description=
-file_patterns=
+base_path=/home/nottingham/Documents/ph_codes/c_cpp/src/c_codes
 
 [long line marker]
 long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=0
-FILE_NAME_0=247;C;0;EUTF-8;1;1;0;%2Fhome%2Fnottingham%2FDocuments%2Fph_codes%2Fc_cpp%2Fsrc%2Fc_codes%2Fpont1.c;0;4
+current_page=-1
 
 [VTE]
-last_dir=/home/nottingham
-
-[build-menu]
-CFT_00_LB=_Compile
-CFT_00_CM=gcc -lm -Wall -c "%f"
-CFT_00_WD=
-CFT_01_LB=_Build
-CFT_01_CM=gcc -lm -Wall -o "%e" "%f"
-CFT_01_WD=
-filetypes=C;
+last_dir=/home

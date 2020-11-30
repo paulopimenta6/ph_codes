@@ -57,3 +57,21 @@ Há diversos metodos na internet, como usar fflush(stdin), o qual cria um behavi
 scanf("%s", variavel) para toda uma string enquanto que se for capturado caracter por caracter sera usado o indicador de tipo %c do seguinte modo: scanf("%c", &outraVariavel\[i]). O indicador de tipo %s sugere pegar uma variavel longa, por ser uma string, tal como "abcdefghij", equanto o indicador de tipo %c pega pedado por pedaco e aloca no vetor
 
 </p>
+
+## Dicas com ponteiros
+
+<p>
+
+Os ponteiros sao importantes recursos em C/C++ o qual otimizam o uso de recursos e tornam mais eficazes um programa. Aqui vao algumas dicas de como usar um ponteiro.
+
+* Declarando um ponteiro inteiro: int \*ptr -- Declarando um ponteiro chamado ptr de tipo inteiro <br />
+* ptr=&\<variavel\> -- O ponteiro prt vai receber o endereco de memoria \<da variavel\> <br />
+* int \*ptr=&\<variavel\> -- Outra maneira de se declarar um ponteiro e ainda receber seu endereco de memoria <br />
+* int \*ptr=NULL -- Declarndo um ponteiro vazio <br />
+
+Para imprimir um ponteiro e preciso ter em mente os seguintes casos:
+
+* O identificador de um ponteiro e %p, ou seja, para imprimir o valor do ponteiro que ele aponta ou o seu proprio endereco de memoria
+* Imprimindo o endereco que um ponteiro aponta: printf("O valor do ponteiro pont apontado em x e: %p \n", ptr);
+* Imprimindo o endereco de memoria do proprio ponteiro: printf("O endereço do ponteiro pont e: %p \n", &ptr); 
+* Imprimindo o valor acessado pelo ponteiro através do ponteiro: printf("O valor de x acessado pelo ponteiro pont e: %d \n", \*ptr);
