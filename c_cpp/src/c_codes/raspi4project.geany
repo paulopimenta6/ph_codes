@@ -26,7 +26,15 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=-1
+current_page=7
+FILE_NAME_0=221;C;0;EUTF-8;1;1;0;%2Fhome%2Fnottingham%2FDocuments%2Fph_codes%2Fc_cpp%2Fsrc%2Fc_codes%2Fpont1.c;0;4
+FILE_NAME_1=188;C;0;EUTF-8;1;1;0;%2Fhome%2Fnottingham%2FDocuments%2Fph_codes%2Fc_cpp%2Fsrc%2Fc_codes%2Fpont2.c;0;4
+FILE_NAME_2=0;C;0;EUTF-8;1;1;0;%2Fhome%2Fnottingham%2FDocuments%2Fph_codes%2Fc_cpp%2Fsrc%2Fc_codes%2Fpont3.c;0;4
+FILE_NAME_3=0;C;0;EUTF-8;1;1;0;%2Fhome%2Fnottingham%2FDocuments%2Fph_codes%2Fc_cpp%2Fsrc%2Fc_codes%2Fpont4.c;0;4
+FILE_NAME_4=0;C;0;EUTF-8;1;1;0;%2Fhome%2Fnottingham%2FDocuments%2Fph_codes%2Fc_cpp%2Fsrc%2Fc_codes%2Fpont5.c;0;4
+FILE_NAME_5=0;C;0;EUTF-8;1;1;0;%2Fhome%2Fnottingham%2FDocuments%2Fph_codes%2Fc_cpp%2Fsrc%2Fc_codes%2Fpont6.c;0;4
+FILE_NAME_6=0;C;0;EUTF-8;1;1;0;%2Fhome%2Fnottingham%2FDocuments%2Fph_codes%2Fc_cpp%2Fsrc%2Fc_codes%2Fpont7.c;0;4
+FILE_NAME_7=258;C;0;EUTF-8;1;1;0;%2Fhome%2Fnottingham%2FDocuments%2Fph_codes%2Fc_cpp%2Fsrc%2Fc_codes%2Fpont8.c;0;4
 
 [VTE]
 last_dir=/home
