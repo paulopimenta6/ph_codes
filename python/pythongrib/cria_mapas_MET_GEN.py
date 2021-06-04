@@ -10,6 +10,7 @@ import numpy as np
 from matplotlib import rc
 import matplotlib.pyplot as plt
 from mpl_toolkits.basemap import Basemap
+from mpl_toolkits.basemap import shiftgrid
 
 # =============================================================================
 # Variaveis globais
@@ -33,32 +34,31 @@ dict_var_met={"1": ["Surface pressure", "surface"],
               #"5": ["U component of wind", "V component of wind"]
 
     
-SP={0: -28, #"SP_lat_ini:  llcrnrlat: -28 
-    1: -18, #"SP_lat_fim": urcrnrlat: -18
-    2: 304, #"SP_lon_ini": llcrnrlon: 304
-    3: 320} #"SP_lon_fim": urcrnrlon: 320
+SP={0: -28, #SP_lat_ini:  llcrnrlat: -28 
+    1: -18, #SP_lat_fim": urcrnrlat: -18
+    2: -56, #SP_lon_ini": llcrnrlon: 304
+    3: -42} #SP_lon_fim": urcrnrlon: 320
 
-dict_regiao={1: SP}
-             #"2": RJ,
-             #"3": Manaus,
-             #"4": Brasilia}
-             
-# =============================================================================
-# Funcao que le um grib e que le os grids e transforma em grid
-# =============================================================================
-def grb_to_grid(grb_obj):
-    """Takes a single grb object containing multiple
-    levels. Assumes same time, pressure levels. Compiles to a cube"""
-    n_levels = len(grb_obj)
-    levels = np.array([grb_element['level'] for grb_element in grb_obj])
-    indexes = np.argsort(levels)[::-1] # highest pressure first
-    cube = np.zeros([n_levels, grb_obj[0].values.shape[0], grb_obj[1].values.shape[1]])
-    for i in range(n_levels):
-        cube[i,:,:] = grb_obj[indexes[i]].values
-    cube_dict = {'data' : cube, 'units' : grb_obj[0]['units'],
-                 'levels' : levels[indexes]}
-    return cube_dict
+RJ={0: -24, #RJ_lat_ini:  llcrnrlat: -24 
+    1: -20, #RJ_lat_fim": urcrnrlat: -20
+    2: -45, #RJ_lon_ini": llcrnrlon: -45
+    3: -37} #RJ_lon_fim": urcrnrlon: -37
 
+AM={0: -6.35, #AM_lat_ini:  llcrnrlat: -6.35 
+    1: 0.28,  #AM_lat_fim": urcrnrlat: -0.28
+    2: -65,   #AM_lon_ini": llcrnrlon: -65
+    3: -53}   #AM_lon_fim": urcrnrlon: -53
+
+DF={0: -20, #DF_lat_ini:  llcrnrlat: -16
+    1: -10, #DF_lat_fim": urcrnrlat: -15
+    2: -54, #DF_lon_ini": llcrnrlon: -49
+    3: -44} #DF_lon_fim": urcrnrlon: -46
+
+dict_regiao={1: SP,
+             2: RJ,
+             3: AM,
+             4: DF}
+          
 # =============================================================================
 # Funcao que define a variavel e carrega as variaveis 
 # com algumas caracteristicas
@@ -80,10 +80,12 @@ print("=========================================================================
 # =============================================================================
 var_met_grb=eval(input("Escolha uma variavel:"))
 print("Foi escolhido a variavel: " + dict_var_met[str(var_met_grb)][0])
-name_var_met=dict_var_met[str(var_met_grb)[0]]
+name_var_met=dict_var_met[str(var_met_grb)][0]
 tipo_nivel=dict_var_met[str(var_met_grb)][1]
 
 lista_vars_met=grb.select(name=name_var_met, typeOfLevel=tipo_nivel)
+unidade_var_met=lista_vars_met[0].units
+
 
 if len(lista_vars_met)>2:    
     # print(lista_vars_met)
@@ -120,32 +122,82 @@ else:
     nivel_escolhido=lista_vars_met[0].level
     lista_vars_met=grb.select(name=name_var_met, typeOfLevel=tipo_nivel, level=nivel_escolhido)        
     
-#Editar o hpa da mensagens dos prints, pois em niveis de superficie os mesmos nao usam hPa    
-    
+#Editar o hpa da mensagens dos prints, pois em niveis de superficie os mesmos nao usam hPa
+  
+# =============================================================================
+# Adquirindo valor e deixando a grade de longitudes entre -180 ate 180
+# =============================================================================
+
+# Pegando valores de latitudes e longitudes
+lat_reg=lista_vars_met[0].distinctLatitudes
+lon_reg=lista_vars_met[0].distinctLongitudes
+
+# Adquirindo os valores e reorientando os valores das longitudes de -180 a 180
+data=lista_vars_met[0].values
+data, lon_reg=shiftgrid(180., data, lon_reg, start=False)
+
+# Adquirindo os valores de maximo, minimo e unidade 
+max_var_met=data.max()
+min_var_met=data.min()
+intervalo=(max_var_met-min_var_met)
+#unidade_var_met=lista_vars_met[0].units
+
 # =============================================================================
 # Definicao da regiao
 # =============================================================================
-lat_reg=lista_vars_met[0].distinctLatitudes
-lon_reg=lista_vars_met[0].distinctLongitudes
 print("Regioes de interesse: \n")
 print("1: SP \
       \n2: RJ \
       \n3: Manaus \
       \n4: Brasilia")
 var_met_reg=eval(input("Escolha uma regiao: "))
-lats_lons_regs_escolhida=dict_regiao[var_met_reg]
+lats_lons_reg_escolhida=dict_regiao[var_met_reg]
 
-m = Basemap(projection='mill', 
-            llcrnrlat=lats_lons_regs_escolhida[0], 
-            urcrnrlat=lats_lons_regs_escolhida[1],
-            llcrnrlon=lats_lons_regs_escolhida[2],
-            urcrnrlon=lats_lons_regs_escolhida[3],
+# =============================================================================
+# Cortando para area de interesse
+# =============================================================================
+#Load=loadt[fnear(loadt,lnmn)-2:fnear(loadt,lnmx)+2] 
+#Laad=laadt[fnear(laadt,ltmn)-2:fnear(laadt,ltmx)+2] 
+#LOadt,LAadt=np.meshgrid(Load,Laad)
+
+# =============================================================================
+# Plotando mapas
+# =============================================================================
+
+m = Basemap(projection='mill',
+            llcrnrlat=lats_lons_reg_escolhida[0], 
+            urcrnrlat=lats_lons_reg_escolhida[1],
+            llcrnrlon=lats_lons_reg_escolhida[2],
+            urcrnrlon=lats_lons_reg_escolhida[3],
             resolution='i')
 
+rc('font',weight='normal') 
+rc('xtick',labelsize=12)  
+rc('font',size=12)
+rc('ytick',labelsize=12)    
+plt.figure(figsize=(8,10))
+lons_grid,lats_grid=np.meshgrid(lon_reg,lat_reg)
+x, y = m(lons_grid, lats_grid)
+
+meridianinterval=np.arange(lats_lons_reg_escolhida[2],lats_lons_reg_escolhida[3],2)
+parallelsinterval=np.arange(lats_lons_reg_escolhida[0],lats_lons_reg_escolhida[1])
+m.drawparallels(parallelsinterval,labels=[1,0,0,0],  color='k',linewidth=.3)
+m.drawmeridians(meridianinterval,labels=[0,0,0,1],color='k',linewidth=.3)
+
+m.drawcoastlines()
+m.drawcountries()
+m.drawstates()
+
+contourf = m.contourf(x, y, np.squeeze(data),cmap='viridis', levels=np.linspace(int(min_var_met), int(max_var_met), int(intervalo)))
+cs1 = m.contour(x, y, np.squeeze(data),colors='k', levels=np.linspace(int(min_var_met), int(max_var_met), int(intervalo)), linewidths=0.2)
+#contourf = m.contourf(x, y, np.squeeze(data),cmap='GnBu', levels=np.linspace(min_var_met, max_var_met, 200))
+#cs1 = m.contour(x, y, np.squeeze(data),colors='k', levels=np.linspace(min_var_met, max_var_met, 200), linewidths=0.2)
+plt.clabel(cs1,fmt='%d',fontsize=8)
+
+print(contourf)
+cbar=m.colorbar(contourf, location='right', pad="1%")
+cbar.set_label(unidade_var_met)
+plt.show()
 # =============================================================================
 # Dicionario de variaveis
 # =============================================================================
-
-
- 
-              
