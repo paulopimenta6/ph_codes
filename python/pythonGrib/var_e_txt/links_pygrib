@@ -1,0 +1,4 @@
+links pygrib
+
+https://github.com/hydroclaus/GRIB/blob/master/read_grib.py
+https://confluence.ecmwf.int/display/CKB/How+to+plot+GRIB+files+with+Python+and+matplotlib
