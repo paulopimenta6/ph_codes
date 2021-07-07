@@ -3,7 +3,7 @@
 #Programa para baixar arquivos grib
 
 #Diretorios
-dir="/home/utrecht/goGrib"
+dir="/media/utrecht/12382BE468602ECF/goGrib/"
 #Datas
 data_ano=`date +"%Y"`
 data_mes=`date +"%m"`
@@ -28,10 +28,11 @@ URL="ftp://ftp.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs."
 #Exemplo de endereco:ftp://ftp.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.20210627/00/atmos/
 
 ###Horario da analise das 00 com previsao para 06, 12, 18
-
-if test -d ${data_completa}
+cd ${dir}
+if test -d ../${data_completa}
 then 
     echo "O diretorio existe"
+    cd ../${data_completa}
 else
     echo "O diretorio nao existe..."
     echo "Criando diretorio..."
@@ -39,32 +40,36 @@ else
     cd ../${data_completa}
 fi
 
-for tAnalise in 00 06 12 18
-do 
-	for tPrev in 00 06 12 18
-	do
-
-	    if test -e "gfs.t"${tAnalise}"z.pgrb2.0p25.f0"${tPrev} 
-	    then
-		echo "Arquivo existe"
-	    else
-		echo "Arquivo nao existe"
-		echo "Verificando o diretorio do arquivo no NOAA: ${URL}${data_completa}/${tAnalise}/atmos/"        
-		wget --spider --quiet ${URL}${data_completa}"/"${tAnalise}"/atmos/" && flag=true || flag=false
-
-		if [ "${flag}" = "true" ]
-		then
-		    echo "Site OK!"
-		    echo "Fazendo download..."
-		    wget ${URL}${data_completa}"/"${tAnalise}"/atmos/gfs.t"${tAnalise}"z.pgrb2.0p25.f0"${tPrev} 
-		else
-		    echo "Site NOK!"
-		fi
-
-	fi
-	done 
-done
-
+    for tAnalise in 00 06 12 18
+    do
+        if test ! -d ${tAnalise}
+        then
+            mkdir ${tAnalise}
+            cd ${tAnalise}     
+            for tPrev in 00 06 12 18
+            do
+                if test -e "gfs.t"${tAnalise}"z.pgrb2.0p25.f0"${tPrev} 
+	        then
+                    echo "Arquivo existe"
+                else
+                    echo "Arquivo nao existe"
+                    echo "Verificando o diretorio do arquivo no NOAA: ${URL}${data_completa}/${tAnalise}/atmos/"        
+                    wget --spider --quiet ${URL}${data_completa}"/"${tAnalise}"/atmos/" && flag=true || flag=false
+                    if [ "${flag}" = "true" ]
+                    then
+                        echo "Site OK!"
+                        echo "Fazendo download..."
+                        wget ${URL}${data_completa}"/"${tAnalise}"/atmos/gfs.t"${tAnalise}"z.pgrb2.0p25.f0"${tPrev} 
+                    else
+                        echo "Site NOK!"
+                    fi
+                fi
+            done
+            cd ../
+        fi
+    done
+    cd ../
+    ls
 ###
 
 ################################################################################################
