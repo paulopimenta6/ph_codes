@@ -1,0 +1,97 @@
+/* meus_codigos-version.h.in
+ *
+ * Copyright (C) 2021 Paulo Pimenta
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#ifndef MEUS_CODIGOS_VERSION_H
+#define MEUS_CODIGOS_VERSION_H
+
+#if !defined(MEUS_CODIGOS_INSIDE) && !defined(MEUS_CODIGOS_COMPILATION)
+# error "Only <meus_codigos.h> can be included directly."
+#endif
+
+/**
+ * SECTION:meus_codigos-version
+ * @short_description: meus_codigos version checking
+ *
+ * meus_codigos provides macros to check the version of the library
+ * at compile-time
+ */
+
+/**
+ * MEUS_CODIGOS_MAJOR_VERSION:
+ *
+ * meus_codigos major version component (e.g. 1 if %MEUS_CODIGOS_VERSION is 1.2.3)
+ */
+#define MEUS_CODIGOS_MAJOR_VERSION (@MAJOR_VERSION@)
+
+/**
+ * MEUS_CODIGOS_MINOR_VERSION:
+ *
+ * meus_codigos minor version component (e.g. 2 if %MEUS_CODIGOS_VERSION is 1.2.3)
+ */
+#define MEUS_CODIGOS_MINOR_VERSION (@MINOR_VERSION@)
+
+/**
+ * MEUS_CODIGOS_MICRO_VERSION:
+ *
+ * meus_codigos micro version component (e.g. 3 if %MEUS_CODIGOS_VERSION is 1.2.3)
+ */
+#define MEUS_CODIGOS_MICRO_VERSION (@MICRO_VERSION@)
+
+/**
+ * MEUS_CODIGOS_VERSION
+ *
+ * meus_codigos version.
+ */
+#define MEUS_CODIGOS_VERSION (@VERSION@)
+
+/**
+ * MEUS_CODIGOS_VERSION_S:
+ *
+ * meus_codigos version, encoded as a string, useful for printing and
+ * concatenation.
+ */
+#define MEUS_CODIGOS_VERSION_S "@VERSION@"
+
+#define MEUS_CODIGOS_ENCODE_VERSION(major,minor,micro) \
+        ((major) << 24 | (minor) << 16 | (micro) << 8)
+
+/**
+ * MEUS_CODIGOS_VERSION_HEX:
+ *
+ * meus_codigos version, encoded as an hexadecimal number, useful for
+ * integer comparisons.
+ */
+#define MEUS_CODIGOS_VERSION_HEX \
+        (MEUS_CODIGOS_ENCODE_VERSION (MEUS_CODIGOS_MAJOR_VERSION, MEUS_CODIGOS_MINOR_VERSION, MEUS_CODIGOS_MICRO_VERSION))
+
+/**
+ * MEUS_CODIGOS_CHECK_VERSION:
+ * @major: required major version
+ * @minor: required minor version
+ * @micro: required micro version
+ *
+ * Compile-time version checking. Evaluates to %TRUE if the version
+ * of meus_codigos is greater than the required one.
+ */
+#define MEUS_CODIGOS_CHECK_VERSION(major,minor,micro)   \
+        (MEUS_CODIGOS_MAJOR_VERSION > (major) || \
+         (MEUS_CODIGOS_MAJOR_VERSION == (major) && MEUS_CODIGOS_MINOR_VERSION > (minor)) || \
+         (MEUS_CODIGOS_MAJOR_VERSION == (major) && MEUS_CODIGOS_MINOR_VERSION == (minor) && \
+          MEUS_CODIGOS_MICRO_VERSION >= (micro)))
+
+#endif /* MEUS_CODIGOS_VERSION_H */
