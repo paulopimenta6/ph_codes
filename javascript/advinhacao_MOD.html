@@ -1,0 +1,27 @@
+<metacharset="UTF-8">
+<script>
+
+function pulaLinha() {
+    document.write("<br>");
+};
+function mostra(frase) {
+    document.write(frase);
+    pulaLinha();
+};
+
+
+alert("Já pensei em um numero de 0 a 10");
+var numeroPensado = Math.round(Math.random()*10);
+var numeroDaTentativa = 1;
+while(numeroDaTentativa <= 3) {
+    var chute = prompt("Qual você acha que é?");
+    if(chute == numeroPensado) {
+        mostra("Uau! Você acertou, pois eu pensei no " + numeroPensado);
+		break; 
+    } else {
+         mostra("Não foi dessa vez! Errrrrrrrou");         
+    };
+	numeroDaTentativa=numeroDaTentativa+1; 
+}	
+document.write(numeroPensado)
+</script>

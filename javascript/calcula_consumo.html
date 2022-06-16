@@ -1,0 +1,29 @@
+<metacharset="UTF-8">
+<h3>Álcool ou Gasolina?</h3>
+<h4>Seria isso um programa?</h4> 
+<hr></hr> 
+<script>
+var pulaLinha = function() {
+document.write("<br>");
+};
+
+var mostra = function(frase) {
+document.write(frase);
+pulaLinha();
+};
+
+var tanqueGasolina = 40;
+var tanqueAlcool = 40;
+
+var caminhoComGasolina = 480;
+var caminhoComAlcool = 300;
+
+var consumoComGasolina = (caminhoComGasolina/tanqueGasolina);
+var consumoComAlcool = (caminhoComAlcool/tanqueAlcool)  
+
+//document.write("O consumo de gasolina é: " + consumoComGasolina.toFixed(2))
+//pulaLinha()
+//document.write("O consumo de alcool é: " + consumoComAlcool.toFixed(2))
+mostra("O consumo de Gasolina foi de: " + consumoComGasolina.toFixed(2));
+mostra("O consumo de Alcool foi de: " + consumoComAlcool.toFixed(2));		
+</script>
