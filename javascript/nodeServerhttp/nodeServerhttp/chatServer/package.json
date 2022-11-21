@@ -1,0 +1,19 @@
+{
+  "name": "chatserver",
+  "version": "1.0.0",
+  "description": "Um servidor de chat em tcp",
+  "type": "commonjs",
+  "main": "chat-server_2.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ."
+  },
+  "keywords": [
+    "chat",
+    "tcp",
+    "server",
+    "node"
+  ],
+  "author": "Paulo Pimenta",
+  "license": "ISC"
+}

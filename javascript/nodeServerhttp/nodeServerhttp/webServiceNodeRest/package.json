@@ -1,0 +1,17 @@
+{
+  "name": "webservicenoderest",
+  "version": "1.0.0",
+  "description": "web service em node usando rest",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "Paulo Pimenta",
+  "license": "ISC",
+  "dependencies": {
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.19"
+  }
+}

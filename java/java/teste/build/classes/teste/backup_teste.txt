@@ -1,0 +1,307 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package teste;
+
+/**
+ *
+ * @author Paulo Pimenta
+ */
+public class Teste {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+      // TODO code application logic here
+      //Primeira instanciacao de um veiculo
+      //String placa, String marca, String modelo, String cor, float velocMax, int qtdRodas, int qtdPist, int potencia
+      //================================================
+      /*  Veiculo veiculo_1 = new Veiculo("ABC123", "Ford", "Ford Fiesta Rocam 1.6 2012/13",
+              "Preto", 200, 4, 4, 107);
+        System.out.println("================================================");
+        System.out.println("Placa: " + veiculo_1.getPlaca());
+        System.out.println("Marca: " + veiculo_1.getMarca());
+        System.out.println("Modelo: " + veiculo_1.getModelo());
+        System.out.println("Cor: " + veiculo_1.getCor());
+        System.out.println("Velocidade Maxima: " + veiculo_1.getvelocMax());
+        System.out.println("Quantidade de rodas: " + veiculo_1.getQtdRodas());
+        System.out.println("Quantidade de pistoes: " + veiculo_1.getMotor().getqtdPist());
+        System.out.println("Potencia: " + veiculo_1.getMotor().getPotencia() + " cv");
+      //================================================
+
+      //================================================
+        Veiculo veiculo_2 = new Veiculo("ABC909", "Toyota", "Corolla GLi",
+              "Preto", 205, 4);
+        veiculo_2.getMotor().setPotencia(177);
+        veiculo_2.getMotor().setqtdPist(4);
+        System.out.println("================================================");
+        System.out.println("Placa: " + veiculo_2.getPlaca());
+        System.out.println("Marca: " + veiculo_2.getMarca());
+        System.out.println("Modelo: " + veiculo_2.getModelo());
+        System.out.println("Cor: " + veiculo_2.getCor());
+        System.out.println("Velocidade Maxima: " + veiculo_2.getvelocMax());
+        System.out.println("Quantidade de rodas: " + veiculo_2.getQtdRodas());
+        System.out.println("Quantidade de pistoes: " + veiculo_2.getMotor().getqtdPist());
+        System.out.println("Potencia: " + veiculo_2.getMotor().getPotencia() + " cv");
+      //================================================   
+      
+      //================================================
+      //Instanciando e exibindo atraves de getters e setters
+        Veiculo veiculo_3 = new Veiculo();
+        veiculo_3.setPlaca("ABC456");
+        veiculo_3.setMarca("Hyundai");
+        veiculo_3.setModelo("Hyundai HB20 TGDI");
+        veiculo_3.setCor("Branco");
+        veiculo_3.setvelocMax(190);
+        veiculo_3.setQtdRodas(4);
+        veiculo_3.getMotor().setPotencia(120);
+        veiculo_3.getMotor().setqtdPist(3);
+        System.out.println("================================================");
+        System.out.println("Placa: " + veiculo_3.getPlaca());
+        System.out.println("Marca: " + veiculo_3.getMarca());
+        System.out.println("Modelo: " + veiculo_3.getModelo());
+        System.out.println("Cor: " + veiculo_3.getCor());
+        System.out.println("Velocidade Maxima: " + veiculo_3.getvelocMax());
+        System.out.println("Quantidade de rodas: " + veiculo_3.getQtdRodas());
+        System.out.println("Quantidade de pistoes: " + veiculo_3.getMotor().getqtdPist());
+        System.out.println("Potencia: " + veiculo_3.getMotor().getPotencia() + " cv");
+      //================================================
+        
+      //================================================
+      //Instanciando e exibindo atraves de getters e setters
+        Veiculo veiculo_4 = new Veiculo();
+        veiculo_4.setPlaca("ABC459");
+        veiculo_4.setMarca("Volvo");
+        veiculo_4.setModelo("Volvo XC60 (eletrico)");
+        veiculo_4.setCor("Branco");
+        veiculo_4.setvelocMax(180);
+        veiculo_4.setQtdRodas(4);
+        veiculo_4.getMotor().setPotencia(145);
+        veiculo_4.getMotor().setqtdPist(0);
+        System.out.println("================================================");
+        System.out.println("Placa: " + veiculo_4.getPlaca());
+        System.out.println("Marca: " + veiculo_4.getMarca());
+        System.out.println("Modelo: " + veiculo_4.getModelo());
+        System.out.println("Cor: " + veiculo_4.getCor());
+        System.out.println("Velocidade Maxima: " + veiculo_4.getvelocMax());
+        System.out.println("Quantidade de rodas: " + veiculo_4.getQtdRodas());
+        System.out.println("Quantidade de pistoes: " + veiculo_4.getMotor().getqtdPist());
+        System.out.println("Potencia: " + veiculo_4.getMotor().getPotencia() + " cv");
+      //================================================
+        
+      //================================================
+        Veiculo veiculo_5 = new Veiculo("ABC973", "Mitsubishi", "Mitsubishi Outlander",
+              "Prata", 220, 4);
+        veiculo_5.getMotor().setPotencia(240);
+        veiculo_5.getMotor().setqtdPist(6);
+        System.out.println("================================================");
+        System.out.println("Placa: " + veiculo_5.getPlaca());
+        System.out.println("Marca: " + veiculo_5.getMarca());
+        System.out.println("Modelo: " + veiculo_5.getModelo());
+        System.out.println("Cor: " + veiculo_5.getCor());
+        System.out.println("Velocidade Maxima: " + veiculo_5.getvelocMax());
+        System.out.println("Quantidade de rodas: " + veiculo_5.getQtdRodas());
+        System.out.println("Quantidade de pistoes: " + veiculo_5.getMotor().getqtdPist());
+        System.out.println("Potencia: " + veiculo_5.getMotor().getPotencia() + " cv");
+      //================================================
+      */
+      
+        System.out.println("===========Carros de passeio===========");
+        System.out.println("===========C1===========");       
+        Passeio c1 = new Passeio();
+        c1.setCor("Preto");
+        c1.setMarca("Honda");
+        c1.setModelo("Fit");
+        c1.setPlaca("ABC1234");
+        c1.setQtdRodas(4);
+        c1.setvelocMax(172);
+        c1.setPassageiros(5);
+        c1.getMotor().setPotencia(116);
+        c1.getMotor().setqtdPist(4);
+        float velc1 = c1.calcVel();
+            
+        System.out.printf("Cor...: %s%n", c1.getCor());
+        System.out.printf("Marca...: %s%n", c1.getMarca());
+        System.out.printf("Modelo...: %s%n", c1.getModelo());
+        System.out.printf("Placa...: %s%n", c1.getPlaca());
+        System.out.printf("Quantidade de rodas...: %d%n", c1.getQtdRodas());
+        System.out.printf("Quantidade de passageiros...: %d%n", c1.getPassageiros());
+        System.out.printf("Potencia [cv]...: %d%n", c1.getMotor().getPotencia());
+        System.out.printf("Quantidade de pistoes...: %d%n",c1.getMotor().getqtdPist());
+        System.out.printf("Velocidade [m/h]...:%.0f%n",velc1);
+        
+        System.out.println("===========C2===========");
+        Passeio c2 = new Passeio(5, "ABC123", "Ford", "Ford Fiesta Rocam 1.6 2012/13", "Preto", 200, 4, 4, 107);
+        float velc2 = c2.calcVel();
+        System.out.printf("Cor...: %s%n", c2.getCor());
+        System.out.printf("Marca...: %s%n", c2.getMarca());
+        System.out.printf("Modelo...: %s%n", c2.getModelo());
+        System.out.printf("Placa...: %s%n", c2.getPlaca());
+        System.out.printf("Quantidade de rodas...: %d%n", c2.getQtdRodas());
+        System.out.printf("Quantidade de passageiros...: %d%n", c2.getPassageiros());
+        System.out.printf("Potencia [cv]...: %d%n", c2.getMotor().getPotencia());
+        System.out.printf("Quantidade de pistoes...: %d%n",c2.getMotor().getqtdPist());
+        System.out.printf("Velocidade [m/h]...:%.0f%n",velc2);
+              
+        System.out.println("===========C3===========");
+        Passeio c3 = new Passeio(5,"ABC909", "Toyota", "Corolla GLi","Preto", 205, 4);
+        c3.getMotor().setPotencia(177);
+        c3.getMotor().setqtdPist(4);
+        float velc3 = c3.calcVel();
+        System.out.printf("Cor...: %s%n", c3.getCor());
+        System.out.printf("Marca...: %s%n", c3.getMarca());
+        System.out.printf("Modelo...: %s%n", c3.getModelo());
+        System.out.printf("Placa...: %s%n", c3.getPlaca());
+        System.out.printf("Quantidade de rodas...: %d%n", c3.getQtdRodas());
+        System.out.printf("Quantidade de passageiros...: %d%n", c3.getPassageiros());
+        System.out.printf("Potencia [cv]...: %d%n", c3.getMotor().getPotencia());
+        System.out.printf("Quantidade de pistoes...: %d%n",c3.getMotor().getqtdPist());
+        System.out.printf("Velocidade [m/h]...:%.0f%n",velc3);
+        
+        System.out.println("===========C4===========");        
+        Passeio c4 = new Passeio(5, "ABC973", "Mitsubishi", "Mitsubishi Outlander", "Prata", 220, 4, 6, 240);
+        float velc4 = c4.calcVel();
+        System.out.printf("Cor...: %s%n", c4.getCor());
+        System.out.printf("Marca...: %s%n", c4.getMarca());
+        System.out.printf("Modelo...: %s%n", c4.getModelo());
+        System.out.printf("Placa...: %s%n", c4.getPlaca());
+        System.out.printf("Quantidade de rodas...: %d%n", c4.getQtdRodas());
+        System.out.printf("Quantidade de passageiros...: %d%n", c4.getPassageiros());
+        System.out.printf("Potencia [cv]...: %d%n", c4.getMotor().getPotencia());
+        System.out.printf("Quantidade de pistoes...: %d%n",c4.getMotor().getqtdPist());
+        System.out.printf("Velocidade [m/h]...:%.0f%n",velc4);
+
+        System.out.println("===========C5===========");
+        Passeio c5 = new Passeio();
+        c5.setPassageiros(5);
+        c5.setCor("Branco");
+        c5.setPlaca("ABC459");
+        c5.setMarca("Volvo");
+        c5.setModelo("Volvo XC60 (eletrico)");
+        c5.setvelocMax(180);
+        c5.setQtdRodas(4);
+        c5.getMotor().setPotencia(145);
+        c5.getMotor().setqtdPist(0);
+        float velc5 = c5.calcVel();
+        
+        System.out.printf("Cor...: %s%n", c5.getCor());
+        System.out.printf("Marca...: %s%n", c5.getMarca());
+        System.out.printf("Modelo...: %s%n", c5.getModelo());
+        System.out.printf("Placa...: %s%n", c5.getPlaca());
+        System.out.printf("Quantidade de rodas...: %d%n", c5.getQtdRodas());
+        System.out.printf("Quantidade de passageiros...: %d%n", c5.getPassageiros());
+        System.out.printf("Potencia [cv]...: %d%n", c5.getMotor().getPotencia());
+        System.out.printf("Quantidade de pistoes...: %d%n",c5.getMotor().getqtdPist());
+        System.out.printf("Velocidade [m/h]...:%.0f%n",velc5);
+        
+        //System.out.println("\n");
+        
+        System.out.println("===========Carga===========");
+        System.out.println("===========C1===========");
+        Carga c6 = new Carga();        
+        c6.setCor("Preto");
+        c6.setMarca("Wolks");
+        c6.setModelo("Super 1");
+        c6.setPlaca("ABC1234");
+        c6.setQtdRodas(6);
+        c6.setvelocMax(190);
+        c6.setcargaMax(45000);
+        c6.settara(20000);
+        c6.getMotor().setPotencia(300);
+        c6.getMotor().setqtdPist(9);
+        float velc6 = c6.calcVel();
+        
+        System.out.printf("Cor...: %s%n", c6.getCor());
+        System.out.printf("Marca...: %s%n", c6.getMarca());
+        System.out.printf("Modelo...: %s%n", c6.getModelo());
+        System.out.printf("Placa...: %s%n", c6.getPlaca());
+        System.out.printf("Quantidade de rodas...: %d%n", c6.getQtdRodas());
+        System.out.printf("Potencia [cv]...: %d%n", c6.getMotor().getPotencia());
+        System.out.printf("Quantidade de pistoes...: %d%n",c6.getMotor().getqtdPist());
+        System.out.printf("Velocidade [cm/h]...:%.0f%n",velc6);
+        System.out.printf("Carga maxima...: %d%n", c6.getcargaMax());
+        System.out.printf("Tara...: %d%n", c6.gettara());        
+        
+        System.out.println("===========C2===========");
+        Carga c7 = new Carga(10000, 9000);
+        c7.setCor("Preto");
+        c7.setMarca("Honda");
+        c7.setModelo("Super 2");
+        c7.setPlaca("ABC1234");
+        c7.setQtdRodas(8);
+        c7.setvelocMax(152);
+        c7.getMotor().setPotencia(206);
+        c7.getMotor().setqtdPist(12);
+        float velc7 = c7.calcVel();        
+        
+        System.out.printf("Cor...: %s%n", c7.getCor());
+        System.out.printf("Marca...: %s%n", c7.getMarca());
+        System.out.printf("Modelo...: %s%n", c7.getModelo());
+        System.out.printf("Placa...: %s%n", c7.getPlaca());
+        System.out.printf("Quantidade de rodas...: %d%n", c7.getQtdRodas());
+        System.out.printf("Potencia [cv]...: %d%n", c7.getMotor().getPotencia());
+        System.out.printf("Quantidade de pistoes...: %d%n",c7.getMotor().getqtdPist());
+        System.out.printf("Velocidade [cm/h]...:%.0f%n",velc7);
+        System.out.printf("Carga maxima...: %d%n", c7.getcargaMax());
+        System.out.printf("Tara...: %d%n", c7.gettara());
+        
+        System.out.println("===========C3===========");
+        Carga c8 = new Carga(10000,40000, "ABC123", "Volvo", "Super 3", "Preto", 200, 8, 12, 107);
+        float velc8 = c8.calcVel();
+        
+        System.out.printf("Cor...: %s%n", c8.getCor());
+        System.out.printf("Marca...: %s%n", c8.getMarca());
+        System.out.printf("Modelo...: %s%n", c8.getModelo());
+        System.out.printf("Placa...: %s%n", c8.getPlaca());
+        System.out.printf("Quantidade de rodas...: %d%n", c8.getQtdRodas());
+        System.out.printf("Potencia [cv]...: %d%n", c8.getMotor().getPotencia());
+        System.out.printf("Quantidade de pistoes...: %d%n",c8.getMotor().getqtdPist());
+        System.out.printf("Velocidade [cm/h]...:%.0f%n",velc8);
+        System.out.printf("Carga maxima...: %d%n", c8.getcargaMax());
+        System.out.printf("Tara...: %d%n", c8.gettara());        
+        
+        System.out.println("===========C4===========");
+        Carga c9 = new Carga();        
+        c9.setCor("Preto");
+        c9.setMarca("Scania");
+        c9.setModelo("Super 4");
+        c9.setPlaca("ABC1234");
+        c9.setQtdRodas(8);
+        c9.setvelocMax(210);
+        c9.setcargaMax(55000);
+        c9.settara(30000);
+        c9.getMotor().setPotencia(300);
+        c9.getMotor().setqtdPist(9);
+        float velc9 = c9.calcVel();
+        
+        System.out.printf("Cor...: %s%n", c9.getCor());
+        System.out.printf("Marca...: %s%n", c9.getMarca());
+        System.out.printf("Modelo...: %s%n", c9.getModelo());
+        System.out.printf("Placa...: %s%n", c9.getPlaca());
+        System.out.printf("Quantidade de rodas...: %d%n", c9.getQtdRodas());
+        System.out.printf("Potencia [cv]...: %d%n", c9.getMotor().getPotencia());
+        System.out.printf("Quantidade de pistoes...: %d%n",c9.getMotor().getqtdPist());
+        System.out.printf("Velocidade [cm/h]...:%.0f%n",velc9);
+        System.out.printf("Carga maxima...: %d%n", c9.getcargaMax());
+        System.out.printf("Tara...: %d%n", c9.gettara());         
+        
+        System.out.println("===========C5===========");
+        Carga c10 = new Carga(55000, 20000, "ABC909", "Toyota", "Toyota Super Max","Preto", 205, 8);
+        c10.getMotor().setPotencia(177);
+        c10.getMotor().setqtdPist(12);
+        float velc10 = c10.calcVel();
+        System.out.printf("Cor...: %s%n", c10.getCor());
+        System.out.printf("Marca...: %s%n", c10.getMarca());
+        System.out.printf("Modelo...: %s%n", c10.getModelo());
+        System.out.printf("Placa...: %s%n", c10.getPlaca());
+        System.out.printf("Quantidade de rodas...: %d%n", c10.getQtdRodas());
+        System.out.printf("Potencia [cv]...: %d%n", c10.getMotor().getPotencia());
+        System.out.printf("Quantidade de pistoes...: %d%n",c10.getMotor().getqtdPist());
+        System.out.printf("Velocidade [cm/h]...:%.0f%n",velc10);
+        System.out.printf("Carga maxima...: %d%n", c10.getcargaMax());
+        System.out.printf("Tara...: %d%n", c10.gettara());
+    }    
+}
+    

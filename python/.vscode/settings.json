@@ -18,5 +18,7 @@
     "C_Cpp.errorSquiggles": "Disabled",
     "files.associations": {
         "iostream": "cpp"
-    }
+    },
+    "python.analysis.completeFunctionParens": true
 }
+
