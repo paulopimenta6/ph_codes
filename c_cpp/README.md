@@ -35,3 +35,5 @@ Para imprimir um ponteiro e preciso ter em mente os seguintes casos:
 * Imprimindo o endereco que um ponteiro aponta: printf("O valor do ponteiro pont apontado em x e: %p \n", ptr);
 * Imprimindo o endereco de memoria do proprio ponteiro: printf("O endereço do ponteiro pont e: %p \n", &ptr); 
 * Imprimindo o valor acessado pelo ponteiro através do ponteiro: printf("O valor de x acessado pelo ponteiro pont e: %d \n", \*ptr);
+
+</p>
