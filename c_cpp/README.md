@@ -2,7 +2,7 @@
 
 <p>
 
-*Esta secao tem por objetivo ser um simples tutorial de compilação do GCC que ao longo do uso será sempre atualizado*
+*Esta seção tem por objetivo ser um simples tutorial de compilação do GCC que ao longo do uso será sempre atualizado*
 
 * Como compilar no GCC usando linhas de comando?
 
