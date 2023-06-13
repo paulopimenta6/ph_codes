@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "dir_dados=\"Lucia_Andrade_10_22_CSV.csv\"\n\nimportaDados=read.csv(dir_dados, sep=';', header = TRUE)\n\n#print(importaDados$IDELSA)\n#print(importaDados$IDADEA)\n#print(importaDados$IDADEB)\n#print(importaDados$IDADEC)\n\n#Analise descritiva das variaveis\nidadeNaOnda1<-table(importaDados$IDADEA)\nidadeNaOnda2<-table(importaDados$IDADEB)\nidadeNaOnda3<-table(importaDados$IDADEC)\n\nidadeNaOnda1DF<-data.frame(importaDados$IDADEA)\nidadeNaOnda2DF<-data.frame(importaDados$IDADEB)\nidadeNaOnda3DF<-data.frame(importaDados$IDADEC)\n\npressaoArterialSistolicaMediaOnda1DF<-data.frame(importaDados$A_PSIS)\npressaoArterialSistolicaMediaOnda2DF<-data.frame(importaDados$B_PSIS)\npressaoArterialSistolicaMediaOnda3FG<-data.frame(importaDados$C_PSIS)\n\npressaoArterialSistolicaMediaOnda1<-table(importaDados$A_PSIS)\npressaoArterialSistolicaMediaOnda2<-table(importaDados$B_PSIS)\npressaoArterialSistolicaMediaOnda3<-table(importaDados$C_PSIS)\n\n#barplot(idadeNaOnda1, main = \"Idades na 1a onda\", ylab = \"Total de pessoas\", xlab = \"idades\")\n#barplot(idadeNaOnda2, main = \"Idades na 2a onda\", ylab = \"Total de pessoas\", xlab = \"idades\")\n#barplot(idadeNaOnda3, main = \"Idades na 3a onda\", ylab = \"Total de pessoas\", xlab = \"idades\")",
+    "created" : 1682924440091.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1065834829",
+    "id" : "20784C16",
+    "lastKnownWriteTime" : 1681791064,
+    "last_content_update" : 1681791064,
+    "path" : "E:/stat_R/dados_corte_elsa_ondas/script_analse_dados_elsa.R",
+    "project_path" : "script_analse_dados_elsa.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

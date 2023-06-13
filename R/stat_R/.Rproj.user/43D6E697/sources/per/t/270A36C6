@@ -1,0 +1,25 @@
+{
+    "id": "270A36C6",
+    "path": "E:/stat_R/dados_corte_elsa_ondas/script_analse_dados_elsa_Lib.R",
+    "project_path": "script_analse_dados_elsa_Lib.R",
+    "type": "r_source",
+    "hash": "420182503",
+    "contents": "",
+    "dirty": false,
+    "created": 1686209386952.0,
+    "source_on_save": false,
+    "relative_order": 2,
+    "properties": {
+        "Source": "Source",
+        "cursorPosition": "290,0",
+        "scrollLine": "268"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1686210690,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1686210688712,
+    "read_only": false,
+    "read_only_alternatives": []
+}
