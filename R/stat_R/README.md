@@ -12,23 +12,23 @@ Tabela de conteúdos
    * [Estatísticas](#testes)
 <!--te-->
 
-Sobre
+### Sobre
 =================
 
-Tabela de Conteudo
+### Tabela de Conteudo
 =================
 
-Instalação
+### Instalação
 =================
 
-Como usar
+### Como usar
 =================
 
-Pré Requisitos
+### Pré Requisitos
 =================
 
-Local files
+### Local files
 =================
 
-Estatísticas
+### Estatísticas
 =================
