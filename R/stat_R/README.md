@@ -7,7 +7,7 @@ Tabela de conteúdos
    * [Tabela de Conteudo](#tabela-de-conteudo)
    * [Instalação](#instalacao)
    * [Como usar](#como-usar)
-      * [Pre Requisitos](#pre-requisitos)
+      * [Pré Requisitos](#pré-requisitos)
       * [Local files](#local-files)
    * [Estatísticas](#testes)
 <!--te-->
