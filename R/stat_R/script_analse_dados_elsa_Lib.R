@@ -288,4 +288,32 @@ ggplot(importaDadosLib, aes(y=colesterolHdlOnda1, x=idadeNaOnda1)) + geom_point(
 ggplot(importaDadosLib, aes(y=colesterolHdlOnda2, x=idadeNaOnda2)) + geom_point() + xlab("Idade na onda 2") + ylab("colesterol hdl (mg/dl) - onda 2")
 ggplot(importaDadosLib, aes(y=colesterolHdlOnda3, x=idadeNaOnda3)) + geom_point() + xlab("Idade na onda 3") + ylab("colesterol hdl (mg/dl) - onda 3")
 
+ggplot(importaDadosLib, aes(pressaoDiastolicameiaOnda1)) + geom_bar(aes(fill=as.factor(idadeNaOnda1))) + labs(fill = "Idade na onda 1", y = "Quantidade de pessoas na onda 1", x = "pressão arterial diastólica média (mmhg) - onda 1")
+ggplot(importaDadosLib, aes(pressaoDiastolicameiaOnda2)) + geom_bar(aes(fill=as.factor(idadeNaOnda2))) + labs(fill = "Idade na onda 2", y = "Quantidade de pessoas na onda 2", x = "pressão arterial diastólica média (mmhg) - onda 2")
+ggplot(importaDadosLib, aes(pressaoDiastolicameiaOnda3)) + geom_bar(aes(fill=as.factor(idadeNaOnda3))) + labs(fill = "Idade na onda 3", y = "Quantidade de pessoas na onda 3", x = "pressão arterial diastólica média (mmhg) - onda 3")
+
+ggplot(importaDadosLib, aes(pressaoArterialSistolicaMediaOnda1)) + geom_bar(aes(fill=as.factor(idadeNaOnda1))) + labs(fill = "Idade na onda 1", y = "Quantidade de pessoas na onda 1", x = "pressão arterial sistólica média (mmhg) - onda 1")
+ggplot(importaDadosLib, aes(pressaoArterialSistolicaMediaOnda2)) + geom_bar(aes(fill=as.factor(idadeNaOnda2))) + labs(fill = "Idade na onda 2", y = "Quantidade de pessoas na onda 2", x = "pressão arterial sistólica média (mmhg) - onda 2")
+ggplot(importaDadosLib, aes(pressaoArterialSistolicaMediaOnda3)) + geom_bar(aes(fill=as.factor(idadeNaOnda3))) + labs(fill = "Idade na onda 3", y = "Quantidade de pessoas na onda 3", x = "pressão arterial sistólica média (mmhg) - onda 3")
+
+ggplot(importaDadosLib, aes(hemoglobinaGlicadaHba1cOnda1)) + geom_bar(aes(fill=as.factor(idadeNaOnda1))) + labs(fill = "Idade na onda 1", y = "Quantidade de pessoas na onda 1", x = "Hemoglobina Glicada Hba1 (%) - onda 1")
+ggplot(importaDadosLib, aes(hemoglobinaGlicadaHba1cOnda2)) + geom_bar(aes(fill=as.factor(idadeNaOnda2))) + labs(fill = "Idade na onda 2", y = "Quantidade de pessoas na onda 2", x = "Hemoglobina Glicada Hba1 (%) - onda 2")
+ggplot(importaDadosLib, aes(hemoglobinaGlicadaHba1cOnda3)) + geom_bar(aes(fill=as.factor(idadeNaOnda3))) + labs(fill = "Idade na onda 3", y = "Quantidade de pessoas na onda 3", x = "Hemoglobina Glicada Hba1 (%) - onda 3")
+
+########
+ggplot(importaDadosLib, aes(hemoglobinaGlicadaHba1cOnda1)) + geom_bar(aes(fill=as.factor(colesterolHdlOnda1))) + labs(fill = "Colesterol Hdl na onda 1", y = "Quantidade de pessoas na onda 1", x = "Hemoglobina Glicada Hba1 (%) - onda 1") + theme(legend.key.size = unit(0.2, 'cm'))
+ggplot(importaDadosLib, aes(hemoglobinaGlicadaHba1cOnda2)) + geom_bar(aes(fill=as.factor(colesterolHdlOnda2))) + labs(fill = "Colesterol Hdl na onda 2", y = "Quantidade de pessoas na onda 2", x = "Hemoglobina Glicada Hba1 (%) - onda 2") + theme(legend.key.size = unit(0.2, 'cm'))
+ggplot(importaDadosLib, aes(hemoglobinaGlicadaHba1cOnda3)) + geom_bar(aes(fill=as.factor(colesterolHdlOnda3))) + labs(fill = "Colesterol Hdl na onda 3", y = "Quantidade de pessoas na onda 3", x = "Hemoglobina Glicada Hba1 (%) - onda 3") + theme(legend.key.size = unit(0.2, 'cm'))
+###consertar aqui...
+ggplot(importaDadosLib, aes(colesterolHdlOnda1)) + geom_bar(aes(fill=as.factor(habitoDeFumarOnda1))) + labs(x = "Colesterol na onda 1", y = "Quantidade de pessoas na onda 1", fill = "Habito de fumar - onda 1")
+ggplot(importaDadosLib, aes(colesterolHdlOnda2)) + geom_bar(aes(fill=as.factor(habitoDeFumarOnda1))) + labs(x = "Colesterol na onda 2", y = "Quantidade de pessoas na onda 2", fill = "Habito de fumar - onda 2")
+ggplot(importaDadosLib, aes(colesterolHdlOnda3)) + geom_bar(aes(fill=as.factor(habitoDeFumarOnda1))) + labs(x = "Colesterol na onda 3", y = "Quantidade de pessoas na onda 3", fill = "Habito de fumar - onda 3")
+
+ggplot(importaDadosLib, aes(hemoglobinaGlicadaHba1cOnda1)) + geom_bar(aes(fill=as.factor(habitoDeFumarOnda1))) + labs(x = "Colesterol Hdl na onda 1", y = "Quantidade de pessoas na onda 1", fill = "Habito de fumar - onda 1")
+ggplot(importaDadosLib, aes(hemoglobinaGlicadaHba1cOnda2)) + geom_bar(aes(fill=as.factor(habitoDeFumarOnda1))) + labs(x = "Colesterol Hdl na onda 2", y = "Quantidade de pessoas na onda 2", fill = "Habito de fumar - onda 2")
+ggplot(importaDadosLib, aes(hemoglobinaGlicadaHba1cOnda3)) + geom_bar(aes(fill=as.factor(habitoDeFumarOnda1))) + labs(x = "Colesterol Hdl na onda 3", y = "Quantidade de pessoas na onda 3", fill = "Habito de fumar - onda 3")
+########
+
+
+#############################################################################################################################
 plot(colesterolHdlOnda1, colesterolHdlOnda2, col="black", xlab = "Colesterol hdl - Onda 1", ylab = "Colesterol hdl - Onda 2", pch=20)
