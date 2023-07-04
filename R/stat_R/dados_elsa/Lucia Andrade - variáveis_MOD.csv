@@ -1,0 +1,405 @@
+codigo_ds;Variavel;label;Onda;Valores
+GEO_O1;IDELSA;Identificador dos participantes;;
+;;;;
+ELSA_O1;IDADEA;idade na onda 1;1;Min = 34, Max = 75
+ELSA_O2;IDADEB;idade na onda 2;2;Min = 38, Max = 79
+ELSA_O3;IDADEC;idade na onda 3;3;Min = 41, Max = 84
+;;;;
+VAP_O1;SEXO;sexo;1;1 = Masculino, 2 = Feminino
+ELSA_O1;PSEA01;grau de instrução;1;1 - Nunca frequentou a escola, 2 - 1º grau incompleto, 3 - 1º grau completo, 4 - 2º grau incompleto, 5 - 2º grau completo, 6 - Universitário incompleto, 7 - Universitário completo, 8 - Pós-graduação
+ELSA_O1;VIFA29;cor ou raça;1;1 = Preta, 2 = Parda, 3 = Branca, 4 = Amarela, 5 = Indígena, R = Não sabe/Não quer responder, N = Nenhuma resposta
+;;;;
+DER_O1;A_RENDAPERCAPITA;renda líquida familiar per capita;1;"Min = 27,63; Max = 7884,50"
+ELSA_O1;VIFA30;renda familiar líquida;1;1 = Menos de 830 reais, 2 = Entre 830 e 1659 reais, 3 = Entre 1660 e 2489 reais, 4 = Entre 2490 e 3319 reais, 5 = Entre 3320 e 4149 reais, 6 = Entre 4150 e 4979 reais, 7 = Entre 4980 e 5809 reais, 8 = Entre 5810 e 6639 reais, 9 = Entre 6640 e 7469 reais, 10 = 7470 reais ou mais, R = Não sabe/Não quer responder, N = Nenhuma resposta
+;;;;
+DER_O1;A_PSIS;pressão arterial sistólica média (mmhg);1;Min = 66.5, Max = 231
+DER_O1;A_PDIA;pressão arterial diastólica média (mmhg);1;Min = 37.5, Max = 158
+DER_O2;B_PSIS;pressão arterial sistólica média (mmhg);2;Min = 71.5, Max = 228
+DER_O2;B_PDIA;pressão arterial diastólica média (mmhg);2;Min = 42, Max = 128.5
+DER_O3;C_PSIS;pressão arterial sistólica média (mmhg);3;Min = 70, Max = 237
+DER_O3;C_PDIA;pressão arterial diastólica média (mmhg);3;Min = 44.5, Max = 133
+;;;;
+LABSI_O1;A_LABA2_MMOLMOL;hemoglobina glicada hba1c (mmol/mol);1;Min = 0.55, Max = 140.44
+HEM_O1;LABA26F;hemoglobina (g/dl);1;Min = 0, Max = 27.1
+LAB_O1;LABA2_3;hemoglobina glicada hba1c (%);1;Min = 2.2, Max = 15
+LABSI_O2;B_LABB2_MMOLMOL;hemoglobina glicada hba1c (mmol/mol);2;Min = 1.64, Max = 181.97
+HEM_O2;LABB26F;hemoglobina (g/dl);2;Min = 6.2, Max = 20.6
+ELSA_O2;LABB2;hemoglobina glicada hba1c (%);2;Min = 2.1, Max = 18.8
+HEMO_O3;LABC26F;hemoglobina (g/dl);3;Min = 5.7, Max = 20.9
+LAB_O3;LABC2;hemoglobina glicada hba1c (%);3;Min = 2.4, Max = 17.5
+;;;;
+DER_O1;A_FUMANTE;hábito de fumar;1;0 - Nunca fumou, 1 - Ex-fumante, 2 - Fumante
+DER_O2;B_FUMANTE;hábito de fumar;2;0 - Nunca fumou, 1 - Ex-fumante, 2 - Fumante
+DER_O3;C_FUMANTE;hábito de fumar;3;0 - Nunca fumou, 1 - Ex-fumante, 2 - Fumante
+;;;;
+DER_O1;A_OBESIDADE;obesidade;1;0 - Não, 1 - Sim
+DER_O2;B_OBESIDADE;obesidade;2;0 - Não, 1 - Sim
+DER_O3;C_OBESIDADE;obesidade;3;0 - Não, 1 - Sim
+;;;;
+LABSI_O1;A_LABA3_R_2;creatinina rastreável - sangue (mcmol/l);1;Min - 24.8, Max - 936.2
+LAB_O1;LABA3_R_3;creatinina rastreável sangue(mg/dl) ;1;Min - 0.28, Max - 10.59
+LABSI_O1;A_LABA16_R_2;creatinina rastreável - urina (mcmol/l);1;Min - 56, Max - 52378
+LAB_O1;LABA16_R_2;creatinina rastreável urina (mg/dl) ;1;Min - 0.63, Max - 592.51
+LABSI_O2;B_LABB3_R_3;creatinina - sangue (mcmol/l) ;2;Min - 25.6, Max - 983.9
+LAB_O2;LABB3_R_2;creatinina rastreavel - sangue (mg/dl);2;Min - 0.29, Max - 11.13
+LABSI_O2;B_LABB16_R_2;creatinina - urina (mcmol/l);2;Min - 66, Max - 48045
+LAB_O2;LABB16_R;creatinina rastreavel - urina (mg/dl);2;Min - 0.75, Max - 543.5
+LAB_O3;LABC3;creatinina - sangue (mg/dl);3;Min - 0.28, Max - 16.54
+LAB_O3;LABC16;creatinina - urina (mg/dl);3;Min - 10, Max - 578
+;;;;
+LAB_O1;A_RAC_R_2;razao albumina-creatinina rastreável (mg/g);1;Min = 0, Max = 5014.83
+LAB_O2;B_RAC_2;razão albumina/creatinina (mg/g);2;Min = 0, Max = 23049.85
+;;;;
+LABSI_O1;A_LABA19MCGMIN;microalbuminúria (mcg/min);1;Min = 0, Max = 85.55
+LABSI_O1;A_LABA19MGDL;microalbuminúria (mg/dl);1;Min = 0, Max = 308.03
+LABSI_O2;B_LABB19MCGMIN;microalbuminuria (mcg/min);2;Min = 0, Max = 11741.46
+LABSI_O2;B_LABB19MGDL;microalbuminuria (mg/dl);2;Min = 0, Max = 1890.09
+LAB_O3;LABC19;albumin<fa>ria isolada (mg/dl);3;Min = 0, Max = 7711.2
+;;;;
+LABSI_O1;A_LABA17;sódio - urina (meq/l);1;Min = 2, Max = 567
+LABSI_O2;B_LABB17;sodio - urina (meq/l);2;Min = 5, Max = 314
+LAB_O3;LABC17;s<f3>dio - urina (meq/l);3;Min = 8, Max = 328
+;;;;
+LAB_O1;A_NA_K;relação sódio/potássio na urina (mmol/mmol);1;Min = 0.13, Max = 44.25
+LAB_O2;B_NA_K_2;relação sódio/potássio na urina (mmol/mmol);2;Min = 0.14, Max = 21.18
+;;;;
+LABSI_O1;A_LABA18;potássio - urina (meq/l);1;Min = 3, Max = 144
+LABSI_O2;B_LABB18;potassio - urina (meq/l);2;Min = 1.5, Max = 179
+LAB_O3;LABC18;pot<e1>ssio - urina (meq/l);3;Min = 3.4, Max = 300
+;;;;
+LABSI_O1;A_LABA25_2;proteina c reativa (nmol/l);1;Min = 0.9, Max = 1085.7
+LAB_O1;LABA25;proteina c reativa (mg/l);1;Min = 0.09, Max = 114
+LAB_O2;B_PCR_ROCHE;proteína c-reativa onda 2;2;Min = 0, Max = 324
+LAB_O3;LABC25;prote<ed>na c reativa (mg/l);3;Min = 0, Max = 191.6
+;;;;
+LAB_O1;A_CKDEPI_R_3;taxa filtração glomerular com creatinina ajustada;1;Min = 4.54, Max = 142.13
+LAB_O1;A_CKDEPI_R_CAT_2;categorias taxa filtração glomerular com calibração;1;1 - Maior ou igual a 90, 2 - Entre 60 e 90, 3 - Entre 45 e 60, 4 - Entre 30 e 45, 5 - Entre 15 e 30, 6 - Menor do que 15
+LAB_O2;B_CKDEPI_R_2;taxa filtração glomerular com calibração (sem raça);2;Min = 4.21, Max = 162.68
+LAB_O2;B_CKDEPI_R_CAT;categorias taxa filtração glomerular com calibração (sem raça);2;1 - Maior ou igual a 90, 2 - Entre 60 e 90, 3 - Entre 45 e 60, 4 - Entre 30 e 45, 5 - Entre 15 e 30, 6 - Menor do que 15
+;;;;
+;;;;
+LABSI_O1;A_LABA10_3;colesterol total (mmol/l);1;Min = 1.81, Max = 19.89
+LABSI_O1;A_LABA12_3;colesterol hdl (mmol/l);1;Min = 0.47, Max = 3.86
+LABSI_O1;A_LABA13_3;colesterol ldl (mmol/l);1;Min = 0.52, Max = 13.08
+LAB_O1;LABA10_3;colesterol total (mg/dl);1;Min = 70, Max = 768
+LAB_O1;LABA12_3;colesterol hdl (mg/dl);1;Min = 18, Max = 149
+LAB_O1;LABA13_3;colesterol ldl (mg/dl);1;Min = 20, Max = 505
+LABSI_O2;B_LABB10_2;colesterol total (mmol/l);2;Min = 1.86, Max = 23.05
+LABSI_O2;B_LABB12_2;colesterol hdl (mmol/l);2;Min = 0.21, Max = 3.83
+LABSI_O2;B_LABB13_2;colesterol ldl (mmol/l);2;Min = 0.41, Max = 11.45
+ELSA_O2;LABB10;colesterol total (mg/dl);2;Min = 72, Max = 890
+ELSA_O2;LABB12;colesterol hdl (mg/dl);2;Min = 8, Max = 148
+ELSA_O2;LABB13;colesterol ldl (mg/dl);2;Min = 16, Max = 442
+LAB_O3;LABC10;colesterol total (mg/dl);3;Min = 75, Max = 622
+LAB_O3;LABC12;colesterol hdl (mg/dl);3;Min = 5, Max = 154
+LAB_O3;LABC13;colesterol ldl (mg/dl);3;Min = 8, Max = 481
+;;;;
+DER_O1;A_USODEALCOOL;uso de álcool;1;0 - Nunca usou, 1 - Ex-usuário, 2 - Usuário
+DER_O2;B_USODEALCOOL;uso de álcool;2;0 - Nunca usou, 1 - Ex-usuário, 2 - Usuário
+ELSA_O3;DIEC139;participante consome bebidas alcoólicas?;3;0 - Não, 1 - Sim
+;;;;
+DER_O1;A_HAS2_2;presença de hipertensão arterial sistêmica;1;0 - Não, 1 - Sim
+MEDpa_O1;A_ANTI_HIPERTENSIVOS;toma anti-hipertensivos;1;0 - Não, 1 - Sim
+DER_O2;B_HAS2_2;presença de hipertensão arterial sistêmica;2;0 - Não, 1 - Sim
+MED_O2;B_ANTI_HIPERTENSIVOS;faz uso de anti-hipertensivos;2;0 - Não, 1 - Sim
+DER_O3;C_HAS2;presença de hipertensão arterial sistêmica;3;0 - Não, 1 - Sim
+MED_O3;C_ANTI_HIPERTENSIVOS;faz uso de anti-hipertensivos;3;0 - Não, 1 - Sim
+;;;;
+DER_O1;A_ATIVFISICA;atividade física no lazer;1;1 - Fraca, 2 - Moderada, 3 - Forte
+ELSA_O1;AFIA1;caminhada (dias por semana);1;Min = 0, Max = 7
+ELSA_O1;AFIA2A;caminhada (minutos por dia);1;Min = 0, Max = 480
+ELSA_O1;AFIA3;atividades físicas fortes (dias por semana);1;Min = 0, Max = 7
+ELSA_O1;AFIA4A;atividades físicas fortes (minutos por dia);1;Min = 10, Max = 480
+ELSA_O1;AFIA5;atividades físicas médias (dias por semana);1;Min = 0, Max = 7
+ELSA_O1;AFIA6A;atividades físicas médias (minutos por dia);1;Min = 10, Max = 480
+ELSA_O1;AFIA7;pedala para locomoção (dias por semana);1;Min = 0, Max = 7
+ELSA_O1;AFIA8A;pedala para locomoção (minutos por dia);1;Min = 10, Max = 360
+ELSA_O1;AFIA9;caminha para locomoção (dias por semana);1;Min = 0, Max = 7
+ELSA_O1;AFIA10A;caminha para locomoção (minutos por dia);1;Min = 10, Max = 720
+DER_O1;A_MINMODERADO;tempo de atividade física moderada por semana (minutos);1;Min = 0, Max = 2100
+DER_O1;A_MINFORTE;atividade física forte por semana (minutos);1;Min = 0, Max = 2520
+DER_O2;B_ATIVFISICA;atividade física no lazer;2;1 - Fraca, 2 - Moderada, 3 - Forte
+ELSA_O2;AFIB1;caminhada lazer (dias por semana);2;Min = 0, Max = 7
+ELSA_O2;AFIB2A;caminhada (minutos por dia);2;Min = 0, Max = 360
+ELSA_O2;AFIB3;atividade física forte (dias por semana);2;Min = 0, Max = 7
+ELSA_O2;AFIB4A;atividade física forte (minutos por dia);2;Min = 0, Max = 600
+ELSA_O2;AFIB5;atividade física média (dias por semana);2;Min = 0, Max = 7
+ELSA_O2;AFIB6A;atividade física média (minutos por dia);2;Min = 0, Max = 720
+ELSA_O2;AFIB7;bicicleta pra locomoção (dias por semana);2;Min = 0, Max = 7
+ELSA_O2;AFIB8A;pedala pra locomoção (minutos por dia);2;Min = 0, Max = 300
+ELSA_O2;AFIB9;caminhada pra locomoção (dias por semana);2;Min = 0, Max = 7
+ELSA_O2;AFIB10A;caminhada pra locomoção (minutos por dia);2;Min = 0, Max = 960
+DER_O2;B_MINMODERADO;minutos atividade f<ed>sica moderada/semana;2;Min = 0, Max = 5040
+DER_O2;B_MINFORTE;minutos atividade f<ed>sica forte/semana;2;Min = 0, Max = 3600
+DER_O3;C_ATIVFISICA;atividade física no lazer;3;1 - Fraca, 2 - Moderada, 3 - Forte
+ELSA_O3;AFIC1;quantos dias em uma semana você faz caminhadas no seu tempo livre;3;Min = 0, Max = 7
+ELSA_O3;AFIC2A;quanto tempo elas duram por dia (em minutos);3;Min = 10, Max = 400
+ELSA_O3;AFIC3;quantos dias em uma semana você faz atividades físicas fortes no seu tempo livre;3;Min = 0, Max = 7
+ELSA_O3;AFIC4A;quanto tempo elas duram por dia (em minutos);3;Min = 10, Max = 600
+ELSA_O3;AFIC5;quantos dias em uma semana você faz atividades físicas médias no seu tempo livre;3;Min = 0, Max = 7
+ELSA_O3;AFIC6A;quanto tempo elas duram por dia (em minutos);3;Min = 10, Max = 525
+ELSA_O3;AFIC14;quantos dias em uma semana você anda de carro/ônibus/metrô;3;Min = 0, Max = 7
+ELSA_O3;AFIC15A;anda de carro/ônibus/metrô/trem por quanto tempo por dia (em minutos);3;Min = 10, Max = 600
+ELSA_O3;AFIC7;quantos dias em uma semana você usa bicicleta para se locomover (não incluindo lazer/exercício);3;Min = 0, Max = 7
+ELSA_O3;AFIC8A;"quanto tempo você pedala por dia (em minutos; não incluindo lazer/exercício)";3;Min = 10, Max = 360
+ELSA_O3;AFIC9;quantos dias em uma semana você caminha para se locomover (não incluindo lazer/exercício);3;Min = 0, Max = 7
+ELSA_O3;AFIC10A;"quanto tempo você caminha por dia (em minutos; não incluindo lazer/exercício)";3;Min = 10, Max = 600
+;;;;
+DIS_O12;A_FTDISLIP;displipidemia onda 1;1;Não, Sim
+DIS_O12;B_DLP_BMED;displipidemia onda 2;2;0 - Não, 1 - Sim
+;;;;
+DER_O1;A_IMC1;índice de massa corporal (kg/m²);1;Min = 14.43, Max = 58.29
+DER_O1;A_IMC2;imc com 4 categorias;1;1 - Magreza, 2 - Eutrofia, 3 - Sobrepeso, 4 - Obeso
+DER_O1;A_IMC3;imc com 6 categorias;1;1 - Magreza, 2 - Eutrofia, 3 - Sobrepeso, 4 - Obesidade Grau I, 5 - Obesidade Grau II, 6 - Obesidade Grau III
+DER_O2;B_IMC1;índice de massa corporal (kg/m²);2;Min = 15.7, Max = 57.69
+DER_O2;B_IMC2;imc com 4 categorias;2;1 - Magreza, 2 - Eutrofia, 3 - Sobrepeso, 4 - Obeso
+DER_O2;B_IMC3;imc com 6 categorias;2;1 - Magreza, 2 - Eutrofia, 3 - Sobrepeso, 4 - Obesidade Grau I, 5 - Obesidade Grau II, 6 - Obesidade Grau III
+DER_O3;C_IMC1;índice de massa corporal (kg/m²);3;Min = 15.19, Max = 59.67
+DER_O3;C_IMC2;imc com 4 categorias;3;1 - Magreza, 2 - Eutrofia, 3 - Sobrepeso, 4 - Obeso
+DER_O3;C_IMC3;imc com 6 categorias;3;1 - Magreza, 2 - Eutrofia, 3 - Sobrepeso, 4 - Obesidade Grau I, 5 - Obesidade Grau II, 6 - Obesidade Grau III
+;;;;
+DER_O1;A_RISK_AHA;risco ascvd (%) - american heart association - 2013;1;Min = 0.04, Max = 78.27
+DER_O1;A_RISK_WHO;risco cardiovascular (%) - world health organization;1;Min = 1, Max = 33
+DER_O1;A_RISK_LEVEL_WHO;categorização do risco cardiovascular (%) - world health organization;1;1 - Menor que 5%, 2 - Entre 5% e 10%, 3 - Entre 10% e 20%, 4 - Entre 20% e 30%, 5 - Maior que 30%
+DER_O1;A_INSUFARTPERIF;insuficiência arterial periférica;1;0 - Não, 1 - Sim
+DER_O1;A_SFHF;insuficiência cardíaca autorreferida;1;0 - Não, 1 - Sim
+ELSA_O1;HMPA14;insuficiência cardíaca;1;0 - Não, 1 - Sim
+DER_O1;A_SFCVDHARD;doença cardiovascular autorreferida;1;0 - Não, 1 - Sim
+COMP_O1;A_ECGMC_DCV_2;doença cardiovascular prevalente;1;0 - Não, 1 - Sim
+DER_O1;A_PRVDCC;prevalência de doença coronariana;1;0 - Não, 1 - Sim
+COMP_O1;A_ECGMC_IM_2;infarto do miocárdio;1;0 - Não, 1 - Sim
+ELSA1cac;A_MIOCARDIOPATIA;miocardiopatia;1;"0=Não; 1=MCH; 2=Possível MCH; 3=Dilatada; 4=Outras; 5=Reumático; 6=Outras valvulares "
+ELSA_O1;HMPA20;avc;1;0 - Não, 1 - Sim
+adOBI_O2;DOENCAS AP CIRCULATORIO/CARDIOVASCULAR;doencas ap circulatorio/cardiovascular;2;0 - Não, 1 - Sim
+adOBI_O2;INSUFICI<EA>NCIA CARDIACA;insuficiência cardiaca;2;0 - Não, 1 - Sim
+adOBI_O2;ACIDENTE VASCULAR CEREBRAL;acidente vascular cerebral;2;0 - Não, 1 - Sim
+DCV_O2;B_HMPB14;história médica de insuficiência cardíaca, onda 2;2;0 - Não, 1 - Sim
+DCV_O2;B_HMPB20;história médica de acidente vascular cerebral, onda 2;2;0 - Não, 1 - Sim
+DER_O2;B_RISK_WHO;risco cardiovascular (%) - world health organization;2;Min = 1, Max =29
+DER_O2;B_RISK_LEVEL_WHO;categorização do risco cardiovascular (%) - world health organization;2;1 - Menor que 5%, 2 - Entre 5% e 10%, 3 - Entre 10% e 20%, 4 - Entre 20% e 30%, 5 - Maior que 30%
+DER_O2;B_RISK_AHA;risco ascvd (%) - american heart association - 2013;2;Min = 0.08, Max = 90.61
+ECOg_O2;B_ECGMC_DCV;doença cardiovascular prevalente;2;0 - Não, 1 - Sim
+ECOg_O2;B_ECGMC_IM;infarto do miocárdio;2;0 - Não, 1 - Sim
+DCV_O2;C_HMPC14;história médica de insuficiência cardíaca, onda 3;2;0 - Não, 1 - Sim
+DCV_O2;C_HMPC20;história médica de acidente vascular cerebral, onda 3;2;0 - Não, 1 - Sim
+ECOg_O3;C_ECGMC_DCV;doença cardiovascular prevalente;3;0 - Não, 1 - Sim
+ECOg_O3;C_ECGMC_IM;infarto do miocárdio;3;0 - Não, 1 - Sim
+;;;;
+POL_O1;DTPD_CASA_O1_V2;densidade de tráfego ponderada pela distância (casa);1;Min = 0.23, Max = 19351.22
+POL_O1;DTPD_TRABALHO_O1_V2;densidade de tráfego ponderada pela distância (trabalho);1;Min = 0.97, Max = 12164.35
+;;;;
+MEDpa_O1;A_ACETAZOLAMIDA;faz uso contínuo de acetazolamida;1;0 - Não, 1 - Sim
+MED_O3;C_ACETAZOLAMIDA;faz uso de acetazolamida;3;0 - Não, 1 - Sim
+MEDpa_O1;A_ANLODIPINO;faz uso contínuo de anlodipino;1;0 - Não, 1 - Sim
+MED_O2;B_ANLODIPINO;faz uso de anlodipino;2;0 - Não, 1 - Sim
+MED_O3;C_ANLODIPINO;faz uso de anlodipino;3;0 - Não, 1 - Sim
+MEDpa_O1;A_ANTIDIABETICOS_ORAIS;toma antidiabéticos orais;1;0 - Não, 1 - Sim
+MED_O2;B_ANTIDIABETICOS_ORAIS;faz uso de antidiabéticos orais;2;0 - Não, 1 - Sim
+MED_O3;C_ANTIDIABETICOS_ORAIS;faz uso de antidiabéticos orais;3;0 - Não, 1 - Sim
+MEDpa_O1;A_ATENOLOL;faz uso contínuo de atenolol;1;0 - Não, 1 - Sim
+MED_O2;B_ATENOLOL;faz uso de atenolol;2;0 - Não, 1 - Sim
+MED_O3;C_ATENOLOL;faz uso de atenolol;3;0 - Não, 1 - Sim
+MEDpa_O1;A_ATORVASTATINA;faz uso contínuo de atorvastatina;1;0 - Não, 1 - Sim
+MED_O2;B_ATORVASTATINA;faz uso de atorvastatina;2;0 - Não, 1 - Sim
+MED_O3;C_ATORVASTATINA;faz uso de atorvastatina;3;0 - Não, 1 - Sim
+MEDpa_O1;A_B_R_ANGIOTENSINA_II;toma bloqueadores de receptores de angiotensina ii;1;0 - Não, 1 - Sim
+MEDpa_O1;A_BENAZEPRIL;faz uso contínuo de benazepril;1;0 - Não, 1 - Sim
+MED_O2;B_BENAZEPRIL;faz uso de benazepril;2;0 - Não, 1 - Sim
+MED_O3;C_BENAZEPRIL;faz uso de benazepril;3;0 - Não, 1 - Sim
+MEDpa_O1;A_BETABLOQUEADORES;toma betabloqueadores;1;0 - Não, 1 - Sim
+MEDpa_O1;A_BLOQ_CANAL_CALCIO;toma bloqueadores de canal de cálcio;1;0 - Não, 1 - Sim
+MEDpa_O1;A_CAPTOPRIL;faz uso contínuo de captopril;1;0 - Não, 1 - Sim
+MED_O2;B_CAPTOPRIL;faz uso de captopril;2;0 - Não, 1 - Sim
+MED_O3;C_CAPTOPRIL;faz uso de captopril;3;0 - Não, 1 - Sim
+MEDpa_O1;A_CARVEDILOL;faz uso contínuo de carvedilol;1;0 - Não, 1 - Sim
+MED_O2;B_CARVEDILOL;faz uso de carvedilol;2;0 - Não, 1 - Sim
+MED_O3;C_CARVEDILOL;faz uso de carvedilol;3;0 - Não, 1 - Sim
+MEDpa_O1;A_CELECOXIBE;faz uso contínuo de celecoxibe;1;0 - Não, 1 - Sim
+MED_O2;B_CELECOXIBE;faz uso de celecoxibe;2;0 - Não, 1 - Sim
+MED_O3;C_CELECOXIBE;faz uso de celecoxibe;3;0 - Não, 1 - Sim
+MEDpa_O1;A_CETOPROFENO;faz uso contínuo de cetoprofeno;1;0 - Não, 1 - Sim
+MED_O2;B_CETOPROFENO;faz uso de cetoprofeno;2;0 - Não, 1 - Sim
+MED_O3;C_CETOPROFENO;faz uso de cetoprofeno;3;0 - Não, 1 - Sim
+MEDpa_O1;A_CLONIDINA;faz uso contínuo de clonidina;1;0 - Não, 1 - Sim
+MED_O2;B_CLONIDINA;faz uso de clonidina;2;0 - Não, 1 - Sim
+MED_O3;C_CLONIDINA;faz uso de clonidina;3;0 - Não, 1 - Sim
+MEDpa_O1;A_CLORTALIDONA;faz uso contínuo de clortalidona;1;0 - Não, 1 - Sim
+MED_O2;B_CLORTALIDONA;faz uso de clortalidona;2;0 - Não, 1 - Sim
+MED_O3;C_CLORTALIDONA;faz uso de clortalidona;3;0 - Não, 1 - Sim
+MEDpa_O1;A_CREATINA;faz uso contínuo de creatina;1;0 - Não, 1 - Sim
+MED_O2;B_CREATINA;faz uso de creatina;2;0 - Não, 1 - Sim
+MEDpa_O1;A_DICLOFENACO;faz uso contínuo de diclofenaco;1;0 - Não, 1 - Sim
+MED_O2;B_DICLOFENACO;faz uso de diclofenaco;2;0 - Não, 1 - Sim
+MED_O3;C_DICLOFENACO;faz uso de diclofenaco;3;0 - Não, 1 - Sim
+MEDpa_O1;A_DICLOFENACO_POTASSICO;faz uso contínuo de diclofenaco potassico;1;0 - Não, 1 - Sim
+MED_O3;C_DICLOFENACO_POTASSICO;faz uso de diclofenaco potássico;3;0 - Não, 1 - Sim
+MEDpa_O1;A_DICLOFENACO_SODICO;faz uso contínuo de diclofenaco sodico;1;0 - Não, 1 - Sim
+MED_O3;C_DICLOFENACO_SODICO;faz uso de diclofenaco sódico;3;0 - Não, 1 - Sim
+MEDpa_O1;A_DIURETICOS;toma diuréticos;1;0 - Não, 1 - Sim
+MEDpa_O1;A_DOXAZOSINA;faz uso contínuo de doxazosina;1;0 - Não, 1 - Sim
+MED_O2;B_DOXAZOSINA;faz uso de doxazosina;2;0 - Não, 1 - Sim
+MED_O3;C_DOXAZOSINA;faz uso de doxazosina;3;0 - Não, 1 - Sim
+MEDpa_O1;A_ENALAPRIL;faz uso contínuo de enalapril;1;0 - Não, 1 - Sim
+MED_O2;B_ENALAPRIL;faz uso de enalapril;2;0 - Não, 1 - Sim
+MED_O3;C_ENALAPRIL;faz uso de enalapril;3;0 - Não, 1 - Sim
+MEDpa_O1;A_ESPIRONOLACTONA;faz uso contínuo de espironolactona;1;0 - Não, 1 - Sim
+MED_O2;B_ESPIRONOLACTONA;faz uso de espironolactona;2;0 - Não, 1 - Sim
+MED_O3;C_ESPIRONOLACTONA;faz uso de espironolactona;3;0 - Não, 1 - Sim
+MEDpa_O1;A_FUROSEMIDA;faz uso contínuo de furosemida;1;0 - Não, 1 - Sim
+MED_O2;B_FUROSEMIDA;faz uso de furosemida;2;0 - Não, 1 - Sim
+MED_O3;C_FUROSEMIDA;faz uso de furosemida;3;0 - Não, 1 - Sim
+MEDpa_O1;A_GLIBENCLAMIDA;faz uso contínuo de glibenclamida;1;0 - Não, 1 - Sim
+MED_O2;B_GLIBENCLAMIDA;faz uso de glibenclamida;2;0 - Não, 1 - Sim
+MED_O3;C_GLIBENCLAMIDA;faz uso de glibenclamida;3;0 - Não, 1 - Sim
+MEDpa_O1;A_GLICLAZIDA;faz uso contínuo de gliclazida;1;0 - Não, 1 - Sim
+MED_O2;B_GLICLAZIDA;faz uso de gliclazida;2;0 - Não, 1 - Sim
+MED_O3;C_GLICLAZIDA;faz uso de gliclazida;3;0 - Não, 1 - Sim
+MEDpa_O1;A_GLIMEPIRIDA;faz uso contínuo de glimepirida;1;0 - Não, 1 - Sim
+MED_O2;B_GLIMEPIRIDA;faz uso de glimepirida;2;0 - Não, 1 - Sim
+MED_O3;C_GLIMEPIRIDA;faz uso de glimepirida;3;0 - Não, 1 - Sim
+MEDpa_O1;A_HIDRALAZINA;faz uso contínuo de hidralazina;1;0 - Não, 1 - Sim
+MED_O2;B_HIDRALAZINA;faz uso de hidralazina;2;0 - Não, 1 - Sim
+MED_O3;C_HIDRALAZINA;faz uso de hidralazina;3;0 - Não, 1 - Sim
+MEDpa_O1;A_HIDROCLOROTIAZIDA;faz uso contínuo de hidroclorotiazida;1;0 - Não, 1 - Sim
+MED_O2;B_HIDROCLOROTIAZIDA;faz uso de hidroclorotiazida;2;0 - Não, 1 - Sim
+MED_O3;C_HIDROCLOROTIAZIDA;faz uso de hidroclorotiazida;3;0 - Não, 1 - Sim
+MEDpa_O1;A_HIPOLIPEMIANTES;toma hipolipemiantes;1;0 - Não, 1 - Sim
+MED_O2;B_HIPOLIPEMIANTES;faz uso de hipolipemiantes;2;0 - Não, 1 - Sim
+MED_O3;C_HIPOLIPEMIANTES;faz uso de hipolipemiantes;3;0 - Não, 1 - Sim
+MEDpa_O1;A_I_ECA;toma inibidores da eca;1;0 - Não, 1 - Sim
+MED_O2;B_AH_INIBIDORES_DA_ECA;faz uso de anti-hipertensivo inibidores da eca;2;0 - Não, 1 - Sim
+MED_O3;C_AH_INIBIDORES_DA_ECA;faz uso de anti-hipertensivo inibidores da eca;3;0 - Não, 1 - Sim
+MEDpa_O1;A_IBUPROFENO;faz uso contínuo de ibuprofeno;1;0 - Não, 1 - Sim
+MED_O2;B_IBUPROFENO;faz uso de ibuprofeno;2;0 - Não, 1 - Sim
+MED_O3;C_IBUPROFENO;faz uso de ibuprofeno;3;0 - Não, 1 - Sim
+MEDpa_O1;A_INDAPAMIDA;faz uso contínuo de indapamida;1;0 - Não, 1 - Sim
+MED_O2;B_INDAPAMIDA;faz uso de indapamida;2;0 - Não, 1 - Sim
+MED_O3;C_INDAPAMIDA;faz uso de indapamida;3;0 - Não, 1 - Sim
+MEDpa_O1;A_INDOMETACINA;faz uso contínuo de indometacina;1;0 - Não, 1 - Sim
+MED_O2;B_INDOMETACINA;faz uso de indometacina;2;0 - Não, 1 - Sim
+MED_O3;C_INDOMETACINA;faz uso de indometacina;3;0 - Não, 1 - Sim
+MEDpa_O1;A_INSULINA;faz uso contínuo de insulina;1;0 - Não, 1 - Sim
+MED_O2;B_INSULINA_REGULAR;faz uso de insulina regular;2;0 - Não, 1 - Sim
+MED_O3;C_INSULINA;faz uso de insulina;3;0 - Não, 1 - Sim
+MEDpa_O1;A_INSULINA_ASPARTE;faz uso contínuo de insulina asparte;1;0 - Não, 1 - Sim
+MED_O3;C_INSULINA_ASPARTE;faz uso de insulina asparte;3;0 - Não, 1 - Sim
+MEDpa_O1;A_INSULINA_DETEMIR;faz uso contínuo de insulina detemir;1;0 - Não, 1 - Sim
+MED_O3;C_INSULINA_DETEMIR;faz uso de insulina detemir;3;0 - Não, 1 - Sim
+MEDpa_O1;A_INSULINA_GLARGINA;faz uso contínuo de insulina glargina;1;0 - Não, 1 - Sim
+MED_O3;C_INSULINA_GLARGINA;faz uso de insulina glargina;3;0 - Não, 1 - Sim
+MEDpa_O1;A_INSULINA_GLULISINA;faz uso contínuo de insulina glulisina;1;0 - Não, 1 - Sim
+MED_O3;C_INSULINA_GLULISINA;faz uso de insulina glulisina;3;0 - Não, 1 - Sim
+MEDpa_O1;A_INSULINA_HUMANA;faz uso contínuo de insulina humana;1;0 - Não, 1 - Sim
+MED_O3;C_INSULINA_HUMANA;faz uso de insulina humana;3;0 - Não, 1 - Sim
+MEDpa_O1;A_INSULINA_ISOFANA;faz uso contínuo de insulina isofana;1;0 - Não, 1 - Sim
+MEDpa_O1;A_INSULINA_LISPRO;faz uso contínuo de insulina lispro;1;0 - Não, 1 - Sim
+MED_O3;C_INSULINA_LISPRO;faz uso de insulina lispro;3;0 - Não, 1 - Sim
+MED_O2;B_INSULINA_LENTA;faz uso de insulina lenta;2;0 - Não, 1 - Sim
+MED_O2;B_INSULINA_NAO_CLASSIF;faz uso de insulina não classificada;2;0 - Não, 1 - Sim
+MED_O2;B_INSULINA_NPH;faz uso de insulina nph;2;0 - Não, 1 - Sim
+MED_O3;C_INSULINA_NPH;faz uso de insulina nph;3;0 - Não, 1 - Sim
+MED_O2;B_INSULINA_ULTRARRAPIDA;faz uso de insulina ultrarrapida;2;0 - Não, 1 - Sim
+MEDpa_O1;A_LISINOPRIL;faz uso contínuo de lisinopril;1;0 - Não, 1 - Sim
+MED_O2;B_LISINOPRIL;faz uso de lisinopril;2;0 - Não, 1 - Sim
+MED_O3;C_LISINOPRIL;faz uso de lisinopril;3;0 - Não, 1 - Sim
+MEDpa_O1;A_LOSARTANA;faz uso contínuo de losartana;1;0 - Não, 1 - Sim
+MED_O2;B_LOSARTANA;faz uso de losartana;2;0 - Não, 1 - Sim
+MED_O3;C_LOSARTANA;faz uso de losartana;3;0 - Não, 1 - Sim
+MEDpa_O1;A_MELOXICAM;faz uso contínuo de meloxicam;1;0 - Não, 1 - Sim
+MED_O2;B_MELOXICAM;faz uso de meloxicam;2;0 - Não, 1 - Sim
+MED_O3;C_MELOXICAM;faz uso de meloxicam;3;0 - Não, 1 - Sim
+MEDpa_O1;A_METOPROLOL;faz uso contínuo de metoprolol;1;0 - Não, 1 - Sim
+MED_O2;B_METOPROLOL;faz uso de metoprolol;2;0 - Não, 1 - Sim
+MED_O3;C_METOPROLOL;faz uso de metoprolol;3;0 - Não, 1 - Sim
+MEDpa_O1;A_NAPROXENO;faz uso contínuo de naproxeno;1;0 - Não, 1 - Sim
+MED_O2;B_NAPROXENO;faz uso de naproxeno;2;0 - Não, 1 - Sim
+MED_O3;C_NAPROXENO;faz uso de naproxeno;3;0 - Não, 1 - Sim
+MEDpa_O1;A_NIFEDIPINO;faz uso contínuo de nifedipino;1;0 - Não, 1 - Sim
+MED_O2;B_NIFEDIPINO;faz uso de nifedipino;2;0 - Não, 1 - Sim
+MED_O3;C_NIFEDIPINO;faz uso de nifedipino;3;0 - Não, 1 - Sim
+MEDpa_O1;A_NIMESULIDA;faz uso contínuo de nimesulida;1;0 - Não, 1 - Sim
+MED_O2;B_NIMESULIDA;faz uso de nimesulida;2;0 - Não, 1 - Sim
+MED_O3;C_NIMESULIDA;faz uso de nimesulida;3;0 - Não, 1 - Sim
+MEDpa_O1;A_NIMODIPINO;faz uso contínuo de nimodipino;1;0 - Não, 1 - Sim
+MED_O2;B_NIMODIPINO;faz uso de nimodipino;2;0 - Não, 1 - Sim
+MED_O3;C_NIMODIPINO;faz uso de nimodipino;3;0 - Não, 1 - Sim
+MEDpa_O1;A_OLMESARTANA;faz uso contínuo de olmesartana;1;0 - Não, 1 - Sim
+MED_O2;B_OLMESARTANA;faz uso de olmesartana;2;0 - Não, 1 - Sim
+MED_O3;C_OLMESARTANA;faz uso de olmesartana;3;0 - Não, 1 - Sim
+MEDpa_O1;A_OUTROS_ANTI_HIPERTENS;toma outros anti-hipertensivos;1;0 - Não, 1 - Sim
+MEDpa_O1;A_PIROXICAM;faz uso contínuo de piroxicam;1;0 - Não, 1 - Sim
+MED_O2;B_PIROXICAM;faz uso de piroxicam;2;0 - Não, 1 - Sim
+MED_O3;C_PIROXICAM;faz uso de piroxicam;3;0 - Não, 1 - Sim
+MEDpa_O1;A_RAMIPRIL;faz uso contínuo de ramipril;1;0 - Não, 1 - Sim
+MED_O2;B_RAMIPRIL;faz uso de ramipril;2;0 - Não, 1 - Sim
+MED_O3;C_RAMIPRIL;faz uso de ramipril;3;0 - Não, 1 - Sim
+MEDpa_O1;A_SAXA_GLIPTINA;faz uso contínuo de saxa gliptina;1;0 - Não, 1 - Sim
+MED_O2;B_SAXAGLIPTINA;faz uso de saxagliptina;2;0 - Não, 1 - Sim
+MED_O3;C_SAXAGLIPTINA;faz uso de saxagliptina;3;0 - Não, 1 - Sim
+MEDpa_O1;A_SINVASTATINA;faz uso contínuo de sinvastatina;1;0 - Não, 1 - Sim
+MED_O2;B_SINVASTATINA;faz uso de sinvastatina;2;0 - Não, 1 - Sim
+MED_O3;C_SINVASTATINA;faz uso de sinvastatina;3;0 - Não, 1 - Sim
+MEDpa_O1;A_SITAGLIPTINA;faz uso contínuo de sitagliptina;1;0 - Não, 1 - Sim
+MED_O2;B_SITAGLIPTINA;faz uso de sitagliptina;2;0 - Não, 1 - Sim
+MEDpre_O3;C_SITAGLIPTINA;faz uso de sitagliptina;3;0 - Não, 1 - Sim
+MED_O2;B_ADO_BIGUANIDAS;faz uso de antidiabéticos orais biguanidas;2;0 - Não, 1 - Sim
+MED_O3;C_ADO_BIGUANIDAS;faz uso de antidiabéticos orais biguanidas;3;0 - Não, 1 - Sim
+MED_O2;B_ADO_AGONISTAS_DE_GLP1;faz uso de antidiabéticos orais agonistas de glp1;2;0 - Não, 1 - Sim
+MED_O3;C_ADO_AGONISTAS_DE_GLP1;faz uso de antidiabéticos orais agonistas de glp1;3;0 - Não, 1 - Sim
+MED_O2;B_ADO_GLINIDAS;faz uso de antidiabéticos orais glinidas;2;0 - Não, 1 - Sim
+MED_O3;C_ADO_GLINIDAS;faz uso de antidiabéticos orais glinidas;3;0 - Não, 1 - Sim
+MED_O2;B_ADO_GLITAZONAS;faz uso de antidiabéticos orais glitazonas;2;0 - Não, 1 - Sim
+MED_O3;C_ADO_GLITAZONAS;faz uso de antidiabéticos orais glitazonas;3;0 - Não, 1 - Sim
+MED_O2;B_ADO_INIBIDORES_DPP_IV;faz uso de antidiabéticos orais inibidores dpp iv;2;0 - Não, 1 - Sim
+MED_O3;C_ADO_INIBIDORES_DPP_IV;faz uso de antidiabéticos orais inibidores dpp iv;3;0 - Não, 1 - Sim
+MED_O2;B_AH_VASODILATORES_DIRETO;faz uso de anti-hipertensivo vasodilatores diretos;2;0 - Não, 1 - Sim
+MED_O3;C_AH_VASODILATORES_DIRETO;faz uso de anti-hipertensivo vasodilatores diretos;3;0 - Não, 1 - Sim
+MED_O2;B_ADO_INIBIDORES_ALFA_GLUCOSID;faz uso de antidiabéticos orais inibidores alfa glucosidase;2;0 - Não, 1 - Sim
+MED_O3;C_ADO_INIBIDORES_ALFA_GLUCOSID;faz uso de antidiabéticos orais inibidores alfa glucosidase;3;0 - Não, 1 - Sim
+MED_O2;B_ADO_SULFONILOUREIAS;faz uso de antidiabéticos orais sulfonilouréias;2;0 - Não, 1 - Sim
+MED_O3;C_ADO_SULFONILOUREIAS;faz uso de antidiabéticos orais sulfonilouréias;3;0 - Não, 1 - Sim
+MED_O2;B_AH_BLOQUEADOR_ALFA1_ADRENERG;faz uso de anti-hipertensivo bloqueadores alfa1 adrenérgicos;2;0 - Não, 1 - Sim
+MED_O3;C_AH_BLOQUEADOR_ALFA1_ADRENERG;faz uso de anti-hipertensivo bloqueadores alfa1 adrenérgicos;3;0 - Não, 1 - Sim
+MED_O2;B_AH_DE_ACAO_CENTRAL;faz uso de anti-hipertensivo de ação central;2;0 - Não, 1 - Sim
+MED_O3;C_AH_DE_ACAO_CENTRAL;faz uso de anti-hipertensivo de ação central;3;0 - Não, 1 - Sim
+MED_O2;B_AH_AGONISTA_ALFA2_ADRENERGICO;faz uso de anti-hipertensivo agonistas alfa2 adrenérgicos;2;0 - Não, 1 - Sim
+MED_O3;C_AH_AGONISTA_ALFA2_ADRENERGICO;faz uso de anti-hipertensivo agonistas alfa2 adrenérgicos;3;0 - Não, 1 - Sim
+MED_O2;B_AH_BETA_BLOQUEADORES;faz uso de anti-hipertensivo beta bloqueadores;2;0 - Não, 1 - Sim
+MED_O3;C_AH_BETA_BLOQUEADORES;faz uso de anti-hipertensivo beta bloqueadores;3;0 - Não, 1 - Sim
+MED_O2;B_AH_BLOQ_CANAL_CA_DI_IDROPI;faz uso de anti-hipertensivo bloqueadores dos canais de cálcio di idropiridinicos;2;0 - Não, 1 - Sim
+MED_O3;C_AH_BLOQ_CANAL_CA_DI_IDROPI;faz uso de anti-hipertensivo bloqueadores dos canais de cálcio di idropiridinicos;3;0 - Não, 1 - Sim
+MED_O2;B_AH_BLOQ_CANAL_CA_NAO_DI_IDRO;faz uso de anti-hipertensivo bloqueadores dos canais de cálcio não di idropiridinicos;2;0 - Não, 1 - Sim
+MED_O3;C_AH_BLOQ_CANAL_CA_NAO_DI_IDRO;faz uso de anti-hipertensivo bloqueadores dos canais de cálcio não di idropiridinicos;3;0 - Não, 1 - Sim
+MED_O2;B_AH_BRA;faz uso de anti-hipertensivo bra;2;0 - Não, 1 - Sim
+MED_O3;C_AH_BRA;faz uso de anti-hipertensivo bra;3;0 - Não, 1 - Sim
+MED_O2;B_AH_DIURETICO_DE_ALCA;faz uso de anti-hipertensivo diuréticos de alça;2;0 - Não, 1 - Sim
+MED_O3;C_AH_DIURETICO_DE_ALCA;faz uso de anti-hipertensivo diuréticos de alça;3;0 - Não, 1 - Sim
+MED_O2;B_AH_DIURETICO_POUPAD_POTASSIO;faz uso de anti-hipertensivo diuréticos poupadores de potássio;2;0 - Não, 1 - Sim
+MED_O3;C_AH_DIURETICO_POUPAD_POTASSIO;faz uso de anti-hipertensivo diuréticos poupadores de potássio;3;0 - Não, 1 - Sim
+MED_O2;B_AH_DIURETICOS;faz uso de anti-hipertensivo diuréticos;2;0 - Não, 1 - Sim
+MED_O3;C_AH_DIURETICOS;faz uso de anti-hipertensivo diuréticos;3;0 - Não, 1 - Sim
+MED_O2;B_AH_DIURETICOS_TIAZIDICOS;faz uso de anti-hipertensivo diuréticos tiazídicos;2;0 - Não, 1 - Sim
+MED_O3;C_AH_DIURETICOS_TIAZIDICOS;faz uso de anti-hipertensivo diuréticos tiazídicos;3;0 - Não, 1 - Sim
+MEDpa_O1;A_AMILORIDA;faz uso contínuo de amilorida;1;0 - Não, 1 - Sim
+MED_O2;B_AMILORIDA;faz uso de amilorida;2;0 - Não, 1 - Sim
+MED_O3;C_AMILORIDA;faz uso de amilorida;3;0 - Não, 1 - Sim
+MEDpa_O1;A_BISOPROLOL;faz uso contínuo de bisoprolol;1;0 - Não, 1 - Sim
+MED_O2;B_BISOPROLOL;faz uso de bisoprolol;2;0 - Não, 1 - Sim
+MED_O3;C_BISOPROLOL;faz uso de bisoprolol;3;0 - Não, 1 - Sim
+MEDep_O1;FAZ USO ESPOR<E1>DICO DE CETOROLACO;faz uso esporádico de cetorolaco;1;0 - Não, 1 - Sim
+MED_O2;B_CETOROLACO;faz uso de cetorolaco;2;0 - Não, 1 - Sim
+MED_O3;C_CETOROLACO;faz uso de cetorolaco;3;0 - Não, 1 - Sim
+MEDpa_O1;A_TROMETAMOL_CETOROLACO;faz uso contínuo de trometamol cetorolaco;1;0 - Não, 1 - Sim
+MEDpre_O3;C_TROMETAMOL_CETOROLACO;faz uso de trometamol cetorolaco;3;0 - Não, 1 - Sim
+MED_O2;B_GLIPIZIDA;faz uso de glipizida;2;0 - Não, 1 - Sim
+MED_O2;B_HLP_ESTATINAS;faz uso de hipolipemiantes estatinas;2;0 - Não, 1 - Sim
+MED_O3;C_HLP_ESTATINAS;faz uso de hipolipemiantes estatinas;3;0 - Não, 1 - Sim
+MEDpa_O1;A_METFORMINA;faz uso contínuo de metformina;1;0 - Não, 1 - Sim
+MED_O2;B_METFORMINA;faz uso de metformina;2;0 - Não, 1 - Sim
+MED_O3;C_METFORMINA;faz uso de metformina;3;0 - Não, 1 - Sim
+MEDpa_O1;A_PROPRANOLOL;faz uso contínuo de propranolol;1;0 - Não, 1 - Sim
+MED_O2;B_PROPRANOLOL;faz uso de propranolol;2;0 - Não, 1 - Sim
+MED_O3;C_PROPRANOLOL;faz uso de propranolol;3;0 - Não, 1 - Sim
+MEDpa_O1;A_VALSARTANA;faz uso contínuo de valsartana;1;0 - Não, 1 - Sim
+MED_O2;B_VALSARTANA;faz uso de valsartana;2;0 - Não, 1 - Sim
+MED_O3;C_VALSARTANA;faz uso de valsartana;3;0 - Não, 1 - Sim
