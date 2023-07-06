@@ -1,0 +1,5 @@
+#Arquivos que devem ser excluidos
+/*.o
+/*.win
+/*.swp
+/*.layout

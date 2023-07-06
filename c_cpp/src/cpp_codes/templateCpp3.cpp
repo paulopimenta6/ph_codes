@@ -62,7 +62,7 @@ template <class Tipo> void Matriz<Tipo>::RedimPreserve(int n)
 	tamanho = n;
 }
 
-int main()
+/*int main()
 {
 	int y = 20;
 	Matriz<float> notas(y);
@@ -82,4 +82,4 @@ int main()
 	cout << "\nnotas[3] = " << notas[3];
 	
 	return 0;
-}
+}*/
