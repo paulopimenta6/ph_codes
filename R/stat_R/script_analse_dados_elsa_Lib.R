@@ -306,16 +306,16 @@ ggplot(importaDadosLib, aes(hemoglobinaGlicadaHba1cOnda2)) + geom_bar(aes(fill=a
 ggplot(importaDadosLib, aes(hemoglobinaGlicadaHba1cOnda3)) + geom_bar(aes(fill=as.factor(colesterolHdlOnda3))) + labs(fill = "Colesterol Hdl na onda 3", y = "Quantidade de pessoas na onda 3", x = "Hemoglobina Glicada Hba1 (%) - onda 3") + theme(legend.key.size = unit(0.2, 'cm'))
 ###consertar aqui...
 ggplot(importaDadosLib, aes(colesterolHdlOnda1)) + geom_bar(aes(fill=as.factor(habitoDeFumarOnda1))) + labs(x = "Colesterol na onda 1", y = "Quantidade de pessoas na onda 1", fill = "Habito de fumar - onda 1")
-ggplot(importaDadosLib, aes(colesterolHdlOnda2)) + geom_bar(aes(fill=as.factor(habitoDeFumarOnda1))) + labs(x = "Colesterol na onda 2", y = "Quantidade de pessoas na onda 2", fill = "Habito de fumar - onda 2")
-ggplot(importaDadosLib, aes(colesterolHdlOnda3)) + geom_bar(aes(fill=as.factor(habitoDeFumarOnda1))) + labs(x = "Colesterol na onda 3", y = "Quantidade de pessoas na onda 3", fill = "Habito de fumar - onda 3")
+ggplot(importaDadosLib, aes(colesterolHdlOnda2)) + geom_bar(aes(fill=as.factor(habitoDeFumarOnda2))) + labs(x = "Colesterol na onda 2", y = "Quantidade de pessoas na onda 2", fill = "Habito de fumar - onda 2")
+ggplot(importaDadosLib, aes(colesterolHdlOnda3)) + geom_bar(aes(fill=as.factor(habitoDeFumarOnda3))) + labs(x = "Colesterol na onda 3", y = "Quantidade de pessoas na onda 3", fill = "Habito de fumar - onda 3")
 
 ggplot(importaDadosLib, aes(hemoglobinaGlicadaHba1cOnda1)) + geom_bar(aes(fill=as.factor(habitoDeFumarOnda1))) + labs(x = "Hemoglobina Glicada Hba1c Onda 1", y = "Quantidade de pessoas na onda 1", fill = "Habito de fumar - onda 1")
-ggplot(importaDadosLib, aes(hemoglobinaGlicadaHba1cOnda2)) + geom_bar(aes(fill=as.factor(habitoDeFumarOnda1))) + labs(x = "Hemoglobina Glicada Hba1c Onda 3", y = "Quantidade de pessoas na onda 2", fill = "Habito de fumar - onda 2")
-ggplot(importaDadosLib, aes(hemoglobinaGlicadaHba1cOnda3)) + geom_bar(aes(fill=as.factor(habitoDeFumarOnda1))) + labs(x = "Hemoglobina Glicada Hba1c Onda 3", y = "Quantidade de pessoas na onda 3", fill = "Habito de fumar - onda 3")
+ggplot(importaDadosLib, aes(hemoglobinaGlicadaHba1cOnda2)) + geom_bar(aes(fill=as.factor(habitoDeFumarOnda2))) + labs(x = "Hemoglobina Glicada Hba1c Onda 3", y = "Quantidade de pessoas na onda 2", fill = "Habito de fumar - onda 2")
+ggplot(importaDadosLib, aes(hemoglobinaGlicadaHba1cOnda3)) + geom_bar(aes(fill=as.factor(habitoDeFumarOnda3))) + labs(x = "Hemoglobina Glicada Hba1c Onda 3", y = "Quantidade de pessoas na onda 3", fill = "Habito de fumar - onda 3")
 ########
 
-ggplot(importaDadosLib, aes(microalbuminuriaMinOnda1)) + geom_bar(aes(fill=as.factor(creatininaRastreavelNoSangueOnda1))) + labs(x = "Microalbuminuria (mcg/Min) Onda 1", y = "Quantidade de pessoas - Onda 1", fill = "Creatinina Rastreavel no Sangue - Onda 1")
-ggplot(importaDadosLib, aes(microalbuminuriaMInOnda2)) + geom_bar(aes(fill=as.factor(creatininaRastreavelNoSangueOnda2))) + labs(x = "Microalbuminuria (mcg/Min) Onda 2", y = "Quantidade de pessoas - Onda 2", fill = "Creatinina Rastreavel no Sangue - Onda 2")
+#ggplot(importaDadosLib, aes(creatininaRastreavelNoSangueOnda1)) + geom_bar(aes(fill=as.factor(microalbuminuriaMinOnda1))) + labs(x = "Microalbuminuria (mcg/Min) Onda 1", y = "Quantidade de pessoas - Onda 1", fill = "Creatinina Rastreavel no Sangue - Onda 1")
+#ggplot(importaDadosLib, aes(creatininaRastreavelNoSangueOnda2)) + geom_bar(aes(fill=as.factor(microalbuminuriaMInOnda2))) + labs(x = "Microalbuminuria (mcg/Min) Onda 2", y = "Quantidade de pessoas - Onda 2", fill = "Creatinina Rastreavel no Sangue - Onda 2")
 
 
 #############################################################################################################################
