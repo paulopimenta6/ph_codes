@@ -1,5 +1,6 @@
 library(readr)
 library(tidyverse)
+library(dplyr)
 
 dir_dados="./dados_elsa/Lucia_Andrade_10_22_CSV.csv"
 
@@ -317,6 +318,36 @@ ggplot(importaDadosLib, aes(hemoglobinaGlicadaHba1cOnda3)) + geom_bar(aes(fill=a
 #ggplot(importaDadosLib, aes(creatininaRastreavelNoSangueOnda1)) + geom_bar(aes(fill=as.factor(microalbuminuriaMinOnda1))) + labs(x = "Microalbuminuria (mcg/Min) Onda 1", y = "Quantidade de pessoas - Onda 1", fill = "Creatinina Rastreavel no Sangue - Onda 1")
 #ggplot(importaDadosLib, aes(creatininaRastreavelNoSangueOnda2)) + geom_bar(aes(fill=as.factor(microalbuminuriaMInOnda2))) + labs(x = "Microalbuminuria (mcg/Min) Onda 2", y = "Quantidade de pessoas - Onda 2", fill = "Creatinina Rastreavel no Sangue - Onda 2")
 
+###
+# Defina os pontos de corte para criar os intervalos
+pontos_corte <- c(0, 5, 10, 20, 50, 100, Inf)
+
+# Crie os intervalos usando a função cut com os pontos de corte definidos
+#intervalos <- cut(microalbuminuriaMInOnda2, breaks = pontos_corte, labels = FALSE, right = FALSE)
+intervalos <- cut(microalbuminuriaMInOnda2, breaks = pontos_corte)
+
+# Use a função labels_interval para criar labels para os intervalos
+labels_interval <- function(x) {
+  paste0("[", pontos_corte[x], "-", pontos_corte[x + 1], ")")
+}
+
+# Crie o gráfico usando os intervalos definidos automaticamente
+ggplot(importaDadosLib, aes(x = creatininaRastreavelNoSangueOnda2, fill = factor(intervalos))) +
+  geom_bar() +
+  labs(x = "Microalbuminuria (mcg/Min) Onda 2",
+       y = "Quantidade de pessoas - Onda 2",
+       fill = "Creatinina Rastreavel no Sangue - Onda 2")
+###
+
+####
 
 #############################################################################################################################
 plot(colesterolHdlOnda1, colesterolHdlOnda2, col="black", xlab = "Colesterol hdl - Onda 1", ylab = "Colesterol hdl - Onda 2", pch=20)
+
+
+# Crie o gráfico usando os intervalos definidos automaticamente
+ggplot(importaDadosLib, aes(x = creatininaRastreavelNoSangueOnda2)) + 
+  geom_bar(aes(fill=as.factor(intervalos))) +
+                 labs(x = "Microalbuminuria (mcg/Min) Onda 2",
+                      y = "Quantidade de pessoas - Onda 2",
+                      fill = "Creatinina Rastreavel no Sangue - Onda 2")
