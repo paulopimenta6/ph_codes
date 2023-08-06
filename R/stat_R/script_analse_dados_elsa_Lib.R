@@ -335,6 +335,8 @@ ggplot(importaDadosLib, aes(x = creatininaRastreavelNoSangueOnda2)) +
        fill = "Microalbuminuria (mcg/Min) - Onda 2")
 ###
 
+###
+#Bloco de regressao linear 
 #############################################################################################################################
 plot(colesterolHdlOnda1, colesterolHdlOnda2, col="black", xlab = "Colesterol hdl - Onda 1", ylab = "Colesterol hdl - Onda 2", pch=20)
 
