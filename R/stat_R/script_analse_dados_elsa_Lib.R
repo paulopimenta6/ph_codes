@@ -336,7 +336,7 @@ ggplot(importaDadosLib, aes(x = creatininaRastreavelNoSangueOnda2)) +
 ###
 
 ###
-#Bloco de regressao linear 
+###Bloco de regressao linear 
 #############################################################################################################################
 plot(colesterolHdlOnda1, colesterolHdlOnda2, col="black", xlab = "Colesterol hdl - Onda 1", ylab = "Colesterol hdl - Onda 2", pch=20)
 
