@@ -254,20 +254,27 @@ microalbuminuriaMInOnda1<-importaDadosLib$A_LABA19MCGMIN
 microalbuminuriaMInOnda2<-importaDadosLib$B_LABB19MCGMIN
 
 ################################################################################
-dados <- na.omit(data.frame(colesterolHdlOnda1, colesterolHdlOnda2))
-modelo <- lm(dados$colesterolHdlOnda2 ~ dados$colesterolHdlOnda1, data = dados)
+dados_onda1_2 <- na.omit(data.frame(colesterolHdlOnda1, colesterolHdlOnda2))
+modelo <- lm(dados_onda1_2$colesterolHdlOnda2 ~ dados_onda1_2$colesterolHdlOnda1, data = dados_onda1_2)
 coeficientes <- coef(modelo) 
 
-plot(dados$colesterolHdlOnda1, dados$colesterolHdlOnda2, pch = 20, col = "black", main = "Regressão Linear \n Colesterol hdl - Onda 1 e onda 2", xlab = "Colesterol hdl - Onda 1", ylab = "Colesterol hdl - Onda 2")
+plot(dados_onda1_2$colesterolHdlOnda1, dados_onda1_2$colesterolHdlOnda2, pch = 20, col = "black", main = "Regressão Linear \n Colesterol hdl - Onda 1 e onda 2", xlab = "Colesterol hdl - Onda 1", ylab = "Colesterol hdl - Onda 2")
 text(33, 110, paste("y = ", round(modelo$coefficients[1],2), "+ x* ", round(modelo$coefficients[2],2) ))
-lines(dados$colesterolHdlOnda1, modelo$fitted, lwd = 2, col="blue")
+lines(dados_onda1_2$colesterolHdlOnda1, modelo$fitted, lwd = 2, col="blue")
+################################################################################
+dados_onda1_3 <- na.omit(data.frame(colesterolHdlOnda1, colesterolHdlOnda3))
+modelo <- lm(dados_onda1_3$colesterolHdlOnda3 ~ dados_onda1_3$colesterolHdlOnda1, data = dados_onda1_3)
+coeficientes <- coef(modelo) 
 
+plot(dados_onda1_3$colesterolHdlOnda1, dados_onda1_3$colesterolHdlOnda3, pch = 20, col = "black", main = "Regressão Linear \n Colesterol hdl - Onda 1 e onda 3", xlab = "Colesterol hdl - Onda 1", ylab = "Colesterol hdl - Onda 3")
+text(33, 120, paste("y = ", round(modelo$coefficients[1],2), "+ x* ", round(modelo$coefficients[2],2) ))
+lines(dados_onda1_3$colesterolHdlOnda1, modelo$fitted, lwd = 2, col="blue")
+################################################################################
+dados_onda2_3 <- na.omit(data.frame(colesterolHdlOnda2, colesterolHdlOnda3))
+modelo <- lm(dados_onda2_3$colesterolHdlOnda3 ~ dados_onda2_3$colesterolHdlOnda2, data = dados_onda2_3)
+coeficientes <- coef(modelo) 
 
-###Bloco de regressao linear
-#colesterolHdlOnda1 X colesterolHdlOnda2
-#colesterolHdlOnda1 X colesterolHdlOnda3
-#plot(colesterolHdlOnda1, colesterolHdlOnda2, col="black", xlab = "Colesterol hdl - Onda 1", ylab = "Colesterol hdl - Onda 2", pch=20)
-#plot(colesterolHdlOnda1, colesterolHdlOnda3, col="black", xlab = "Colesterol hdl - Onda 2", ylab = "Colesterol hdl - Onda 3", pch=20)
-#colesterolHdlOnda2 X colesterolHdlOnda3
-#plot(colesterolHdlOnda2, colesterolHdlOnda3, col="black", xlab = "Colesterol hdl - Onda 2", ylab = "Colesterol hdl - Onda 3", pch=20)
+plot(dados_onda2_3$colesterolHdlOnda2, dados_onda2_3$colesterolHdlOnda3, pch = 20, col = "black", main = "Regressão Linear \n Colesterol hdl - Onda 2 e onda 3", xlab = "Colesterol hdl - Onda 2", ylab = "Colesterol hdl - Onda 3")
+text(33, 110, paste("y = ", round(modelo$coefficients[1],2), "+ x* ", round(modelo$coefficients[2],2) ))
+lines(dados_onda2_3$colesterolHdlOnda2, modelo$fitted, lwd = 2, col="blue")
 #############################################################################################################################
