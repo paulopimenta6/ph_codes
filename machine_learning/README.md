@@ -1,6 +1,6 @@
 # Projeto de Machine Learning
 
-![Logo do Projeto](lnovoAstronauta.png)
+![Logo do Projeto](novoAstronauta.png)
 
 ## Sumário
 
