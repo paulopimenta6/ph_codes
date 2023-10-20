@@ -17,6 +17,8 @@ Para começar seguiremos estas etapas:
 
 1. Criação de um ambiente virtual Python diretamente na máquina:
 
+![Logo do Python](python.jpeg)
+
 - Será criado um abiente _sandbox_ no qual as bibliotecas serão instaladas.
 
 ```bash
@@ -58,6 +60,8 @@ e a partir deste arquivo é possível em outro ambiente realizar a instalação 
 (outra_env) $ pip install -r requisitos.txt
 ```
 2. Criação de um ambiente virtual Python diretamente no Conda:
+
+![Logo do Anaconda](Anaconda_Logo.png)
 
 A ferramenta Conda, que acompanha o Anaconda, permite a criação de ambiente virtuais, além da instalação de pacotes.
 
