@@ -22,6 +22,8 @@ Para começar seguiremos estas etapas:
 ```bash
 python -m venv env
 ```
+Lembrando que em alguns SO pode ser necessário usar _python3_ ao invés de _python_
+
 
 - Em seguida é preciso ativar o ambiente para que as bibliotecas sejam instaladas corretamente no ambiente criado e não no global. Isso se faz da seguinte forma:
 
