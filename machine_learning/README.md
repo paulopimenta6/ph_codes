@@ -106,3 +106,13 @@ $ conda activate env
 ```bash
 (outra_env) $ conda create -f requisitos.yml
 ```
+
+3. Criando um ambiente virtual dentro da máquina Linux (baseada em sistemas Debian)
+
+- Usar a sequência de comandos:
+
+```bash
+$ sudo apt install python3-virtualenv
+$ virtualenv <nome_do_ambiente>
+$ source env/bin/activate
+```
