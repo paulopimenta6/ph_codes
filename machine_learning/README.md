@@ -116,3 +116,10 @@ $ sudo apt install python3-virtualenv
 $ virtualenv <nome_do_ambiente>
 $ source env/bin/activate
 ```
+
+4. Saindo de um ambiente virtual 
+
+- Para sair basta usar o comando:
+```bash
+$ deactivate
+```
