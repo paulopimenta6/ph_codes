@@ -1,21 +1,24 @@
 # Projeto de Machine Learning
 
-![Logo do Projeto](novoAstronauta.png)
+![Logo do Projeto](novoAstronauta.jpeg)
 
 ## Sumário
 
 - [Configuração do ambiente](#Ambiente)
-- [Uso](#uso)
-- [Contribuindo](#contribuindo)
+- [Instalação das bibliotecas](#Bibliotecas)
+- [Uso](#Uso)
 - [Licença](#licença)
 - [Autores](#autores)
 - [Agradecimentos](#agradecimentos)
 
-## Instalação
+## Ambiente
 
-Para instalar o projeto, siga estas etapas:
+Para começar seguiremos estas etapas:
 
-1. Clone este repositório:
+1. Criação de um ambiente virtual Python:
+
+Será criado um abiente _sandbox_ no qual as bibliotecas serão instaladas.
 
 ```bash
-git clone https://github.com/seu-usuario/seu-projeto.git
+python -m venv env
+```
