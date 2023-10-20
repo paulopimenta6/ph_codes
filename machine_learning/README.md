@@ -19,10 +19,16 @@ Para começar seguiremos estas etapas:
 
 ![Logo do Python](imgs/python.jpeg)
 
+- Instalar o python3_env através do comando (ambientes baseados em Debian):
+
+``` 
+    sudo apt install python3-venv
+``` 
+
 - Será criado um abiente _sandbox_ no qual as bibliotecas serão instaladas.
 
 ```bash
-python -m venv env
+python3 -m venv env
 ```
 Lembrando que em alguns SO pode ser necessário usar _python3_ ao invés de _python_
 
