@@ -1,3 +1,10 @@
+<!-- Inclua o link para a fonte de ícones no cabeçalho HTML -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<!-- Use um ícone da Font Awesome no seu arquivo README.md -->
+<i class="fas fa-python"></i> Este é um projeto Python.
+
+
 # Projeto de Machine Learning
 
 <!--![Logo do Projeto](imgs/novoAstronauta1.jpeg)-->
