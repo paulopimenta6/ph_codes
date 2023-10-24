@@ -1,4 +1,4 @@
-![Python3.10](https://img.shields.io/badge/Python-3.9-blue)
+![Python3.10](https://img.shields.io/badge/Python-3.10-yellow)
 
 
 
