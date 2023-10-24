@@ -108,7 +108,12 @@ $ conda activate env
 ```
 
 3. Criando um ambiente virtual dentro da máquina Linux (baseada em sistemas Debian)
-![Logo do Ubuntu](imgs/ubuntu.jpg)
+<!--![Logo do Ubuntu](imgs/ubuntu.jpg)-->
+
+<p align="center">
+  <img src="imgs/ubuntu.jpg" alt="Logo do Ubuntu" width="200">
+</p>
+
 
 - Usar a sequência de comandos:
 
