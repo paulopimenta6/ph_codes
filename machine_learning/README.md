@@ -1,6 +1,10 @@
 # Projeto de Machine Learning
 
-![Logo do Projeto](imgs/novoAstronauta1.jpeg)
+<!--![Logo do Projeto](imgs/novoAstronauta1.jpeg)-->
+
+<p align="center">
+  <img src="imgs/novoAstronauta1.jpeg" alt="Logo do Projeto" width="200">
+</p>
 
 ## Sumário
 
