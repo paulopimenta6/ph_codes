@@ -20,7 +20,7 @@ Para começar seguiremos estas etapas:
 <!--![Logo do Python](imgs/python.jpeg)-->
 
 <p align="center">
-  <img src="imgs/python.jpeg" alt="Logo do Python" width="400">
+  <img src="imgs/python.jpeg" alt="Logo do Python" width="200">
 </p>
 
 - Instalar o python3_env através do comando (ambientes baseados em Debian):
