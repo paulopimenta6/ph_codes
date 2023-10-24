@@ -17,7 +17,11 @@ Para começar seguiremos estas etapas:
 
 1. Criação de um ambiente virtual Python diretamente na máquina:
 
-![Logo do Python](imgs/python.jpeg)
+<!--![Logo do Python](imgs/python.jpeg)-->
+
+<p align="center">
+  <img src="imgs/python.jpeg" alt="Logo do Python" width="400">
+</p>
 
 - Instalar o python3_env através do comando (ambientes baseados em Debian):
 
@@ -67,7 +71,11 @@ e a partir deste arquivo é possível em outro ambiente realizar a instalação 
 ```
 2. Criação de um ambiente virtual Python diretamente no Conda:
 
-![Logo do Anaconda](imgs/Anaconda_Logo.png)
+<!--![Logo do Anaconda](imgs/Anaconda_Logo.png)-->
+
+<p align="center">
+  <img src="imgs/Anaconda_Logo.png" alt="Logo do Anaconda" width="400">
+</p>
 
 A ferramenta Conda, que acompanha o Anaconda, permite a criação de ambiente virtuais, além da instalação de pacotes.
 
