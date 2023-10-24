@@ -108,6 +108,7 @@ $ conda activate env
 ```
 
 3. Criando um ambiente virtual dentro da máquina Linux (baseada em sistemas Debian)
+![Logo do Ubuntu](imgs/ubuntu.jpg)
 
 - Usar a sequência de comandos:
 
