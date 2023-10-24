@@ -111,7 +111,7 @@ $ conda activate env
 <!--![Logo do Ubuntu](imgs/ubuntu.jpg)-->
 
 <p align="center">
-  <img src="imgs/ubuntu.jpg" alt="Logo do Ubuntu" width="200">
+  <img src="imgs/ubuntu.jpg" alt="Logo do Ubuntu" width="400">
 </p>
 
 
