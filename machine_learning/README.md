@@ -1,8 +1,5 @@
-<!-- Inclua o link para a fonte de ícones no cabeçalho HTML -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+![NodeJS](https://camo.githubusercontent.com/d423a12bb3104123302b72414d54284205bdf66381d64716a6d6891d5fcb0261/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d4e6f64656a732d626c61636b3f73747566662d7468652d6261646765266c6f676f3d4e6f64652e6a73)
 
-<!-- Use um ícone da Font Awesome no seu arquivo README.md -->
-<i class="fas fa-python"></i> Este é um projeto Python.
 
 
 # Projeto de Machine Learning
