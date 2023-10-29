@@ -1,4 +1,4 @@
-![Python3.10](https://img.shields.io/badge/Python-3.10-yellow) ![Anaconda](https://img.shields.io/badge/Anaconda-brightgreen) ![Ubuntu](https://img.shields.io/badge/Ubuntu-Linux-orange)
+![Ubuntu] (https://img.shields.io/badge/Ubuntu-Linux-orange) ![Python3.10](https://img.shields.io/badge/Python-3.10-yellow) ![Anaconda](https://img.shields.io/badge/Anaconda-brightgreen) ![Windows11](https://img.shields.io/badge/Windows-11-blue) ![Python3.11](https://img.shields.io/badge/Python-3.11-yellow)
 
 # Projeto de Machine Learning
 
