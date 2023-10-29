@@ -153,7 +153,7 @@ $ deactivate
 - Para criar no windows um ambiente virtual Python:
 
 ```powershell
-python -m venv env_win
+  python -m venv env_win
 ```
 
 - Verificar se há permissões de execução do script do ambiente virtual. Para isso abra, como administrador, o PowerShell e navegue até o diretório do ambiente virtual criado através do comando:
@@ -171,10 +171,10 @@ python -m venv env_win
 - Para ativar e desativar o ambiente virtual:
 - Entrar diretório do ambiente virtual, que geralmente é ```~/<nome_do_ambiente_criado>/Script```
 - Usar o comando de ativação 
-    ```powershell
-    .\activate
-    ```
-  - E usar o comando de desativação: 
-  ```powershell
-    .\deactivate
-    ```
+```powershell
+  .\activate
+```
+- E usar o comando de desativação: 
+```powershell
+  .\deactivate
+```
