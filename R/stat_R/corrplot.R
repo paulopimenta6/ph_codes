@@ -7,9 +7,13 @@ library(corrplot)
 dir_dados="./dados_elsa/Lucia_Andrade_10_22_CSV.csv"
 importaDadosLib=read_csv2(dir_dados)
 
-
 ################################################################
 ###################Variaveis Medicas############################
+###presença de hipertensao arterial sistemica
+presencaDeHipertensaoArterialSistemicaOnda1<-importaDadosLib$A_HAS2_2
+presencaDeHipertensaoArterialSistemicaOnda2<-importaDadosLib$B_HAS2_2
+presencaDeHipertensaoArterialSistemicaOnda3<-importaDadosLib$C_HAS2
+
 ###Pressao sistolica 
 pressaoArterialSistolicaMediaOnda1<-importaDadosLib$A_PSIS
 pressaoArterialSistolicaMediaOnda2<-importaDadosLib$B_PSIS
@@ -82,16 +86,16 @@ colesterolLdlOnda3<-importaDadosLib$LABC13
 ################################################################
 ################################################################
 
-listHipertSist <- cbind(HipArt1 = presencaDeHipertensaoArterialSistemicaOnda1, HipArt2 = presencaDeHipertensaoArterialSistemicaOnda2, HipArt3 = presencaDeHipertensaoArterialSistemicaOnda3)
+###Correlação com colesterol HDL e LDL
 listColesterol <- cbind(colesterolHdlOnda1, colesterolHdlOnda2, colesterolHdlOnda3, colesterolLdlOnda1, colesterolLdlOnda2, colesterolLdlOnda3)
-
-
-
-corrHipertSist <- cor(listHipertSist, use = "pairwise.complete.obs")
 corrColesterol <- cor(listColesterol, use = "pairwise.complete.obs")
-
-corrplot(corrHipertSist, method = 'number')
 corrplot(corrColesterol,
          method = "number",
          col = colorRampPalette(c("blue", "green", "red"))(100), # Exemplo de paleta de cores personalizada
          main = "\n\nMapa de Calor de Correlação")
+###Fim correlação com colesterol
+
+###Correlação Hipertensão Arterial Sistemica
+listHipertSist <- cbind(HipArt1 = presencaDeHipertensaoArterialSistemicaOnda1, HipArt2 = presencaDeHipertensaoArterialSistemicaOnda2, HipArt3 = presencaDeHipertensaoArterialSistemicaOnda3)
+corrHipertSist <- cor(listHipertSist, use = "pairwise.complete.obs")
+corrplot(corrHipertSist, method = 'number')
