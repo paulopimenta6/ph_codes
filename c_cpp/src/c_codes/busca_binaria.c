@@ -78,7 +78,7 @@ int busca_binaria(int vetor[], int valor, int tamanho){
 
     meio=(alto + baixo)/2;
 
-    /*Lembrando que em C o boolean numoerico e:
+    /*Lembrando que em C o boolean numerico e:
     0: False
     1: True */
     while((!achou) && (alto>=baixo)){
