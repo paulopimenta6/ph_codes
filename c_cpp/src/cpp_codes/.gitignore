@@ -4,3 +4,15 @@
 /*.swp
 /*.layout
 /*.exe
+
+\*.o
+\*.win
+\*.swp
+\*.layout
+\*.exe
+
+*.o
+*.win
+*.swp
+*.layout
+*.exe
