@@ -1,7 +1,7 @@
+source("script_analise_dados_elsa_Var_Lib.R") 
 library(readr)
 library(tidyverse)
 library(dplyr)
-source("script_analise_dados_elsa_Var_Lib.R") 
 
 #############################################################################################################################
 ###fazendo alguns graficos
