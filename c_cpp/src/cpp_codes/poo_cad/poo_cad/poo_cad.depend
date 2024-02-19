@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1708313628 source:/home/paulo/Documentos/meus_codigos/ph_codes/c_cpp/src/cpp_codes/poo_cad/poo_cad/sistemaCadastro.cpp
+	<iostream>
+	<limits>
+	"sistemaCadastro.h"
+
+1708314068 /home/paulo/Documentos/meus_codigos/ph_codes/c_cpp/src/cpp_codes/poo_cad/poo_cad/sistemaCadastro.h
+
+1708315812 source:/home/paulo/Documentos/meus_codigos/ph_codes/c_cpp/src/cpp_codes/poo_cad/poo_cad/main.cpp
+	<iostream>
+	"sistemaCadastro.h"
+	"parametros.h"
+
+1708313912 /home/paulo/Documentos/meus_codigos/ph_codes/c_cpp/src/cpp_codes/poo_cad/poo_cad/parametros.h
+
