@@ -10,12 +10,14 @@ It is an example of code for assocation rules in R. It will be used libraries `a
 In case the libraries do not have been installed use the follow commands: 
 
 ```R
-install.packages("arules")
-install.packages("arulesViz"), install.packages("arulesViz", repos = "https://mhahsler.r-universe.dev") or devtools::install_github("mhahsler/arulesViz").
+- install.packages("arules")
+- install.packages("arulesViz") \n 
+- install.packages("arulesViz", repos = "https://mhahsler.r-universe.dev") \n
+- devtools::install_github("mhahsler/arulesViz").
 ``` 
 Maybe you could install also using the command: library("devtools")
 ```R
-install_github("mhahsler/arulesViz")
+- install_github("mhahsler/arulesViz")
 ```
 
 Do not forget to install Linux library libglpk-dev by command:
