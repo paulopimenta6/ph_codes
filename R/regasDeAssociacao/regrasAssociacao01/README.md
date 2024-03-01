@@ -47,3 +47,7 @@ Data used is just an example of binary numbers in a false scenario of a large NA
 |  Result  |    F22   |    0.5   |   0.83   |   0.92   |    5     |
 |  Result  |    F15   |    0.5   |   0.83   |   0.92   |    5     |
 |  Result  |  Rafale  |    0.6   |   1.00   |   1.00   |    6     |
+
+<p align="center">
+  <img src="imgs/regrasAssociacaoOTAN.png" alt="Plot da regra de associação" width="200">
+</p>
