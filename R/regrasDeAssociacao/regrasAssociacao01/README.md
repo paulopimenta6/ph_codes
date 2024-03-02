@@ -7,7 +7,9 @@ It is an example of code for assocation rules in R. It will be used libraries `a
 
 ### support
 
-\text{support}(A \rightarrow B) = \frac{\text{\(A \cap B\)}}{\text{número total de transações}}
+\[
+\text{support}(A \rightarrow B) = \frac{A \cap B}{\text{número total de transações}}
+\]
 
 ### confident
 
