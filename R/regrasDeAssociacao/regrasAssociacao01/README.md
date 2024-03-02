@@ -9,6 +9,8 @@ It is an example of code for assocation rules in R. It will be used libraries `a
 
 $$ \text{support}(A \rightarrow B) = \frac{A \cap B}{\text{T}} $$
 
+Where _T_ is the total transactions
+
 ### confident
 
 $$ \text{conf}(A \rightarrow B) = \frac{A \cap B}{\text{A}} $$
