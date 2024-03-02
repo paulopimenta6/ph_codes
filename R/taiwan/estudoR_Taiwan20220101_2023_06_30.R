@@ -281,8 +281,31 @@ ggplot(data = DF_OTHERS) +
        caption = "Source = MOEA") 
 ggsave("ITDevTwOTHERS.png", width = 70, height = 20, units = "cm")
 
+#######################################################################################################
+
+ggplot(data = DF_USA, aes(x = Period, y = `Electrical Machinery Products`, group = 1)) + 
+  geom_line() +
+  geom_point() +
+  labs(title = "Taiwanese electrical machinery products exports to USA 2022 - 2023", 
+       y = "Value in Millions of US Dollars", 
+       x = "Month",
+       caption = "Source = MOEA")
 
 
+create_export_plot <- function(data, title, output_file) {
+  ggplot(data = data, aes(x = Period, y = `Electrical Machinery Products`, group = 1)) + 
+    geom_point() +
+    geom_line(color = "blue") +
+    labs(title = title, 
+         y = "Value in Millions of US Dollars", 
+         x = "Month",
+         caption = "Source = MOEA") 
+  ggsave(output_file, width = 70, height = 20, units = "cm")
+}
 
-
-
+create_export_plot(DF_USA, "Taiwanese electrical machinery products exports to USA 2022 - 2023", "electronialMachTwUSA.png")
+create_export_plot(DF_Japan, "Taiwanese electrical machinery products exports to Japan 2022 - 2023", "electronialMachTwJapan.png")
+create_export_plot(DF_HKCN, "Taiwanese electrical machinery products exports to HK and CN 2022 - 2023", "electronialMachTwHKCN.png")
+create_export_plot(DF_EU, "Taiwanese electrical machinery products exports to Europe 2022 - 2023", "electronialMachTwEU.png")
+create_export_plot(DF_ASEAN, "Taiwanese electrical machinery products exports to ASEAN 2022 - 2023", "electronialMachTwASEAN.png")
+create_export_plot(DF_OTHERS, "Taiwanese electrical machinery products exports to OTHERS 2022 - 2023", "electronialMachTwOTHERS.png")
