@@ -7,7 +7,7 @@ It is an example of code for assocation rules in R. It will be used libraries `a
 
 ### support
 
-$$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
+$$ \text{support}(A \rightarrow B) = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
 
 ### confident
 
