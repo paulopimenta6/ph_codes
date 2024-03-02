@@ -11,7 +11,7 @@ $$ \text{support}(A \rightarrow B) = \frac{A \cap B}{\text{T}} $$
 
 ### confident
 
-$$ \text{support}(A \rightarrow B) = \frac{A \cap B}{\text{A}} $$
+$$ \text{conf}(A \rightarrow B) = \frac{A \cap B}{\text{A}} $$
 
 ### lift
 
