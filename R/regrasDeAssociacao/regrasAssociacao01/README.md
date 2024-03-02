@@ -15,7 +15,9 @@ $$ \text{support}(A \rightarrow B) = \frac{A \cap B}{\text{A}} $$
 
 ### lift
 
-$$ \text{support}(A \rightarrow B) = \frac{sup(A \cap B)}{\text{sup(A)*sup(B)}} $$
+$$ \text{lift}(A \rightarrow B) = \frac{conf(A \cap B)}{\text{sup(B)}} $$
+
+$$ \text{lift}(A \rightarrow B) = \frac{sup(A \cap B)}{\text{sup(A) * sup(B)}} $$
 
 ## Instalation and environment preparation
 
