@@ -67,7 +67,7 @@ Data used is just an example of binary numbers in a false scenario of a large NA
 |  Result  |  Rafale  |    0.6   |   1.00   |   1.00   |    6     |
 
 <p align="center">
-  <img src="img/regrasAssociacaoOTAN.png" alt="Plot da regra de associação" width="1200">
+  <img src="img/regrasAssociacaoOTAN.png" alt="Plot da regra de associação" width="1500">
 </p>
 
 ## Conclusion
