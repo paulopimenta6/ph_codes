@@ -5,6 +5,16 @@
 
 It is an example of code for assocation rules in R. It will be used libraries `arules` e `arulesViz`.
 
+### support
+
+\[
+\text{support}(A \rightarrow B) = \frac{\text{\(A \cap B\)}}{\text{número total de transações}}
+\]
+
+### confident
+
+### lift
+
 ## Instalation and environment preparation
 
 In case the libraries do not have been installed use the follow commands: 
