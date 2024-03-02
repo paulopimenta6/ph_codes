@@ -72,6 +72,6 @@ Data used is just an example of binary numbers in a false scenario of a large NA
 
 ## Conclusion
 
-Rafale (LHS) participate in more NATO exercises than others, but its confident is lower than Gripen. Although Gripen's lift is greater than Rafale. This first analysis show us that Gripen has a strong relation with victory (lift of 1.90):  _"if Gripen particpates, then it will be a victory"_, however Rafale has an independent relation, so participating or not victory or fail would happen. Remembering in this case we'll seeing if $$ (A \rightarrow B) $$
+Rafale (LHS) participate in more NATO exercises than others, but its confident is lower than Gripen. Although Gripen's lift is greater than Rafale. This first analysis show us that Gripen has a strong relation with victory (lift of 1.90):  _"if Gripen particpates, then it will be a victory"_, however Rafale has an independent relation, so participating or not victory or fail would happen. Remembering in this case we'll seeing if $$ \text(A \rightarrow B) $$
 
 With the changing scenarium of Result in LHS and aircrafts in RHS we'll see 
