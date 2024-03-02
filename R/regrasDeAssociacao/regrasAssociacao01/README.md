@@ -43,7 +43,7 @@ Do not forget to install Linux library libglpk-dev by command:
 
 ## Datas
 
-Data used is just an example of binary numbers in a false scenario of a large NATO aerial operation including the main aicraft of alliance members 
+Data used is just an example of binary numbers in a false scenario of a large NATO aerial operation including the main aircraft of alliance members 
 
 ## Results
 
@@ -78,4 +78,6 @@ $$ \( A \rightarrow B \) $$
 
 where A is the aircraft and B the win or lose scenario.
 
-With the changing scenarium of Result in LHS and aircrafts in RHS we'll see 
+In other view: _"if Result then aircraft"_ then we have a different analysis poiting Rafale with a greater confident than Gripen, although Gripen still continue with a great lift and small coeficient comparing to Rafale. 
+
+So, Gripen could show if it participates in a NATO exercise victory will happen, but remembering it is one of many analysis and not a unique truth. 
