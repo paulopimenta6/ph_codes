@@ -3,7 +3,7 @@
 
 ## Summary
 
-- [AssociationRules in R](#AssociationRulesInR)
+- [Association Rules in R](#Association Rules in R)
 - [Instalation and Environment Preparation](#InstalationAndEnvironmentPreparation)
 - [Commands in R](#CommandsInR)
 - [Datas](#Datas)
