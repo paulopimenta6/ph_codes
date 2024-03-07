@@ -143,3 +143,5 @@ So, Gripen could show if it participates in a NATO exercise victory will happen,
 > Agrawal, R., & Srikant, R. (1994, September). Fast algorithms for mining association rules. In Proc. 20th int. conf. very large data bases, VLDB (Vol. 1215, pp. 487-499).
 
 > Uma Breve Introdução à Mineração de Dados: Bases Para a Ciência de Dados, com Exemplos em R. Novatec, 2021. ISBN-10: 6586057507.
+
+> Grolemund, Garrett. R Para Data Science: Importe, arrume, transforme, visualize e modele dados. ISBN: 978-85-508-0324-1.
