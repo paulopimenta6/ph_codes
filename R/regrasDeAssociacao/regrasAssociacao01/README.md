@@ -52,8 +52,49 @@ Do not forget to install Linux library libglpk-dev by command:
 
 # Commands in R
 
-Import
+```R
+library(arules)
+library(arulesViz)
+```
 
+```R
+###Airplanes used in exercise
+F35 <- c(1, 1, 1, 1, 1, 1, 0, 1, 0, 1)
+F22 <- c(1, 1, 1, 1, 1, 1, 0, 1, 1, 1)
+F18 <- c(1, 0, 1, 0, 1, 0, 0, 1, 0, 1)
+F16 <- c(1, 1, 0, 1, 0, 1, 0, 1, 0, 0)
+F15 <- c(1, 1, 0, 1, 1, 1, 1, 1, 1, 1)
+EF2000 <- c(0, 1, 0, 1, 0, 0, 1, 0, 0, 0)
+Gripen <- c(1, 0, 1, 1, 0, 1, 1, 0, 1, 1)
+Mirage2000_5 <- c(1, 0, 0, 0, 1, 1, 1, 1, 0, 0)
+Panavia_Tornado <- c(1, 0, 0, 0, 1, 0, 1, 0, 1, 0)
+Rafale <- c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1)  #where 1 is presence and 0 absent
+
+#campaign results of all exercises involving all forces
+result <- c(0, 1, 1, 1, 0, 0, 1, 0, 1, 1) #where 1 e victory e 0 e fail
+```
+
+Creating a data frame with all vectors
+```R
+resAndfighters <- cbind(F35, F22, F18, F16, F15, EF2000, Gripen, Mirage2000_5, Panavia_Tornado, Rafale, result)
+```
+
+Targeting "rules" because we want to extract all complete association rules. Support and confidence specified in apriori function are the minimal needed to all complete associations 
+```R
+rules <- apriori(resAndfighters, parameter = list(support = 0.3, confidence = 0.5, target = "rules"))
+```
+
+In general teh first lines are empty lines. Inspect shows the analysis and plot show the association from arulesViz
+```R
+rulesV1 <- rules[10:length(rules)]
+###############################################################################################
+inspect(rulesV1, ruleSep = "-->", itemSep = " && ", setStart = "", setEnd = "", linebreak = FALSE)
+###############################################################################################
+plot(rulesV1, main = NULL)
+```
+
+For complete code and example click [here](https://github.com/paulopimenta6/ph_codes/tree/master/R/regrasDeAssociacao/regrasAssociacao01/src)
+ 
 # Datas
 
 Data used is just an example of binary numbers in a false scenario of a large NATO aerial operation including the main aircraft of alliance members 

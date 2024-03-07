@@ -4,7 +4,7 @@ library(arulesViz)
 library(ggplot2)
 library(plotly)
 
-###Avioes usados em jogo de guerra
+###AAirplanes used in exercise
 F35 <- c(1, 1, 1, 1, 1, 1, 0, 1, 0, 1)
 F22 <- c(1, 1, 1, 1, 1, 1, 0, 1, 1, 1)
 F18 <- c(1, 0, 1, 0, 1, 0, 0, 1, 0, 1)
@@ -16,7 +16,7 @@ Mirage2000_5 <- c(1, 0, 0, 0, 1, 1, 1, 1, 0, 0)
 Panavia_Tornado <- c(1, 0, 0, 0, 1, 0, 1, 0, 1, 0)
 Rafale <- c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1)  #where 1 is presence and 0 absent
 
-#campaign results of all exercises involving all NATO forces
+#campaign results of all exercises involving all forces
 result <- c(0, 1, 1, 1, 0, 0, 1, 0, 1, 1) #where 1 e victory e 0 e fail
 
 resAndfighters <- cbind(F35, F22, F18, F16, F15, EF2000, Gripen, Mirage2000_5, Panavia_Tornado, Rafale, result)
