@@ -10,7 +10,7 @@
 - [Results](#Results)
 - [Conclusion](#Conclusion)
 
-# Association Rules in R
+## Association Rules in R
 
 It is an example of code for assocation rules in R. It will be used libraries `arules` e `arulesViz`.
 
@@ -30,7 +30,7 @@ $$ \text{lift}(A \rightarrow B) = \frac{conf(A \cap B)}{\text{sup(B)}} $$
 
 $$ \text{lift}(A \rightarrow B) = \frac{sup(A \cap B)}{\text{sup(A) * sup(B)}} $$
 
-# Instalation and environment preparation
+## Instalation and environment preparation
 
 In case the libraries do not have been installed use the follow commands: 
 
@@ -50,7 +50,7 @@ Do not forget to install Linux library libglpk-dev by command:
 > sudo apt-get install libglpk-dev
 ```
 
-# Commands in R
+## Commands in R
 
 ```R
 library(arules)
@@ -95,11 +95,11 @@ plot(rulesV1, main = NULL)
 
 For complete code and example click [here](https://github.com/paulopimenta6/ph_codes/tree/master/R/regrasDeAssociacao/regrasAssociacao01/src)
  
-# Datas
+## Datas
 
-Data used is just an example of binary numbers in a false scenario of a large NATO aerial operation including the main aircraft of alliance members 
+Data used is just an example of binary numbers in a fake join air forces war game operation including the main current aircrafts. 
 
-# Results
+## Results
 
 |    LHS   |   RHS    | Support  |Confidence|   Lift   |  Count   |
 |----------|----------|----------|----------|----------|----------|
