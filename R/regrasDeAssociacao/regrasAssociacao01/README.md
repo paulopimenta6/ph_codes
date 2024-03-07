@@ -145,3 +145,5 @@ So, Gripen could show if it participates in a NATO exercise victory will happen,
 > Uma Breve Introdução à Mineração de Dados: Bases Para a Ciência de Dados, com Exemplos em R. Novatec, 2021. ISBN-10: 6586057507.
 
 > Grolemund, Garrett. R Para Data Science: Importe, arrume, transforme, visualize e modele dados. ISBN: 978-85-508-0324-1.
+
+> Bruce, Peter, and Andrew Bruce. Estatística Prática para Cientistas de Dados. Alta Books, April 2019. ISBN: 9788550806037.
