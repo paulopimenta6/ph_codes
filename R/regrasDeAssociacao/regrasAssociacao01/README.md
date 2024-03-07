@@ -124,7 +124,7 @@ Data used is just an example of binary numbers in a false scenario of a large NA
   <img src="img/regrasAssociacaoOTAN.png" alt="Plot da regra de associação" width="1800" height = "600">
 </p>
 
-# Conclusion
+## Conclusion
 
 Rafale (LHS) participate in more NATO exercises than others, but its confident is lower than Gripen. Although Gripen's lift is greater than Rafale. This first analysis show us that Gripen has a strong relation with victory (lift of 1.90):  _"if Gripen particpates, then it will be a victory"_, however Rafale has an independent relation, so participating or not victory or fail would happen. Remembering in this case we'll seeing: 
 
@@ -138,7 +138,7 @@ $$ \( Result \rightarrow Aircraft \) $$
 
 So, Gripen could show if it participates in a NATO exercise victory will happen, but remembering it is one of many analysis and not a unique truth. 
 
-# References
+## References
 
 > Agrawal, R., & Srikant, R. (1994, September). Fast algorithms for mining association rules. In Proc. 20th int. conf. very large data bases, VLDB (Vol. 1215, pp. 487-499).
 
