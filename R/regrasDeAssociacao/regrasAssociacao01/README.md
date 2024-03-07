@@ -37,7 +37,7 @@ In case the libraries do not have been installed use the follow commands:
 ```R
 > install.packages("arules")
 > install.packages("arulesViz") \n 
-> install.packages("arulesViz", repos = "https://mhahsler.r-universe.dev") \n
+> install.packages("arulesViz", repos = "https://mhahsler.r-universe.dev")
 > devtools::install_github("mhahsler/arulesViz").
 ``` 
 Maybe you could install also using the command: library("devtools")
@@ -137,3 +137,9 @@ In other view: _"if Result then aircraft"_ then we have a different analysis poi
 $$ \( Result \rightarrow Aircraft \) $$ 
 
 So, Gripen could show if it participates in a NATO exercise victory will happen, but remembering it is one of many analysis and not a unique truth. 
+
+# References
+
+> Agrawal, R., & Srikant, R. (1994, September). Fast algorithms for mining association rules. In Proc. 20th int. conf. very large data bases, VLDB (Vol. 1215, pp. 487-499).
+
+> Uma Breve Introdução à Mineração de Dados: Bases Para a Ciência de Dados, com Exemplos em R. Novatec, 2021. ISBN-10: 6586057507.
