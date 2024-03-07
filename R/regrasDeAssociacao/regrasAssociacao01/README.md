@@ -1,11 +1,20 @@
 ![Ubuntu](https://img.shields.io/badge/Ubuntu-Linux-orange) ![R](https://img.shields.io/badge/R-276DC3?logo=r&logoColor=white&style=flat)
 ![RStudio](https://img.shields.io/badge/RStudio-75AADB?logo=rstudio&logoColor=white&style=flat)
 
+## Summary
+
+- [AssociationRules in R](#AssociationRulesInR)
+- [Instalation and Environment Preparation](#InstalationAndEnvironmentPreparation)
+- [Commands in R](#CommandsInR)
+- [Datas](#Datas)
+- [Results](#Results)
+- [Conclusion](#Conclusion)
+
 # Association Rules in R
 
 It is an example of code for assocation rules in R. It will be used libraries `arules` e `arulesViz`.
 
-### support
+### Support
 
 $$ \text{support}(A \rightarrow B) = \frac{A \cap B}{\text{T}} $$
 
@@ -21,7 +30,7 @@ $$ \text{lift}(A \rightarrow B) = \frac{conf(A \cap B)}{\text{sup(B)}} $$
 
 $$ \text{lift}(A \rightarrow B) = \frac{sup(A \cap B)}{\text{sup(A) * sup(B)}} $$
 
-## Instalation and environment preparation
+# Instalation and environment preparation
 
 In case the libraries do not have been installed use the follow commands: 
 
@@ -41,11 +50,15 @@ Do not forget to install Linux library libglpk-dev by command:
 > sudo apt-get install libglpk-dev
 ```
 
-## Datas
+# Commands in R
+
+Import
+
+# Datas
 
 Data used is just an example of binary numbers in a false scenario of a large NATO aerial operation including the main aircraft of alliance members 
 
-## Results
+# Results
 
 |    LHS   |   RHS    | Support  |Confidence|   Lift   |  Count   |
 |----------|----------|----------|----------|----------|----------|
@@ -70,7 +83,7 @@ Data used is just an example of binary numbers in a false scenario of a large NA
   <img src="img/regrasAssociacaoOTAN.png" alt="Plot da regra de associação" width="1800" height = "600">
 </p>
 
-## Conclusion
+# Conclusion
 
 Rafale (LHS) participate in more NATO exercises than others, but its confident is lower than Gripen. Although Gripen's lift is greater than Rafale. This first analysis show us that Gripen has a strong relation with victory (lift of 1.90):  _"if Gripen particpates, then it will be a victory"_, however Rafale has an independent relation, so participating or not victory or fail would happen. Remembering in this case we'll seeing: 
 
