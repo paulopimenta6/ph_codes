@@ -121,12 +121,12 @@ Data used is just an example of binary numbers in a fake join air forces war gam
 |  Result  |  Rafale  |    0.6   |   1.00   |   1.00   |    6     |
 
 <p align="center">
-  <img src="img/regrasAssociacaoOTAN.png" alt="Plot da regra de associação" width="1800" height = "500">
+  <img src="img/regrasAssociacaoOTAN.png" alt="Plot da regra de associação" width="1800" height = "400">
 </p>
 
 ## Conclusion
 
-Rafale (LHS) participate in more NATO exercises than others, but its confident is lower than Gripen. Although Gripen's lift is greater than Rafale. This first analysis show us that Gripen has a strong relation with victory (lift of 1.90):  _"if Gripen particpates, then it will be a victory"_, however Rafale has an independent relation, so participating or not victory or fail would happen. Remembering in this case we'll seeing: 
+Rafale (LHS) participate in more exercises than others, but its confident is lower than Gripen. Although Gripen's lift is greater than Rafale. This first analysis show us that Gripen has a strong relation with victory (lift of 1.90):  _"if Gripen particpates, then it will be a victory"_, however Rafale has an independent relation, so participating or not victory or fail would happen. Remembering in this case we'll seeing: 
 
 $$ \( Aircraft \rightarrow Result \) $$ 
 
@@ -136,7 +136,7 @@ In other view: _"if Result then aircraft"_ then we have a different analysis poi
 
 $$ \( Result \rightarrow Aircraft \) $$ 
 
-So, Gripen could show if it participates in a NATO exercise victory will happen, but remembering it is one of many analysis and not a unique truth. 
+So, Gripen could show if it participates in the exercise victory will happen, but remembering it is one of many analysis and not a unique truth. 
 
 ## References
 
