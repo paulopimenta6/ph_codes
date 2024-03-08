@@ -123,7 +123,7 @@ Data used is just an example of binary numbers in a fake join air forces war gam
 |  Result  |  Rafale  |    0.6   |   1.00   |   1.00   |    6     |
 
 <p align="center">
-  <img src="img/regrasAssociacaoOTAN.png" alt="Plot da regra de associação" width="1800" height = "400">
+  <img src="img/regrasAssociacao.png" alt="Plot da regra de associação" width="1800" height = "400">
 </p>
 
 ## Conclusion
