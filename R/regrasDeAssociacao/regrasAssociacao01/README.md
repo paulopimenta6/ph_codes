@@ -14,6 +14,8 @@
 
 It is an example of code for assocation rules in R. It will be used libraries `arules` e `arulesViz`.
 
+Article about association rules is [here](https://github.com/paulopimenta6/ph_codes/tree/master/R/regrasDeAssociacao/regrasAssociacao01/article)
+
 ### Support
 
 $$ \text{support}(A \rightarrow B) = \frac{A \cap B}{\text{T}} $$
