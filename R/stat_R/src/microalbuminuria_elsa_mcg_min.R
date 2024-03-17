@@ -6,11 +6,9 @@ if (getwd() != "C:/Users/Paulo_Pimenta/Documents/meus_codigos/ph_codes/R/stat_R/
 ############################################################################################
 source("script_analise_dados_elsa_Var_Lib.R") 
 library(scales) # to access break formatting functions
-
-#library(readr)
-#library(tidyverse)
-#library(dplyr)
-#source("script_analise_dados_elsa_Var_Lib.R")
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
 
 barplot(table(microalbuminuriaMInOnda1), xlab = "Concentração em (mg/dl)", ylab = "Microalbuminuria na onda 1", ylim = c(0, 700)) 
 barplot(table(microalbuminuriaMInOnda2), xlab = "Concentração em (mg/dl)", ylab = "Microalbuminuria na onda 2", ylim = c(0, 700)) 
@@ -96,11 +94,10 @@ ggplot(data = microalbuminuriaMInOnda2Ajustada2, mapping = aes(x = microalbuminu
 ###
 #graficos mais expositivos
 ggplot(data = microalbuminuriaMInOnda1Ajustada1, mapping = aes(x = microalbuminuriaMInOnda1)) + 
-  geom_bar(aes(fill=as.factor(idadeNaOnda1MicroalbuminuriaMInOnda1))) ++
+  geom_bar(aes(fill=as.factor(idadeNaOnda1MicroalbuminuriaMInOnda1))) +
   labs(fill = "Idade na onda 1", y = "Quantidade de pessoas na onda 1", x = "Concentração em (mcg/min) - Onda 1 - onda 1")
 
 
 ggplot(data = microalbuminuriaMInOnda2Ajustada2, aes(x = microalbuminuriaMInOnda2)) + 
   geom_bar(aes(fill=as.factor(idadeNaOnda2microalbuminuriaMInOnda2))) +
   labs(fill = "Idade na onda 2", y = "Quantidade de pessoas na onda 2", x = "Concentração em (mcg/min) - Onda 2 - onda 2")
-

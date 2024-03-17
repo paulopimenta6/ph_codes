@@ -7,6 +7,7 @@ if (getwd() != "C:/Users/Paulo_Pimenta/Documents/meus_codigos/ph_codes/R/stat_R/
 library(readr)
 library(tidyverse)
 library(dplyr)
+library(ggplot2)
 dir_dados="../dados_elsa/Lucia_Andrade_10_22_CSV.csv"
 
 importaDadosLib=read_csv2(dir_dados, na = c("", "NA"))

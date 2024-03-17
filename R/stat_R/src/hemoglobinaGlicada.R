@@ -6,6 +6,9 @@ if (getwd() != "C:/Users/Paulo_Pimenta/Documents/meus_codigos/ph_codes/R/stat_R/
 ############################################################################################
 source("script_analise_dados_elsa_Var_Lib.R") 
 library(scales) # to access break formatting functions
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
 
 idxHemoglobinaGlicadaHba1cOnda1 <- which(!(is.na(hemoglobinaGlicadaHba1cOnda1)))
 idxHemoglobinaGlicadaHba2cOnda2 <- which(!(is.na(hemoglobinaGlicadaHba2cOnda2)))

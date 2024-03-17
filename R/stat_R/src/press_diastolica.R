@@ -6,6 +6,9 @@ if (getwd() != "C:/Users/Paulo_Pimenta/Documents/meus_codigos/ph_codes/R/stat_R/
 ############################################################################################
 source("script_analise_dados_elsa_Var_Lib.R") 
 library(scales) # to access break formatting functions
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
 
 idxPressaoDiastolicamediaOnda1 <- which(!(is.na(pressaoDiastolicamediaOnda1)))
 idxPressaoDiastolicamediaOnda2 <- which(!(is.na(pressaoDiastolicamediaOnda2)))
@@ -41,21 +44,21 @@ ggplot(data = presDiastolicaOnda3, aes(x = pressaoDiastolicamediaOnda3)) +
 #boxplot(idadeNaOnda2Pres~presDiastolicaOnda2$pressaoDiastolicamediaOnda2, data=presDiastolicaOnda2)
 #boxplot(idadeNaOnda3Pres~presDiastolicaOnda3$pressaoDiastolicamediaOnda3, data=presDiastolicaOnda3)
 
-ggplot(data = presDiastolicaOnda1, aes(y = idadeNaOnda1Pres, x = pressaoDiastolicamediaOnda1)) +
-  geom_boxplot(aes(group=pressaoDiastolicamediaOnda1)) +
+ggplot(data = presDiastolicaOnda1, aes(x = idadeNaOnda1Pres, y = pressaoDiastolicamediaOnda1)) +
+  geom_boxplot(aes(group=idadeNaOnda1Pres)) +
   labs(x = "pressão arterial diastólica média (mmhg)", y = "Idade") +
   theme(plot.title = element_text(hjust = 0.5, size = 12)) +
   ggtitle("Onda 1")
 
 
-ggplot(data = presDiastolicaOnda2, aes(y = idadeNaOnda2Pres, x = pressaoDiastolicamediaOnda2)) +
-  geom_boxplot(aes(group=pressaoDiastolicamediaOnda2)) +
+ggplot(data = presDiastolicaOnda2, aes(x = idadeNaOnda2Pres, y = pressaoDiastolicamediaOnda2)) +
+  geom_boxplot(aes(group=idadeNaOnda2Pres)) +
   labs(x = "pressão arterial diastólica média (mmhg)", y = "Idade") +
   theme(plot.title = element_text(hjust = 0.5, size = 12)) +
   ggtitle("Onda 2")
 
-ggplot(data = presDiastolicaOnda3, aes(y = idadeNaOnda3Pres, x = pressaoDiastolicamediaOnda3)) +
-  geom_boxplot(aes(group=pressaoDiastolicamediaOnda3)) +
+ggplot(data = presDiastolicaOnda3, aes(x = idadeNaOnda3Pres, y = pressaoDiastolicamediaOnda3)) +
+  geom_boxplot(aes(group=idadeNaOnda3Pres)) +
   labs(x = "pressão arterial diastólica média (mmhg)", y = "Idade") +
   theme(plot.title = element_text(hjust = 0.5, size = 12)) +
   ggtitle("Onda 3")

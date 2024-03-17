@@ -6,6 +6,9 @@ if (getwd() != "C:/Users/Paulo_Pimenta/Documents/meus_codigos/ph_codes/R/stat_R/
 ############################################################################################
 source("script_analise_dados_elsa_Var_Lib.R") 
 library(scales) # to access break formatting functions
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
 
 ggplot(data = importaDadosLib, mapping = aes(x=(habitoDeFumarOnda1))) + geom_bar() + xlab("Pacientes com habito de fumar na Onda 1 - 0: nunca fumou, 1: ex-fumante e 2: fumante") + ylab("Quantidade da amostra na Onda 1")
 ggplot(data =importaDadosLib, mapping = aes(x=(habitoDeFumarOnda2))) + geom_bar() + xlab("Pacientes com habito de fumar na Onda 2 - 0: nunca fumou, 1: ex-fumante e 2: fumante") + ylab("Quantidade da amostra na Onda 2")
