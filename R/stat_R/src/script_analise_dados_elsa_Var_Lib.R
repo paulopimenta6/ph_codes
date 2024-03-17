@@ -23,14 +23,14 @@ pressaoArterialSistolicaMediaOnda2<-importaDadosLib$B_PSIS
 pressaoArterialSistolicaMediaOnda3<-importaDadosLib$C_PSIS
 
 ###pressao diastolica
-pressaoDiastolicameiaOnda1 <- importaDadosLib$A_PDIA
-pressaoDiastolicameiaOnda2 <- importaDadosLib$B_PDIA
-pressaoDiastolicameiaOnda3 <- importaDadosLib$C_PDIA
+pressaoDiastolicamediaOnda1 <- importaDadosLib$A_PDIA
+pressaoDiastolicamediaOnda2 <- importaDadosLib$B_PDIA
+pressaoDiastolicamediaOnda3 <- importaDadosLib$C_PDIA
 
 ###hemoglobina glicada hba1c
 hemoglobinaGlicadaHba1cOnda1<-importaDadosLib$LABA2_3
-hemoglobinaGlicadaHba1cOnda2<-importaDadosLib$LABB2
-hemoglobinaGlicadaHba1cOnda3<-importaDadosLib$LABC2
+hemoglobinaGlicadaHba2cOnda2<-importaDadosLib$LABB2
+hemoglobinaGlicadaHba3cOnda3<-importaDadosLib$LABC2
 
 ###habito de fumar
 habitoDeFumarOnda1<-importaDadosLib$A_FUMANTE
