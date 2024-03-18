@@ -31,7 +31,7 @@ O script `make.sh` no diretório `c_cpp` realiza a compilação e move os binár
 - **Introducao a Programacao com a Linguagem C** - NOVATEC
 - **Programacao em Baixo Nivel** - NOVATEC
 
-## Repositório C/C++:
+## Projeto C/C++:
 
 [Repositório C/C++](https://github.com/paulopimenta6/ph_codes/tree/master/c_cpp)
 
