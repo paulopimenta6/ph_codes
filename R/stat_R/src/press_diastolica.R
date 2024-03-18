@@ -46,20 +46,20 @@ ggplot(data = presDiastolicaOnda3, aes(x = pressaoDiastolicamediaOnda3)) +
 
 ggplot(data = presDiastolicaOnda1, aes(x = idadeNaOnda1Pres, y = pressaoDiastolicamediaOnda1)) +
   geom_boxplot(aes(group=idadeNaOnda1Pres)) +
-  labs(x = "pressão arterial diastólica média (mmhg)", y = "Idade") +
+  labs(y = "pressão arterial diastólica média (mmhg)", x = "Idade") +
   theme(plot.title = element_text(hjust = 0.5, size = 12)) +
   ggtitle("Onda 1")
 
 
 ggplot(data = presDiastolicaOnda2, aes(x = idadeNaOnda2Pres, y = pressaoDiastolicamediaOnda2)) +
   geom_boxplot(aes(group=idadeNaOnda2Pres)) +
-  labs(x = "pressão arterial diastólica média (mmhg)", y = "Idade") +
+  labs(y = "pressão arterial diastólica média (mmhg)", x = "Idade") +
   theme(plot.title = element_text(hjust = 0.5, size = 12)) +
   ggtitle("Onda 2")
 
 ggplot(data = presDiastolicaOnda3, aes(x = idadeNaOnda3Pres, y = pressaoDiastolicamediaOnda3)) +
   geom_boxplot(aes(group=idadeNaOnda3Pres)) +
-  labs(x = "pressão arterial diastólica média (mmhg)", y = "Idade") +
+  labs(y = "pressão arterial diastólica média (mmhg)", x = "Idade") +
   theme(plot.title = element_text(hjust = 0.5, size = 12)) +
   ggtitle("Onda 3")
 
