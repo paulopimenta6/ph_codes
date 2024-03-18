@@ -33,7 +33,7 @@ O script `make.sh` no diretório `c_cpp` realiza a compilação e move os binár
 
 ## Projeto C/C++:
 
-[Repositório C/C++](https://github.com/paulopimenta6/ph_codes/tree/master/c_cpp)
+- [Repositório C/C++](https://github.com/paulopimenta6/ph_codes/tree/master/c_cpp)
 
 ## Contato
 
