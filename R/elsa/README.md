@@ -28,7 +28,7 @@ In addition to fostering the development of new research, the study will be esse
 ### Instalation
 To install R on Windows and Linux, you can follow these general steps:
 
-Windows:
+**Windows:**
 
 <p align="center">
   <img src="img/windows11.png" alt="Logo do Windows" width="300">
@@ -42,7 +42,7 @@ Windows:
 
 4. **Verify Installation**: Open a command prompt and type R. This should start the R console, indicating that R has been installed successfully.
 
-Linux (Ubuntu/Debian)::
+**Linux (Ubuntu/Debian):**
 
 <p align="center">
   <img src="img/ubuntu.jpg" alt="Logo do Windows" width="300">
@@ -65,7 +65,7 @@ sudo apt install r-base
 3. **Verify Installation**: Type R in the terminal. This should start the R console, confirming that R has been installed correctly.
 
 
-## **To update R in Ubuntu Linux**:
+### **To update R in Ubuntu Linux**:
 
 1. Update Package Index: First, update the package index to ensure you install the latest version of R:
 
