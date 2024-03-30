@@ -30,7 +30,7 @@ In addition to fostering the development of new research, the study will be esse
 ## Instalantion of R
 
 <p align="center">
-  <img src="img/Rlogo.png" alt="R" width="300">
+  <img src="img/Rlogo.png" alt="R" width="200">
 </p>
 
 To install R on Windows and Linux, you can follow these general steps:
@@ -38,7 +38,7 @@ To install R on Windows and Linux, you can follow these general steps:
 **Windows:**
 
 <p align="center">
-  <img src="img/windows11.png" alt="Windows" width="300">
+  <img src="img/windows11.png" alt="Windows" width="400">
 </p>
 
 1. **Download R**: Go to the [R CRAN website](https://cran.r-project.org/) and download the latest version of R for Windows.
