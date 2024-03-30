@@ -1,7 +1,7 @@
 ############################################################################################
 ##############################Especificando diretorio src###################################
-if (getwd() != "C:/Users/Paulo_Pimenta/Documents/meus_codigos/ph_codes/R/stat_R/src") {   ##
-  setwd("C:/Users/Paulo_Pimenta/Documents/meus_codigos/ph_codes/R/stat_R/src")            ##  
+if (getwd() != "C:/Users/Paulo_Pimenta/Documents/meus_codigos/ph_codes/R/elsa/src") {   ##
+  setwd("C:/Users/Paulo_Pimenta/Documents/meus_codigos/ph_codes/R/elsa/src")            ##  
 }                                                                                         ##
 ############################################################################################
 library(readr)
@@ -89,9 +89,9 @@ colesterolLdlOnda2<-importaDadosLib$LABB13
 colesterolLdlOnda3<-importaDadosLib$LABC13
 
 ###uso de alcool
-usoDeAldoolOnda1<-importaDadosLib$A_USODEALCOOL
-usoDeAldoolOnda2<-importaDadosLib$B_USODEALCOOL
-usoDeAldoolOnda3<-importaDadosLib$DIEC139
+usoDeAlcoolOnda1<-importaDadosLib$A_USODEALCOOL
+usoDeAlcoolOnda2<-importaDadosLib$B_USODEALCOOL
+usoDeAlcoolOnda3<-importaDadosLib$DIEC139
 
 ###presença de hipertensao arterial sistemica
 presencaDeHipertensaoArterialSistemicaOnda1<-importaDadosLib$A_HAS2_2
@@ -258,5 +258,3 @@ categoriasTaxaFiltracaoGlomerularComCalibracaoOnda2<-importaDadosLib$B_CKDEPI_R_
 ###microalbuminúria (mcg/min)
 microalbuminuriaMInOnda1<-importaDadosLib$A_LABA19MCGMIN
 microalbuminuriaMInOnda2<-importaDadosLib$B_LABB19MCGMIN
-
-###Matriz de correlacoes

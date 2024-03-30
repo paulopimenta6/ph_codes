@@ -1,7 +1,7 @@
 ############################################################################################
 ##############################Especificando diretorio src###################################
-if (getwd() != "C:/Users/Paulo_Pimenta/Documents/meus_codigos/ph_codes/R/stat_R/src") {   ##
-  setwd("C:/Users/Paulo_Pimenta/Documents/meus_codigos/ph_codes/R/stat_R/src")            ##  
+if (getwd() != "C:/Users/Paulo_Pimenta/Documents/meus_codigos/ph_codes/R/elsa/src") {   ##
+  setwd("C:/Users/Paulo_Pimenta/Documents/meus_codigos/ph_codes/R/elsa/src")            ##  
 }                                                                                         ##
 ############################################################################################
 source("script_analise_dados_elsa_Var_Lib.R") 
@@ -38,19 +38,19 @@ sodioUrinaOnda3 <- data.frame(idadeSodio3Ajustada, sodioUrinaOnda3Ajustada)
 ggplot(data = sodioUrinaOnda1, aes(x = sodioUrinaOnda1$sodioUrinaOnda1Ajustada)) + 
   geom_bar(aes(fill=as.factor(sodioUrinaOnda1$idadeSodio1Ajustada))) +
   ggtitle("Sódio - Onda 1") +
-  labs(fill = "Idade na onda 1", y = "Quantidade de pessoas", x = "Sódio (meg/l)")
+  labs(fill = "Idade na onda 1", y = "Quantidade de pessoas", x = "Sódio (meq/l)")
 
 #Onda 2
 ggplot(data = sodioUrinaOnda2, aes(x = sodioUrinaOnda2$sodioUrinaOnda2Ajustada)) + 
   geom_bar(aes(fill=as.factor(sodioUrinaOnda2$idadeSodio2Ajustada))) +
   ggtitle("Sódio - Onda 2") +
-  labs(fill = "Idade na onda 2", y = "Quantidade de pessoas", x = "Sódio (meg/l)")
+  labs(fill = "Idade na onda 2", y = "Quantidade de pessoas", x = "Sódio (meq/l)")
 
 #Onda 3
 ggplot(data = sodioUrinaOnda3, aes(x = sodioUrinaOnda3$sodioUrinaOnda3Ajustada)) + 
   geom_bar(aes(fill=as.factor(sodioUrinaOnda3$idadeSodio3Ajustada))) +
   ggtitle("Sódio - Onda 3") +
-  labs(fill = "Idade na onda 3", y = "Quantidade de pessoas", x = "Sódio (meg/l)")
+  labs(fill = "Idade na onda 3", y = "Quantidade de pessoas", x = "Sódio (meq/l)")
 
 ################################################################################
 ###Boxplot
