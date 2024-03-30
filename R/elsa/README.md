@@ -35,8 +35,6 @@ In addition to fostering the development of new research, the study will be esse
 
 To install R on Windows and Linux, you can follow these general steps:
 
-**Windows:**
-
 <p align="center">
   <img src="img/windows11.png" alt="Windows" width="400">
 </p>
@@ -48,8 +46,6 @@ To install R on Windows and Linux, you can follow these general steps:
 3. **Set Up Environment Variables (Optional)**: Windows might ask you to add R to the system PATH. If not, you can do it manually by adding the R installation directory (C:\Program Files\R\R-X.Y.Z\bin) to the PATH environment variable.
 
 4. **Verify Installation**: Open a command prompt and type R. This should start the R console, indicating that R has been installed successfully.
-
-**Linux (Ubuntu/Debian):**
 
 <p align="center">
   <img src="img/ubuntu.jpg" alt="Ubuntu" width="300">
