@@ -31,16 +31,91 @@ To install R on Windows and Linux, you can follow these general steps:
 Windows:
 
 <p align="center">
-  <img src="img/windows11.png" alt="Logo do Windows" width="200">
+  <img src="img/windows11.png" alt="Logo do Windows" width="300">
 </p>
 
-1. Download R: Go to the [R CRAN website](https://cran.r-project.org/) and download the latest version of R for Windows.
+1. **Download R**: Go to the [R CRAN website](https://cran.r-project.org/) and download the latest version of R for Windows.
 
-2. Install R: Run the downloaded .exe file and follow the installation instructions. You can choose the default settings unless you have specific preferences.
+2. **Install R**: Run the downloaded .exe file and follow the installation instructions. You can choose the default settings unless you have specific preferences.
 
-3. Set Up Environment Variables (Optional): Windows might ask you to add R to the system PATH. If not, you can do it manually by adding the R installation directory (C:\Program Files\R\R-X.Y.Z\bin) to the PATH environment variable.
+3. **Set Up Environment Variables (Optional)**: Windows might ask you to add R to the system PATH. If not, you can do it manually by adding the R installation directory (C:\Program Files\R\R-X.Y.Z\bin) to the PATH environment variable.
 
-4. Verify Installation: Open a command prompt and type R. This should start the R console, indicating that R has been installed successfully.
+4. **Verify Installation**: Open a command prompt and type R. This should start the R console, indicating that R has been installed successfully.
+
+Linux (Ubuntu/Debian)::
+
+<p align="center">
+  <img src="img/ubuntu.jpg" alt="Logo do Windows" width="300">
+</p>
+
+1. **Update Package Index**: Open a terminal and run:
+
+```bash
+Copy code
+sudo apt update
+``` 
+
+2. **Install R**: Run the following command to install R:
+
+```bash
+Copy code
+sudo apt install r-base
+```
+
+3. **Verify Installation**: Type R in the terminal. This should start the R console, confirming that R has been installed correctly.
+
+
+## **To update R in Ubuntu Linux**:
+
+1. Update Package Index: First, update the package index to ensure you install the latest version of R:
+
+```bash
+sudo apt update
+```
+
+2. Check Current R Version: You can check the current version of R installed on your system by running:
+
+```bash
+R --version
+```
+
+3. Add CRAN Repository: Add the CRAN repository to your sources.list file. Open the sources.list file in a text editor (e.g., vim, nano, gedit):
+
+```bash
+sudo vim /etc/apt/sources.list
+``` 
+
+Add the following line at the end of the file:
+
+```bash
+deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/
+```
+
+Replace focal with your Ubuntu version (e.g., bionic, xenial, etc.) and cran40 with the appropriate version for the R release.
+
+4. Add CRAN GPG Key: Add the CRAN GPG key to ensure the packages are signed. Run the following commands:
+
+```bash
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
+```
+
+5. Update Package Index Again: Update the package index to include the CRAN repository:
+
+```bash
+sudo apt update
+```
+
+6. Install/Update R: Install or update R using apt:
+
+```bash
+sudo apt install r-base
+```
+
+7. Check R Version: After installation, you can check the R version to verify it has been updated:
+
+```bash
+R --version
+```
 
 ### How to use
 =================
