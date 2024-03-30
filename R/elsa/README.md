@@ -51,21 +51,19 @@ To install R on Windows and Linux, you can follow these general steps:
 1. **Update Package Index**: Open a terminal and run:
 
 ```bash
-Copy code
 sudo apt update
 ``` 
 
 2. **Install R**: Run the following command to install R:
 
 ```bash
-Copy code
 sudo apt install r-base
 ```
 
 3. **Verify Installation**: Type R in the terminal. This should start the R console, confirming that R has been installed correctly.
 
 
-### **To update R in Ubuntu Linux**:
+## **To update R in Ubuntu Linux**:
 
 1. Update Package Index: First, update the package index to ensure you install the latest version of R:
 
@@ -116,6 +114,12 @@ sudo apt install r-base
 ```bash
 R --version
 ```
+## Instalation of Rstudio (IDE)
+
+<p align="center">
+  <img src="img/rstudio.png" alt="Rstudio" width="300">
+</p>
+
 
 ### How to use
 =================
