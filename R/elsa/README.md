@@ -3,7 +3,7 @@
 ![R](https://img.shields.io/badge/R-276DC3?logo=r&logoColor=white&style=flat)
 ![RStudio](https://img.shields.io/badge/RStudio-75AADB?logo=rstudio&logoColor=white&style=flat)
 
-# Manual - How to use R codes of ELSA data
+# Manual - How to use R codes in ELSA data
 
 ## Summary
 
