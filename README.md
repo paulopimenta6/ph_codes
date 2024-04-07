@@ -8,8 +8,18 @@ Este repositório contém códigos em C/C++, Python e Shell script desenvolvidos
 
 Os códigos estão organizados em diretórios específicos para cada linguagem:
 
-- C/C++: `~/c_cpp/src/`
-- Python: `~/python/`
+- C/C++:  ```bash ~/c_cpp/src/```
+- Python: ```bash ~/python/```
+
+Algumas linguagens estão inseridas em seu contexto, por exemplo dentro de R há uma gama de códigos que exploram o universo do data science e faz uso do que estudei no meu TCC atrvés de um modelo numérico em fortran
+
+Para uma melhor navegação:
+
+- [C/C++](https://github.com/paulopimenta6/ph_codes/tree/master/c_cpp)
+- [Python](https://github.com/paulopimenta6/ph_codes/tree/master/python)
+- [PHP](https://github.com/paulopimenta6/ph_codes/tree/master/php)
+- [Javascript](https://github.com/paulopimenta6/ph_codes/tree/master/php)
+- [Java](https://github.com/paulopimenta6/ph_codes/tree/master/java)
 
 O script `make.sh` no diretório `c_cpp` realiza a compilação e move os binários resultantes para `~/bin/`.
 
@@ -30,10 +40,6 @@ O script `make.sh` no diretório `c_cpp` realiza a compilação e move os binár
 - **Algoritmos e programacao em linguagem C** - Editora Saraiva
 - **Introducao a Programacao com a Linguagem C** - NOVATEC
 - **Programacao em Baixo Nivel** - NOVATEC
-
-## Projeto C/C++:
-
-- [Repositório C/C++](https://github.com/paulopimenta6/ph_codes/tree/master/c_cpp)
 
 ## Contato
 
