@@ -1,7 +1,5 @@
 ## Dicas de programcao em C/C++
 
-<p>
-
 *Esta seção tem por objetivo ser um simples tutorial de compilação do GCC que ao longo do uso será sempre atualizado*
 
 * Como compilar no GCC usando linhas de comando?
@@ -16,18 +14,15 @@ Há diversos metodos na internet, como usar fflush(stdin), o qual cria um behavi
 
 scanf("%s", variavel) para toda uma string enquanto que se for capturado caracter por caracter sera usado o indicador de tipo %c do seguinte modo: scanf("%c", &outraVariavel\[i]). O indicador de tipo %s sugere pegar uma variavel longa, por ser uma string, tal como "abcdefghij", equanto o indicador de tipo %c pega pedado por pedaco e aloca no vetor
 
-</p>
 
-## Dicas com ponteiros
-
-<p>
+### Dicas com ponteiros
 
 Os ponteiros sao importantes recursos em C/C++ o qual otimizam o uso de recursos e tornam mais eficazes um programa. Aqui vao algumas dicas de como usar um ponteiro.
 
 - Declarando um ponteiro inteiro: 
 ```c 
     int *ptr //Declarando um ponteiro chamado ptr de tipo inteiro
-    ptr=&Var //O ponteiro prt vai receber o endereco de memoria \<da variavel\> 
+    ptr=&Var //O ponteiro prt vai receber o endereco de memoria da variavel Var 
     int *ptr=&Var //Outra maneira de se declarar um ponteiro e ainda receber seu endereco de memoria 
     int *ptr=NULL //Declarndo um ponteiro vazio 
 ```
@@ -38,5 +33,3 @@ Para imprimir um ponteiro e preciso ter em mente os seguintes casos:
 * Imprimindo o endereco que um ponteiro aponta: printf("O valor do ponteiro pont apontado em x e: %p \n", ptr);
 * Imprimindo o endereco de memoria do proprio ponteiro: printf("O endereço do ponteiro pont e: %p \n", &ptr); 
 * Imprimindo o valor acessado pelo ponteiro através do ponteiro: printf("O valor de x acessado pelo ponteiro pont e: %d \n", \*ptr);
-
-</p>
