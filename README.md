@@ -1,4 +1,4 @@
-# Repositório de Códigos em C/C++, Python e Shell de Paulo Pimenta
+# Repositório de Códigos do Paulo Pimenta
 
 ## Índice
 
