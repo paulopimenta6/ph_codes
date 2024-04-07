@@ -8,11 +8,11 @@ O comando usado deve ser: *gcc <meu_arquivo>.c -Wall -lm -o <nome_do_executavel>
 
 * Como limpar o buffer de um caracter?
 
-Há diversos metodos na internet, como usar fflush(stdin), o qual cria um behaviour undefined e é melhor usado em saidas e não entradas ou \__fpurge(stdin), no entando escolheu-se usar o espaço entre as aspas e o símbolo de porcentagem e simbolo do tipo tal como scanf(" %c", &var)
+Há diversos metodos na internet, como usar **fflush(stdin)**, o qual cria um behaviour undefined e é melhor usado em saidas e não entradas ou **\__fpurge(stdin)**, no entando escolheu-se usar o espaço entre as aspas e o símbolo de porcentagem e simbolo do tipo tal como **scanf(" %c", &var)**
 
 * Como fazer a entrada de dados com string: scanf e %s?
 
-scanf("%s", variavel) para toda uma string enquanto que se for capturado caracter por caracter sera usado o indicador de tipo %c do seguinte modo: scanf("%c", &outraVariavel\[i]). O indicador de tipo %s sugere pegar uma variavel longa, por ser uma string, tal como "abcdefghij", equanto o indicador de tipo %c pega pedado por pedaco e aloca no vetor
+**scanf("%s", variavel)** para toda uma string enquanto que se for capturado caracter por caracter sera usado o indicador de tipo %c do seguinte modo: **scanf("%c", &outraVariavel\[i])**. O indicador de tipo %s sugere pegar uma variavel longa, por ser uma string, tal como "abcdefghij", equanto o indicador de tipo %c pega pedado por pedaco e aloca no vetor
 
 
 ### Dicas com ponteiros
