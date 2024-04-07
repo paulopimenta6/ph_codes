@@ -1,8 +1,15 @@
 # Repositório de Códigos em C/C++, Python e Shell de Paulo Pimenta
 
+## Índice
+
+- [Introdução](#Introdução)
+- [Organização](#Organização)
+- [Referências](#Referências)
+- [Contato](#Contato)
+
 ## Introdução
 
-Este repositório contém códigos em C/C++, Python e Shell script desenvolvidos por Paulo Pimenta. Fique à vontade para copiar, entrar em contato e enviar sugestões.
+Este repositório contém códigos em C/C++, Python, R, PHP, Javascript, Java e Shell script desenvolvidos por Paulo Pimenta. Fique à vontade para copiar, entrar em contato e enviar sugestões. Ao longo do tempo novas tecnologias são adicionadas
 
 ## Organização
 
@@ -16,6 +23,7 @@ Algumas linguagens estão inseridas em seu contexto, por exemplo dentro de R há
 Para uma melhor navegação:
 
 - [C/C++](https://github.com/paulopimenta6/ph_codes/tree/master/c_cpp)
+- [R](https://github.com/paulopimenta6/ph_codes/tree/master/R)
 - [Python](https://github.com/paulopimenta6/ph_codes/tree/master/python)
 - [PHP](https://github.com/paulopimenta6/ph_codes/tree/master/php)
 - [Javascript](https://github.com/paulopimenta6/ph_codes/tree/master/php)
