@@ -24,7 +24,11 @@ scanf("%s", variavel) para toda uma string enquanto que se for capturado caracte
 
 Os ponteiros sao importantes recursos em C/C++ o qual otimizam o uso de recursos e tornam mais eficazes um programa. Aqui vao algumas dicas de como usar um ponteiro.
 
-* Declarando um ponteiro inteiro: int \*ptr -- Declarando um ponteiro chamado ptr de tipo inteiro <br />
+* Declarando um ponteiro inteiro: 
+```c 
+    int \*ptr //Declarando um ponteiro chamado ptr de tipo inteiro
+``` <br />
+
 * ptr=&\<variavel\> -- O ponteiro prt vai receber o endereco de memoria \<da variavel\> <br />
 * int \*ptr=&\<variavel\> -- Outra maneira de se declarar um ponteiro e ainda receber seu endereco de memoria <br />
 * int \*ptr=NULL -- Declarndo um ponteiro vazio <br />
