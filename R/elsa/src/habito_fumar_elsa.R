@@ -27,10 +27,16 @@ idadeNaOnda1Ajustado <- idadeNaOnda1[indicesHabitoDeFumarOnda1]
 idadeNaOnda2Ajustado <- idadeNaOnda2[indicesHabitoDeFumarOnda2]
 idadeNaOnda3Ajustado <- idadeNaOnda3[indicesHabitoDeFumarOnda3]
 
+################################################################################
+###data.frame
+################################################################################
 habitoDeFumarOnda1Ajustado <- data.frame(idadeNaOnda1Ajustado, habitoDeFumarOnda1Ajustado)
 habitoDeFumarOnda2Ajustado <- data.frame(idadeNaOnda2Ajustado, habitoDeFumarOnda2Ajustado)
 habitoDeFumarOnda3Ajustado <- data.frame(idadeNaOnda3Ajustado, habitoDeFumarOnda3Ajustado)
 
+################################################################################
+###Graficos
+################################################################################
 ggplot(data = habitoDeFumarOnda1Ajustado, aes(x = habitoDeFumarOnda1Ajustado)) + 
   geom_bar(aes(fill=as.factor(idadeNaOnda1Ajustado))) + 
   labs(fill = "Idade na onda 1", y = "Quantidade de pessoas na onda 1", x = "Pacientes com habito de fumar - 0: nunca fumou, 3: ex-fumante e 2: fumante - Onda 1")
