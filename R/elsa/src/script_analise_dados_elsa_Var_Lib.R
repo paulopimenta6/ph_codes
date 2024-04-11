@@ -118,15 +118,19 @@ infartoDoMiocardioOnda1<-importaDadosLib$A_ECGMC_IM_2
 infartoDoMiocardioOnda2<-importaDadosLib$B_ECGMC_IM
 infartoDoMiocardioOnda3<-importaDadosLib$C_ECGMC_IM
 
+###Densidade do trafego poderado pela distancia
+densidadetrafegoPorDistanciaCasaOnda1     <- importaDadosLib$DTPD_CASA_O1_V2
+densidadetrafegoPorDistanciaTrabalhoOnda1 <- importaDadosLib$DTPD_TRABALHO_O1_V2
+
 ###toma antidiabéticos orais
-tomaAntidiabeticosOraisOnda1<-importaDadosLib$A_ANTIDIABETICOS_ORAIS
-tomaAntidiabeticosOraisOnda2<-importaDadosLib$B_ANTIDIABETICOS_ORAIS
-tomaAntidiabeticosOraisOnda3<-importaDadosLib$C_ANTIDIABETICOS_ORAIS
+tomaAntidiabeticosOraisOnda1 <- importaDadosLib$A_ANTIDIABETICOS_ORAIS
+tomaAntidiabeticosOraisOnda2 <- importaDadosLib$B_ANTIDIABETICOS_ORAIS
+tomaAntidiabeticosOraisOnda3 <- importaDadosLib$C_ANTIDIABETICOS_ORAIS
 
 ###faz uso contínuo de atorvastatina
-fazUsoContinuoAtorvastatinaOnda1<-importaDadosLib$A_ATORVASTATINA
-fazUsoContinuoAtorvastatinaOnda2<-importaDadosLib$B_ATORVASTATINA
-fazUsoContinuoAtorvastatinaOnda3<-importaDadosLib$C_ATORVASTATINA
+fazUsoContinuoAtorvastatinaOnda1 <- importaDadosLib$A_ATORVASTATINA
+fazUsoContinuoAtorvastatinaOnda2 <- importaDadosLib$B_ATORVASTATINA
+fazUsoContinuoAtorvastatinaOnda3 <- importaDadosLib$C_ATORVASTATINA
 
 ###faz uso contínuo de benazepril
 fazUsoContinuoBenazeprilOnda1<-importaDadosLib$A_BENAZEPRIL
