@@ -1,8 +1,23 @@
 ############################################################################################
 ##############################Especificando diretorio src###################################
-if (getwd() != "C:/Users/Paulo_Pimenta/Documents/meus_codigos/ph_codes/R/elsa/src") {     ##
-  setwd("C:/Users/Paulo_Pimenta/Documents/meus_codigos/ph_codes/R/elsa/src")              ##  
+sys_info_so <- Sys.info()["sysname"]                                                      ##
+                                                                                          ##  
+###Linux                                                                                  ##
+if (sys_info_so == "Linux"){                                                              ##
+  if (getwd() != "home/paulo/Documentos/meus_codigos/ph_codes/R/elsa/src") {              ##
+    setwd("/home/paulo/Documentos/meus_codigos/ph_codes/R/elsa/src")                       ##  
+  }                                                                                       ##
 }                                                                                         ##
+### Windows                                                                               ##
+if (sys_info_so == "Windows"){                                                            ##
+  if (getwd() != "C:/Users/Paulo_Pimenta/Documents/meus_codigos/ph_codes/R/elsa/src") {   ##
+    setwd("C:/Users/Paulo_Pimenta/Documents/meus_codigos/ph_codes/R/elsa/src")            ##  
+  }                                                                                       ##
+}                                                                                         ##
+                                                                                          ##
+#if (getwd() != "C:/Users/Paulo_Pimenta/Documents/meus_codigos/ph_codes/R/elsa/src") {    ##
+#  setwd("C:/Users/Paulo_Pimenta/Documents/meus_codigos/ph_codes/R/elsa/src")             ##  
+#}                                                                                        ##
 ############################################################################################
 library(readr)
 library(tidyverse)
