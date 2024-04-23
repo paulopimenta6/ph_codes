@@ -4,15 +4,17 @@ sys_info_so <- Sys.info()["sysname"]                                            
                                                                                           ##  
 ###Linux                                                                                  ##
 if (sys_info_so == "Linux"){                                                              ##
-  if (getwd() != "home/paulo/Documentos/meus_codigos/ph_codes/R/elsa/src") {              ##
-    setwd("/home/paulo/Documentos/meus_codigos/ph_codes/R/elsa/src")                       ##  
-  }                                                                                       ##
+   dir_dados="./dados_elsa/Lucia_Andrade_10_22_CSV.csv"                                   ##                                                        ##
+#  if (getwd() != "home/paulo/Documentos/meus_codigos/ph_codes/R/elsa/src") {             ##
+#    setwd("/home/paulo/Documentos/meus_codigos/ph_codes/R/elsa/src")                     ##  
+#  }                                                                                      ##
 }                                                                                         ##
 ### Windows                                                                               ##
 if (sys_info_so == "Windows"){                                                            ##
-  if (getwd() != "C:/Users/Paulo_Pimenta/Documents/meus_codigos/ph_codes/R/elsa/src") {   ##
-    setwd("C:/Users/Paulo_Pimenta/Documents/meus_codigos/ph_codes/R/elsa/src")            ##  
-  }                                                                                       ##
+   dir_dados="./dados_elsa/Lucia_Andrade_10_22_CSV.csv"                                   ##
+#  if (getwd() != "C:/Users/Paulo_Pimenta/Documents/meus_codigos/ph_codes/R/elsa/src") {  ##
+#    setwd("C:/Users/Paulo_Pimenta/Documents/meus_codigos/ph_codes/R/elsa/src")           ##  
+#  }                                                                                      ##
 }                                                                                         ##
                                                                                           ##
 #if (getwd() != "C:/Users/Paulo_Pimenta/Documents/meus_codigos/ph_codes/R/elsa/src") {    ##
@@ -23,7 +25,7 @@ library(readr)
 library(tidyverse)
 library(dplyr)
 library(ggplot2)
-dir_dados="../dados_elsa/Lucia_Andrade_10_22_CSV.csv"
+#dir_dados="./dados_elsa/Lucia_Andrade_10_22_CSV.csv"
 
 importaDadosLib=read_csv2(dir_dados, na = c("", "NA"))
 #importaDadosLib=read_csv2(dir_dados)
