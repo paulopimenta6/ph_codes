@@ -1,0 +1,24 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "cppdbg",
+      "request": "launch",
+      "args": [],
+      "stopAtEntry": false,
+      "externalConsole": true,
+      "cwd": "c:/Users/Paulo_Pimenta/Documents/meus_codigos/ph_codes/c_cpp/src/cpp_codes/helloWorldVS/HelloWorldVS",
+      "program": "c:/Users/Paulo_Pimenta/Documents/meus_codigos/ph_codes/c_cpp/src/cpp_codes/helloWorldVS/HelloWorldVS/build/Debug/outDebug",
+      "MIMode": "gdb",
+      "miDebuggerPath": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
+    }
+  ]
+}
