@@ -1,31 +1,11 @@
 ############################################################################################
 ##############################Especificando diretorio src###################################
-sys_info_so <- Sys.info()["sysname"]                                                      ##
-                                                                                          ##  
-###Linux                                                                                  ##
-if (sys_info_so == "Linux"){                                                              ##
-   dir_dados="./dados_elsa/Lucia_Andrade_10_22_CSV.csv"                                   ##                                                        ##
-#  if (getwd() != "home/paulo/Documentos/meus_codigos/ph_codes/R/elsa/src") {             ##
-#    setwd("/home/paulo/Documentos/meus_codigos/ph_codes/R/elsa/src")                     ##  
-#  }                                                                                      ##
-}                                                                                         ##
-### Windows                                                                               ##
-if (sys_info_so == "Windows"){                                                            ##
-   dir_dados="./dados_elsa/Lucia_Andrade_10_22_CSV.csv"                                   ##
-#  if (getwd() != "C:/Users/Paulo_Pimenta/Documents/meus_codigos/ph_codes/R/elsa/src") {  ##
-#    setwd("C:/Users/Paulo_Pimenta/Documents/meus_codigos/ph_codes/R/elsa/src")           ##  
-#  }                                                                                      ##
-}                                                                                         ##
-                                                                                          ##
-#if (getwd() != "C:/Users/Paulo_Pimenta/Documents/meus_codigos/ph_codes/R/elsa/src") {    ##
-#  setwd("C:/Users/Paulo_Pimenta/Documents/meus_codigos/ph_codes/R/elsa/src")             ##  
-#}                                                                                        ##
 ############################################################################################
 library(readr)
 library(tidyverse)
 library(dplyr)
 library(ggplot2)
-#dir_dados="./dados_elsa/Lucia_Andrade_10_22_CSV.csv"
+dir_dados="./dados_elsa/Lucia_Andrade_10_22_CSV.csv"
 
 importaDadosLib=read_csv2(dir_dados, na = c("", "NA"))
 #importaDadosLib=read_csv2(dir_dados)
@@ -238,7 +218,7 @@ fazUsoContinuoMeloxicamOnda3 <- importaDadosLib$C_MELOXICAM
 ###faz uso contínuo de naproxeno
 fazUsoContinuoNaproxenoOnda1 <- importaDadosLib$A_NAPROXENO
 fazUsoContinuoNaproxenoOnda2 <- importaDadosLib$B_NAPROXENO
-fazUspContinuoNaproxenoOnda3 <- importaDadosLib$C_NAPROXENO
+fazUsoContinuoNaproxenoOnda3 <- importaDadosLib$C_NAPROXENO
 
 ###faz uso contínuo de nimesulida
 fazUsoContinuoNimesulidaOnda1 <- importaDadosLib$A_NIMESULIDA
