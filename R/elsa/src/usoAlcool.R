@@ -1,18 +1,12 @@
-############################################################################################
-##############################Especificando diretorio src###################################
-if (getwd() != "C:/Users/Paulo_Pimenta/Documents/meus_codigos/ph_codes/R/elsa/src") {     ##
-  setwd("C:/Users/Paulo_Pimenta/Documents/meus_codigos/ph_codes/R/elsa/src")              ##  
-}                                                                                         ##
-############################################################################################
-source("script_analise_dados_elsa_Var_Lib.R") 
+source("./src/script_analise_dados_elsa_Var_Lib.R") 
 library(scales) # to access break formatting functions
 library(tidyverse)
 library(dplyr)
 library(ggplot2)
 ################################################################################
-usoDeAlcoolOnda1Ajustada <- usoDeAldoolOnda1[which(!is.na(usoDeAlcoolOnda1))]
-usoDeAlcoolOnda2Ajustada <- usoDeAldoolOnda2[which(!is.na(usoDeAlcoolOnda2))]
-usoDeAlcoolOnda3Ajustada <- usoDeAldoolOnda3[which(!is.na(usoDeAlcoolOnda3))]
+usoDeAlcoolOnda1Ajustada <- usoDeAlcoolOnda1[which(!is.na(usoDeAlcoolOnda1))]
+usoDeAlcoolOnda2Ajustada <- usoDeAlcoolOnda2[which(!is.na(usoDeAlcoolOnda2))]
+usoDeAlcoolOnda3Ajustada <- usoDeAlcoolOnda3[which(!is.na(usoDeAlcoolOnda3))]
 
 idxUsoDeAlcoolOnda1 <- which(!is.na(usoDeAlcoolOnda1))
 idxUsoDeAlcoolOnda2 <- which(!is.na(usoDeAlcoolOnda2))

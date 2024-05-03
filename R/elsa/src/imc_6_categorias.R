@@ -1,10 +1,4 @@
-############################################################################################
-##############################Especificando diretorio src###################################
-if (getwd() != "C:/Users/Paulo_Pimenta/Documents/meus_codigos/ph_codes/R/elsa/src") {     ##
-  setwd("C:/Users/Paulo_Pimenta/Documents/meus_codigos/ph_codes/R/elsa/src")              ##  
-}                                                                                         ##
-############################################################################################
-source("script_analise_dados_elsa_Var_Lib.R") 
+source("./src/script_analise_dados_elsa_Var_Lib.R") 
 library(scales) # to access break formatting functions
 library(tidyverse)
 library(dplyr)
@@ -49,13 +43,13 @@ ggplot(data = imc6categoriasOnda1_complet, aes(x = factor(imc6categoriasOnda1Aju
 #Onda 2
 ggplot(data = imc6categoriasOnda2_complet, aes(x = factor(imc6categoriasOnda2Ajustada), fill=as.factor(idadeNaOnda2Ajustada))) + 
   geom_bar() +
-  ggtitle("IMC em 6 niveis - Onda 1") +
+  ggtitle("IMC em 6 niveis - Onda 2") +
   labs(fill = "Idade - Onda 2", y = "Quantidade de pessoas", x = "1 - Magreza, 2 - Eutrofia, 3 - Sobrepeso, 4 - Obesidade Grau I, 5 - Obesidade Grau II, 6 - Obesidade Grau III")
 
 #Onda 3
 ggplot(data = imc6categoriasOnda3_complet, aes(x = factor(imc6categoriasOnda3Ajustada), fill=as.factor(idadeNaOnda3Ajustada))) + 
   geom_bar() +
-  ggtitle("IMC em 6 niveis - Onda 1") +
+  ggtitle("IMC em 6 niveis - Onda 3") +
   labs(fill = "Idade - Onda 3", y = "Quantidade de pessoas", x = "1 - Magreza, 2 - Eutrofia, 3 - Sobrepeso, 4 - Obesidade Grau I, 5 - Obesidade Grau II, 6 - Obesidade Grau III")
 
 ################################################################################

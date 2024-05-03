@@ -39,7 +39,7 @@ ggplot(data = creatininaRastreavelNoSangueOnda1, aes(x = creatininaRastreavelNoS
 ggplot(data = creatininaRastreavelNoSangueOnda2, aes(x = creatininaRastreavelNoSangueOnda2Ajustada)) + 
   geom_bar(aes(fill=as.factor(idadeNaOnda2Ajustada))) +
   ggtitle("Creatinina rastreavel no sangue - Onda 2") +
-  labs(fill = "Idade - Onda 1", y = "Quantidade de pessoas", x = "Concentração em mg/dl")
+  labs(fill = "Idade - Onda 2", y = "Quantidade de pessoas", x = "Concentração em mg/dl")
 
 #Onda 3
 ggplot(data = creatininaRastreavelNoSangueOnda3, aes(x = creatininaRastreavelNoSangueOnda3Ajustada)) + 

@@ -15,9 +15,9 @@ idxFazUsoContinuoBenazeprilOnda1 <- which(!is.na(fazUsoContinuoBenazeprilOnda1))
 idxFazUsoContinuoBenazeprilOnda2 <- which(!is.na(fazUsoContinuoBenazeprilOnda2))
 idxFazUsoContinuoBenazeprilOnda3 <- which(!is.na(fazUsoContinuoBenazeprilOnda3))
 
-idadeNaOnda1Ajustada <- idadeNaOnda1[idxFazUsoContinuoAtorvastatinaOnda1]
-idadeNaOnda2Ajustada <- idadeNaOnda2[idxFazUsoContinuoAtorvastatinaOnda2]
-idadeNaOnda3Ajustada <- idadeNaOnda3[idxFazUsoContinuoAtorvastatinaOnda3]
+idadeNaOnda1Ajustada <- idadeNaOnda1[idxFazUsoContinuoBenazeprilOnda1]
+idadeNaOnda2Ajustada <- idadeNaOnda2[idxFazUsoContinuoBenazeprilOnda2]
+idadeNaOnda3Ajustada <- idadeNaOnda3[idxFazUsoContinuoBenazeprilOnda3]
 
 ################################################################################
 ###data.frame
