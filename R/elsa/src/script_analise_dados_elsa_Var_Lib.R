@@ -10,6 +10,9 @@ dir_dados="./dados_elsa/Lucia_Andrade_10_22_CSV.csv"
 importaDadosLib=read_csv2(dir_dados, na = c("", "NA"))
 #importaDadosLib=read_csv2(dir_dados)
 
+#ID Elsa para o metodo de friedman (teste nao parametrico)
+idElsa <- importaDadosLib$IDELSA
+
 ###idade
 idadeNaOnda1 <- importaDadosLib$IDADEA
 idadeNaOnda2 <- importaDadosLib$IDADEB

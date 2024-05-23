@@ -6,7 +6,13 @@ library(scales) # to access break formatting functions
 library(tidyverse)
 library(dplyr)
 library(ggplot2)
-library(car)
+library(dplyr)                                
+library(RVAideMemoire)                                        
+library(car)                                
+library(psych)                                
+library(rstatix)                                
+library(DescTools)
+library(nortest)
 ################################################################################
 normalize_data <- function(data) {
   normalized <- c()
@@ -18,14 +24,14 @@ normalize_data <- function(data) {
 }
 ################################################################################
 ###pressao diastolica
-#pressaoDiastolicamediaOnda1 
-#pressaoDiastolicamediaOnda2 
-#pressaoDiastolicamediaOnda3 
+pressaoDiastolicamediaOnda1Ajustada <- pressaoDiastolicamediaOnda1[which(!is.na(pressaoDiastolicamediaOnda1))]  
+pressaoDiastolicamediaOnda2Ajustada <- pressaoDiastolicamediaOnda2[which(!is.na(pressaoDiastolicamediaOnda2))]  
+pressaoDiastolicamediaOnda3Ajustada <- pressaoDiastolicamediaOnda3[which(!is.na(pressaoDiastolicamediaOnda3))]  
 
 ###Pressao sistolica 
-len_PAS1 <- length(pressaoArterialSistolicaMediaOnda1) 
-len_PAS2 <- length(pressaoArterialSistolicaMediaOnda2) 
-len_PAS3 <- length(pressaoArterialSistolicaMediaOnda3) 
+len_PAS1 <- length(pressaoDiastolicamediaOnda1Ajustada) 
+len_PAS2 <- length(pressaoDiastolicamediaOnda2Ajustada) 
+len_PAS3 <- length(pressaoDiastolicamediaOnda3Ajustada) 
 
 PAS1_onda1 <- rep(c("O1"), each = len_PAS1)
 PAS2_onda2 <- rep(c("O2"), each = len_PAS2)
@@ -33,14 +39,19 @@ PAS3_onda3 <- rep(c("O3"), each = len_PAS3)
 onda <- c(PAS1_onda1, PAS2_onda2, PAS3_onda3)
 onda <- factor(onda)
 
-pas <- c(pressaoArterialSistolicaMediaOnda1, pressaoArterialSistolicaMediaOnda2, pressaoArterialSistolicaMediaOnda3)
-normalized_df <- normalize_data(pas)
-df_PAS <- data.frame(PAS = normalized_df, Onda = onda)
+pas <- c(pressaoDiastolicamediaOnda1Ajustada, pressaoDiastolicamediaOnda2Ajustada, pressaoDiastolicamediaOnda3Ajustada)
+pasNorm <- scale(pas)
+pasNorm <- data.frame(pasNorm)
+df_PAS <- data.frame(pasNorm, onda)
 
-model <- aov(df_PAS$PAS ~ df_PAS$Onda, data = df_PAS)
+ad_test <- ad.test(df_PAS$pasNorm)
+leveneTest(df_PAS$pasNorm ~ df_PAS$onda, df_PAS, center = mean)
+boxplot(df_PAS$pasNorm ~ df_PAS$onda, df_PAS)
+
+model <- aov(df_PAS$pasNorm ~ df_PAS$onda, data = df_PAS)
 model
 summary(model)
-leveneTest(df_PAS$PAS ~ df_PAS$Onda, data = df_PAS)
+leveneTest(df_PAS$pasNorm ~ df_PAS$onda, data = df_PAS)
 
 
 
