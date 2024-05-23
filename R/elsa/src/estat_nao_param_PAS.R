@@ -11,7 +11,9 @@ library(reshape)
 if(!require(PMCMRplus)) install.packages("PMCMRplus") 
 library(PMCMRplus)   
 if(!require(ggplot2)) install.packages("ggplot2") 
-library(ggplot2)                                
+library(ggplot2)
+if(!require(VIM)) install.packages("VIM") 
+library(VIM)
 
 dfPAS <- data.frame(ID = idElsa,
                     onda1 = pressaoArterialSistolicaMediaOnda1, 
