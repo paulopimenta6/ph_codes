@@ -14,6 +14,8 @@ if(!require(ggplot2)) install.packages("ggplot2")
 library(ggplot2)
 if(!require(VIM)) install.packages("VIM") 
 library(VIM)
+if(!require(nortest)) install.packages('nortest')
+library(nortest)
 
 dfcreatRastSangue <- data.frame(ID = idElsa,
                     onda1 = creatininaRastreavelNaUrinaOnda1, 
@@ -21,16 +23,28 @@ dfcreatRastSangue <- data.frame(ID = idElsa,
                     onda3 = creatininaRastreavelNaUrinaOnda3
 )
 
-dadoslcreatRastSangue <- melt(dfcreatRastSangue,
+################################################################################
+dfcreatRastSangue <- kNN(dfcreatRastSangue, k = 3)
+dfcreatRastSangue <- dfHba[,-c(5:ncol(dfcreatRastSangue))]
+###realizando teste de normalidade de Anderson-Darling
+ad_test1 <- ad.test(dfcreatRastSangue$onda1)
+ad_test2 <- ad.test(dfcreatRastSangue$onda2)
+ad_test3 <- ad.test(dfcreatRastSangue$onda3)
+print(ad_test1)
+print(ad_test2)
+print(ad_test3)
+################################################################################
+
+dadoslcreatRastSangue_interpol <- melt(dfcreatRastSangue,
                   id = "ID",
                   measured = c("onda1", "onda2", "onda3"))
 
-colnames(dadoslcreatRastSangue) = c("ID", "Onda", "creatRastSangue")
-dadoslcreatRastSangue <- sort_df(dadoslcreatRastSangue, vars = "ID")
-dadoslcreatRastSangue$ID <- factor(dadoslcreatRastSangue$ID)
+colnames(dadoslcreatRastSangue_interpol) = c("ID", "Onda", "creatRastSangue")
+dadoslcreatRastSangue_interpol <- sort_df(dadoslcreatRastSangue_interpol, vars = "ID")
+dadoslcreatRastSangue_interpol$ID <- factor(dadoslcreatRastSangue_interpol$ID)
 
-dadoslcreatRastSangue_interpol <- kNN(dadoslcreatRastSangue, k = 3)
-dadoslcreatRastSangue_interpol <- dadoslcreatRastSangue_interpol[,-c(4:ncol(dadoslcreatRastSangue_interpol))]
+#dadoslcreatRastSangue_interpol <- kNN(dadoslcreatRastSangue, k = 3)
+#dadoslcreatRastSangue_interpol <- dadoslcreatRastSangue_interpol[,-c(4:ncol(dadoslcreatRastSangue_interpol))]
 
 #friedman.test(dadoslcreatRastSangue$Hba, dadoslcreatRastSangue$Onda, dadoslcreatRastSangue$ID)
 friedman.test(dadoslcreatRastSangue_interpol$creatRastSangue, dadoslcreatRastSangue_interpol$Onda, dadoslcreatRastSangue_interpol$ID)

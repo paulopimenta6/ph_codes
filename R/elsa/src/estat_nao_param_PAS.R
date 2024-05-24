@@ -14,6 +14,8 @@ if(!require(ggplot2)) install.packages("ggplot2")
 library(ggplot2)
 if(!require(VIM)) install.packages("VIM") 
 library(VIM)
+if(!require(nortest)) install.packages('nortest')
+library(nortest)
 
 dfPAS <- data.frame(ID = idElsa,
                     onda1 = pressaoArterialSistolicaMediaOnda1, 
@@ -21,16 +23,28 @@ dfPAS <- data.frame(ID = idElsa,
                     onda3 = pressaoArterialSistolicaMediaOnda3
 )
 
-dadoslPAS <- melt(dfPAS,
+################################################################################
+dfPAS <- kNN(dfPAS, k = 3)
+dfPAS <- dfPAS[,-c(5:ncol(dfPAS))]
+###realizando teste de normalidade de Anderson-Darling
+ad_test1 <- ad.test(dfPAS$onda1)
+ad_test2 <- ad.test(dfPAS$onda2)
+ad_test3 <- ad.test(dfPAS$onda3)
+print(ad_test1)
+print(ad_test2)
+print(ad_test3)
+################################################################################
+
+dadoslPAS_interpol <- reshape2::melt(dfPAS,
                   id = "ID",
                   measured = c("onda1", "onda2", "onda3"))
 
-colnames(dadoslPAS) = c("ID", "Onda", "PAS")
-dadoslPAS <- sort_df(dadoslPAS, vars = "ID")
-dadoslPAS$ID <- factor(dadoslPAS$ID)
+colnames(dadoslPAS_interpol) = c("ID", "Onda", "PAS")
+dadoslPAS_interpol <- sort_df(dadoslPAS_interpol, vars = "ID")
+dadoslPAS_interpol$ID <- factor(dadoslPAS_interpol$ID)
 
-dadoslPAS_interpol <- kNN(dadoslPAS, k = 3)
-dadoslPAS_interpol <- dadoslPAS_interpol[,-c(4:ncol(dadoslPAS_interpol))]
+#dadoslPAS_interpol <- kNN(dadoslPAS, k = 3)
+#dadoslPAS_interpol <- dadoslPAS_interpol[,-c(4:ncol(dadoslPAS_interpol))]
 
 #friedman.test(dadoslPAS$Hba, dadoslPAS$Onda, dadoslPAS$ID)
 friedman.test(dadoslPAS_interpol$PAS, dadoslPAS_interpol$Onda, dadoslPAS_interpol$ID)

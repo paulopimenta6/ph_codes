@@ -14,6 +14,11 @@ if(!require(ggplot2)) install.packages("ggplot2")
 library(ggplot2)
 if(!require(VIM)) install.packages("VIM") 
 library(VIM)
+if(!require(nortest)) install.packages('nortest')
+library(nortest)
+
+###Usando knn para interpolar os valores por cada onda
+###considernado que são valores de mesma magnitude nao e necessario normalizar 
 
 dfPAD <- data.frame(ID = idElsa,
                     onda1 = pressaoDiastolicamediaOnda1, 
@@ -21,16 +26,28 @@ dfPAD <- data.frame(ID = idElsa,
                     onda3 = pressaoDiastolicamediaOnda3
 )
 
-dadoslPAD <- melt(dfPAD,
+################################################################################
+dfPAD <- kNN(dfPAD, k = 3)
+dfPAD <- dfPAD[,-c(5:ncol(dfPAD))]
+###realizando teste de normalidade de Anderson-Darling
+ad_test1 <- ad.test(dfPAD$onda1)
+ad_test2 <- ad.test(dfPAD$onda2)
+ad_test3 <- ad.test(dfPAD$onda3)
+print(ad_test1)
+print(ad_test2)
+print(ad_test3)
+################################################################################
+
+dadoslPAD_interpol <- reshape2::melt(dfPAD,
                   id = "ID",
                   measured = c("onda1", "onda2", "onda3"))
 
-colnames(dadoslPAD) = c("ID", "Onda", "PAD")
-dadoslPAD <- sort_df(dadoslPAD, vars = "ID")
-dadoslPAD$ID <- factor(dadoslPAD$ID)
+colnames(dadoslPAD_interpol) = c("ID", "Onda", "PAD")
+dadoslPAD_interpol <- sort_df(dadoslPAD_interpol, vars = "ID")
+dadoslPAD_interpol$ID <- factor(dadoslPAD_interpol$ID)
 
-dadoslPAD_interpol <- kNN(dadoslPAD, k = 3)
-dadoslPAD_interpol <- dadoslPAD_interpol[,-c(4:ncol(dadoslPAD_interpol))]
+#dadoslPAD_interpol <- kNN(dadoslPAD, k = 3)
+#dadoslPAD_interpol <- dadoslPAD_interpol[,-c(4:ncol(dadoslPAD_interpol))]
 
 #friedman.test(dadoslPAD$Hba, dadoslPAD$Onda, dadoslPAD$ID)
 friedman.test(dadoslPAD_interpol$PAD, dadoslPAD_interpol$Onda, dadoslPAD_interpol$ID)

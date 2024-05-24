@@ -14,6 +14,8 @@ if(!require(ggplot2)) install.packages("ggplot2")
 library(ggplot2)
 if(!require(VIM)) install.packages("VIM") 
 library(VIM)
+if(!require(nortest)) install.packages('nortest')
+library(nortest)
 
 dfHba <- data.frame(ID = idElsa,
                    onda1 = hemoglobinaGlicadaHba1cOnda1, 
@@ -21,16 +23,28 @@ dfHba <- data.frame(ID = idElsa,
                    onda3 = hemoglobinaGlicadaHba3cOnda3
                   )
 
-dadoslHba <- melt(dfHba,
+################################################################################
+dfHba <- kNN(dfHba, k = 3)
+dfHba <- dfHba[,-c(5:ncol(dfHba))]
+###realizando teste de normalidade de Anderson-Darling
+ad_test1 <- ad.test(dfHba$onda1)
+ad_test2 <- ad.test(dfHba$onda2)
+ad_test3 <- ad.test(dfHba$onda3)
+print(ad_test1)
+print(ad_test2)
+print(ad_test3)
+################################################################################
+
+dadoslHba_interpol <- melt(dfHba,
                id = "ID",
                measured = c("onda1", "onda2", "onda3"))
 
-colnames(dadoslHba) = c("ID", "Onda", "Hba")
-dadoslHba <- sort_df(dadoslHba, vars = "ID")
-dadoslHba$ID <- factor(dadoslHba$ID)
+colnames(dadoslHba_interpol) = c("ID", "Onda", "Hba")
+dadoslHba_interpol <- sort_df(dadoslHba_interpol, vars = "ID")
+dadoslHba_interpol$ID <- factor(dadoslHba_interpol$ID)
 
-dadoslHba_interpol <- kNN(dadoslHba, k = 3)
-dadoslHba_interpol <- dadoslHba_interpol[,-c(4:ncol(dadoslHba_interpol))]
+#dadoslHba_interpol <- kNN(dadoslHba, k = 3)
+#dadoslHba_interpol <- dadoslHba_interpol[,-c(4:ncol(dadoslHba_interpol))]
 
 #friedman.test(dadoslHba$Hba, dadoslHba$Onda, dadoslHba$ID)
 friedman.test(dadoslHba_interpol$Hba, dadoslHba_interpol$Onda, dadoslHba_interpol$ID)
