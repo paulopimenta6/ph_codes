@@ -21,10 +21,6 @@ The Longitudinal Study of Adult Health - ELSA Brazil - is a multicenter cohort i
 At each study center, research subjects - aged 35 to 74 years - undergo examinations and interviews in which aspects such as living conditions, social differences, work relationships, gender, and specifics of the Brazilian population's diet are evaluated.
 In addition to fostering the development of new research, the study will be essential for the adaptation of public health policies to national needs. ELSA is made possible by the interest of the Ministry of Health and the Ministry of Science and Technology in conducting large-scale national research on the health of the adult population in Brazil.
 
-
-### Table of contents
-=================
-
 ### Environment
 
 ## Instalantion of R
@@ -123,6 +119,20 @@ R --version
   <img src="img/rstudio.png" alt="Rstudio" width="300">
 </p>
 
+1. For windows users is very easy to install Rstudio just downloading the software from this [website](https://posit.co/download/rstudio-desktop/)
+
+2. For Linux users is also easy install the rstudio, but instead of downloading an **.exe** you will find a **.deb** file. It is not a problem, because after download you just need to do the command in the Linux terminal:
+
+``` bash
+$ sudo dpkg -i <rstdio>.deb
+```
+
+**Remember**: Before to install Rstudio it advised to update (and upgrade the OS) doing:
+
+```bash
+$ sudo apt update
+$ sudo apt upgrade #optional
+```
 
 ### How to use
 =================
