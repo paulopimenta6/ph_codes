@@ -1,7 +1,9 @@
 ############################################################################################
 ##############################Especificando diretorio src###################################
 ############################################################################################
-source("./src/script_analise_dados_elsa_Var_Lib.R") 
+source("./src/script_analise_dados_elsa_Var_Lib.R")
+source("./src/classNormalMethods.R")
+
 if(!require(dplyr)) install.packages("dplyr")
 library(dplyr)                                
 if(!require(rstatix)) install.packages("rstatix") 
@@ -25,7 +27,7 @@ dfcreatRastSangue <- data.frame(ID = idElsa,
 
 ################################################################################
 dfcreatRastSangue <- kNN(dfcreatRastSangue, k = 3)
-dfcreatRastSangue <- dfHba[,-c(5:ncol(dfcreatRastSangue))]
+dfcreatRastSangue <- dfcreatRastSangue[,-c(5:ncol(dfcreatRastSangue))]
 ###realizando teste de normalidade de Anderson-Darling
 ad_test1 <- ad.test(dfcreatRastSangue$onda1)
 ad_test2 <- ad.test(dfcreatRastSangue$onda2)
@@ -43,8 +45,27 @@ colnames(dadoslcreatRastSangue_interpol) = c("ID", "Onda", "creatRastSangue")
 dadoslcreatRastSangue_interpol <- sort_df(dadoslcreatRastSangue_interpol, vars = "ID")
 dadoslcreatRastSangue_interpol$ID <- factor(dadoslcreatRastSangue_interpol$ID)
 
-#dadoslcreatRastSangue_interpol <- kNN(dadoslcreatRastSangue, k = 3)
-#dadoslcreatRastSangue_interpol <- dadoslcreatRastSangue_interpol[,-c(4:ncol(dadoslcreatRastSangue_interpol))]
+################################################################################
+###Identificando outliers na totalidade
+dadoslcreatRastSangue_interpol %>% group_by(Onda) %>% identify_outliers(creatRastSangue) 
+###Identificando normalidade na totalidade agrupada pela Onda
+
+# Aplicar o teste de Anderson-Darling por grupo
+normalTestAdersonDarlingGroup <- dadoslcreatRastSangue_interpol %>%
+  group_by(Onda) %>%
+  filter(n() >= 3) %>%
+  summarize(ad_test = list(anderson_darling_test(creatRastSangue))) %>%
+  unnest(cols = ad_test)
+print(normalTestAdersonDarlingGroup)
+
+# Aplicar o teste de Komolgorov-Smirnov por grupo
+normalTesteKomolgorovSmirnovGroup <- dadoslcreatRastSangue_interpol %>%
+  group_by(Onda) %>%
+  filter(n() >= 3) %>%
+  summarize(ks_test = list(ks_test(creatRastSangue))) %>%
+  unnest(cols = ks_test)
+print(normalTesteKomolgorovSmirnovGroup)
+################################################################################
 
 #friedman.test(dadoslcreatRastSangue$Hba, dadoslcreatRastSangue$Onda, dadoslcreatRastSangue$ID)
 friedman.test(dadoslcreatRastSangue_interpol$creatRastSangue, dadoslcreatRastSangue_interpol$Onda, dadoslcreatRastSangue_interpol$ID)
