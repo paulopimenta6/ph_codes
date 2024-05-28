@@ -13,8 +13,10 @@
 
 ### About
 
-## ABout statistical Analysis
+## About statistical Analysis
 
 This section is dedicated to statistical analyses divided into two parts: Descriptive and non-parametric. The descriptive part analyzed the data, performed initial treatments, and subsequently created graphs in which one or two variables appeared in combination. Non-parametric statistics were an alternative to classical methods because the analyzed data did not have a normal distribution, and thus, the data were analyzed using the Friedman and Wilcoxon methods (both paired). There is a section dedicated to time series and correlations of pollution analyses.
 
 It is hoped that these results can help in the perception of patterns and indices that relate pollution to kidney diseases.
+
+### Descriptive statistics
