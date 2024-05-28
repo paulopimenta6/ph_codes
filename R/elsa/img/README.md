@@ -26,3 +26,9 @@ It is hoped that these results can help in the perception of patterns and indice
 <p align="left">
   <img src="./idade_elsa/idade_onda_1.png" width="200">
 </p>
+<p align="center">
+  <img src="./idade_elsa/idade_onda_2.png" width="200">
+</p>
+<p align="right">
+  <img src="./idade_elsa/idade_onda_3.png" width="200">
+</p>
