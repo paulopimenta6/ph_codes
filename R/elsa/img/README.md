@@ -28,3 +28,14 @@ It is hoped that these results can help in the perception of patterns and indice
   <img src="./idade_elsa/idade_onda_2.png" width="400">
   <img src="./idade_elsa/idade_onda_3.png" width="400">
 </div>
+
+#### Systolic blood pressure
+
+<div style="display: flex; justify-content: space-around;">
+  <img src="./img/PAS/PAS_1_g.png" width="400">
+  <img src="./img/PAS/PAS_2_g.png" width="400">
+  <img src="./img/PAS/PAS_3_g.png" width="400">
+  <img src="./img/PAS/PAS_1_b.png" width="400">
+  <img src="./img/PAS/PAS_2_b.png" width="400">
+  <img src="./img/PAS/PAS_3_b.png" width="400">
+</div>
