@@ -29,6 +29,14 @@ It is hoped that these results can help in the perception of patterns and indice
   <img src="./idade_elsa/idade_onda_3.png" width="400">
 </div>
 
+### Smoking habit
+
+<div style="display: flex; justify-content: space-around;">
+  <img src="./habitoFumar/tabag1.png" width="400">
+  <img src="./habitoFumar/tabag2.png" width="400">
+  <img src="./habitoFumar/tabag3.png" width="400">
+</div>
+
 ### Systolic blood pressure
 ##### Graphics
 <div style="display: flex; justify-content: space-around;">
