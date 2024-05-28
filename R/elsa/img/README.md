@@ -62,14 +62,14 @@ It is hoped that these results can help in the perception of patterns and indice
 ### Glycated hemoglobin (HbA1c) (%)
 ##### Graphics
 <div style="display: flex; justify-content: space-around;">
-  <img src="./hemoglobinaGlicada/hab1_g.png" width="400">
-  <img src="./hemoglobinaGlicada/hab2_g.png" width="400">
-  <img src="./hemoglobinaGlicada/hab3_g.png" width="400">
+  <img src="./hemoglobinaGlicada/hba1_g.png" width="400">
+  <img src="./hemoglobinaGlicada/hba2_g.png" width="400">
+  <img src="./hemoglobinaGlicada/hba3_g.png" width="400">
 </div>
 
 ##### boxplots
 <div style="display: flex; justify-content: space-around;">  
-  <img src="./hemoglobinaGlicada/hab1_b.png" width="400">
-  <img src="./hemoglobinaGlicada/hab2_b.png" width="400">
-  <img src="./hemoglobinaGlicada/hab3_b.png" width="400">
+  <img src="./hemoglobinaGlicada/hba1_b.png" width="400">
+  <img src="./hemoglobinaGlicada/hba2_b.png" width="400">
+  <img src="./hemoglobinaGlicada/hba3_b.png" width="400">
 </div>
