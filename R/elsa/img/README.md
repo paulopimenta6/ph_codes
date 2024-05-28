@@ -47,14 +47,14 @@ It is hoped that these results can help in the perception of patterns and indice
 #### diastolic blood pressure
 ##### Graphics
 <div style="display: flex; justify-content: space-around;">
-  <img src="./PAS/PAD1_g.png" width="400">
-  <img src="./PAS/PAD2_g.png" width="400">
-  <img src="./PAS/PAD3_g.png" width="400">
+  <img src="./PAD/PAD1_g.png" width="400">
+  <img src="./PAD/PAD2_g.png" width="400">
+  <img src="./PAD/PAD3_g.png" width="400">
 </div>
 
 ##### boxplots
 <div style="display: flex; justify-content: space-around;">  
-  <img src="./PAS/PAD1_b.png" width="400">
-  <img src="./PAS/PAD2_b.png" width="400">
-  <img src="./PAS/PAD3_b.png" width="400">
+  <img src="./PAD/PAD1_b.png" width="400">
+  <img src="./PAD/PAD2_b.png" width="400">
+  <img src="./PAD/PAD3_b.png" width="400">
 </div>
