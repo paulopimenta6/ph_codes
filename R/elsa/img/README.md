@@ -124,3 +124,10 @@ It is hoped that these results can help in the perception of patterns and indice
   <img src="./razao_albumina_creatina/razao_albumina_creat1_b.png" width="400">
   <img src="./razao_albumina_creatina/razao_albumina_creat2_b.png" width="400">
 </div>
+
+### Microalbuminuria
+##### Graphics
+<div style="display: flex; justify-content: space-around;">
+  <img src=".microalbuminuria/micro1_g.png" width="400">
+  <img src="./microalbuminuria/micro2_g.png" width="400">
+</div>
