@@ -111,3 +111,16 @@ It is hoped that these results can help in the perception of patterns and indice
   <img src="./creatinRastreUrina_mcg_dl/creat2_b.png" width="400">
   <img src="./creatinRastreUrina_mcg_dl/creat3_b.png" width="400">
 </div>
+
+### Detectable albumin-creatinine ratio (mg/g)
+##### Graphics
+<div style="display: flex; justify-content: space-around;">
+  <img src="./razao_albumina_creatina/razao_albumina_creat1_g.png" width="400">
+  <img src="./razao_albumina_creatina/razao_albumina_creat2_g.png" width="400">
+</div>
+
+##### boxplots
+<div style="display: flex; justify-content: space-around;">  
+  <img src="./razao_albumina_creatina/razao_albumina_creat1_b.png" width="400">
+  <img src="./razao_albumina_creatina/razao_albumina_creat2_b.png" width="400">
+</div>
