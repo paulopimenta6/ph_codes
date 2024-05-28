@@ -21,7 +21,7 @@ It is hoped that these results can help in the perception of patterns and indice
 
 ## Descriptive statistics
 
-#### Sample age
+### Sample age
 
 <div style="display: flex; justify-content: space-around;">
   <img src="./idade_elsa/idade_onda_1.png" width="400">
@@ -29,7 +29,7 @@ It is hoped that these results can help in the perception of patterns and indice
   <img src="./idade_elsa/idade_onda_3.png" width="400">
 </div>
 
-#### Systolic blood pressure
+### Systolic blood pressure
 ##### Graphics
 <div style="display: flex; justify-content: space-around;">
   <img src="./PAS/PAS1_g.png" width="400">
@@ -44,7 +44,7 @@ It is hoped that these results can help in the perception of patterns and indice
   <img src="./PAS/PAS3_b.png" width="400">
 </div>
 
-#### diastolic blood pressure
+### Diastolic blood pressure
 ##### Graphics
 <div style="display: flex; justify-content: space-around;">
   <img src="./PAD/PAD1_g.png" width="400">
