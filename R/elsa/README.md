@@ -8,12 +8,13 @@
 ## Summary
 
 - [About](#About)
-- [Table of contents](#Table-of-contents)
 - [Environment](#Environment)
 - [How to use](#How-to-use)
 - [Requirements](#Requirements)
 - [Local files](#local-files)
 - [Statistics](#Statistics)
+
+### About 
 
 ## About ELSA
 
@@ -119,7 +120,7 @@ R --version
   <img src="img/rstudio.png" alt="Rstudio" width="300">
 </p>
 
-1. For windows users is very easy to install Rstudio just downloading the software from this [website](https://posit.co/download/rstudio-desktop/)
+1. For windows users is very easy to install Rstudio just downloading the software from this [website](https://posit.co/download/rstudio-desktop/) and just double clicking the **.exe** and following the intalation instructions.
 
 2. For Linux users is also easy install the rstudio, but instead of downloading an **.exe** you will find a **.deb** file. It is not a problem, because after download you just need to do the command in the Linux terminal:
 
@@ -135,7 +136,10 @@ $ sudo apt upgrade #optional
 ```
 
 ### How to use
-=================
+
+## First contact
+
+All the scripts of the statistical analysis are inside the directory _src_
 
 ### Requirements
 =================
