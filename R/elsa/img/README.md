@@ -81,3 +81,18 @@ It is hoped that these results can help in the perception of patterns and indice
   <img src="./hemoglobinaGlicada/hba2_b.png" width="400">
   <img src="./hemoglobinaGlicada/hba3_b.png" width="400">
 </div>
+
+### Detectable blood creatinine (mg/dl)
+##### Graphics
+<div style="display: flex; justify-content: space-around;">
+  <img src="./creatinRastreSang_mcg_dl/creat1_g.png" width="400">
+  <img src="./creatinRastreSang_mcg_dl/creat2_g.png" width="400">
+  <img src="./creatinRastreSang_mcg_dl/creat3_g.png" width="400">
+</div>
+
+##### boxplots
+<div style="display: flex; justify-content: space-around;">  
+  <img src="./creatinRastreSang_mcg_dl/creat1_b.png" width="400">
+  <img src="./creatinRastreSang_mcg_dl/creat2_b.png" width="400">
+  <img src="./creatinRastreSang_mcg_dl/creat3_b.png" width="400">
+</div>
