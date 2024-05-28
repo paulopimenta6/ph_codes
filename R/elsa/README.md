@@ -156,3 +156,5 @@ rstudio <file>.Rproj &
 ``` 
 
 ### Statistics
+
+[Graphics and Analysis](./img/README.md)
