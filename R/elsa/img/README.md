@@ -30,11 +30,14 @@ It is hoped that these results can help in the perception of patterns and indice
 </div>
 
 #### Systolic blood pressure
-
+##### Graphics
 <div style="display: flex; justify-content: space-around;">
   <img src="./PAS/PAS1_g.png" width="400">
   <img src="./PAS/PAS2_g.png" width="400">
   <img src="./PAS/PAS3_g.png" width="400">
+</div>
+##### boxplots
+<div style="display: flex; justify-content: space-around;">  
   <img src="./PAS/PAS1_b.png" width="400">
   <img src="./PAS/PAS2_b.png" width="400">
   <img src="./PAS/PAS3_b.png" width="400">
