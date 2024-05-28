@@ -131,3 +131,18 @@ It is hoped that these results can help in the perception of patterns and indice
   <img src="./microalbuminuria/micro1_g.png" width="400">
   <img src="./microalbuminuria/micro2_g.png" width="400">
 </div>
+
+### sodium in urine (meq/l)
+##### Graphics
+<div style="display: flex; justify-content: space-around;">
+  <img src="./sodio/sodio1_g.png" width="400">
+  <img src="./sodio/sodio2_g.png" width="400">
+  <img src="./sodio/sodio3_g.png" width="400">
+</div>
+
+##### boxplots
+<div style="display: flex; justify-content: space-around;">  
+  <img src="./sodio/sodio1_b.png" width="400">
+  <img src="./sodio/sodio2_b.png" width="400">
+  <img src="./sodio/sodio3_b.png" width="400">
+</div>
