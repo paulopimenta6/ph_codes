@@ -1,0 +1,15 @@
+<metacharset="UTF-8">
+<script>
+function mostra(frase) {
+    document.write(frase + "<br>");
+};
+
+var multiplicando=prompt("Informe o multiplicando: ");
+multiplicando=parseInt(multiplicando);
+
+var multiplicador = 1;
+while(multiplicador <= 10) {
+    mostra(multiplicando + " X " + multiplicador + " = " + multiplicando*multiplicador);
+	multiplicador = multiplicador + 1;
+}
+</script>

@@ -1,0 +1,7 @@
+para acessar o chat e preciso:
+[1] rodar o comando npm init e apos a configuracao colocar em type commonjs
+[2] rodar o comando node chat-server_2.js
+[3] para entrar no chat usar o comando: telnet 127.0.0.1 8000 
+[3.1] telnet e o programa responsavel
+[3.2] 127.0.0.1 e o ip do localhost
+[3.3] 8000 e a porta usada pelo server chat 
