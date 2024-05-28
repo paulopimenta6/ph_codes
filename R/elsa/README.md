@@ -10,8 +10,6 @@
 - [About](#About)
 - [Environment](#Environment)
 - [How to use](#How-to-use)
-- [Requirements](#Requirements)
-- [Local files](#local-files)
 - [Statistics](#Statistics)
 
 ### About 
@@ -157,11 +155,5 @@ The directories are organised like:
 rstudio <file>.Rproj &
 ``` 
 
-### Requirements
-=================
-
-### Local files
-=================
-
 ### Statistics
-=================
+
