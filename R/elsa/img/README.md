@@ -24,7 +24,7 @@ It is hoped that these results can help in the perception of patterns and indice
 #### Sample age
 
 <div style="display: flex; justify-content: space-around;">
-  <img src="./idade_elsa/idade_onda_1.png" width="200">
-  <img src="./idade_elsa/idade_onda_2.png" width="200">
-  <img src="./idade_elsa/idade_onda_3.png" width="200">
+  <img src="./idade_elsa/idade_onda_1.png" width="300">
+  <img src="./idade_elsa/idade_onda_2.png" width="300">
+  <img src="./idade_elsa/idade_onda_3.png" width="300">
 </div>
