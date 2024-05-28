@@ -139,7 +139,9 @@ $ sudo apt upgrade #optional
 
 ## First contact
 
-All the scripts of the statistical analysis are inside the directory _src_
+The directories are organised like: 
+
+ - **_src_**
 
 ### Requirements
 =================
