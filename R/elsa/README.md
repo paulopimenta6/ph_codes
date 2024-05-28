@@ -141,7 +141,21 @@ $ sudo apt upgrade #optional
 
 The directories are organised like: 
 
- - **_src_**
+ - **_src_**: All sources of statistical analysis
+ - **_img_**: All images created from statistical analysis
+ - **_prot_**: prototypes of statistical analysis 
+ - **_articles_**: articles what project is based to 
+ - **_environment_**: first scripts to install libraries (deprecated)
+ - **_dados_coordenadas_**: geospatial data
+ 
+ And also there is a **Rproj** file, a file of a project of R. There are two ways to run the project:
+ 
+ 1. Windows users just click on _File_ > _Open Project..._ and select the .Rproj file
+ 2. Linux users coud do the same as windows users but also is possible to run the command:
+ 
+```bash
+rstudio <file>.Rproj &
+``` 
 
 ### Requirements
 =================
