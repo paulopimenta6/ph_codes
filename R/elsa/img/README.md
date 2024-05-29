@@ -229,3 +229,18 @@ It is hoped that these results can help in the perception of patterns and indice
   <img src="./presencaHipertensaoArterialSistemica/presencHipertSist2_b.png" width="400">
   <img src="./presencaHipertensaoArterialSistemica/presencHipertSist3_b.png" width="400">
 </div>
+
+### BMI in 6 categories
+##### Graphics
+<div style="display: flex; justify-content: space-around;">
+  <img src="./imc6/imc1_g.png" width="400">
+  <img src="./imc6/imc2_g.png" width="400">
+  <img src="./imc6/imc3_g.png" width="400">
+</div>
+
+##### Boxplots
+<div style="display: flex; justify-content: space-around;">
+  <img src="./imc6/imc1_b.png" width="400">
+  <img src="./imc6/imc2_b.png" width="400">
+  <img src="./imc6/imc3_b.png" width="400">
+</div>
