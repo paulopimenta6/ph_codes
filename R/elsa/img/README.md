@@ -717,7 +717,221 @@ In the analysis of non-parametric methods, the analyses were considered in group
 - **Result:** The medians of `Hba` increase slightly from one wave to another, suggesting a trend of increasing levels of glycated hemoglobin over the waves.
 
 <p align="center">
-  <img src="./estat_nao_param/hba/Hba_friendman.png" alt="Ubuntu" width="400">
+  <img src="./estat_nao_param/hba/Hba_friendman.png" width="500">
+</p>
+
+### Statistical Analysis of Systolic Blood Pressure (`PAS`) Data
+
+#### Anderson-Darling Normality Test
+
+| Wave  | Statistic | p-value       |
+|-------|-----------|---------------|
+| onda1 | 34.127    | < 2.2e-16     |
+| onda2 | 24.385    | < 2.2e-16     |
+| onda3 | 18.733    | < 2.2e-16     |
+
+- **Result:** All p-values are less than 2.2e-16, indicating that the data does not follow a normal distribution in each wave.
+
+#### Friedman Test
+
+- **Test Statistic:** 385.02
+- **Degrees of Freedom:** 2
+- **p-value:** < 2.2e-16
+
+- **Result:** The p-value is less than 2.2e-16, indicating significant differences in the medians of `PAS` between the different waves.
+
+#### Multiple Comparison (Post-hoc) Test
+
+| Comparison    | Statistic | p-value       | Adjusted p-value | Significance |
+|---------------|-----------|---------------|------------------|--------------|
+| onda1 vs. onda2 | 5078835 | 3.81e-28 | 1.14e-27 | ****         |
+| onda1 vs. onda3 | 4225134 | 3.33e-87 | 9.99e-87 | ****         |
+| onda2 vs. onda3 | 4918469 | 4.47e-36 | 1.34e-35 | ****         |
+
+- **Result:** All p-values are less than 0.05, indicating significant differences between the medians of `PAS` in all wave combinations.
+
+#### Descriptive Analysis
+
+| Wave  | N    | Median | IQR |
+|-------|------|--------|-----|
+| onda1 | 5061 | 118    | 21  |
+| onda2 | 5061 | 120    | 21.5|
+| onda3 | 5061 | 122    | 21  |
+
+- **Result:** The medians of `PAS` increase slightly from one wave to another, suggesting a trend of increasing systolic blood pressure over the waves.
+
+<p align="center">
+  <img src="./estat_nao_param/pas/PAS_friendman.png" width="500">
+</p>
+
+### Statistical Analysis of Diastolic Blood Pressure (`PAD`) Data
+
+#### Anderson-Darling Normality Test
+
+| Wave  | Statistic | p-value       |
+|-------|-----------|---------------|
+| onda1 | 15.413    | < 2.2e-16     |
+| onda2 | 9.9703    | < 2.2e-16     |
+| onda3 | 8.5363    | < 2.2e-16     |
+
+- **Result:** All p-values are less than 2.2e-16, indicating that the data does not follow a normal distribution in each wave.
+
+#### Friedman Test
+
+- **Test Statistic:** 288.34
+- **Degrees of Freedom:** 2
+- **p-value:** < 2.2e-16
+
+- **Result:** The p-value is less than 2.2e-16, indicating significant differences in the medians of `PAD` between the different waves.
+
+#### Multiple Comparison (Post-hoc) Test
+
+| Comparison    | Statistic | p-value       | Adjusted p-value | Significance |
+|---------------|-----------|---------------|------------------|--------------|
+| onda1 vs. onda2 | 5114861 | 7.14e-22 | 2.14e-21 | ****         |
+| onda1 vs. onda3 | 4604874 | 1.03e-54 | 3.09e-54 | ****         |
+| onda2 vs. onda3 | 5183216 | 1.42e-18 | 4.26e-18 | ****         |
+
+- **Result:** All p-values are less than 0.05, indicating significant differences between the medians of `PAD` in all wave combinations.
+
+#### Descriptive Analysis
+
+| Wave  | N    | Median | IQR  |
+|-------|------|--------|------|
+| onda1 | 5061 | 74.5   | 14.5 |
+| onda2 | 5061 | 75.5   | 13.5 |
+| onda3 | 5061 | 76.5   | 13.5 |
+
+- **Result:** The medians of `PAD` increase slightly from one wave to another, suggesting a trend of increasing diastolic blood pressure over the waves.
+
+<p align="center">
+  <img src="./estat_nao_param/pad/PAD_friendman.png" width="500">
+</p>
+
+### Traceable creatinine in blood
+
+## Normality Tests
+
+| Wave  | Anderson-Darling Statistic | p-value       |
+|-------|-----------------------------|---------------|
+| 1     | 112.84                      | < 2.2e-16     |
+| 2     | 113.54                      | < 2.2e-16     |
+| 3     | 40.536                      | < 2.2e-16     |
+
+## Group Analysis
+
+### Outlier Identification
+
+| Wave  | Number of Outliers |
+|-------|--------------------|
+| 1     | 1                  |
+| 2     | 0                  |
+| 3     | 0                  |
+
+### Normality Tests
+
+| Wave  | Anderson-Darling Statistic | p-value       | Kolmogorov-Smirnov p-value |
+|-------|-----------------------------|---------------|-----------------------------|
+| 1     | 113.                       | 3.7e-24       | 0                           |
+| 2     | 114.                       | 3.7e-24       | 0                           |
+| 3     | 40.5                       | 3.7e-24       | 7.99e-15                    |
+
+## Friedman Test
+
+The Friedman test was conducted, resulting in a chi-squared value of 1867.7 with 2 degrees of freedom and a p-value < 2.2e-16.
+
+## Post-hoc Tests
+
+| Test               | Comparison         | p-value  | Adjusted p-value |
+|--------------------|--------------------|----------|------------------|
+| Wilcoxon           | Wave 1 vs. Wave 2  | 2.11e-15 | 6.33e-15         |
+| Wilcoxon           | Wave 1 vs. Wave 3  | 8.18e-294| 2.45e-293        |
+| Wilcoxon           | Wave 2 vs. Wave 3  | 0        | 0                |
+| Dunn-Bonferroni    | Wave 1 vs. Wave 2  | 3e-10    | -                |
+| Dunn-Bonferroni    | Wave 1 vs. Wave 3  | <2e-16   | -                |
+| Dunn-Bonferroni    | Wave 2 vs. Wave 3  | <2e-16   | -                |
+| Nemenyi            | Wave 1 vs. Wave 2  | 3e-10    | -                |
+| Nemenyi            | Wave 1 vs. Wave 3  | <2e-16   | -                |
+| Nemenyi            | Wave 2 vs. Wave 3  | <2e-16   | -                |
+| Conover            | Wave 1 vs. Wave 2  | 2.6e-12  | -                |
+| Conover            | Wave 1 vs. Wave 3  | <2e-16   | -                |
+| Conover            | Wave 2 vs. Wave 3  | <2e-16   | -                |
+
+## Descriptive Statistics
+
+| Wave  | Median | IQR  |
+|-------|--------|------|
+| 1     | 81.4   | 69.6 |
+| 2     | 76.9   | 61.9 |
+| 3     | 128.0  | 84.2 |
+
+**Conclusion:**
+
+Based on the analysis of creatinine levels across different waves:
+
+1. **Normality:** The Anderson-Darling tests indicated that the creatinine levels in each wave did not follow a normal distribution (p < 0.05).
+
+2. **Outliers:** Outliers were identified in the first wave.
+
+3. **Group Analysis:** The Kolmogorov-Smirnov tests showed significant differences in the creatinine levels between waves.
+
+4. **Friedman Test:** The Friedman test indicated significant differences in creatinine levels between waves (p < 0.05).
+
+5. **Post-hoc Tests:** The post-hoc tests (Wilcoxon, Dunn-Bonferroni, Nemenyi, Conover) confirmed significant differences in creatinine levels between all pairs of waves (adjusted p < 0.05).
+
+6. **Descriptive Statistics:** Median creatinine levels differed between waves, with the highest median in wave 3.
+
+- **Result:** The medians of creatinine in blood varied between the waves, being higher in wave3 and lower in wave2. In summary, the results indicate that there are statistically significant differences in the medians of creatinine in blood between the three waves, and that the samples do not follow a normal distribution.There are significant differences in creatinine levels between the waves, indicating a potential impact of the experimental conditions or time points on creatinine levels.
+
+<p align="center">
+  <img src="./estat_nao_param/creatinina_rastreavel_sangue/creatRastSangue_friendman.png" width="500">
+</p>
+
+### Traceable creatinine in Urine
+
+## Summary
+This analysis examines the normality of creatinine levels in urine across three waves of data. The Anderson-Darling test indicates that all waves' creatinine levels are not normally distributed (p < 2.2e-16). Further, the Friedman test suggests a significant difference in creatinine levels across waves (p < 2.2e-16). Post-hoc tests reveal significant differences between all pairs of waves (p < 0.001). Descriptive statistics show varying median creatinine levels across waves.
+
+## Normality Tests (Anderson-Darling)
+
+| Wave  | Statistic A | p-value  |
+|-------|-------------|----------|
+| Wave 1| 112.84      | < 2.2e-16|
+| Wave 2| 113.54      | < 2.2e-16|
+| Wave 3| 40.536      | < 2.2e-16|
+
+## Normality Tests Grouped by Wave
+
+| Wave  | Statistic | p-value |
+|-------|-----------|---------|
+| Wave 1| 113.      | 3.7e-24 |
+| Wave 2| 114.      | 3.7e-24 |
+| Wave 3| 40.5      | 3.7e-24 |
+
+## Post-Hoc Tests (Wilcoxon with Bonferroni Correction)
+
+| Comparison      | p-adjusted |
+|-----------------|------------|
+| Wave 1 vs. Wave 2| 6.33e-15  |
+| Wave 1 vs. Wave 3| 2.45e-293 |
+| Wave 2 vs. Wave 3| 0         |
+
+## Friedman Test
+
+- Chi-squared = 1867.7, df = 2, p-value < 2.2e-16
+
+## Descriptive Analysis (Median and IQR)
+
+| Wave  | n   | Median | IQR  |
+|-------|-----|--------|------|
+| Wave 1| 5061| 81.4   | 69.6 |
+| Wave 2| 5061| 76.9   | 61.9 |
+| Wave 3| 5061| 128.0  | 84.2 |
+
+**- Result:** This analysis examines the normality of creatinine levels in urine across three waves of data. The Anderson-Darling test indicates that all waves' creatinine levels are not normally distributed (p < 2.2e-16). Further, the Friedman test suggests a significant difference in creatinine levels across waves (p < 2.2e-16). Post-hoc tests reveal significant differences between all pairs of waves (p < 0.001). Descriptive statistics show varying median creatinine levels across waves. The creatinine levels in urine differ significantly across the three waves. None of the waves exhibit a normal distribution of creatinine levels. Post-hoc tests indicate significant differences between all pairs of waves. These findings suggest that there are systematic differences in creatinine levels across the three waves, which could be of interest for further investigation in the context of the study. 
+
+<p align="center">
+  <img src="./estat_nao_param/creatinina_rastreavel_urina/creatRastUrina_friendman.png" width="500">
 </p>
 
 ### Time series analysis

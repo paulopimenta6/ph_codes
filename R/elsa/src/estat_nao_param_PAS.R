@@ -47,7 +47,7 @@ dadoslPAS_interpol$ID <- factor(dadoslPAS_interpol$ID)
 
 ################################################################################
 ###Identificando outliers na totalidade
-dadoslPAS_interpol %>% group_by(Onda) %>% identify_outliers(PAD) 
+dadoslPAS_interpol %>% group_by(Onda) %>% identify_outliers(PAS) 
 ###Identificando normalidade na totalidade agrupada pela Onda
 
 # Aplicar o teste de Anderson-Darling por grupo
