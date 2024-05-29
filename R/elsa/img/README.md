@@ -37,6 +37,21 @@ It is hoped that these results can help in the perception of patterns and indice
   <img src="./habitoFumar/tabag3.png" width="400">
 </div>
 
+### habit of consuming alcoholic beverages
+##### Graphics
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoAlcool/alcool1_g.png" width="400">
+  <img src="./fazUsoAlcool/alcool2_g.png" width="400">
+  <img src="./fazUsoAlcool/alcool3_g.png" width="400">
+</div>
+
+##### boxplots
+<div style="display: flex; justify-content: space-around;">  
+  <img src="./fazUsoAlcool/alcool1_b.png" width="400">
+  <img src="./fazUsoAlcool/alcool2_b.png" width="400">
+  <img src="./fazUsoAlcool/alcool3_b.png" width="400">
+</div>
+
 ### Systolic blood pressure
 ##### Graphics
 <div style="display: flex; justify-content: space-around;">
