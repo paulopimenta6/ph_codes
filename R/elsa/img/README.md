@@ -8,8 +8,8 @@
 ## Summary
 
 - [About](#About)
-- [Descriptive statistics - Part 1](#Descriptive-Statistics-Part-1)
-- [Descriptive statistics - Part 2](#Descriptive-Statistics-Part-2)
+- [Descriptive Statistics - Part 1](#Descriptive-Statistics-Part-1)
+- [Descriptive Statistics - Part 2](#Descriptive-Statistics-Part-2)
 - [Analysis](#analysis)
 
 ## About
