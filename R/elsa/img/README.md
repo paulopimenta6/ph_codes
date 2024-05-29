@@ -20,7 +20,7 @@ This section is dedicated to statistical analyses divided into two parts: Descri
 
 It is hoped that these results can help in the perception of patterns and indices that relate pollution to kidney diseases.
 
-## Descriptive statistics - Part 1
+## Descriptive Statistics - Part 1
 
 ### Sample age
 
@@ -275,7 +275,7 @@ It is hoped that these results can help in the perception of patterns and indice
   <img src="./infartoMiocardio/infartoMioc3_b.png" width="400">
 </div>
 
-## Descriptive statistics - Part 2
+## Descriptive Statistics - Part 2
 ### Uses antihypertensive medication
 ##### Graphics
 <div style="display: flex; justify-content: space-around;">
