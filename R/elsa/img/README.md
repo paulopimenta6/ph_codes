@@ -199,4 +199,3 @@ It is hoped that these results can help in the perception of patterns and indice
   <img src="./colesterol/colLDL2_g.png" width="400">
   <img src="./colesterol/colLDL3_g.png" width="400">
 </div>
-
