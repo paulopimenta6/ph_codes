@@ -381,3 +381,77 @@ It is hoped that these results can help in the perception of patterns and indice
   <img src="./fazUsoCetoprufeno/cetoprufeno3_b.png" width="400">
 </div>
 
+### Takes diclofenac continuously
+##### Graphics
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoDiclofenaco/diclofenaco1_g.png" width="400">
+  <img src="./fazUsoDiclofenaco/diclofenaco2_g.png" width="400">
+  <img src="./fazUsoDiclofenaco/diclofenaco3_g.png" width="400">
+</div>
+
+##### Boxplots
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoDiclofenaco/diclofenaco1_b.png" width="400">
+  <img src="./fazUsoDiclofenaco/diclofenaco2_b.png" width="400">
+  <img src="./fazUsoDiclofenaco/diclofenaco3_b.png" width="400">
+</div>
+
+### Takes enalapril continuously
+##### Graphics
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoEnalapril/enalapril1_g.png" width="400">
+  <img src="./fazUsoEnalapril/enalapril2_g.png" width="400">
+  <img src="./fazUsoEnalapril/enalapril3_g.png" width="400">
+</div>
+
+##### Boxplots
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoEnalapril/enalapril1_b.png" width="400">
+  <img src="./fazUsoEnalapril/enalapril2_b.png" width="400">
+  <img src="./fazUsoEnalapril/enalapril3_b.png" width="400">
+</div>
+
+### Takes glibenclamide continuously
+##### Graphics
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoGlibenclamida/glibenclamida1_g.png" width="400">
+  <img src="./fazUsoGlibenclamida/glibenclamida2_g.png" width="400">
+  <img src="./fazUsoGlibenclamida/glibenclamida3_g.png" width="400">
+</div>
+
+##### Boxplots
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoGlibenclamida/glibenclamida1_b.png" width="400">
+  <img src="./fazUsoGlibenclamida/glibenclamida2_b.png" width="400">
+  <img src="./fazUsoGlibenclamida/glibenclamida3_b.png" width="400">
+</div>
+
+### Takes gliclazide continuously
+##### Graphics
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoGlicazida/glicazida1_g.png" width="400">
+  <img src="./fazUsoGlicazida/glicazida2_g.png" width="400">
+  <img src="./fazUsoGlicazida/glicazida3_g.png" width="400">
+</div>
+
+##### Boxplots
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoGlicazida/glicazida1_b.png" width="400">
+  <img src="./fazUsoGlicazida/glicazida2_b.png" width="400">
+  <img src="./fazUsoGlicazida/glicazida3_b.png" width="400">
+</div>
+
+### Takes glimepiride continuously
+##### Graphics
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoGlimepirida/glimepirida1_g.png" width="400">
+  <img src="./fazUsoGlimepirida/glimepirida2_g.png" width="400">
+  <img src="./fazUsoGlimepirida/glimepirida3_g.png" width="400">
+</div>
+
+##### Boxplots
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoGlimepirida/glimepirida1_b.png" width="400">
+  <img src="./fazUsoGlimepirida/glimepirida2_b.png" width="400">
+  <img src="./fazUsoGlimepirida/glimepirida3_b.png" width="400">
+</div>
