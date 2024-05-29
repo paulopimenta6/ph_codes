@@ -668,6 +668,8 @@ It is hoped that these results can help in the perception of patterns and indice
 
 ## Analysis
 
+# Analysis based on Friedman test
+
 ### Non-parametric statistical analysis
 
 Statistical analysis was performed using the non-parametric Friedman and Wilcoxon tests. These tests were chosen due to the lack of normal distribution in the data. Non-parametric tests are suitable for ordinal or non-normally distributed interval data. The Friedman test is used for comparing more than two groups, while the Wilcoxon test is used for paired samples to assess differences in their median values.
@@ -933,6 +935,281 @@ This analysis examines the normality of creatinine levels in urine across three 
 <p align="center">
   <img src="./estat_nao_param/creatinina_rastreavel_urina/creatRastUrina_friendman.png" width="500">
 </p>
+
+### Statistical Analysis of Total Cholesterol
+
+## 1. Anderson-Darling Normality Test
+
+### Results
+| Wave | Statistic (A) | p-value        |
+|------|----------------|----------------|
+| Wave 1 | 18.318        | < 2.2e-16      |
+| Wave 2 | 13.038        | < 2.2e-16      |
+| Wave 3 | 7.832         | < 2.2e-16      |
+
+## 2. Kolmogorov-Smirnov Test
+
+### Results
+| Wave  | Statistic (D) | p-value        |
+|-------|----------------|----------------|
+| Wave 1 | 0.0427        | 0.0000000188   |
+| Wave 2 | 0.0416        | 0.0000000509   |
+| Wave 3 | 0.0346        | 0.0000108      |
+
+## 3. Friedman Test
+
+### Results
+| Statistic (χ²) | Degrees of Freedom | p-value        |
+|----------------|---------------------|----------------|
+| 40.991         | 2                   | 1.256e-09      |
+
+## 4. Post-Hoc Tests
+
+### Wilcoxon with Bonferroni Correction
+| Comparison       | n1   | n2   | Statistic  | p-value       | Adjusted p-value | Significance |
+|------------------|------|------|------------|---------------|------------------|--------------|
+| Wave 1 vs Wave 2 | 5061 | 5061 | 6674459    | 0.00000312    | 0.00000936       | ****         |
+| Wave 1 vs Wave 3 | 5061 | 5061 | 6222952    | 0.909         | 1                | ns           |
+| Wave 2 vs Wave 3 | 5061 | 5061 | 5623080    | 0.00000000612 | 0.0000000184     | ****         |
+
+### Dunn-Bonferroni
+| Comparison       | p-value   |
+|------------------|-----------|
+| Wave 1 vs Wave 2 | 0.06251   |
+| Wave 1 vs Wave 3 | 0.00021   |
+| Wave 2 vs Wave 3 | 9.4e-10   |
+
+### Nemenyi-Wilcoxon-Wilcox with Bonferroni Adjustment
+| Comparison       | p-value   |
+|------------------|-----------|
+| Wave 1 vs Wave 2 | 0.0543    |
+| Wave 1 vs Wave 3 | 0.0002    |
+| Wave 2 vs Wave 3 | 9.4e-10   |
+
+### Conover with Bonferroni Adjustment
+| Comparison       | p-value   |
+|------------------|-----------|
+| Wave 1 vs Wave 2 | 0.05964   |
+| Wave 1 vs Wave 3 | 0.00018   |
+| Wave 2 vs Wave 3 | 7.1e-10   |
+
+## 5. Descriptive Statistics
+
+| Wave  | n    | Median | IQR  |
+|-------|------|--------|------|
+| Wave 1 | 5061 | 196    | 50   |
+| Wave 2 | 5061 | 193    | 48   |
+| Wave 3 | 5061 | 195    | 47   |
+
+**-Result:** The analysis indicates that total cholesterol levels exhibit significant variations across the three waves, as evidenced by the Friedman test and supported by the post-hoc comparisons. The data does not follow a normal distribution, suggesting that non-parametric tests are appropriate for this analysis. Outliers are present in the dataset, which could impact the overall trends and should be considered in any further analyses or interpretations.
+
+<p align="center">
+  <img src="./estat_nao_param/colesterol/colesterolTotal_friendman.png" width="500">
+</p>
+
+### Statistical Analysis of LDL Cholesterol
+
+## Normality Tests
+
+### Anderson-Darling Normality Test
+
+| Wave  | Statistic | p-value |
+|-------|-----------|---------|
+| Wave 1| 12.962    | < 2.2e-16|
+| Wave 2|  7.4175   | < 2.2e-16|
+| Wave 3|  6.465    | 7.378e-16|
+
+### Kolmogorov-Smirnov Test
+
+| Wave  | Statistic | p-value |
+|-------|-----------|---------|
+| Wave 1| 0.0406    | 0.000000115|
+| Wave 2| 0.0310    | 0.000116|
+| Wave 3| 0.0324    | 0.0000493|
+
+## Friedman Test
+
+| Statistic      | df | p-value |
+|----------------|----|---------|
+| Friedman chi-squared | 2.9959| 2  | 0.2236  |
+
+## Post-Hoc Tests
+
+### Wilcoxon with Bonferroni Correction
+
+| .y.           | group1 | group2 | n1   | n2   | statistic | p     | p.adj | p.adj.signif |
+|---------------|--------|--------|------|------|-----------|-------|-------|--------------|
+| colesterolLDL | wave 1 | wave 2 | 5061 | 5061 | 6340784   | 0.162 | 0.486 | ns           |
+| colesterolLDL | wave 1 | wave 3 | 5061 | 5061 | 6464864   | 0.011 | 0.033 | *            |
+| colesterolLDL | wave 2 | wave 3 | 5061 | 5061 | 6328222   | 0.367 | 1     | ns           |
+
+### Dunn-Bonferroni
+
+| Comparison | p-value |
+|------------|---------|
+| wave 1 vs wave 2 | 0.27 |
+| wave 1 vs wave 3 | 0.78 |
+| wave 2 vs wave 3 | 1.00 |
+
+### Nemenyi-Wilcoxon-Wilcox
+
+| Comparison | p-value |
+|------------|---------|
+| wave 1 vs wave 2 | 0.21 |
+| wave 1 vs wave 3 | 0.50 |
+| wave 2 vs wave 3 | 0.84 |
+
+### Conover
+
+| Comparison | p-value |
+|------------|---------|
+| wave 1 vs wave 2 | 0.27 |
+| wave 1 vs wave 3 | 0.77 |
+| wave 2 vs wave 3 | 1.00 |
+
+## Descriptive Analysis
+
+| Wave  | Variable      | n    | Median | IQR  |
+|-------|---------------|------|--------|------|
+| Wave 1| cholesterolLDL | 5061 | 116    | 43   |
+| Wave 2| cholesterolLDL | 5061 | 114    | 41   |
+| Wave 3| cholesterolLDL | 5061 | 114    | 43   |
+
+**-Result:** The normality tests (Anderson-Darling and Kolmogorov-Smirnov) indicate that LDL cholesterol data do not follow a normal distribution for any of the waves. The Friedman test did not show statistically significant differences in LDL cholesterol levels between the waves. However, post-hoc tests (Wilcoxon with Bonferroni correction) indicated a significant difference between waves 1 and 3.
+
+Descriptive analysis revealed small variations in the median and interquartile range of LDL cholesterol levels between the waves. The identification of outliers suggests the presence of significantly higher or lower LDL cholesterol values in some individuals.
+
+The histograms provide a clear visualization of the distribution of LDL cholesterol levels in each wave, highlighting the median with a red line.
+
+This analysis provides a comprehensive view of LDL cholesterol data, helping to identify patterns and significant differences over time.
+
+<p align="center">
+  <img src="./estat_nao_param/colesterol/colesterolLDL_friendman.png" width="500">
+</p>
+
+### Statistical Analysis of HDL Cholesterol
+
+## Normality Tests
+
+### Anderson-Darling Normality Test
+
+| Wave  | Statistic | p-value |
+|-------|-----------|---------|
+| Wave 1| 59.351    | < 2.2e-16|
+| Wave 2| 54.81     | < 2.2e-16|
+| Wave 3| 45.891    | < 2.2e-16|
+
+## Friedman Test
+
+| Statistic      | df | p-value |
+|----------------|----|---------|
+| Friedman chi-squared | 47.694 | 2 | 4.399e-11 |
+
+## Post-Hoc Tests
+
+### Wilcoxon with Bonferroni Correction
+
+| .y.           | group1 | group2 | n1   | n2   | statistic | p     | p.adj | p.adj.signif |
+|---------------|--------|--------|------|------|-----------|-------|-------|--------------|
+| cholesterolHDL | wave 1 | wave 2 | 5061 | 5061 | 5249216   | 1.10e-5 | 3.30e-5 | ****           |
+| cholesterolHDL | wave 1 | wave 3 | 5061 | 5061 | 5081482   | 1.14e-15 | 3.42e-15 | ****           |
+| cholesterolHDL | wave 2 | wave 3 | 5061 | 5061 | 5181108   | 2.72e-8 | 8.16e-8 | ****           |
+
+### Dunn-Bonferroni
+
+| Comparison | p-value |
+|------------|---------|
+| wave 1 vs wave 2 | 0.0023 |
+| wave 1 vs wave 3 | 4.399e-11 |
+| wave 2 vs wave 3 | 0.0020 |
+
+### Nemenyi-Wilcoxon-Wilcox
+
+| Comparison | p-value |
+|------------|---------|
+| wave 1 vs wave 2 | 0.0023 |
+| wave 1 vs wave 3 | 4.399e-11 |
+| wave 2 vs wave 3 | 0.0019 |
+
+### Conover
+
+| Comparison | p-value |
+|------------|---------|
+| wave 1 vs wave 2 | 0.0018 |
+| wave 1 vs wave 3 | 4.399e-11 |
+| wave 2 vs wave 3 | 0.0015 |
+
+## Descriptive Analysis
+
+| Wave  | Variable       | n    | Median | IQR  |
+|-------|----------------|------|--------|------|
+| Wave 1| cholesterolHDL | 5061 | 51     | 16   |
+| Wave 2| cholesterolHDL | 5061 | 51     | 17   |
+| Wave 3| cholesterolHDL | 5061 | 52     | 20   |
+
+**-Result:** The analysis of HDL cholesterol levels across three waves reveals several important findings. Firstly, the Anderson-Darling normality tests indicate that the HDL cholesterol levels in each wave are not normally distributed, suggesting potential deviations from a normal distribution in the underlying data.
+
+Secondly, the Friedman test demonstrates a significant difference in HDL cholesterol levels among the three waves (p < 0.001), indicating that the HDL cholesterol levels vary across the waves.
+
+Thirdly, the post-hoc tests, including the Wilcoxon test with Bonferroni correction, the Dunn-Bonferroni test, the Nemenyi-Wilcoxon-Wilcox test, and the Conover test, all confirm significant differences between all pairs of waves (p < 0.05). This suggests that the differences in HDL cholesterol levels are not due to random variation but likely reflect true differences between the waves.
+
+Finally, the descriptive analysis shows that while the median HDL cholesterol levels vary slightly between the waves, with wave 3 having the highest median and the largest interquartile range (IQR), indicating greater variability in HDL cholesterol levels.
+
+In conclusion, the results indicate that there are significant differences in HDL cholesterol levels among the three waves. These findings could have implications for understanding the factors influencing HDL cholesterol levels and could guide further research into the potential impact on health outcomes.
+
+<p align="center">
+  <img src="./estat_nao_param/colesterol/colesterolHDL_friendman.png" width="500">
+</p>
+
+# Analysis based on paired Wilcoxon
+
+### Statistical Analyses for Albumin-to-Creatinine Ratio
+
+### Normality Tests (Anderson-Darling)
+
+| Variable                | Test Statistic | p-value    | Normality    |
+|-------------------------|----------------|------------|--------------|
+| onda1                   | 1711.2         | < 2.2e-16  | Not Normal   |
+| onda2                   | 1789.2         | < 2.2e-16  | Not Normal   |
+
+### Wilcoxon Signed Rank Test
+
+| Variable                | V Value   | p-value    | Conclusion               |
+|-------------------------|-----------|------------|--------------------------|
+| onda1 vs onda2          | 4654531   | < 2.2e-16  | Significant difference   |
+
+### Summary Statistics (Median and IQR)
+
+| Variable  | n    | Median | IQR  |
+|-----------|------|--------|------|
+| onda1     | 5061 | 6.6    | 3.57 |
+| onda2     | 5061 | 7.2    | 3.91 |
+| dif       | 5061 | -0.5   | 2.57 |
+
+**-Result: The albumin-to-creatinine ratio (ACR) was analyzed across two waves of data. Both waves showed a significant deviation from normality based on Anderson-Darling tests (onda1: A = 1711.2, p < 2.2e-16; onda2: A = 1789.2, p < 2.2e-16). A Wilcoxon signed-rank test indicated a significant difference between the two waves (V = 4654531, p < 2.2e-16). Median ACR values were 6.6 (IQR = 3.57) for onda1 and 7.2 (IQR = 3.91) for onda2, with a median difference of -0.5 (IQR = 2.57). These results suggest a significant difference in ACR between the two waves, despite both waves showing a non-normal distribution of ACR values.**
+
+### Statistical Analyses for Microalbuminuria
+
+### Normality Tests
+| Onda  | Test Statistic | p-value   | Normality |
+|-------|-----------------|-----------|-----------|
+| Onda1 | 1595.9          | < 2.2e-16 | Not Normal|
+| Onda2 | 1776.8          | < 2.2e-16 | Not Normal|
+
+### Wilcoxon Signed-Rank Test
+| Comparison | Test Statistic | p-value | Difference |
+|------------|-----------------|---------|------------|
+| Onda1 vs Onda2 | 6022708      | 0.000962| Significant|
+
+### Descriptive Statistics
+| Variable  | Median | IQR  |
+|-----------|--------|------|
+| Onda1     | 0.524  | 0.526|
+| Onda2     | 0.54   | 0.529|
+| Difference| -0.014 | 0.412|
+
+**-Result:** These results suggest a significant difference in microalbuminuria levels between Onda1 and Onda2, despite both waves showing a non-normal distribution of microalbuminuria values.
+
 
 ### Time series analysis
 
