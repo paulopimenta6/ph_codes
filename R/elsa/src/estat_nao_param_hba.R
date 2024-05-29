@@ -47,7 +47,7 @@ dadoslHba_interpol$ID <- factor(dadoslHba_interpol$ID)
 
 ################################################################################
 ###Identificando outliers na totalidade
-dadoslHba_interpol %>% group_by(Onda) %>% identify_outliers(PAD) 
+dadoslHba_interpol %>% group_by(Onda) %>% identify_outliers(Hba) 
 ###Identificando normalidade na totalidade agrupada pela Onda
 
 # Aplicar o teste de Anderson-Darling por grupo

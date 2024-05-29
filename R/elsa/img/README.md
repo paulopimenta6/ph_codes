@@ -676,6 +676,50 @@ In the descriptive analyses, parts 1 and 2, only non-null values were considered
 
 In the analysis of non-parametric methods, the analyses were considered in groups (Friedman method) or pairs (Wilcoxon) of waves with the medical variables and their consequent differences between the waves, that is, the medians. It is worth noting that normality was not found, neither in the separate waves nor in the three waves together.
 
+### Statistical Analysis of Glycated Hemoglobin (`Hba`) Data
+
+#### Anderson-Darling Normality Test
+
+| Wave  | Statistic | p-value       |
+|-------|-----------|---------------|
+| wave1 | 287.79    | < 2.2e-16     |
+| wave2 | 388.14    | < 2.2e-16     |
+| wave3 | 394.98    | < 2.2e-16     |
+
+- **Result:** All p-values are less than 2.2e-16, indicating that the data does not follow a normal distribution in each wave.
+
+#### Friedman Test
+
+- **Test Statistic:** 3264.5
+- **Degrees of Freedom:** 2
+- **p-value:** < 2.2e-16
+
+- **Result:** The p-value is less than 2.2e-16, indicating significant differences in the medians of `Hba` between the different waves.
+
+#### Multiple Comparison (Post-hoc) Test
+
+| Comparison    | Statistic | p-value       | Adjusted p-value | Significance |
+|---------------|-----------|---------------|------------------|--------------|
+| wave1 vs. wave2 | 3029634 | 1.68e-136 | 5.04e-136 | ****         |
+| wave1 vs. wave3 | 1123136 | 0         | 0         | ****         |
+| wave2 vs. wave3 | 2053442 | 8.29e-298 | 2.49e-297 | ****         |
+
+- **Result:** All p-values are less than 0.05, indicating significant differences between the medians of `Hba` in all wave combinations.
+
+#### Descriptive Analysis
+
+| Wave  | N    | Median | IQR |
+|-------|------|--------|-----|
+| wave1 | 5061 | 5.2    | 0.7 |
+| wave2 | 5061 | 5.4    | 0.6 |
+| wave3 | 5061 | 5.6    | 0.7 |
+
+- **Result:** The medians of `Hba` increase slightly from one wave to another, suggesting a trend of increasing levels of glycated hemoglobin over the waves.
+
+<p align="center">
+  <img src="./estat_nao_param/hba/Hba_friendman.png" alt="Ubuntu" width="400">
+</p>
+
 ### Time series analysis
 
 Time series analysis involves the study of datasets that are ordered sequentially over time. The primary goal is to understand the underlying structure and function that produced the observations, and to forecast future values. In this project, time series analysis was used to study trends and patterns in the data related to pollution and kidney disease variables over time.
