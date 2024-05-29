@@ -37,7 +37,7 @@ It is hoped that these results can help in the perception of patterns and indice
   <img src="./habitoFumar/tabag3.png" width="400">
 </div>
 
-### habit of consuming alcoholic beverages
+### Habit of consuming alcoholic beverages
 ##### Graphics
 <div style="display: flex; justify-content: space-around;">
   <img src="./fazUsoAlcool/alcool1_g.png" width="400">
@@ -213,4 +213,20 @@ It is hoped that these results can help in the perception of patterns and indice
   <img src="./colesterol/colLDL1_g.png" width="400">
   <img src="./colesterol/colLDL2_g.png" width="400">
   <img src="./colesterol/colLDL3_g.png" width="400">
+</div>
+
+### Presence of Systemic Arterial Hypertension
+##### Graphics
+<div style="display: flex; justify-content: space-around;">
+  <img src="./presencaHipertensaoArterialSistemica/presencHipertSist1_g.png" width="400">
+  <img src="./presencaHipertensaoArterialSistemica/presencHipertSist2_g.png" width="400">
+  <img src="./presencaHipertensaoArterialSistemica/presencHipertSist3_g.png" width="400">
+</div>
+
+#### LDL
+##### Graphics
+<div style="display: flex; justify-content: space-around;">
+  <img src="./presencaHipertensaoArterialSistemica/presencHipertSist1_g.png" width="400">
+  <img src="./presencaHipertensaoArterialSistemica/presencHipertSist2_g.png" width="400">
+  <img src="./presencaHipertensaoArterialSistemica/presencHipertSist3_g.png" width="400">
 </div>
