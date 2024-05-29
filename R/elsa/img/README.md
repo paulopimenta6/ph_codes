@@ -456,3 +456,18 @@ It is hoped that these results can help in the perception of patterns and indice
   <img src="./fazUsoGlimepirida/glimepirida2_b.png" width="400">
   <img src="./fazUsoGlimepirida/glimepirida3_b.png" width="400">
 </div>
+
+## Analysis
+
+### Non-parametric statistical analysis
+
+Statistical analysis was performed using the non-parametric Friedman and Wilcoxon tests. These tests were chosen due to the lack of normal distribution in the data. Non-parametric tests are suitable for ordinal or non-normally distributed interval data. The Friedman test is used for comparing more than two groups, while the Wilcoxon test is used for paired samples to assess differences in their median values.
+
+### Time series analysis
+
+Time series analysis involves the study of datasets that are ordered sequentially over time. The primary goal is to understand the underlying structure and function that produced the observations, and to forecast future values. In this project, time series analysis was used to study trends and patterns in the data related to pollution and kidney disease variables over time.
+
+### Correlation analysis
+
+Correlation analysis involves assessing the strength and direction of the relationship between two variables. In this project, correlation analysis was used to investigate the relationships between various pollution-related variables and kidney disease indicators. The correlation coefficient provides a measure of the strength and direction of the linear relationship between two variables.
+
