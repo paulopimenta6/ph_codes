@@ -8,7 +8,8 @@
 ## Summary
 
 - [About](#About)
-- [Descriptive statistics](#Descriptive-Statistics)
+- [Descriptive statistics - Part 1](#Descriptive-Statistics-Part-1)
+- [Descriptive statistics - Part 2](#Descriptive-Statistics-Part-2)
 - [Analysis](#analysis)
 
 ## About
@@ -19,7 +20,7 @@ This section is dedicated to statistical analyses divided into two parts: Descri
 
 It is hoped that these results can help in the perception of patterns and indices that relate pollution to kidney diseases.
 
-## Descriptive statistics
+## Descriptive statistics - Part 1
 
 ### Sample age
 
@@ -272,4 +273,20 @@ It is hoped that these results can help in the perception of patterns and indice
   <img src="./infartoMiocardio/infartoMioc1_b.png" width="400">
   <img src="./infartoMiocardio/infartoMioc2_b.png" width="400">
   <img src="./infartoMiocardio/infartoMioc3_b.png" width="400">
+</div>
+
+## Descriptive statistics - Part 2
+### Uses antihypertensive medication
+##### Graphics
+<div style="display: flex; justify-content: space-around;">
+  <img src="./usoAntiHipertemico/antiHip1_g.png" width="400">
+  <img src="./usoAntiHipertemico/antiHip2_g.png" width="400">
+  <img src="./usoAntiHipertemico/antiHip3_g.png" width="400">
+</div>
+
+##### Boxplots
+<div style="display: flex; justify-content: space-around;">
+  <img src="./usoAntiHipertemico/antiHip1_b.png" width="400">
+  <img src="./usoAntiHipertemico/antiHip2_b.png" width="400">
+  <img src="./usoAntiHipertemico/antiHip3_b.png" width="400">
 </div>
