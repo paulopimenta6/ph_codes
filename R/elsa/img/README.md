@@ -7,10 +7,10 @@
 
 ## Summary
 
-- [About](#About)
-- [Descriptive statistics - Part 1](#Descriptive-statistics-part-1)
-- [Descriptive statistics - Part 2](#Descriptive-statistics-part-2)
-- [Analysis](#Analysis)
+- [About](#about)
+- [Descriptive statistics - Part 1](#descriptive-statistics---part-1)
+- [Descriptive statistics - Part 2](#descriptive-statistics---part-2)
+- [Analysis](#analysis)
 
 ## About
 
