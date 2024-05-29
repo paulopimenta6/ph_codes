@@ -365,3 +365,19 @@ It is hoped that these results can help in the perception of patterns and indice
   <img src="./fazUsoCelecoxibe/fazUsoCelecoxibe2_b.png" width="400">
   <img src="./fazUsoCelecoxibe/fazUsoCelecoxibe3_b.png" width="400">
 </div>
+
+### Takes ketoprofen continuously
+##### Graphics
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoCetoprufeno/cetoprufeno1_g.png" width="400">
+  <img src="./fazUsoCetoprufeno/cetoprufeno2_g.png" width="400">
+  <img src="./fazUsoCetoprufeno/cetoprufeno3_g.png" width="400">
+</div>
+
+##### Boxplots
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoCetoprufeno/cetoprufeno1_b.png" width="400">
+  <img src="./fazUsoCetoprufeno/cetoprufeno2_b.png" width="400">
+  <img src="./fazUsoCetoprufeno/cetoprufeno3_b.png" width="400">
+</div>
+
