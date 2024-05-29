@@ -306,7 +306,7 @@ It is hoped that these results can help in the perception of patterns and indice
   <img src="./fazUsoAntiabeticos/antiDiabeticos3_b.png" width="400">
 </div>
 
-### takes atorvastatin continuously
+### Takes atorvastatin continuously
 ##### Graphics
 <div style="display: flex; justify-content: space-around;">
   <img src="./fazUsoArtosvastina/artosvast1_g.png" width="400">
@@ -319,4 +319,19 @@ It is hoped that these results can help in the perception of patterns and indice
   <img src="./fazUsoArtosvastina/artosvast1_b.png" width="400">
   <img src="./fazUsoArtosvastina/artosvast2_b.png" width="400">
   <img src="./fazUsoArtosvastina/artosvast3_b.png" width="400">
+</div>
+
+### Takes benazepril continuously
+##### Graphics
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoBenzapril/benzapril1_g.png" width="400">
+  <img src="./fazUsoBenzapril/benzapril2_g.png" width="400">
+  <img src="./fazUsoBenzapril/benzapril3_g.png" width="400">
+</div>
+
+##### Boxplots
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoBenzapril/benzapril1_b.png" width="400">
+  <img src="./fazUsoBenzapril/benzapril2_b.png" width="400">
+  <img src="./fazUsoBenzapril/benzapril3_b.png" width="400">
 </div>
