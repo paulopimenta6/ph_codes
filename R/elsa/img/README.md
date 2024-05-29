@@ -10,7 +10,7 @@
 - [About](#About)
 - [Descriptive Statistics - Part 1](#Descriptive-Statistics-Part-1)
 - [Descriptive Statistics - Part 2](#Descriptive-Statistics-Part-2)
-- [Analysis](#analysis)
+- [Analysis](#Analysis)
 
 ## About
 
@@ -276,6 +276,7 @@ It is hoped that these results can help in the perception of patterns and indice
 </div>
 
 ## Descriptive Statistics - Part 2
+
 ### Uses antihypertensive medication
 ##### Graphics
 <div style="display: flex; justify-content: space-around;">
