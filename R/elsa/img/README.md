@@ -223,10 +223,9 @@ It is hoped that these results can help in the perception of patterns and indice
   <img src="./presencaHipertensaoArterialSistemica/presencHipertSist3_g.png" width="400">
 </div>
 
-#### LDL
-##### Graphics
+##### Boxplots
 <div style="display: flex; justify-content: space-around;">
-  <img src="./presencaHipertensaoArterialSistemica/presencHipertSist1_g.png" width="400">
-  <img src="./presencaHipertensaoArterialSistemica/presencHipertSist2_g.png" width="400">
-  <img src="./presencaHipertensaoArterialSistemica/presencHipertSist3_g.png" width="400">
+  <img src="./presencaHipertensaoArterialSistemica/presencHipertSist1_b.png" width="400">
+  <img src="./presencaHipertensaoArterialSistemica/presencHipertSist2_b.png" width="400">
+  <img src="./presencaHipertensaoArterialSistemica/presencHipertSist3_b.png" width="400">
 </div>
