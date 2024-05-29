@@ -1,7 +1,9 @@
 ############################################################################################
 ##############################Especificando diretorio src###################################
 ############################################################################################
-source("./src/script_analise_dados_elsa_Var_Lib.R") 
+source("./src/script_analise_dados_elsa_Var_Lib.R")
+source("./src/classNormalMethods.R")
+
 if(!require(dplyr)) install.packages("dplyr")
 library(dplyr)                                
 if(!require(rstatix)) install.packages("rstatix") 
@@ -43,8 +45,27 @@ colnames(dadoslHba_interpol) = c("ID", "Onda", "Hba")
 dadoslHba_interpol <- sort_df(dadoslHba_interpol, vars = "ID")
 dadoslHba_interpol$ID <- factor(dadoslHba_interpol$ID)
 
-#dadoslHba_interpol <- kNN(dadoslHba, k = 3)
-#dadoslHba_interpol <- dadoslHba_interpol[,-c(4:ncol(dadoslHba_interpol))]
+################################################################################
+###Identificando outliers na totalidade
+dadoslHba_interpol %>% group_by(Onda) %>% identify_outliers(PAD) 
+###Identificando normalidade na totalidade agrupada pela Onda
+
+# Aplicar o teste de Anderson-Darling por grupo
+normalTestAdersonDarlingGroup <- dadoslHba_interpol %>%
+  group_by(Onda) %>%
+  filter(n() >= 3) %>%
+  summarize(ad_test = list(anderson_darling_test(Hba))) %>%
+  unnest(cols = ad_test)
+print(normalTestAdersonDarlingGroup)
+
+# Aplicar o teste de Komolgorov-Smirnov por grupo
+normalTesteKomolgorovSmirnovGroup <- dadoslHba_interpol %>%
+  group_by(Onda) %>%
+  filter(n() >= 3) %>%
+  summarize(ks_test = list(ks_test(Hba))) %>%
+  unnest(cols = ks_test)
+print(normalTesteKomolgorovSmirnovGroup)
+################################################################################
 
 #friedman.test(dadoslHba$Hba, dadoslHba$Onda, dadoslHba$ID)
 friedman.test(dadoslHba_interpol$Hba, dadoslHba_interpol$Onda, dadoslHba_interpol$ID)

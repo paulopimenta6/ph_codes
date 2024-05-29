@@ -672,6 +672,10 @@ It is hoped that these results can help in the perception of patterns and indice
 
 Statistical analysis was performed using the non-parametric Friedman and Wilcoxon tests. These tests were chosen due to the lack of normal distribution in the data. Non-parametric tests are suitable for ordinal or non-normally distributed interval data. The Friedman test is used for comparing more than two groups, while the Wilcoxon test is used for paired samples to assess differences in their median values.
 
+In the descriptive analyses, parts 1 and 2, only non-null values were considered, as they were indexed to ages in waves 1, 2, and 3, in order to show, significantly, the patients in their progressions, either in some medical characteristic or in the use of some medication.
+
+In the analysis of non-parametric methods, the analyses were considered in groups (Friedman method) or pairs (Wilcoxon) of waves with the medical variables and their consequent differences between the waves, that is, the medians. It is worth noting that normality was not found, neither in the separate waves nor in the three waves together.
+
 ### Time series analysis
 
 Time series analysis involves the study of datasets that are ordered sequentially over time. The primary goal is to understand the underlying structure and function that produced the observations, and to forecast future values. In this project, time series analysis was used to study trends and patterns in the data related to pollution and kidney disease variables over time.

@@ -1,7 +1,9 @@
 ############################################################################################
 ##############################Especificando diretorio src###################################
 ############################################################################################
-source("./src/script_analise_dados_elsa_Var_Lib.R") 
+source("./src/script_analise_dados_elsa_Var_Lib.R")
+source("./src/classNormalMethods.R")
+
 if(!require(dplyr)) install.packages("dplyr")
 library(dplyr)                                
 if(!require(rstatix)) install.packages("rstatix") 
@@ -33,8 +35,8 @@ ad_test3 <- ad.test(dfPAS$onda3)
 print(ad_test1)
 print(ad_test2)
 print(ad_test3)
-################################################################################
 
+################################################################################
 dadoslPAS_interpol <- reshape2::melt(dfPAS,
                   id = "ID",
                   measured = c("onda1", "onda2", "onda3"))
@@ -43,8 +45,27 @@ colnames(dadoslPAS_interpol) = c("ID", "Onda", "PAS")
 dadoslPAS_interpol <- sort_df(dadoslPAS_interpol, vars = "ID")
 dadoslPAS_interpol$ID <- factor(dadoslPAS_interpol$ID)
 
-#dadoslPAS_interpol <- kNN(dadoslPAS, k = 3)
-#dadoslPAS_interpol <- dadoslPAS_interpol[,-c(4:ncol(dadoslPAS_interpol))]
+################################################################################
+###Identificando outliers na totalidade
+dadoslPAS_interpol %>% group_by(Onda) %>% identify_outliers(PAD) 
+###Identificando normalidade na totalidade agrupada pela Onda
+
+# Aplicar o teste de Anderson-Darling por grupo
+normalTestAdersonDarlingGroup <- dadoslPAS_interpol %>%
+  group_by(Onda) %>%
+  filter(n() >= 3) %>%
+  summarize(ad_test = list(anderson_darling_test(PAS))) %>%
+  unnest(cols = ad_test)
+print(normalTestAdersonDarlingGroup)
+
+# Aplicar o teste de Komolgorov-Smirnov por grupo
+normalTesteKomolgorovSmirnovGroup <- dadoslPAS_interpol %>%
+  group_by(Onda) %>%
+  filter(n() >= 3) %>%
+  summarize(ks_test = list(ks_test(PAS))) %>%
+  unnest(cols = ks_test)
+print(normalTesteKomolgorovSmirnovGroup)
+################################################################################
 
 #friedman.test(dadoslPAS$Hba, dadoslPAS$Onda, dadoslPAS$ID)
 friedman.test(dadoslPAS_interpol$PAS, dadoslPAS_interpol$Onda, dadoslPAS_interpol$ID)

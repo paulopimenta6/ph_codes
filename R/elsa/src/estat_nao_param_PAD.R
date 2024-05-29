@@ -1,7 +1,9 @@
 ############################################################################################
 ##############################Especificando diretorio src###################################
 ############################################################################################
-source("./src/script_analise_dados_elsa_Var_Lib.R") 
+source("./src/script_analise_dados_elsa_Var_Lib.R")
+source("./src/classNormalMethods.R")
+
 if(!require(dplyr)) install.packages("dplyr")
 library(dplyr)                                
 if(!require(rstatix)) install.packages("rstatix") 
@@ -46,8 +48,27 @@ colnames(dadoslPAD_interpol) = c("ID", "Onda", "PAD")
 dadoslPAD_interpol <- sort_df(dadoslPAD_interpol, vars = "ID")
 dadoslPAD_interpol$ID <- factor(dadoslPAD_interpol$ID)
 
-#dadoslPAD_interpol <- kNN(dadoslPAD, k = 3)
-#dadoslPAD_interpol <- dadoslPAD_interpol[,-c(4:ncol(dadoslPAD_interpol))]
+################################################################################
+###Identificando outliers na totalidade
+dadoslPAD_interpol %>% group_by(Onda) %>% identify_outliers(PAD) 
+###Identificando normalidade na totalidade agrupada pela Onda
+
+# Aplicar o teste de Anderson-Darling por grupo
+normalTestAdersonDarlingGroup <- dadoslPAD_interpol %>%
+  group_by(Onda) %>%
+  filter(n() >= 3) %>%
+  summarize(ad_test = list(anderson_darling_test(PAD))) %>%
+  unnest(cols = ad_test)
+print(normalTestAdersonDarlingGroup)
+
+# Aplicar o teste de Komolgorov-Smirnov por grupo
+normalTesteKomolgorovSmirnovGroup <- dadoslPAD_interpol %>%
+  group_by(Onda) %>%
+  filter(n() >= 3) %>%
+  summarize(ks_test = list(ks_test(PAD))) %>%
+  unnest(cols = ks_test)
+print(normalTesteKomolgorovSmirnovGroup)
+################################################################################
 
 #friedman.test(dadoslPAD$Hba, dadoslPAD$Onda, dadoslPAD$ID)
 friedman.test(dadoslPAD_interpol$PAD, dadoslPAD_interpol$Onda, dadoslPAD_interpol$ID)
