@@ -184,26 +184,12 @@ It is hoped that these results can help in the perception of patterns and indice
   <img src="./colesterol/colTotal3_g.png" width="400">
 </div>
 
-##### boxplots
-<div style="display: flex; justify-content: space-around;">  
-  <img src="./colesterol/colTotal1_b.png" width="400">
-  <img src="./colesterol/colTotal2_b.png" width="400">
-  <img src="./colesterol/colTotal3_b.png" width="400">
-</div>
-
 #### HDL
 ##### Graphics
 <div style="display: flex; justify-content: space-around;">
   <img src="./colesterol/colHDL1_g.png" width="400">
   <img src="./colesterol/colHDL2_g.png" width="400">
   <img src="./colesterol/colHDL3_g.png" width="400">
-</div>
-
-##### boxplots
-<div style="display: flex; justify-content: space-around;">  
-  <img src="./colesterol/colHDL1_b.png" width="400">
-  <img src="./colesterol/colHDL2_b.png" width="400">
-  <img src="./colesterol/colHDL3_b.png" width="400">
 </div>
 
 #### LDL
@@ -214,9 +200,3 @@ It is hoped that these results can help in the perception of patterns and indice
   <img src="./colesterol/colLDL3_g.png" width="400">
 </div>
 
-##### boxplots
-<div style="display: flex; justify-content: space-around;">  
-  <img src="./colesterol/colLDL1_b.png" width="400">
-  <img src="./colesterol/colLDL2_b.png" width="400">
-  <img src="./colesterol/colLDL3_b.png" width="400">
-</div>
