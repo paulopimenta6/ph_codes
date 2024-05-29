@@ -335,3 +335,18 @@ It is hoped that these results can help in the perception of patterns and indice
   <img src="./fazUsoBenzapril/benzapril2_b.png" width="400">
   <img src="./fazUsoBenzapril/benzapril3_b.png" width="400">
 </div>
+
+### Takes captopril continuously
+##### Graphics
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoCaptopril/captopril1_g.png" width="400">
+  <img src="./fazUsoCaptopril/captopril2_g.png" width="400">
+  <img src="./fazUsoCaptopril/captopril3_g.png" width="400">
+</div>
+
+##### Boxplots
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoCaptopril/captopril1_b.png" width="400">
+  <img src="./fazUsoCaptopril/captopril2_b.png" width="400">
+  <img src="./fazUsoCaptopril/captopril3_b.png" width="400">
+</div>
