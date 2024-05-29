@@ -457,6 +457,215 @@ It is hoped that these results can help in the perception of patterns and indice
   <img src="./fazUsoGlimepirida/glimepirida3_b.png" width="400">
 </div>
 
+### Takes hypolipidemic agents
+##### Graphics
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoHipomeliantes/hipo1_g.png" width="400">
+  <img src="./fazUsoHipomeliantes/hipo2_g.png" width="400">
+  <img src="./fazUsoHipomeliantes/hipo3_g.png" width="400">
+</div>
+
+##### Boxplots
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoHipomeliantes/hipo1_b.png" width="400">
+  <img src="./fazUsoHipomeliantes/hipo2_b.png" width="400">
+  <img src="./fazUsoHipomeliantes/hipo3_b.png" width="400">
+</div>
+
+### Takes angiotensin-converting enzyme (ACE) inhibitors
+##### Graphics
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoInibidoresECA/inibECA1_g.png" width="400">
+  <img src="./fazUsoInibidoresECA/inibECA2_g.png" width="400">
+  <img src="./fazUsoInibidoresECA/inibECA3_g.png" width="400">
+</div>
+
+##### Boxplots
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoInibidoresECA/inibECA1_b.png" width="400">
+  <img src="./fazUsoInibidoresECA/inibECA2_b.png" width="400">
+  <img src="./fazUsoInibidoresECA/inibECA3_b.png" width="400">
+</div>
+
+### Takes ibuprofen regularly
+##### Graphics
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoIboprufeno/iboprufeno1_g.png" width="400">
+  <img src="./fazUsoIboprufeno/iboprufeno2_g.png" width="400">
+  <img src="./fazUsoIboprufeno/iboprufeno3_g.png" width="400">
+</div>
+
+##### Boxplots
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoIboprufeno/iboprufeno1_b.png" width="400">
+  <img src="./fazUsoIboprufeno/iboprufeno2_b.png" width="400">
+  <img src="./fazUsoIboprufeno/iboprufeno3_b.png" width="400">
+</div>
+
+### Takes indomethacin regularly
+##### Graphics
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoIndometacina/indometacina1_g.png" width="400">
+  <img src="./fazUsoIndometacina/indometacina2_g.png" width="400">
+  <img src="./fazUsoIndometacina/indometacina3_g.png" width="400">
+</div>
+
+##### Boxplots
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoIndometacina/indometacina1_b.png" width="400">
+  <img src="./fazUsoIndometacina/indometacina2_b.png" width="400">
+  <img src="./fazUsoIndometacina/indometacina3_b.png" width="400">
+</div>
+
+### Takes insulin continuously
+##### Graphics
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoInsulina/insulina1_g.png" width="400">
+  <img src="./fazUsoInsulina/insulina2_g.png" width="400">
+  <img src="./fazUsoInsulina/insulina3_g.png" width="400">
+</div>
+
+##### Boxplots
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoInsulina/insulina1_b.png" width="400">
+  <img src="./fazUsoInsulina/insulina2_b.png" width="400">
+  <img src="./fazUsoInsulina/insulina3_b.png" width="400">
+</div>
+
+### Takes lisinopril continuously
+##### Graphics
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoLisinopril/lisinopril1_g.png" width="400">
+  <img src="./fazUsoLisinopril/lisinopril2_g.png" width="400">
+  <img src="./fazUsoLisinopril/lisinopril3_g.png" width="400">
+</div>
+
+##### Boxplots
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoLisinopril/lisinopril1_b.png" width="400">
+  <img src="./fazUsoLisinopril/lisinopril2_b.png" width="400">
+  <img src="./fazUsoLisinopril/lisinopril3_b.png" width="400">
+</div>
+
+### Takes losartan continuously
+##### Graphics
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoLosartana/losartana1_g.png" width="400">
+  <img src="./fazUsoLosartana/losartana2_g.png" width="400">
+  <img src="./fazUsoLosartana/losartana3_g.png" width="400">
+</div>
+
+##### Boxplots
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoLosartana/losartana1_b.png" width="400">
+  <img src="./fazUsoLosartana/losartana2_b.png" width="400">
+  <img src="./fazUsoLosartana/losartana3_b.png" width="400">
+</div>
+
+### Takes meloxicam continuously
+##### Graphics
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoMeloxicam/meloxicam1_g.png" width="400">
+  <img src="./fazUsoMeloxicam/meloxicam2_g.png" width="400">
+  <img src="./fazUsoMeloxicam/meloxicam3_g.png" width="400">
+</div>
+
+##### Boxplots
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoMeloxicam/meloxicam1_b.png" width="400">
+  <img src="./fazUsoMeloxicam/meloxicam2_b.png" width="400">
+  <img src="./fazUsoMeloxicam/meloxicam3_b.png" width="400">
+</div>
+
+### Takes naproxen continuously
+##### Graphics
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoNaproxeno/naproxeno1_g.png" width="400">
+  <img src="./fazUsoNaproxeno/naproxeno2_g.png" width="400">
+  <img src="./fazUsoNaproxeno/naproxeno3_g.png" width="400">
+</div>
+
+##### Boxplots
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoNaproxeno/naproxeno1_b.png" width="400">
+  <img src="./fazUsoNaproxeno/naproxeno2_b.png" width="400">
+  <img src="./fazUsoNaproxeno/naproxeno3_b.png" width="400">
+</div>
+
+### Takes nimesulide continuously
+##### Graphics
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoNimesulida/nimesulida1_g.png" width="400">
+  <img src="./fazUsoNimesulida/nimesulida2_g.png" width="400">
+  <img src="./fazUsoNimesulida/nimesulida3_g.png" width="400">
+</div>
+
+##### Boxplots
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoNimesulida/nimesulida1_b.png" width="400">
+  <img src="./fazUsoNimesulida/nimesulida2_b.png" width="400">
+  <img src="./fazUsoNimesulida/nimesulida3_b.png" width="400">
+</div>
+
+### takes ketorolac sporadically
+##### Graphics
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoCetorolaco/cetorolaco1_g.png" width="400">
+  <img src="./fazUsoCetorolaco/cetorolaco2_g.png" width="400">
+  <img src="./fazUsoCetorolaco/cetorolaco3_g.png" width="400">
+</div>
+
+##### Boxplots
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoCetorolaco/cetorolaco1_b.png" width="400">
+  <img src="./fazUsoCetorolaco/cetorolaco2_b.png" width="400">
+  <img src="./fazUsoCetorolaco/cetorolaco3_b.png" width="400">
+</div>
+
+### Takes statin lipid-lowering medications
+##### Graphics
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoHipEstatinas/estatinas1_g.png" width="400">
+  <img src="./fazUsoHipEstatinas/estatinas2_g.png" width="400">
+</div>
+
+##### Boxplots
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoHipEstatinas/estatinas1_b.png" width="400">
+  <img src="./fazUsoHipEstatinas/estatinas2_b.png" width="400">
+</div>
+
+### Takes metformin continuously
+##### Graphics
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoMetformina/metformina1_g.png" width="400">
+  <img src="./fazUsoMetformina/metformina2_g.png" width="400">
+  <img src="./fazUsoMetformina/metformina3_g.png" width="400">
+</div>
+
+##### Boxplots
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoMetformina/metformina1_b.png" width="400">
+  <img src="./fazUsoMetformina/metformina2_b.png" width="400">
+  <img src="./fazUsoMetformina/metformina3_b.png" width="400">
+</div>
+
+### Takes valsartan continuously
+##### Graphics
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoValsartana/valsartana1_g.png" width="400">
+  <img src="./fazUsoValsartana/valsartana2_g.png" width="400">
+  <img src="./fazUsoValsartana/valsartana3_g.png" width="400">
+</div>
+
+##### Boxplots
+<div style="display: flex; justify-content: space-around;">
+  <img src="./fazUsoValsartana/valsartana1_b.png" width="400">
+  <img src="./fazUsoValsartana/valsartana2_b.png" width="400">
+  <img src="./fazUsoValsartana/valsartana3_b.png" width="400">
+</div>
+
+
 ## Analysis
 
 ### Non-parametric statistical analysis
