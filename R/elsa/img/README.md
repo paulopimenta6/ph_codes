@@ -1208,7 +1208,7 @@ In conclusion, the results indicate that there are significant differences in HD
 | Onda2     | 0.54   | 0.529|
 | Difference| -0.014 | 0.412|
 
-**-Result:** These results suggest a significant difference in microalbuminuria levels between Onda1 and Onda2, despite both waves showing a non-normal distribution of microalbuminuria values.
+**-Result:** The analysis indicates a significant difference in microalbuminuria levels between Onda1 and Onda2, as shown by the Wilcoxon Signed-Rank Test (p = 0.000962). Despite the non-normal distribution of the data, this difference suggests a noteworthy change in microalbuminuria levels between the two waves. The difference in microalbuminuria levels between Wave1 and Wave2, as indicated by the Wilcoxon test, suggests a significant change in levels between the two waves. This may indicate a change in the health status of the patients over time, which could be relevant for monitoring and clinical interventions.
 
 
 ### Time series analysis
