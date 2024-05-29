@@ -161,3 +161,16 @@ It is hoped that these results can help in the perception of patterns and indice
   <img src="./potassio/pot2_b.png" width="400">
   <img src="./potassio/pot3_b.png" width="400">
 </div>
+
+### Glomerular Filtration Rate
+##### Graphics
+<div style="display: flex; justify-content: space-around;">
+  <img src="./taxaFiltracaoGlomerular/taxa1_g.png" width="400">
+  <img src="./taxaFiltracaoGlomerular/taxa2_g.png" width="400">
+</div>
+
+##### boxplots
+<div style="display: flex; justify-content: space-around;">  
+  <img src="./taxaFiltracaoGlomerular/taxa1_b.png" width="400">
+  <img src="./taxaFiltracaoGlomerular/taxa2_b.png" width="400">
+</div>
