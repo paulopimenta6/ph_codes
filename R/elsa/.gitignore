@@ -2,4 +2,4 @@
 *.odt
 *.csv
 .sqlite
-dados_elsa/
+./dados_elsa/*
