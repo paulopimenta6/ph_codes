@@ -7,3 +7,8 @@
 /java/java/helloWorld/HelloWorld/dist/
 /java/java/PauloPimenta_Atividade01/teste/build/
 /java/java/PauloPimenta_Atividade01/teste/nbproject/private/
+*.xlsx
+*.odt
+*.csv
+.sqlite
+/R/elsa/dados_elsa/
