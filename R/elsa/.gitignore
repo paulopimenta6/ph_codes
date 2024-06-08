@@ -1,3 +1,5 @@
-#arquivos que devem ser ignorados no momentos do push
-/*.csv
-/*.xlsx
+*.xlsx
+*.odt
+*.csv
+.sqlite
+dados_elsa/
