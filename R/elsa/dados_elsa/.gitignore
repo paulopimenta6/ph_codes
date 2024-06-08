@@ -2,4 +2,4 @@
 *.odt
 *.csv
 .sqlite
-bkp/*.*
+bkp/
