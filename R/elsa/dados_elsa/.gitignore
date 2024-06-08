@@ -1,0 +1,5 @@
+*.xlsx
+*.odt
+*.csv
+.sqlite
+bkp/*.*
