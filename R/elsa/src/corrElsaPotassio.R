@@ -155,7 +155,7 @@ hist(PAD_interp$onda3, breaks = "Sturges", ylab = "Frequencia", xlab = "Pressao 
 presencaHipertensaoSistem_interp$onda1 <- factor(presencaHipertensaoSistem_interp$onda1, levels = c(0,1), labels= c("Nao", "Sim"))
 presencaHipertensaoSistem_interp$onda2 <- factor(presencaHipertensaoSistem_interp$onda2, levels = c(0,1), labels= c("Nao", "Sim"))
 presencaHipertensaoSistem_interp$onda3 <- factor(presencaHipertensaoSistem_interp$onda3, levels = c(0,1), labels= c("Nao", "Sim"))
-baplot(table(presencaHipertensaoSistem_interp$onda1), ylab = "Quantidade", xlab = "Presenca de pressao Arterial Sistemica")
+barplot(table(presencaHipertensaoSistem_interp$onda1), ylab = "Quantidade", xlab = "Presenca de pressao Arterial Sistemica")
 barplot(table(presencaHipertensaoSistem_interp$onda2), ylab = "Quantidade", xlab = "Presenca de pressao Arterial Sistemica")
 barplot(table(presencaHipertensaoSistem_interp$onda3), ylab = "Quantidade", xlab = "Presenca de pressao Arterial Sistemica")
 ################################################################################
@@ -175,20 +175,46 @@ mod_PotPAD1 <- lm(PAD_interp$onda1 ~ pot_interp$onda1)
 mod_PotPAD2 <- lm(PAD_interp$onda2 ~ pot_interp$onda2)
 mod_PotPAD3 <- lm(PAD_interp$onda3 ~ pot_interp$onda3)
 ###Sodio
-mod_PotRazaoAlbumCreat1 <- lm(razaoAlbuCreat_interp$onda1 ~ sodio_interp$onda1) 
-mod_PotRazaoAlbumCreat2 <- lm(razaoAlbuCreat_interp$onda2 ~ sodio_interp$onda2)
+mod_SodRazaoAlbumCreat1 <- lm(razaoAlbuCreat_interp$onda1 ~ sodio_interp$onda1) 
+mod_SodRazaoAlbumCreat2 <- lm(razaoAlbuCreat_interp$onda2 ~ sodio_interp$onda2)
 
-mod_PotTaxaFiltGlomerular1 <- lm(taxaFiltracaoGlomerular_interp$onda1 ~ sodio_interp$onda1) 
-mod_PotTaxaFiltGlomerular2 <- lm(taxaFiltracaoGlomerular_interp$onda2 ~ sodio_interp$onda2)
+mod_SodTaxaFiltGlomerular1 <- lm(taxaFiltracaoGlomerular_interp$onda1 ~ sodio_interp$onda1) 
+mod_SodTaxaFiltGlomerular2 <- lm(taxaFiltracaoGlomerular_interp$onda2 ~ sodio_interp$onda2)
 
-mod_PotPAS1 <- lm(PAS_interp$onda1 ~ sodio_interp$onda1) 
-mod_PotPAS2 <- lm(PAS_interp$onda2 ~ sodio_interp$onda2)
-mod_PotPAS3 <- lm(PAS_interp$onda3 ~ sodio_interp$onda3)
+mod_SodPAS1 <- lm(PAS_interp$onda1 ~ sodio_interp$onda1) 
+mod_SodPAS2 <- lm(PAS_interp$onda2 ~ sodio_interp$onda2)
+mod_SodPAS3 <- lm(PAS_interp$onda3 ~ sodio_interp$onda3)
 
-mod_PotPAD1 <- lm(PAD_interp$onda1 ~ sodio_interp$onda1) 
-mod_PotPAD2 <- lm(PAD_interp$onda2 ~ sodio_interp$onda2)
-mod_PotPAD3 <- lm(PAD_interp$onda3 ~ sodio_interp$onda3)
+mod_SodPAD1 <- lm(PAD_interp$onda1 ~ sodio_interp$onda1) 
+mod_SodPAD2 <- lm(PAD_interp$onda2 ~ sodio_interp$onda2)
+mod_SodPAD3 <- lm(PAD_interp$onda3 ~ sodio_interp$onda3)
 ################################################################################
-#par(mfrow = c(2,2))
-#plot(mod1, main = "Onda 1")
-#plot(mod2, main = "Onda 2")
+###Potassio
+par(mfrow = c(2,2))
+plot(mod_PotRazaoAlbumCreat1, main = "Onda 1 - Potassio x Razao albumina-creatinina")
+plot(mod_PotRazaoAlbumCreat2, main = "Onda 2 - Potassio x Razao albumina-creatinina")
+
+plot(mod_PotTaxaFiltGlomerular1, main = "Onda 1 - Potassio X Taxa de filtracao Glomerular")
+plot(mod_PotTaxaFiltGlomerular2, main = "Onda 2 - Potassio X Taxa de filtracao Glomerular")
+
+plot(mod_PotPAS1, main = "Onda 1 - Potassio X PAS")
+plot(mod_PotPAS2, main = "Onda 2 - Potassio X PAS")
+plot(mod_PotPAS3, main = "Onda 3 - Potassio X PAS")
+
+plot(mod_PotPAD1, main = "Onda 1 - Potassio X PAD")
+plot(mod_PotPAD2, main = "Onda 2 - Potassio X PAD")
+plot(mod_PotPAD3, main = "Onda 3 - Potassio X PAD")
+###Sodio
+plot(mod_SodRazaoAlbumCreat1, main = "Onda 1 - Sodio x Razao albumina-creatinina")
+plot(mod_SodRazaoAlbumCreat2, main = "Onda 2 - Sodio x Razao albumina-creatinina")
+
+plot(mod_SodTaxaFiltGlomerular1, main = "Onda 1 - Sodio X Taxa de filtracao Glomerular")
+plot(mod_SodTaxaFiltGlomerular2, main = "Onda 2 - Sodio X Taxa de filtracao Glomerular")
+
+plot(mod_SodPAS1, main = "Onda 1 - Sodio X PAS")
+plot(mod_SodPAS2, main = "Onda 2 - Sodio X PAS")
+plot(mod_SodPAS3, main = "Onda 3 - Sodio X PAS")
+
+plot(mod_SodPAD1, main = "Onda 1 - Sodio X PAD")
+plot(mod_SodPAD2, main = "Onda 2 - Sodio X PAD")
+plot(mod_SodPAD3, main = "Onda 3 - Sodio X PAD")
