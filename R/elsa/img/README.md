@@ -1973,15 +1973,15 @@ F-statistic: 66.14 on 1 and 5059 DF,  p-value: 5.226e-16
 
 ## Tutorial
 
-# Statistical Analysis Tutorial
+### Statistical Analysis Tutorial
 
 In this tutorial, we will explore the statistical methods used in our analysis. We focus on the following key aspects:
 
-## Normality of Residuals
+### Normality of Residuals
 
 We test the normality of residuals using the Anderson-Darling normality test. The test statistic and p-value are reported.
 
-## Outliers in Residuals
+### Outliers in Residuals
 
 We examine outliers in residuals by calculating the minimum, 1st quartile, median, mean, 3rd quartile, and maximum values.
 
@@ -1989,11 +1989,11 @@ We examine outliers in residuals by calculating the minimum, 1st quartile, media
 
 We assess the independence of residuals using the Durbin-Watson statistic. The lag, autocorrelation, D-W statistic, and p-value are provided.
 
-## Homoscedasticity (Breusch-Pagan)
+### Homoscedasticity (Breusch-Pagan)
 
 Homoscedasticity is tested using the studentized Breusch-Pagan test. The Breusch-Pagan statistic, degrees of freedom, and p-value are reported.
 
-## Model Analysis
+### Model Analysis
 
 Finally, we analyze the model using linear regression. The model formula, residuals, coefficients, standard errors, t-values, and p-values are provided.
 
