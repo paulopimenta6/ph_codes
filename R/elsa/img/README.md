@@ -1004,7 +1004,7 @@ This analysis examines the normality of creatinine levels in urine across three 
 **Result:** The analysis indicates that total cholesterol levels exhibit significant variations across the three waves, as evidenced by the Friedman test and supported by the post-hoc comparisons. The data does not follow a normal distribution, suggesting that non-parametric tests are appropriate for this analysis. Outliers are present in the dataset, which could impact the overall trends and should be considered in any further analyses or interpretations.
 
 <p align="center">
-  <img src="./estat_nao_param/colesterol/colesterolTotal_friendman.png" width="500">
+  <img src="./estat_nao_param/colesterol/colesterolTotal_friendman.png" width="800">
 </p>
 
 ### Statistical Analysis of LDL Cholesterol
@@ -1084,7 +1084,7 @@ The histograms provide a clear visualization of the distribution of LDL choleste
 This analysis provides a comprehensive view of LDL cholesterol data, helping to identify patterns and significant differences over time.
 
 <p align="center">
-  <img src="./estat_nao_param/colesterol/colesterolLDL_friendman.png" width="500">
+  <img src="./estat_nao_param/colesterol/colesterolLDL_friendman.png" width="800">
 </p>
 
 ### Statistical Analysis of HDL Cholesterol
@@ -1158,7 +1158,7 @@ Finally, the descriptive analysis shows that while the median HDL cholesterol le
 In conclusion, the results indicate that there are significant differences in HDL cholesterol levels among the three waves. These findings could have implications for understanding the factors influencing HDL cholesterol levels and could guide further research into the potential impact on health outcomes.
 
 <p align="center">
-  <img src="./estat_nao_param/colesterol/colesterolHDL_friendman.png" width="500">
+  <img src="./estat_nao_param/colesterol/colesterolHDL_friendman.png" width="800">
 </p>
 
 ### Analysis based on paired Wilcoxon
