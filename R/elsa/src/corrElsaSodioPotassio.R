@@ -1,7 +1,22 @@
 if(!require(pacman)) install.packages("pacman")
 library(pacman)
-pacman::p_load(dplyr, ggplot2, VIM, nortest, car, rstatix, ggpmisc) 
+pacman::p_load(dplyr, ggplot2, VIM, nortest, lmtest, car, rstatix, ggpmisc)
 source("./src/script_analise_dados_elsa_Var_Lib.R")
+################################################################################
+statLinCorrAnalysis <- function(data){
+    print("################################################################################")
+    print("##Normalidade dos residuos:")
+    print(ad.test(data$residuals))    
+    print("##Outliers nos residuos:")
+    print(summary(rstandard(data))) 
+    print("##Independencia dos residuos (Durbin-Watson):")
+    print(durbinWatsonTest(data))  
+    print("##Homocedasticidade (Breusch-Pagan):")
+    print(bptest(data))             
+    print("###Analise do modelo")
+    print(summary(data))
+    print("################################################################################")
+}
 ################################################################################
 ###Variaveis de referencia e tambem variaveis independentes (VI)
 dfPotassio <- data.frame(onda1 = potassioOnda1,
@@ -102,6 +117,11 @@ mod_PotPAS3 <- lm(PAS_interp$onda3 ~ pot_interp$onda3)
 mod_PotPAD1 <- lm(PAD_interp$onda1 ~ pot_interp$onda1) 
 mod_PotPAD2 <- lm(PAD_interp$onda2 ~ pot_interp$onda2)
 mod_PotPAD3 <- lm(PAD_interp$onda3 ~ pot_interp$onda3)
+
+lmModPotassio <- list(mod_PotRazaoAlbumCreat1, mod_PotRazaoAlbumCreat2, 
+                mod_PotPAS1, mod_PotPAS2, mod_PotPAS3,
+                mod_PotPAD1, mod_PotPAD2, mod_PotPAD3)
+################################################################################
 ###Sodio
 mod_SodRazaoAlbumCreat1 <- lm(razaoAlbuCreat_interp$onda1 ~ sodio_interp$onda1) 
 mod_SodRazaoAlbumCreat2 <- lm(razaoAlbuCreat_interp$onda2 ~ sodio_interp$onda2)
@@ -113,6 +133,10 @@ mod_SodPAS3 <- lm(PAS_interp$onda3 ~ sodio_interp$onda3)
 mod_SodPAD1 <- lm(PAD_interp$onda1 ~ sodio_interp$onda1) 
 mod_SodPAD2 <- lm(PAD_interp$onda2 ~ sodio_interp$onda2)
 mod_SodPAD3 <- lm(PAD_interp$onda3 ~ sodio_interp$onda3)
+
+lmModSodio <- list(mod_SodRazaoAlbumCreat1, mod_SodRazaoAlbumCreat2, 
+                mod_SodPAS1, mod_SodPAS2, mod_SodPAS3,
+                mod_SodPAD1, mod_SodPAD2, mod_SodPAD3)
 ################################################################################
 ###Potassio
 par(mfrow = c(2,2))
@@ -140,53 +164,11 @@ plot(mod_SodPAD3, main = "Onda 3 - Sodio X PAD")
 ################################################################################
 ###Realizando os testes teoricos
 par(mfrow=c(1,1))
-## Normalidade dos residuos:
-ad.test(mod_SodPAD3$residuals) #A = 8.1019, p-value < 2.2e-16
-                               #p =< 0.05 entao residuo nao e normal    
-## Outliers nos residuos:
-summary(rstandard(mod_SodPAD3)) #Outliers e pontos de alavancagem
-                                # summary(rstandard(mod_SodPAD3))
-                                #Min.        1st Qu.    Median      Mean   3rd Qu.      Max. 
-                                #-2.650854 -0.701977 -0.070930 -0.000004  0.627776  5.362959
-                                #Residuos "max" acima do valor 3, ou seja, nao esta entre -3 a 3
-                                #Com valor max acima de 3, ou seja, presenca de outlier e ponto de alavancagem
-                                
-
-## Independencia dos residuos (Durbin-Watson):
-durbinWatsonTest(mod_SodPAD3)   #lag Autocorrelation D-W Statistic p-value
-                                #1      0.01433648      1.971243   0.332
-                                #Alternative hypothesis: rho != 0
-                                #D-W deve ser entre 1 a 3, logo o valor esta ok 
-                                #H0: p > 0.05: autocorrelacao = 0: independencia dos residuos
-                                #H: p =< 0.05: autocorrelacao != 0: nao independencia dos residuos 
-                                #p > 0.05  
-
-## Homocedasticidade (Breusch-Pagan):
-bptest(mod_SodPAD3)             #data:  mod_SodPAD3
-                                #BP = 1.2236, df = 1, p-value = 0.2687
-                                #p > 0.05: existe homocedasticidade   
-
-# Passo 4: Analise do modelo
-summary(mod_SodPAD3)            #Call:
-                                #lm(formula = PAD_interp$onda3 ~ sodio_interp$onda3)
-
-                                #Residuals: (Nao padronizados, por isso nao serao interpretados)
-                                #Min      1Q  Median      3Q     Max 
-                                #-27.170  -7.195  -0.727   6.434  54.965 
-
-                                #Coefficients:
-                                                    #Estimate   Std.     Error   t value Pr(>|t|)    
-                                #(Intercept)        74.279514   0.375315 197.913 < 2e-16 ***
-                                #sodio_interp$onda3  0.024708   0.003038   8.133 5.23e-16 *** p > 0.05: coeficiente = 0: sodio_interp$onda3 nao tem impacto no PAD
-                                                                                             #p =< 0.05: coeficiente != 0 sodio_interp$onda3 tem impacto no PAD
-                                                                                             #A cada 1 meq/l de sodio eu tenho 0.024mmhg de Pressao arterial   
-
-                                #---
-                                #Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-                                #Residual standard error: 10.25 on 5059 degrees of freedom
-                                #Multiple R-squared:  0.01291,	Adjusted R-squared:  0.01271  #R^2 e melhor pois diz respeito a regressao simples (linear) 
-                                #F-statistic: 66.14 on 1 and 5059 DF,  p-value: 5.226e-16     #R^2 o consumo de aproximadamente 1% de sodio explica do PAD
-                                                                                              #p =< 0.05 existe uma diferenca entre os modelos
-                                                                                              #H0: o valor da media da PAD acontece independente do consumo de sodio (sem previsor)
-                                                                                              #H: o valor da PAD acontece decorrente do consumo de sodio (com previsor)  
+###Potassio
+for(i in lmModPotassio){
+  statLinCorrAnalysis(i)
+}
+###Sodio
+for(i in lmModSodio){
+  statLinCorrAnalysis(i)
+}

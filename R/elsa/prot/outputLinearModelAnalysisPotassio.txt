@@ -1,0 +1,352 @@
+################################################################################
+################################################################################
+###Potassio x razaoAlbuCreat (onda 1)
+##Normalidade dos residuos:
+
+###Anderson-Darling normality test
+
+data:  data$residuals
+A = 1613.7, p-value < 2.2e-16
+
+##Outliers nos residuos:
+    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+-0.16994 -0.11539 -0.09076  0.00000 -0.04963 33.30390 
+ ##Independencia dos residuos (Durbin-Watson):
+ lag Autocorrelation D-W Statistic p-value
+   1     0.007660777      1.984674   0.188
+ Alternative hypothesis: rho != 0
+##Homocedasticidade (Breusch-Pagan):
+
+###studentized Breusch-Pagan test
+
+data:  data
+BP = 5.0664, df = 1, p-value = 0.02439
+
+###Analise do modelo
+
+Call:
+lm(formula = razaoAlbuCreat_interp$onda1 ~ pot_interp$onda1)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+ -25.5  -17.3  -13.6   -7.4 4988.2 
+
+Coefficients:
+                 Estimate Std. Error t value Pr(>|t|)    
+(Intercept)       31.2964     4.4784   6.988 3.14e-12 ***
+pot_interp$onda1  -0.3579     0.1215  -2.946  0.00323 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 149.8 on 5059 degrees of freedom
+Multiple R-squared:  0.001713,	Adjusted R-squared:  0.001516 
+F-statistic:  8.68 on 1 and 5059 DF,  p-value: 0.003231
+
+################################################################################
+################################################################################
+###Potassio x razaoAlbuCreat (onda 2)
+###Normalidade dos residuos:
+
+###Anderson-Darling normality test
+
+data:  data$residuals
+A = 1739.7, p-value < 2.2e-16
+
+ ##Outliers nos residuos:
+    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+-0.09086 -0.06569 -0.05423  0.00000 -0.03610 65.75766 
+ ##Independencia dos residuos (Durbin-Watson):
+ lag Autocorrelation D-W Statistic p-value
+   1    9.500238e-05      1.999808    0.47
+ Alternative hypothesis: rho != 0
+##Homocedasticidade (Breusch-Pagan):
+
+###studentized Breusch-Pagan test
+
+data:  data
+BP = 0.36926, df = 1, p-value = 0.5434
+
+###Analise do modelo
+
+Call:
+lm(formula = razaoAlbuCreat_interp$onda2 ~ pot_interp$onda2)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+  -31.8   -23.0   -19.0   -12.6 23020.5 
+
+Coefficients:
+                 Estimate Std. Error t value Pr(>|t|)    
+(Intercept)       38.9260    10.9663   3.550 0.000389 ***
+pot_interp$onda2  -0.3972     0.2970  -1.338 0.181109    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 350.1 on 5059 degrees of freedom
+Multiple R-squared:  0.0003535,	Adjusted R-squared:  0.0001559 
+F-statistic: 1.789 on 1 and 5059 DF,  p-value: 0.1811
+
+################################################################################
+################################################################################
+###Potassio x PAS (onda 1)
+##Normalidade dos residuos:
+
+###Anderson-Darling normality test
+
+data:  data$residuals
+A = 33.045, p-value < 2.2e-16
+
+##Outliers nos residuos:
+     Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+-2.625135 -0.720605 -0.114896  0.000003  0.569285  5.990038 
+ ##Independencia dos residuos (Durbin-Watson):
+ lag Autocorrelation D-W Statistic p-value
+   1      0.01925224      1.961336    0.17
+ Alternative hypothesis: rho != 0
+##Homocedasticidade (Breusch-Pagan):
+
+###studentized Breusch-Pagan test
+
+data:  data
+BP = 12.43, df = 1, p-value = 0.0004225
+
+###Analise do modelo
+
+Call:
+lm(formula = PAS_interp$onda1 ~ pot_interp$onda1)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-43.558 -11.957  -1.906   9.447  99.396 
+
+Coefficients:
+                  Estimate Std. Error t value Pr(>|t|)    
+(Intercept)      121.46543    0.49610 244.841  < 2e-16 ***
+pot_interp$onda1  -0.05043    0.01346  -3.747 0.000181 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 16.6 on 5059 degrees of freedom
+Multiple R-squared:  0.002768,	Adjusted R-squared:  0.002571 
+F-statistic: 14.04 on 1 and 5059 DF,  p-value: 0.0001809
+
+################################################################################
+################################################################################
+###Potassio x PAS (onda 2)
+##Normalidade dos residuos:
+
+###Anderson-Darling normality test
+
+data:  data$residuals
+A = 25.191, p-value < 2.2e-16
+
+##Outliers nos residuos:
+     Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+-2.877353 -0.717277 -0.088255 -0.000004  0.570982  6.164895 
+##Independencia dos residuos (Durbin-Watson):
+ lag Autocorrelation D-W Statistic p-value
+   1      0.02641243      1.947118   0.078
+ Alternative hypothesis: rho != 0
+##Homocedasticidade (Breusch-Pagan):
+
+###studentized Breusch-Pagan test
+
+data:  data
+BP = 6.6078, df = 1, p-value = 0.01015
+
+###Analise do modelo
+
+Call:
+lm(formula = PAS_interp$onda2 ~ pot_interp$onda2)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-47.812 -11.917  -1.466   9.488 102.455 
+
+Coefficients:
+                 Estimate Std. Error t value Pr(>|t|)    
+(Intercept)      123.4139     0.5206   237.1  < 2e-16 ***
+pot_interp$onda2  -0.0564     0.0141    -4.0 6.42e-05 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 16.62 on 5059 degrees of freedom
+Multiple R-squared:  0.003153,	Adjusted R-squared:  0.002956 
+F-statistic:    16 on 1 and 5059 DF,  p-value: 6.423e-05
+
+################################################################################
+################################################################################
+###Potassio x PAS (onda 3) 
+##Normalidade dos residuos:
+
+###Anderson-Darling normality test
+
+data:  data$residuals
+A = 16.206, p-value < 2.2e-16
+
+##Outliers nos residuos:
+     Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+-3.362593 -0.683395 -0.084247 -0.000006  0.596431  5.940739 
+##Independencia dos residuos (Durbin-Watson):
+ lag Autocorrelation D-W Statistic p-value
+   1         0.02258      1.954751   0.102
+ Alternative hypothesis: rho != 0
+##Homocedasticidade (Breusch-Pagan):
+
+###studentized Breusch-Pagan test
+
+data:  data
+BP = 11.06, df = 1, p-value = 0.0008821
+
+ ###Analise do modelo
+
+Call:
+lm(formula = PAS_interp$onda3 ~ pot_interp$onda3)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-57.396 -11.666  -1.438  10.183 101.414 
+
+Coefficients:
+                   Estimate Std. Error t value Pr(>|t|)    
+(Intercept)      128.671356   0.611680 210.357  < 2e-16 ***
+pot_interp$onda3  -0.070856   0.008717  -8.128 5.42e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 17.08 on 5059 degrees of freedom
+Multiple R-squared:  0.01289,	Adjusted R-squared:  0.0127 
+F-statistic: 66.07 on 1 and 5059 DF,  p-value: 5.418e-16
+
+################################################################################
+################################################################################
+###Potassio x PAD (onda 1)
+##Normalidade dos residuos:
+
+###Anderson-Darling normality test
+
+data:  data$residuals
+A = 14.688, p-value < 2.2e-16
+
+##Outliers nos residuos:
+     Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+-2.911344 -0.711232 -0.083611  0.000002  0.617380  5.211469 
+##Independencia dos residuos (Durbin-Watson):
+ lag Autocorrelation D-W Statistic p-value
+   1      0.02602759      1.947743    0.06
+ Alternative hypothesis: rho != 0
+##Homocedasticidade (Breusch-Pagan):
+
+###studentized Breusch-Pagan test
+
+data:  data
+BP = 6.9459, df = 1, p-value = 0.008401
+
+###Analise do modelo
+
+Call:
+lm(formula = PAD_interp$onda1 ~ pot_interp$onda1)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-31.352  -7.660  -0.900   6.648  56.128 
+
+Coefficients:
+                  Estimate Std. Error t value Pr(>|t|)    
+(Intercept)      76.235487   0.321996 236.759  < 2e-16 ***
+pot_interp$onda1 -0.031993   0.008735  -3.663 0.000252 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 10.77 on 5059 degrees of freedom
+Multiple R-squared:  0.002645,	Adjusted R-squared:  0.002448 
+F-statistic: 13.42 on 1 and 5059 DF,  p-value: 0.0002521
+
+################################################################################
+################################################################################
+###Potassio xPAD (onda 2)
+##Normalidade dos residuos:
+
+###Anderson-Darling normality test
+
+data:  data$residuals
+A = 9.0387, p-value < 2.2e-16
+
+##Outliers nos residuos:
+     Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+-2.993508 -0.703494 -0.056533 -0.000002  0.611126  4.407666 
+##Independencia dos residuos (Durbin-Watson):
+ lag Autocorrelation D-W Statistic p-value
+   1      0.02143145      1.957104   0.152
+ Alternative hypothesis: rho != 0
+##Homocedasticidade (Breusch-Pagan):
+
+###studentized Breusch-Pagan test
+
+data:  data
+BP = 7.3546, df = 1, p-value = 0.006689
+
+###Analise do modelo
+
+Call:
+lm(formula = PAD_interp$onda2 ~ pot_interp$onda2)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-31.252  -7.347  -0.590   6.383  46.031 
+
+Coefficients:
+                 Estimate Std. Error t value Pr(>|t|)    
+(Intercept)      77.03749    0.32715 235.483  < 2e-16 ***
+pot_interp$onda2 -0.02706    0.00886  -3.054  0.00227 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 10.44 on 5059 degrees of freedom
+Multiple R-squared:  0.00184,	Adjusted R-squared:  0.001643 
+F-statistic: 9.327 on 1 and 5059 DF,  p-value: 0.002269
+
+################################################################################
+################################################################################
+###Potassio x PAD (onda 3)
+##Normalidade dos residuos:
+
+###Anderson-Darling normality test
+
+data:  data$residuals
+A = 7.3149, p-value < 2.2e-16
+
+##Outliers nos residuos:
+     Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+-2.943950 -0.697027 -0.061100 -0.000005  0.629210  5.360798 
+ ##Independencia dos residuos (Durbin-Watson):
+ lag Autocorrelation D-W Statistic p-value
+   1      0.01501334      1.969854   0.306
+ Alternative hypothesis: rho != 0
+##Homocedasticidade (Breusch-Pagan):
+
+###studentized Breusch-Pagan test
+
+data:  data
+BP = 5.2086, df = 1, p-value = 0.02248
+
+###Analise do modelo
+
+Call:
+lm(formula = PAD_interp$onda3 ~ pot_interp$onda3)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-30.297  -7.175  -0.629   6.477  55.181 
+
+Coefficients:
+                  Estimate Std. Error t value Pr(>|t|)    
+(Intercept)      78.666916   0.368814 213.297  < 2e-16 ***
+pot_interp$onda3 -0.024308   0.005256  -4.625 3.84e-06 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 10.3 on 5059 degrees of freedom
+Multiple R-squared:  0.00421,	Adjusted R-squared:  0.004013 
+F-statistic: 21.39 on 1 and 5059 DF,  p-value: 3.842e-06
+################################################################################

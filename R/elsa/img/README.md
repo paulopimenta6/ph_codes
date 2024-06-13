@@ -1219,3 +1219,52 @@ Time series analysis involves the study of datasets that are ordered sequentiall
 
 Correlation analysis involves assessing the strength and direction of the relationship between two variables. In this project, correlation analysis was used to investigate the relationships between various pollution-related variables and kidney disease indicators. The correlation coefficient provides a measure of the strength and direction of the linear relationship between two variables.
 
+# Results Analysis
+
+## Potassium x AlbuCreat Ratio (Wave 1)
+
+### Residuals Normality
+
+#### Anderson-Darling Normality Test
+- **A:** 1613.7
+- **p-value:** < 2.2e-16
+
+### Residuals Outliers
+| Min.      | 1st Qu.  | Median  | Mean    | 3rd Qu.  | Max      |
+|-----------|----------|---------|---------|----------|----------|
+| -0.16994  | -0.11539 | -0.09076| 0.00000 | -0.04963 | 33.30390 |
+
+### Residuals Independence (Durbin-Watson)
+| Lag | Autocorrelation | D-W Statistic | p-value |
+|-----|-----------------|---------------|---------|
+| 1   | 0.007660777     | 1.984674      | 0.188   |
+
+### Homoscedasticity (Breusch-Pagan)
+
+#### Studentized Breusch-Pagan Test
+- **BP:** 5.0664
+- **df:** 1
+- **p-value:** 0.02439
+
+### Model Analysis
+```r
+Call:
+lm(formula = razaoAlbuCreat_interp$onda1 ~ pot_interp$onda1)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+ -25.5  -17.3  -13.6   -7.4 4988.2 
+
+Coefficients:
+                 Estimate Std. Error t value Pr(>|t|)    
+(Intercept)       31.2964     4.4784   6.988 3.14e-12 ***
+pot_interp$onda1  -0.3579     0.1215  -2.946  0.00323 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 149.8 on 5059 degrees of freedom
+Multiple R-squared:  0.001713, Adjusted R-squared:  0.001516 
+F-statistic:  8.68 on 1 and 5059 DF,  p-value: 0.003231
+
+
+
