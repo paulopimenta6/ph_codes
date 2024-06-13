@@ -1,6 +1,6 @@
 if(!require(pacman)) install.packages("pacman")
 library(pacman)
-pacman::p_load(dplyr, ggplot2, VIM, nortest, lmtest, car, rstatix, ggpmisc)
+pacman::p_load(dplyr, ggplot2, VIM, nortest, lmtest, car, rstatix, ggpmisc, corrplot)
 source("./src/script_analise_dados_elsa_Var_Lib.R")
 ################################################################################
 statLinCorrAnalysis <- function(data){
@@ -172,3 +172,12 @@ for(i in lmModPotassio){
 for(i in lmModSodio){
   statLinCorrAnalysis(i)
 }
+
+###Correlacoes de Spearman e Kendall
+##Correlacao de Postos de Spearman (coeficiente = ro)
+corSpePotRazaoAlbuCreatOnda1 <- cor.test(pot_interp$onda1, razaoAlbuCreat_interp$onda1, method = "spearman")
+corSpePotRazaoAlbuCreatOnda2 <- cor.test(pot_interp$onda2, razaoAlbuCreat_interp$onda2, method = "spearman")
+
+##Correlacao Tau de Kendall (coeficiente = tau):
+corKenPotRazaoAlbuCreatOnda2 <- cor.test(pot_interp$onda1, razaoAlbuCreat_interp$onda1, method = "kendall")
+corKenPotRazaoAlbuCreatOnda2 <- cor.test(pot_interp$onda2, razaoAlbuCreat_interp$onda2, method = "kendall")
