@@ -696,7 +696,7 @@ In the analysis of non-parametric methods, the analyses were considered in group
 - **Degrees of Freedom:** 2
 - **p-value:** < 2.2e-16
 
-- **Result:** The p-value is less than 2.2e-16, indicating significant differences in the medians of `Hba` between the different waves.
+**Result:** The p-value is less than 2.2e-16, indicating significant differences in the medians of `Hba` between the different waves.
 
 #### Multiple Comparison (Post-hoc) Test
 
@@ -706,7 +706,7 @@ In the analysis of non-parametric methods, the analyses were considered in group
 | wave1 vs. wave3 | 1123136 | 0         | 0         | ****         |
 | wave2 vs. wave3 | 2053442 | 8.29e-298 | 2.49e-297 | ****         |
 
-- **Result:** All p-values are less than 0.05, indicating significant differences between the medians of `Hba` in all wave combinations.
+**Result:** All p-values are less than 0.05, indicating significant differences between the medians of `Hba` in all wave combinations.
 
 #### Descriptive Analysis
 
@@ -716,7 +716,7 @@ In the analysis of non-parametric methods, the analyses were considered in group
 | wave2 | 5061 | 5.4    | 0.6 |
 | wave3 | 5061 | 5.6    | 0.7 |
 
-- **Result:** The medians of `Hba` increase slightly from one wave to another, suggesting a trend of increasing levels of glycated hemoglobin over the waves.
+**Result:** The medians of `Hba` increase slightly from one wave to another, suggesting a trend of increasing levels of glycated hemoglobin over the waves.
 
 <p align="center">
   <img src="./estat_nao_param/hba/Hba_friendman.png" width="500">
@@ -732,7 +732,7 @@ In the analysis of non-parametric methods, the analyses were considered in group
 | onda2 | 24.385    | < 2.2e-16     |
 | onda3 | 18.733    | < 2.2e-16     |
 
-- **Result:** All p-values are less than 2.2e-16, indicating that the data does not follow a normal distribution in each wave.
+**Result:** All p-values are less than 2.2e-16, indicating that the data does not follow a normal distribution in each wave.
 
 #### Friedman Test
 
@@ -740,7 +740,7 @@ In the analysis of non-parametric methods, the analyses were considered in group
 - **Degrees of Freedom:** 2
 - **p-value:** < 2.2e-16
 
-- **Result:** The p-value is less than 2.2e-16, indicating significant differences in the medians of `PAS` between the different waves.
+**Result:** The p-value is less than 2.2e-16, indicating significant differences in the medians of `PAS` between the different waves.
 
 #### Multiple Comparison (Post-hoc) Test
 
@@ -750,7 +750,7 @@ In the analysis of non-parametric methods, the analyses were considered in group
 | onda1 vs. onda3 | 4225134 | 3.33e-87 | 9.99e-87 | ****         |
 | onda2 vs. onda3 | 4918469 | 4.47e-36 | 1.34e-35 | ****         |
 
-- **Result:** All p-values are less than 0.05, indicating significant differences between the medians of `PAS` in all wave combinations.
+**Result:** All p-values are less than 0.05, indicating significant differences between the medians of `PAS` in all wave combinations.
 
 #### Descriptive Analysis
 
@@ -776,7 +776,7 @@ In the analysis of non-parametric methods, the analyses were considered in group
 | onda2 | 9.9703    | < 2.2e-16     |
 | onda3 | 8.5363    | < 2.2e-16     |
 
-- **Result:** All p-values are less than 2.2e-16, indicating that the data does not follow a normal distribution in each wave.
+**Result:** All p-values are less than 2.2e-16, indicating that the data does not follow a normal distribution in each wave.
 
 #### Friedman Test
 
@@ -784,7 +784,7 @@ In the analysis of non-parametric methods, the analyses were considered in group
 - **Degrees of Freedom:** 2
 - **p-value:** < 2.2e-16
 
-- **Result:** The p-value is less than 2.2e-16, indicating significant differences in the medians of `PAD` between the different waves.
+**Result:** The p-value is less than 2.2e-16, indicating significant differences in the medians of `PAD` between the different waves.
 
 #### Multiple Comparison (Post-hoc) Test
 
@@ -794,7 +794,7 @@ In the analysis of non-parametric methods, the analyses were considered in group
 | onda1 vs. onda3 | 4604874 | 1.03e-54 | 3.09e-54 | ****         |
 | onda2 vs. onda3 | 5183216 | 1.42e-18 | 4.26e-18 | ****         |
 
-- **Result:** All p-values are less than 0.05, indicating significant differences between the medians of `PAD` in all wave combinations.
+**Result:** All p-values are less than 0.05, indicating significant differences between the medians of `PAD` in all wave combinations.
 
 #### Descriptive Analysis
 
@@ -804,7 +804,7 @@ In the analysis of non-parametric methods, the analyses were considered in group
 | onda2 | 5061 | 75.5   | 13.5 |
 | onda3 | 5061 | 76.5   | 13.5 |
 
-- **Result:** The medians of `PAD` increase slightly from one wave to another, suggesting a trend of increasing diastolic blood pressure over the waves.
+**Result:** The medians of `PAD` increase slightly from one wave to another, suggesting a trend of increasing diastolic blood pressure over the waves.
 
 <p align="center">
   <img src="./estat_nao_param/pad/PAD_friendman.png" width="500">
@@ -883,7 +883,7 @@ Based on the analysis of creatinine levels across different waves:
 
 6. **Descriptive Statistics:** Median creatinine levels differed between waves, with the highest median in wave 3.
 
-- **Result:** The medians of creatinine in blood varied between the waves, being higher in wave3 and lower in wave2. In summary, the results indicate that there are statistically significant differences in the medians of creatinine in blood between the three waves, and that the samples do not follow a normal distribution.There are significant differences in creatinine levels between the waves, indicating a potential impact of the experimental conditions or time points on creatinine levels.
+**Result:** The medians of creatinine in blood varied between the waves, being higher in wave3 and lower in wave2. In summary, the results indicate that there are statistically significant differences in the medians of creatinine in blood between the three waves, and that the samples do not follow a normal distribution.There are significant differences in creatinine levels between the waves, indicating a potential impact of the experimental conditions or time points on creatinine levels.
 
 <p align="center">
   <img src="./estat_nao_param/creatinina_rastreavel_sangue/creatRastSangue_friendman.png" width="500">
@@ -930,7 +930,7 @@ This analysis examines the normality of creatinine levels in urine across three 
 | Wave 2| 5061| 76.9   | 61.9 |
 | Wave 3| 5061| 128.0  | 84.2 |
 
-**- Result:** This analysis examines the normality of creatinine levels in urine across three waves of data. The Anderson-Darling test indicates that all waves' creatinine levels are not normally distributed (p < 2.2e-16). Further, the Friedman test suggests a significant difference in creatinine levels across waves (p < 2.2e-16). Post-hoc tests reveal significant differences between all pairs of waves (p < 0.001). Descriptive statistics show varying median creatinine levels across waves. The creatinine levels in urine differ significantly across the three waves. None of the waves exhibit a normal distribution of creatinine levels. Post-hoc tests indicate significant differences between all pairs of waves. These findings suggest that there are systematic differences in creatinine levels across the three waves, which could be of interest for further investigation in the context of the study. 
+**Result:** This analysis examines the normality of creatinine levels in urine across three waves of data. The Anderson-Darling test indicates that all waves' creatinine levels are not normally distributed (p < 2.2e-16). Further, the Friedman test suggests a significant difference in creatinine levels across waves (p < 2.2e-16). Post-hoc tests reveal significant differences between all pairs of waves (p < 0.001). Descriptive statistics show varying median creatinine levels across waves. The creatinine levels in urine differ significantly across the three waves. None of the waves exhibit a normal distribution of creatinine levels. Post-hoc tests indicate significant differences between all pairs of waves. These findings suggest that there are systematic differences in creatinine levels across the three waves, which could be of interest for further investigation in the context of the study. 
 
 <p align="center">
   <img src="./estat_nao_param/creatinina_rastreavel_urina/creatRastUrina_friendman.png" width="500">
@@ -1001,7 +1001,7 @@ This analysis examines the normality of creatinine levels in urine across three 
 | Wave 2 | 5061 | 193    | 48   |
 | Wave 3 | 5061 | 195    | 47   |
 
-**-Result:** The analysis indicates that total cholesterol levels exhibit significant variations across the three waves, as evidenced by the Friedman test and supported by the post-hoc comparisons. The data does not follow a normal distribution, suggesting that non-parametric tests are appropriate for this analysis. Outliers are present in the dataset, which could impact the overall trends and should be considered in any further analyses or interpretations.
+**Result:** The analysis indicates that total cholesterol levels exhibit significant variations across the three waves, as evidenced by the Friedman test and supported by the post-hoc comparisons. The data does not follow a normal distribution, suggesting that non-parametric tests are appropriate for this analysis. Outliers are present in the dataset, which could impact the overall trends and should be considered in any further analyses or interpretations.
 
 <p align="center">
   <img src="./estat_nao_param/colesterol/colesterolTotal_friendman.png" width="500">
@@ -1075,7 +1075,7 @@ This analysis examines the normality of creatinine levels in urine across three 
 | Wave 2| cholesterolLDL | 5061 | 114    | 41   |
 | Wave 3| cholesterolLDL | 5061 | 114    | 43   |
 
-**-Result:** The normality tests (Anderson-Darling and Kolmogorov-Smirnov) indicate that LDL cholesterol data do not follow a normal distribution for any of the waves. The Friedman test did not show statistically significant differences in LDL cholesterol levels between the waves. However, post-hoc tests (Wilcoxon with Bonferroni correction) indicated a significant difference between waves 1 and 3.
+**Result:** The normality tests (Anderson-Darling and Kolmogorov-Smirnov) indicate that LDL cholesterol data do not follow a normal distribution for any of the waves. The Friedman test did not show statistically significant differences in LDL cholesterol levels between the waves. However, post-hoc tests (Wilcoxon with Bonferroni correction) indicated a significant difference between waves 1 and 3.
 
 Descriptive analysis revealed small variations in the median and interquartile range of LDL cholesterol levels between the waves. The identification of outliers suggests the presence of significantly higher or lower LDL cholesterol values in some individuals.
 
@@ -1147,7 +1147,7 @@ This analysis provides a comprehensive view of LDL cholesterol data, helping to 
 | Wave 2| cholesterolHDL | 5061 | 51     | 17   |
 | Wave 3| cholesterolHDL | 5061 | 52     | 20   |
 
-**-Result:** The analysis of HDL cholesterol levels across three waves reveals several important findings. Firstly, the Anderson-Darling normality tests indicate that the HDL cholesterol levels in each wave are not normally distributed, suggesting potential deviations from a normal distribution in the underlying data.
+**Result:** The analysis of HDL cholesterol levels across three waves reveals several important findings. Firstly, the Anderson-Darling normality tests indicate that the HDL cholesterol levels in each wave are not normally distributed, suggesting potential deviations from a normal distribution in the underlying data.
 
 Secondly, the Friedman test demonstrates a significant difference in HDL cholesterol levels among the three waves (p < 0.001), indicating that the HDL cholesterol levels vary across the waves.
 
@@ -1186,7 +1186,7 @@ In conclusion, the results indicate that there are significant differences in HD
 | onda2     | 5061 | 7.2    | 3.91 |
 | dif       | 5061 | -0.5   | 2.57 |
 
-**-Result: The albumin-to-creatinine ratio (ACR) was analyzed across two waves of data. Both waves showed a significant deviation from normality based on Anderson-Darling tests (onda1: A = 1711.2, p < 2.2e-16; onda2: A = 1789.2, p < 2.2e-16). A Wilcoxon signed-rank test indicated a significant difference between the two waves (V = 4654531, p < 2.2e-16). Median ACR values were 6.6 (IQR = 3.57) for onda1 and 7.2 (IQR = 3.91) for onda2, with a median difference of -0.5 (IQR = 2.57). These results suggest a significant difference in ACR between the two waves, despite both waves showing a non-normal distribution of ACR values.**
+**Result: The albumin-to-creatinine ratio (ACR) was analyzed across two waves of data. Both waves showed a significant deviation from normality based on Anderson-Darling tests (onda1: A = 1711.2, p < 2.2e-16; onda2: A = 1789.2, p < 2.2e-16). A Wilcoxon signed-rank test indicated a significant difference between the two waves (V = 4654531, p < 2.2e-16). Median ACR values were 6.6 (IQR = 3.57) for onda1 and 7.2 (IQR = 3.91) for onda2, with a median difference of -0.5 (IQR = 2.57). These results suggest a significant difference in ACR between the two waves, despite both waves showing a non-normal distribution of ACR values.**
 
 ### Statistical Analyses for Microalbuminuria
 
@@ -1208,7 +1208,7 @@ In conclusion, the results indicate that there are significant differences in HD
 | Onda2     | 0.54   | 0.529|
 | Difference| -0.014 | 0.412|
 
-**-Result:** The analysis indicates a significant difference in microalbuminuria levels between Onda1 and Onda2, as shown by the Wilcoxon Signed-Rank Test (p = 0.000962). Despite the non-normal distribution of the data, this difference suggests a noteworthy change in microalbuminuria levels between the two waves. The difference in microalbuminuria levels between Wave1 and Wave2, as indicated by the Wilcoxon test, suggests a significant change in levels between the two waves. This may indicate a change in the health status of the patients over time, which could be relevant for monitoring and clinical interventions.
+**Result:** The analysis indicates a significant difference in microalbuminuria levels between Onda1 and Onda2, as shown by the Wilcoxon Signed-Rank Test (p = 0.000962). Despite the non-normal distribution of the data, this difference suggests a noteworthy change in microalbuminuria levels between the two waves. The difference in microalbuminuria levels between Wave1 and Wave2, as indicated by the Wilcoxon test, suggests a significant change in levels between the two waves. This may indicate a change in the health status of the patients over time, which could be relevant for monitoring and clinical interventions.
 
 
 ### Time series analysis
