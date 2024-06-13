@@ -1265,7 +1265,7 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 Residual standard error: 149.8 on 5059 degrees of freedom
 Multiple R-squared:  0.001713, Adjusted R-squared:  0.001516 
 F-statistic:  8.68 on 1 and 5059 DF,  p-value: 0.003231
-
+```
 ###
 
 ### Potassium x AlbuCreat Ratio (Wave 2)
