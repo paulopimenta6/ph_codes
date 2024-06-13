@@ -1219,9 +1219,9 @@ Time series analysis involves the study of datasets that are ordered sequentiall
 
 Correlation analysis involves assessing the strength and direction of the relationship between two variables. In this project, correlation analysis was used to investigate the relationships between various pollution-related variables and kidney disease indicators. The correlation coefficient provides a measure of the strength and direction of the linear relationship between two variables.
 
-# Results Analysis
+## Results Analysis
 
-## Potassium x AlbuCreat Ratio (Wave 1)
+### Potassium x AlbuCreat Ratio (Wave 1)
 
 ### Residuals Normality
 
