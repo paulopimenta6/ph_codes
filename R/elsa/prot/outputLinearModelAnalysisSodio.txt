@@ -17,7 +17,7 @@ A = 1674.8, p-value < 2.2e-16
  Alternative hypothesis: rho != 0
 ##Homocedasticidade (Breusch-Pagan):
 
-studentized Breusch-Pagan test
+###studentized Breusch-Pagan test
 
 data:  data
 BP = 1.9673, df = 1, p-value = 0.1607
@@ -61,7 +61,7 @@ A = 1756.6, p-value < 2.2e-16
 Alternative hypothesis: rho != 0
 ##Homocedasticidade (Breusch-Pagan):
 
-studentized Breusch-Pagan test
+###studentized Breusch-Pagan test
 
 data:  data
 BP = 0.76561, df = 1, p-value = 0.3816
@@ -103,7 +103,7 @@ A = 34.123, p-value < 2.2e-16
  Alternative hypothesis: rho != 0
 ##Homocedasticidade (Breusch-Pagan):
 
-	studentized Breusch-Pagan test
+	###studentized Breusch-Pagan test
 
 data:  data
 BP = 0.087942, df = 1, p-value = 0.7668
@@ -147,7 +147,7 @@ A = 26.483, p-value < 2.2e-16
  Alternative hypothesis: rho != 0
 ##Homocedasticidade (Breusch-Pagan):
 
-studentized Breusch-Pagan test
+###studentized Breusch-Pagan test
 
 data:  data
 BP = 0.19932, df = 1, p-value = 0.6553
@@ -191,7 +191,7 @@ A = 17.895, p-value < 2.2e-16
  Alternative hypothesis: rho != 0
 ##Homocedasticidade (Breusch-Pagan):
 
-studentized Breusch-Pagan test
+###studentized Breusch-Pagan test
 
 data:  data
 BP = 1.2706, df = 1, p-value = 0.2597
@@ -235,7 +235,7 @@ A = 13.687, p-value < 2.2e-16
  Alternative hypothesis: rho != 0
 ##Homocedasticidade (Breusch-Pagan):
 
-	studentized Breusch-Pagan test
+	###studentized Breusch-Pagan test
 
 data:  data
 BP = 9.3953, df = 1, p-value = 0.002175
@@ -279,7 +279,7 @@ A = 9.5381, p-value < 2.2e-16
  Alternative hypothesis: rho != 0
 ##Homocedasticidade (Breusch-Pagan):
 
-studentized Breusch-Pagan test
+###studentized Breusch-Pagan test
 
 data:  data
 BP = 1.7789, df = 1, p-value = 0.1823
@@ -323,7 +323,7 @@ A = 8.1019, p-value < 2.2e-16
  Alternative hypothesis: rho != 0
 ##Homocedasticidade (Breusch-Pagan):
 
-studentized Breusch-Pagan test
+###studentized Breusch-Pagan test
 
 data:  data
 BP = 1.2236, df = 1, p-value = 0.2687

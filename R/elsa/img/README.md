@@ -1266,5 +1266,50 @@ Residual standard error: 149.8 on 5059 degrees of freedom
 Multiple R-squared:  0.001713, Adjusted R-squared:  0.001516 
 F-statistic:  8.68 on 1 and 5059 DF,  p-value: 0.003231
 
+###
 
+### Potassium x AlbuCreat Ratio (Wave 2)
+
+### Residuals Normality
+
+#### Anderson-Darling Normality Test
+- **A:** 1739.7
+- **p-value:** < 2.2e-16
+
+### Residuals Outliers
+| Min.      | 1st Qu.  | Median  | Mean    | 3rd Qu.  | Max      |
+|-----------|----------|---------|---------|----------|----------|
+| -0.09086  | -0.06569 | -0.05423| 0.00000 | -0.03610 | 65.75766 |
+
+### Residuals Independence (Durbin-Watson)
+| Lag | Autocorrelation | D-W Statistic | p-value |
+|-----|-----------------|---------------|---------|
+| 1   | 9.500238e-05    | 1.999808      | 0.47    |
+
+### Homoscedasticity (Breusch-Pagan)
+
+#### Studentized Breusch-Pagan Test
+- **BP:** 0.36926
+- **df:** 1
+- **p-value:** 0.5434
+
+### Model Analysis
+```r
+Call:
+lm(formula = razaoAlbuCreat_interp$onda2 ~ pot_interp$onda2)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+  -31.8   -23.0   -19.0   -12.6 23020.5 
+
+Coefficients:
+                 Estimate Std. Error t value Pr(>|t|)    
+(Intercept)       38.9260    10.9663   3.550 0.000389 ***
+pot_interp$onda2  -0.3972     0.2970  -1.338 0.181109    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 350.1 on 5059 degrees of freedom
+Multiple R-squared:  0.0003535, Adjusted R-squared:  0.0001559 
+F-statistic: 1.789 on 1 and 5059 DF,  p-value: 0.1811
 
