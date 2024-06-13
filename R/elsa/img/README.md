@@ -2002,16 +2002,17 @@ The significance levels and provide interpretations of the results. By the end o
 ### Usage
 
 ```R
+##Normality test for residuals
 ad.test      # p =< 0.05 then residue is not normal
              # p > 0.05 then residue is normal      
 
-## Outliers in the residuals:
+##Outliers in the residuals:
 summary(rstandard)              # Outliers and leverage points                                
                                 # Residuals "max" above value 3, i.e., not between -3 to 3
                                 # With max value above 3, i.e., presence of outlier and leverage point
                                 
 
-## Independence of residuals (Durbin-Watson):
+##Independence of residuals (Durbin-Watson):
 durbinWatsonTest                # D-W should be between 1 to 3, hence the value will be consistent 
                                 # H0: p > 0.05: autocorrelation = 0: independence of residuals
                                 # H: p =< 0.05: autocorrelation != 0: no independence of residuals   
@@ -2020,12 +2021,12 @@ durbinWatsonTest                # D-W should be between 1 to 3, hence the value 
 bptest                          # p > 0.05: homoscedasticity exists
                                 # p =< 0.05: homoscedasticity does not exist      
 
-# Step 4: Model analysis
+#Model analysis
 summary                        # p > 0.05: coefficient = 0: independent variable has no impact on dependent variable
                                # p =< 0.05: coefficient != 0 independent variable has impact on dependent variable
                                # For every increase/decrease of 1 unit of x (independent variable) the value of the dependent variable increases proportionally to the coefficient   
 
-F-statistic
+#F-statistic
 
                                # R^2 is the best indicator as it relates to simple (linear) regression
                                # R^2 the consumption of the independent variable in percentage explains that of the dependent variable
