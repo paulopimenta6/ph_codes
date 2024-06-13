@@ -1161,7 +1161,7 @@ In conclusion, the results indicate that there are significant differences in HD
   <img src="./estat_nao_param/colesterol/colesterolHDL_friendman.png" width="500">
 </p>
 
-# Analysis based on paired Wilcoxon
+## Analysis based on paired Wilcoxon
 
 ### Statistical Analyses for Albumin-to-Creatinine Ratio
 
