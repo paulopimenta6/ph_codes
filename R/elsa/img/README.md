@@ -8,7 +8,7 @@
 ## Summary
 
 - [About](#about)
-- [Descriptive-statistics](#Descriptive-statistics)
+- [Descriptive Statistics](#Descriptive-statistics)
 - [Analysis](#analysis)
 - [Tutorial Statistical Analysis Tutorial](Tutorial-Statistical-Analysis-Tutorial)
 
@@ -18,7 +18,7 @@ This section is dedicated to statistical analyses divided into two parts: Descri
 
 It is hoped that these results can help in the perception of patterns and indices that relate pollution to kidney diseases.
 
-## Descriptive-statistics
+## Descriptive Statistics
 [Descriptive statistics](./analysis.md)
 
 ## Analysis
