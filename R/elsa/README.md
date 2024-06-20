@@ -12,17 +12,15 @@
 - [How to use](#How-to-use)
 - [Statistics](#Statistics)
 
-### About 
-
 ## About ELSA
 
 The Longitudinal Study of Adult Health - ELSA Brazil - is a multicenter cohort investigation composed of 15,000 employees from six public institutions of higher education and research in the Northeast, South, and Southeast regions of Brazil. The research aims to investigate the incidence and risk factors for chronic diseases, particularly cardiovascular diseases and diabetes.
 At each study center, research subjects - aged 35 to 74 years - undergo examinations and interviews in which aspects such as living conditions, social differences, work relationships, gender, and specifics of the Brazilian population's diet are evaluated.
 In addition to fostering the development of new research, the study will be essential for the adaptation of public health policies to national needs. ELSA is made possible by the interest of the Ministry of Health and the Ministry of Science and Technology in conducting large-scale national research on the health of the adult population in Brazil.
 
-### Environment
+## Environment
 
-## Instalantion of R
+### Installing R
 
 <p align="center">
   <img src="img/Rlogo.png" alt="R" width="200">
@@ -61,7 +59,7 @@ sudo apt install r-base
 3. **Verify Installation**: Type R in the terminal. This should start the R console, confirming that R has been installed correctly.
 
 
-## **To update R in Ubuntu Linux**:
+### **To update R in Ubuntu Linux**:
 
 1. Update Package Index: First, update the package index to ensure you install the latest version of R:
 
@@ -112,7 +110,7 @@ sudo apt install r-base
 ```bash
 R --version
 ```
-## Instalation of Rstudio (IDE)
+### Installing Rstudio (IDE)
 
 <p align="center">
   <img src="img/rstudio.png" alt="Rstudio" width="300">
@@ -133,9 +131,9 @@ $ sudo apt update
 $ sudo apt upgrade #optional
 ```
 
-### How to use
+## How to use
 
-## First contact
+### First contact
 
 The directories are organised like: 
 
@@ -155,6 +153,6 @@ The directories are organised like:
 rstudio <file>.Rproj &
 ``` 
 
-### Statistics
+## Statistics
 
 [Graphics and Analysis](./img/README.md)
