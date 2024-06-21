@@ -8,8 +8,6 @@
 
 ## non-Parametric analysis - Friedman test
 
-### Non-parametric statistical analysis
-
 Statistical analysis was performed using the non-parametric Friedman and Wilcoxon tests. These tests were chosen due to the lack of normal distribution in the data. Non-parametric tests are suitable for ordinal or non-normally distributed interval data. The Friedman test is used for comparing more than two groups, while the Wilcoxon test is used for paired samples to assess differences in their median values.
 
 In the descriptive analyses, parts 1 and 2, only non-null values were considered, as they were indexed to ages in waves 1, 2, and 3, in order to show, significantly, the patients in their progressions, either in some medical characteristic or in the use of some medication.
@@ -473,7 +471,7 @@ In conclusion, the results indicate that there are significant differences in HD
   <img src="./estat_nao_param/colesterol/colesterolHDL_friendman.png" width="800">
 </p>
 
-##non-Parametric analysis - Wilcoxon test
+## non-Parametric analysis - Wilcoxon test
 
 ### Statistical Analyses for Albumin-to-Creatinine Ratio
 
