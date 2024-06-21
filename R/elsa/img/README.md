@@ -786,9 +786,7 @@ Assess the independence of residuals using the Durbin-Watson statistic. The lag,
 Homoscedasticity is tested using the studentized Breusch-Pagan test. The Breusch-Pagan statistic, degrees of freedom, and p-value are reported.
 
 #### Model Analysis:
-Analyze the model using linear regression. The model formula, residuals, coefficients, standard errors, t-values, and p-values are provided.
-
-The significance levels and provide interpretations of the results. By the end of this tutorial, you will have a comprehensive understanding of the statistical methods employed in our analysis.
+Analyze the model using linear regression. The model formula, residuals, coefficients, standard errors, t-values, and p-values are provided. The significance levels and provide interpretations of the results. By the end of this tutorial, you will have a comprehensive understanding of the statistical methods employed in our analysis.
 
 #### Usage
 ```R
