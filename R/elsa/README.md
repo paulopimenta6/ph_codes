@@ -146,12 +146,16 @@ The directories are organised like:
  
  And also there is a **Rproj** file, a file of a project of R. There are two ways to run the project:
  
- 1. Windows users just click on _File_ > _Open Project..._ and select the .Rproj file
+ 1. Windows users just click on _File_ > _Open Project..._ and select the .Rproj file or type in the PowerShell Terminal:
+ ```bash
+rstudio <file>.Rproj 
+``` 
  2. Linux users coud do the same as windows users but also is possible to run the command:
- 
-```bash
+ ```bash
 rstudio <file>.Rproj &
 ``` 
+ 
+
 
 ## Statistics
 
