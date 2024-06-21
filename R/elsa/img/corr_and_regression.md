@@ -6,7 +6,6 @@
 ## Summary
 - [About non-parametric analysis](#About-non--parametric-analysis)
 - [Correlation and regression assumption analyses](#Correlation-and-regression-assumption-analyses)
-- [non-Parametric analysis - Wilcoxon test](#non-parametric-analysis---wilcoxon-test)
 
 ## About correlation and regression analysis
 Correlation analysis involves assessing the strength and direction of the relationship between two variables. In this project, correlation analysis was used to investigate the relationships between various pollution-related variables and kidney disease indicators. The correlation coefficient provides a measure of the strength and direction of the linear relationship between two variables.
