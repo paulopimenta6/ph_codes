@@ -5,6 +5,7 @@
 
 The first part of the analysis is descriptive of the ELSA population data, covering characteristics such as habits, illnesses, and medical indices (exams). The second part is an analysis of the medications used by the population.
 
+## Summary
 - [Descriptive statistics - Part 1](#descriptive-statistics---part-1)
 - [Descriptive statistics - Part 2](#descriptive-statistics---part-2)
 

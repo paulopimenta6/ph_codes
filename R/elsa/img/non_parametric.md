@@ -3,6 +3,7 @@
 ![R](https://img.shields.io/badge/R-276DC3?logo=r&logoColor=white&style=flat)
 ![RStudio](https://img.shields.io/badge/RStudio-75AADB?logo=rstudio&logoColor=white&style=flat)
 
+## Summary
 - [non-Parametric analysis - Friedman test](#non--Parametric-analysis---Friedman test)
 - [non-Parametric analysis - Wilcoxon test](#non--Parametric-analysis---Wilcoxon test)
 
