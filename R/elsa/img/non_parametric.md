@@ -4,16 +4,18 @@
 ![RStudio](https://img.shields.io/badge/RStudio-75AADB?logo=rstudio&logoColor=white&style=flat)
 
 ## Summary
+- [About non-parametric analysis](#About-non--parametric-analysis)
 - [non-Parametric analysis - Friedman test](#non-parametric-analysis---friedman-test)
 - [non-Parametric analysis - Wilcoxon test](#non-parametric-analysis---wilcoxon-test)
 
-## non-Parametric analysis - Friedman test
-
+## About non-parametric analysis
 Statistical analysis was performed using the non-parametric Friedman and Wilcoxon tests. These tests were chosen due to the lack of normal distribution in the data. Non-parametric tests are suitable for ordinal or non-normally distributed interval data. The Friedman test is used for comparing more than two groups, while the Wilcoxon test is used for paired samples to assess differences in their median values.
 
 In the descriptive analyses, parts 1 and 2, only non-null values were considered, as they were indexed to ages in waves 1, 2, and 3, in order to show, significantly, the patients in their progressions, either in some medical characteristic or in the use of some medication.
 
 In the analysis of non-parametric methods, the analyses were considered in groups (Friedman method) or pairs (Wilcoxon) of waves with the medical variables and their consequent differences between the waves, that is, the medians. It is worth noting that normality was not found, neither in the separate waves nor in the three waves together.
+
+## non-Parametric analysis - Friedman test
 
 ### Statistical Analysis of Glycated Hemoglobin (`Hba`) Data
 #### Anderson-Darling Normality Test
