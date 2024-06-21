@@ -19,7 +19,6 @@ In the analysis of non-parametric methods, the analyses were considered in group
 
 ### Statistical Analysis of Glycated Hemoglobin (`Hba`) Data
 #### Anderson-Darling Normality Test
-
 | Wave  | Statistic | p-value       |
 |-------|-----------|---------------|
 | wave1 | 287.79    | < 2.2e-16     |
@@ -136,7 +135,7 @@ In the analysis of non-parametric methods, the analyses were considered in group
 </p>
 
 ### Traceable creatinine in blood
-### Normality Tests
+#### Normality Tests
 | Wave  | Anderson-Darling Statistic | p-value       |
 |-------|-----------------------------|---------------|
 | wave1     | 112.84                      | < 2.2e-16     |
@@ -144,7 +143,6 @@ In the analysis of non-parametric methods, the analyses were considered in group
 | wave3     | 40.536                      | < 2.2e-16     |
 
 ### Group Analysis
-
 #### Outlier Identification
 | Wave  | Number of Outliers |
 |-------|--------------------|
@@ -152,17 +150,17 @@ In the analysis of non-parametric methods, the analyses were considered in group
 | wave2     | 0                  |
 | wave3     | 0                  |
 
-### Normality Tests
+#### Normality Tests
 | Wave  | Anderson-Darling Statistic | p-value       | Kolmogorov-Smirnov p-value |
 |-------|-----------------------------|---------------|-----------------------------|
 | wave1     | 113.                       | 3.7e-24       | 0                           |
 | wave2     | 114.                       | 3.7e-24       | 0                           |
 | wave3     | 40.5                       | 3.7e-24       | 7.99e-15                    |
 
-### Friedman Test
+#### Friedman Test
 The Friedman test was conducted, resulting in a chi-squared value of 1867.7 with 2 degrees of freedom and a p-value < 2.2e-16.
 
-### Post-hoc Tests
+#### Post-hoc Tests
 | Test               | Comparison         | p-value  | Adjusted p-value |
 |--------------------|--------------------|----------|------------------|
 | Wilcoxon           | Wave 1 vs. Wave 2  | 2.11e-15 | 6.33e-15         |
@@ -178,7 +176,7 @@ The Friedman test was conducted, resulting in a chi-squared value of 1867.7 with
 | Conover            | Wave 1 vs. Wave 3  | <2e-16   | -                |
 | Conover            | Wave 2 vs. Wave 3  | <2e-16   | -                |
 
-### Descriptive Statistics
+#### Descriptive Statistics
 | Wave  | Median | IQR  |
 |-------|--------|------|
 | wave1     | 81.4   | 69.6 |
@@ -203,40 +201,31 @@ Based on the analysis of creatinine levels across different waves:
 </p>
 
 ### Traceable creatinine in Urine
-
-### Summary
-This analysis examines the normality of creatinine levels in urine across three waves of data. The Anderson-Darling test indicates that all waves' creatinine levels are not normally distributed (p < 2.2e-16). Further, the Friedman test suggests a significant difference in creatinine levels across waves (p < 2.2e-16). Post-hoc tests reveal significant differences between all pairs of waves (p < 0.001). Descriptive statistics show varying median creatinine levels across waves.
-
-### Normality Tests (Anderson-Darling)
-
+#### Normality Tests (Anderson-Darling)
 | Wave  | Statistic A | p-value  |
 |-------|-------------|----------|
 | Wave1| 112.84      | < 2.2e-16|
 | Wave2| 113.54      | < 2.2e-16|
 | Wave3| 40.536      | < 2.2e-16|
 
-### Normality Tests Grouped by Wave
-
+#### Normality Tests Grouped by Wave
 | Wave  | Statistic | p-value |
 |-------|-----------|---------|
 | Wave1| 113.      | 3.7e-24 |
 | Wave2| 114.      | 3.7e-24 |
 | Wave3| 40.5      | 3.7e-24 |
 
-### Post-Hoc Tests (Wilcoxon with Bonferroni Correction)
-
+#### Post-Hoc Tests (Wilcoxon with Bonferroni Correction)
 | Comparison      | p-adjusted |
 |-----------------|------------|
 | Wave1 vs. Wave2| 6.33e-15  |
 | Wave1 vs. Wave3| 2.45e-293 |
 | Wave2 vs. Wave3| 0         |
 
-### Friedman Test
-
+#### Friedman Test
 - Chi-squared = 1867.7, df = 2, p-value < 2.2e-16
 
 ### Descriptive Analysis (Median and IQR)
-
 | Wave  | n   | Median | IQR  |
 |-------|-----|--------|------|
 | Wave1| 5061| 81.4   | 69.6 |
@@ -250,10 +239,8 @@ This analysis examines the normality of creatinine levels in urine across three 
 </p>
 
 ### Statistical Analysis of Total Cholesterol
-
-### 1. Anderson-Darling Normality Test
-
-### Results
+#### 1. Anderson-Darling Normality Test
+#### Results
 | Wave | Statistic (A) | p-value        |
 |------|----------------|----------------|
 | Wave1 | 18.318        | < 2.2e-16      |
@@ -261,8 +248,7 @@ This analysis examines the normality of creatinine levels in urine across three 
 | Wave3 | 7.832         | < 2.2e-16      |
 
 ### 2. Kolmogorov-Smirnov Test
-
-### Results
+#### Results
 | Wave  | Statistic (D) | p-value        |
 |-------|----------------|----------------|
 | Wave1 | 0.0427        | 0.0000000188   |
@@ -270,44 +256,41 @@ This analysis examines the normality of creatinine levels in urine across three 
 | Wave3 | 0.0346        | 0.0000108      |
 
 ### 3. Friedman Test
-
-### Results
+#### Results
 | Statistic (χ²) | Degrees of Freedom | p-value        |
 |----------------|---------------------|----------------|
 | 40.991         | 2                   | 1.256e-09      |
 
 ### 4. Post-Hoc Tests
-
-### Wilcoxon with Bonferroni Correction
+#### Wilcoxon with Bonferroni Correction
 | Comparison       | n1   | n2   | Statistic  | p-value       | Adjusted p-value | Significance |
 |------------------|------|------|------------|---------------|------------------|--------------|
 | Wave1 vs Wave2 | 5061 | 5061 | 6674459    | 0.00000312    | 0.00000936       | ****         |
 | Wave1 vs Wave3 | 5061 | 5061 | 6222952    | 0.909         | 1                | ns           |
 | Wave2 vs Wave3 | 5061 | 5061 | 5623080    | 0.00000000612 | 0.0000000184     | ****         |
 
-### Dunn-Bonferroni
+#### Dunn-Bonferroni
 | Comparison       | p-value   |
 |------------------|-----------|
 | Wave1 vs Wave2 | 0.06251   |
 | Wave1 vs Wave3 | 0.00021   |
 | Wave2 vs Wave3 | 9.4e-10   |
 
-### Nemenyi-Wilcoxon-Wilcox with Bonferroni Adjustment
+#### Nemenyi-Wilcoxon-Wilcox with Bonferroni Adjustment
 | Comparison       | p-value   |
 |------------------|-----------|
 | Wave1 vs Wave2 | 0.0543    |
 | Wave1 vs Wave3 | 0.0002    |
 | Wave2 vs Wave3 | 9.4e-10   |
 
-### Conover with Bonferroni Adjustment
+#### Conover with Bonferroni Adjustment
 | Comparison       | p-value   |
 |------------------|-----------|
 | Wave1 vs Wave2 | 0.05964   |
 | Wave1 vs Wave3 | 0.00018   |
 | Wave2 vs Wave3 | 7.1e-10   |
 
-### 5. Descriptive Statistics
-
+#### 5. Descriptive Statistics
 | Wave  | n    | Median | IQR  |
 |-------|------|--------|------|
 | Wave1 | 5061 | 196    | 50   |
@@ -321,67 +304,56 @@ This analysis examines the normality of creatinine levels in urine across three 
 </p>
 
 ### Statistical Analysis of LDL Cholesterol
-
-### Normality Tests
-
-### Anderson-Darling Normality Test
-
+#### Normality Tests
+#### Anderson-Darling Normality Test
 | Wave  | Statistic | p-value |
 |-------|-----------|---------|
 | Wave1| 12.962    | < 2.2e-16|
 | Wave2|  7.4175   | < 2.2e-16|
 | Wave3|  6.465    | 7.378e-16|
 
-### Kolmogorov-Smirnov Test
-
+#### Kolmogorov-Smirnov Test
 | Wave  | Statistic | p-value |
 |-------|-----------|---------|
 | Wave1| 0.0406    | 0.000000115|
 | Wave2| 0.0310    | 0.000116|
 | Wave3| 0.0324    | 0.0000493|
 
-### Friedman Test
-
+#### Friedman Test
 | Statistic      | df | p-value |
 |----------------|----|---------|
 | Friedman chi-squared | 2.9959| 2  | 0.2236  |
 
 ### Post-Hoc Tests
-
-### Wilcoxon with Bonferroni Correction
-
+#### Wilcoxon with Bonferroni Correction
 | .y.           | group1 | group2 | n1   | n2   | statistic | p     | p.adj | p.adj.signif |
 |---------------|--------|--------|------|------|-----------|-------|-------|--------------|
 | colesterolLDL | wave1 | wave2 | 5061 | 5061 | 6340784   | 0.162 | 0.486 | ns           |
 | colesterolLDL | wave1 | wave3 | 5061 | 5061 | 6464864   | 0.011 | 0.033 | *            |
 | colesterolLDL | wave2 | wave3 | 5061 | 5061 | 6328222   | 0.367 | 1     | ns           |
 
-### Dunn-Bonferroni
-
+#### Dunn-Bonferroni
 | Comparison | p-value |
 |------------|---------|
 | wave1 vs wave2 | 0.27 |
 | wave1 vs wave3 | 0.78 |
 | wave2 vs wave3 | 1.00 |
 
-### Nemenyi-Wilcoxon-Wilcox
-
+#### Nemenyi-Wilcoxon-Wilcox
 | Comparison | p-value |
 |------------|---------|
 | wave1 vs wave2 | 0.21 |
 | wave1 vs wave3 | 0.50 |
 | wave2 vs wave3 | 0.84 |
 
-### Conover
-
+#### Conover
 | Comparison | p-value |
 |------------|---------|
 | wave1 vs wave2 | 0.27 |
 | wave1 vs wave3 | 0.77 |
 | wave2 vs wave3 | 1.00 |
 
-### Descriptive Analysis
-
+#### Descriptive Analysis
 | Wave  | Variable      | n    | Median | IQR  |
 |-------|---------------|------|--------|------|
 | Wave1| cholesterolLDL | 5061 | 116    | 43   |
@@ -401,24 +373,20 @@ This analysis provides a comprehensive view of LDL cholesterol data, helping to 
 </p>
 
 ### Statistical Analysis of HDL Cholesterol
-
-### Normality Tests
-
-### Anderson-Darling Normality Test
-
+#### Normality Tests
+#### Anderson-Darling Normality Test
 | Wave  | Statistic | p-value |
 |-------|-----------|---------|
 | Wave1| 59.351    | < 2.2e-16|
 | Wave2| 54.81     | < 2.2e-16|
 | Wave3| 45.891    | < 2.2e-16|
 
-### Friedman Test
-
+#### Friedman Test
 | Statistic      | df | p-value |
 |----------------|----|---------|
 | Friedman chi-squared | 47.694 | 2 | 4.399e-11 |
 
-### Post-Hoc Tests
+#### Post-Hoc Tests
 #### Wilcoxon with Bonferroni Correction
 | .y.           | group1 | group2 | n1   | n2   | statistic | p     | p.adj | p.adj.signif |
 |---------------|--------|--------|------|------|-----------|-------|-------|--------------|
@@ -492,7 +460,6 @@ In conclusion, the results indicate that there are significant differences in HD
 **Result: The albumin-to-creatinine ratio (ACR) was analyzed across two waves of data. Both waves showed a significant deviation from normality based on Anderson-Darling tests (onda1: A = 1711.2, p < 2.2e-16; onda2: A = 1789.2, p < 2.2e-16). A Wilcoxon signed-rank test indicated a significant difference between the two waves (V = 4654531, p < 2.2e-16). Median ACR values were 6.6 (IQR = 3.57) for onda1 and 7.2 (IQR = 3.91) for onda2, with a median difference of -0.5 (IQR = 2.57). These results suggest a significant difference in ACR between the two waves, despite both waves showing a non-normal distribution of ACR values.**
 
 ### Statistical Analyses for Microalbuminuria
-
 #### Normality Tests
 | Onda  | Test Statistic | p-value   | Normality |
 |-------|-----------------|-----------|-----------|
