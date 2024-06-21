@@ -28,9 +28,10 @@ In the analysis of non-parametric methods, the analyses were considered in group
 - **Result:** All p-values are less than 2.2e-16, indicating that the data does not follow a normal distribution in each wave.
 
 #### Friedman Test
-| Friedman chi-squared | Degrees of Freedom | p-value        |
+| Friedman chi-squared | Degrees of Freedom | p-value   |
 |----------------|---------------------|----------------|
-| 3264.5        | 2                   | < 2.2e-16      |
+| 3264.5        | 2                   | < 2.2e-16       |
+
 **Result:** The p-value is less than 2.2e-16, indicating significant differences in the medians of `Hba` between the different waves.
 
 #### Post-hoc tests
@@ -48,8 +49,6 @@ In the analysis of non-parametric methods, the analyses were considered in group
 | Wilcoxon with Bonferroni correction   | onda1 vs onda2 | 1.68e-136 | 5.04e-136    |
 | Wilcoxon with Bonferroni correction   | onda1 vs onda3 | 0         | 0            |
 | Wilcoxon with Bonferroni correction   | onda2 vs onda3 | 8.29e-298 | 2.49e-297    |
-
-
 
 **Result:** All p-values are less than 0.05, indicating significant differences between the medians of `Hba` in all wave combinations.
 
@@ -77,9 +76,10 @@ In the analysis of non-parametric methods, the analyses were considered in group
 **Result:** All p-values are less than 2.2e-16, indicating that the data does not follow a normal distribution in each wave.
 
 #### Friedman Test
-| Friedman chi-squared | Degrees of Freedom | p-value        |
+| Friedman chi-squared | Degrees of Freedom | p-value   |
 |----------------|---------------------|----------------|
-| 385.02        | 2                   | < 2.2e-16      |
+| 385.02        | 2                   | < 2.2e-16       |
+
 **Result:** The p-value is less than 2.2e-16, indicating significant differences in the medians of `PAS` between the different waves.
 
 #### Multiple Comparison (Post-hoc) Test
@@ -125,9 +125,9 @@ In the analysis of non-parametric methods, the analyses were considered in group
 **Result:** All p-values are less than 2.2e-16, indicating that the data does not follow a normal distribution in each wave.
 
 #### Friedman Test
-| Friedman chi-squared | Degrees of Freedom | p-value        |
+| Friedman chi-squared | Degrees of Freedom | p-value   |
 |----------------|---------------------|----------------|
-| 288.34        | 2                   | < 2.2e-16      |
+| 288.34        | 2                   | < 2.2e-16       |
 
 **Result:** The p-value is less than 2.2e-16, indicating significant differences in the medians of `PAD` between the different waves.
 
@@ -180,14 +180,14 @@ In the analysis of non-parametric methods, the analyses were considered in group
 | wave3     | 0                  |
 
 #### Normality Tests
-| Wave  | Anderson-Darling Statistic | p-value       | Kolmogorov-Smirnov p-value |
-|-------|-----------------------------|---------------|-----------------------------|
-| wave1     | 113.                       | 3.7e-24       | 0                           |
-| wave2     | 114.                       | 3.7e-24       | 0                           |
-| wave3     | 40.5                       | 3.7e-24       | 7.99e-15                    |
+| Wave  | Anderson-Darling Statistic | p-value       | 
+|-------|-----------------------------|---------------|
+| wave1     | 113.                       | 3.7e-24       |
+| wave2     | 114.                       | 3.7e-24       |
+| wave3     | 40.5                       | 3.7e-24       |
 
 #### Friedman Test
-| Friedman chi-squared | Degrees of Freedom | p-value        |
+| Friedman chi-squared | Degrees of Freedom | p-value   |
 |----------------|---------------------|----------------|
 | 1867.7         | 2                   | < 2.2e-16      |
 
@@ -264,7 +264,7 @@ Based on the analysis of creatinine levels across different waves:
 
 
 #### Friedman Test
-| Friedman chi-squared | Degrees of Freedom | p-value        |
+| Friedman chi-squared | Degrees of Freedom | p-value   |
 |----------------|---------------------|----------------|
 | 1867.7         | 2                   | < 2.2e-16      |
 
