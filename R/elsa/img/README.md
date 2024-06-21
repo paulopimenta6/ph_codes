@@ -11,7 +11,6 @@
 - [Descriptive Statistics](#Descriptive-Statistics)
 - [non-Parametric analysis](#non--Parametric-analysis)
 - [Correlation and regression analysis](#Correlation-and-regression-analysis)
-- [Tutorial for regression analysis](#Tutorial-for-regression-analysis)
 
 ## About statistical Analysis
 
