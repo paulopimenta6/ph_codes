@@ -779,7 +779,7 @@ Test the normality of residuals using the Anderson-Darling normality test. The t
 #### Outliers in Residuals:
 Examine outliers in residuals by calculating the minimum, 1st quartile, median, mean, 3rd quartile, and maximum values.
 
-### Independence of Residuals (Durbin-Watson):
+#### Independence of Residuals (Durbin-Watson):
 Assess the independence of residuals using the Durbin-Watson statistic. The lag, autocorrelation, D-W statistic, and p-value are provided.
 
 #### Homoscedasticity (Breusch-Pagan):
