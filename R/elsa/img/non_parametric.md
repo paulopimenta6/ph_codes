@@ -54,7 +54,7 @@ In the analysis of non-parametric methods, the analyses were considered in group
 **Result:** The medians of `Hba` increase slightly from one wave to another, suggesting a trend of increasing levels of glycated hemoglobin over the waves.
 
 <p align="center">
-  <img src="./estat_nao_param/hba/Hba_friendman.png" width="500">
+  <img src="./estat_nao_param/hba/Hba_friendman.png" width="1000">
 </p>
 
 ### Statistical Analysis of Systolic Blood Pressure (`PAS`) Data
