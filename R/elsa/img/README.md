@@ -769,22 +769,23 @@ Multiple R-squared:  0.01291, Adjusted R-squared:  0.01271
 F-statistic: 66.14 on 1 and 5059 DF,  p-value: 5.226e-16
 ```
 
-#### Tutorial for regression analysis
+## Tutorial for regression analysis
+
 This tutorial will explore the statistical methods used in our analysis. We focus on the following key aspects:
 
-#### Normality of Residuals
+#### Normality of Residuals:
 Test the normality of residuals using the Anderson-Darling normality test. The test statistic and p-value are reported.
 
-#### Outliers in Residuals
+#### Outliers in Residuals:
 Examine outliers in residuals by calculating the minimum, 1st quartile, median, mean, 3rd quartile, and maximum values.
 
-### Independence of Residuals (Durbin-Watson)
+### Independence of Residuals (Durbin-Watson):
 Assess the independence of residuals using the Durbin-Watson statistic. The lag, autocorrelation, D-W statistic, and p-value are provided.
 
-#### Homoscedasticity (Breusch-Pagan)
+#### Homoscedasticity (Breusch-Pagan):
 Homoscedasticity is tested using the studentized Breusch-Pagan test. The Breusch-Pagan statistic, degrees of freedom, and p-value are reported.
 
-#### Model Analysis
+#### Model Analysis:
 Analyze the model using linear regression. The model formula, residuals, coefficients, standard errors, t-values, and p-values are provided.
 
 The significance levels and provide interpretations of the results. By the end of this tutorial, you will have a comprehensive understanding of the statistical methods employed in our analysis.
@@ -824,4 +825,3 @@ summary                        # p > 0.05: coefficient = 0: independent variable
                                # H0: the value of the mean of the independent variable x occurs independently of the consumption of the dependent variable (without predictor)
                                # H: the value of the dependent variable occurs due to the consumption of the independent variable (with predictor) 
 ```
-
