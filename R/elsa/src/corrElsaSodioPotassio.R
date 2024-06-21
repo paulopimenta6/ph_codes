@@ -1,6 +1,6 @@
 if(!require(pacman)) install.packages("pacman")
 library(pacman)
-pacman::p_load(dplyr, ggplot2, VIM, nortest, lmtest, car, rstatix, ggpmisc, corrplot)
+pacman::p_load(dplyr, ggplot2, VIM, nortest, lmtest, car, rstatix, ggpmisc, corrplot, corrplot)
 source("./src/script_analise_dados_elsa_Var_Lib.R")
 ################################################################################
 statLinCorrAnalysis <- function(data){
@@ -178,6 +178,21 @@ for(i in lmModSodio){
 corSpePotRazaoAlbuCreatOnda1 <- cor.test(pot_interp$onda1, razaoAlbuCreat_interp$onda1, method = "spearman")
 corSpePotRazaoAlbuCreatOnda2 <- cor.test(pot_interp$onda2, razaoAlbuCreat_interp$onda2, method = "spearman")
 
+# Criar um data frame com as variáveis de consumo de potássio e PAD em cada onda de exames
+dados <- data.frame(
+  "Potassio wave 1" = pot_interp$onda1,
+  "Potassio wave 2" = pot_interp$onda2,
+  "Potassio wave 3" = pot_interp$onda3,
+  "PAD wave 1" = PAS_interp$onda1,
+  "PAD wave 2" = PAS_interp$onda2,
+  "PAD wave 3" = PAS_interp$onda3
+)
+matriz_correlacao_pareada <- cor(dados, method = "spearman")  # ou method = "kendall"
+# Criar o plot da matriz de correlação pareada com corrplot
+corrplot(matriz_correlacao_pareada, method = 'square', order = 'FPC', type = 'upper', diag = FALSE)
+
+# Calcular a matriz de correlação pareada
+matriz_correlacao_pareada <- cor(dados, method = "spearman")  # ou method = "kendall"
 ##Correlacao Tau de Kendall (coeficiente = tau):
 corKenPotRazaoAlbuCreatOnda2 <- cor.test(pot_interp$onda1, razaoAlbuCreat_interp$onda1, method = "kendall")
 corKenPotRazaoAlbuCreatOnda2 <- cor.test(pot_interp$onda2, razaoAlbuCreat_interp$onda2, method = "kendall")
