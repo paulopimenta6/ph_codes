@@ -9,8 +9,9 @@
 
 - [About](#about)
 - [Descriptive Statistics](#Descriptive-Statistics)
-- [Analysis](#analysis)
-- [Tutorial Statistical Analysis Tutorial](Tutorial-Statistical-Analysis-Tutorial)
+- [non-Parametric analysis](#non--Parametric-analysis)
+- [Correlation and regression analysis](#Correlation-and-regression-analysis)
+- [Tutorial for regression analysis](Tutorial-for-regression-analysis)
 
 ## About statistical Analysis
 
@@ -21,7 +22,7 @@ It is hoped that these results can help in the perception of patterns and indice
 ## Descriptive Statistics
 [Descriptive Statistics](./analysis.md)
 
-## Analysis
+## non-Parametric analysis
 
 ### Analysis based on Friedman test
 
@@ -561,11 +562,11 @@ In conclusion, the results indicate that there are significant differences in HD
 **Result:** The analysis indicates a significant difference in microalbuminuria levels between Onda1 and Onda2, as shown by the Wilcoxon Signed-Rank Test (p = 0.000962). Despite the non-normal distribution of the data, this difference suggests a noteworthy change in microalbuminuria levels between the two waves. The difference in microalbuminuria levels between Wave1 and Wave2, as indicated by the Wilcoxon test, suggests a significant change in levels between the two waves. This may indicate a change in the health status of the patients over time, which could be relevant for monitoring and clinical interventions.
 
 
-### Time series analysis
+## Time series analysis
 
 Time series analysis involves the study of datasets that are ordered sequentially over time. The primary goal is to understand the underlying structure and function that produced the observations, and to forecast future values. In this project, time series analysis was used to study trends and patterns in the data related to pollution and kidney disease variables over time.
 
-### Correlation analysis
+## Correlation and regression analysis
 
 Correlation analysis involves assessing the strength and direction of the relationship between two variables. In this project, correlation analysis was used to investigate the relationships between various pollution-related variables and kidney disease indicators. The correlation coefficient provides a measure of the strength and direction of the linear relationship between two variables.
 
@@ -1321,7 +1322,7 @@ Multiple R-squared:  0.01291, Adjusted R-squared:  0.01271
 F-statistic: 66.14 on 1 and 5059 DF,  p-value: 5.226e-16
 ```
 
-## Tutorial Statistical Analysis Tutorial
+## Tutorial for regression analysis
 
 In this tutorial, we will explore the statistical methods used in our analysis. We focus on the following key aspects:
 
