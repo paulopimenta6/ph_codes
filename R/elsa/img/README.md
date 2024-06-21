@@ -29,8 +29,8 @@ It is hoped that these results can help in the perception of patterns and indice
 
 Time series analysis involves the study of datasets that are ordered sequentially over time. The primary goal is to understand the underlying structure and function that produced the observations, and to forecast future values. In this project, time series analysis was used to study trends and patterns in the data related to pollution and kidney disease variables over time.
 
-## [Correlation and regression analysis](./corr_and_regression.md)
-
+## Correlation and regression analysis
+[Correlation and regression analysis](./corr_and_regression.md)
 
 ## Tutorial for regression analysis
 
