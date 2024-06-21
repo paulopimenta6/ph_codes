@@ -34,12 +34,23 @@ In the analysis of non-parametric methods, the analyses were considered in group
 
 **Result:** The p-value is less than 2.2e-16, indicating significant differences in the medians of `Hba` between the different waves.
 
-#### Multiple Comparison (Post-hoc) Test
-| Comparison    | Statistic | p-value       | Adjusted p-value | Significance |
-|---------------|-----------|---------------|------------------|--------------|
-| wave1 vs. wave2 | 3029634 | 1.68e-136 | 5.04e-136 | ****         |
-| wave1 vs. wave3 | 1123136 | 0         | 0         | ****         |
-| wave2 vs. wave3 | 2053442 | 8.29e-298 | 2.49e-297 | ****         |
+#### Post-hoc tests
+| Test                            | Comparison   |p-value  | Adjusted p-value |
+|---------------------------------|--------------|---------|------------------|
+| Wilcoxon com correcao de Bonferroni | onda1 vs onda2 | <2e-16  | <2e-16     |
+| Wilcoxon com correcao de Bonferroni | onda1 vs onda3 | 0       | 0          |
+| Wilcoxon com correcao de Bonferroni | onda2 vs onda3 | <2e-16  | <2e-16     |
+| Dunn-Bonferroni               | onda1 vs onda2 | <2e-16  | <2e-16           |
+| Dunn-Bonferroni               | onda1 vs onda3 | <2e-16  | <2e-16           |
+| Dunn-Bonferroni               | onda2 vs onda3 | <2e-16  | <2e-16           |
+| Nemenyi-Wilcoxon-Wilcox       | onda1 vs onda2 | <2e-16  | <2e-16           |
+| Nemenyi-Wilcoxon-Wilcox       | onda1 vs onda3 | <2e-16  | <2e-16           |
+| Nemenyi-Wilcoxon-Wilcox       | onda2 vs onda3 | <2e-16  | <2e-16           |
+| Conover's Test                | onda1 vs onda2 | <2e-16  | <2e-16           |
+| Conover's Test                | onda1 vs onda3 | <2e-16  | <2e-16           |
+| Conover's Test                | onda2 vs onda3 | <2e-16  | <2e-16           |
+|---------------------------------|--------------|---------|------------------|
+
 
 **Result:** All p-values are less than 0.05, indicating significant differences between the medians of `Hba` in all wave combinations.
 

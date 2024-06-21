@@ -57,21 +57,11 @@ normalTestAdersonDarlingGroup <- dadoslHba_interpol %>%
   summarize(ad_test = list(anderson_darling_test(Hba))) %>%
   unnest(cols = ad_test)
 print(normalTestAdersonDarlingGroup)
-
-# Aplicar o teste de Komolgorov-Smirnov por grupo
-normalTesteKomolgorovSmirnovGroup <- dadoslHba_interpol %>%
-  group_by(Onda) %>%
-  filter(n() >= 3) %>%
-  summarize(ks_test = list(ks_test(Hba))) %>%
-  unnest(cols = ks_test)
-print(normalTesteKomolgorovSmirnovGroup)
 ################################################################################
-
 #friedman.test(dadoslHba$Hba, dadoslHba$Onda, dadoslHba$ID)
 friedman.test(dadoslHba_interpol$Hba, dadoslHba_interpol$Onda, dadoslHba_interpol$ID)
 
 #Testes de post-hoc
-
 ##Wilcoxon com correcao de Bonferroni
 dadoslHba_interpol %>% wilcox_test(Hba ~ Onda, paired = TRUE, p.adjust.method = "bonferroni")
 ##post-hocs do pacote PMCMRplus: 
