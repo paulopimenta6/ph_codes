@@ -28,27 +28,27 @@ In the analysis of non-parametric methods, the analyses were considered in group
 - **Result:** All p-values are less than 2.2e-16, indicating that the data does not follow a normal distribution in each wave.
 
 #### Friedman Test
-- **Test Statistic:** 3264.5
-- **Degrees of Freedom:** 2
-- **p-value:** < 2.2e-16
-
+| Friedman chi-squared | Degrees of Freedom | p-value        |
+|----------------|---------------------|----------------|
+| 3264.5        | 2                   | < 2.2e-16      |
 **Result:** The p-value is less than 2.2e-16, indicating significant differences in the medians of `Hba` between the different waves.
 
 #### Post-hoc tests
-| Test                            | Comparison   |p-value  | Adjusted p-value |
-|---------------------------------|--------------|---------|------------------|
-| Wilcoxon com correcao de Bonferroni | wave1 vs wave2 | 1.68e-136  | 5.04e-136|
-| Wilcoxon com correcao de Bonferroni | wave1 vs wave3 | 0       | 0          |
-| Wilcoxon com correcao de Bonferroni | wave2 vs wave3 | 8.29e-298 | 2.49e-297|
-| Dunn-Bonferroni               | wave1 vs wave2 | <2e-16  | <2e-16           |
-| Dunn-Bonferroni               | wave1 vs wave3 | <2e-16  | <2e-16           |
-| Dunn-Bonferroni               | wave2 vs wave3 | <2e-16  | <2e-16           |
-| Nemenyi-Wilcoxon-Wilcox       | wave1 vs wave2 | <2e-16  | <2e-16           |
-| Nemenyi-Wilcoxon-Wilcox       | wave1 vs wave3 | <2e-16  | <2e-16           |
-| Nemenyi-Wilcoxon-Wilcox       | wave2 vs wave3 | <2e-16  | <2e-16           |
-| Conover's Test                | wave1 vs wave2 | <2e-16  | <2e-16           |
-| Conover's Test                | wave1 vs wave3 | <2e-16  | <2e-16           |
-| Conover's Test                | wave2 vs wave3 | <2e-16  | <2e-16           |
+| Post-hoc Test                         | Comparison   | p-value | p-value Adjusted |
+|---------------------------------------|--------------|---------|------------------|
+| Dunn-Bonferroni                       | onda1 vs onda2 | <2e-16 | <2e-16          |
+| Dunn-Bonferroni                       | onda1 vs onda3 | <2e-16 | <2e-16          |
+| Dunn-Bonferroni                       | onda2 vs onda3 | <2e-16 | <2e-16          |
+| Nemenyi-Wilcoxon-Wilcox               | onda1 vs onda2 | <2e-16 | -               |
+| Nemenyi-Wilcoxon-Wilcox               | onda1 vs onda3 | <2e-16 | -               |
+| Nemenyi-Wilcoxon-Wilcox               | onda2 vs onda3 | <2e-16 | -               |
+| Conover's Test                        | onda1 vs onda2 | <2e-16 | -               |
+| Conover's Test                        | onda1 vs onda3 | <2e-16 | -               |
+| Conover's Test                        | onda2 vs onda3 | <2e-16 | -               |
+| Wilcoxon with Bonferroni correction   | onda1 vs onda2 | 1.68e-136 | 5.04e-136    |
+| Wilcoxon with Bonferroni correction   | onda1 vs onda3 | 0         | 0            |
+| Wilcoxon with Bonferroni correction   | onda2 vs onda3 | 8.29e-298 | 2.49e-297    |
+
 
 
 **Result:** All p-values are less than 0.05, indicating significant differences between the medians of `Hba` in all wave combinations.
@@ -77,18 +77,27 @@ In the analysis of non-parametric methods, the analyses were considered in group
 **Result:** All p-values are less than 2.2e-16, indicating that the data does not follow a normal distribution in each wave.
 
 #### Friedman Test
-- **Test Statistic:** 385.02
-- **Degrees of Freedom:** 2
-- **p-value:** < 2.2e-16
-
+| Friedman chi-squared | Degrees of Freedom | p-value        |
+|----------------|---------------------|----------------|
+| 385.02        | 2                   | < 2.2e-16      |
 **Result:** The p-value is less than 2.2e-16, indicating significant differences in the medians of `PAS` between the different waves.
 
 #### Multiple Comparison (Post-hoc) Test
-| Comparison    | Statistic | p-value       | Adjusted p-value | Significance |
-|---------------|-----------|---------------|------------------|--------------|
-| wave1 vs. wave2 | 5078835 | 3.81e-28 | 1.14e-27 | ****         |
-| wave1 vs. wave3 | 4225134 | 3.33e-87 | 9.99e-87 | ****         |
-| wave2 vs. wave3 | 4918469 | 4.47e-36 | 1.34e-35 | ****         |
+| Post-hoc Test                 | Comparison   | p-value | p-value Adjusted |
+|-------------------------------|--------------|---------|------------------|
+| Dunn-Bonferroni               | onda1 vs onda2 | <2e-16  | <2e-16           |
+| Dunn-Bonferroni               | onda1 vs onda3 | <2e-16  | <2e-16           |
+| Dunn-Bonferroni               | onda2 vs onda3 | <2e-16  | <2e-16           |
+| Nemenyi-Wilcoxon-Wilcox       | onda1 vs onda2 | 4e-14   | -                |
+| Nemenyi-Wilcoxon-Wilcox       | onda1 vs onda3 | <2e-16  | 3e-14            |
+| Nemenyi-Wilcoxon-Wilcox       | onda2 vs onda3 | <2e-16  | -                |
+| Conover's Test                | onda1 vs onda2 | <2e-16  | <2e-16           |
+| Conover's Test                | onda1 vs onda3 | <2e-16  | <2e-16           |
+| Conover's Test                | onda2 vs onda3 | <2e-16  | <2e-16           |
+| Wilcoxon with Bonferroni correction | onda1 vs onda2 | 3.81e-28 | 1.14e-27   |
+| Wilcoxon with Bonferroni correction | onda1 vs onda3 | 3.33e-87 | 9.99e-87   |
+| Wilcoxon with Bonferroni correction | onda2 vs onda3 | 4.47e-36 | 1.34e-35   |
+
 
 **Result:** All p-values are less than 0.05, indicating significant differences between the medians of `PAS` in all wave combinations.
 
@@ -116,18 +125,28 @@ In the analysis of non-parametric methods, the analyses were considered in group
 **Result:** All p-values are less than 2.2e-16, indicating that the data does not follow a normal distribution in each wave.
 
 #### Friedman Test
-- **Test Statistic:** 288.34
-- **Degrees of Freedom:** 2
-- **p-value:** < 2.2e-16
+| Friedman chi-squared | Degrees of Freedom | p-value        |
+|----------------|---------------------|----------------|
+| 288.34        | 2                   | < 2.2e-16      |
 
 **Result:** The p-value is less than 2.2e-16, indicating significant differences in the medians of `PAD` between the different waves.
 
 #### Multiple Comparison (Post-hoc) Test
-| Comparison    | Statistic | p-value       | Adjusted p-value | Significance |
-|---------------|-----------|---------------|------------------|--------------|
-| wave1 vs. wave2 | 5114861 | 7.14e-22 | 2.14e-21 | ****         |
-| wave1 vs. wave3 | 4604874 | 1.03e-54 | 3.09e-54 | ****         |
-| wave2 vs. wave3 | 5183216 | 1.42e-18 | 4.26e-18 | ****         |
+| Post-hoc Test                 | Comparison   | p-value | p-value Adjusted |
+|-------------------------------|--------------|---------|------------------|
+| Dunn-Bonferroni               | onda1 vs onda2 | < 2e-16 | < 2e-16          |
+| Dunn-Bonferroni               | onda1 vs onda3 | < 2e-16 | 9.3e-15          |
+| Dunn-Bonferroni               | onda2 vs onda3 | < 2e-16 | < 2e-16          |
+| Nemenyi-Wilcoxon-Wilcox       | onda1 vs onda2 | 2.1e-14 | -                |
+| Nemenyi-Wilcoxon-Wilcox       | onda1 vs onda3 | < 2e-16 | 5.2e-14          |
+| Nemenyi-Wilcoxon-Wilcox       | onda2 vs onda3 | < 2e-16 | -                |
+| Conover's Test                | onda1 vs onda2 | < 2e-16 | < 2e-16          |
+| Conover's Test                | onda1 vs onda3 | < 2e-16 | 2.3e-15          |
+| Conover's Test                | onda2 vs onda3 | < 2e-16 | < 2e-16          |
+| Wilcoxon with Bonferroni correction | onda1 vs onda2 | 7.14e-22 | 2.14e-21  |
+| Wilcoxon with Bonferroni correction | onda1 vs onda3 | 1.03e-54 | 3.09e-54  |
+| Wilcoxon with Bonferroni correction | onda2 vs onda3 | 1.42e-18 | 4.26e-18  |
+
 
 **Result:** All p-values are less than 0.05, indicating significant differences between the medians of `PAD` in all wave combinations.
 
@@ -168,23 +187,25 @@ In the analysis of non-parametric methods, the analyses were considered in group
 | wave3     | 40.5                       | 3.7e-24       | 7.99e-15                    |
 
 #### Friedman Test
-The Friedman test was conducted, resulting in a chi-squared value of 1867.7 with 2 degrees of freedom and a p-value < 2.2e-16.
+| Friedman chi-squared | Degrees of Freedom | p-value        |
+|----------------|---------------------|----------------|
+| 1867.7         | 2                   | < 2.2e-16      |
 
-#### Post-hoc Tests
-| Test               | Comparison         | p-value  | Adjusted p-value |
-|--------------------|--------------------|----------|------------------|
-| Wilcoxon           | Wave 1 vs. Wave 2  | 2.11e-15 | 6.33e-15         |
-| Wilcoxon           | Wave 1 vs. Wave 3  | 8.18e-294| 2.45e-293        |
-| Wilcoxon           | Wave 2 vs. Wave 3  | 0        | 0                |
-| Dunn-Bonferroni    | Wave 1 vs. Wave 2  | 3e-10    | -                |
-| Dunn-Bonferroni    | Wave 1 vs. Wave 3  | <2e-16   | -                |
-| Dunn-Bonferroni    | Wave 2 vs. Wave 3  | <2e-16   | -                |
-| Nemenyi            | Wave 1 vs. Wave 2  | 3e-10    | -                |
-| Nemenyi            | Wave 1 vs. Wave 3  | <2e-16   | -                |
-| Nemenyi            | Wave 2 vs. Wave 3  | <2e-16   | -                |
-| Conover            | Wave 1 vs. Wave 2  | 2.6e-12  | -                |
-| Conover            | Wave 1 vs. Wave 3  | <2e-16   | -                |
-| Conover            | Wave 2 vs. Wave 3  | <2e-16   | -                |
+#### Post-hoc tests
+| Post-hoc Test                         | Comparison   | p-value | p-value Adjusted |
+|---------------------------------------|--------------|---------|------------------|
+| Dunn-Bonferroni                       | onda1 vs onda2 | 3e-10   | < 2e-16          |
+| Dunn-Bonferroni                       | onda1 vs onda3 | < 2e-16 | < 2e-16          |
+| Dunn-Bonferroni                       | onda2 vs onda3 | < 2e-16 | < 2e-16          |
+| Nemenyi-Wilcoxon-Wilcox               | onda1 vs onda2 | 3e-10   | -                |
+| Nemenyi-Wilcoxon-Wilcox               | onda1 vs onda3 | < 2e-16 | -                |
+| Nemenyi-Wilcoxon-Wilcox               | onda2 vs onda3 | < 2e-16 | < 2e-16          |
+| Conover's Test                        | onda1 vs onda2 | 2.6e-12 | -                |
+| Conover's Test                        | onda1 vs onda3 | < 2e-16 | < 2e-16          |
+| Conover's Test                        | onda2 vs onda3 | < 2e-16 | < 2e-16          |
+| Wilcoxon with Bonferroni correction   | onda1 vs onda2 | 2.11e-15 | 6.33e-15      |
+| Wilcoxon with Bonferroni correction   | onda1 vs onda3 | 8.18e-294 | 2.45e-293    |
+| Wilcoxon with Bonferroni correction   | onda2 vs onda3 | 0         | 0            |
 
 #### Descriptive Statistics
 | Wave  | Median | IQR  |
@@ -225,15 +246,27 @@ Based on the analysis of creatinine levels across different waves:
 | Wave2| 114.      | 3.7e-24 |
 | Wave3| 40.5      | 3.7e-24 |
 
-#### Post-Hoc Tests (Wilcoxon with Bonferroni Correction)
-| Comparison      | p-adjusted |
-|-----------------|------------|
-| Wave1 vs. Wave2| 6.33e-15  |
-| Wave1 vs. Wave3| 2.45e-293 |
-| Wave2 vs. Wave3| 0         |
+#### Post-Hoc tests 
+| Post-hoc Test                         | Comparison   | p-value | p-value Adjusted |
+|---------------------------------------|--------------|---------|------------------|
+| Dunn-Bonferroni                       | onda1 vs onda2 | 3e-10   | < 2e-16          |
+| Dunn-Bonferroni                       | onda1 vs onda3 | < 2e-16 | < 2e-16          |
+| Dunn-Bonferroni                       | onda2 vs onda3 | < 2e-16 | < 2e-16          |
+| Nemenyi-Wilcoxon-Wilcox               | onda1 vs onda2 | 3e-10   | -                |
+| Nemenyi-Wilcoxon-Wilcox               | onda1 vs onda3 | < 2e-16 | -                |
+| Nemenyi-Wilcoxon-Wilcox               | onda2 vs onda3 | < 2e-16 | < 2e-16          |
+| Conover's Test                        | onda1 vs onda2 | 2.6e-12 | -                |
+| Conover's Test                        | onda1 vs onda3 | < 2e-16 | < 2e-16          |
+| Conover's Test                        | onda2 vs onda3 | < 2e-16 | < 2e-16          |
+| Wilcoxon with Bonferroni correction   | onda1 vs onda2 | 2.11e-15 | 6.33e-15      |
+| Wilcoxon with Bonferroni correction   | onda1 vs onda3 | 8.18e-294 | 2.45e-293    |
+| Wilcoxon with Bonferroni correction   | onda2 vs onda3 | 0         | 0            |
+
 
 #### Friedman Test
-- Chi-squared = 1867.7, df = 2, p-value < 2.2e-16
+| Friedman chi-squared | Degrees of Freedom | p-value        |
+|----------------|---------------------|----------------|
+| 1867.7         | 2                   | < 2.2e-16      |
 
 ### Descriptive Analysis (Median and IQR)
 | Wave  | n   | Median | IQR  |
@@ -257,48 +290,27 @@ Based on the analysis of creatinine levels across different waves:
 | Wave2 | 13.038        | < 2.2e-16      |
 | Wave3 | 7.832         | < 2.2e-16      |
 
-### 2. Kolmogorov-Smirnov Test
+### Friedman Test
 #### Results
-| Wave  | Statistic (D) | p-value        |
-|-------|----------------|----------------|
-| Wave1 | 0.0427        | 0.0000000188   |
-| Wave2 | 0.0416        | 0.0000000509   |
-| Wave3 | 0.0346        | 0.0000108      |
-
-### 3. Friedman Test
-#### Results
-| Statistic (χ²) | Degrees of Freedom | p-value        |
+| Friedman chi-squared | Degrees of Freedom | p-value        |
 |----------------|---------------------|----------------|
 | 40.991         | 2                   | 1.256e-09      |
 
-### 4. Post-Hoc Tests
-#### Wilcoxon with Bonferroni Correction
-| Comparison       | n1   | n2   | Statistic  | p-value       | Adjusted p-value | Significance |
-|------------------|------|------|------------|---------------|------------------|--------------|
-| Wave1 vs Wave2 | 5061 | 5061 | 6674459    | 0.00000312    | 0.00000936       | ****         |
-| Wave1 vs Wave3 | 5061 | 5061 | 6222952    | 0.909         | 1                | ns           |
-| Wave2 vs Wave3 | 5061 | 5061 | 5623080    | 0.00000000612 | 0.0000000184     | ****         |
-
-#### Dunn-Bonferroni
-| Comparison       | p-value   |
-|------------------|-----------|
-| Wave1 vs Wave2 | 0.06251   |
-| Wave1 vs Wave3 | 0.00021   |
-| Wave2 vs Wave3 | 9.4e-10   |
-
-#### Nemenyi-Wilcoxon-Wilcox with Bonferroni Adjustment
-| Comparison       | p-value   |
-|------------------|-----------|
-| Wave1 vs Wave2 | 0.0543    |
-| Wave1 vs Wave3 | 0.0002    |
-| Wave2 vs Wave3 | 9.4e-10   |
-
-#### Conover with Bonferroni Adjustment
-| Comparison       | p-value   |
-|------------------|-----------|
-| Wave1 vs Wave2 | 0.05964   |
-| Wave1 vs Wave3 | 0.00018   |
-| Wave2 vs Wave3 | 7.1e-10   |
+### Post-Hoc tests
+| Post-hoc Test                         | Comparison   | p-value | p-value Adjusted |
+|---------------------------------------|--------------|---------|------------------|
+| Dunn-Bonferroni                       | onda1 vs onda2 | 0.06251 | 0.0543           |
+| Dunn-Bonferroni                       | onda1 vs onda3 | 0.00021 | 0.0002           |
+| Dunn-Bonferroni                       | onda2 vs onda3 | 9.4e-10 | 9.4e-10          |
+| Nemenyi-Wilcoxon-Wilcox               | onda1 vs onda2 | 0.06251 | -                |
+| Nemenyi-Wilcoxon-Wilcox               | onda1 vs onda3 | 0.00021 | -                |
+| Nemenyi-Wilcoxon-Wilcox               | onda2 vs onda3 | 9.4e-10 | 9.4e-10          |
+| Conover's Test                        | onda1 vs onda2 | 0.05964 | -                |
+| Conover's Test                        | onda1 vs onda3 | 0.00018 | -                |
+| Conover's Test                        | onda2 vs onda3 | 7.1e-10 | 9.4e-10          |
+| Wilcoxon with Bonferroni correction   | onda1 vs onda2 | 0.00000312 | 0.00000936   |
+| Wilcoxon with Bonferroni correction   | onda1 vs onda3 | 0.909      | 1            |
+| Wilcoxon with Bonferroni correction   | onda2 vs onda3 | 0.00000000612 | 0.0000000184 |
 
 #### 5. Descriptive Statistics
 | Wave  | n    | Median | IQR  |
@@ -322,46 +334,27 @@ Based on the analysis of creatinine levels across different waves:
 | Wave2|  7.4175   | < 2.2e-16|
 | Wave3|  6.465    | 7.378e-16|
 
-#### Kolmogorov-Smirnov Test
-| Wave  | Statistic | p-value |
-|-------|-----------|---------|
-| Wave1| 0.0406    | 0.000000115|
-| Wave2| 0.0310    | 0.000116|
-| Wave3| 0.0324    | 0.0000493|
-
 #### Friedman Test
-| Statistic      | df | p-value |
+| Friedman chi-squared | df | p-value |
 |----------------|----|---------|
-| Friedman chi-squared | 2.9959| 2  | 0.2236  |
+|  2.9959        | 2  | 0.2236  |
 
-### Post-Hoc Tests
-#### Wilcoxon with Bonferroni Correction
-| .y.           | group1 | group2 | n1   | n2   | statistic | p     | p.adj | p.adj.signif |
-|---------------|--------|--------|------|------|-----------|-------|-------|--------------|
-| colesterolLDL | wave1 | wave2 | 5061 | 5061 | 6340784   | 0.162 | 0.486 | ns           |
-| colesterolLDL | wave1 | wave3 | 5061 | 5061 | 6464864   | 0.011 | 0.033 | *            |
-| colesterolLDL | wave2 | wave3 | 5061 | 5061 | 6328222   | 0.367 | 1     | ns           |
+### Post-Hoc tests
+| Post-hoc Test                         | Comparison   | p-value | p-value Adjusted |
+|---------------------------------------|--------------|---------|------------------|
+| Dunn-Bonferroni                       | onda1 vs onda2 | 0.27  | 0.21             |
+| Dunn-Bonferroni                       | onda1 vs onda3 | 0.78  | 0.50             |
+| Dunn-Bonferroni                       | onda2 vs onda3 | 1.00  | 0.84             |
+| Nemenyi-Wilcoxon-Wilcox               | onda1 vs onda2 | 0.27  | -                |
+| Nemenyi-Wilcoxon-Wilcox               | onda1 vs onda3 | 0.78  | -                |
+| Nemenyi-Wilcoxon-Wilcox               | onda2 vs onda3 | 1.00  | 1.00             |
+| Conover's Test                        | onda1 vs onda2 | 0.27  | -                |
+| Conover's Test                        | onda1 vs onda3 | 0.77  | -                |
+| Conover's Test                        | onda2 vs onda3 | 1.00  | 1.00             |
+| Wilcoxon with Bonferroni correction   | onda1 vs onda2 | 0.162 | 0.486            |
+| Wilcoxon with Bonferroni correction   | onda1 vs onda3 | 0.011 | 0.033            |
+| Wilcoxon with Bonferroni correction   | onda2 vs onda3 | 0.367 | 1                |
 
-#### Dunn-Bonferroni
-| Comparison | p-value |
-|------------|---------|
-| wave1 vs wave2 | 0.27 |
-| wave1 vs wave3 | 0.78 |
-| wave2 vs wave3 | 1.00 |
-
-#### Nemenyi-Wilcoxon-Wilcox
-| Comparison | p-value |
-|------------|---------|
-| wave1 vs wave2 | 0.21 |
-| wave1 vs wave3 | 0.50 |
-| wave2 vs wave3 | 0.84 |
-
-#### Conover
-| Comparison | p-value |
-|------------|---------|
-| wave1 vs wave2 | 0.27 |
-| wave1 vs wave3 | 0.77 |
-| wave2 vs wave3 | 1.00 |
 
 #### Descriptive Analysis
 | Wave  | Variable      | n    | Median | IQR  |
@@ -396,34 +389,22 @@ This analysis provides a comprehensive view of LDL cholesterol data, helping to 
 |----------------|----|---------|
 | Friedman chi-squared | 47.694 | 2 | 4.399e-11 |
 
-#### Post-Hoc Tests
-#### Wilcoxon with Bonferroni Correction
-| .y.           | group1 | group2 | n1   | n2   | statistic | p     | p.adj | p.adj.signif |
-|---------------|--------|--------|------|------|-----------|-------|-------|--------------|
-| cholesterolHDL | wave 1 | wave 2 | 5061 | 5061 | 5249216   | 1.10e-5 | 3.30e-5 | ****           |
-| cholesterolHDL | wave 1 | wave 3 | 5061 | 5061 | 5081482   | 1.14e-15 | 3.42e-15 | ****           |
-| cholesterolHDL | wave 2 | wave 3 | 5061 | 5061 | 5181108   | 2.72e-8 | 8.16e-8 | ****           |
+#### Post-Hoc tests
+| Post-hoc Test                         | Comparison   | p-value | p-value Adjusted |
+|---------------------------------------|--------------|---------|------------------|
+| Dunn-Bonferroni                       | onda1 vs onda2 | 0.0023 | 0.0023           |
+| Dunn-Bonferroni                       | onda1 vs onda3 | 4e-11  | 4e-11            |
+| Dunn-Bonferroni                       | onda2 vs onda3 | 0.002  | 0.0019           |
+| Nemenyi-Wilcoxon-Wilcox               | onda1 vs onda2 | 0.0023 | -                |
+| Nemenyi-Wilcoxon-Wilcox               | onda1 vs onda3 | 4e-11  | -                |
+| Nemenyi-Wilcoxon-Wilcox               | onda2 vs onda3 | 0.002  | 0.0019           |
+| Conover's Test                        | onda1 vs onda2 | 0.0018 | -                |
+| Conover's Test                        | onda1 vs onda3 | 1.4e-11| -                |
+| Conover's Test                        | onda2 vs onda3 | 0.0015 | 0.0015           |
+| Wilcoxon with Bonferroni correction   | onda1 vs onda2 | 1.10e-5| 3.30e-5          |
+| Wilcoxon with Bonferroni correction   | onda1 vs onda3 | 1.14e-15| 3.42e-15        |
+| Wilcoxon with Bonferroni correction   | onda2 vs onda3 | 2.72e-8| 8.16e-8          |
 
-#### Dunn-Bonferroni
-| Comparison | p-value |
-|------------|---------|
-| wave1 vs wave2 | 0.0023 |
-| wave1 vs wave3 | 4.399e-11 |
-| wave2 vs wave3 | 0.0020 |
-
-#### Nemenyi-Wilcoxon-Wilcox
-| Comparison | p-value |
-|------------|---------|
-| wave1 vs wave2 | 0.0023 |
-| wave1 vs wave3 | 4.399e-11 |
-| wave2 vs wave3 | 0.0019 |
-
-#### Conover
-| Comparison | p-value |
-|------------|---------|
-| wave1 vs wave2 | 0.0018 |
-| wave1 vs wave3 | 4.399e-11 |
-| wave2 vs wave3 | 0.0015 |
 
 #### Descriptive Analysis
 | Wave  | Variable       | n    | Median | IQR  |
@@ -447,7 +428,6 @@ In conclusion, the results indicate that there are significant differences in HD
 </p>
 
 ## non-Parametric analysis - Wilcoxon test
-
 ### Statistical Analyses for Albumin-to-Creatinine Ratio
 #### Normality Tests (Anderson-Darling)
 | Variable                | Test Statistic | p-value    | Normality    |
