@@ -998,29 +998,27 @@ F-statistic: 2.566 on 1 and 5059 DF,  p-value: 0.1093
 ### Sodium x AlbuCreat Ratio (Wave 2)
 
 ### Normality of Residuals
-
 #### Anderson-Darling Normality Test
 - **A:** 1756.6
 - **p-value:** < 2.2e-16
 
-### Outliers in Residuals
+#### Outliers in Residuals
 | Min.      | 1st Qu.  | Median  | Mean    | 3rd Qu.  | Max      |
 |-----------|----------|---------|---------|----------|----------|
 | -0.11162  | -0.06097 | -0.04979| 0.00000 | -0.03926 | 65.75360 |
 
-### Independence of Residuals (Durbin-Watson)
+#### Independence of Residuals (Durbin-Watson)
 | Lag | Autocorrelation | D-W Statistic | p-value |
 |-----|-----------------|---------------|---------|
 | 1   | 4.280738e-05    | 1.999914      | 0.434   |
 
 ### Homoscedasticity (Breusch-Pagan)
-
 #### Studentized Breusch-Pagan Test
 - **BP:** 0.76561
 - **df:** 1
 - **p-value:** 0.3816
 
-### Model Analysis
+#### Model Analysis
 ```r
 Call:
 lm(formula = razaoAlbuCreat_interp$onda2 ~ sodio_interp$onda2)
@@ -1043,29 +1041,27 @@ F-statistic: 0.658 on 1 and 5059 DF,  p-value: 0.4173
 ### Sodium x PAS (wave 1)
 
 ### Normality of Residuals
-
 #### Anderson-Darling Normality Test
 - **A:** 34.123
 - **p-value:** < 2.2e-16
 
-### Outliers in Residuals
+#### Outliers in Residuals
 | Min.      | 1st Qu.  | Median  | Mean    | 3rd Qu.  | Max      |
 |-----------|----------|---------|---------|----------|----------|
 | -2.486369 | -0.720625| -0.110385| -0.000006| 0.571935 | 5.919637 |
 
-### Independence of Residuals (Durbin-Watson)
+#### Independence of Residuals (Durbin-Watson)
 | Lag | Autocorrelation | D-W Statistic | p-value |
 |-----|-----------------|---------------|---------|
 | 1   | 0.0217314       | 1.956414      | 0.156   |
 
 ### Homoscedasticity (Breusch-Pagan)
-
 #### Studentized Breusch-Pagan Test
 - **BP:** 0.087942
 - **df:** 1
 - **p-value:** 0.7668
 
-### Model Analysis
+#### Model Analysis
 ```r
 Call:
 lm(formula = PAS_interp$onda1 ~ sodio_interp$onda1)
@@ -1091,29 +1087,27 @@ F-statistic:  43.6 on 1 and 5059 DF,  p-value: 4.44e-11
 ### Sodium x PAS (wave 2)
 
 ### Normality of Residuals
-
 #### Anderson-Darling Normality Test
 - **A:** 26.483
 - **p-value:** < 2.2e-16
 
-### Outliers in Residuals
+#### Outliers in Residuals
 | Min.      | 1st Qu.  | Median  | Mean    | 3rd Qu.  | Max      |
 |-----------|----------|---------|---------|----------|----------|
 | -2.896343 | -0.707870| -0.090166| -0.000006| 0.576237 | 6.248253 |
 
-### Independence of Residuals (Durbin-Watson)
+#### Independence of Residuals (Durbin-Watson)
 | Lag | Autocorrelation | D-W Statistic | p-value |
 |-----|-----------------|---------------|---------|
 | 1   | 0.02933663      | 1.999914      | 0.434   |
 
 ### Homoscedasticity (Breusch-Pagan)
-
 #### Studentized Breusch-Pagan Test
 - **BP:** 0.76561
 - **df:** 1
 - **p-value:** 0.3816
 
-### Model Analysis
+#### Model Analysis
 ```r
 Call:
 lm(formula = PAS_interp$onda2 ~ sodio_interp$onda2)
@@ -1138,7 +1132,6 @@ F-statistic: 0.658 on 1 and 5059 DF,  p-value: 0.4173
 ### Sodium x PAS (wave 3)
 
 ### Normality of Residuals
-
 #### Anderson-Darling Normality Test
 - **A:** 17.895
 - **p-value:** < 2.2e-16
@@ -1154,13 +1147,12 @@ F-statistic: 0.658 on 1 and 5059 DF,  p-value: 0.4173
 | 1   | 0.02003576      | 1.959882      | 0.164   |
 
 ### Homoscedasticity (Breusch-Pagan)
-
 #### Studentized Breusch-Pagan Test
 - **BP:** 1.2706
 - **df:** 1
 - **p-value:** 0.2597
 
-### Model Analysis
+#### Model Analysis
 ```r
 Call:
 lm(formula = PAS_interp$onda3 ~ sodio_interp$onda3)
@@ -1185,29 +1177,27 @@ F-statistic: 52.45 on 1 and 5059 DF,  p-value: 5.086e-13
 ### Sodium x PAD (wave 1)
 
 ### Normality of Residuals
-
 #### Anderson-Darling Normality Test
 - **A:** 13.687
 - **p-value:** < 2.2e-16
 
-### Outliers in Residuals
+#### Outliers in Residuals
 | Min.      | 1st Qu.  | Median  | Mean    | 3rd Qu.  | Max      |
 |-----------|----------|---------|---------|----------|----------|
 | -2.843754 | -0.713506| -0.077293| -0.000004| 0.614630 | 5.168393 |
 
-### Independence of Residuals (Durbin-Watson)
+#### Independence of Residuals (Durbin-Watson)
 | Lag | Autocorrelation | D-W Statistic | p-value |
 |-----|-----------------|---------------|---------|
 | 1   | 0.0311765       | 1.937475      | 0.03    |
 
 ### Homoscedasticity (Breusch-Pagan)
-
 #### Studentized Breusch-Pagan Test
 - **BP:** 9.3953
 - **df:** 1
 - **p-value:** 0.002175
 
-### Model Analysis
+#### Model Analysis
 ```r
 Call:
 lm(formula = PAD_interp$onda1 ~ sodio_interp$onda1)
@@ -1232,29 +1222,27 @@ F-statistic: 81.52 on 1 and 5059 DF,  p-value: < 2.2e-16
 ### Sodium x PAD (wave 2)
 
 ### Normality of Residuals
-
 #### Anderson-Darling Normality Test
 - **A:** 9.5381
 - **p-value:** < 2.2e-16
 
-### Outliers in Residuals
+#### Outliers in Residuals
 | Min.      | 1st Qu.  | Median  | Mean    | 3rd Qu.  | Max      |
 |-----------|----------|---------|---------|----------|----------|
 | -3.115905 | -0.700198| -0.065465| -0.000006| 0.621874 | 4.589032 |
 
-### Independence of Residuals (Durbin-Watson)
+#### Independence of Residuals (Durbin-Watson)
 | Lag | Autocorrelation | D-W Statistic | p-value |
 |-----|-----------------|---------------|---------|
 | 1   | 0.02600654     | 1.947982      | 0.078   |
 
 ### Homoscedasticity (Breusch-Pagan)
-
 #### Studentized Breusch-Pagan Test
 - **BP:** 1.7789
 - **df:** 1
 - **p-value:** 0.1823
 
-### Model Analysis
+#### Model Analysis
 ```r
 Call:
 lm(formula = PAD_interp$onda2 ~ sodio_interp$onda2)
@@ -1279,29 +1267,27 @@ F-statistic: 94.41 on 1 and 5059 DF,  p-value: < 2.2e-16
 ### Sodium x PAD (wave 3)
 
 ### Normality of Residuals
-
 #### Anderson-Darling Normality Test
 - **A:** 8.1019
 - **p-value:** < 2.2e-16
 
-### Outliers in Residuals
+#### Outliers in Residuals
 | Min.      | 1st Qu.  | Median  | Mean    | 3rd Qu.  | Max      |
 |-----------|----------|---------|---------|----------|----------|
 | -2.650854 | -0.701977| -0.070930| -0.000004| 0.592542 | 5.362959 |
 
-### Independence of Residuals (Durbin-Watson)
+#### Independence of Residuals (Durbin-Watson)
 | Lag | Autocorrelation | D-W Statistic | p-value |
 |-----|-----------------|---------------|---------|
 | 1   | 0.02003576     | 1.959882      | 0.164   |
 
 ### Homoscedasticity (Breusch-Pagan)
-
 #### Studentized Breusch-Pagan Test
 - **BP:** 1.2236
 - **df:** 1
 - **p-value:** 0.2687
 
-### Model Analysis
+#### Model Analysis
 ```r
 Call:
 lm(formula = PAD_interp$onda3 ~ sodio_interp$onda3)
@@ -1322,34 +1308,27 @@ Multiple R-squared:  0.01291, Adjusted R-squared:  0.01271
 F-statistic: 66.14 on 1 and 5059 DF,  p-value: 5.226e-16
 ```
 
-## Tutorial for regression analysis
-
-In this tutorial, we will explore the statistical methods used in our analysis. We focus on the following key aspects:
+### Tutorial for regression analysis
+This tutorial will explore the statistical methods used in our analysis. We focus on the following key aspects:
 
 ### Normality of Residuals
-
-We test the normality of residuals using the Anderson-Darling normality test. The test statistic and p-value are reported.
+Test the normality of residuals using the Anderson-Darling normality test. The test statistic and p-value are reported.
 
 ### Outliers in Residuals
+Examine outliers in residuals by calculating the minimum, 1st quartile, median, mean, 3rd quartile, and maximum values.
 
-We examine outliers in residuals by calculating the minimum, 1st quartile, median, mean, 3rd quartile, and maximum values.
-
-## Independence of Residuals (Durbin-Watson)
-
-We assess the independence of residuals using the Durbin-Watson statistic. The lag, autocorrelation, D-W statistic, and p-value are provided.
+### Independence of Residuals (Durbin-Watson)
+Assess the independence of residuals using the Durbin-Watson statistic. The lag, autocorrelation, D-W statistic, and p-value are provided.
 
 ### Homoscedasticity (Breusch-Pagan)
-
 Homoscedasticity is tested using the studentized Breusch-Pagan test. The Breusch-Pagan statistic, degrees of freedom, and p-value are reported.
 
 ### Model Analysis
-
-Finally, we analyze the model using linear regression. The model formula, residuals, coefficients, standard errors, t-values, and p-values are provided.
+Analyze the model using linear regression. The model formula, residuals, coefficients, standard errors, t-values, and p-values are provided.
 
 The significance levels and provide interpretations of the results. By the end of this tutorial, you will have a comprehensive understanding of the statistical methods employed in our analysis.
 
 ### Usage
-
 ```R
 ##Normality test for residuals
 ad.test      # p =< 0.05 then residue is not normal
