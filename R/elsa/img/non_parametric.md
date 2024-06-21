@@ -37,18 +37,18 @@ In the analysis of non-parametric methods, the analyses were considered in group
 #### Post-hoc tests
 | Test                            | Comparison   |p-value  | Adjusted p-value |
 |---------------------------------|--------------|---------|------------------|
-| Wilcoxon com correcao de Bonferroni | onda1 vs onda2 | <2e-16  | <2e-16     |
-| Wilcoxon com correcao de Bonferroni | onda1 vs onda3 | 0       | 0          |
-| Wilcoxon com correcao de Bonferroni | onda2 vs onda3 | <2e-16  | <2e-16     |
-| Dunn-Bonferroni               | onda1 vs onda2 | <2e-16  | <2e-16           |
-| Dunn-Bonferroni               | onda1 vs onda3 | <2e-16  | <2e-16           |
-| Dunn-Bonferroni               | onda2 vs onda3 | <2e-16  | <2e-16           |
-| Nemenyi-Wilcoxon-Wilcox       | onda1 vs onda2 | <2e-16  | <2e-16           |
-| Nemenyi-Wilcoxon-Wilcox       | onda1 vs onda3 | <2e-16  | <2e-16           |
-| Nemenyi-Wilcoxon-Wilcox       | onda2 vs onda3 | <2e-16  | <2e-16           |
-| Conover's Test                | onda1 vs onda2 | <2e-16  | <2e-16           |
-| Conover's Test                | onda1 vs onda3 | <2e-16  | <2e-16           |
-| Conover's Test                | onda2 vs onda3 | <2e-16  | <2e-16           |
+| Wilcoxon com correcao de Bonferroni | wave1 vs wave2 | 1.68e-136  | 5.04e-136|
+| Wilcoxon com correcao de Bonferroni | wave1 vs wave3 | 0       | 0          |
+| Wilcoxon com correcao de Bonferroni | wave2 vs wave3 | 8.29e-298 | 2.49e-297|
+| Dunn-Bonferroni               | wave1 vs wave2 | <2e-16  | <2e-16           |
+| Dunn-Bonferroni               | wave1 vs wave3 | <2e-16  | <2e-16           |
+| Dunn-Bonferroni               | wave2 vs wave3 | <2e-16  | <2e-16           |
+| Nemenyi-Wilcoxon-Wilcox       | wave1 vs wave2 | <2e-16  | <2e-16           |
+| Nemenyi-Wilcoxon-Wilcox       | wave1 vs wave3 | <2e-16  | <2e-16           |
+| Nemenyi-Wilcoxon-Wilcox       | wave2 vs wave3 | <2e-16  | <2e-16           |
+| Conover's Test                | wave1 vs wave2 | <2e-16  | <2e-16           |
+| Conover's Test                | wave1 vs wave3 | <2e-16  | <2e-16           |
+| Conover's Test                | wave2 vs wave3 | <2e-16  | <2e-16           |
 
 
 **Result:** All p-values are less than 0.05, indicating significant differences between the medians of `Hba` in all wave combinations.
