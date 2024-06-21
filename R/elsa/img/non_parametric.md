@@ -49,7 +49,6 @@ In the analysis of non-parametric methods, the analyses were considered in group
 | Conover's Test                | onda1 vs onda2 | <2e-16  | <2e-16           |
 | Conover's Test                | onda1 vs onda3 | <2e-16  | <2e-16           |
 | Conover's Test                | onda2 vs onda3 | <2e-16  | <2e-16           |
-|---------------------------------|--------------|---------|------------------|
 
 
 **Result:** All p-values are less than 0.05, indicating significant differences between the medians of `Hba` in all wave combinations.
