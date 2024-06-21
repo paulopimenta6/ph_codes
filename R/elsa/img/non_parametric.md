@@ -116,8 +116,8 @@ In the analysis of non-parametric methods, the analyses were considered in group
 | Comparison    | Statistic | p-value       | Adjusted p-value | Significance |
 |---------------|-----------|---------------|------------------|--------------|
 | wave1 vs. wave2 | 5114861 | 7.14e-22 | 2.14e-21 | ****         |
-| onda1 vs. wave3 | 4604874 | 1.03e-54 | 3.09e-54 | ****         |
-| onda2 vs. wave3 | 5183216 | 1.42e-18 | 4.26e-18 | ****         |
+| wave1 vs. wave3 | 4604874 | 1.03e-54 | 3.09e-54 | ****         |
+| wave2 vs. wave3 | 5183216 | 1.42e-18 | 4.26e-18 | ****         |
 
 **Result:** All p-values are less than 0.05, indicating significant differences between the medians of `PAD` in all wave combinations.
 
@@ -125,8 +125,8 @@ In the analysis of non-parametric methods, the analyses were considered in group
 | Wave  | N    | Median | IQR  |
 |-------|------|--------|------|
 | wave1 | 5061 | 74.5   | 14.5 |
-| onda2 | 5061 | 75.5   | 13.5 |
-| onda3 | 5061 | 76.5   | 13.5 |
+| wave2 | 5061 | 75.5   | 13.5 |
+| wave3 | 5061 | 76.5   | 13.5 |
 
 **Result:** The medians of `PAD` increase slightly from one wave to another, suggesting a trend of increasing diastolic blood pressure over the waves.
 
@@ -457,11 +457,11 @@ In conclusion, the results indicate that there are significant differences in HD
 | wave2     | 5061 | 7.2    | 3.91 |
 | dif       | 5061 | -0.5   | 2.57 |
 
-**Result: The albumin-to-creatinine ratio (ACR) was analyzed across two waves of data. Both waves showed a significant deviation from normality based on Anderson-Darling tests (onda1: A = 1711.2, p < 2.2e-16; onda2: A = 1789.2, p < 2.2e-16). A Wilcoxon signed-rank test indicated a significant difference between the two waves (V = 4654531, p < 2.2e-16). Median ACR values were 6.6 (IQR = 3.57) for onda1 and 7.2 (IQR = 3.91) for onda2, with a median difference of -0.5 (IQR = 2.57). These results suggest a significant difference in ACR between the two waves, despite both waves showing a non-normal distribution of ACR values.**
+**Result: The albumin-to-creatinine ratio (ACR) was analyzed across two waves of data. Both waves showed a significant deviation from normality based on Anderson-Darling tests (wave: A = 1711.2, p < 2.2e-16; wave2: A = 1789.2, p < 2.2e-16). A Wilcoxon signed-rank test indicated a significant difference between the two waves (V = 4654531, p < 2.2e-16). Median ACR values were 6.6 (IQR = 3.57) for wave1 and 7.2 (IQR = 3.91) for wave2, with a median difference of -0.5 (IQR = 2.57). These results suggest a significant difference in ACR between the two waves, despite both waves showing a non-normal distribution of ACR values.**
 
 ### Statistical Analyses for Microalbuminuria
 #### Normality Tests
-| Onda  | Test Statistic | p-value   | Normality |
+| wave  | Test Statistic | p-value   | Normality |
 |-------|-----------------|-----------|-----------|
 | wave1 | 1595.9          | < 2.2e-16 | Not Normal|
 | wave2 | 1776.8          | < 2.2e-16 | Not Normal|
@@ -478,4 +478,4 @@ In conclusion, the results indicate that there are significant differences in HD
 | wave2     | 0.54   | 0.529|
 | Difference| -0.014 | 0.412|
 
-**Result:** The analysis indicates a significant difference in microalbuminuria levels between Onda1 and Onda2, as shown by the Wilcoxon Signed-Rank Test (p = 0.000962). Despite the non-normal distribution of the data, this difference suggests a noteworthy change in microalbuminuria levels between the two waves. The difference in microalbuminuria levels between Wave1 and Wave2, as indicated by the Wilcoxon test, suggests a significant change in levels between the two waves. This may indicate a change in the health status of the patients over time, which could be relevant for monitoring and clinical interventions.
+**Result:** The analysis indicates a significant difference in microalbuminuria levels between wave1 and wave2, as shown by the Wilcoxon Signed-Rank Test (p = 0.000962). Despite the non-normal distribution of the data, this difference suggests a noteworthy change in microalbuminuria levels between the two waves. The difference in microalbuminuria levels between Wave1 and Wave2, as indicated by the Wilcoxon test, suggests a significant change in levels between the two waves. This may indicate a change in the health status of the patients over time, which could be relevant for monitoring and clinical interventions.
