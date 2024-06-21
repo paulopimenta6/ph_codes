@@ -4,8 +4,8 @@
 ![RStudio](https://img.shields.io/badge/RStudio-75AADB?logo=rstudio&logoColor=white&style=flat)
 
 ## Summary
-- [non-Parametric analysis - Friedman test](#non--Parametric-analysis---Friedman test)
-- [non-Parametric analysis - Wilcoxon test](#non--Parametric-analysis---Wilcoxon test)
+- [non-Parametric analysis - Friedman test](#non-parametric-analysis---friedman-test)
+- [non-Parametric analysis - Wilcoxon test](#non-parametric-analysis---wilcoxon-test)
 
 ## non-Parametric analysis - Friedman test
 
