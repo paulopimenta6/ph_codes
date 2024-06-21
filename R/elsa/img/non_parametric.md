@@ -93,7 +93,7 @@ In the analysis of non-parametric methods, the analyses were considered in group
 - **Result:** The medians of `PAS` increase slightly from one wave to another, suggesting a trend of increasing systolic blood pressure over the waves.
 
 <p align="center">
-  <img src="./estat_nao_param/pas/PAS_friendman.png" width="500">
+  <img src="./estat_nao_param/pas/PAS_friendman.png" width="1000">
 </p>
 
 ### Statistical Analysis of Diastolic Blood Pressure (`PAD`) Data
@@ -132,7 +132,7 @@ In the analysis of non-parametric methods, the analyses were considered in group
 **Result:** The medians of `PAD` increase slightly from one wave to another, suggesting a trend of increasing diastolic blood pressure over the waves.
 
 <p align="center">
-  <img src="./estat_nao_param/pad/PAD_friendman.png" width="500">
+  <img src="./estat_nao_param/pad/PAD_friendman.png" width="1000">
 </p>
 
 ### Traceable creatinine in blood
@@ -199,7 +199,7 @@ Based on the analysis of creatinine levels across different waves:
 **Result:** The medians of creatinine in blood varied between the waves, being higher in wave3 and lower in wave2. In summary, the results indicate that there are statistically significant differences in the medians of creatinine in blood between the three waves, and that the samples do not follow a normal distribution.There are significant differences in creatinine levels between the waves, indicating a potential impact of the experimental conditions or time points on creatinine levels.
 
 <p align="center">
-  <img src="./estat_nao_param/creatinina_rastreavel_sangue/creatRastSangue_friendman.png" width="500">
+  <img src="./estat_nao_param/creatinina_rastreavel_sangue/creatRastSangue_friendman.png" width="1000">
 </p>
 
 ### Traceable creatinine in Urine
@@ -246,7 +246,7 @@ This analysis examines the normality of creatinine levels in urine across three 
 **Result:** This analysis examines the normality of creatinine levels in urine across three waves of data. The Anderson-Darling test indicates that all waves' creatinine levels are not normally distributed (p < 2.2e-16). Further, the Friedman test suggests a significant difference in creatinine levels across waves (p < 2.2e-16). Post-hoc tests reveal significant differences between all pairs of waves (p < 0.001). Descriptive statistics show varying median creatinine levels across waves. The creatinine levels in urine differ significantly across the three waves. None of the waves exhibit a normal distribution of creatinine levels. Post-hoc tests indicate significant differences between all pairs of waves. These findings suggest that there are systematic differences in creatinine levels across the three waves, which could be of interest for further investigation in the context of the study. 
 
 <p align="center">
-  <img src="./estat_nao_param/creatinina_rastreavel_urina/creatRastUrina_friendman.png" width="500">
+  <img src="./estat_nao_param/creatinina_rastreavel_urina/creatRastUrina_friendman.png" width="1000">
 </p>
 
 ### Statistical Analysis of Total Cholesterol
@@ -317,7 +317,7 @@ This analysis examines the normality of creatinine levels in urine across three 
 **Result:** The analysis indicates that total cholesterol levels exhibit significant variations across the three waves, as evidenced by the Friedman test and supported by the post-hoc comparisons. The data does not follow a normal distribution, suggesting that non-parametric tests are appropriate for this analysis. Outliers are present in the dataset, which could impact the overall trends and should be considered in any further analyses or interpretations.
 
 <p align="center">
-  <img src="./estat_nao_param/colesterol/colesterolTotal_friendman.png" width="800">
+  <img src="./estat_nao_param/colesterol/colesterolTotal_friendman.png" width="1000">
 </p>
 
 ### Statistical Analysis of LDL Cholesterol
@@ -397,7 +397,7 @@ The histograms provide a clear visualization of the distribution of LDL choleste
 This analysis provides a comprehensive view of LDL cholesterol data, helping to identify patterns and significant differences over time.
 
 <p align="center">
-  <img src="./estat_nao_param/colesterol/colesterolLDL_friendman.png" width="800">
+  <img src="./estat_nao_param/colesterol/colesterolLDL_friendman.png" width="1000">
 </p>
 
 ### Statistical Analysis of HDL Cholesterol
@@ -419,41 +419,35 @@ This analysis provides a comprehensive view of LDL cholesterol data, helping to 
 | Friedman chi-squared | 47.694 | 2 | 4.399e-11 |
 
 ### Post-Hoc Tests
-
-### Wilcoxon with Bonferroni Correction
-
+#### Wilcoxon with Bonferroni Correction
 | .y.           | group1 | group2 | n1   | n2   | statistic | p     | p.adj | p.adj.signif |
 |---------------|--------|--------|------|------|-----------|-------|-------|--------------|
 | cholesterolHDL | wave 1 | wave 2 | 5061 | 5061 | 5249216   | 1.10e-5 | 3.30e-5 | ****           |
 | cholesterolHDL | wave 1 | wave 3 | 5061 | 5061 | 5081482   | 1.14e-15 | 3.42e-15 | ****           |
 | cholesterolHDL | wave 2 | wave 3 | 5061 | 5061 | 5181108   | 2.72e-8 | 8.16e-8 | ****           |
 
-### Dunn-Bonferroni
-
+#### Dunn-Bonferroni
 | Comparison | p-value |
 |------------|---------|
 | wave1 vs wave2 | 0.0023 |
 | wave1 vs wave3 | 4.399e-11 |
 | wave2 vs wave3 | 0.0020 |
 
-### Nemenyi-Wilcoxon-Wilcox
-
+#### Nemenyi-Wilcoxon-Wilcox
 | Comparison | p-value |
 |------------|---------|
 | wave1 vs wave2 | 0.0023 |
 | wave1 vs wave3 | 4.399e-11 |
 | wave2 vs wave3 | 0.0019 |
 
-### Conover
-
+#### Conover
 | Comparison | p-value |
 |------------|---------|
 | wave1 vs wave2 | 0.0018 |
 | wave1 vs wave3 | 4.399e-11 |
 | wave2 vs wave3 | 0.0015 |
 
-### Descriptive Analysis
-
+#### Descriptive Analysis
 | Wave  | Variable       | n    | Median | IQR  |
 |-------|----------------|------|--------|------|
 | Wave1| cholesterolHDL | 5061 | 51     | 16   |
@@ -471,28 +465,24 @@ Finally, the descriptive analysis shows that while the median HDL cholesterol le
 In conclusion, the results indicate that there are significant differences in HDL cholesterol levels among the three waves. These findings could have implications for understanding the factors influencing HDL cholesterol levels and could guide further research into the potential impact on health outcomes.
 
 <p align="center">
-  <img src="./estat_nao_param/colesterol/colesterolHDL_friendman.png" width="800">
+  <img src="./estat_nao_param/colesterol/colesterolHDL_friendman.png" width="1000">
 </p>
 
 ## non-Parametric analysis - Wilcoxon test
 
 ### Statistical Analyses for Albumin-to-Creatinine Ratio
-
-### Normality Tests (Anderson-Darling)
-
+#### Normality Tests (Anderson-Darling)
 | Variable                | Test Statistic | p-value    | Normality    |
 |-------------------------|----------------|------------|--------------|
 | wave1                   | 1711.2         | < 2.2e-16  | Not Normal   |
 | wave2                   | 1789.2         | < 2.2e-16  | Not Normal   |
 
-### Wilcoxon Signed Rank Test
-
+#### Wilcoxon Signed Rank Test
 | Variable                | V Value   | p-value    | Conclusion               |
 |-------------------------|-----------|------------|--------------------------|
 | wave1 vs wave2          | 4654531   | < 2.2e-16  | Significant difference   |
 
-### Summary Statistics (Median and IQR)
-
+#### Summary Statistics (Median and IQR)
 | Variable  | n    | Median | IQR  |
 |-----------|------|--------|------|
 | wave1     | 5061 | 6.6    | 3.57 |
@@ -503,18 +493,18 @@ In conclusion, the results indicate that there are significant differences in HD
 
 ### Statistical Analyses for Microalbuminuria
 
-### Normality Tests
+#### Normality Tests
 | Onda  | Test Statistic | p-value   | Normality |
 |-------|-----------------|-----------|-----------|
 | wave1 | 1595.9          | < 2.2e-16 | Not Normal|
 | wave2 | 1776.8          | < 2.2e-16 | Not Normal|
 
-### Wilcoxon Signed-Rank Test
+#### Wilcoxon Signed-Rank Test
 | Comparison | Test Statistic | p-value | Difference |
 |------------|-----------------|---------|------------|
 | wave1 vs wave2 | 6022708      | 0.000962| Significant|
 
-### Descriptive Statistics
+#### Descriptive Statistics
 | Variable  | Median | IQR  |
 |-----------|--------|------|
 | wave1     | 0.524  | 0.526|
