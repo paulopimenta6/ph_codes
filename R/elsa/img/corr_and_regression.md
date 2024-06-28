@@ -723,7 +723,7 @@ Multiple R-squared:  0.01291, Adjusted R-squared:  0.01271
 F-statistic: 66.14 on 1 and 5059 DF,  p-value: 5.226e-16
 ```
 ## Graphical ANalysis
-
+### Potassium
 #### Analysis of Potassium x Albumin-Creatinine Ratio in Waves 1 and 2 
 <div style="display: flex; justify-content: space-around;">
   <img src="./corr/potassio/potassio_albuminaCreat_onda1.png" width="500">
@@ -742,6 +742,27 @@ F-statistic: 66.14 on 1 and 5059 DF,  p-value: 5.226e-16
   <img src="./corr/potassio/potassio_PAD_onda1.png" width="500">
   <img src="./corr/potassio/potassio_PAD_onda2.png" width="500">
   <img src="./corr/potassio/potassio_PAD_onda3.png" width="500">
+</div>
+
+### Sodium
+#### Analysis of Sodium x Albumin-Creatinine Ratio in Waves 1 and 2 
+<div style="display: flex; justify-content: space-around;">
+  <img src="./corr/sodio/sodio_albuminaCreat_onda1.png" width="500">
+  <img src="./corr/sodio/sodio_albuminaCreat_onda2.png" width="500">
+</div>
+
+#### Analysis of Sodium x Systolic blood pressure in Waves 1, 2 and 3 
+<div style="display: flex; justify-content: space-around;">
+  <img src="./corr/sodio/sodio_PAS_onda1.png" width="500">
+  <img src="./corr/sodio/sodio_PAS_onda2.png" width="500">
+  <img src="./corr/sodio/sodio_PAS_onda3.png" width="500">
+</div>
+
+#### Analysis of Sodium x Diastolic blood pressure in Waves 1, 2 and 3 
+<div style="display: flex; justify-content: space-around;">
+  <img src="./corr/sodio/sodio_PAD_onda1.png" width="500">
+  <img src="./corr/sodio/sodio_PAD_onda2.png" width="500">
+  <img src="./corr/sodio/sodio_PAD_onda3.png" width="500">
 </div>
 
 ## Tutorial for regression analysis
