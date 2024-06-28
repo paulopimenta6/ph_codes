@@ -6,6 +6,7 @@
 ## Summary
 - [About non-parametric analysis](#About-non--parametric-analysis)
 - [Correlation and regression assumption analyses](#Correlation-and-regression-assumption-analyses)
+- [Graphical Analysis](#Graphical-analysis)
 - [Tutorial for regression analysis](#Tutorial-for-regression-analysis)
 
 ## About correlation and regression analysis
@@ -722,7 +723,7 @@ Residual standard error: 10.25 on 5059 degrees of freedom
 Multiple R-squared:  0.01291, Adjusted R-squared:  0.01271 
 F-statistic: 66.14 on 1 and 5059 DF,  p-value: 5.226e-16
 ```
-## Graphical ANalysis
+## Graphical Analysis
 ### Potassium
 #### Analysis of Potassium x Albumin-Creatinine Ratio in Waves 1 and 2 
 <div style="display: flex; justify-content: space-around;">
