@@ -7,6 +7,7 @@
 - [About non-parametric analysis](#About-non--parametric-analysis)
 - [Correlation and regression assumption analyses](#Correlation-and-regression-assumption-analyses)
 - [Graphical Analysis](#Graphical-analysis)
+- [Tutorial for graphical analysis](#Tutorial-for-graphical-analysis)
 - [Tutorial for regression analysis](#Tutorial-for-regression-analysis)
 
 ## About correlation and regression analysis
@@ -766,8 +767,21 @@ F-statistic: 66.14 on 1 and 5059 DF,  p-value: 5.226e-16
   <img src="./corr/sodio/sodio_PAD_onda3.png" width="500">
 </div>
 
-## Tutorial for regression analysis
+## Tutorial for graphical analysis
+#### Residuals vs. Fitted Plot
+This plot analyzes homoscedasticity and linearity of the model. The red line, when it overlaps the dotted gray line, indicates a well-fitted linear model.
+Homoscedasticity (homogeneity of variances): If the points are well-dispersed around the line, forming a "rectangle" or "box," it is a good indication that homoscedasticity is being met. If a triangular shape appears to the left or right, the model exhibits heteroscedasticity.
 
+#### Normal Q-Q Plot
+This plot evaluates whether the residuals follow a normal distribution; the values need to lie on the dotted line for the model to be normalized. If points deviate from the curve, it indicates that the model exhibits a non-normal distribution.
+
+#### Scale-Location Plot
+This plot is considered the best identifier of homoscedasticity. In this plot, the red line should overlap the dotted line, and the distribution pattern of points should have a "rectangular" appearance.
+
+#### Residuals vs. Leverage Plot
+This plot displays the standardized residuals, which can be outliers or leverage points. There is some tolerance for outliers, but leverage points can influence the distribution and, consequently, create a model not suitable for linear regression. Leverage points are identified by values beyond the so-called Cook's line. Outliers above -3 and +3 are considered residual outliers.
+
+## Tutorial for regression analysis
 This tutorial will explore the statistical methods used in our analysis. We focus on the following key aspects:
 
 #### Normality of Residuals:
