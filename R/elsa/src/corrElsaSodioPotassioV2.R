@@ -36,32 +36,35 @@ dfPresencaHipertensaoSistem <- data.frame(onda1 = presencaDeHipertensaoArterialS
                                           onda3 = presencaDeHipertensaoArterialSistemicaOnda3
 )
 ################################################################################
+idx_potassio_onda1 <- which(is.na(dfPotassio$onda1))
+idx_potassio_onda2 <- which(is.na(dfPotassio$onda2))
+idx_potassio_onda3 <- which(is.na(dfPotassio$onda3))
+################################################################################
 ### Potassio
 mod_potassio_PAS_onda1 <- lm(dfPAS$onda1 ~ dfPotassio$onda1, na.action = na.omit)
 mod_potassio_PAS_onda2 <- lm(dfPAS$onda2 ~ dfPotassio$onda2, na.action = na.omit)
 mod_potassio_PAS_onda3 <- lm(dfPAS$onda3 ~ dfPotassio$onda3, na.action = na.omit)
+mod_potassio_AlbuCreat_onda1 <- lm(dfRazaoAlbuminaCreatinina$onda1 ~ dfPotassio$onda1, na.action = na.omit)
+mod_potassio_AlbuCreat_onda2 <- lm(dfRazaoAlbuminaCreatinina$onda2 ~ dfPotassio$onda2, na.action = na.omit)
 ### Sodio
 mod_sodio_PAS_onda1 <- lm(dfPAS$onda1 ~ dfSodio$onda1, na.action = na.omit)
 mod_sodio_PAS_onda2 <- lm(dfPAS$onda2 ~ dfSodio$onda2, na.action = na.omit)
 mod_sodio_PAS_onda3 <- lm(dfPAS$onda3 ~ dfSodio$onda3, na.action = na.omit)
+mod_sodio_AlbuCreat_onda1 <- lm(dfRazaoAlbuminaCreatinina$onda1 ~ dfSodio$onda1, na.action = na.omit)
+mod_sodio_AlbuCreat_onda2 <- lm(dfRazaoAlbuminaCreatinina$onda2 ~ dfSodio$onda2, na.action = na.omit)
 ################################################################################
-par(mfrow=c(2,2))
-plot(mod_potassio_PAS_onda1)
-plot(mod_potassio_PAS_onda2)
-plot(mod_potassio_PAS_onda3)
 
-plot(mod_sodio_PAS_onda1)
-plot(mod_sodio_PAS_onda2)
-plot(mod_sodio_PAS_onda3)
 
-shapiro.test(mod_potassio_PAS_onda1$residuals)
-shapiro.test(mod_potassio_PAS_onda2$residuals)
-shapiro.test(mod_potassio_PAS_onda3$residuals)
 
-shapiro.test(mod_sodio_PAS_onda1$residuals)
-shapiro.test(mod_sodio_PAS_onda2$residuals)
-shapiro.test(mod_sodio_PAS_onda3$residuals)
+################################################################################
+resid_potassio_PAS_onda1 <- resid(mod_potassio_PAS_onda1, type = "pearson")
+plot(resid_potassio_PAS_onda1, pch = 20, main = "Gráfico de Resíduos Padronizados")
+abline(h = c(-3, 3), col = "red", lty = 2)
+index_outliers <- which(abs(resid_potassio_PAS_onda1)>3)
+dfPAS_onda1_no_Outliers <- dfPAS$onda1[-index_outliers]
+dfPotassio_onda1_no_Outliers <- dfPotassio$onda1[-index_outliers]
+mod_potassio_PAS_onda1_no_Outliers <- lm((dfPAS_onda1_no_Outliers) ~ (dfPotassio_onda1_no_Outliers), na.action=na.omit)
+par(mfrow = c(2, 2))
+plot(mod_potassio_PAS_onda1_no_Outliers)
+#plot(dfPotassio_onda1_no_Outliers, dfPAS_onda1_no_Outliers)
 
-summary(rstandard(mod_potassio_PAS_onda1))
-summary(rstandard(mod_potassio_PAS_onda2))
-summary(rstandard(mod_potassio_PAS_onda3))
