@@ -14,15 +14,6 @@ dfSodio <- data.frame(onda1 = sodioUrinaOnda1,
                       onda3 = sodioUrinaOnda3
 )
 ################################################################################
-### Potassio
-shapiro.test(na.omit(dfPotassio$onda1))
-shapiro.test(na.omit(dfPotassio$onda2))
-shapiro.test(na.omit(dfPotassio$onda3))
-### Sodio
-shapiro.test(na.omit(dfSodio$onda1))
-shapiro.test(na.omit(dfSodio$onda2))
-shapiro.test(na.omit(dfSodio$onda3))
-################################################################################
 ##Variaveis a serem analisadas ou variaveis dependentes
 dfRazaoAlbuminaCreatinina <- data.frame(onda1 = razaoAlbuminaCreatininaRastreavelOnda1,
                                         onda2 = razaoAlbuminaCreatininaRastreavelOnda2
@@ -45,5 +36,32 @@ dfPresencaHipertensaoSistem <- data.frame(onda1 = presencaDeHipertensaoArterialS
                                           onda3 = presencaDeHipertensaoArterialSistemicaOnda3
 )
 ################################################################################
+### Potassio
 mod_potassio_PAS_onda1 <- lm(dfPAS$onda1 ~ dfPotassio$onda1, na.action = na.omit)
+mod_potassio_PAS_onda2 <- lm(dfPAS$onda2 ~ dfPotassio$onda2, na.action = na.omit)
+mod_potassio_PAS_onda3 <- lm(dfPAS$onda3 ~ dfPotassio$onda3, na.action = na.omit)
+### Sodio
+mod_sodio_PAS_onda1 <- lm(dfPAS$onda1 ~ dfSodio$onda1, na.action = na.omit)
+mod_sodio_PAS_onda2 <- lm(dfPAS$onda2 ~ dfSodio$onda2, na.action = na.omit)
+mod_sodio_PAS_onda3 <- lm(dfPAS$onda3 ~ dfSodio$onda3, na.action = na.omit)
+################################################################################
+par(mfrow=c(2,2))
+plot(mod_potassio_PAS_onda1)
+plot(mod_potassio_PAS_onda2)
+plot(mod_potassio_PAS_onda3)
+
+plot(mod_sodio_PAS_onda1)
+plot(mod_sodio_PAS_onda2)
+plot(mod_sodio_PAS_onda3)
+
 shapiro.test(mod_potassio_PAS_onda1$residuals)
+shapiro.test(mod_potassio_PAS_onda2$residuals)
+shapiro.test(mod_potassio_PAS_onda3$residuals)
+
+shapiro.test(mod_sodio_PAS_onda1$residuals)
+shapiro.test(mod_sodio_PAS_onda2$residuals)
+shapiro.test(mod_sodio_PAS_onda3$residuals)
+
+summary(rstandard(mod_potassio_PAS_onda1))
+summary(rstandard(mod_potassio_PAS_onda2))
+summary(rstandard(mod_potassio_PAS_onda3))

@@ -722,6 +722,13 @@ Residual standard error: 10.25 on 5059 degrees of freedom
 Multiple R-squared:  0.01291, Adjusted R-squared:  0.01271 
 F-statistic: 66.14 on 1 and 5059 DF,  p-value: 5.226e-16
 ```
+## Graphical ANalysis
+
+### Analysis of Potassium vs. Albumin-Creatinine Ratio in Waves 1 and 2 
+<div style="display: flex; justify-content: space-around;">
+  <img src="./corr/potassio/potassio_albuminaCreat_onda1.png" width="500">
+  <img src="./corr/potassio/potassio_albuminaCreat_onda2.png" width="500">
+</div>
 
 ## Tutorial for regression analysis
 
