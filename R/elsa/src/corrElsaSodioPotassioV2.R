@@ -2,6 +2,8 @@ if(!require(pacman)) install.packages("pacman")
 library(pacman)
 pacman::p_load(dplyr, ggplot2, VIM, nortest, lmtest, car, rstatix, ggpmisc, corrplot, corrplot)
 source("./src/script_analise_dados_elsa_Var_Lib.R")
+source("./src/dataPreprocessing.R")
+################################################################################
 ################################################################################
 ###Variaveis de referencia e tambem variaveis independentes (VI)
 dfPotassio <- data.frame(onda1 = potassioOnda1,
@@ -36,9 +38,58 @@ dfPresencaHipertensaoSistem <- data.frame(onda1 = presencaDeHipertensaoArterialS
                                           onda3 = presencaDeHipertensaoArterialSistemicaOnda3
 )
 ################################################################################
-idx_potassio_onda1 <- which(is.na(dfPotassio$onda1))
-idx_potassio_onda2 <- which(is.na(dfPotassio$onda2))
-idx_potassio_onda3 <- which(is.na(dfPotassio$onda3))
+###Identificando Outliers
+### Potassio
+outliers_dfPotassio_onda1 <- identify_outliers_vector(dfPotassio$onda1)
+outliers_dfPotassio_onda2 <- identify_outliers_vector(dfPotassio$onda2)
+outliers_dfPotassio_onda3 <- identify_outliers_vector(dfPotassio$onda3)
+### Sodio
+outliers_dfSodio_onda1 <- identify_outliers_vector(dfSodio$onda1)
+outliers_dfSodio_onda2 <- identify_outliers_vector(dfSodio$onda2)
+outliers_dfSodio_onda3 <- identify_outliers_vector(dfSodio$onda3)
+### Razao Albumina-Creatinina 
+outliers_dfRazaoAlbuminaCreatinina_onda1 <- identify_outliers_vector(dfRazaoAlbuminaCreatinina$onda1)
+outliers_dfRazaoAlbuminaCreatinina_onda2 <- identify_outliers_vector(dfRazaoAlbuminaCreatinina$onda2)
+### Taxa Filtracao Glomerular
+outliers_dfTaxaFiltracaoGlomerular_onda1 <- identify_outliers_vector(dfTaxaFiltracaoGlomerular$onda1)
+outliers_dfTaxaFiltracaoGlomerular_onda2 <- identify_outliers_vector(dfTaxaFiltracaoGlomerular$onda2)
+### PAD
+outliers_dfPAD_onda1 <- identify_outliers_vector(dfPAD$onda1)
+outliers_dfPAD_onda2 <- identify_outliers_vector(dfPAD$onda2)
+outliers_dfPAD_onda3 <- identify_outliers_vector(dfPAD$onda3)
+### PAS
+outliers_dfPAS_onda1 <- identify_outliers_vector(dfPAS$onda1)
+outliers_dfPAS_onda2 <- identify_outliers_vector(dfPAS$onda2)
+outliers_dfPAS_onda3 <- identify_outliers_vector(dfPAS$onda3)
+################################################################################
+### indices dos outliers do Potassio
+idx_out_dfPotassio_onda1 <- which(outliers_dfPotassio_onda1)
+idx_out_dfPotassio_onda2 <- which(outliers_dfPotassio_onda2)
+idx_out_dfPotassio_onda3 <- which(outliers_dfPotassio_onda3)
+### indices dos outliers do Sodio
+idx_out_dfSodio_onda1 <- which(outliers_dfSodio_onda1)
+idx_out_dfSodio_onda2 <- which(outliers_dfSodio_onda2)
+idx_out_dfSodio_onda3 <- which(outliers_dfSodio_onda3)
+### indices dos outliers da razao albumina-creatinina
+idx_out_dfRazaoAlbuminaCreatinina_onda1 <- which(outliers_dfRazaoAlbuminaCreatinina_onda1)
+idx_out_dfRazaoAlbuminaCreatinina_onda2 <- which(outliers_dfRazaoAlbuminaCreatinina_onda2)
+### indices dos Outliers da Taxa de filtracao glomerular
+idx_out_dfTaxaFiltracaoGlomerular_onda1 <- which(outliers_dfTaxaFiltracaoGlomerular_onda1)
+idx_out_dfTaxaFiltracaoGlomerular_onda2 <- which(outliers_dfTaxaFiltracaoGlomerular_onda2)
+### indices dos Outliers do PAD
+idx_out_dfPAD_onda1 <- which(outliers_dfPAD_onda1)
+idx_out_dfPAD_onda2 <- which(outliers_dfPAD_onda2)
+idx_out_dfPAD_onda3 <- which(outliers_dfPAD_onda3)
+### indices dos Outliers do PAS
+idx_out_dfPAS_onda1 <- which(outliers_dfPAS_onda1)
+idx_out_dfPAS_onda2 <- which(outliers_dfPAS_onda2)
+idx_out_dfPAS_onda3 <- which(outliers_dfPAS_onda3)
+### Removendo Outliers
+################################################################################
+potassio_onda1_no_outliers <- dfPotassio$onda1[-c(idx_out_dfPotassio_onda1, idx_out_dfPAD_onda1)]
+PAD_onda1_no_outliers <- dfPAD$onda1[-c(idx_out_dfPotassio_onda1, idx_out_dfPAD_onda1)]
+################################################################################
+correlacao <- cor.test(potassio_onda1_no_outliers, PAD_onda1_no_outliers, use = "complete.obs", method = "pearson")
 ################################################################################
 ### Potassio
 mod_potassio_PAS_onda1 <- lm(dfPAS$onda1 ~ dfPotassio$onda1, na.action = na.omit)
@@ -53,18 +104,4 @@ mod_sodio_PAS_onda3 <- lm(dfPAS$onda3 ~ dfSodio$onda3, na.action = na.omit)
 mod_sodio_AlbuCreat_onda1 <- lm(dfRazaoAlbuminaCreatinina$onda1 ~ dfSodio$onda1, na.action = na.omit)
 mod_sodio_AlbuCreat_onda2 <- lm(dfRazaoAlbuminaCreatinina$onda2 ~ dfSodio$onda2, na.action = na.omit)
 ################################################################################
-
-
-
 ################################################################################
-resid_potassio_PAS_onda1 <- resid(mod_potassio_PAS_onda1, type = "pearson")
-plot(resid_potassio_PAS_onda1, pch = 20, main = "Gráfico de Resíduos Padronizados")
-abline(h = c(-3, 3), col = "red", lty = 2)
-index_outliers <- which(abs(resid_potassio_PAS_onda1)>3)
-dfPAS_onda1_no_Outliers <- dfPAS$onda1[-index_outliers]
-dfPotassio_onda1_no_Outliers <- dfPotassio$onda1[-index_outliers]
-mod_potassio_PAS_onda1_no_Outliers <- lm((dfPAS_onda1_no_Outliers) ~ (dfPotassio_onda1_no_Outliers), na.action=na.omit)
-par(mfrow = c(2, 2))
-plot(mod_potassio_PAS_onda1_no_Outliers)
-#plot(dfPotassio_onda1_no_Outliers, dfPAS_onda1_no_Outliers)
-

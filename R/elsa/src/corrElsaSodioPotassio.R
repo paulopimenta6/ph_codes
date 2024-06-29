@@ -1,6 +1,6 @@
 if(!require(pacman)) install.packages("pacman")
 library(pacman)
-pacman::p_load(dplyr, ggplot2, VIM, nortest, lmtest, car, rstatix, ggpmisc, corrplot, corrplot)
+pacman::p_load(dplyr, ggplot2, VIM, nortest, lmtest, car, rstatix, ggpmisc, corrplot, corrplot, knitr)
 source("./src/script_analise_dados_elsa_Var_Lib.R")
 ################################################################################
 statLinCorrAnalysis <- function(data){
@@ -76,123 +76,158 @@ taxaFiltracaoGlomerular_interp <- taxaFiltracaoGlomerular_interp[, -c(3:ncol(tax
 #variavel_binaria
 presencaHipertensaoSistem_interp <- kNN(dfPresencaHipertensaoSistem, k = 5)
 presencaHipertensaoSistem_interp <- presencaHipertensaoSistem_interp[,-c(4,ncol(presencaHipertensaoSistem_interp))]
+
 ###Exemplo de rotulacao de fatores
 ###presencaHipertensaoSistem_interp$onda1 <- factor(presencaHipertensaoSistem_interp$onda1, levels = c(0,1), labels= c("Nao", "Sim"))
+
 ################################################################################
 ###VD: y -> razaoAlbuCreat_interp
 ###VI: x -> pot_interp
 ###Potassio
-plot(pot_interp$onda1, razaoAlbuCreat_interp$onda1, main = "Onda 1", xlab = "Concentracao de Potassio (meq/l)", ylab = "Razao albumina-creatinina (mg/g)")
-plot(pot_interp$onda2, razaoAlbuCreat_interp$onda2, main = "Onda 2", xlab = "Concentracao de Potassio (meq/l)", ylab = "Razao albumina-creatinina (mg/g)")
+# plot(pot_interp$onda1, razaoAlbuCreat_interp$onda1, main = "Onda 1", xlab = "Concentracao de Potassio (meq/l)", ylab = "Razao albumina-creatinina (mg/g)")
+# plot(pot_interp$onda2, razaoAlbuCreat_interp$onda2, main = "Onda 2", xlab = "Concentracao de Potassio (meq/l)", ylab = "Razao albumina-creatinina (mg/g)")
+# 
+# plot(pot_interp$onda1, PAS_interp$onda1, main = "Onda 1", xlab = "Concentracao de Potassio (meq/l)", ylab = "Pressão Arterial Sistolica (mmhg)")
+# plot(pot_interp$onda2, PAS_interp$onda2, main = "Onda 2", xlab = "Concentracao de Potassio (meq/l)", ylab = "Pressão Arterial Sistolica (mmhg)")
+# plot(pot_interp$onda3, PAS_interp$onda3, main = "Onda 3", xlab = "Concentracao de Potassio (meq/l)", ylab = "Pressão Arterial Sistolica (mmhg)")
+# 
+# plot(pot_interp$onda1, PAD_interp$onda1, main = "Onda 1", xlab = "Concentracao de Potassio (meq/l)", ylab = "Pressão Arterial Diastolica (mmhg)")
+# plot(pot_interp$onda2, PAD_interp$onda2, main = "Onda 2", xlab = "Concentracao de Potassio (meq/l)", ylab = "Pressão Arterial Diastolica (mmhg)")
+# plot(pot_interp$onda3, PAD_interp$onda3, main = "Onda 3", xlab = "Concentracao de Potassio (meq/l)", ylab = "Pressão Arterial Diastolica (mmhg)")
+# 
+# ###Sodio
+# plot(sodio_interp$onda1, razaoAlbuCreat_interp$onda1, main = "Onda 1", xlab = "Concentracao de Sodio (meq/l)", ylab = "Razao albumina-creatinina (mg/g)")
+# plot(sodio_interp$onda2, razaoAlbuCreat_interp$onda2, main = "Onda 2", xlab = "Concentracao de Sodio (meq/l)", ylab = "Razao albumina-creatinina (mg/g)")
+# 
+# plot(sodio_interp$onda1, PAS_interp$onda1, main = "Onda 1", xlab = "Concentracao de Sodio (meq/l)", ylab = "Pressão Arterial Sistolica (mmhg)")
+# plot(sodio_interp$onda2, PAS_interp$onda2, main = "Onda 2", xlab = "Concentracao de Sodio (meq/l)", ylab = "Pressão Arterial Sistolica (mmhg)")
+# plot(sodio_interp$onda3, PAS_interp$onda3, main = "Onda 3", xlab = "Concentracao de Sodio (meq/l)", ylab = "Pressão Arterial Sistolica (mmhg)")
+# 
+# plot(sodio_interp$onda1, PAD_interp$onda1, main = "Onda 1", xlab = "Concentracao de Sodio (meq/l)", ylab = "Pressão Arterial Diastolica (mmhg)")
+# plot(sodio_interp$onda2, PAD_interp$onda2, main = "Onda 2", xlab = "Concentracao de Sodio (meq/l)", ylab = "Pressão Arterial Diastolica (mmhg)")
+# plot(sodio_interp$onda3, PAD_interp$onda3, main = "Onda 3", xlab = "Concentracao de Sodio (meq/l)", ylab = "Pressão Arterial Diastolica (mmhg)")
 
-plot(pot_interp$onda1, PAS_interp$onda1, main = "Onda 1", xlab = "Concentracao de Potassio (meq/l)", ylab = "Pressão Arterial Sistolica (mmhg)")
-plot(pot_interp$onda2, PAS_interp$onda2, main = "Onda 2", xlab = "Concentracao de Potassio (meq/l)", ylab = "Pressão Arterial Sistolica (mmhg)")
-plot(pot_interp$onda3, PAS_interp$onda3, main = "Onda 3", xlab = "Concentracao de Potassio (meq/l)", ylab = "Pressão Arterial Sistolica (mmhg)")
-
-plot(pot_interp$onda1, PAD_interp$onda1, main = "Onda 1", xlab = "Concentracao de Potassio (meq/l)", ylab = "Pressão Arterial Diastolica (mmhg)")
-plot(pot_interp$onda2, PAD_interp$onda2, main = "Onda 2", xlab = "Concentracao de Potassio (meq/l)", ylab = "Pressão Arterial Diastolica (mmhg)")
-plot(pot_interp$onda3, PAD_interp$onda3, main = "Onda 3", xlab = "Concentracao de Potassio (meq/l)", ylab = "Pressão Arterial Diastolica (mmhg)")
-
-###Sodio
-plot(sodio_interp$onda1, razaoAlbuCreat_interp$onda1, main = "Onda 1", xlab = "Concentracao de Sodio (meq/l)", ylab = "Razao albumina-creatinina (mg/g)")
-plot(sodio_interp$onda2, razaoAlbuCreat_interp$onda2, main = "Onda 2", xlab = "Concentracao de Sodio (meq/l)", ylab = "Razao albumina-creatinina (mg/g)")
-
-plot(sodio_interp$onda1, PAS_interp$onda1, main = "Onda 1", xlab = "Concentracao de Sodio (meq/l)", ylab = "Pressão Arterial Sistolica (mmhg)")
-plot(sodio_interp$onda2, PAS_interp$onda2, main = "Onda 2", xlab = "Concentracao de Sodio (meq/l)", ylab = "Pressão Arterial Sistolica (mmhg)")
-plot(sodio_interp$onda3, PAS_interp$onda3, main = "Onda 3", xlab = "Concentracao de Sodio (meq/l)", ylab = "Pressão Arterial Sistolica (mmhg)")
-
-plot(sodio_interp$onda1, PAD_interp$onda1, main = "Onda 1", xlab = "Concentracao de Sodio (meq/l)", ylab = "Pressão Arterial Diastolica (mmhg)")
-plot(sodio_interp$onda2, PAD_interp$onda2, main = "Onda 2", xlab = "Concentracao de Sodio (meq/l)", ylab = "Pressão Arterial Diastolica (mmhg)")
-plot(sodio_interp$onda3, PAD_interp$onda3, main = "Onda 3", xlab = "Concentracao de Sodio (meq/l)", ylab = "Pressão Arterial Diastolica (mmhg)")
 ################################################################################
 ###Analises para verificar normalidade via modelo linear e analise grafica
 ###Potassio
-mod_PotRazaoAlbumCreat1 <- lm(razaoAlbuCreat_interp$onda1 ~ pot_interp$onda1) 
-mod_PotRazaoAlbumCreat2 <- lm(razaoAlbuCreat_interp$onda2 ~ pot_interp$onda2)
+# mod_PotRazaoAlbumCreat1 <- lm(razaoAlbuCreat_interp$onda1 ~ pot_interp$onda1) 
+# mod_PotRazaoAlbumCreat2 <- lm(razaoAlbuCreat_interp$onda2 ~ pot_interp$onda2)
+# 
+# mod_PotPAS1 <- lm(PAS_interp$onda1 ~ pot_interp$onda1) 
+# mod_PotPAS2 <- lm(PAS_interp$onda2 ~ pot_interp$onda2)
+# mod_PotPAS3 <- lm(PAS_interp$onda3 ~ pot_interp$onda3)
+# 
+# mod_PotPAD1 <- lm(PAD_interp$onda1 ~ pot_interp$onda1) 
+# mod_PotPAD2 <- lm(PAD_interp$onda2 ~ pot_interp$onda2)
+# mod_PotPAD3 <- lm(PAD_interp$onda3 ~ pot_interp$onda3)
+# 
+# lmModPotassio <- list(mod_PotRazaoAlbumCreat1, mod_PotRazaoAlbumCreat2, 
+#                 mod_PotPAS1, mod_PotPAS2, mod_PotPAS3,
+#                 mod_PotPAD1, mod_PotPAD2, mod_PotPAD3)
+# ################################################################################
+# ###Sodio
+# mod_SodRazaoAlbumCreat1 <- lm(razaoAlbuCreat_interp$onda1 ~ sodio_interp$onda1) 
+# mod_SodRazaoAlbumCreat2 <- lm(razaoAlbuCreat_interp$onda2 ~ sodio_interp$onda2)
+# 
+# mod_SodPAS1 <- lm(PAS_interp$onda1 ~ sodio_interp$onda1) 
+# mod_SodPAS2 <- lm(PAS_interp$onda2 ~ sodio_interp$onda2)
+# mod_SodPAS3 <- lm(PAS_interp$onda3 ~ sodio_interp$onda3)
+# 
+# mod_SodPAD1 <- lm(PAD_interp$onda1 ~ sodio_interp$onda1) 
+# mod_SodPAD2 <- lm(PAD_interp$onda2 ~ sodio_interp$onda2)
+# mod_SodPAD3 <- lm(PAD_interp$onda3 ~ sodio_interp$onda3)
+# 
+# lmModSodio <- list(mod_SodRazaoAlbumCreat1, mod_SodRazaoAlbumCreat2, 
+#                 mod_SodPAS1, mod_SodPAS2, mod_SodPAS3,
+#                 mod_SodPAD1, mod_SodPAD2, mod_SodPAD3)
+# ################################################################################
+# ###Potassio
+# par(mfrow = c(2,2))
+# plot(mod_PotRazaoAlbumCreat1, main = "Onda 1 - Potassio x Razao albumina-creatinina")
+# plot(mod_PotRazaoAlbumCreat2, main = "Onda 2 - Potassio x Razao albumina-creatinina")
+# 
+# plot(mod_PotPAS1, main = "Onda 1 - Potassio X PAS")
+# plot(mod_PotPAS2, main = "Onda 2 - Potassio X PAS")
+# plot(mod_PotPAS3, main = "Onda 3 - Potassio X PAS")
+# 
+# plot(mod_PotPAD1, main = "Onda 1 - Potassio X PAD")
+# plot(mod_PotPAD2, main = "Onda 2 - Potassio X PAD")
+# plot(mod_PotPAD3, main = "Onda 3 - Potassio X PAD")
+# ###Sodio
+# plot(mod_SodRazaoAlbumCreat1, main = "Onda 1 - Sodio x Razao albumina-creatinina")
+# plot(mod_SodRazaoAlbumCreat2, main = "Onda 2 - Sodio x Razao albumina-creatinina")
+# 
+# plot(mod_SodPAS1, main = "Onda 1 - Sodio X PAS")
+# plot(mod_SodPAS2, main = "Onda 2 - Sodio X PAS")
+# plot(mod_SodPAS3, main = "Onda 3 - Sodio X PAS")
+# 
+# plot(mod_SodPAD1, main = "Onda 1 - Sodio X PAD")
+# plot(mod_SodPAD2, main = "Onda 2 - Sodio X PAD")
+# plot(mod_SodPAD3, main = "Onda 3 - Sodio X PAD")
+# ################################################################################
+# ###Realizando os testes teoricos
+# par(mfrow=c(1,1))
+# ###Potassio
+# for(i in lmModPotassio){
+#   statLinCorrAnalysis(i)
+# }
+# ###Sodio
+# for(i in lmModSodio){
+#   statLinCorrAnalysis(i)
+# }
 
-mod_PotPAS1 <- lm(PAS_interp$onda1 ~ pot_interp$onda1) 
-mod_PotPAS2 <- lm(PAS_interp$onda2 ~ pot_interp$onda2)
-mod_PotPAS3 <- lm(PAS_interp$onda3 ~ pot_interp$onda3)
-
-mod_PotPAD1 <- lm(PAD_interp$onda1 ~ pot_interp$onda1) 
-mod_PotPAD2 <- lm(PAD_interp$onda2 ~ pot_interp$onda2)
-mod_PotPAD3 <- lm(PAD_interp$onda3 ~ pot_interp$onda3)
-
-lmModPotassio <- list(mod_PotRazaoAlbumCreat1, mod_PotRazaoAlbumCreat2, 
-                mod_PotPAS1, mod_PotPAS2, mod_PotPAS3,
-                mod_PotPAD1, mod_PotPAD2, mod_PotPAD3)
 ################################################################################
-###Sodio
-mod_SodRazaoAlbumCreat1 <- lm(razaoAlbuCreat_interp$onda1 ~ sodio_interp$onda1) 
-mod_SodRazaoAlbumCreat2 <- lm(razaoAlbuCreat_interp$onda2 ~ sodio_interp$onda2)
-
-mod_SodPAS1 <- lm(PAS_interp$onda1 ~ sodio_interp$onda1) 
-mod_SodPAS2 <- lm(PAS_interp$onda2 ~ sodio_interp$onda2)
-mod_SodPAS3 <- lm(PAS_interp$onda3 ~ sodio_interp$onda3)
-
-mod_SodPAD1 <- lm(PAD_interp$onda1 ~ sodio_interp$onda1) 
-mod_SodPAD2 <- lm(PAD_interp$onda2 ~ sodio_interp$onda2)
-mod_SodPAD3 <- lm(PAD_interp$onda3 ~ sodio_interp$onda3)
-
-lmModSodio <- list(mod_SodRazaoAlbumCreat1, mod_SodRazaoAlbumCreat2, 
-                mod_SodPAS1, mod_SodPAS2, mod_SodPAS3,
-                mod_SodPAD1, mod_SodPAD2, mod_SodPAD3)
-################################################################################
-###Potassio
-par(mfrow = c(2,2))
-plot(mod_PotRazaoAlbumCreat1, main = "Onda 1 - Potassio x Razao albumina-creatinina")
-plot(mod_PotRazaoAlbumCreat2, main = "Onda 2 - Potassio x Razao albumina-creatinina")
-
-plot(mod_PotPAS1, main = "Onda 1 - Potassio X PAS")
-plot(mod_PotPAS2, main = "Onda 2 - Potassio X PAS")
-plot(mod_PotPAS3, main = "Onda 3 - Potassio X PAS")
-
-plot(mod_PotPAD1, main = "Onda 1 - Potassio X PAD")
-plot(mod_PotPAD2, main = "Onda 2 - Potassio X PAD")
-plot(mod_PotPAD3, main = "Onda 3 - Potassio X PAD")
-###Sodio
-plot(mod_SodRazaoAlbumCreat1, main = "Onda 1 - Sodio x Razao albumina-creatinina")
-plot(mod_SodRazaoAlbumCreat2, main = "Onda 2 - Sodio x Razao albumina-creatinina")
-
-plot(mod_SodPAS1, main = "Onda 1 - Sodio X PAS")
-plot(mod_SodPAS2, main = "Onda 2 - Sodio X PAS")
-plot(mod_SodPAS3, main = "Onda 3 - Sodio X PAS")
-
-plot(mod_SodPAD1, main = "Onda 1 - Sodio X PAD")
-plot(mod_SodPAD2, main = "Onda 2 - Sodio X PAD")
-plot(mod_SodPAD3, main = "Onda 3 - Sodio X PAD")
-################################################################################
-###Realizando os testes teoricos
-par(mfrow=c(1,1))
-###Potassio
-for(i in lmModPotassio){
-  statLinCorrAnalysis(i)
-}
-###Sodio
-for(i in lmModSodio){
-  statLinCorrAnalysis(i)
-}
-
+### Potassio
 ###Correlacoes de Spearman e Kendall
 ##Correlacao de Postos de Spearman (coeficiente = ro)
 corSpePotRazaoAlbuCreatOnda1 <- cor.test(pot_interp$onda1, razaoAlbuCreat_interp$onda1, method = "spearman")
 corSpePotRazaoAlbuCreatOnda2 <- cor.test(pot_interp$onda2, razaoAlbuCreat_interp$onda2, method = "spearman")
 
-# Criar um data frame com as variáveis de consumo de potássio e PAD em cada onda de exames
-dados <- data.frame(
-  "Potassio wave 1" = pot_interp$onda1,
-  "Potassio wave 2" = pot_interp$onda2,
-  "Potassio wave 3" = pot_interp$onda3,
-  "PAD wave 1" = PAS_interp$onda1,
-  "PAD wave 2" = PAS_interp$onda2,
-  "PAD wave 3" = PAS_interp$onda3
-)
-matriz_correlacao_pareada <- cor(dados, method = "spearman")  # ou method = "kendall"
-# Criar o plot da matriz de correlação pareada com corrplot
-corrplot(matriz_correlacao_pareada, method = 'square', order = 'FPC', type = 'upper', diag = FALSE)
+corSpePotPASOnda1 <- cor.test(pot_interp$onda2, PAS_interp$onda1, method = "spearman")
+corSpePotPASOnda2 <- cor.test(pot_interp$onda2, PAS_interp$onda2, method = "spearman")
+corSpePotPASOnda3 <- cor.test(pot_interp$onda2, PAS_interp$onda3, method = "spearman")
 
-# Calcular a matriz de correlação pareada
-matriz_correlacao_pareada <- cor(dados, method = "spearman")  # ou method = "kendall"
+corSpePotPADOnda1 <- cor.test(pot_interp$onda2, PAD_interp$onda3, method = "spearman")
+corSpePotPADOnda2 <- cor.test(pot_interp$onda2, PAD_interp$onda3, method = "spearman")
+corSpePotPADOnda3 <- cor.test(pot_interp$onda2, PAD_interp$onda3, method = "spearman")
+
 ##Correlacao Tau de Kendall (coeficiente = tau):
-corKenPotRazaoAlbuCreatOnda2 <- cor.test(pot_interp$onda1, razaoAlbuCreat_interp$onda1, method = "kendall")
+corKenPotRazaoAlbuCreatOnda1 <- cor.test(pot_interp$onda1, razaoAlbuCreat_interp$onda1, method = "kendall")
 corKenPotRazaoAlbuCreatOnda2 <- cor.test(pot_interp$onda2, razaoAlbuCreat_interp$onda2, method = "kendall")
+
+corKenPotPASOnda1 <- cor.test(pot_interp$onda2, PAS_interp$onda1, method = "kendall")
+corKenPotPASOnda2 <- cor.test(pot_interp$onda2, PAS_interp$onda2, method = "kendall")
+corKenPotPASOnda3 <- cor.test(pot_interp$onda2, PAS_interp$onda3, method = "kendall")
+
+corKenPotPADOnda1 <- cor.test(pot_interp$onda2, PAD_interp$onda3, method = "kendall")
+corKenPotPADOnda2 <- cor.test(pot_interp$onda2, PAD_interp$onda3, method = "kendall")
+corKenPotPADOnda3 <- cor.test(pot_interp$onda2, PAD_interp$onda3, method = "kendall")
+################################################################################
+
+################################################################################
+### Sodio
+###Correlacoes de Spearman e Kendall
+##Correlacao de Postos de Spearman (coeficiente = ro)
+corSpeSodRazaoAlbuCreatOnda1 <- cor.test(sodio_interp$onda1, razaoAlbuCreat_interp$onda1, method = "spearman")
+corSpeSodRazaoAlbuCreatOnda2 <- cor.test(sodio_interp$onda2, razaoAlbuCreat_interp$onda2, method = "spearman")
+
+corSpeSodPASOnda1 <- cor.test(sodio_interp$onda2, PAS_interp$onda1, method = "spearman")
+corSpeSodPASOnda2 <- cor.test(sodio_interp$onda2, PAS_interp$onda2, method = "spearman")
+corSpeSodPASOnda3 <- cor.test(sodio_interp$onda2, PAS_interp$onda3, method = "spearman")
+
+corSpeSodPADOnda1 <- cor.test(sodio_interp$onda2, PAD_interp$onda3, method = "spearman")
+corSpeSodPADOnda2 <- cor.test(sodio_interp$onda2, PAD_interp$onda3, method = "spearman")
+corSpeSodPADOnda3 <- cor.test(sodio_interp$onda2, PAD_interp$onda3, method = "spearman")
+
+##Correlacao Tau de Kendall (coeficiente = tau):
+corKenSodRazaoAlbuCreatOnda1 <- cor.test(sodio_interp$onda1, razaoAlbuCreat_interp$onda1, method = "kendall")
+corKenSodRazaoAlbuCreatOnda2 <- cor.test(sodio_interp$onda2, razaoAlbuCreat_interp$onda2, method = "kendall")
+
+corKenSodPASOnda1 <- cor.test(sodio_interp$onda2, PAS_interp$onda1, method = "kendall")
+corKenSodPASOnda2 <- cor.test(sodio_interp$onda2, PAS_interp$onda2, method = "kendall")
+corKenSodPASOnda3 <- cor.test(sodio_interp$onda2, PAS_interp$onda3, method = "kendall")
+
+corKenSodPADOnda1 <- cor.test(sodio_interp$onda2, PAD_interp$onda3, method = "kendall")
+corKenSodPADOnda2 <- cor.test(sodio_interp$onda2, PAD_interp$onda3, method = "kendall")
+corKenSodPADOnda3 <- cor.test(sodio_interp$onda2, PAD_interp$onda3, method = "kendall")
+################################################################################
