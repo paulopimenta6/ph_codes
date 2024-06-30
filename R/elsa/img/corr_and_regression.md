@@ -781,7 +781,7 @@ Distance Metric:
 
 Therefore, when there are outliers in the data, using Spearman or Kendall may be preferable, as these measures tend to provide more stable estimates of the relationship between variables, even in the presence of extreme values.
 
-##### Rho - Spearman correlation between Sodium x (creatinine-albumin ratio, SBP - Systolic Blood Pressure, DBP - Diastolic Blood Pressure)
+##### Rho/tau - Spearman correlation between Sodium x (creatinine-albumin ratio, SBP - Systolic Blood Pressure, DBP - Diastolic Blood Pressure)
 
 - wave 1
 
@@ -807,6 +807,31 @@ Therefore, when there are outliers in the data, using Spearman or Kendall may be
 | SBP - Systolic Blood Pressure    | 0.1075519  | 0.07242199 | 
 | DBP - Diastolic Blood Pressure   | 0.1186492  | 0.08013924 |
 
+##### Rho/tau - Spearman correlation between Potassium x (creatinine-albumin ratio, SBP - Systolic Blood Pressure, DBP - Diastolic Blood Pressure)
+
+- wave 1
+
+|   Variable/Correlation           | Spearman    |   Kendall   |
+|----------------------------------|-------------|-------------|
+| creatinine-albumin ratio         | -0.06619049 | -0.0447559  | 
+| SBP - Systolic Blood Pressure    | -0.04911963 | -0.03325435 | 
+| DBP - Diastolic Blood Pressure   | -0.02279679 | -0.01538538 |
+
+- wave 2
+
+|   Variable/Correlation           | Spearman    |   Kendall  |
+|----------------------------------|-------------|------------|
+| creatinine-albumin ratio         | -0.07488784 | -0.05057942 | 
+| SBP - Systolic Blood Pressure    | | | 
+| DBP - Diastolic Blood Pressure   | | |
+
+- wave 3
+
+|   Variable/Correlation           | Spearman   |   Kendall  |
+|----------------------------------|------------|------------|
+| creatinine-albumin ratio         |     -      |      -     | 
+| SBP - Systolic Blood Pressure    | | | 
+| DBP - Diastolic Blood Pressure   | | |
 
 ## Tutorial for graphical analysis
 #### Residuals vs. Fitted Plot
