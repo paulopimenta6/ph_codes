@@ -781,7 +781,6 @@ Distance Metric:
 
 Therefore, when there are outliers in the data, using Spearman or Kendall may be preferable, as these measures tend to provide more stable estimates of the relationship between variables, even in the presence of extreme values.
 
-#### Correlations
 ##### Rho - Spearman correlation between Sodium x (creatinine-albumin ratio, SBP - Systolic Blood Pressure, DBP - Diastolic Blood Pressure)
 
 - wave 1
