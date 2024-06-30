@@ -786,24 +786,25 @@ Therefore, when there are outliers in the data, using Spearman or Kendall may be
 
 - wave 1
 |   Variable/Correlation           | Spearman   |   Kendall  |
-|---------------------------------|-------------|------------|
-|creatinine-albumin ratio         | -0.1732012  | -0.1174463 | 
-|SBP - Systolic Blood Pressure    | 0.1065087   | 0.07111142 | 
-|DBP - Diastolic Blood Pressure   | 0.1181976   | 0.07955277 |
+|----------------------------------|------------|------------|
+| creatinine-albumin ratio         | -0.1732012 | -0.1174463 | 
+| SBP - Systolic Blood Pressure    | 0.1065087  | 0.07111142 | 
+| DBP - Diastolic Blood Pressure   | 0.1181976  | 0.07955277 |
 
 - wave 2
-|   Variable/Correlation          | Spearman   |   Kendall   |
-|---------------------------------|------------|-------------|
-|creatinine-albumin ratio         | -0.1473922 | -0.09963963 | 
-|SBP - Systolic Blood Pressure    |  0.1157807 |  0.0777192  | 
-|DBP - Diastolic Blood Pressure   |  0.1280394 |  0.08672395 |
+|   Variable/Correlation           | Spearman   |   Kendall  |
+|----------------------------------|------------|------------|
+| creatinine-albumin ratio         | -0.1473922 | -0.09963963 | 
+| SBP - Systolic Blood Pressure    | 0.1157807  | 0.0777192   | 
+| DBP - Diastolic Blood Pressure   | 0.1280394  | 0.08672395  |
 
 - wave 3
-|   Variable/Correlation          | Spearman   |   Kendall  |
-|---------------------------------|------------|------------|
-|creatinine-albumin ratio         |     -      |      -     | 
-|SBP - Systolic Blood Pressure    | 0.1075519  | 0.07242199 | 
-|DBP - Diastolic Blood Pressure   | 0.1186492  | 0.08013924 |
+|   Variable/Correlation           | Spearman   |   Kendall  |
+|----------------------------------|------------|------------|
+| creatinine-albumin ratio         |     -      |      -     | 
+| SBP - Systolic Blood Pressure    | 0.1075519  | 0.07242199 | 
+| DBP - Diastolic Blood Pressure   | 0.1186492  | 0.08013924 |
+
 
 ## Tutorial for graphical analysis
 #### Residuals vs. Fitted Plot
