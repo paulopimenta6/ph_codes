@@ -785,6 +785,7 @@ Therefore, when there are outliers in the data, using Spearman or Kendall may be
 ##### Rho - Spearman correlation between Sodium x (creatinine-albumin ratio, SBP - Systolic Blood Pressure, DBP - Diastolic Blood Pressure)
 
 - wave 1
+
 |   Variable/Correlation           | Spearman   |   Kendall  |
 |----------------------------------|------------|------------|
 | creatinine-albumin ratio         | -0.1732012 | -0.1174463 | 
@@ -792,6 +793,7 @@ Therefore, when there are outliers in the data, using Spearman or Kendall may be
 | DBP - Diastolic Blood Pressure   | 0.1181976  | 0.07955277 |
 
 - wave 2
+
 |   Variable/Correlation           | Spearman   |   Kendall  |
 |----------------------------------|------------|------------|
 | creatinine-albumin ratio         | -0.1473922 | -0.09963963 | 
@@ -799,6 +801,7 @@ Therefore, when there are outliers in the data, using Spearman or Kendall may be
 | DBP - Diastolic Blood Pressure   | 0.1280394  | 0.08672395  |
 
 - wave 3
+
 |   Variable/Correlation           | Spearman   |   Kendall  |
 |----------------------------------|------------|------------|
 | creatinine-albumin ratio         |     -      |      -     | 
