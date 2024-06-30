@@ -183,25 +183,25 @@ presencaHipertensaoSistem_interp <- presencaHipertensaoSistem_interp[,-c(4,ncol(
 corSpePotRazaoAlbuCreatOnda1 <- cor.test(pot_interp$onda1, razaoAlbuCreat_interp$onda1, method = "spearman")
 corSpePotRazaoAlbuCreatOnda2 <- cor.test(pot_interp$onda2, razaoAlbuCreat_interp$onda2, method = "spearman")
 
-corSpePotPASOnda1 <- cor.test(pot_interp$onda2, PAS_interp$onda1, method = "spearman")
+corSpePotPASOnda1 <- cor.test(pot_interp$onda1, PAS_interp$onda1, method = "spearman")
 corSpePotPASOnda2 <- cor.test(pot_interp$onda2, PAS_interp$onda2, method = "spearman")
-corSpePotPASOnda3 <- cor.test(pot_interp$onda2, PAS_interp$onda3, method = "spearman")
+corSpePotPASOnda3 <- cor.test(pot_interp$onda3, PAS_interp$onda3, method = "spearman")
 
-corSpePotPADOnda1 <- cor.test(pot_interp$onda2, PAD_interp$onda3, method = "spearman")
+corSpePotPADOnda1 <- cor.test(pot_interp$onda1, PAD_interp$onda3, method = "spearman")
 corSpePotPADOnda2 <- cor.test(pot_interp$onda2, PAD_interp$onda3, method = "spearman")
-corSpePotPADOnda3 <- cor.test(pot_interp$onda2, PAD_interp$onda3, method = "spearman")
+corSpePotPADOnda3 <- cor.test(pot_interp$onda3, PAD_interp$onda3, method = "spearman")
 
 ##Correlacao Tau de Kendall (coeficiente = tau):
 corKenPotRazaoAlbuCreatOnda1 <- cor.test(pot_interp$onda1, razaoAlbuCreat_interp$onda1, method = "kendall")
 corKenPotRazaoAlbuCreatOnda2 <- cor.test(pot_interp$onda2, razaoAlbuCreat_interp$onda2, method = "kendall")
 
-corKenPotPASOnda1 <- cor.test(pot_interp$onda2, PAS_interp$onda1, method = "kendall")
+corKenPotPASOnda1 <- cor.test(pot_interp$onda1, PAS_interp$onda1, method = "kendall")
 corKenPotPASOnda2 <- cor.test(pot_interp$onda2, PAS_interp$onda2, method = "kendall")
-corKenPotPASOnda3 <- cor.test(pot_interp$onda2, PAS_interp$onda3, method = "kendall")
+corKenPotPASOnda3 <- cor.test(pot_interp$onda3, PAS_interp$onda3, method = "kendall")
 
-corKenPotPADOnda1 <- cor.test(pot_interp$onda2, PAD_interp$onda3, method = "kendall")
+corKenPotPADOnda1 <- cor.test(pot_interp$onda1, PAD_interp$onda3, method = "kendall")
 corKenPotPADOnda2 <- cor.test(pot_interp$onda2, PAD_interp$onda3, method = "kendall")
-corKenPotPADOnda3 <- cor.test(pot_interp$onda2, PAD_interp$onda3, method = "kendall")
+corKenPotPADOnda3 <- cor.test(pot_interp$onda3, PAD_interp$onda3, method = "kendall")
 ################################################################################
 
 ################################################################################
@@ -211,23 +211,23 @@ corKenPotPADOnda3 <- cor.test(pot_interp$onda2, PAD_interp$onda3, method = "kend
 corSpeSodRazaoAlbuCreatOnda1 <- cor.test(sodio_interp$onda1, razaoAlbuCreat_interp$onda1, method = "spearman")
 corSpeSodRazaoAlbuCreatOnda2 <- cor.test(sodio_interp$onda2, razaoAlbuCreat_interp$onda2, method = "spearman")
 
-corSpeSodPASOnda1 <- cor.test(sodio_interp$onda2, PAS_interp$onda1, method = "spearman")
+corSpeSodPASOnda1 <- cor.test(sodio_interp$onda1, PAS_interp$onda1, method = "spearman")
 corSpeSodPASOnda2 <- cor.test(sodio_interp$onda2, PAS_interp$onda2, method = "spearman")
-corSpeSodPASOnda3 <- cor.test(sodio_interp$onda2, PAS_interp$onda3, method = "spearman")
+corSpeSodPASOnda3 <- cor.test(sodio_interp$onda3, PAS_interp$onda3, method = "spearman")
 
-corSpeSodPADOnda1 <- cor.test(sodio_interp$onda2, PAD_interp$onda3, method = "spearman")
+corSpeSodPADOnda1 <- cor.test(sodio_interp$onda1, PAD_interp$onda3, method = "spearman")
 corSpeSodPADOnda2 <- cor.test(sodio_interp$onda2, PAD_interp$onda3, method = "spearman")
-corSpeSodPADOnda3 <- cor.test(sodio_interp$onda2, PAD_interp$onda3, method = "spearman")
+corSpeSodPADOnda3 <- cor.test(sodio_interp$onda3, PAD_interp$onda3, method = "spearman")
 
 ##Correlacao Tau de Kendall (coeficiente = tau):
 corKenSodRazaoAlbuCreatOnda1 <- cor.test(sodio_interp$onda1, razaoAlbuCreat_interp$onda1, method = "kendall")
 corKenSodRazaoAlbuCreatOnda2 <- cor.test(sodio_interp$onda2, razaoAlbuCreat_interp$onda2, method = "kendall")
 
-corKenSodPASOnda1 <- cor.test(sodio_interp$onda2, PAS_interp$onda1, method = "kendall")
+corKenSodPASOnda1 <- cor.test(sodio_interp$onda1, PAS_interp$onda1, method = "kendall")
 corKenSodPASOnda2 <- cor.test(sodio_interp$onda2, PAS_interp$onda2, method = "kendall")
-corKenSodPASOnda3 <- cor.test(sodio_interp$onda2, PAS_interp$onda3, method = "kendall")
+corKenSodPASOnda3 <- cor.test(sodio_interp$onda3, PAS_interp$onda3, method = "kendall")
 
-corKenSodPADOnda1 <- cor.test(sodio_interp$onda2, PAD_interp$onda3, method = "kendall")
+corKenSodPADOnda1 <- cor.test(sodio_interp$onda1, PAD_interp$onda3, method = "kendall")
 corKenSodPADOnda2 <- cor.test(sodio_interp$onda2, PAD_interp$onda3, method = "kendall")
-corKenSodPADOnda3 <- cor.test(sodio_interp$onda2, PAD_interp$onda3, method = "kendall")
+corKenSodPADOnda3 <- cor.test(sodio_interp$onda3, PAD_interp$onda3, method = "kendall")
 ################################################################################

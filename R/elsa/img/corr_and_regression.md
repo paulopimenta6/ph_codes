@@ -690,13 +690,13 @@ F-statistic: 94.41 on 1 and 5059 DF,  p-value: < 2.2e-16
 
 #### Outliers in Residuals
 | Min.      | 1st Qu.  | Median  | Mean    | 3rd Qu.  | Max      |
-  |-----------|----------|---------|---------|----------|----------|
-  | -2.650854 | -0.701977| -0.070930| -0.000004| 0.592542 | 5.362959 |
+|-----------|----------|---------|---------|----------|----------|
+| -2.650854 | -0.701977| -0.070930| -0.000004| 0.592542 | 5.362959 |
   
-  #### Independence of Residuals (Durbin-Watson)
-  | Lag | Autocorrelation | D-W Statistic | p-value |
-  |-----|-----------------|---------------|---------|
-  | 1   | 0.02003576     | 1.959882      | 0.164   |
+#### Independence of Residuals (Durbin-Watson)
+| Lag | Autocorrelation | D-W Statistic | p-value |
+|-----|-----------------|---------------|---------|
+| 1   | 0.02003576     | 1.959882      | 0.164   |
   
   ### Homoscedasticity (Breusch-Pagan)
   #### Studentized Breusch-Pagan Test
@@ -766,6 +766,44 @@ F-statistic: 66.14 on 1 and 5059 DF,  p-value: 5.226e-16
   <img src="./corr/sodio/sodio_PAD_onda2.png" width="500">
   <img src="./corr/sodio/sodio_PAD_onda3.png" width="500">
 </div>
+
+#### Correlation
+
+- Spearman Correlation: Calculates the correlation based on the rankings of the observations, not the exact values. This means that the presence of outliers does not affect the relative ordering of the observations as much.
+
+- Kendall Correlation: Similar to Spearman, it uses the concordance of ordered pairs and is less impacted by extreme values.
+
+Distance Metric:
+
+- Pearson Correlation: Calculates the correlation based on the Euclidean distance between points, which can be distorted by extreme values.
+
+- Spearman and Kendall: Use order or ranking measures, which are more robust to outliers.
+
+Therefore, when there are outliers in the data, using Spearman or Kendall may be preferable, as these measures tend to provide more stable estimates of the relationship between variables, even in the presence of extreme values.
+
+#### Correlations
+##### Rho - Spearman correlation between Sodium x (creatinine-albumin ratio, SBP - Systolic Blood Pressure, DBP - Diastolic Blood Pressure)
+
+- wave 1
+|   Variable/Correlation           | Spearman   |   Kendall  |
+|---------------------------------|-------------|------------|
+|creatinine-albumin ratio         | -0.1732012  | -0.1174463 | 
+|SBP - Systolic Blood Pressure    | 0.1065087   | 0.07111142 | 
+|DBP - Diastolic Blood Pressure   | 0.1181976   | 0.07955277 |
+
+- wave 2
+|   Variable/Correlation          | Spearman   |   Kendall   |
+|---------------------------------|------------|-------------|
+|creatinine-albumin ratio         | -0.1473922 | -0.09963963 | 
+|SBP - Systolic Blood Pressure    |  0.1157807 |  0.0777192  | 
+|DBP - Diastolic Blood Pressure   |  0.1280394 |  0.08672395 |
+
+- wave 3
+|   Variable/Correlation          | Spearman   |   Kendall  |
+|---------------------------------|------------|------------|
+|creatinine-albumin ratio         |     -      |      -     | 
+|SBP - Systolic Blood Pressure    | 0.1075519  | 0.07242199 | 
+|DBP - Diastolic Blood Pressure   | 0.1186492  | 0.08013924 |
 
 ## Tutorial for graphical analysis
 #### Residuals vs. Fitted Plot
