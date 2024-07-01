@@ -219,6 +219,55 @@ corSpeSodPADOnda1 <- cor.test(sodio_interp$onda1, PAD_interp$onda3, method = "sp
 corSpeSodPADOnda2 <- cor.test(sodio_interp$onda2, PAD_interp$onda3, method = "spearman")
 corSpeSodPADOnda3 <- cor.test(sodio_interp$onda3, PAD_interp$onda3, method = "spearman")
 
+dfCorSodAlbuCreat <- data.frame(
+  "Sodium wave 1" = sodio_interp$onda1,
+  "Sodium wave 2" = sodio_interp$onda2,
+  "AlbCreat wave 1" = razaoAlbuCreat_interp$onda1,
+  "AlbCreat wave 2" = razaoAlbuCreat_interp$onda2
+)
+corSpeDFSodAlbuCreat <- cor(dfCorSodAlbuCreat, method = "spearman")
+corrplot(corSpeDFSodAlbuCreat, 
+         title = "\nMatrix of Spearman correlation - Sodium x Albumina-Creatinine Ratio", 
+         method = 'square',
+         type = 'lower',  # Definir o tipo de plotagem para apenas a parte inferior da matriz
+         order = 'hclust',  # Definir a ordem de agrupamento das variáveis
+         tl.col = 'black',  # Definir a cor do texto das células
+         addCoef.col = 'black',  # Definir a cor dos coeficientes exibidos
+         cl.ratio = 0.2,  # Ajustar a razão da barra de cores
+         tl.srt = 45,  # Ajustar o ângulo de rotação do texto do rótulo
+         col = COL1('YlGn'))  # Escolher a paleta de cores
+
+corKenDFSodAlbuCreat <- cor(dfCorSodAlbuCreat, method = "kendall")
+corrplot(corKenDFSodAlbuCreat, 
+         title = "\nMatrix of Kendall correlation - Sodium x Albumina-Creatinine Ratio", 
+         method = 'square',
+         type = 'lower',  # Definir o tipo de plotagem para apenas a parte inferior da matriz
+         order = 'hclust',  # Definir a ordem de agrupamento das variáveis
+         tl.col = 'black',  # Definir a cor do texto das células
+         addCoef.col = 'black',  # Definir a cor dos coeficientes exibidos
+         cl.ratio = 0.2,  # Ajustar a razão da barra de cores
+         tl.srt = 45,  # Ajustar o ângulo de rotação do texto do rótulo
+         col = COL1('YlGn'))  # Escolher a paleta de cores
+
+
+dfCorSodPAS <- data.frame(
+  "Sodio - wave 1" = sodio_interp$onda1,
+  "Sodio - wave 2" = sodio_interp$onda2,
+  "Sodio - wave 3" = sodio_interp$onda3,
+  "PAS - wave 1" = PAS_interp$onda1,
+  "PAS - wave 2" = PAS_interp$onda2,
+  "PAS - wave 3" = PAS_interp$onda3
+)
+
+dfCorSodPAD <- data.frame(
+  "Sodio - wave 1" = sodio_interp$onda1,
+  "Sodio - wave 2" = sodio_interp$onda2,
+  "Sodio - wave 3" = sodio_interp$onda3,
+  "PAD - wave 1" = PAD_interp$onda1,
+  "PAD - wave 1" = PAD_interp$onda2,
+  "PAD - wave 1" = PAD_interp$onda3
+)
+
 ##Correlacao Tau de Kendall (coeficiente = tau):
 corKenSodRazaoAlbuCreatOnda1 <- cor.test(sodio_interp$onda1, razaoAlbuCreat_interp$onda1, method = "kendall")
 corKenSodRazaoAlbuCreatOnda2 <- cor.test(sodio_interp$onda2, razaoAlbuCreat_interp$onda2, method = "kendall")
