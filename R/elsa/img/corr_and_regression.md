@@ -7,6 +7,7 @@
 - [About non-parametric analysis](#About-non--parametric-analysis)
 - [Correlation and regression assumption analyses](#Correlation-and-regression-assumption-analyses)
 - [Graphical Analysis](#Graphical-analysis)
+- [Spearman and Kendall correlation](#Spearman-and-Kendall-correlation)
 - [Tutorial for graphical analysis](#Tutorial-for-graphical-analysis)
 - [Tutorial for regression analysis](#Tutorial-for-regression-analysis)
 
@@ -767,7 +768,7 @@ F-statistic: 66.14 on 1 and 5059 DF,  p-value: 5.226e-16
   <img src="./corr/sodio/sodio_PAD_onda3.png" width="500">
 </div>
 
-#### Correlation
+## Spearman and Kendall correlation
 
 - Spearman Correlation: Calculates the correlation based on the rankings of the observations, not the exact values. This means that the presence of outliers does not affect the relative ordering of the observations as much.
 
@@ -822,16 +823,36 @@ Therefore, when there are outliers in the data, using Spearman or Kendall may be
 |   Variable/Correlation           | Spearman    |   Kendall  |
 |----------------------------------|-------------|------------|
 | creatinine-albumin ratio         | -0.07488784 | -0.05057942 | 
-| SBP - Systolic Blood Pressure    | | | 
-| DBP - Diastolic Blood Pressure   | | |
+| SBP - Systolic Blood Pressure    | -0.03675808 | -0.02483454 | 
+| DBP - Diastolic Blood Pressure   | -0.00383442 | -0.002860232 |
 
 - wave 3
 
 |   Variable/Correlation           | Spearman   |   Kendall  |
 |----------------------------------|------------|------------|
 | creatinine-albumin ratio         |     -      |      -     | 
-| SBP - Systolic Blood Pressure    | | | 
-| DBP - Diastolic Blood Pressure   | | |
+| SBP - Systolic Blood Pressure    | -0.1000127 | -0.06775698 | 
+| DBP - Diastolic Blood Pressure   | -0.05223174 | -0.03542899 |
+
+#### **Nature of the Relationship**
+Weak or No Correlation: The very small values indicate that there is no strong linear or monotonic relationship between the variables. In other words, changes in one variable are not consistently associated with changes in the other variable.
+
+#### **Differences in Methods**
+- Spearman vs. Kendall: While both methods measure monotonic correlations, they use different approaches. Spearman's coefficient is a rank-based correlation, whereas Kendall's tau measures concordance and discordance between pairs. Small differences in results are expected due to the different calculation techniques.
+
+#### **Data Distribution**
+- Outliers and Non-Linear Data: If there are outliers or if the relationship between the variables is non-linear, this can affect the correlation coefficients. Small correlations might indicate the presence of outliers or complex relationships that are not well captured by simple correlations.
+
+#### **Sample Size**
+Sample Size: In very large samples, even very small correlations can become statistically significant, although they might not be practically relevant.
+
+#### **Contextual Interpretation** 
+Practical Relevance: Consider whether the small correlations have practical importance in the context of your study. In some fields, even weak correlations can be relevant, while in others, they might be disregarded.
+Example Explanation
+"In our study, we used Kendall and Spearman correlation coefficients to examine the relationship between [Variable X] and [Variable Y]. We observed that the coefficients were very small, with insignificant negative values in Kendall and insignificant positive values in Spearman. These results suggest that there is no strong monotonic relationship between the analyzed variables. The subtle differences in coefficients between the two methods can be attributed to their distinct approaches to measuring monotonic correlations. Additionally, the presence of outliers or the non-linear nature of the relationship between the variables might have contributed to these small values. Therefore, we can conclude that, within the context of this study, [Variable X] and [Variable Y] do not exhibit a significant or strong relationship."
+
+#### **Conclusion**
+The very small values in Kendall and Spearman correlations indicate a weak or absent relationship between the variables. This could be due to the nature of the data, different calculation methods, or the presence of outliers. It is important to contextualize these results within the scope of your study to determine their practical relevance.
 
 ## Tutorial for graphical analysis
 #### Residuals vs. Fitted Plot
