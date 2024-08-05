@@ -280,3 +280,36 @@ corKenSodPADOnda1 <- cor.test(sodio_interp$onda1, PAD_interp$onda3, method = "ke
 corKenSodPADOnda2 <- cor.test(sodio_interp$onda2, PAD_interp$onda3, method = "kendall")
 corKenSodPADOnda3 <- cor.test(sodio_interp$onda3, PAD_interp$onda3, method = "kendall")
 ################################################################################
+####################################GLM#########################################
+###Criando data frame
+dfGLM_PresencaHipertensaoSistem <- data.frame(PresencaHipertensaoSistem = presencaHipertensaoSistem_interp$onda1,
+                                              idade = idadeNaOnda1
+                                              )
+###gerando um GLM
+GLM_PresencaHipertensaoSistemOnda1 <- glm(PresencaHipertensaoSistem ~ idade, data = dfGLM_PresencaHipertensaoSistem, family = binomial)
+###Resumo do GML
+summary(GLM_PresencaHipertensaoSistemOnda1)
+###Adicionando as probabilidades previstas ao data frame original
+dfGLM_PresencaHipertensaoSistem$predicted_prob <- predict(GLM_PresencaHipertensaoSistemOnda1, type = "response")
+###Plotagem
+### Plotagem
+ggplot(data = dfGLM_PresencaHipertensaoSistem, aes(x = idade, y = predicted_prob)) +
+  geom_point(aes(color = factor(PresencaHipertensaoSistem))) +  # Corrigir a variável de cor
+  geom_smooth(method = "glm", method.args = list(family = binomial(link = "logit")), se = FALSE) +
+  labs(title = "Previsões da Regressão Logística", x = "Idade", y = "Probabilidade Predita") +
+  theme_minimal()
+################################################################################
+### Plotagem
+ggplot(data = dfGLM_PresencaHipertensaoSistem, aes(x = idade, y = predicted_prob)) +
+  geom_point(size = 0.5, alpha = 0.5) +
+  geom_smooth(method = "loess") +
+  labs(title = "Previsões da Regressão Logística", x = "Idade", y = "Probabilidade Predita") +
+  theme_classic()
+###Plotagem
+################################################################################
+ggplot(data = dfGLM_PresencaHipertensaoSistem, aes(x = idade, y = predicted_prob)) +
+geom_point(aes(color = factor(PresencaHipertensaoSistem))) +  # Usa a variável para colorir os pontos
+#geom_smooth(method = "glm", method.args = list(family = binomial(link = "logit")), se = FALSE) +  # Adiciona a curva de ajuste
+labs(title = "Previsões da Regressão Logística", x = "Idade", y = "Probabilidade Predita") +
+scale_color_manual(name = "Presença de Hipertensão", values = c("0" = "blue", "1" = "red")) +  # Corrige o título da legenda e define as cores
+theme_minimal()
