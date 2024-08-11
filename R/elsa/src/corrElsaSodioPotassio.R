@@ -64,7 +64,7 @@ razaoAlbuCreat_interp <- kNN(dfRazaoAlbuminaCreatinina, k = 5)
 razaoAlbuCreat_interp <- razaoAlbuCreat_interp[, -c(3:ncol(razaoAlbuCreat_interp))]
 
 PAS_interp <- kNN(dfPAS, k = 5)
-PAS_interp <- PAS_interp[, -c(4,ncol(PAS_interp))]
+PAS_interp <- PAS_interp[, -c(4:ncol(PAS_interp))]
 
 PAD_interp <- kNN(dfPAD, k = 5)
 PAD_interp <- PAD_interp[,-c(4:ncol(PAD_interp))]
@@ -75,7 +75,7 @@ taxaFiltracaoGlomerular_interp <- taxaFiltracaoGlomerular_interp[, -c(3:ncol(tax
 
 #variavel_binaria
 presencaHipertensaoSistem_interp <- kNN(dfPresencaHipertensaoSistem, k = 5)
-presencaHipertensaoSistem_interp <- presencaHipertensaoSistem_interp[,-c(4,ncol(presencaHipertensaoSistem_interp))]
+presencaHipertensaoSistem_interp <- presencaHipertensaoSistem_interp[,-c(4:ncol(presencaHipertensaoSistem_interp))]
 
 ###Exemplo de rotulacao de fatores
 ###presencaHipertensaoSistem_interp$onda1 <- factor(presencaHipertensaoSistem_interp$onda1, levels = c(0,1), labels= c("Nao", "Sim"))
