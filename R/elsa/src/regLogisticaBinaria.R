@@ -93,5 +93,8 @@ table(presencaHipertensaoSistem_interp$hip_onda3)
 dataGLM <- cbind(presencaHipertensaoSistem_interp, pot_interp, sodio_interp, razaoAlbuCreat_interp,
                 PAS_interp, PAD_interp, taxaFiltracaoGlomerular_interp)
 
-mod1 <- glm(data = dataGLM, dataGLM$hip_onda1 ~ dataGLM$PAS_onda1, family = binomial(link = "logit"))
+mod1 <- glm(data = dataGLM, hip_onda1 ~ PAS_onda1, family = binomial(link = "logit"))
 plot(mod1, which = 5)
+
+###Ausencia de multicolinearidade
+#pairs.panels(dataGLM) #r > 0.9 (ou r > 0.8), mas como temos somente uma VI, entao nao faz sentido analisar isto.
