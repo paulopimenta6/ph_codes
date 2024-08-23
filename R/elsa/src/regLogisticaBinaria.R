@@ -1,49 +1,44 @@
 if(!require(pacman)) install.packages("pacman")
 library(pacman)
-pacman::p_load(dplyr, psych, car, MASS, DescTools, QuantPsyc, ggplot2, VIM)
+pacman::p_load(dplyr, psych, car, MASS, DescTools, QuantPsyc, ggplot2, VIM, fpp)
 source("./src/script_analise_dados_elsa_Var_Lib.R")
 source("./src/dadosRegLogistica.R")
 
 ###Analisando os dados
 #view(presencaHipertensaoSistem_interp)
-glimpse(dataGLM_Hip_PAS_Onda1)
+#glimpse(dataGLM_Hip_PAS_Onda1)
 
 ###Fazendo uma analise exploratoria
-#table(dataGLM_Hip_PAS_Onda1$hip_onda1)
+#table(dataGLM$hip_onda1)
+#summary(dataGLM)
 
-###Um conjunto de dados geralmente é considerado desbalanceado quando uma das classes 
-###representa menos de 10% a 20% do total de observações.
-###Neste caso, a classe S representa aproximadamente 32.7% dos dados, enquanto a classe N representa 67.3%.
+###Ajustando os dados desbalanceados
+#### Valor de Lambda
+lambda_pot_onda1 <- BoxCox.lambda (dataGLM$pot_onda1, method=c("loglik"), lower=-3, upper= 3) 
+lambda_sod_onda1 <- BoxCox.lambda (dataGLM$sod_onda1, method=c("loglik"), lower=-3, upper= 3)
+lambda_albCreat_onda1 <- BoxCox.lambda (dataGLM$albCreat_onda1, method=c("loglik"), lower=-3, upper= 3)
+lambda_PAS_onda1 <- BoxCox.lambda (dataGLM$PAS_onda1, method=c("loglik"), lower=-3, upper= 3)
+lambda_PAD_onda1 <- BoxCox.lambda (dataGLM$PAD_onda1, method=c("loglik"), lower=-3, upper= 3)
+####Valores ajustados pela transformacao Box-Cox
+dataGLM$pot_onda1_ajustado <- BoxCox(dataGLM$pot_onda1, lambda_pot_onda1)
+dataGLM$sod_onda1_ajustado <- BoxCox(dataGLM$pot_onda1, lambda_sod_onda1)
+dataGLM$albCreat_onda1_ajustado <- BoxCox(dataGLM$pot_onda1, lambda_albCreat_onda1)
+dataGLM$PAS_onda1_ajustado <- BoxCox(dataGLM$pot_onda1, lambda_PAS_onda1)
+dataGLM$PAD_onda1_ajustado <- BoxCox(dataGLM$pot_onda1, lambda_PAD_onda1)
 
-mod_Hip_PAS_Onda1 <- glm(data = dataGLM_Hip_PAS_Onda1, Hip ~ PAS, family = binomial(link = "logit"))
-mod_Hip_PAS_Onda2 <- glm(data = dataGLM_Hip_PAS_Onda2, Hip ~ PAS, family = binomial(link = "logit"))
-mod_Hip_PAS_Onda3 <- glm(data = dataGLM_Hip_PAS_Onda3, Hip ~ PAS, family = binomial(link = "logit"))
+dataGLM_onda1 <- data.frame(hip = dataGLM$hip_onda1, 
+                            pot = dataGLM$pot_onda1_ajustado,
+                            sod = dataGLM$sod_onda1_ajustado,
+                            albCreat = dataGLM$albCreat_onda1_ajustado,
+                            PAS = dataGLM$PAS_onda1_ajustado,
+                            PAD = dataGLM$PAD_onda1_ajustado)
+summary(dataGLM_onda1)
 
-plot(mod_Hip_PAS_Onda1, which = 5)
-plot(mod_Hip_PAS_Onda2, which = 5)
-plot(mod_Hip_PAS_Onda3, which = 5)
-
-mod_Hip_PAD_Onda1 <- glm(data = dataGLM_Hip_PAD_Onda1, Hip ~ PAD, family = binomial(link = "logit"))
-mod_Hip_PAD_Onda2 <- glm(data = dataGLM_Hip_PAD_Onda2, Hip ~ PAD, family = binomial(link = "logit"))
-mod_Hip_PAD_Onda3 <- glm(data = dataGLM_Hip_PAD_Onda3, Hip ~ PAD, family = binomial(link = "logit"))
-
-plot(mod_Hip_PAD_Onda3, which = 5)
-plot(mod_Hip_PAD_Onda1, which = 5)
-plot(mod_Hip_PAD_Onda3, which = 5)
-
+#levels(dataGLM$hip_onda1)
+#dataGLM$hip_onda1 <- relevel(dataGLM$hip_onda1, ref = "S")
+model <- glm(hip ~ pot + sod + albCreat + PAS + PAD, 
+             family = binomial(link="logit"), data = dataGLM_onda1, weights = ifelse(dataGLM_onda1$hip == "S", 2, 1))
+#fit <- step(model)
+plot(model, which = 5)
+summary(stdres(model))
 ################################################################################
-intlog_PAS1 <- dataGLM_Hip_PAS_Onda1$PAS*log(dataGLM_Hip_PAS_Onda1$PAS)
-intlog_PAS2 <- dataGLM_Hip_PAS_Onda2$PAS*log(dataGLM_Hip_PAS_Onda2$PAS)
-intlog_PAS3 <- dataGLM_Hip_PAS_Onda3$PAS*log(dataGLM_Hip_PAS_Onda3$PAS)
-
-intlog_PAD1 <- dataGLM_Hip_PAD_Onda1$PAD*log(dataGLM_Hip_PAD_Onda1$PAD)
-intlog_PAD2 <- dataGLM_Hip_PAD_Onda2$PAD*log(dataGLM_Hip_PAD_Onda2$PAD)
-intlog_PAD3 <- dataGLM_Hip_PAD_Onda3$PAD*log(dataGLM_Hip_PAD_Onda3$PAD)
-
-dataGLM_Hip_PAS_Onda1$intlog1 <- intlog_PAS1
-dataGLM_Hip_PAS_Onda2$intlog2 <- intlog_PAS2
-dataGLM_Hip_PAS_Onda3$intlog3 <- intlog_PAS3
-
-dataGLM_Hip_PAD_Onda1$intlog1 <- intlog_PAD1
-dataGLM_Hip_PAD_Onda2$intlog2 <- intlog_PAD2
-dataGLM_Hip_PAD_Onda3$intlog3 <- intlog_PAD3
