@@ -1,6 +1,6 @@
 if(!require(pacman)) install.packages("pacman")
 library(pacman)
-pacman::p_load(dplyr, psych, car, MASS, DescTools, QuantPsyc, ggplot2, VIM, fpp, car)
+pacman::p_load(dplyr,ggplot2, RT4Bio)
 source("./src/script_analise_dados_elsa_Var_Lib.R")
 source("./src/dadosRegLogistica.R")
 
@@ -21,13 +21,13 @@ head(dadosOnda1)
 str(dadosOnda1)
 summary(dadosOnda1)
 ################################################################################
-m1 <- glm(data = dadosOnda1, (hip/ntotal)~pot*sod*albCreat*pas*pad*filt, family = binomial, weights = ntotal, control = glm.control(maxit = 50))
-m1_simples <- glm(data = dadosOnda1, (hip/ntotal) ~ pot + sod + albCreat + pas + pad + filt, family = binomial, weights = ntotal)
-m1nulo <- glm((hip/ntotal)~1, family = binomial, weights = ntotal)
-
+m1 <- glm(data = dadosOnda1, (hip/ntotal)~pas + pad, family = binomial, weights = ntotal)
+m1nulo <- glm(data = dadosOnda1, (hip/ntotal)~1, family = binomial, weights = ntotal)
+################################################################################
 anova(m1nulo, m1, test="Chisq")
 anova(m1, test="Chisq")
 vif(m1)
-anova(m1nulo, m1_simples, test="Chisq")
-vif(m1_simples)
-anova(m1_simples, test="Chisq")
+################################################################################
+rdiagnostic(m1)
+
+
