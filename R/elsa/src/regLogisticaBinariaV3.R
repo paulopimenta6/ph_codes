@@ -1,6 +1,6 @@
 if(!require(pacman)) install.packages("pacman")
 library(pacman)
-pacman::p_load(dplyr,ggplot2, RT4Bio)
+pacman::p_load(dplyr,ggplot2, car)
 source("./src/script_analise_dados_elsa_Var_Lib.R")
 source("./src/dadosRegLogistica.R")
 
@@ -28,6 +28,5 @@ anova(m1nulo, m1, test="Chisq")
 anova(m1, test="Chisq")
 vif(m1)
 ################################################################################
-rdiagnostic(m1)
-
+plot(m1, which = 5)
 
