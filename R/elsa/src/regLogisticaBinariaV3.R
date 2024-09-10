@@ -18,37 +18,119 @@ dadosOnda1 <- data.frame(hip = dataGLM$hip_onda1,
 dadosOnda1$hip <- ifelse(dadosOnda1$hip == "S", 1, 0)
 dadosOnda1$ntotal <- 1
 ################################################################################
-idx1 <- which(dadosOnda1$pas<=160)
-dadosOnda2 <- data.frame(hip = dadosOnda1$hip[idx1],
-                         pas = dadosOnda1$pas[idx1],
-                         ntotal = dadosOnda1$ntotal[idx1]
-                         )
-boxplot(dadosOnda2$pas)                        
+dadosOnda1$logSod <- log(dadosOnda1$sod)
+dadosOnda1$rootSod <- sqrt(dadosOnda1$sod)
+#boxplot(dadosOnda1$sod)
+#boxplot(logSod)
+#boxplot(rootSod)
+#hist(dadosOnda1$sod)
+#hist(logSod)
+#hist(rootSod)
+###A transformacao em raiz quadradada ganhou das demais e aproxima os valores do sodio em quase uma distribuicao normal
+dadosOnda1$logPot <- log(dadosOnda1$pot)
+dadosOnda1$rootPot <- sqrt(dadosOnda1$pot)
+#boxplot(dadosOnda1$pot)
+#boxplot(logPot)
+#boxplot(rootPot)
+#hist(dadosOnda1$pot)
+#hist(logPot)
+#hist(rootPot)
 ################################################################################
-head(dadosOnda2$pas)
-str(dadosOnda2$pas)
-boxplot(dadosOnda2$pas)
 ################################################################################
-lambda <- BoxCox.lambda (dadosOnda2$pas, method=c("loglik"), lower=-3, upper= 3)
-dadosOnda2$pas_boxcox <- BoxCox (dadosOnda2$pas, lambda) ## Transformação Box-Cox
-attr(dadosOnda2$pas_boxcox, "lambda") <- NULL
+###Combinacao sodRoot e potLog
 ################################################################################
-boxplot(dadosOnda2$pas_boxcox)
 ################################################################################
-m1 <- glm(data = dadosOnda2, (hip/ntotal)~pas_boxcox, family = binomial, weights = ntotal)
-m1nulo <- glm(data = dadosOnda2, (hip/ntotal)~1, family = binomial, weights = ntotal)
+###A transformação log e a melhor para o Potassio e o aproxima de uma distribuicao quase normal
 ################################################################################
-summary(stdres(m1))
-residuals_std <- rstandard(m1)
+m1nulo <- glm(data = dadosOnda1, (hip/ntotal)~1, family = binomial, weights = ntotal)
+m1 <- glm(data = dadosOnda1, (hip/ntotal) ~ rootSod, family = binomial, weights = ntotal)
+m2 <- glm(data = dadosOnda1, (hip/ntotal) ~ rootSod + logPot, family = binomial, weights = ntotal)
+m3 <- glm(data = dadosOnda1, (hip/ntotal) ~ rootSod * logPot, family = binomial, weights = ntotal)
+m4 <- glm(data = dadosOnda1, (hip/ntotal) ~ rootSod + logPot + rootSod * logPot, family = binomial, weights = ntotal)
+################################################################################
+###Anova com m1nulo e m1, m2, m3 e m4
 anova(m1nulo, m1, test="Chisq")
+################################################################################
+anova(m1nulo, m2, test="Chisq")
+################################################################################
+anova(m1nulo, m3, test="Chisq")
+################################################################################
+anova(m1nulo, m4, test="Chisq")
+################################################################################
+###Anova para verificar se e possivel simplificar o modelo
 anova(m1, test="Chisq")
 ################################################################################
-# Gerar gráficos de diagnóstico
-par(mfrow = c(1, 3))  # Configura dois gráficos lado a lado
-plot(m1, which = 2)  # Q-Q Plot
-plot(m1, which = 1)  # Resíduos vs Ajustados
-plot(m1, which = 5)
+anova(m2, test="Chisq")
+################################################################################
+anova(m3, test="Chisq")
+################################################################################
+anova(m4, test="Chisq")
+################################################################################
 
+################################################################################
+################################################################################
+###Combinacao rootSod e rootPot
+################################################################################
+################################################################################
+###A transformação log e a melhor para o Potassio e o aproxima de uma distribuicao quase normal
+################################################################################
+m1nuloroot <- glm(data = dadosOnda1, (hip/ntotal)~1, family = binomial, weights = ntotal)
+m1root <- glm(data = dadosOnda1, (hip/ntotal) ~ rootSod, family = binomial, weights = ntotal)
+m2root <- glm(data = dadosOnda1, (hip/ntotal) ~ rootSod + rootPot, family = binomial, weights = ntotal)
+m3root <- glm(data = dadosOnda1, (hip/ntotal) ~ rootSod * rootPot, family = binomial, weights = ntotal)
+m4root <- glm(data = dadosOnda1, (hip/ntotal) ~ rootSod + rootPot + rootSod * rootPot, family = binomial, weights = ntotal)
+################################################################################
+###Anova com m1nulo e m1, m2, m3 e m4
+anova(m1nuloroot, m1root, test="Chisq")
+################################################################################
+anova(m1nuloroot, m2root, test="Chisq")
+################################################################################
+anova(m1nuloroot, m3root, test="Chisq")
+################################################################################
+anova(m1nuloroot, m4root, test="Chisq")
+################################################################################
+###Anova para verificar se e possivel simplificar o modelo
+anova(m1root, test="Chisq")
+################################################################################
+anova(m2root, test="Chisq")
+################################################################################
+anova(m3root, test="Chisq")
+################################################################################
+anova(m4root, test="Chisq")
+################################################################################
+
+
+################################################################################
+################################################################################
+###Combinacao logSod e logPot
+################################################################################
+################################################################################
+###A transformação log e a melhor para o Potassio e o aproxima de uma distribuicao quase normal
+################################################################################
+m1nulolog <- glm(data = dadosOnda1, (hip/ntotal)~1, family = binomial, weights = ntotal)
+m1log <- glm(data = dadosOnda1, (hip/ntotal) ~ logSod, family = binomial, weights = ntotal)
+m2log <- glm(data = dadosOnda1, (hip/ntotal) ~ logSod + logPot, family = binomial, weights = ntotal)
+m3log <- glm(data = dadosOnda1, (hip/ntotal) ~ logSod * logPot, family = binomial, weights = ntotal)
+m4log <- glm(data = dadosOnda1, (hip/ntotal) ~ logSod + logPot + logSod * logPot, family = binomial, weights = ntotal)
+################################################################################
+###Anova com m1nulo e m1, m2, m3 e m4
+anova(m1nulolog, m1log, test="Chisq")
+################################################################################
+anova(m1nulolog, m2log, test="Chisq")
+################################################################################
+anova(m1nulolog, m3log, test="Chisq")
+################################################################################
+anova(m1nulolog, m4log, test="Chisq")
+################################################################################
+###Anova para verificar se e possivel simplificar o modelo
+anova(m1log, test="Chisq")
+################################################################################
+anova(m2log, test="Chisq")
+################################################################################
+anova(m3log, test="Chisq")
+################################################################################
+anova(m4log, test="Chisq")
+################################################################################
 
 
 
