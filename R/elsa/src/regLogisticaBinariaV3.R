@@ -15,8 +15,6 @@ dadosOnda1 <- data.frame(hip = dataGLM$hip_onda1,
 )
 
 ###Transformacao de hip em variavel dummy para usar proporcao
-dadosOnda1$hip <- ifelse(dadosOnda1$hip == "S", 1, 0)
-dadosOnda1$ntotal <- 1
 ################################################################################
 dadosOnda1$logSod <- log(dadosOnda1$sod)
 dadosOnda1$rootSod <- sqrt(dadosOnda1$sod)
