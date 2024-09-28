@@ -1,6 +1,6 @@
 if(!require(pacman)) install.packages("pacman")
 library(pacman)
-pacman::p_load(dplyr,ggplot2)
+pacman::p_load(dplyr,ggplot2, MASS)
 source("./src/script_analise_dados_elsa_Var_Lib.R")
 source("./src/dadosRegLogistica.R")
 
@@ -13,14 +13,43 @@ dadosOnda1 <- data.frame(hip = dataGLM$hip_onda1,
                          filt = dataGLM$filt_onda1
 )
 dadosOnda1$hip <- relevel(dadosOnda1$hip, ref = "S")
+################################################################################
+# Considerando o modelo com a interação
 glm1 <- glm(data = dadosOnda1, hip ~ sod + pot + sod:pot, family = binomial)
-summary(glm1)
+plot(glm1, which = 5)
+title(main = "hip ~ sod + pot + sod:pot")
+summary(stdres(glm1))
+################################################################################
+# Considerando o modelo sem a interação
+glm2 <- glm(data = dadosOnda1, hip ~ sod + pot, family = binomial)
+plot(glm2, which = 5)
+title(main = "hip ~ sod + pot")
+summary(stdres(glm2))
+################################################################################
+# Considerando o modelo somente com sódio
+glm3 <- glm(data = dadosOnda1, hip ~ sod, family = binomial)
+plot(glm3, which = 5)
+title(main = "hip ~ sod")
+summary(stdres(glm3))
+################################################################################
+# Considerando o modelo somente com potássio
+glm4 <- glm(data = dadosOnda1, hip ~ pot, family = binomial)
+plot(glm4, which = 5)
+title(main = "hip ~ pot")
+summary(stdres(glm4))
 ################################################################################
 ###Considerando o modelo nulo
 glm_nulo <- glm(data = dadosOnda1, hip~1, family = binomial)
+
 ################################################################################
-###Considerando o modelo sem a interacao
-glm2 <- glm(data = dadosOnda1, hip ~ sod + pot, family = binomial)
+###O comportamento em principio não apresentou um padrao esperado, logo sera melhor remover os outliers para
+###verificar o que pode ter influencia na amostra
+outliers_pot <- boxplot(dadosOnda1$pot, plot=FALSE)$out
+outlier_indices_pot <- which(dadosOnda1$pot %in% outliers_pot)
+
+outliers_sod <- boxplot(dadosOnda1$sod, plot=FALSE)$out
+outlier_indices_sod <- which(dadosOnda1$pot %in% outliers_pot)
+
 ################################################################################
 ###Comparando o modelo nulo com o modelo com interacao
 anova(glm_nulo, glm1, test="Chisq")
