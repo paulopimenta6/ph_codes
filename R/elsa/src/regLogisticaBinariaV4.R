@@ -35,12 +35,7 @@ logit_values <- predict(glm1, type = "link")
 predicted_probabilities <- predict(glm1, type = "response")
 head(logit_values)
 head(predicted_probabilities)
-
 ################################################################################
-
-# Pacotes necessários
-library(ggplot2)
-library(dplyr)
 
 # Adicionando as probabilidades preditas ao dataframe
 dadosOnda1$predicted_prob <- predict(glm1, type = "response")
@@ -54,34 +49,3 @@ ggplot(dadosOnda1, aes(x = sod, y = predicted_prob, color = pot)) +
   theme_minimal()
 
 ################################################################################
-
-# Convertendo 'hip' para valores numéricos (0 = "N", 1 = "S")
-dadosOnda1$hip_num <- ifelse(dadosOnda1$hip == "S", 1, 0)
-
-# Criando o gráfico dos valores observados vs. preditos
-ggplot(dadosOnda1, aes(x = predicted_prob, y = hip_num)) +
-  geom_jitter(width = 0.05, height = 0.05, alpha = 0.5) +
-  geom_smooth(method = "loess", se = FALSE) +
-  labs(title = "Valores Observados vs. Probabilidades Preditas",
-       x = "Probabilidade Predita", y = "Valor Observado (0 = 'N', 1 = 'S')") +
-  theme_minimal()
-
-################################################################################
-
-# Curvas de efeito marginal para sod e pot
-effect_sod <- glm1$coefficients["sod"]
-effect_pot <- glm1$coefficients["pot"]
-effect_interaction <- glm1$coefficients["sod:pot"]
-
-# Criando os gráficos
-plot(dadosOnda1$sod, predict(glm1, newdata = dadosOnda1, type = "response"), 
-     main = "Efeito do Sódio", xlab = "Sódio", ylab = "Probabilidade Predita")
-
-plot(dadosOnda1$pot, predict(glm1, newdata = dadosOnda1, type = "response"), 
-     main = "Efeito do Potássio", xlab = "Potássio", ylab = "Probabilidade Predita")
-
-interaction_plot <- with(dadosOnda1, sod * pot)
-plot(interaction_plot, predict(glm1, newdata = dadosOnda1, type = "response"), 
-     main = "Interação entre Sódio e Potássio", 
-     xlab = "Interação Sódio:Potássio", 
-     ylab = "Probabilidade Predita")
