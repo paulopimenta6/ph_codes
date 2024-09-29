@@ -128,11 +128,12 @@ The model with the interaction term (Model 1) has the lowest AIC, indicating a b
 #### Standardized Residuals:
 Across all models, the residuals are relatively small, and the mean is close to zero, which indicates that the models are fitting the data reasonably well. However, some influential points with high leverage and Cook’s distance suggest further investigation is needed, especially for the interaction model.
 
-### Initial conclusion
+#### Initial conclusion
 
 - The model including the interaction between sodium and potassium provides the best fit, with both sodium and potassium significantly affecting hypertension when their interaction is considered.
 - Without the interaction, potassium seems to have a slightly positive effect on hypertension, while sodium alone does not show a significant impact.
 - Further residual analysis and investigation into influential points are needed to refine the models.
+
 
 ### Analysis of the Residuals Vs Leverage Plot
 
@@ -141,8 +142,6 @@ This plot of residuals versus leverage for the hip ~ sod model provides us with 
 <div style="display: flex; justify-content: space-around;">
   <img src="./regLogBin/hipXsod.png" width="500">  
 </div>
-
-
 
 1. Standardized Residuals (Std. Pearson Residuals):
 - The vertical axis shows the standardized residuals, which indicate how much the actual observations deviate from the model predictions. In a good fit, we would expect these residuals to be randomly distributed around zero.
