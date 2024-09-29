@@ -25,15 +25,6 @@ summary(glm1)
 | pot           | -1.488e-02  | 4.802e-03   | -3.099   | 0.00194     |
 | sod:pot       | 1.704e-04   | 3.626e-05   | 4.699    | 2.61e-06    |
 
-
-| Variável | Valor | Descrição |
-| -------- | ----- | ----------- |
-| A        | 1     | Inteiro     |
-| B        | 2     |             |
-
-
-
-
 #### Interpretation:
 
 - Intercept: The intercept is significant (p < 0.001), indicating the baseline log-odds of hypertension when both sodium and potassium are zero.
