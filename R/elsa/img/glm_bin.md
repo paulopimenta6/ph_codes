@@ -8,10 +8,10 @@
 ### Summary
 
 - [Introduction](#Introduction)
-- [Model 1: Sodium, Potassium, and Their Interaction](#Model-1:-Sodium,-Potassium,-and-Their-Interaction)
-- [Model 2: Sodium and Potassium without Interaction](#Model-2:-Sodium-and-Potassium-without-Interaction)
-- [Model 3: Sodium Only](#Model-3:-Sodium-Only)
-- [Model 4: Potassium Only](#Model-4:-Potassium-Only)
+- [Model 1: Sodium, Potassium, and Their Interaction](#Model-1-Sodium-Potassium-and-Their-Interaction)
+- [Model 2: Sodium and Potassium without Interaction](#Model-2-Sodium-and-Potassium-without-Interaction)
+- [Model 3: Sodium Only](#Model-3-Sodium-Only)
+- [Model 4: Potassium Only](#Model-4-Potassium-Only)
 
 
 
