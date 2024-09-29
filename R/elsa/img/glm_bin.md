@@ -14,7 +14,7 @@
 - [Model 4: Potassium Only](#Model-4-Potassium-Only)
 - [Model Comparison and Residual Analysis](#Model-Comparison-and-Residual-Analysis)
 - [Initial conclusion](#Initial-conclusion)
-
+- [Analysis of the Residuals Vs Leverage Plot](#Analysis-of-the-Residuals-Vs-Leverage-Plot)
 
 ### Introduction
 
@@ -133,3 +133,9 @@ Across all models, the residuals are relatively small, and the mean is close to 
 - The model including the interaction between sodium and potassium provides the best fit, with both sodium and potassium significantly affecting hypertension when their interaction is considered.
 - Without the interaction, potassium seems to have a slightly positive effect on hypertension, while sodium alone does not show a significant impact.
 - Further residual analysis and investigation into influential points are needed to refine the models.
+
+### Analysis of the Residuals Vs Leverage Plot
+
+<div style="display: flex; justify-content: space-around;">
+  <img src="./regLogBin/hipXsod.png" width="500">  
+</div>
