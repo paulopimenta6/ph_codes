@@ -12,7 +12,8 @@
 - [Model 2: Sodium and Potassium without Interaction](#Model-2-Sodium-and-Potassium-without-Interaction)
 - [Model 3: Sodium Only](#Model-3-Sodium-Only)
 - [Model 4: Potassium Only](#Model-4-Potassium-Only)
-
+- [Model Comparison and Residual Analysis](#Model-Comparison-and-Residual-Analysis)
+- [Initial conclusion](#Initial-conclusion)
 
 
 ### Introduction
@@ -38,10 +39,15 @@ summary(glm1)
 
 #### Interpretation:
 
-- Intercept: The intercept is significant (p < 0.001), indicating the baseline log-odds of hypertension when both sodium and potassium are zero.
-- Sodium (sod): A small negative but highly significant effect (p < 0.001), suggesting that increasing sodium reduces the odds of hypertension.
-- Potassium (pot): Also significant (p < 0.01), where increasing potassium decreases the odds of hypertension.
-- Interaction term (sod): Highly significant (p < 0.001), suggesting that the relationship between sodium and hypertension depends on the level of potassium.
+- Intercept (1.310): The intercept is significant (p < 0.001), indicating the baseline log-odds of hypertension when both sodium and potassium are zero.
+- Sodium (sod) (Estimate = -0.007143): A small negative but highly significant effect (p < 0.001), suggesting that increasing sodium reduces the odds of hypertension.
+- Potassium (pot) (Estimate = -0.01488): Also significant (p < 0.01), where increasing potassium decreases the odds of hypertension.
+- Interaction term (sod:pot) (Estimate = 0.0001704): Highly significant (p < 0.001), suggesting that the relationship between sodium and hypertension depends on the level of potassium.
+
+- P-values: All coefficients (sodium, potassium, and the interaction) are statistically significant (p < 0.05), suggesting that each variable has a significant effect on hypertension when considered with the interaction.
+- Model fit: AIC (6368.9) and residual deviance (6360.9): These values ​​indicate the goodness of fit. Compared to the other models, this one has a good fit (smaller AIC indicates better fit).
+- Distribution of residuals: The distribution of residuals appears reasonably symmetric, indicating that the model is not violating the assumptions of logistic regression.
+
 
 ### Model 2: Sodium and Potassium without Interaction
 
@@ -61,9 +67,10 @@ summary(glm2)
 
 #### Interpretation:
 
-- Intercept: Significant (p < 0.001), indicating the baseline log-odds of hypertension.
-- Sodium (sod): Significant with a small negative effect (p < 0.05), suggesting that an increase in sodium slightly reduces the odds of hypertension.
-- Potassium (pot): Significant (p < 0.01), where an increase in potassium increases the odds of hypertension, in contrast to the first model, where potassium was protective when considering the interaction.
+- Intercept (0.6978): Significant (p < 0.001), indicating the baseline log-odds of hypertension.
+- Sodium (sod) (Estimate = -0.001479): Significant with a small negative effect (p < 0.05), suggesting that an increase in sodium slightly reduces the odds of hypertension.
+- Potassium (pot) (Estimate = 0.0058456): Significant (p < 0.01), where an increase in potassium increases the odds of hypertension, in contrast to the first model, where potassium was protective when considering the interaction.
+- Model fit: AIC (6390.1): The fit is reasonable, but the model with the interaction has a smaller AIC (i.e., it is better).
 
 ### Model 3: Sodium Only
 
@@ -83,7 +90,9 @@ summary(glm3)
 
 #### Interpretation:
 
-- Sodium (sod): Not significant (p = 0.349), indicating no strong evidence that sodium alone predicts hypertension in this model.
+- Intercept (0.7822): The log-odds of a person having hypertension when sodium is zero.
+- Sodium (sod) (Estimate = -0.0005257): Not significant (p = 0.349), indicating no strong evidence that sodium alone predicts hypertension in this model.
+- Model fit: AIC (6396.3): The highest AIC value indicates that this model has the worst fit among the models analyzed.
 
 ### Model 4: Potassium Only
 
@@ -102,4 +111,25 @@ summary(glm4)
 
 #### Interpretation: 
 
-- Potassium (pot): Marginally significant (p = 0.047), suggesting a small but positive effect on hypertension.
+- Intercept (0.6116): The log-odds of a person having hypertension when potassium is zero.
+- Potassium (pot) (Estimate = 0.003487): Marginally significant (p = 0.047), suggesting a small but positive effect on hypertension.
+- Model fit: AIC (6393.2): The fit is better than the model with sodium, but still inferior to the model including both parameters or the interaction.
+
+### Model Comparison and Residual Analysis
+#### Residual Deviance and AIC:
+
+- Model 1 (sod + pot + sod): AIC = 6368.9
+- Model 2 (sod + pot): AIC = 6390.1
+- Model 3 (sod only): AIC = 6396.3
+- Model 4 (pot only): AIC = 6393.2
+
+The model with the interaction term (Model 1) has the lowest AIC, indicating a better fit compared to the other models.
+
+#### Standardized Residuals:
+Across all models, the residuals are relatively small, and the mean is close to zero, which indicates that the models are fitting the data reasonably well. However, some influential points with high leverage and Cook’s distance suggest further investigation is needed, especially for the interaction model.
+
+### Initial conclusion
+
+- The model including the interaction between sodium and potassium provides the best fit, with both sodium and potassium significantly affecting hypertension when their interaction is considered.
+- Without the interaction, potassium seems to have a slightly positive effect on hypertension, while sodium alone does not show a significant impact.
+- Further residual analysis and investigation into influential points are needed to refine the models.
