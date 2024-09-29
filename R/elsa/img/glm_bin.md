@@ -18,7 +18,7 @@ summary(glm1)
 ```
 #### Output: 
 
-| Coefficients: | Estimate    | Std. Error  | z value  | Pr(>|z|)    |
+| Coefficients  | Estimate    | Std. Error  | z value  | Pr(>|z|)    |
 |---------------|-------------|-------------|----------|-------------|
 | (Intercept)   | 1.310e+00   | 1.500e-01   | 8.738    | <2e-16      |
 | sod           | -7.143e-03  | 1.370e-03   | -5.216   | 1.83e-07    |
