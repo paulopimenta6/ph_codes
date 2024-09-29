@@ -18,24 +18,28 @@ dadosOnda1$hip <- relevel(dadosOnda1$hip, ref = "S")
 glm1 <- glm(data = dadosOnda1, hip ~ sod + pot + sod:pot, family = binomial)
 plot(glm1, which = 5)
 title(main = "hip ~ sod + pot + sod:pot")
+summary((glm1))
 summary(stdres(glm1))
 ################################################################################
 # Considerando o modelo sem a interação
 glm2 <- glm(data = dadosOnda1, hip ~ sod + pot, family = binomial)
 plot(glm2, which = 5)
 title(main = "hip ~ sod + pot")
+summary((glm2))
 summary(stdres(glm2))
 ################################################################################
 # Considerando o modelo somente com sódio
 glm3 <- glm(data = dadosOnda1, hip ~ sod, family = binomial)
 plot(glm3, which = 5)
 title(main = "hip ~ sod")
+summary((glm3))
 summary(stdres(glm3))
 ################################################################################
 # Considerando o modelo somente com potássio
 glm4 <- glm(data = dadosOnda1, hip ~ pot, family = binomial)
 plot(glm4, which = 5)
 title(main = "hip ~ pot")
+summary((glm4))
 summary(stdres(glm4))
 ################################################################################
 ###Considerando o modelo nulo
@@ -49,6 +53,8 @@ outlier_indices_pot <- which(dadosOnda1$pot %in% outliers_pot)
 
 outliers_sod <- boxplot(dadosOnda1$sod, plot=FALSE)$out
 outlier_indices_sod <- which(dadosOnda1$pot %in% outliers_pot)
+################################################################################
+
 
 ################################################################################
 ###Comparando o modelo nulo com o modelo com interacao

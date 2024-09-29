@@ -4,12 +4,13 @@
 ![RStudio](https://img.shields.io/badge/RStudio-75AADB?logo=rstudio&logoColor=white&style=flat)
 
 ## Summary
-- [About non-parametric analysis](#About-non--parametric-analysis)
+- [About correlation and regression analysis](#About-correlation-and-regression-analysis)
 - [Correlation and regression assumption analyses](#Correlation-and-regression-assumption-analyses)
 - [Graphical Analysis](#Graphical-analysis)
 - [Spearman and Kendall correlation](#Spearman-and-Kendall-correlation)
 - [Tutorial for graphical analysis](#Tutorial-for-graphical-analysis)
 - [Tutorial for regression analysis](#Tutorial-for-regression-analysis)
+- [General Linear Models](#General-Linear-Models) 
 
 ## About correlation and regression analysis
 Correlation analysis involves assessing the strength and direction of the relationship between two variables. In this project, correlation analysis was used to investigate the relationships between various pollution-related variables and kidney disease indicators. The correlation coefficient provides a measure of the strength and direction of the linear relationship between two variables.
@@ -921,3 +922,6 @@ summary(data)                       # p > 0.05: coefficient = 0: independent var
                                # H0: the value of the mean of the independent variable x occurs independently of the consumption of the dependent variable (without predictor)
                                # H: the value of the dependent variable occurs due to the consumption of the independent variable (with predictor) 
 ```
+
+## General Linear Models
+[General Linear Models](./glm_bin.md)
