@@ -17,7 +17,7 @@
 - [Model 5: Potassium Only](#Model-4-Potassium-Only)
 - [Model Comparison and Residual Analysis](#Model-Comparison-and-Residual-Analysis)
 - [Initial conclusion](#Initial-conclusion)
-- [Analysis of the Residuals Vs Leverage Plot](#Analysis-of-the-Residuals-Vs-Leverage-Plot)
+- [Possible pattern issues regarding sodium and potassium](#Possible-pattern-issues-regarding-sodium-and-potassium)
 
 ### Introduction
 
