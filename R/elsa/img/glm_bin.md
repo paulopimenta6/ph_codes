@@ -222,38 +222,33 @@ The presence of outliers may have caused the absence of previously known pattern
 2 - The outliers represent some measurement error or even some numerical anomaly that deserves due treatment.
 
 <div style="display: flex; justify-content: space-around;">
-  <img src="./regLogBin/hipXsod.png" width="500">  
-</div>
-
-
-### Analysis of the Residuals Vs Leverage Plot
-
-This plot of residuals versus leverage for the hip ~ sod model provides us with some useful information, even though sodium alone did not show statistical significance in the model. Let's interpret the plot in more detail:
-
-<div style="display: flex; justify-content: space-around;">
-  <img src="./boxplot_potassium_concentration.png" width="500">  
+  <img src="./regLogBin/boxplot_potassium_concentration.png" width="500">  
 </div>
 
 <div style="display: flex; justify-content: space-around;">
-  <img src="./boxplot_sodium_concentration.png" width="500">  
+  <img src="./regLogBin/boxplot_sodium_concentration.png" width="500">  
 </div>
 
-1. Standardized Residuals (Std. Pearson Residuals):
-- The vertical axis shows the standardized residuals, which indicate how much the actual observations deviate from the model predictions. In a good fit, we would expect these residuals to be randomly distributed around zero.
-- Here, the residuals appear to be concentrated around zero, but with some outliers, especially at the top and bottom.
-
-2. Leverage:
-- The horizontal axis shows the leverage of each point. Leverage indicates the influence of a particular point on the model fit. A high leverage value suggests that a point may have a large impact on the model estimates.
-- Most points have low leverage, with a few exceptions near the right side of the plot, where leverage increases. These points should be watched carefully.
-
-3. Cook's Distance:
-- The contour lines (dashed and solid) represent Cook's distance, which measures the influence of each point on the overall estimate of the model coefficients.
-- In the graph, some points fall outside the Cook's Distance line, suggesting that these points may be influential. These points have high leverage and may be disproportionately affecting the model fit.
-
-4. General interpretation:
-- Although the model did not show significance for the effect of sodium on hypertension, the graph reveals that there are some observations that have high leverage and may be influencing the model. These observations are potential candidates for further analysis.
-
-- The fact that some points are far from the bulk of the data (outliers and high leverage points) suggests that there may be omitted variables or behavior not adequately captured in the model, or even measurement errors for these observations.
-
-5. Conclusion:
-Even if sodium is not relevant in the statistical model, it is important to observe the points with high leverage and outliers. These may be distorting the model fit and should be investigated further.
+### ### Analysis of the Residuals Vs Leverage Plot
+### 
+### This plot of residuals versus leverage for the hip ~ sod model provides us with some useful information, even though sodium alone did not show statistical significance in the ### model. Let's interpret the plot in more detail:
+### 
+### 1. Standardized Residuals (Std. Pearson Residuals):
+### - The vertical axis shows the standardized residuals, which indicate how much the actual observations deviate from the model predictions. In a good fit, we would expect these ### residuals to be randomly distributed around zero.
+### - Here, the residuals appear to be concentrated around zero, but with some outliers, especially at the top and bottom.
+### 
+### 2. Leverage:
+### - The horizontal axis shows the leverage of each point. Leverage indicates the influence of a particular point on the model fit. A high leverage value suggests that a point ### may have a large impact on the model estimates.
+### - Most points have low leverage, with a few exceptions near the right side of the plot, where leverage increases. These points should be watched carefully.
+### 
+### 3. Cook's Distance:
+### - The contour lines (dashed and solid) represent Cook's distance, which measures the influence of each point on the overall estimate of the model coefficients.
+### - In the graph, some points fall outside the Cook's Distance line, suggesting that these points may be influential. These points have high leverage and may be ### disproportionately affecting the model fit.
+### 
+### 4. General interpretation:
+### - Although the model did not show significance for the effect of sodium on hypertension, the graph reveals that there are some observations that have high leverage and may be ### influencing the model. These observations are potential candidates for further analysis.
+### 
+### - The fact that some points are far from the bulk of the data (outliers and high leverage points) suggests that there may be omitted variables or behavior not adequately ### captured in the model, or even measurement errors for these observations.
+### 
+### 5. Conclusion:
+### Even if sodium is not relevant in the statistical model, it is important to observe the points with high leverage and outliers. These may be distorting the model fit and ### should be investigated further.
