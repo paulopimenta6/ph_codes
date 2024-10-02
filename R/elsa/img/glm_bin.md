@@ -8,16 +8,17 @@
 ### Summary
 
 - [Introduction](#Introduction)
-- [Model weighted: Sodium, Potassium, and Their Interaction](#Model\:-weighted-Sodium-Potassium-and-Their-Interaction)
-- [Model 0: Sodium, Potassium and Their Interaction with svyglm](#Model-1-Sodium-Potassium-and-Their-Interaction)
-- [Model 1: Sodium, Potassium without Interaction with svyglm](#Model-1-Sodium-Potassium-and-Their-Interaction)
-- [Model 2: Sodium, Potassium and Their Interaction](#Model-1-Sodium-Potassium-and-Their-Interaction)
-- [Model 3: Sodium and Potassium without Interaction](#Model-2-Sodium-and-Potassium-without-Interaction)
-- [Model 4: Sodium Only](#Model-3-Sodium-Only)
-- [Model 5: Potassium Only](#Model-4-Potassium-Only)
+- [Model weighted: Sodium, Potassium, and Their Interaction](#Model-weighted-Sodium-Potassium-and-Their-Interaction)
+- [Model 0: Sodium, Potassium and Their Interaction with svyglm](#Model-0-Sodium-Potassium-and-Their-Interaction-with-svyglm)
+- [Model 1: Sodium, Potassium without Interaction with svyglm](#Model-1-Sodium-Potassium-without-Interaction-with-svyglm)
+- [Model 2: Sodium, Potassium and Their Interaction](#Model-2-Sodium-Potassium-and-Their-Interaction)
+- [Model 3: Sodium and Potassium without Interaction](#Model-3-Sodium-and-Potassium-without-Interaction)
+- [Model 4: Sodium Only](#Model-4-Sodium-Only)
+- [Model 5: Potassium Only](#Model-5-Potassium-Only)
 - [Model Comparison and Residual Analysis](#Model-Comparison-and-Residual-Analysis)
-- [Initial conclusion (disregarding the use of the svyglm function)](#Initial-conclusion)
+- [Initial conclusion (disregarding the use of the svyglm function)](#Initial-conclusion-disregarding-the-use-of-the-svyglm-function)
 - [Possible pattern issues regarding sodium and potassium](#Possible-pattern-issues-regarding-sodium-and-potassium)
+
 
 ### Introduction
 
