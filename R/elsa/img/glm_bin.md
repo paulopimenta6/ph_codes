@@ -16,14 +16,14 @@
 - [Model 4: Sodium Only](#Model-3-Sodium-Only)
 - [Model 5: Potassium Only](#Model-4-Potassium-Only)
 - [Model Comparison and Residual Analysis](#Model-Comparison-and-Residual-Analysis)
-- [Initial conclusion](#Initial-conclusion)
+- [Initial conclusion (disregarding the use of the svyglm function)](#Initial-conclusion)
 - [Possible pattern issues regarding sodium and potassium](#Possible-pattern-issues-regarding-sodium-and-potassium)
 
 ### Introduction
 
 The following analysis involves fitting multiple logistic regression models to examine the relationship between sodium (sod) and potassium (pot) levels, and their interaction, on hypertension (hip). The binary outcome hip is modeled as a function of the predictors, and the goodness-of-fit is evaluated for each model.
 
-### Model weighted Sodium, Potassium, and Their Interaction
+### Model weighted: Sodium, Potassium, and Their Interaction
 
 #### Code:
 ```r
@@ -103,7 +103,7 @@ svyglm(formula = hip ~ sod + pot, design = design, family = binomial())
 - The signs of the coefficients tell you: Sodium (sod): Negative relationship with hypertension (as sodium increases, the odds of hypertension decrease). Potassium (pot): Positive relationship with hypertension (as potassium increases, the odds of hypertension increase).
 
 
-### Model 2: Sodium, Potassium, and Their Interaction
+### Model 2: Sodium, Potassium and Their Interaction
 
 #### Code:
 ```r
