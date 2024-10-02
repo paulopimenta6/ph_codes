@@ -223,11 +223,11 @@ The presence of outliers may have caused the absence of previously known pattern
 2 - The outliers represent some measurement error or even some numerical anomaly that deserves due treatment.
 
 <div style="display: flex; justify-content: space-around;">
-  <img src="./regLogBin/boxplot_potassium_concentration.png" width="500">  
+  <img src="./regLogBin/boxplot_potassium_concentration.png" width="800">  
 </div>
 
 <div style="display: flex; justify-content: space-around;">
-  <img src="./regLogBin/boxplot_sodium_concentration.png" width="500">  
+  <img src="./regLogBin/boxplot_sodium_concentration.png" width="800">  
 </div>
 
 <!--### Analysis of the Residuals Vs Leverage Plot
