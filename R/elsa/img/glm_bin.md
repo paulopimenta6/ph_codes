@@ -8,7 +8,7 @@
 ### Summary
 
 - [Introduction](#Introduction)
-- [Model weighted: Sodium, Potassium, and Their Interaction](#Model:-weighted-Sodium-Potassium-and-Their-Interaction)
+- [Model weighted: Sodium, Potassium, and Their Interaction](#Model\:-weighted-Sodium-Potassium-and-Their-Interaction)
 - [Model 0: Sodium, Potassium and Their Interaction with svyglm](#Model-1-Sodium-Potassium-and-Their-Interaction)
 - [Model 1: Sodium, Potassium without Interaction with svyglm](#Model-1-Sodium-Potassium-and-Their-Interaction)
 - [Model 2: Sodium, Potassium and Their Interaction](#Model-1-Sodium-Potassium-and-Their-Interaction)
