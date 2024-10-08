@@ -7,3 +7,7 @@
 *.csv
 .sqlite
 /R/elsa/dados_elsa/
+/java/udemy_java/exercicioJava36/nbproject/private/
+/java/udemy_java/exercicioJava36/build/
+/java/udemy_java/exercicioJava37/nbproject/private/
+/java/udemy_java/exercicioJava37/build/
