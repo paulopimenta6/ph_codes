@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1730177137 source:/home/paulo/Documentos/meus_codigos/ph_codes/c_cpp/src/c_codes/order3numbers/main.c
+	<stdio.h>
+	"order3numbers.h"
+
+1730176277 /home/paulo/Documentos/meus_codigos/ph_codes/c_cpp/src/c_codes/order3numbers/order3numbers.h
+
+1730177150 source:/home/paulo/Documentos/meus_codigos/ph_codes/c_cpp/src/c_codes/order3numbers/order3numbers.c
+	"order3numbers.h"
+
+1730178035 source:/home/paulo/Documentos/meus_codigos/ph_codes/c_cpp/src/c_codes/order3numbers/src/main.c
+	<stdio.h>
+	"../include/order3numbers.h"
+
+1730176277 /home/paulo/Documentos/meus_codigos/ph_codes/c_cpp/src/c_codes/order3numbers/include/order3numbers.h
+
+1730178042 source:/home/paulo/Documentos/meus_codigos/ph_codes/c_cpp/src/c_codes/order3numbers/src/order3numbers.c
+	"../include/order3numbers.h"
+
