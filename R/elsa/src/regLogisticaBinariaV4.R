@@ -16,10 +16,14 @@ table(dadosOnda1$hip)
 ###1652 3409
 ###Isso significa que há quase 2x mais "N" em relacao a "S"
 ################################################################################
+freq <- table(dadosOnda1$hip)
+peso_classes <- ifelse(dadosOnda1$hip == "S", freq["N"] / freq["S"], 1)
+################################################################################
 ###Amostra com pesos em um glm normal
 glm_weighted <- glm(hip ~ sod + pot + sod:pot, data = dadosOnda1, 
                     family = binomial, 
                     weights = ifelse(dadosOnda1$hip == "S", 3409/1652, 1))
+
 plot(glm_weighted, which = 5)
 title(main = "hip ~ sod + pot + sod:pot - with wights")
 summary((glm_weighted))
