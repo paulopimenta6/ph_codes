@@ -70,6 +70,8 @@ public class ExercicioJava40 {
         System.out.printf("Media de altura das homens: %.3f%n", mediaAlturaM);
         System.out.printf("Media de altura das mulheres: %.3f%n", mediaAlturaF);
         
+        sc.close();
+    
     }
     
 }
