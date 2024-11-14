@@ -15,9 +15,6 @@ glimpse(dadosOnda1)
 table(dadosOnda1$hip)
 summary(dadosOnda1$hip)
 ################################################################################
-freq <- table(dadosOnda1$hip)
-peso_classes <- ifelse(dadosOnda1$hip == "S", freq["N"] / freq["S"], 1)
-################################################################################
 mod <- glm(hip ~ pot + sod, 
            data = dadosOnda1, 
            family = binomial(link = 'logit')
@@ -78,3 +75,23 @@ ggplot(dadosOnda1, aes(x = sod, y = prob_predita_mod)) +
   geom_smooth(method = "loess") +
   labs(x = "Sódio (sod)", y = "Probabilidade prevista de Hipertensao") +
   theme_classic()
+################################################################################
+################################################################################
+cores_clusters <- c("blue", "green")
+
+###Agrupamento
+set.seed(1)
+cluster <- kmeans(dadosOnda1[,c(2,3)],2)
+
+plot(dadosOnda1[,c(2,3)],
+     col = cores_clusters[cluster$cluster],
+     pch = 20, cex = 1,
+     ylab = "sodio", xlab = "potassio")
+
+###Adiciona os centróides dos clusters com outra cor para destaque
+points(cluster$centers[,1], cluster$centers[,2], 
+       pch = 8, col = "red", cex = 1.5)  # Centrôides em vermelho
+
+###Adiciona a coluna de clusters aos dados originais
+dadosOnda1$cluster <- cluster$cluster
+table(dadosOnda1$cluster, dadosOnda1$hip)
