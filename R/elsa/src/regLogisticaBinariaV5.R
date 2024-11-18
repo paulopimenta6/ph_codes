@@ -20,7 +20,7 @@ mod <- glm(hip ~ pot + sod,
            family = binomial(link = 'logit')
 )
 ################################################################################
-summary(mod)
+###summary(mod)
 ################################################################################
 plot(mod, which = 5)
 summary(stdres(mod))
@@ -59,7 +59,7 @@ ggplot(dadosOnda1, aes(logito, pot)) +
   geom_smooth(method = "loess") +
   theme_classic()
 ################################################################################
-### Considerando o modelo original inicial
+### Considerando o modelo original inicial e a probabilidade calculada para sodio e potassio
 dadosOnda1$prob_predita_mod <- predict(mod, type = "response")
 
 # Visualizando as probabilidades em relação a 'pot'
@@ -95,3 +95,20 @@ points(cluster$centers[,1], cluster$centers[,2],
 ###Adiciona a coluna de clusters aos dados originais
 dadosOnda1$cluster <- cluster$cluster
 table(dadosOnda1$cluster, dadosOnda1$hip)
+################################################################################
+### Analise do modelo
+### Overall effects
+Anova(mod, type = 'II', test = "Wald")
+### Efeitos especificos
+summary(mod)
+## Obtencao das razoes de chance com IC 95% (usando erro padrao = SPSS)
+exp(cbind(OR = coef(mod), confint.default(mod)))
+################################################################################
+mod2 <- glm(hip ~ sod,
+            family = binomial(link = 'logit'), data = dadosOnda1)
+
+mod3 <- glm(hip ~ pot,
+            family = binomial(link = 'logit'), data = dadosOnda1)
+
+summary(mod2)
+summary(mod3)
