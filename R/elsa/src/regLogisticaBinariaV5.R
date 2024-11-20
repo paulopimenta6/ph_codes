@@ -1,6 +1,6 @@
 if(!require(pacman)) install.packages("pacman")
 library(pacman)
-pacman::p_load(dplyr, psych, car, MASS, DescTools, QuantPsyc, ggplot2, survey)
+pacman::p_load(dplyr, psych, car, MASS, DescTools, QuantPsyc, ggplot2, survey, dbscan)
 #source("./src/script_analise_dados_elsa_Var_Lib.R")
 source("./src/dadosRegLogistica.R")
 
@@ -95,6 +95,36 @@ points(cluster$centers[,1], cluster$centers[,2],
 ###Adiciona a coluna de clusters aos dados originais
 dadosOnda1$cluster <- cluster$cluster
 table(dadosOnda1$cluster, dadosOnda1$hip)
+################################################################################
+df_sodPot <- dadosOnda1[,c(2,3)]
+str(df_sodPot)
+###
+#kNNdistplot(df_sodPot, k = 5)  # k = minPts - 1, no caso, 5-1 = 4
+#abline(h = 3, col = "red", lty = 2)  # Adicione uma linha para inspecionar
+
+total_grupos <- sapply(1:7, function(k) {
+  kmeans(df_sodPot, k)$tot.withinss
+})
+plot(1:7, total_grupos,
+     type = "b", pch = 19, frame = FALSE,
+     xlab = "Total de grupos",
+     ylab = "SSE total de todos os grupos")
+
+###
+plot(df_sodPot, ylim = c(0,400), xlim = c(0,150))
+agrupamento <- dbscan(df_sodPot, eps = 4, minPts = 5)
+# Adicionar os clusters ao data frame
+df_sodPot$cluster <- as.factor(agrupamento$cluster)
+
+# Plotar os clusters
+ggplot(df_sodPot, aes(x = pot, y = sod, color = cluster)) +
+  geom_point(size = 2, alpha = 0.8) +
+  scale_color_manual(values = c("grey", rainbow(length(unique(df_sodPot$cluster)) - 1))) +
+  theme_minimal() +
+  labs(title = "Clusters identificados pelo DBSCAN",
+       x = "Pot",
+       y = "Sod",
+       color = "Cluster")
 ################################################################################
 ### Analise do modelo
 ### Overall effects
