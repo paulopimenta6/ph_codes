@@ -1,7 +1,6 @@
 if(!require(pacman)) install.packages("pacman")
 library(pacman)
 pacman::p_load(dplyr, psych, car, MASS, DescTools, QuantPsyc, ggplot2, survey, dbscan)
-#source("./src/script_analise_dados_elsa_Var_Lib.R")
 source("./src/dadosRegLogistica.R")
 
 dadosOnda1 <- data.frame(hip = dataGLM$hip_onda1,
