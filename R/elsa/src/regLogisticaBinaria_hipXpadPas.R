@@ -70,7 +70,7 @@ ggplot(dadosOnda1, aes(x = pas, y = prob_predita_mod)) +
   labs(x = "PAS", y = "Probabilidade prevista de Hipertensao") +
   theme_classic()
 
-# Visualizando as probabilidades em relação a 'sod'
+# Visualizando as probabilidades em relação a 'pad'
 ggplot(dadosOnda1, aes(x = pad, y = prob_predita_mod)) +
   geom_point(size = 0.5, alpha = 0.5) +
   geom_smooth(method = "loess") +
@@ -78,5 +78,12 @@ ggplot(dadosOnda1, aes(x = pad, y = prob_predita_mod)) +
   theme_classic()
 ################################################################################
 ################################################################################
+mod2 <- glm(hip ~ pas,
+            family = binomial(link = 'logit'), data = dadosOnda1)
+mod3 <- glm(hip ~ pad,
+            family = binomial(link = 'logit'), data = dadosOnda1)
 
-
+summary(mod2)
+################################################################################
+summary(mod3)
+################################################################################
