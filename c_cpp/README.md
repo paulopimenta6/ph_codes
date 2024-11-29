@@ -21,10 +21,10 @@ Os ponteiros sao importantes recursos em C/C++ o qual otimizam o uso de recursos
 
 - Declarando um ponteiro inteiro: 
 ```c 
-    int *ptr //Declarando um ponteiro chamado ptr de tipo inteiro
-    ptr=&Var //O ponteiro prt vai receber o endereco de memoria da variavel Var 
-    int *ptr=&Var //Outra maneira de se declarar um ponteiro e ainda receber seu endereco de memoria 
-    int *ptr=NULL //Declarndo um ponteiro vazio 
+    int *ptr; //Declarando um ponteiro chamado ptr de tipo inteiro
+    ptr=&Var; //O ponteiro prt vai receber o endereco de memoria da variavel Var 
+    int *ptr=&Var; //Outra maneira de se declarar um ponteiro e ainda receber seu endereco de memoria 
+    int *ptr=NULL; //Declarndo um ponteiro vazio 
 ```
 
 Para imprimir um ponteiro e preciso ter em mente os seguintes casos:
