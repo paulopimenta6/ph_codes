@@ -1,13 +1,36 @@
 import io
 import sys
+import requests
 import urllib.request as request
+from urllib.parse import urlparse, urlunparse
 import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
+import os
 
 BUFF_SIZE = 1024
 
+def clean_url(url):
+    parsed = urlparse(url)
+    return urlunparse(parsed._replace(fragment=""))
+
+def get_filename(response,url):
+    """obter o nome do arquivo do cabecalho ou da url"""
+    content_disposition = response.getheader('Content-Disposition')
+    if content_disposition:
+        # Extrair o nome do arquivo do cabecalho
+        filename = content_disposition.split("filename=")[-1].strip('"')
+    else:
+        # Obter o nome do arquivo da url
+        path = urlparse(url).path
+        filename = os.path.basename(path)
+
+    # Usar o nome padrao se nao houver nome valido
+    return filename or "downloaded_file"    
+
+
 def download_length(response, output, length, progress_bar):
+    """Baixar com o tamanho conhecido."""
     times = length // BUFF_SIZE
     if length % BUFF_SIZE > 0:
         times += 1
@@ -16,7 +39,7 @@ def download_length(response, output, length, progress_bar):
         output.write(response.read(BUFF_SIZE))
         progress_bar["value"] = (time * BUFF_SIZE) / length * 100
         progress_bar.update()
-        print("Download %d%%" % ((time * BUFF_SIZE) / length * 100))
+        #print("Download %d%%" % ((time * BUFF_SIZE) / length * 100))
 
 def download(response, output, progress_bar):
     total_downloaded = 0
@@ -28,25 +51,26 @@ def download(response, output, progress_bar):
         output.write(data)
         progress_bar["value"] = total_downloaded
         progress_bar.update()
-        print("Downloaded {bytes} bytes".format(bytes=total_downloaded))
+        #print("Downloaded {bytes} bytes".format(bytes=total_downloaded))
 
 def start_download(url, progress_bar):
+    url = clean_url(url)
     try:
         response = request.urlopen(url)
-        out_file = io.FileIO("out.zip", mode="w")
-        content_length = response.getheader('Content-Length')
-        if content_length:
-            length = int(content_length)
-            progress_bar["maximum"] = length
-            download_length(response, out_file, length, progress_bar)
-        else:
-            download(response, out_file, progress_bar)
+        filename = get_filename(response, url)
+        with open(filename, mode="wb") as out_file:
+            content_length = response.getheader('Contente-Length')
+            if content_length:
+                length = int(content_length)
+                progress_bar["maximum"] = length
+                download_length(response, out_file, length, progress_bar)
+            else:
+                download(response, out_file, progress_bar)
 
         response.close()
-        out_file.close()
-        messagebox.showinfo("Finished", "Download Complete!")
+        messagebox.showinfo("Finished", f"Download Complete! File saved as {filename}")
     except Exception as e:
-        messagebox.showerror("Error", str(e))
+        messagebox.showerror("Error", str(e)) 
 
 def main():
     root = tk.Tk()
