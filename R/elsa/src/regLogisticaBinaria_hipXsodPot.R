@@ -78,20 +78,32 @@ ggplot(dadosOnda1, aes(x = sod, y = prob_predita_mod)) +
 ### Analise do modelo
 ### Overall effects
 Anova(mod, type = 'II', test = "Wald")
+
 ### Efeitos especificos
 summary(mod)
+
 ## Obtencao das razoes de chance com IC 95% (usando erro padrao = SPSS)
 exp(cbind(OR = coef(mod), confint.default(mod)))
 ################################################################################
+### Modelos somente com uma variável independente
 mod2 <- glm(hip ~ sod,
             family = binomial(link = 'logit'), data = dadosOnda1)
 
 mod3 <- glm(hip ~ pot,
             family = binomial(link = 'logit'), data = dadosOnda1)
-
-summary(mod2)
 ################################################################################
-summary(mod3)
+summary(mod2) #Sumario do modelo somente com sodio
+################################################################################
+summary(mod3) #sumario do modelo somente com potassio
+################################################################################
+
+
+
+
+
+
+
+
 
 
 
