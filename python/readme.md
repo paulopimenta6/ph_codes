@@ -25,7 +25,7 @@ conda search --outdated
 conda update conda
 ```
 
-# Verificar o interpretador configurado no VS Code
+# Verificar o interpretador Python configurado no VS Code
 
 - Abra a Paleta de Comandos com Ctrl + Shift + P.
 - Digite e selecione Python: Select Interpreter.
