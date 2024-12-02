@@ -10,7 +10,7 @@ matriz_A = matrix([
 print(f"matriz_A: \n {matriz_A}")
 
 indice = matriz_A[:, 0].argsort(axis=0)
-print(indice)
+print(f"Os indices:\n {indice}")
 # esta operacao faz a nova matriz receber os valores da matriz A com as linhas ordenadas
 matriz_A_ordenada = matriz_A[indice, :]
 
