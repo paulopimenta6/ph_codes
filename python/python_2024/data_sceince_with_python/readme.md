@@ -132,3 +132,15 @@ matriz_A = matrix([
 maior_valor_A = matriz_A.max()
 menor_valor_A = matriz_A.min()
 ```
+ou
+
+```python
+matriz_A = matrix([
+    [7, 2, 4],
+    [3, 5, 9] 
+]) 
+maior_valor_A = matriz_A.max(axis = 0) #identifica os maiores valores por coluna
+menor_valor_A = matriz_A.min(axis = 1) #identifica os menores valores por linha
+# axis = 0 indica a coluna
+# axis = 1 indica a linha
+```
