@@ -4,6 +4,12 @@
 
 A biblioteca numpy e um importante recurso para manipulacao de matrizes em Python diminuindo a quantidade de linhas de códigos e agilizando a rapizes em operações matemáticas
 
+A instalação é feita da seguinte forma:
+
+- pip install numpy
+- pip3 install numpy
+- conda install numpy
+
 1. Importando a biblioteca numpy 
 Tudo se inicia com a importação da biblioteca no python por meio do comando:
 
@@ -102,3 +108,27 @@ matriz_A_t = transpose(matriz_A)
 # [2, 5]
 # [4, 9]
 ``` 
+
+- Matriz inversa 
+
+```python
+matriz_A = matrix([
+    [7,2,4],
+    [3,5,9],
+    [1,6,8]
+])
+### Criacao da matriz inversa de A
+matriz_A_inv = linalg.inv(matriz_A)
+```
+
+- Valores máximos e mínimos
+
+```python
+matriz_A = matrix([
+    [7, 2, 4],
+    [3, 5, 9] 
+])
+# Identificar o maior e o menor valor da matriz A 
+maior_valor_A = matriz_A.max()
+menor_valor_A = matriz_A.min()
+```
