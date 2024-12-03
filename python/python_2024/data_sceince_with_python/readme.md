@@ -45,4 +45,39 @@ E assim por diante.
 
 3. Casos de uso
 
-#### Criando uma matriz
+A criação de uma matriz é o primeiro passo no uso do numpy e se faz de formas bem simples.
+
+- Criando uma matriz simples:
+```python
+matriz_A = matrix([
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+])
+# Aqui o tipo da matriz já é inferiado diretamente pela linguagem
+```
+
+- Criando matrizes especiais
+Primeiramente sera preciso fazer a importação de métodos especiais:
+
+```python
+from numpy import zeros, ones, identity
+```
+```python
+# matriz de zeros
+matriz_C = zeros((4,3), dtype='int')
+```
+```python
+# matriz com valores em ponto flutuante
+matriz_D = ones((2,3), dtype = 'float')
+```
+
+```python
+# Produto de uma matriz de uns por 5
+matriz_E = 5*ones((4,2), dtype='float')
+```
+
+```python
+# matriz identidade 3x3
+matriz_F = identity(3)
+```
