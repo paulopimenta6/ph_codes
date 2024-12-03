@@ -22,11 +22,11 @@ import numpy
 
 Aqui será preciso usar o operador ponto, pois os métodos foram importados integralmente para uso. Exemplo:
 ```python
-np.linalg.inv
+np.linalg.inv()
 np.matrix([])
 ```
 ou
 
 ```python
-numpy.linalg.inv
+numpy.linalg.inv()
 numpy.matrix([])
