@@ -81,3 +81,24 @@ matriz_E = 5*ones((4,2), dtype='float')
 # matriz identidade 3x3
 matriz_F = identity(3)
 ```
+
+É possível realizar arredondamentos e castings de matrizes
+
+```python
+# Aqui uma nova matriz foi criada sendo realizado um casting, ou seja, mudança de tipo de int para float com uma casa decimal.
+matriz_B = round(matrix(matriz_A*matriz_A_inv, dtype='float'), decimals=1)
+```
+
+- A matriz transposta 
+
+```python
+matriz_A = matrix([
+    [7,2,4],
+    [3,5,9]
+])
+matriz_A_t = transpose(matriz_A)
+# A resposta deve ser:
+# [7, 3]
+# [2, 5]
+# [4, 9]
+``` 
