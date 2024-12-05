@@ -44,28 +44,28 @@ dfPAD <- data.frame(PAD_onda1 = pressaoDiastolicamediaOnda1,
 )
 
 ################################################################################
-###Fazendo interpolacao via kNN
-presencaHipertensaoSistem_interp <- kNN(dfPresencaHipertensaoSistem, k = 5)
+###Fazendo interpolacao via VIM::kNN
+presencaHipertensaoSistem_interp <- VIM::kNN(dfPresencaHipertensaoSistem, k = 5)
 presencaHipertensaoSistem_interp <- presencaHipertensaoSistem_interp[,
                                                                      -c(4:ncol(presencaHipertensaoSistem_interp))]
 
-pot_interp <- kNN(dfPotassio, k=5)
+pot_interp <- VIM::kNN(dfPotassio, k=5)
 pot_interp <- pot_interp[,-c(4:ncol(pot_interp))]
 
-sodio_interp <- kNN(dfSodio, k=5)
+sodio_interp <- VIM::kNN(dfSodio, k=5)
 sodio_interp <- sodio_interp[,-c(4:ncol(sodio_interp))]
 
-razaoAlbuCreat_interp <- kNN(dfRazaoAlbuminaCreatinina, k = 5) 
+razaoAlbuCreat_interp <- VIM::kNN(dfRazaoAlbuminaCreatinina, k = 5) 
 razaoAlbuCreat_interp <- razaoAlbuCreat_interp[, -c(3:ncol(razaoAlbuCreat_interp))]
 
-PAS_interp <- kNN(dfPAS, k = 5)
+PAS_interp <- VIM::kNN(dfPAS, k = 5)
 PAS_interp <- PAS_interp[, -c(4:ncol(PAS_interp))]
 
-PAD_interp <- kNN(dfPAD, k = 5)
+PAD_interp <- VIM::kNN(dfPAD, k = 5)
 PAD_interp <- PAD_interp[,-c(4:ncol(PAD_interp))]
 
 #Variavel_ordinal
-taxaFiltracaoGlomerular_interp <- kNN(dfTaxaFiltracaoGlomerular, k = 5) 
+taxaFiltracaoGlomerular_interp <- VIM::kNN(dfTaxaFiltracaoGlomerular, k = 5) 
 taxaFiltracaoGlomerular_interp <- taxaFiltracaoGlomerular_interp[, 
                                                                  -c(3:ncol(taxaFiltracaoGlomerular_interp))]
 ################################################################################
