@@ -7,7 +7,7 @@ dadosOnda1 <- data.frame(hip = dataGLM$hip_onda1,
                          pot = dataGLM$pot_onda1,
                          sod = dataGLM$sod_onda1
 )
-
+dadosOnda1$hip <- ifelse(dadosOnda1$hip == "S", 1, 0)
 ################################################################################
 ################################################################################
 ####### Balanceando as classes por aumento e reducao de amostragens ############
@@ -34,11 +34,14 @@ dados_balanceados_smote <- rbind(dadosOnda1, dados_balanceados_smote)
 # Verifique a nova distribuição
 table(dados_balanceados_smote$hip)
 
+# transformando em factors
+dados_balanceados_smote$hip <- as.factor(dados_balanceados_smote$hip)
 ################################################################################
-### Usando o modelo Oversampling e Undersampling Combinados
 ### Construcao do modelo
 mod <- glm(hip ~ pot + sod,
-           family = binomial(link = 'logit'), data = dados_balanceados_smote)
+           family = binomial(link = 'logit'), 
+           data = dados_balanceados_smote)
+
 ### Ausencia de outliers/Pontos de alavancagem
 plot(mod, which = 5)
 summary(stdres(mod))
@@ -59,6 +62,27 @@ ggplot(dados_balanceados_smote, aes(logito, sod)) +
   geom_point(size = 0.5, alpha = 0.5) +
   geom_smooth(method = "loess") +
   theme_classic()
+
+################################################################################
+### Considerando o modelo original inicial e a probabilidade calculada para sodio e potassio
+dados_balanceados_smote$prob_predita_mod <- predict(mod, type = "response")
+
+# Visualizando as probabilidades em relação a 'pot'
+ggplot(dados_balanceados_smote, aes(x = pot, y = prob_predita_mod)) +
+  geom_point(size = 0.5, alpha = 0.5) +
+  geom_smooth(method = "loess") +
+  labs(x = "Potássio (pot)", y = "Probabilidade prevista de Hipertensao") +
+  theme_classic()
+
+# Visualizando as probabilidades em relação a 'sod'
+ggplot(dados_balanceados_smote, aes(x = sod, y = prob_predita_mod)) +
+  geom_point(size = 0.5, alpha = 0.5) +
+  geom_smooth(method = "loess") +
+  labs(x = "Sódio (sod)", y = "Probabilidade prevista de Hipertensao") +
+  theme_classic()
+################################################################################
+
+
 ### Analise do modelo
 ### Overall effects
 Anova(mod, type = 'II', test = "Wald")

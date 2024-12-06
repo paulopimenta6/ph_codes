@@ -19,12 +19,15 @@ table(dados_balanceados_both$hip)
 ### Construcao do modelo
 mod <- glm(hip ~ pot + sod,
            family = binomial(link = 'logit'), data = dados_balanceados_both)
+
 ### Ausencia de outliers/Pontos de alavancagem
 plot(mod, which = 5)
 summary(stdres(mod))
+
 ### Verificando multicolinearidade
 pairs.panels(dados_balanceados_both)
 vif(mod)
+
 ### Interacao entre a VI cont?nua e o seu log nao significativa (Box-Tidwell)
 intlog_pot <- dados_balanceados_both$pot * log(dados_balanceados_both$pot)
 dados_balanceados_both$intlog_pot <- intlog_pot
@@ -36,9 +39,12 @@ modint <- glm(hip ~ pot + sod + intlog_pot + intlog_sod,
               family = binomial(link = 'logit'), data = dados_balanceados_both)
 
 summary(modint)
+
 ### Calculo do logito
 logito <- mod$linear.predictors
-### Analise da relaco linear
+
+################################################################################
+### Analise da relaco linear/ relacao grafica 
 # Potassio
 ggplot(dados_balanceados_both, aes(logito, pot)) +
   geom_point(size = 0.5, alpha = 0.5) +
@@ -49,6 +55,25 @@ ggplot(dados_balanceados_both, aes(logito, sod)) +
   geom_point(size = 0.5, alpha = 0.5) +
   geom_smooth(method = "loess") +
   theme_classic()
+################################################################################
+### Considerando o modelo original inicial e a probabilidade calculada para sodio e potassio
+dados_balanceados_both$prob_predita_mod <- predict(mod, type = "response")
+
+# Visualizando as probabilidades em relação a 'pot'
+ggplot(dados_balanceados_both, aes(x = pot, y = prob_predita_mod)) +
+  geom_point(size = 0.5, alpha = 0.5) +
+  geom_smooth(method = "loess") +
+  labs(x = "Potássio (pot)", y = "Probabilidade prevista de Hipertensao") +
+  theme_classic()
+
+# Visualizando as probabilidades em relação a 'sod'
+ggplot(dados_balanceados_both, aes(x = sod, y = prob_predita_mod)) +
+  geom_point(size = 0.5, alpha = 0.5) +
+  geom_smooth(method = "loess") +
+  labs(x = "Sódio (sod)", y = "Probabilidade prevista de Hipertensao") +
+  theme_classic()
+################################################################################
+
 ### Analise do modelo
 ### Overall effects
 Anova(mod, type = 'II', test = "Wald")
