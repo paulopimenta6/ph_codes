@@ -101,65 +101,7 @@ summary(mod3) #sumario do modelo somente com potassio
 PseudoR2(mod, which = "Nagelkerke")
 ### Tabela de classificacao
 ClassLog(mod, dadosOnda1$hip)
-
-
 ################################################################################
-################################################################################
-####### Balanceando as classes por aumento e reducao de amostragens ############
-################################################################################
-### 1. Oversampling
-### Aplicar o SMOTE (Synthetic Minority Oversampling Technique)
-### SMOTE cria exemplos sintéticos para a classe minoritária com base em seus vizinhos mais próximos.
-### Aumenta o número de observações da classe minoritária replicando instâncias 
-### existentes ou gerando novas instâncias sintéticas
-
-resultado_smote <- SMOTE(X = dadosOnda1[, -which(names(dadosOnda1) == "hip")],  # Dados sem a variável de resposta
-                         target = as.factor(dadosOnda1$hip),                    # Variável de resposta como fator
-                         K = 3,                                                 # Número de vizinhos
-                         dup_size = 1.5)                                        # Multiplicação para minoritárias
-
-# Combinar os dados balanceados
-dados_balanceados_smote <- data.frame(resultado_smote$syn_data)    # Dados sintéticos gerados pelo SMOTE
-dados_balanceados_smote$hip <- as.factor(dados_balanceados_smote$class)  # Adicionar classe ajustada
-dados_balanceados_smote$class <- NULL                              # Remover coluna 'class'
-
-# Adicionar os dados originais majoritários e minoritários
-dados_balanceados_smote <- rbind(dadosOnda1, dados_balanceados_smote)
-
-# Verifique a nova distribuição
-table(dados_balanceados_smote$hip)
-
-### 2. Undersampling
-### Reduz o número de observações da classe majoritária para se igualar à classe minoritária.
-### Undersampling para balancear as classes
-dados_balanceados_undersampling <- ovun.sample(hip ~ ., data = dadosOnda1, method = "under")$data
-### Verifique a distribuição das classes
-table(dados_balanceados_undersampling$hip)
-
-### 3. Oversampling e Undersampling Combinados
-### Combina as duas estratégias para criar um conjunto de dados mais balanceado.
-dados_balanceados_both <- ovun.sample(hip ~ ., data = dadosOnda1, method = "both", p = 0.5)$data
-### Verifique a distribuição das classes
-table(dados_balanceados_both$hip)
-
-### 4. ROSE (Random OverSampling Examples)
-### O ROSE é uma técnica que gera novas amostras sintéticas para balancear as classes. 
-### Ele utiliza um processo de sobreamostragem aleatória para a classe minoritária 
-### e subamostragem para a classe majoritária, combinados com um processo de geração 
-### de amostras sintéticas próximas aos dados originais.
-
-### Como funciona o ROSE?
-# - Baseia-se na estimação de densidade de probabilidade para criar exemplos sintéticos.
-# - Os exemplos são gerados adicionando pequenos valores de ruído a partir de uma distribuição normal ao redor das observações existentes.
-# - O objetivo é melhorar a representatividade da classe minoritária no conjunto de dados.
-### Vantagens do ROSE
-# - Pode ser usado com variáveis contínuas ou categóricas.
-# - Introduz uma variabilidade natural nos exemplos sintéticos, evitando duplicação exata de observações.
-dados_balanceados_rose <- ROSE(hip ~ ., data = dadosOnda1, seed = 123)$data
-table(dados_balanceados_rose$hip)
-
-################################################################################
-### Usando o modelo Oversampling e Undersampling Combinados
 ### Construcao do modelo
 mod <- glm(hip ~ pot + sod,
            family = binomial(link = 'logit'), data = dados_balanceados_both)

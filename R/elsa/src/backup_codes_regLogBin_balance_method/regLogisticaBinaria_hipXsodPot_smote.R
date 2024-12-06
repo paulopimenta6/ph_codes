@@ -45,17 +45,7 @@ summary(stdres(mod))
 ### Verificando multicolinearidade
 pairs.panels(dados_balanceados_smote)
 vif(mod)
-### Interacao entre a VI cont?nua e o seu log nao significativa (Box-Tidwell)
-intlog_pot <- dados_balanceados_smote$pot * log(dados_balanceados_smote$pot)
-dados_balanceados_smote$intlog_pot <- intlog_pot
 
-intlog_sod <- dados_balanceados_smote$sod * log(dados_balanceados_smote$sod)
-dados_balanceados_smote$intlog_sod <- intlog_sod
-
-modint <- glm(hip ~ pot + sod + intlog_pot + intlog_sod,
-              family = binomial(link = 'logit'), data = dados_balanceados_smote)
-
-summary(modint)
 ### Calculo do logito
 logito <- mod$linear.predictors
 ### Analise da relaco linear
