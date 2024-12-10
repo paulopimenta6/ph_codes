@@ -7,80 +7,77 @@ dadosOnda1 <- data.frame(hip = dataGLM$hip_onda1,
                          pot = dataGLM$pot_onda1,
                          sod = dataGLM$sod_onda1
 )
-
-### 4. ROSE (Random OverSampling Examples)
-### O ROSE é uma técnica que gera novas amostras sintéticas para balancear as classes. 
-### Ele utiliza um processo de sobreamostragem aleatória para a classe minoritária 
-### e subamostragem para a classe majoritária, combinados com um processo de geração 
-### de amostras sintéticas próximas aos dados originais.
-
-### Como funciona o ROSE?
-# - Baseia-se na estimação de densidade de probabilidade para criar exemplos sintéticos.
-# - Os exemplos são gerados adicionando pequenos valores de ruído a partir de uma distribuição normal ao redor das observações existentes.
-# - O objetivo é melhorar a representatividade da classe minoritária no conjunto de dados.
-### Vantagens do ROSE
-# - Pode ser usado com variáveis contínuas ou categóricas.
-# - Introduz uma variabilidade natural nos exemplos sintéticos, evitando duplicação exata de observações.
-dados_balanceados_rose <- ROSE(hip ~ ., data = dadosOnda1, seed = 123)$data
-table(dados_balanceados_rose$hip)
+################################################################################
+### 3. Oversampling e Undersampling Combinados
+### Usando o modelo Oversampling e Undersampling Combinados
+### Combina as duas estratégias para criar um conjunto de dados mais balanceado.
+dados_balanceados_both <- ovun.sample(hip ~ .,
+                                      p = 0.5,
+                                      seed = 222,
+                                      data = dadosOnda1, 
+                                      method = "both")$data
+### Verifique a distribuição das classes
+table(dados_balanceados_both$hip)
 
 ################################################################################
-### Usando o modelo Oversampling e Undersampling Combinados
 ### Construcao do modelo
 mod <- glm(hip ~ pot + sod,
-           family = binomial(link = 'logit'), data = dados_balanceados_rose)
+           family = binomial(link = 'logit'), data = dados_balanceados_both)
+
 ### Ausencia de outliers/Pontos de alavancagem
 plot(mod, which = 5)
 summary(stdres(mod))
-### Verificando multicolinearidade
-pairs.panels(dados_balanceados_rose)
-vif(mod)
-### Interacao entre a VI cont?nua e o seu log nao significativa (Box-Tidwell)
-intlog_pot <- dados_balanceados_rose$pot * log(dados_balanceados_rose$pot)
-dados_balanceados_rose$intlog_pot <- intlog_pot
 
-intlog_sod <- dados_balanceados_rose$sod * log(dados_balanceados_rose$sod)
-dados_balanceados_rose$intlog_sod <- intlog_sod
+### Verificando multicolinearidade
+pairs.panels(dados_balanceados_both)
+vif(mod)
+
+### Interacao entre a VI cont?nua e o seu log nao significativa (Box-Tidwell)
+intlog_pot <- dados_balanceados_both$pot * log(dados_balanceados_both$pot)
+dados_balanceados_both$intlog_pot <- intlog_pot
+
+intlog_sod <- dados_balanceados_both$sod * log(dados_balanceados_both$sod)
+dados_balanceados_both$intlog_sod <- intlog_sod
 
 modint <- glm(hip ~ pot + sod + intlog_pot + intlog_sod,
-              family = binomial(link = 'logit'), data = dados_balanceados_rose)
+              family = binomial(link = 'logit'), data = dados_balanceados_both)
 
 summary(modint)
+
 ### Calculo do logito
 logito <- mod$linear.predictors
+
 ################################################################################
-### Analise da relaco linear
+### Analise da relaco linear/ relacao grafica 
 # Potassio
-ggplot(dados_balanceados_rose, aes(logito, pot)) +
+ggplot(dados_balanceados_both, aes(logito, pot)) +
   geom_point(size = 0.5, alpha = 0.5) +
   geom_smooth(method = "loess") +
   theme_classic()
 # Sodio
-ggplot(dados_balanceados_rose, aes(logito, sod)) +
+ggplot(dados_balanceados_both, aes(logito, sod)) +
   geom_point(size = 0.5, alpha = 0.5) +
   geom_smooth(method = "loess") +
   theme_classic()
-
 ################################################################################
 ### Considerando o modelo original inicial e a probabilidade calculada para sodio e potassio
-dados_balanceados_rose$prob_predita_mod <- predict(mod, type = "response")
+dados_balanceados_both$prob_predita_mod <- predict(mod, type = "response")
 
 # Visualizando as probabilidades em relação a 'pot'
-ggplot(dados_balanceados_rose, aes(x = pot, y = prob_predita_mod)) +
+ggplot(dados_balanceados_both, aes(x = pot, y = prob_predita_mod)) +
   geom_point(size = 0.5, alpha = 0.5) +
   geom_smooth(method = "loess") +
   labs(x = "Potássio (pot)", y = "Probabilidade prevista de Hipertensao") +
   theme_classic()
 
 # Visualizando as probabilidades em relação a 'sod'
-ggplot(dados_balanceados_rose, aes(x = sod, y = prob_predita_mod)) +
+ggplot(dados_balanceados_both, aes(x = sod, y = prob_predita_mod)) +
   geom_point(size = 0.5, alpha = 0.5) +
   geom_smooth(method = "loess") +
   labs(x = "Sódio (sod)", y = "Probabilidade prevista de Hipertensao") +
   theme_classic()
 ################################################################################
 
-################################################################################
 ### Analise do modelo
 ### Overall effects
 Anova(mod, type = 'II', test = "Wald")
@@ -90,9 +87,9 @@ summary(mod)
 exp(cbind(OR = coef(mod), confint.default(mod)))
 ### Criacao e analise de dois outros modelos usando somente potassio e somente sodio
 mod2 <- glm(hip ~ pot,
-            family = binomial(link = 'logit'), data = dados_balanceados_rose)
+            family = binomial(link = 'logit'), data = dados_balanceados_both)
 mod3 <- glm(hip ~ sod,
-            family = binomial(link = 'logit'), data = dados_balanceados_rose)
+            family = binomial(link = 'logit'), data = dados_balanceados_both)
 
 ### Overall effects
 # Potassio
@@ -110,4 +107,4 @@ exp(cbind(OR = coef(mod2), confint.default(mod2)))
 # Sodio
 exp(cbind(OR = coef(mod3), confint.default(mod3)))
 # Tabela de classificacao
-ClassLog(mod, dados_balanceados_rose$hip)
+ClassLog(mod, dados_balanceados_both$hip)

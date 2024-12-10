@@ -38,6 +38,7 @@ modint <- glm(hip ~ pot + sod + intlog_pot + intlog_sod,
 summary(modint)
 ### Calculo do logito
 logito <- mod$linear.predictors
+################################################################################
 ### Analise da relaco linear
 # Potassio
 ggplot(dados_balanceados_undersampling, aes(logito, pot)) +
@@ -49,6 +50,24 @@ ggplot(dados_balanceados_undersampling, aes(logito, sod)) +
   geom_point(size = 0.5, alpha = 0.5) +
   geom_smooth(method = "loess") +
   theme_classic()
+
+### Considerando o modelo original inicial e a probabilidade calculada para sodio e potassio
+dados_balanceados_undersampling$prob_predita_mod <- predict(mod, type = "response")
+
+# Visualizando as probabilidades em relação a 'pot'
+ggplot(dados_balanceados_undersampling, aes(x = pot, y = prob_predita_mod)) +
+  geom_point(size = 0.5, alpha = 0.5) +
+  geom_smooth(method = "loess") +
+  labs(x = "Potássio (pot)", y = "Probabilidade prevista de Hipertensao") +
+  theme_classic()
+
+# Visualizando as probabilidades em relação a 'sod'
+ggplot(dados_balanceados_undersampling, aes(x = sod, y = prob_predita_mod)) +
+  geom_point(size = 0.5, alpha = 0.5) +
+  geom_smooth(method = "loess") +
+  labs(x = "Sódio (sod)", y = "Probabilidade prevista de Hipertensao") +
+  theme_classic()
+################################################################################
 ### Analise do modelo
 ### Overall effects
 Anova(mod, type = 'II', test = "Wald")
