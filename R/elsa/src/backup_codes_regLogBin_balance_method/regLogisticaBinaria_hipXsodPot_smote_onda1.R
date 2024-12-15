@@ -49,7 +49,7 @@ vif(mod)
 
 ### Calculo do logito
 logito <- mod$linear.predictors
-### Analise da relaco linear
+### Analise da relacao linear
 # Potassio
 ggplot(dados_balanceados_smote, aes(logito, pot)) +
   geom_point(size = 0.5, alpha = 0.5) +
