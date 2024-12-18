@@ -10,14 +10,17 @@ dadosOnda1 <- data.frame(hip = dataGLM$hip_onda1,
 
 ################################################################################
 predictors <- dadosOnda1 ### Preservando o data frame original
-response <- ifelse(dadosOnda1$hip == 'N', 0, 1) ### 0 para N e 1 para S
+#predictors <- sample_frac(predictors, .20)
+predictors <- sample_frac(predictors, .10)
+
+response <- ifelse(predictors$hip == 'N', 0, 1) ### 0 para N e 1 para S
 response <- as.factor(response)
 
 predictors <- predictors[, -which(names(predictors) == "hip")]
-table(response)
+#table(response)
 
 tmp <- ubSMOTE(predictors, response,
-               perc.over = 2.063, k = 5, perc.under = 50)
+               perc.over = 500, k = 5, perc.under = 120)
 smote_data <- cbind(tmp$X, tmp$Y)
 names(smote_data)[which(names(smote_data)=='tmp$Y')] <- "hip"
 
@@ -27,6 +30,7 @@ smote_data <- data.frame(potassio = smote_data$pot,
                          sodio = smote_data$sod,
                          hipertensao = smote_data$hip
 )
+table(smote_data$hipertensao)
 ################################################################################
 mod <- glm(hipertensao ~ potassio + sodio,
            family = binomial(link = 'logit'), 
@@ -44,12 +48,12 @@ vif(mod)
 logito <- mod$linear.predictors
 ################################################################################
 ### Potassio
-ggplot(smote_data, aes(logito, pot)) +
+ggplot(smote_data, aes(logito, potassio)) +
   geom_point(size = 0.5, alpha = 0.5) +
   geom_smooth(method = "loess") +
   theme_classic()
 ### Sodio
-ggplot(smote_data, aes(logito, sod)) +
+ggplot(smote_data, aes(logito, sodio)) +
   geom_point(size = 0.5, alpha = 0.5) +
   geom_smooth(method = "loess") +
   theme_classic()
