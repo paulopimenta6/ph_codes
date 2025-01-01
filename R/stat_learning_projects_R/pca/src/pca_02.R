@@ -1,6 +1,6 @@
 library(factoextra)
 
-prcomp(USArrests, scale = TRUE)
+#prcomp(USArrests, scale = TRUE)
 meuPCA <- prcomp(USArrests)
 screeplot(meuPCA)
 screeplot(meuPCA, type = "lines", main = "Screeplot")

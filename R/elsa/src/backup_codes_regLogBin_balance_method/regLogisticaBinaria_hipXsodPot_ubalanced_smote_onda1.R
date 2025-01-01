@@ -8,10 +8,14 @@ dadosOnda1 <- data.frame(hip = dataGLM$hip_onda1,
                          sod = dataGLM$sod_onda1
 )
 
+length(dadosOnda1$hip)
+table(dadosOnda1$hip)
+
 ################################################################################
+set.seed(123)
 predictors <- dadosOnda1 ### Preservando o data frame original
-#predictors <- sample_frac(predictors, .20)
-predictors <- sample_frac(predictors, .10)
+#predictors <- sample_frac(predictors, .10)
+predictors <- sample_frac(predictors, .50) 
 
 response <- ifelse(predictors$hip == 'N', 0, 1) ### 0 para N e 1 para S
 response <- as.factor(response)
@@ -20,7 +24,7 @@ predictors <- predictors[, -which(names(predictors) == "hip")]
 #table(response)
 
 tmp <- ubSMOTE(predictors, response,
-               perc.over = 500, k = 5, perc.under = 120)
+               perc.over = 500, k = 5, perc.under = 120) # Melhor fit: 500, 120
 smote_data <- cbind(tmp$X, tmp$Y)
 names(smote_data)[which(names(smote_data)=='tmp$Y')] <- "hip"
 
@@ -35,6 +39,8 @@ table(smote_data$hipertensao)
 mod <- glm(hipertensao ~ potassio + sodio,
            family = binomial(link = 'logit'), 
            data = smote_data)
+################################################################################
+summary(mod)
 ################################################################################
 ### Ausencia de outliers/Pontos de alavancagem
 plot(mod, which = 5)
