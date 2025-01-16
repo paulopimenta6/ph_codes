@@ -27,7 +27,7 @@ dim(test)
 mod <- rpart(data = train, hipertensao~.)
 ################################################################################
 ### Plotando o modelo
-prp(mod, type=5, extra=104, nn=T, fallen.leaves = TRUE, branch.lty = 5, cex = 0.58)
+prp(mod, type=5, extra=104, nn=T, fallen.leaves = TRUE, branch.lty = 5, cex = 0.55)
 ################################################################################
 ### Podando a arvore
 printcp(mod)
@@ -46,9 +46,14 @@ test$probs <- predict(mod, newdata = test, type="prob")
 head(round(test$probs, 3))
 ################################################################################
 ### Analise do modelo
+
 ### probabilidade de ser sim
-psim <- test$probs[,2] 
+psim <- test$probs[,2]
+
+### Classificando com base no limite de 0.20
 kprev <- ifelse(psim>=0.50, "S", "N")
 kprev <- as.factor(kprev)
+
+### Matriz de confusão
 confusionMatrix(kprev, test$hipertensao)
 
