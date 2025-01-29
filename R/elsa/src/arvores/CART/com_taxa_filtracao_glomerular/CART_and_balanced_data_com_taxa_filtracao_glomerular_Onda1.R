@@ -70,10 +70,18 @@ rpart::printcp(mod)
 ################################################################################
 round(mod$variable.importance, 2)
 ################################################################################
-barplot(mod$variable.importance, col='lightgray',
-        main = "Impotancia das variaveis", xlab = "variaveis",
-        cex.lab = 1.3, cex.main = 1.4, cex.main = 1.3, 
-        font.axis = 2)
+importance_df <- data.frame(Variable = names(mod$variable.importance), 
+                            Importance = mod$variable.importance)
+
+### Ordenar os dados para uma melhor visualização
+importance_df <- importance_df[order(importance_df$Importance, decreasing = TRUE), ]
+
+### Criar o gráfico de linhas usando a função plot
+plot(importance_df$Importance, type = 'b', pch = 16, col = 'black',
+     xaxt = 'n', ylab = "Importância", xlab = "Variáveis",
+     main = "Importância das Variáveis")
+### Adicionar os nomes das variáveis ao eixo X
+axis(1, at = 1:length(importance_df$Variable), labels = importance_df$Variable, las = 1)
 ################################################################################
 ### Classificando novos elementos (variavel test)
 test$probs <- predict(mod, newdata = test, type="prob")
