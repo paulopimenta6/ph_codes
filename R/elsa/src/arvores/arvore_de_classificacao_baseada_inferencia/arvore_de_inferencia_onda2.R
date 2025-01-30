@@ -1,8 +1,8 @@
 if(!require(pacman)) install.packages("pacman")
 library(pacman)
-pacman::p_load(caret, dplyr, readxl, rpart, rpart.plot, unbalanced, MLmetrics)
+pacman::p_load(partykit, MLmetrics, caret, dplyr)
+################################################################################
 source("./src/dadosRegLogistica.R")
-
 ################################################################################
 ### Garantindo reprodutibilidade com a mesma semente
 set.seed(123)
@@ -16,8 +16,8 @@ dadosOnda2 <- data.frame(hipertensao = dataGLM$hip_onda2,
                          taxa_filtracao_glomerular = dataGLM$filt_onda2
 )
 
-length(dadosOnda2$hip)
-table(dadosOnda2$hip)
+length(dadosOnda2$hipertensao)
+table(dadosOnda2$hipertensao)
 ################################################################################
 predictors <- dadosOnda2 ### Preservando o data frame original
 predictors <- dplyr::sample_frac(predictors, .50) 
@@ -34,7 +34,7 @@ names(smote_data)[which(names(smote_data)=='tmp$Y')] <- "hipertensao"
 
 smote_data$potassio <- round(smote_data$potassio, 2)
 smote_data$sodio <- round(smote_data$sodio, 2)
-razao_albumina_creatinina <- round(smote_data$razao_albumina_creatinina, 2)
+smote_data$razao_albumina_creatinina <- round(smote_data$razao_albumina_creatinina, 2)
 smote_data$PAS <- round(smote_data$PAS, 2)
 smote_data$PAD <- round(smote_data$PAD, 2)
 
@@ -46,58 +46,46 @@ smote_data <- data.frame(potassio = smote_data$potassio,
                          taxa_filtracao_glomerular = smote_data$taxa_filtracao_glomerular,
                          hipertensao = smote_data$hipertensao
 )
+
 smote_data$hipertensao <- ifelse(smote_data$hipertensao == 0, "N", "S")
 smote_data$hipertensao <- as.factor(smote_data$hipertensao)
 table(smote_data$hipertensao)
 ################################################################################
-flag <- caret::createDataPartition(smote_data$hipertensao, p=0.6, list = F)
+flag <- caret::createDataPartition(dadosOnda2$hipertensao, p=0.6, list = F)
 train <- smote_data[flag, ]
 dim(train)
 test <- smote_data[-flag, ]
 dim(test)
 ################################################################################
-### Criando o modelo
-mod <- rpart(data = train, hipertensao~., method = "class")
+ct <- ctree(data = train, hipertensao ~ .)
+ct
+plot(ct, 
+     type = "simple", 
+     ip_args = list(gp = gpar(cex = 0.9)),  # Ajusta o texto dos nós internos
+     tp_args = list(gp = gpar(cex = 0.7)),  # Ajusta o texto dos nós terminais
+     main = "Elsa")
 ################################################################################
-### Plotando o modelo
-rpart.plot::prp(mod, type=5, extra=104, nn=T, fallen.leaves = TRUE, branch.lty = 5, cex = 0.55)
-################################################################################
-### Podando a arvore
-rpart::printcp(mod)
-################################################################################
-round(mod$variable.importance, 2)
-################################################################################
-importance_df <- data.frame(Variable = names(mod$variable.importance), 
-                            Importance = mod$variable.importance)
+var_importance <- varimp(ct)
+sorted_importance <- sort(var_importance, decreasing = TRUE)
 
-### Ordenar os dados para uma melhor visualização
-importance_df <- importance_df[order(importance_df$Importance, decreasing = TRUE), ]
-
-### Criar o gráfico de linhas usando a função plot
-plot(importance_df$Importance, type = 'b', pch = 16, col = 'black',
-     xaxt = 'n', ylab = "Importância", xlab = "Variáveis",
+plot(sorted_importance, type = "o", col = "blue", pch = 16,
+     xaxt = "n",  # Exclui o eixo x original
+     xlab = "Variáveis", ylab = "Importância",
      main = "Importância das Variáveis")
-### Adicionar os nomes das variáveis ao eixo X
-axis(1, at = 1:length(importance_df$Variable), labels = importance_df$Variable, las = 1)
+### Adiciona nomes das variáveis ao eixo x
+axis(1, at = 1:length(sorted_importance), labels = names(sorted_importance), las = 1)
 ################################################################################
-### Classificando novos elementos (variavel test)
-test$probs <- predict(mod, newdata = test, type="prob")
+### Classificacao nas categorias da variavel alvo
+test$classif <- predict(ct, newdata = test)
+head(test$classif)
+### Probabilidade de pertecer a categoria alvo
+test$prev <- predict(ct, newdata = test, type = "prob")
+head(test$prev)
+### Podemos ver a que no pertence a observacao
+test$caixa <- predict(ct, newdata = test, type = "node")
+head(test$caixa)
 ################################################################################
-### probabilidade dos individuos de teste
-head(round(test$probs, 3))
-################################################################################
-### Analise do modelo
-
-### probabilidade de ser sim
-psim <- test$probs[,2]
-
-### Classificando com base no limite de 0.20
+psim <- test$prev[,2]
 kprev <- ifelse(psim>=0.50, "S", "N")
 kprev <- as.factor(kprev)
-
-### Matriz de confusão
-MLmetrics::ConfusionMatrix(y_pred = kprev, y_true = test$hipertensao)
-caret::confusionMatrix(data = kprev, reference = test$hipertensao)
-
-### Acuracia do modelo
-MLmetrics::Accuracy(y_pred = kprev, y_true = test$hipertensao)
+confusionMatrix(kprev, test$hipertensao)

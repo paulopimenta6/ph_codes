@@ -1,106 +1,77 @@
-if(!require(pacman)) install.packages("pacman")
+if (!require(pacman)) install.packages("pacman")
 library(pacman)
 pacman::p_load(caret, dplyr, readxl, rpart, rpart.plot, unbalanced, MLmetrics)
-source("./src/dadosRegLogistica.R")
+source("./src/data_kNN.R")
+
+set.seed(123)  # Garantir reprodutibilidade
 
 ################################################################################
-### Garantindo reprodutibilidade com a mesma semente
-set.seed(123)
-################################################################################
-dadosOnda1 <- data.frame(hipertensao = dataGLM$hip_onda1,
-                         potassio = dataGLM$pot_onda1,
-                         sodio = dataGLM$sod_onda1,
-                         razao_albumina_creatinina = dataGLM$albCreat_onda1,
-                         PAS = dataGLM$PAS_onda1,
-                         PAD = dataGLM$PAD_onda1,
-                         taxa_filtracao_glomerular = dataGLM$filt_onda1
+### Passo 1: Preparar dados originais (corrigir variáveis não numéricas)
+dadosOnda1 <- data.frame(
+  hipertensao = data$hip_onda1,
+  potassio = data$pot_onda1,
+  sodio = data$sod_onda1,
+  razao_albumina_creatinina = data$albCreat_onda1,
+  PAS = data$PAS_onda1,
+  PAD = data$PAD_onda1,
+  taxa_filtracao_glomerular = as.numeric(as.character(data$filt_onda1))  # Corrigir se for fator/ordinal
 )
 
-length(dadosOnda1$hip)
-table(dadosOnda1$hip)
+# Verificar estrutura dos dados
+str(dadosOnda1)  # Garantir que todas as variáveis preditoras são numéricas
 
 ################################################################################
-predictors <- dadosOnda1 ### Preservando o data frame original
-#predictors <- sample_frac(predictors, .10)
-predictors <- sample_frac(predictors, .50) 
+### Passo 2: Aplicar SMOTE corretamente (sem amostragem prévia)
+# Separar variáveis preditoras e resposta (sem amostragem aleatória desnecessária)
+response <- as.factor(ifelse(dadosOnda1$hipertensao == 'N', 0, 1))
+predictors <- dadosOnda1[, -which(names(dadosOnda1) == "hipertensao")]
 
-response <- ifelse(predictors$hipertensao == 'N', 0, 1) ### 0 para N e 1 para S
-response <- as.factor(response)
+# Garantir que todas as colunas preditoras são numéricas
+predictors <- predictors %>% mutate(across(everything(), as.numeric))
 
-predictors <- predictors[, -which(names(predictors) == "hipertensao")]
-
-tmp <- unbalanced::ubSMOTE(predictors, response,
-               perc.over = 500, k = 5, perc.under = 120) # Melhor fit: 500, 120
-smote_data <- cbind(tmp$X, tmp$Y)
-names(smote_data)[which(names(smote_data)=='tmp$Y')] <- "hipertensao"
-
-smote_data$potassio <- round(smote_data$potassio, 2)
-smote_data$sodio <- round(smote_data$sodio, 2)
-razao_albumina_creatinina <- round(smote_data$razao_albumina_creatinina, 2)
-smote_data$PAS <- round(smote_data$PAS, 2)
-smote_data$PAD <- round(smote_data$PAD, 2)
-
-
-smote_data <- data.frame(potassio = smote_data$potassio,
-                         sodio = smote_data$sodio,
-                         razao_albumina_creatinina = smote_data$razao_albumina_creatinina,
-                         PAS = smote_data$PAS,
-                         PAD = smote_data$PAD,
-                         taxa_filtracao_glomerular = smote_data$taxa_filtracao_glomerular,
-                         hipertensao = smote_data$hipertensao
+# Aplicar SMOTE
+tmp <- unbalanced::ubSMOTE(
+  X = predictors, 
+  Y = response,
+  perc.over = 200, 
+  k = 5, 
+  perc.under = 150
 )
-smote_data$hipertensao <- ifelse(smote_data$hipertensao == 0, "N", "S")
-smote_data$hipertensao <- as.factor(smote_data$hipertensao)
-table(smote_data$hipertensao)
+
+# Combinar dados sintéticos
+smote_data <- cbind(tmp$X, hipertensao = tmp$Y)
+
+# Arredondar variáveis (apenas se necessário)
+smote_data <- smote_data %>%
+  mutate(
+    potassio = round(potassio, 2),
+    sodio = round(sodio, 2),
+    razao_albumina_creatinina = round(razao_albumina_creatinina, 2),
+    PAS = round(PAS, 2),
+    PAD = round(PAD, 2),
+    hipertensao = ifelse(hipertensao == 0, "N", "S") %>% factor(levels = c("N", "S"))
+  )
+
 ################################################################################
-flag <- caret::createDataPartition(smote_data$hipertensao, p=0.6, list = F)
+### Passo 3: Divisão treino-teste
+flag <- caret::createDataPartition(smote_data$hipertensao, p = 0.6, list = FALSE)
 train <- smote_data[flag, ]
-dim(train)
 test <- smote_data[-flag, ]
-dim(test)
+
 ################################################################################
-### Criando o modelo
-mod <- rpart(data = train, hipertensao~.)
-################################################################################
-### Plotando o modelo
+### Passo 4: Treinar modelo
+mod <- rpart(hipertensao ~ ., data = train, method = "class")
+
+# Plot da árvore
+#rpart.plot(mod, type = 5, extra = 104, nn = TRUE)
 rpart.plot::prp(mod, type=5, extra=104, nn=T, fallen.leaves = TRUE, branch.lty = 5, cex = 0.55)
-################################################################################
-### Podando a arvore
-rpart::printcp(mod)
-################################################################################
-round(mod$variable.importance, 2)
-################################################################################
-importance_df <- data.frame(Variable = names(mod$variable.importance), 
-                            Importance = mod$variable.importance)
 
-### Ordenar os dados para uma melhor visualização
-importance_df <- importance_df[order(importance_df$Importance, decreasing = TRUE), ]
-
-### Criar o gráfico de linhas usando a função plot
-plot(importance_df$Importance, type = 'b', pch = 16, col = 'black',
-     xaxt = 'n', ylab = "Importância", xlab = "Variáveis",
-     main = "Importância das Variáveis")
-### Adicionar os nomes das variáveis ao eixo X
-axis(1, at = 1:length(importance_df$Variable), labels = importance_df$Variable, las = 1)
 ################################################################################
-### Classificando novos elementos (variavel test)
-test$probs <- predict(mod, newdata = test, type="prob")
-################################################################################
-### probabilidade dos individuos de teste
-head(round(test$probs, 3))
-################################################################################
-### Analise do modelo
+### Passo 5: Avaliação
+test$probs <- predict(mod, newdata = test, type = "prob")[, "S"]  # Probabilidade da classe "S"
+kprev <- factor(ifelse(test$probs >= 0.5, "S", "N"), levels = c("N", "S"))
 
-### probabilidade de ser sim
-psim <- test$probs[,2]
-
-### Classificando com base no limite de 0.20
-kprev <- ifelse(psim>=0.50, "S", "N")
-kprev <- as.factor(kprev)
-
-### Matriz de confusão
-MLmetrics::ConfusionMatrix(y_pred = kprev, y_true = test$hipertensao)
-caret::confusionMatrix(data = kprev, reference = test$hipertensao)
-
-### Acuracia do modelo
-MLmetrics::Accuracy(y_pred = kprev, y_true = test$hipertensao)
+# Métricas
+conf_matrix <- caret::confusionMatrix(kprev, test$hipertensao, positive = "S")
+print(conf_matrix)
+cat("Acurácia:", MLmetrics::Accuracy(kprev, test$hipertensao))

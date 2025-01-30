@@ -1,6 +1,6 @@
 if(!require(pacman)) install.packages("pacman")
 library(pacman)
-pacman::p_load(partykit, MLmetrics)
+pacman::p_load(partykit, MLmetrics, caret, dplyr)
 ################################################################################
 source("./src/dadosRegLogistica.R")
 ################################################################################
@@ -15,11 +15,45 @@ dadosOnda1 <- data.frame(hipertensao = dataGLM$hip_onda1,
                          PAD = dataGLM$PAD_onda1,
                          taxa_filtracao_glomerular = dataGLM$filt_onda1
 )
+
+length(dadosOnda1$hipertensao)
+table(dadosOnda1$hipertensao)
 ################################################################################
-flag <- createDataPartition(dadosOnda1$hipertensao, p=0.6, list = F)
-train <- dadosOnda1[flag, ]
+predictors <- dadosOnda1 ### Preservando o data frame original
+predictors <- dplyr::sample_frac(predictors, .50) 
+
+response <- ifelse(predictors$hipertensao == 'N', 0, 1) ### 0 para N e 1 para S
+response <- as.factor(response)
+
+predictors <- predictors[, -which(names(predictors) == "hipertensao")]
+
+tmp <- unbalanced::ubSMOTE(predictors, response,
+                           perc.over = 500, k = 5, perc.under = 120) # Melhor fit: 500, 120
+smote_data <- cbind(tmp$X, tmp$Y)
+names(smote_data)[which(names(smote_data)=='tmp$Y')] <- "hipertensao"
+
+smote_data$potassio <- round(smote_data$potassio, 2)
+smote_data$sodio <- round(smote_data$sodio, 2)
+smote_data$razao_albumina_creatinina <- round(smote_data$razao_albumina_creatinina, 2)
+smote_data$PAS <- round(smote_data$PAS, 2)
+smote_data$PAD <- round(smote_data$PAD, 2)
+
+smote_data <- data.frame(potassio = smote_data$potassio,
+                         sodio = smote_data$sodio,
+                         razao_albumina_creatinina = smote_data$razao_albumina_creatinina,
+                         PAS = smote_data$PAS,
+                         PAD = smote_data$PAD,
+                         taxa_filtracao_glomerular = smote_data$taxa_filtracao_glomerular,
+                         hipertensao = smote_data$hipertensao
+)
+smote_data$hipertensao <- ifelse(smote_data$hipertensao == 0, "N", "S")
+smote_data$hipertensao <- as.factor(smote_data$hipertensao)
+table(smote_data$hipertensao)
+################################################################################
+flag <- caret::createDataPartition(smote_data$hipertensao, p=0.6, list = F)
+train <- smote_data[flag, ]
 dim(train)
-test <- dadosOnda1[-flag, ]
+test <- smote_data[-flag, ]
 dim(test)
 ################################################################################
 ct <- ctree(data = train, hipertensao ~ .)
@@ -27,12 +61,19 @@ ct
 plot(ct, 
      type = "simple", 
      ip_args = list(gp = gpar(cex = 0.9)),  # Ajusta o texto dos nós internos
-     tp_args = list(gp = gpar(cex = 0.68)),  # Ajusta o texto dos nós terminais
+     tp_args = list(gp = gpar(cex = 0.7)),  # Ajusta o texto dos nós terminais
      main = "Elsa")
 ################################################################################
 var_importance <- varimp(ct)
-sort(var_importance, decreasing = TRUE)
-barplot(var_importance)
+sorted_importance <- sort(var_importance, decreasing = TRUE)
+
+plot(sorted_importance, type = "o", col = "blue", pch = 16,
+     xaxt = "n",  # Exclui o eixo x original
+     xlab = "Variáveis", ylab = "Importância",
+     main = "Importância das Variáveis")
+### Adiciona nomes das variáveis ao eixo x
+axis(1, at = 1:length(sorted_importance), labels = names(sorted_importance), las = 1)
+################################################################################
 ################################################################################
 ### Classificacao nas categorias da variavel alvo
 test$classif <- predict(ct, newdata = test)
