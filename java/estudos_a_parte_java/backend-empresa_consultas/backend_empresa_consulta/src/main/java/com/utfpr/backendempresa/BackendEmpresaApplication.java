@@ -10,5 +10,4 @@ public class BackendEmpresaApplication {
 		SpringApplication.run(BackendEmpresaApplication.class, args);
 		System.out.print("Departamento e funcionarios");
 	}
-
 }

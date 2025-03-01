@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.utfpr</groupId>
-	<artifactId>backend-empresa</artifactId>
+	<artifactId>backend-empresa-consulta</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>backend-empresa</name>
 	<description>exercicio da pos em tecnologia Java</description>
