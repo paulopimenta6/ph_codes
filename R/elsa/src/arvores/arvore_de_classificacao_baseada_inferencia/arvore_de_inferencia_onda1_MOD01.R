@@ -1,119 +1,88 @@
-if(!require(pacman)) install.packages("pacman")
+if (!require(pacman)) install.packages("pacman")
 library(pacman)
-pacman::p_load(partykit, MLmetrics, caret, dplyr, pROC, unbalanced)
+pacman::p_load(partykit, MLmetrics, caret, dplyr, unbalanced)
 
 ################################################################################
-source("./src/dadosRegLogistica.R") 
-################################################################################
+### Carregar dados (ajuste o caminho do arquivo)
+source("./src/data_kNN.R")  # Certifique-se de que a variável 'data' é importada corretamente
 
 ### Garantindo reprodutibilidade
 set.seed(123)
 
 ################################################################################
-### Passo 1: Preparação dos dados originais
+### Pré-processamento
 dadosOnda1 <- data.frame(
-  hipertensao = dataGLM$hip_onda1,
-  potassio = dataGLM$pot_onda1,
-  sodio = dataGLM$sod_onda1,
-  razao_albumina_creatinina = dataGLM$albCreat_onda1,
-  PAS = dataGLM$PAS_onda1,
-  PAD = dataGLM$PAD_onda1,
-  taxa_filtracao_glomerular = dataGLM$filt_onda1
+  hipertensao = data$hip_onda1,
+  potassio = data$pot_onda1,
+  sodio = data$sod_onda1,
+  razao_albumina_creatinina = data$albCreat_onda1,
+  PAS = data$PAS_onda1,
+  PAD = data$PAD_onda1,
+  taxa_filtracao_glomerular = data$filt_onda1
 )
 
-# Verificação inicial
-table(dadosOnda1$hipertensao)
+# Verificação crítica das variáveis (evitar classes mistas)
+dadosOnda1 <- dadosOnda1 %>%
+  mutate(across(-hipertensao, ~ as.numeric(gsub(",", ".", .x))))  # Corrige vírgulas decimais
 
 ################################################################################
-### Passo 2: Divisão treino-teste ORIGINAL (antes do SMOTE!)
-flag <- caret::createDataPartition(dadosOnda1$hipertensao, p = 0.6, list = FALSE)
-train_original <- dadosOnda1[flag, ]
-test_original <- dadosOnda1[-flag, ]
+### Amostragem e balanceamento
+predictors <- dadosOnda1 %>% sample_frac(0.50)
 
-################################################################################
-### Passo 3: Aplicar SMOTE APENAS nos dados de treino
-set.seed(123) # Garantir reprodutibilidade no SMOTE
+# Separar resposta e converter para fator
+response <- as.factor(ifelse(predictors$hipertensao == 'N', 0, 1))
+predictors <- predictors %>% select(-hipertensao)
 
-# Preparar variáveis para SMOTE
-predictors_train <- train_original[, -which(names(train_original) == "hipertensao")]
-response_train <- as.factor(ifelse(train_original$hipertensao == 'N', 0, 1))
+# Verificação final das classes (TODAS devem ser numéricas)
+if (any(sapply(predictors, class) != "numeric")) {
+  stop("Variáveis preditoras não numéricas detectadas após conversão!")
+}
 
 # Aplicar SMOTE
-tmp <- unbalanced::ubSMOTE(
-  X = predictors_train, 
-  Y = response_train,
-  perc.over = 200, 
+tmp <- ubSMOTE(
+  X = predictors,
+  Y = response,
+  perc.over = 500, 
   k = 5, 
-  perc.under = 105
+  perc.under = 120
 )
 
-# Combinar dados sintéticos
-smote_data <- cbind(tmp$X, hipertensao = tmp$Y)
-
-# Arredondar variáveis (ajuste conforme necessário)
-smote_data <- smote_data %>%
+# Reconstruir dados balanceados
+smote_data <- cbind(tmp$X, hipertensao = tmp$Y) %>%
   mutate(
-    potassio = round(potassio, 2),
-    sodio = round(sodio, 2),
-    razao_albumina_creatinina = round(razao_albumina_creatinina, 2),
-    PAS = round(PAS, 2),
-    PAD = round(PAD, 2)
+    hipertensao = factor(ifelse(hipertensao == 0, "N", "S")),
+    across(c(potassio, sodio, razao_albumina_creatinina, PAS, PAD), ~ round(.x, 2))
   )
 
-# Converter resposta para fator
-smote_data$hipertensao <- factor(
-  ifelse(smote_data$hipertensao == 0, "N", "S"),
-  levels = c("N", "S")
-)
-
-# Verificar balanceamento
-table(smote_data$hipertensao)
+################################################################################
+### Divisão treino-teste
+flag <- createDataPartition(smote_data$hipertensao, p = 0.6, list = FALSE)
+train <- smote_data[flag, ]
+test <- smote_data[-flag, ]
 
 ################################################################################
-### Passo 4: Treinar modelo
-ct <- partykit::ctree(
-  hipertensao ~ .,
-  data = smote_data,
-  control = partykit::ctree_control(maxdepth = 4) # Ajuste a profundidade
-)
-
-# Plot da árvore
-plot(ct, type = "simple", main = "Árvore de Decisão - ELSA")
+### Modelagem
+ct <- ctree(hipertensao ~ ., data = train, control = ctree_control(minbucket = 50))
 
 ################################################################################
-### Passo 5: Avaliar no teste ORIGINAL (sem dados sintéticos!)
-test_original$prev_prob <- predict(ct, newdata = test_original, type = "prob")[, "S"]
-test_original$pred_class <- factor(
-  ifelse(test_original$prev_prob >= 0.5, "S", "N"),
-  levels = c("N", "S")
-)
+### Visualização
+# Se necessário, inicie uma nova página de gráfico:
+grid::grid.newpage()
+
+plot(ct, 
+     type = "simple", 
+     ip_args = list(gp = gpar(cex = 0.7)),
+     tp_args = list(gp = gpar(cex = 0.6)),
+     main = "Árvore de Decisão - ELSA")
 
 ################################################################################
-### Passo 6: Métricas de avaliação
-# Matriz de confusão
-cat("Matriz de Confusão:\n")
-conf_matrix <- confusionMatrix(
-  test_original$pred_class,
-  test_original$hipertensao,
+### Avaliação
+test$classif <- predict(ct, newdata = test)
+test$prev    <- predict(ct, newdata = test, type = "prob")[,2]
+
+# Métricas finais
+confusionMatrix(
+  data = factor(ifelse(test$prev >= 0.5, "S", "N"), levels = c("N", "S")),
+  reference = test$hipertensao,
   positive = "S"
 )
-print(conf_matrix)
-
-# AUC-ROC
-roc_obj <- pROC::roc(
-  response = test_original$hipertensao,
-  predictor = test_original$prev_prob,
-  levels = c("N", "S")
-)
-cat("\nAUC-ROC:", auc(roc_obj), "\n")
-
-# Gráfico ROC
-plot(roc_obj, print.thres = "best", main = "Curva ROC")
-
-# F1-Score
-f1 <- MLmetrics::F1_Score(
-  y_true = test_original$hipertensao,
-  y_pred = test_original$pred_class,
-  positive = "S"
-)
-cat("F1-Score:", f1, "\n")

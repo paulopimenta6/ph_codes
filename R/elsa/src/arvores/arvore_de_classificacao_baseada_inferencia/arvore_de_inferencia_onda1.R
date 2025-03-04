@@ -1,91 +1,108 @@
+################################################################################
+### Carregar pacotes
 if(!require(pacman)) install.packages("pacman")
 library(pacman)
-pacman::p_load(partykit, MLmetrics, caret, dplyr)
+pacman::p_load(partykit, MLmetrics, caret, dplyr, unbalanced, grid)
+
 ################################################################################
-source("./src/dadosRegLogistica.R")
-################################################################################
-### Garantindo reprodutibilidade com a mesma semente
+### Carregar dados (ajuste o caminho do arquivo)
+source("./src/data_kNN.R")  # Verifique se esta etapa está importando 'data' corretamente
+
+### Garantindo reprodutibilidade
 set.seed(123)
+
 ################################################################################
-dadosOnda1 <- data.frame(hipertensao = dataGLM$hip_onda1,
-                         potassio = dataGLM$pot_onda1,
-                         sodio = dataGLM$sod_onda1,
-                         razao_albumina_creatinina = dataGLM$albCreat_onda1,
-                         PAS = dataGLM$PAS_onda1,
-                         PAD = dataGLM$PAD_onda1,
-                         taxa_filtracao_glomerular = dataGLM$filt_onda1
+### Pré-processamento
+dadosOnda1 <- data.frame(
+  hipertensao = data$hip_onda1,
+  potassio = data$pot_onda1,
+  sodio = data$sod_onda1,
+  razao_albumina_creatinina = data$albCreat_onda1,
+  PAS = data$PAS_onda1,
+  PAD = data$PAD_onda1,
+  taxa_filtracao_glomerular = data$filt_onda1
 )
 
-length(dadosOnda1$hipertensao)
-table(dadosOnda1$hipertensao)
+# Substituir vírgula por ponto e garantir que sejam numéricos
+dadosOnda1 <- dadosOnda1 %>%
+  mutate(across(-hipertensao, ~ as.numeric(gsub(",", ".", .x))))
+
 ################################################################################
-predictors <- dadosOnda1 ### Preservando o data frame original
-predictors <- dplyr::sample_frac(predictors, .50) 
+### Amostragem e balanceamento
+# Exemplo: pegar 50% dos dados originais
+predictors <- dadosOnda1 %>%
+  sample_frac(0.50)
 
-response <- ifelse(predictors$hipertensao == 'N', 0, 1) ### 0 para N e 1 para S
-response <- as.factor(response)
+# Separar a variável resposta, convertendo em fator binário (0/1)
+response <- as.factor(ifelse(predictors$hipertensao == 'N', 0, 1))
+predictors <- predictors %>% select(-hipertensao)
 
-predictors <- predictors[, -which(names(predictors) == "hipertensao")]
+# Verificação de classes (todas devem ser numéricas)
+if (any(sapply(predictors, class) != "numeric")) {
+  stop("Variáveis preditoras não numéricas detectadas após conversão!")
+}
 
-tmp <- unbalanced::ubSMOTE(predictors, response,
-                           perc.over = 500, k = 5, perc.under = 120) # Melhor fit: 500, 120
-smote_data <- cbind(tmp$X, tmp$Y)
-names(smote_data)[which(names(smote_data)=='tmp$Y')] <- "hipertensao"
-
-smote_data$potassio <- round(smote_data$potassio, 2)
-smote_data$sodio <- round(smote_data$sodio, 2)
-smote_data$razao_albumina_creatinina <- round(smote_data$razao_albumina_creatinina, 2)
-smote_data$PAS <- round(smote_data$PAS, 2)
-smote_data$PAD <- round(smote_data$PAD, 2)
-
-smote_data <- data.frame(potassio = smote_data$potassio,
-                         sodio = smote_data$sodio,
-                         razao_albumina_creatinina = smote_data$razao_albumina_creatinina,
-                         PAS = smote_data$PAS,
-                         PAD = smote_data$PAD,
-                         taxa_filtracao_glomerular = smote_data$taxa_filtracao_glomerular,
-                         hipertensao = smote_data$hipertensao
+# Aplicar SMOTE para balancear classes
+tmp <- ubSMOTE(
+  X = predictors,
+  Y = response,
+  perc.over = 500,  # oversampling
+  k = 5,
+  perc.under = 120  # undersampling
 )
-smote_data$hipertensao <- ifelse(smote_data$hipertensao == 0, "N", "S")
-smote_data$hipertensao <- as.factor(smote_data$hipertensao)
-table(smote_data$hipertensao)
+
+# Reconstruir dados balanceados
+smote_data <- cbind(tmp$X, hipertensao = tmp$Y) %>%
+  mutate(
+    hipertensao = factor(ifelse(hipertensao == 0, "N", "S")),
+    across(c(potassio, sodio, razao_albumina_creatinina, PAS, PAD), ~ round(.x, 2))
+  )
+
 ################################################################################
-flag <- caret::createDataPartition(smote_data$hipertensao, p=0.6, list = F)
+### Divisão treino-teste
+flag <- createDataPartition(smote_data$hipertensao, p = 0.6, list = FALSE)
 train <- smote_data[flag, ]
-dim(train)
 test <- smote_data[-flag, ]
-dim(test)
-################################################################################
-ct <- ctree(data = train, hipertensao ~ .)
-ct
-plot(ct, 
-     type = "simple", 
-     ip_args = list(gp = gpar(cex = 0.9)),  # Ajusta o texto dos nós internos
-     tp_args = list(gp = gpar(cex = 0.7)),  # Ajusta o texto dos nós terminais
-     main = "Elsa")
-################################################################################
-var_importance <- varimp(ct)
-sorted_importance <- sort(var_importance, decreasing = TRUE)
 
-plot(sorted_importance, type = "o", col = "blue", pch = 16,
-     xaxt = "n",  # Exclui o eixo x original
-     xlab = "Variáveis", ylab = "Importância",
-     main = "Importância das Variáveis")
-### Adiciona nomes das variáveis ao eixo x
-axis(1, at = 1:length(sorted_importance), labels = names(sorted_importance), las = 1)
 ################################################################################
+### Modelagem
+# Ajustar parâmetros de controle (por ex., limitar profundidade para evitar árvores muito grandes)
+control <- ctree_control(
+  minbucket = 150,
+  maxdepth = 8    # você pode ajustar esse valor conforme necessário
+)
+
+ct <- ctree(hipertensao ~ ., data = train, control = control)
+
 ################################################################################
-### Classificacao nas categorias da variavel alvo
+### Visualização
+# Abra um dispositivo gráfico maior (por exemplo, em PDF ou janela) para evitar sobreposição
+# Exemplo para PDF:
+# pdf("arvore_decisao.pdf", width = 12, height = 8)
+
+# No Windows, você pode usar:
+windows(width = 16, height = 12)
+
+plot(
+  ct,
+  type = "simple", 
+  ip_args = list(gp = gpar(cex = 0.7)),  # Ajuste do tamanho de fonte dos nós internos
+  tp_args = list(gp = gpar(cex = 0.62)),  # Ajuste do tamanho de fonte dos nós folha
+  main = "Árvore de Decisão - ELSA"
+)
+
+# Se estiver salvando em PDF, lembre de fechar o dispositivo
+# dev.off()
+
+################################################################################
+### Avaliação
+# Previsões no conjunto de teste
 test$classif <- predict(ct, newdata = test)
-head(test$classif)
-### Probabilidade de pertecer a categoria alvo
-test$prev <- predict(ct, newdata = test, type = "prob")
-head(test$prev)
-### Podemos ver a que no pertence a observacao
-test$caixa <- predict(ct, newdata = test, type = "node")
-head(test$caixa)
-################################################################################
-psim <- test$prev[,2]
-kprev <- ifelse(psim>=0.50, "S", "N")
-kprev <- as.factor(kprev)
-confusionMatrix(kprev, test$hipertensao)
+test$prev <- predict(ct, newdata = test, type = "prob")[, 2]
+
+# Matriz de confusão e métricas
+confusionMatrix(
+  data = factor(ifelse(test$prev >= 0.5, "S", "N"), levels = c("N", "S")),
+  reference = test$hipertensao,
+  positive = "S"
+)
