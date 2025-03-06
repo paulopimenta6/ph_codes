@@ -1,91 +1,60 @@
+################################################################################
+### Carregar pacotes
 if(!require(pacman)) install.packages("pacman")
 library(pacman)
-pacman::p_load(partykit, MLmetrics, caret, dplyr)
+pacman::p_load(partykit, MLmetrics, caret, ggparty)
 ################################################################################
-source("./src/dadosRegLogistica.R")
+### Carregar dados (ajuste o caminho do arquivo)
+source("./src/data_kNN.R")  # Verifique se esta etapa está importando 'data' corretamente
 ################################################################################
-### Garantindo reprodutibilidade com a mesma semente
-set.seed(123)
-################################################################################
-dadosOnda2 <- data.frame(hipertensao = dataGLM$hip_onda2,
-                         potassio = dataGLM$pot_onda2,
-                         sodio = dataGLM$sod_onda2,
-                         razao_albumina_creatinina = dataGLM$albCreat_onda2,
-                         PAS = dataGLM$PAS_onda2,
-                         PAD = dataGLM$PAD_onda2,
-                         taxa_filtracao_glomerular = dataGLM$filt_onda2
+### Pré-processamento
+dadosOnda2 <- data.frame(
+  hipertensao = data$hip_onda2,
+  potassio = data$pot_onda2,
+  sodio = data$sod_onda2,
+  razao_albumina_creatinina = data$albCreat_onda2,
+  PAS = data$PAS_onda2,
+  PAD = data$PAD_onda2,
+  taxa_filtracao_glomerular = data$filt_onda2
 )
-
-length(dadosOnda2$hipertensao)
-table(dadosOnda2$hipertensao)
+dadosOnda2$hipertensao <- relevel(dadosOnda2$hipertensao, ref="S")
 ################################################################################
-predictors <- dadosOnda2 ### Preservando o data frame original
-predictors <- dplyr::sample_frac(predictors, .50) 
-
-response <- ifelse(predictors$hipertensao == 'N', 0, 1) ### 0 para N e 1 para S
-response <- as.factor(response)
-
-predictors <- predictors[, -which(names(predictors) == "hipertensao")]
-
-tmp <- unbalanced::ubSMOTE(predictors, response,
-                           perc.over = 500, k = 5, perc.under = 120) # Melhor fit: 500, 120
-smote_data <- cbind(tmp$X, tmp$Y)
-names(smote_data)[which(names(smote_data)=='tmp$Y')] <- "hipertensao"
-
-smote_data$potassio <- round(smote_data$potassio, 2)
-smote_data$sodio <- round(smote_data$sodio, 2)
-smote_data$razao_albumina_creatinina <- round(smote_data$razao_albumina_creatinina, 2)
-smote_data$PAS <- round(smote_data$PAS, 2)
-smote_data$PAD <- round(smote_data$PAD, 2)
-
-smote_data <- data.frame(potassio = smote_data$potassio,
-                         sodio = smote_data$sodio,
-                         razao_albumina_creatinina = smote_data$razao_albumina_creatinina,
-                         PAS = smote_data$PAS,
-                         PAD = smote_data$PAD,
-                         taxa_filtracao_glomerular = smote_data$taxa_filtracao_glomerular,
-                         hipertensao = smote_data$hipertensao
-)
-
-smote_data$hipertensao <- ifelse(smote_data$hipertensao == 0, "N", "S")
-smote_data$hipertensao <- as.factor(smote_data$hipertensao)
-table(smote_data$hipertensao)
-################################################################################
-flag <- caret::createDataPartition(dadosOnda2$hipertensao, p=0.6, list = F)
-train <- smote_data[flag, ]
+flag <- caret::createDataPartition(dadosOnda2$hipertensao, p=0.6, list=F)
+train <- dadosOnda2[flag, ]
 dim(train)
-test <- smote_data[-flag, ]
+test <- dadosOnda2[-flag, ]
 dim(test)
 ################################################################################
-ct <- ctree(data = train, hipertensao ~ .)
+### Garantindo reprodutibilidade
+set.seed(123)
+################################################################################
+ct <- partykit::ctree(data=train, hipertensao ~ .) #, 
+#control=ctree_control(minbucket = 50,  # Reduza para maior complexidade
+#                      minsplit = 100), # Mínimo de observações para divisão
+#                      maxdepth = 5)    # Profundidade máxima da árvore
 ct
+################################################################################
 plot(ct, 
-     type = "simple", 
-     ip_args = list(gp = gpar(cex = 0.9)),  # Ajusta o texto dos nós internos
-     tp_args = list(gp = gpar(cex = 0.7)),  # Ajusta o texto dos nós terminais
-     main = "Elsa")
+     type="simple", 
+     ip_args = list(fill="white", gp = gpar(cex = 0.8)), 
+     tp_args = list(fill=c('white'), gp = gpar(cex = 0.7)), 
+     main = 'ELSA', 
+     font = 1)
 ################################################################################
-var_importance <- varimp(ct)
-sorted_importance <- sort(var_importance, decreasing = TRUE)
+ggparty(ct) +
+  geom_edge() +
+  geom_edge_label() +
+  geom_node_splitvar() +
+  geom_node_plot(gglist = list(geom_bar(aes(x = "", fill = hipertensao),
+                                        position = position_fill()),
+                               xlab("hipertensao"))
+  )
+################################################################################
+ggparty(ct, terminal_space = 0.3) +
+  geom_edge() +
+  geom_edge_label() +
+  geom_node_splitvar() +
+  geom_node_plot(gglist = list(
+    geom_bar(aes(x = hipertensao))))
 
-plot(sorted_importance, type = "o", col = "blue", pch = 16,
-     xaxt = "n",  # Exclui o eixo x original
-     xlab = "Variáveis", ylab = "Importância",
-     main = "Importância das Variáveis")
-### Adiciona nomes das variáveis ao eixo x
-axis(1, at = 1:length(sorted_importance), labels = names(sorted_importance), las = 1)
-################################################################################
-### Classificacao nas categorias da variavel alvo
-test$classif <- predict(ct, newdata = test)
-head(test$classif)
-### Probabilidade de pertecer a categoria alvo
-test$prev <- predict(ct, newdata = test, type = "prob")
-head(test$prev)
-### Podemos ver a que no pertence a observacao
-test$caixa <- predict(ct, newdata = test, type = "node")
-head(test$caixa)
-################################################################################
-psim <- test$prev[,2]
-kprev <- ifelse(psim>=0.50, "S", "N")
-kprev <- as.factor(kprev)
-confusionMatrix(kprev, test$hipertensao)
+#############################################################
