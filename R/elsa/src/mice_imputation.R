@@ -1,6 +1,7 @@
 if(!require(pacman)) install.packages("pacman")
 library(pacman)
-pacman::p_load(mice, dyplyr, ROSE)
+pacman::p_load(mice, ROSE, VIM)
+library(dplyr)
 source("./src/script_analise_dados_elsa_Var_Lib.R")
 
 ################################################################################
@@ -12,6 +13,13 @@ dfPresencaHipertensaoSistem <- data.frame(hip_onda1 = presencaDeHipertensaoArter
                                           hip_onda2 = presencaDeHipertensaoArterialSistemicaOnda2,
                                           hip_onda3 = presencaDeHipertensaoArterialSistemicaOnda3
 )
+
+dfPresencaHipertensaoSistem <- dfPresencaHipertensaoSistem %>%
+  dplyr::mutate(
+    hip_onda1 = as.factor(hip_onda1),
+    hip_onda2 = as.factor(hip_onda2),
+    hip_onda3 = as.factor(hip_onda3),
+  )
 
 dfPotassio <- data.frame(pot_onda1 = potassioOnda1,
                          pot_onda2 = potassioOnda2,
@@ -30,8 +38,11 @@ dfRazaoAlbuminaCreatinina <- data.frame(albCreat_onda1 = razaoAlbuminaCreatinina
 dfTaxaFiltracaoGlomerular <- data.frame(filt_onda1 = categoriasTaxaFiltracaoGlomerulaComCalibracaoOnda1,
                                         filt_onda2 = categoriasTaxaFiltracaoGlomerulaComCalibracaoOnda2
 )
-dfTaxaFiltracaoGlomerular <- data.frame(lapply(dfTaxaFiltracaoGlomerular, as.factor))
-
+dfTaxaFiltracaoGlomerular <- dfTaxaFiltracaoGlomerular %>%
+  dplyr::mutate(
+    filt_onda1 = as.factor(filt_onda1),
+    filt_onda2 = as.factor(filt_onda2)
+  )
 
 dfPAS <- data.frame(PAS_onda1 = pressaoArterialSistolicaMediaOnda1,
                     PAS_onda2 = pressaoArterialSistolicaMediaOnda2,
@@ -42,6 +53,49 @@ dfPAD <- data.frame(PAD_onda1 = pressaoDiastolicamediaOnda1,
                     PAD_onda2 = pressaoDiastolicamediaOnda2,
                     PAD_onda3 = pressaoDiastolicamediaOnda3
 )
+################################################################################
+### Hipertensao
+agg_plot <- aggr(dfPresencaHipertensaoSistem, col = c('navyblue', 'red'), 
+                 numbers = TRUE, sortvars = TRUE, 
+                 labels = names(dfPresencaHipertensaoSistem), 
+                 cex.axis = 0.7, cex.numbers = 0.5,  # Ajuste o tamanho dos números
+                 ylab = c("Histogram of missing data", "Pattern"))
+### Potassio
+agg_plot <- aggr(dfPotassio, col = c('navyblue', 'red'), 
+                 numbers = TRUE, sortvars = TRUE, 
+                 labels = names(dfPotassio), 
+                 cex.axis = 0.7, cex.numbers = 0.5,  # Ajuste o tamanho dos números
+                 ylab = c("Histogram of missing data", "Pattern"))
+### Sodio
+agg_plot <- aggr(dfSodio, col = c('navyblue', 'red'), 
+                 numbers = TRUE, sortvars = TRUE, 
+                 labels = names(dfSodio), 
+                 cex.axis = 0.7, cex.numbers = 0.5,  # Ajuste o tamanho dos números
+                 ylab = c("Histogram of missing data", "Pattern"))
+### PAS
+agg_plot <- aggr(dfPAS, col = c('navyblue', 'red'), 
+                 numbers = TRUE, sortvars = TRUE, 
+                 labels = names(dfPAS), 
+                 cex.axis = 0.7, cex.numbers = 0.5,  # Ajuste o tamanho dos números
+                 ylab = c("Histogram of missing data", "Pattern"))
+### PAD
+agg_plot <- aggr(dfPAD, col = c('navyblue', 'red'), 
+                 numbers = TRUE, sortvars = TRUE, 
+                 labels = names(dfPAD), 
+                 cex.axis = 0.7, cex.numbers = 0.5,  # Ajuste o tamanho dos números
+                 ylab = c("Histogram of missing data", "Pattern"))
+### Glomerular filtering tax
+agg_plot <- aggr(dfTaxaFiltracaoGlomerular, col = c('navyblue', 'red'), 
+                 numbers = TRUE, sortvars = TRUE, 
+                 labels = names(dfTaxaFiltracaoGlomerular), 
+                 cex.axis = 0.7, cex.numbers = 0.5,  # Ajuste o tamanho dos números
+                 ylab = c("Histogram of missing data", "Pattern"))
+### Albumina-Creatinina Ratio
+agg_plot <- aggr(dfRazaoAlbuminaCreatinina, col = c('navyblue', 'red'), 
+                 numbers = TRUE, sortvars = TRUE, 
+                 labels = names(dfRazaoAlbuminaCreatinina), 
+                 cex.axis = 0.7, cex.numbers = 0.5,  # Ajuste o tamanho dos números
+                 ylab = c("Histogram of missing data", "Pattern"))
 ################################################################################
 ### 1 - Discovering NAs in Hipertension
 summary(dfPresencaHipertensaoSistem)
@@ -127,15 +181,8 @@ imputacao_pad <- mice(dfPAD, method = "pmm", m = 5, seed = 123)
 ### Gerar dataset com valores imputados (usando a primeira imputação completa)
 dfPAD_imputado <- complete(imputacao_pad, 1)
 ################################################################################
-
-
-
-# Transformando hip_onda1 em um fator
-dfPresencaHipertensaoSistem_imputado$hip_onda1 <- as.factor(dfPresencaHipertensaoSistem_imputado$hip_onda1)
-# Verificando a classe após a transformação
-class(dfPresencaHipertensaoSistem_imputado$hip_onda1)
-# Realizando o undersampling com ROSE
-set.seed(123)  # Para reprodutibilidade
-balanced_data <- ovun.sample(hip_onda1 ~ ., data = dfPresencaHipertensaoSistem_imputado, method = "under", N = 1653 * 2)$data
+### exemplo de undersampling com ROSE
+#set.seed(123)  # Para reprodutibilidade
+#balanced_data <- ovun.sample(hip_onda1 ~ ., data = dfPresencaHipertensaoSistem_imputado, method = "under", N = 1653 * 2)$data
 # Verificando a nova distribuição das classes
-table(balanced_data$hip_onda1)
+#table(balanced_data$hip_onda1)
