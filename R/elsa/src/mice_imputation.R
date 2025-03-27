@@ -186,3 +186,4 @@ dfPAD_imputado <- complete(imputacao_pad, 1)
 #balanced_data <- ovun.sample(hip_onda1 ~ ., data = dfPresencaHipertensaoSistem_imputado, method = "under", N = 1653 * 2)$data
 # Verificando a nova distribuição das classes
 #table(balanced_data$hip_onda1)
+################################################################################
