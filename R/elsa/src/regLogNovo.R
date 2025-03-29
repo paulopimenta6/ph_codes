@@ -1,5 +1,5 @@
 ### Passo 0: Carregar dados (ajuste o caminho do arquivo)
-source("./src/data_kNN.R")  # Verifique se esta etapa está importando 'data' corretamente
+source("./src/mice_inputation_v2.R")  # Verifique se esta etapa está importando 'data' corretamente
   
 ###Passo 1: Carregar os pacotes
 if(!require(pacman)) install.packages("pacman")
@@ -8,27 +8,25 @@ library(pacman)
 pacman::p_load(dplyr, psych, car, MASS, DescTools, QuantPsyc, ggplot2)
 
 
-###Passo 2: Carregar o banco de dados
-dadosOnda1 <- data.frame(
-  hipertensao = data$hip_onda1,
-  potassio = data$pot_onda1,
-  sodio = data$sod_onda1,
-  razao_albumina_creatinina = data$albCreat_onda1,
-  PAS = data$PAS_onda1,
-  PAD = data$PAD_onda1,
-  taxa_filtracao_glomerular = data$filt_onda1
-)
-
-View(dadosOnda1)   
-glimpse(dadosOnda1)
+View(dadosOnda1Mice_inp)   
+glimpse(dadosOnda1Mice_inp)
 
 ###Passo 3: Analise das frequencias das categorias da VD:
-table(dadosOnda1$hipertensao)
-summary(dadosOnda1)
+table(dadosOnda1Mice_inp$hip)
+summary(dadosOnda1Mice_inp)
 
+################################################################################
+### exemplo de undersampling com ROSE
+set.seed(123)  # Para reprodutibilidade
+dadosOnda1Mice_inp_balanced <- ovun.sample(hip ~ ., data = dadosOnda1Mice_inp, method = "under", N = 1650 * 2)$data
+# Verificando a nova distribuição das classes
+table(dadosOnda1Mice_inp_balanced$hip)
+################################################################################
 ###Passo 4: Checagem das categorias de referencia
-levels(dadosOnda1$hipertensao)  #"N" e a categoria de referencia 
-
+dadosOnda1Mice_inp_balanced$hip <- ifelse(dadosOnda1Mice_inp_balanced$hip == "0", 'N', 'S')
+dadosOnda1Mice_inp_balanced$hip <- as.factor(dadosOnda1Mice_inp_balanced$hip)
+levels(dadosOnda1Mice_inp_balanced$hip)  #"N" e a categoria de referencia 
+relevel(dadosOnda1Mice_inp_balanced$hip, ref = "S")
 ################################################################################
 # Passo 5: Checagem dos pressupostos
 
@@ -38,8 +36,8 @@ levels(dadosOnda1$hipertensao)  #"N" e a categoria de referencia
 
 ## Construcao do modelo:
 
-mod <- glm(hipertensao ~ .,
-           family = binomial(link = 'logit'), data = dadosOnda1)
+mod <- glm(hip ~ .,
+           family = binomial(link = 'logit'), data = dadosOnda1Mice_inp_balanced)
 
 
 ## 3. Ausencia de outliers/ pontos de alavancagem
@@ -51,7 +49,7 @@ summary(stdres(mod))
 
 ## 4. Ausencia de multicolinearidade
 
-pairs.panels(dadosOnda1)
+pairs.panels(dadosOnda1Mice_inp_balanced)
 ### Multicolinearidade: r > 0.9 (ou 0.8)
 
 
