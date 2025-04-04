@@ -4,6 +4,8 @@
 source("./src/script_analise_dados_elsa_Var_Lib.R")
 source("./src/classNormalMethods.R")
 
+if (!require(tidyr)) install.packages("tidyr")
+library(tidyr)
 if(!require(dplyr)) install.packages("dplyr")
 library(dplyr)                                
 if(!require(rstatix)) install.packages("rstatix") 
