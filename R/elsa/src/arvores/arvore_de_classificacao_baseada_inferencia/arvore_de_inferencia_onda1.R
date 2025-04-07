@@ -5,21 +5,20 @@ library(pacman)
 pacman::p_load(partykit, MLmetrics, caret, ggparty)
 ################################################################################
 ### Carregar dados (ajuste o caminho do arquivo)
-source("./src/data_kNN.R")  # Verifique se esta etapa está importando 'data' corretamente
+source("./src/data_kNN_v2.R")  # Verifique se esta etapa está importando 'data' corretamente
 ################################################################################
 ### Pré-processamento
-dadosOnda1 <- data.frame(
-  hipertensao = data$hip_onda1,
-  potassio = data$pot_onda1,
-  sodio = data$sod_onda1,
-  razao_albumina_creatinina = data$albCreat_onda1,
-  PAS = data$PAS_onda1,
-  PAD = data$PAD_onda1,
-  taxa_filtracao_glomerular = data$filt_onda1
-)
-dadosOnda1$hipertensao <- relevel(dadosOnda1$hipertensao, ref="S")
+dadosOnda1 <- dadosOnda1kNN_inp
+View(dadosOnda1kNN_inp)   
+glimpse(dadosOnda1kNN_inp)
+table(dadosOnda1kNN_inp$hip)
+summary(dadosOnda1kNN_inp)
+
+dadosOnda1$hip <- ifelse(dadosOnda1$hip == 0, 'N', 'S')
+dadosOnda1$hip <- as.factor(dadosOnda1$hip)
+dadosOnda1$hip <- relevel(dadosOnda1$hip, ref="S")
 ################################################################################
-flag <- caret::createDataPartition(dadosOnda1$hipertensao, p=0.6, list=F)
+flag <- caret::createDataPartition(dadosOnda1$hip, p=0.6, list=F)
 train <- dadosOnda1[flag, ]
 dim(train)
 test <- dadosOnda1[-flag, ]
@@ -28,7 +27,7 @@ dim(test)
 ### Garantindo reprodutibilidade
 set.seed(123)
 ################################################################################
-ct <- partykit::ctree(data=train, hipertensao ~ .) #, 
+ct <- partykit::ctree(data=train, hip ~ .) #, 
                       #control=ctree_control(minbucket = 50,  # Reduza para maior complexidade
                       #                      minsplit = 100), # Mínimo de observações para divisão
                       #                      maxdepth = 5)    # Profundidade máxima da árvore
@@ -45,9 +44,9 @@ ggparty(ct) +
   geom_edge() +
   geom_edge_label() +
   geom_node_splitvar() +
-  geom_node_plot(gglist = list(geom_bar(aes(x = "", fill = hipertensao),
+  geom_node_plot(gglist = list(geom_bar(aes(x = "", fill = hip),
                                             position = position_fill()),
-                                            xlab("hipertensao"))
+                                            xlab("hip"))
                  )
 ################################################################################
 ggparty(ct, terminal_space = 0.3) +
@@ -55,6 +54,6 @@ ggparty(ct, terminal_space = 0.3) +
   geom_edge_label() +
   geom_node_splitvar() +
   geom_node_plot(gglist = list(
-    geom_bar(aes(x = hipertensao))))
+    geom_bar(aes(x = hip))))
 
 #############################################################
