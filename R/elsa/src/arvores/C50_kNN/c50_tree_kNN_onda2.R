@@ -5,7 +5,7 @@ source("./src/data_kNN_v2.R")  # Verifique se esta etapa está importando 'data'
 if(!require(pacman)) install.packages("pacman")
 library(pacman)
 
-pacman::p_load(C50, caret, dplyr, pROC)
+pacman::p_load(C50, caret, dplyr, pROC, ROSE)
 
 View(dadosOnda2kNN_inp)   
 glimpse(dadosOnda2kNN_inp)
