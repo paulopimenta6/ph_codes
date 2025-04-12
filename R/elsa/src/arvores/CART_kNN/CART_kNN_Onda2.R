@@ -5,40 +5,30 @@ source("./src/data_kNN_v2.R")  # Verifique se esta etapa está importando 'data'
 if(!require(pacman)) install.packages("pacman")
 library(pacman)
 
-pacman::p_load(caret, dplyr, rpart, rpart.plot, MLmetrics, ROSE)  # Certifique-se de carregar o pacote ROSE
+pacman::p_load(caret, dplyr, rpart, rpart.plot, MLmetrics)  # Certifique-se de carregar o pacote ROSE
 
 View(dadosOnda2kNN_inp)   
 glimpse(dadosOnda2kNN_inp)
 
 table(dadosOnda2kNN_inp$hip)
 summary(dadosOnda2kNN_inp)
-
-################################################################################
-### Exemplo de undersampling com ROSE
-set.seed(123)  # Para reprodutibilidade
-dadosOnda2kNN_inp_balanced <- ovun.sample(hip ~ ., data = dadosOnda2kNN_inp, method = "under", N = 1921 * 2)$data
-# Verificando a nova distribuição das classes
-table(dadosOnda2kNN_inp_balanced$hip)
-
-################################################################################
+####################################################################################
 ### Passo 4: Checagem das categorias de referência
-# Converte "0" para "N" e "1" para "S" e transforma em fator
-dadosOnda2kNN_inp_balanced$hip <- ifelse(dadosOnda2kNN_inp_balanced$hip == "0", "N", "S")
-dadosOnda2kNN_inp_balanced$hip <- as.factor(dadosOnda2kNN_inp_balanced$hip)
+# Converte "0" para "N" e "1" para "S" e transforma em fatordosOnda2kNN_inp$hip)
 # Exibe os níveis atuais
-levels(dadosOnda2kNN_inp_balanced$hip)  # Deve mostrar "N" e "S"
+levels(dadosOnda2kNN_inp$hip)  # Deve mostrar "N" e "S"
 # Define "S" como a categoria de referência
-dadosOnda2kNN_inp_balanced$hip <- relevel(dadosOnda2kNN_inp_balanced$hip, ref = "S")
+dadosOnda2kNN_inp$hip <- relevel(dadosOnda2kNN_inp$hip, ref = "S")
 
 ################################################################################
 ### Passo 3: Divisão treino-teste
 flag <- caret::createDataPartition(dadosOnda2kNN_inp_balanced$hip, p = 0.7, list = FALSE)
 train <- dadosOnda2kNN_inp_balanced[flag, ]
 dim(train)
-test <- dadosOnda2kNN_inp_balanced[-flag, ]
-dim(test)
+test <- dadosOnda2kNN_inp_balanced[dadosOnda2kNN_inp
+dim(test)dadosOnda2kNN_inp
 
-################################################################################
+########dadosOnda2kNN_inp##############################################
 ### Passo 4: Treino do modelo
 mod <- rpart(hip ~ ., data = train, method = "class")
 
