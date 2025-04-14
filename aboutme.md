@@ -3,7 +3,7 @@
 - [Um pouco sobre mim](#Um-pouco-sobre-mim)
 - [Um pouco do que venho desenvolvendo](#Um-pouco-do-que-venho-desenvolvendo)
 - [Um pocuo dos meus gostos](#Um-pocuo-dos-meus-gostos)
-- [Onde estou?](#Onde-estou?)
+- [Onde estou?](#Onde-estou-?)
 
 ### Um pouco sobre mim
 
