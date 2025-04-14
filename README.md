@@ -54,3 +54,13 @@ O script `make.sh` no diretório `c_cpp` realiza a compilação e move os binár
 ## Contato
 
 - **Email:** paulopimenta997@gmail.com
+
+## Estatísticas
+
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=paulopimenta6&show_icons=true&theme=dracula&locale=pt-br" alt="Estatísticas do GitHub" />
+</p>
+
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=paulopimenta6&layout=compact&theme=dracula&locale=pt-br" alt="Linguagens mais usadas" />
+</p>
