@@ -73,23 +73,6 @@ Alguns códigos estão integrados com contextos específicos. Por exemplo, no di
 
 ---
 
-## 📚 Referências
-
-### 📘 Python
-
-- *Introdução à Programação com Python* – Novatec  
-- *Python: Escreva seus Primeiros Programas* – Casa do Código  
-- *Introdução à Computação Usando Python* – LTC
-
-### 📘 C e C++
-
-- *C++ Absoluto* – Pearson  
-- *Algoritmos e Programação em Linguagem C* – Saraiva  
-- *Introdução à Programação com a Linguagem C* – Novatec  
-- *Programação em Baixo Nível* – Novatec
-
----
-
 ## 📬 Contato
 
 - 📧 **Email:** paulopimenta1850@gmail.com  
