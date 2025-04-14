@@ -29,7 +29,6 @@ Sou meteorologista formado pela USP, apaixonado por estatística, ciência de da
 
 - [Introdução](#introdução)
 - [Organização](#organização)
-- [Referências](#referências)
 - [Contato](#contato)
 - [Estatísticas](#estatísticas)
 
