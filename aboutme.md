@@ -3,7 +3,7 @@
 - [Um pouco sobre mim](#Um-pouco-sobre-mim)
 - [Um pouco do que venho desenvolvendo](#Um-pouco-do-que-venho-desenvolvendo)
 - [Um pocuo dos meus gostos](#Um-pocuo-dos-meus-gostos)
-- [Onde estou?](#Onde-estou-?)
+- [Onde estou?](#Onde-estou)
 
 ### Um pouco sobre mim
 
@@ -39,7 +39,7 @@ Por conta destas atividades venho me dedicado a projetos pessoais em linguagens 
 
 Atualmente tenho produzido pouca coisa em C/C++, mas em breve espero fazer alguma coisa...
 
-### Um pocuo dos meus gostos
+### Um pouco dos meus gostos
 
 Posso dizer que tenho gostos um tanto quanto peculiares e dentre eles se encontram: estudar, fazer origamis, desenhar, fotografar, ler, jogar video game e judô.
 
@@ -61,8 +61,8 @@ Posso dizer que tenho gostos um tanto quanto peculiares e dentre eles se encontr
 
 Gosto bastante de redes sociais, apesar de não viver nelas diariamente. Acredito que sejam diários virtuais, formas de se conectar a pessoas e comunidades legais, fazer novas amizades e trocas conhecimento. Estou nas redes:
 
-[Linkedin](https://www.linkedin.com/in/paulo-henrique-pimenta/)
-[Instagram](https://www.instagram.com/paulopimenta6/)
-[Facebook](https://web.facebook.com/paulo.h.pimenta/)
-[500px](https://500px.com/p/paulopimenta6?view=photos)
-[YouTube](https://www.youtube.com/@paulopi997)
+- [Linkedin](https://www.linkedin.com/in/paulo-henrique-pimenta/)
+- [Instagram](https://www.instagram.com/paulopimenta6/)
+- [Facebook](https://web.facebook.com/paulo.h.pimenta/)
+- [500px](https://500px.com/p/paulopimenta6?view=photos)
+- [YouTube](https://www.youtube.com/@paulopi997)
