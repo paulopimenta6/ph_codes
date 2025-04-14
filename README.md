@@ -27,10 +27,10 @@ Sou meteorologista formado pela USP, apaixonado por estatística, ciência de da
 
 ## 📚 Índice
 
-- [Introdução](#Introdução)
-- [Organização](#Organização)
-- [Contato](#Contato)
-- [Estatísticas](#Estatísticas)
++ [Introdução](#🧠-introdução)
++ [Organização](#📂-organização)
++ [Contato](#📬-contato)
++ [Estatísticas](#📊-estatísticas)
 
 ---
 
