@@ -1,6 +1,6 @@
 # Repositório de Códigos do Paulo Pimenta
 
- - [About me](./aboutme.md)
+ - [Sobre mim](./aboutme.md)
 
 ## Índice
 
