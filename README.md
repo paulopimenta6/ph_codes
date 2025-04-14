@@ -1,61 +1,106 @@
-# Repositório de Códigos do Paulo Pimenta
+# 💻 Repositório de Códigos e Projetos de Paulo Pimenta
 
- - [Sobre mim](./aboutme.md)
+<p align="center">
+  <a href="https://github.com/paulopimenta6">
+    <img src="https://img.shields.io/github/followers/paulopimenta6?label=GitHub&style=social" alt="GitHub Followers">
+  </a>
+  <a href="https://www.linkedin.com/in/paulo-henrique-pimenta/">
+    <img src="https://img.shields.io/badge/LinkedIn-blue?logo=linkedin&style=flat" alt="LinkedIn">
+  </a>
+  <a href="https://www.instagram.com/paulopimenta6/">
+    <img src="https://img.shields.io/badge/Instagram-E4405F?logo=instagram&logoColor=white&style=flat" alt="Instagram">
+  </a>
+  <a href="https://www.youtube.com/@paulopi997">
+    <img src="https://img.shields.io/badge/YouTube-FF0000?logo=youtube&logoColor=white" alt="YouTube">
+  </a>
+</p>
 
-## Índice
+---
 
-- [Introdução](#Introdução)
-- [Organização](#Organização)
-- [Referências](#Referências)
-- [Contato](#Contato)
+## 👋 Sobre mim
 
-## Introdução
+Sou meteorologista formado pela USP, apaixonado por estatística, ciência de dados e desenvolvimento de sistemas. Atualmente estudo Ciência de Dados e estou finalizando uma especialização em Computação com ênfase em Java. Neste repositório você encontrará uma coleção de projetos pessoais e estudos nas mais diversas linguagens de programação.
 
-Este repositório contém códigos em C/C++, Python, R, PHP, Javascript, Java e Shell script desenvolvidos por Paulo Pimenta. Fique à vontade para copiar, entrar em contato e enviar sugestões. Ao longo do tempo novas tecnologias são adicionadas
+📄 [Leia mais sobre mim aqui](./aboutme.md)
 
-## Organização
+---
 
-Os códigos estão organizados em diretórios específicos para cada linguagem:
+## 📚 Índice
 
-- C/C++:  ```bash ~/c_cpp/src/```
-- Python: ```bash ~/python/```
+- [Introdução](#introdução)
+- [Organização](#organização)
+- [Referências](#referências)
+- [Contato](#contato)
+- [Estatísticas](#estatísticas)
 
-Algumas linguagens estão inseridas em seu contexto, por exemplo dentro de R há uma gama de códigos que exploram o universo do data science e faz uso do que estudei no meu TCC atrvés de um modelo numérico em fortran
+---
 
-Para uma melhor navegação:
+## 🧠 Introdução
+
+Este repositório contém códigos desenvolvidos ao longo da minha jornada acadêmica e profissional, escritos em:
+
+- C/C++
+- Python
+- R
+- PHP
+- Javascript
+- Java
+- Shell Script
+
+Fique à vontade para explorar os diretórios, copiar, adaptar e enviar sugestões ou colaborações. Ao longo do tempo, novas tecnologias e abordagens são adicionadas.
+
+---
+
+## 📂 Organização
+
+Os códigos estão organizados por linguagem em subdiretórios. Exemplos:
+
+- C/C++: `~/c_cpp/src/`
+- Python: `~/python/`
+
+Alguns códigos estão integrados com contextos específicos. Por exemplo, no diretório `R` há análises de ciência de dados que usam conceitos aplicados no meu TCC — o qual envolveu um modelo numérico atmosférico em Fortran.
+
+### 🔗 Acesso direto:
 
 - [C/C++](https://github.com/paulopimenta6/ph_codes/tree/master/c_cpp)
-- [R](https://github.com/paulopimenta6/ph_codes/tree/master/R)
 - [Python](https://github.com/paulopimenta6/ph_codes/tree/master/python)
+- [R](https://github.com/paulopimenta6/ph_codes/tree/master/R)
 - [PHP](https://github.com/paulopimenta6/ph_codes/tree/master/php)
-- [Javascript](https://github.com/paulopimenta6/ph_codes/tree/master/php)
+- [Javascript](https://github.com/paulopimenta6/ph_codes/tree/master/javascript)
 - [Java](https://github.com/paulopimenta6/ph_codes/tree/master/java)
 
-O script `make.sh` no diretório `c_cpp` realiza a compilação e move os binários resultantes para `~/bin/`.
+⚙️ O script `make.sh` no diretório `c_cpp` realiza a compilação e move os binários para `~/bin/`.
 
-## Referências
+---
 
-### Python:
+## 📚 Referências
 
-- **Introducao a programacao com Python** - Novatec
-- **Python "escreva seus primeiros programas"** - Casa do Codigo
-- **Introdução à Computação Usando Python - Um Foco no Desenvolvimento de Aplicações** - LTC
+### 📘 Python
 
-### C++11:
+- *Introdução à Programação com Python* – Novatec  
+- *Python: Escreva seus Primeiros Programas* – Casa do Código  
+- *Introdução à Computação Usando Python* – LTC
 
-- **C++ Absoluto** - Pearson
+### 📘 C e C++
 
-### C:
+- *C++ Absoluto* – Pearson  
+- *Algoritmos e Programação em Linguagem C* – Saraiva  
+- *Introdução à Programação com a Linguagem C* – Novatec  
+- *Programação em Baixo Nível* – Novatec
 
-- **Algoritmos e programacao em linguagem C** - Editora Saraiva
-- **Introducao a Programacao com a Linguagem C** - NOVATEC
-- **Programacao em Baixo Nivel** - NOVATEC
+---
 
-## Contato
+## 📬 Contato
 
-- **Email:** paulopimenta1850@gmail.com
+- 📧 **Email:** paulopimenta1850@gmail.com  
+- 🌐 [LinkedIn](https://www.linkedin.com/in/paulo-henrique-pimenta/)  
+- 📸 [Instagram](https://www.instagram.com/paulopimenta6/)  
+- 📷 [500px (fotografia)](https://500px.com/p/paulopimenta6?view=photos)  
+- 🎮 [YouTube](https://www.youtube.com/@paulopi997)
 
-## Estatísticas
+---
+
+## 📊 Estatísticas
 
 <p align="center">
   <img src="https://github-readme-stats.vercel.app/api?username=paulopimenta6&show_icons=true&theme=dracula&locale=pt-br" alt="Estatísticas do GitHub" />
@@ -63,4 +108,10 @@ O script `make.sh` no diretório `c_cpp` realiza a compilação e move os binár
 
 <p align="center">
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=paulopimenta6&layout=compact&theme=dracula&locale=pt-br" alt="Linguagens mais usadas" />
+</p>
+
+---
+
+<p align="center">
+  <img src="https://komarev.com/ghpvc/?username=paulopimenta6&style=flat-square&color=blue" alt="visitas no perfil"/>
 </p>
