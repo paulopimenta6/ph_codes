@@ -1,4 +1,4 @@
-## About me
+## Sobre mim
 
 <p align="center">
   <a href="https://github.com/paulopimenta6">
@@ -23,10 +23,11 @@
   <img src="https://img.shields.io/badge/C/C++-00599C?logo=c%2B%2B&logoColor=white" alt="C/C++">
 </p>
 
+### Índice
 
 - [Um pouco sobre mim](#Um-pouco-sobre-mim)
 - [Um pouco do que venho desenvolvendo](#Um-pouco-do-que-venho-desenvolvendo)
-- [Um pouco dos meus gostos](#Um-pocuo-dos-meus-gostos)
+- [Um pouco dos meus gostos](#Um-pouco-dos-meus-gostos)
 - [Onde estou?](#Onde-estou)
 
 ### Um pouco sobre mim
@@ -94,3 +95,11 @@ Gosto bastante de redes sociais, apesar de não viver nelas diariamente. Acredit
 - [Facebook](https://web.facebook.com/paulo.h.pimenta/)
 - [500px](https://500px.com/p/paulopimenta6?view=photos)
 - [YouTube](https://www.youtube.com/@paulopi997)
+
+#### Status no Github
+
+<img src="https://github-readme-stats.vercel.app/api?username=paulopimenta6&show_icons=true&theme=default" alt="GitHub Stats">
+
+#### Visitas no perfil
+
+<img src="https://komarev.com/ghpvc/?username=paulopimenta6&style=flat-square&color=blue" alt="visitas no perfil"/>
