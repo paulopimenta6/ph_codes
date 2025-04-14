@@ -1,8 +1,32 @@
 ## About me
 
+<p align="center">
+  <a href="https://github.com/paulopimenta6">
+    <img src="https://img.shields.io/github/followers/paulopimenta6?label=GitHub&style=social" alt="GitHub Followers">
+  </a>
+  <a href="https://www.linkedin.com/in/paulo-henrique-pimenta/">
+    <img src="https://img.shields.io/badge/LinkedIn-blue?logo=linkedin&style=flat&link=https://www.linkedin.com/in/paulo-henrique-pimenta/" alt="LinkedIn">
+  </a>
+  <a href="https://www.instagram.com/paulopimenta6/">
+    <img src="https://img.shields.io/badge/Instagram-E4405F?logo=instagram&logoColor=white&style=flat" alt="Instagram">
+  </a>
+  <a href="https://www.youtube.com/@paulopi997">
+    <img src="https://img.shields.io/badge/YouTube-FF0000?logo=youtube&logoColor=white" alt="YouTube">
+  </a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/R-276DC3?logo=r&logoColor=white" alt="R">
+  <img src="https://img.shields.io/badge/Java-007396?logo=java&logoColor=white" alt="Java">
+  <img src="https://img.shields.io/badge/SQLite-003B57?logo=sqlite&logoColor=white" alt="SQLite">
+  <img src="https://img.shields.io/badge/C/C++-00599C?logo=c%2B%2B&logoColor=white" alt="C/C++">
+</p>
+
+
 - [Um pouco sobre mim](#Um-pouco-sobre-mim)
 - [Um pouco do que venho desenvolvendo](#Um-pouco-do-que-venho-desenvolvendo)
-- [Um pocuo dos meus gostos](#Um-pocuo-dos-meus-gostos)
+- [Um pouco dos meus gostos](#Um-pocuo-dos-meus-gostos)
 - [Onde estou?](#Onde-estou)
 
 ### Um pouco sobre mim
@@ -23,7 +47,7 @@ Ao contrário do que todos pensam Meteorologia é um curso de ciências exatas e
   <em>Minha formatura na USP em 2019</em>
 </p>
 
-Durante o final de curso pude trabalhar com modelagem de dispersão de fluidos do CMAS (RLINE) o qual apliquei alguns casos teste para o meu TCC. Naquele momento era preciso ter o processador de dados e o pré-processador. Iniciei um estágio, o qual fui efetivado, na ATECH, uma empresa do grupo Embraer. Fui desenvolvedor de sistemas trabalhando na nova geração do sistema de controle de tráfego aéreo, assim como na produção de automação de testes. Tive a chance de atuar na área de negócios e na célula de inovação tecnológica.
+Durante o final do curso, pude trabalhar com a modelagem de dispersão de fluidos utilizando o CMAS (RLINE). Apliquei alguns casos de teste com ele no meu TCC. Naquele momento era preciso ter o processador de dados e o pré-processador. Iniciei um estágio, o qual fui efetivado, na ATECH, uma empresa do grupo Embraer. Fui desenvolvedor de sistemas trabalhando na nova geração do sistema de controle de tráfego aéreo, assim como na produção de automação de testes. Tive a chance de atuar na área de negócios e na célula de inovação tecnológica.
 
 <p align="center">
   <img src="./aboutme/IMG-20180522-WA0002.jpg" alt="Apresentado os resultados das automações em um congresso" width="250">
@@ -31,22 +55,26 @@ Durante o final de curso pude trabalhar com modelagem de dispersão de fluidos d
   <em>Apresentando em um congresso de engenharia sobre automações de testes usando Python</em>
 </p>
 
+Ao longo da jornada passei por outras empresas como AT&M, FBM Brasil e META (uma consultoria de tecnologia). 
+
 ### Um pouco do que venho desenvolvendo
 
-Atualmente sou desenvolvedor de sistemas e possuo interesses nas áreas de computação e dados, por conta desta razão iniciei uma segunda graduação em ciência de dados. Também estou no término de uma especialização em computação com ênfase em Java a qual venho me surpreendendo.
+ Iniciei uma segunda graduação em ciência de dados. Também estou no término de uma especialização em computação com ênfase em Java a qual venho me surpreendendo.
 
 Por conta destas atividades venho me dedicado a projetos pessoais em linguagens como Java, R e Python, ou seja, tanto em computação quanto em ciência de dados. Há outros projetos em que venho realizando com o SQLite, um simples, mas poderoso banco de dados relacional.
 
 Atualmente tenho produzido pouca coisa em C/C++, mas em breve espero fazer alguma coisa...
 
+Em relação a ciência de dados venho explorado bastante sobre algoritmos de classificação, métodos inferenciais, modelos não paramétricos, modelos preditivos e métodos de reconstrução de dados. Venho estudando e desenvolvido bastante coisa tanto em estatística clássica quanto em Machine Learning.
+
 ### Um pouco dos meus gostos
 
 Posso dizer que tenho gostos um tanto quanto peculiares e dentre eles se encontram: estudar, fazer origamis, desenhar, fotografar, ler, jogar video game e judô.
 
-- Estudo por conta própria por acreditar que esta é uma das vententes de crescimento pessoal.
+- Estudo por conta própria por acreditar que esta é uma das vertentes de crescimento pessoal.
 - Faço origamis por sempre admirar essa arte e por acreditar que ela possa ajudar no desenvolvimento. 
 - Desenho por ter inspiração.
-- Fotografia é uma das formas de eternizar lembrancas e bons momentos.
+- Fotografia é uma das formas de eternizar lembranças e bons momentos.
 - Ler por hábito e gostar
 - Jogar video game por gostar e por ser um fã da Nintendo!
 - Judô pela disciplina, força e pela bela cultura japonesa.
