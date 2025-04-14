@@ -8,4 +8,5 @@ Ao contrário do que todos pensam Meteorologia é um curso de ciências exatas e
 
 <p align="center">
   <img src="./aboutme/IMG_20190816_134532.jpg" alt="Minha formatura" width="250">
+  <figcaption>Minha formatura</figcaption>
 </p>
