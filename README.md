@@ -53,7 +53,7 @@ O script `make.sh` no diretório `c_cpp` realiza a compilação e move os binár
 
 ## Contato
 
-- **Email:** paulopimenta997@gmail.com
+- **Email:** paulopimenta1850@gmail.com
 
 ## Estatísticas
 
