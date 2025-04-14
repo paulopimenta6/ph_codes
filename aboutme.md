@@ -7,9 +7,9 @@ Iniciei meus estudos na UERJ-Rio em Estatística (IME-UERJ), ciência a qual sou
 Ao contrário do que todos pensam Meteorologia é um curso de ciências exatas e possui uma grade focada nas áreas de matemática, computação, estatística e física. Ao longo do curso fiz estágios na universidade e fui bolsista PIBIC.
 
 <p align="left">
-  <img src="./aboutme/20180126_194438.jpg" alt="Minha formatura" width="250">
+  <img src="./aboutme/aluno_1.png" alt="Minha releeitura" width="250">
   <br>
-  <em>Passeando pela cidade de São Paulo em 2018</em>
+  <em>Minha releeitura feita por mim após assistir "Vidas ao vento" de Hayao Myazaki</em>
 </p>
 
 <p align="right">
@@ -23,5 +23,5 @@ Durante o final de curso pude trabalhar com modelagem de dispersão de fluidos d
 <p align="center">
   <img src="./aboutme/IMG-20180522-WA0002.jpg" alt="Apresentado os resultados das automações em um congresso" width="250">
   <br>
-  <em>Minha formatura na USP em 2019</em>
+  <em>Apresentando em um congresso de engenharia sobre automações de testes usando Python</em>
 </p>
