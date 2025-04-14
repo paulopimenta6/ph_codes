@@ -34,7 +34,7 @@ Sou meteorologista formado pela USP, apaixonado por estatística, ciência de da
 
 ---
 
-## 🧠 Introdução
+## Introdução
 
 Este repositório contém códigos desenvolvidos ao longo da minha jornada acadêmica e profissional, escritos em:
 
@@ -50,7 +50,7 @@ Fique à vontade para explorar os diretórios, copiar, adaptar e enviar sugestõ
 
 ---
 
-## 📂 Organização
+## Organização
 
 Os códigos estão organizados por linguagem em subdiretórios. Exemplos:
 
@@ -59,7 +59,7 @@ Os códigos estão organizados por linguagem em subdiretórios. Exemplos:
 
 Alguns códigos estão integrados com contextos específicos. Por exemplo, no diretório `R` há análises de ciência de dados que usam conceitos aplicados no meu TCC — o qual envolveu um modelo numérico atmosférico em Fortran.
 
-### 🔗 Acesso direto:
+### Acesso direto:
 
 - [C/C++](https://github.com/paulopimenta6/ph_codes/tree/master/c_cpp)
 - [Python](https://github.com/paulopimenta6/ph_codes/tree/master/python)
@@ -72,7 +72,7 @@ Alguns códigos estão integrados com contextos específicos. Por exemplo, no di
 
 ---
 
-## 📬 Contato
+## Contato
 
 - 📧 **Email:** paulopimenta1850@gmail.com  
 - 🌐 [LinkedIn](https://www.linkedin.com/in/paulo-henrique-pimenta/)  
@@ -82,7 +82,7 @@ Alguns códigos estão integrados com contextos específicos. Por exemplo, no di
 
 ---
 
-## 📊 Estatísticas
+## Estatísticas
 
 <p align="center">
   <img src="https://github-readme-stats.vercel.app/api?username=paulopimenta6&show_icons=true&theme=dracula&locale=pt-br" alt="Estatísticas do GitHub" />
