@@ -1,6 +1,6 @@
 if(!require(pacman)) install.packages("pacman")
 library(pacman)
-pacman::p_load(mice, ROSE, VIM)
+pacman::p_load(mice, VIM)
 library(dplyr)
 source("./src/data/script_analise_dados_elsa_Var_Lib.R")
 ################################################################################
@@ -82,19 +82,19 @@ dadosOnda3Mice <- data.frame(
   pad = dfPAD$PAD_onda3
 )
 ################################################################################
-agg_plot <- aggr(dadosOnda1Mice, col = c('navyblue', 'red'), 
+agg_plot <- VIM::aggr(dadosOnda1Mice, col = c('navyblue', 'red'), 
                  numbers = TRUE, sortvars = TRUE, 
                  labels = names(dadosOnda1Mice), 
                  cex.axis = 0.7, cex.numbers = 0.5,  # Ajuste o tamanho dos números
                  ylab = c("Histogram of missing data - onda 1", "Pattern - onda 1"))
 
-agg_plot <- aggr(dadosOnda2Mice, col = c('navyblue', 'red'), 
+agg_plot <- VIM::aggr(dadosOnda2Mice, col = c('navyblue', 'red'), 
                  numbers = TRUE, sortvars = TRUE, 
                  labels = names(dadosOnda2Mice), 
                  cex.axis = 0.7, cex.numbers = 0.5,  # Ajuste o tamanho dos números
                  ylab = c("Histogram of missing data - onda 2", "Pattern - onda 2"))
 
-agg_plot <- aggr(dadosOnda3Mice, col = c('navyblue', 'red'), 
+agg_plot <- VIM::aggr(dadosOnda3Mice, col = c('navyblue', 'red'), 
                  numbers = TRUE, sortvars = TRUE, 
                  labels = names(dadosOnda3Mice), 
                  cex.axis = 0.7, cex.numbers = 0.5,  # Ajuste o tamanho dos números
