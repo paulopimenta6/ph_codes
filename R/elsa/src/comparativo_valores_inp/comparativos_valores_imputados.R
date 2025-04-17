@@ -1,7 +1,30 @@
-source("./src/data_kNN_v2.R")
-source("./src/mice_inputation_v2.R")
+source("./src/data/data_kNN_v2.R")
+source("./src/data/mice_inputation_v2.R")
 library(ggplot2)
 library(dplyr)
+library(nortest)
+################################################################################
+remove_outliers <- function(vetor, metodo = "IQR", lim = 1.5) {
+  if (!is.numeric(vetor)) {
+    stop("O vetor fornecido não é numérico.")
+  }
+  
+  if (metodo == "IQR") {
+    Q1 <- quantile(vetor, 0.25, na.rm = TRUE)
+    Q3 <- quantile(vetor, 0.75, na.rm = TRUE)
+    IQR <- Q3 - Q1
+    limite_inferior <- Q1 - lim * IQR
+    limite_superior <- Q3 + lim * IQR
+    return(vetor[vetor >= limite_inferior & vetor <= limite_superior])
+  } else if (metodo == "Zscore") {
+    media <- mean(vetor, na.rm = TRUE)
+    dp <- sd(vetor, na.rm = TRUE)
+    z_scores <- (vetor - media) / dp
+    return(vetor[abs(z_scores) < lim])
+  } else {
+    stop("Método inválido. Use 'IQR' ou 'Zscore'.")
+  }
+}
 ################################################################################
 ### dados onda 1 usando pmm
 ### data frame pmm: dadosOnda1Mice_inp
@@ -459,3 +482,145 @@ ggplot(df_pad_onda3, aes(x = Metodo, y = pad, fill = Metodo)) +
   geom_boxplot(alpha = 0.7) +
   labs(title = "Boxplot de PAD - Onda 3", x = "Método", y = "PAD") +
   theme_minimal()
+################################################################################
+################################################################################
+####################### Evaluating the data ####################################
+################################################################################
+################################################################################
+### Onda 1
+### Potassio
+potassio_onda1 <- na.omit(dfPotassio$pot_onda1)
+attributes(potassio_onda1) <- NULL ### Removendo os attributes referentes aos valores nulos
+potassio_kNN_onda1 <- dadosOnda1kNN_inp$pot
+potassio_pmm_onda1 <- dadosOnda1Mice_inp$pot
+
+ad.test(potassio_kNN_onda1)  
+ad.test(potassio_pmm_onda1)
+
+wilcox.test(potassio_kNN_onda1, potassio_pmm_onda1, paired = TRUE)
+
+### Sodio
+sodio_onda1 <- na.omit(dfSodio$sod_onda1)
+attributes(sodio_onda1) <- NULL ### Removendo os attributes referentes aos valores nulos
+sodio_kNN_onda1 <-dadosOnda1kNN_inp$sod 
+sodio_pmm_onda1 <- dadosOnda1Mice_inp$sod
+
+ad.test(sodio_kNN_onda1)  
+ad.test(sodio_pmm_onda1)
+
+wilcox.test(sodio_kNN_onda1, sodio_pmm_onda1, paired = TRUE)
+
+### PAS
+pas_onda1 <- na.omit(dfPAS$PAS_onda1)
+attributes(pas_onda1) <- NULL
+pas_kNN_onda1 <- dadosOnda1kNN_inp$pas
+pas_pmm_onda1 <- dadosOnda1Mice_inp$pas
+
+ad.test(pas_kNN_onda1)  
+ad.test(pas_pmm_onda1)
+
+wilcox.test(pas_kNN_onda1, pas_pmm_onda1, paired = TRUE)
+
+### PAD
+pad_onda1 <- na.omit(dfPAD$PAD_onda1)
+attributes(pad_onda1) <- NULL
+pad_kNN_onda1 <- dadosOnda1kNN_inp$pad
+pad_pmm_onda1 <- dadosOnda1Mice_inp$pad
+
+ad.test(pad_kNN_onda1)  
+ad.test(pad_pmm_onda1)
+
+wilcox.test(pad_kNN_onda1, pad_pmm_onda1, paired = TRUE)
+################################################################################
+################################################################################
+### Onda 2
+### Potassio
+potassio_onda2 <- na.omit(dfPotassio$pot_onda2)
+attributes(potassio_onda2) <- NULL ### Removendo os attributes referentes aos valores nulos
+potassio_kNN_onda2 <- dadosOnda2kNN_inp$pot
+potassio_pmm_onda2 <- dadosOnda2Mice_inp$pot
+
+ad.test(potassio_kNN_onda2)  
+ad.test(potassio_pmm_onda2)
+
+wilcox.test(potassio_kNN_onda2, potassio_pmm_onda2, paired = TRUE)
+
+### Sodio
+sodio_onda2 <- na.omit(dfSodio$sod_onda2)
+attributes(sodio_onda2) <- NULL ### Removendo os attributes referentes aos valores nulos
+sodio_kNN_onda2 <-dadosOnda2kNN_inp$sod 
+sodio_pmm_onda2 <- dadosOnda2Mice_inp$sod
+
+ad.test(sodio_kNN_onda2)  
+ad.test(sodio_pmm_onda2)
+
+wilcox.test(sodio_kNN_onda2, sodio_pmm_onda2, paired = TRUE)
+
+### PAS
+pas_onda2 <- na.omit(dfPAS$PAS_onda2)
+attributes(pas_onda2) <- NULL
+pas_kNN_onda2 <- dadosOnda2kNN_inp$pas
+pas_pmm_onda2 <- dadosOnda2Mice_inp$pas
+
+ad.test(pas_kNN_onda2)  
+ad.test(pas_pmm_onda2)
+
+wilcox.test(pas_kNN_onda2, pas_pmm_onda2, paired = TRUE)
+
+### PAD
+pad_onda2 <- na.omit(dfPAD$PAD_onda2)
+attributes(pad_onda2) <- NULL
+pad_kNN_onda2 <- dadosOnda2kNN_inp$pad
+pad_pmm_onda2 <- dadosOnda2Mice_inp$pad
+
+ad.test(pad_kNN_onda2)  
+ad.test(pad_pmm_onda2)
+
+wilcox.test(pad_kNN_onda2, pad_pmm_onda2, paired = TRUE)
+################################################################################
+################################################################################
+### Onda 3
+### Potassio
+potassio_onda3 <- na.omit(dfPotassio$pot_onda3)
+attributes(potassio_onda3) <- NULL ### Removendo os attributes referentes aos valores nulos
+potassio_kNN_onda3 <- dadosOnda3kNN_inp$pot
+potassio_pmm_onda3 <- dadosOnda3Mice_inp$pot
+
+ad.test(potassio_kNN_onda3)  
+ad.test(potassio_pmm_onda3)
+
+wilcox.test(potassio_kNN_onda3, potassio_pmm_onda3, paired = TRUE)
+
+### Sodio
+sodio_onda3 <- na.omit(dfSodio$sod_onda3)
+attributes(sodio_onda3) <- NULL ### Removendo os attributes referentes aos valores nulos
+sodio_kNN_onda3 <-dadosOnda3kNN_inp$sod 
+sodio_pmm_onda3 <- dadosOnda3Mice_inp$sod
+
+ad.test(sodio_kNN_onda3)  
+ad.test(sodio_pmm_onda3)
+
+wilcox.test(sodio_kNN_onda3, sodio_pmm_onda3, paired = TRUE)
+### PAS
+pas_onda3 <- na.omit(dfPAS$PAS_onda3)
+attributes(pas_onda3) <- NULL
+pas_kNN_onda3 <- dadosOnda3kNN_inp$pas
+pas_pmm_onda3 <- dadosOnda3Mice_inp$pas
+
+ad.test(pas_kNN_onda3)  
+ad.test(pas_pmm_onda3)
+
+wilcox.test(pas_kNN_onda3, pas_pmm_onda3, paired = TRUE)
+
+### PAD
+pad_onda3 <- na.omit(dfPAD$PAD_onda3)
+attributes(pad_onda3) <- NULL
+pad_kNN_onda3 <- dadosOnda3kNN_inp$pad
+pad_pmm_onda3 <- dadosOnda3Mice_inp$pad
+
+ad.test(pad_kNN_onda3)  
+ad.test(pad_pmm_onda3)
+
+wilcox.test(pad_kNN_onda3, pad_pmm_onda3, paired = TRUE)
+################################################################################
+################################################################################

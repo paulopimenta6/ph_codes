@@ -4,9 +4,6 @@
 library(readr)
 dir_dados="./dados_elsa/Lucia_Andrade_10_22_CSV.csv"
 
-### Importando dados de maneira absoleta 
-# importaDadosLib=read_csv2(dir_dados, na = c("", "NA"))
-### Importando os dados de forma melhorada
 importaDadosLib <- readr::read_csv2(
   dir_dados,
   locale = locale(decimal_mark = ","), # Define vírgula como separador decimal

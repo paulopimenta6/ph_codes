@@ -1,4 +1,4 @@
-source("./src/script_analise_dados_elsa_Var_Lib.R")
+source("./src/data/script_analise_dados_elsa_Var_Lib.R")
 
 colunas_hip <- c("hip_onda1", "hip_onda2", "hip_onda3")
 colunas_filt <- c("filt_onda1", "filt_onda2")
