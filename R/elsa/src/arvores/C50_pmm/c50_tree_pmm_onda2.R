@@ -1,5 +1,5 @@
 ### Passo 0: Carregar dados (ajuste o caminho do arquivo)
-source("./src/mice_inputation_v2.R")  # Verifique se esta etapa está importando 'data' corretamente
+source("./src/data/mice_inputation_v2.R")  # Verifique se esta etapa está importando 'data' corretamente
 
 ###Passo 1: Carregar os pacotes
 if(!require(pacman)) install.packages("pacman")
@@ -24,7 +24,7 @@ table(dadosOnda2Mice_inp_balanced$hip)
 dadosOnda2Mice_inp_balanced$hip <- ifelse(dadosOnda2Mice_inp_balanced$hip == "0", 'N', 'S')
 dadosOnda2Mice_inp_balanced$hip <- as.factor(dadosOnda2Mice_inp_balanced$hip)
 levels(dadosOnda2Mice_inp_balanced$hip)  #"N" e a categoria de referencia 
-dadosOnda2Mice_inp_balanced$hip <- relevel(dadosOnda2Mice_inp_balanced$hip, ref = "S")
+#dadosOnda2Mice_inp_balanced$hip <- relevel(dadosOnda2Mice_inp_balanced$hip, ref = "S")
 ################################################################################
 ### Agrupando as fracoes de treino e teste
 flag <- caret::createDataPartition(dadosOnda2Mice_inp_balanced$hip, p=0.7, list = F) 

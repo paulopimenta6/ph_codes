@@ -1,5 +1,5 @@
 ### Passo 0: Carregar dados (ajuste o caminho do arquivo)
-source("./src/data_kNN_v2.R")  # Verifique se esta etapa está importando 'data' corretamente
+source("./src/data/data_kNN_v2.R")  # Verifique se esta etapa está importando 'data' corretamente
 
 ###Passo 1: Carregar os pacotes
 if(!require(pacman)) install.packages("pacman")
@@ -29,7 +29,7 @@ table(dadosOnda2kNN_inp$hip)
 dadosOnda2kNN_inp$hip <- ifelse(dadosOnda2kNN_inp$hip == "0", 'N', 'S')
 dadosOnda2kNN_inp$hip <- as.factor(dadosOnda2kNN_inp$hip)
 levels(dadosOnda2kNN_inp$hip)  #"N" e a categoria de referencia 
-dadosOnda2kNN_inp$hip <- relevel(dadosOnda2kNN_inp$hip, ref = "S")
+#dadosOnda2kNN_inp$hip <- relevel(dadosOnda2kNN_inp$hip, ref = "S")
 ################################################################################
 ### Agrupando as fracoes de treino e teste
 flag <- caret::createDataPartition(dadosOnda2kNN_inp$hip, p=0.7, list = F) 

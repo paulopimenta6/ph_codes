@@ -1,5 +1,5 @@
 ### Passo 0: Carregar dados (ajuste o caminho do arquivo)
-source("./src/data_kNN_v2.R")  # Verifique se esta etapa está importando 'data' corretamente
+source("./src/data/data_kNN_v2.R")  # Verifique se esta etapa está importando 'data' corretamente
 
 ### Passo 1: Carregar os pacotes
 if(!require(pacman)) install.packages("pacman")
@@ -32,7 +32,7 @@ dadosOnda3kNN_inp$hip <- as.factor(dadosOnda3kNN_inp$hip)
 # Exibe os níveis atuais
 levels(dadosOnda3kNN_inp$hip)  # Deve mostrar "N" e "S"
 # Define "S" como a categoria de referência
-dadosOnda3kNN_inp$hip <- relevel(dadosOnda3kNN_inp$hip, ref = "S")
+#dadosOnda3kNN_inp$hip <- relevel(dadosOnda3kNN_inp$hip, ref = "S")
 
 ################################################################################
 ### Passo 3: Divisão treino-teste

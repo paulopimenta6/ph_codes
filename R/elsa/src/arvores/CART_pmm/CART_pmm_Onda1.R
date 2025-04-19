@@ -1,5 +1,5 @@
 ### Passo 0: Carregar dados (ajuste o caminho do arquivo)
-source("./src/mice_inputation_v2.R")  # Verifique se esta etapa está importando 'data' corretamente
+source("./src/data/mice_inputation_v2.R")  # Verifique se esta etapa está importando 'data' corretamente
 
 ### Passo 1: Carregar os pacotes
 if(!require(pacman)) install.packages("pacman")
@@ -28,7 +28,7 @@ dadosOnda1Mice_inp_balanced$hip <- as.factor(dadosOnda1Mice_inp_balanced$hip)
 # Exibe os níveis atuais
 levels(dadosOnda1Mice_inp_balanced$hip)  # Deve mostrar "N" e "S"
 # Define "S" como a categoria de referência
-dadosOnda1Mice_inp_balanced$hip <- relevel(dadosOnda1Mice_inp_balanced$hip, ref = "S")
+#dadosOnda1Mice_inp_balanced$hip <- relevel(dadosOnda1Mice_inp_balanced$hip, ref = "S")
 
 ################################################################################
 ### Passo 3: Divisão treino-teste
@@ -37,7 +37,6 @@ train <- dadosOnda1Mice_inp_balanced[flag, ]
 dim(train)
 test <- dadosOnda1Mice_inp_balanced[-flag, ]
 dim(test)
-
 ################################################################################
 ### Passo 4: Treino do modelo
 mod <- rpart(hip ~ ., data = train, method = "class")

@@ -1,5 +1,5 @@
 ### Passo 0: Carregar dados (ajuste o caminho do arquivo)
-source("./src/data_kNN_v2.R")  # Verifique se esta etapa está importando 'data' corretamente
+source("./src/data/data_kNN_v2.R")  # Verifique se esta etapa está importando 'data' corretamente
 
 ### Passo 1: Carregar os pacotes
 if(!require(pacman)) install.packages("pacman")
@@ -18,15 +18,15 @@ summary(dadosOnda2kNN_inp)
 # Exibe os níveis atuais
 levels(dadosOnda2kNN_inp$hip)  # Deve mostrar "N" e "S"
 # Define "S" como a categoria de referência
-dadosOnda2kNN_inp$hip <- relevel(dadosOnda2kNN_inp$hip, ref = "S")
+#dadosOnda2kNN_inp$hip <- relevel(dadosOnda2kNN_inp$hip, ref = "S")
 
 ################################################################################
 ### Passo 3: Divisão treino-teste
-flag <- caret::createDataPartition(dadosOnda2kNN_inp_balanced$hip, p = 0.7, list = FALSE)
-train <- dadosOnda2kNN_inp_balanced[flag, ]
+flag <- caret::createDataPartition(dadosOnda2kNN_inp$hip, p = 0.7, list = FALSE)
+train <- dadosOnda2kNN_inp[flag, ]
 dim(train)
-test <- dadosOnda2kNN_inp_balanced[dadosOnda2kNN_inp
-dim(test)dadosOnda2kNN_inp
+test <- dadosOnda2kNN_inp[-flag,]
+dim(test)
 
 ########dadosOnda2kNN_inp##############################################
 ### Passo 4: Treino do modelo

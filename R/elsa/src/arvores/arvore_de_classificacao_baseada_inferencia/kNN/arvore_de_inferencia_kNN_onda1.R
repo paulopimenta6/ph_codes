@@ -5,7 +5,7 @@ library(pacman)
 pacman::p_load(partykit, MLmetrics, caret, ggparty, ROSE)
 ################################################################################
 ### Carregar dados (ajuste o caminho do arquivo)
-source("./src/data_kNN_v2.R")  # Verifique se esta etapa está importando 'data' corretamente
+source("./src/data/data_kNN_v2.R")  # Verifique se esta etapa está importando 'data' corretamente
 ################################################################################
 ### Pré-processamento
 dadosOnda1 <- dadosOnda1kNN_inp
@@ -22,7 +22,7 @@ table(dadosOnda1kNN_inp_balanced$hip)
 ################################################################################
 dadosOnda1kNN_inp_balanced$hip <- ifelse(dadosOnda1kNN_inp_balanced$hip == 0, 'N', 'S')
 dadosOnda1kNN_inp_balanced$hip <- as.factor(dadosOnda1kNN_inp_balanced$hip)
-dadosOnda1kNN_inp_balanced$hip <- relevel(dadosOnda1kNN_inp_balanced$hip, ref="S")
+#dadosOnda1kNN_inp_balanced$hip <- relevel(dadosOnda1kNN_inp_balanced$hip, ref="S")
 ################################################################################
 flag <- caret::createDataPartition(dadosOnda1kNN_inp_balanced$hip, p=0.6, list=F)
 train <- dadosOnda1kNN_inp_balanced[flag, ]

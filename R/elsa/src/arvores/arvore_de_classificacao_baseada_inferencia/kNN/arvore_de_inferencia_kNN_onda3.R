@@ -5,23 +5,23 @@ library(pacman)
 pacman::p_load(partykit, MLmetrics, caret, ggparty)
 ################################################################################
 ### Carregar dados (ajuste o caminho do arquivo)
-source("./src/data_kNN_v2.R")  # Verifique se esta etapa está importando 'data' corretamente
+source("./src/data/data_kNN_v2.R")  # Verifique se esta etapa está importando 'data' corretamente
 ################################################################################
 ### Pré-processamento
-dadosOnda2 <- dadosOnda2kNN_inp
-View(dadosOnda2kNN_inp)   
-glimpse(dadosOnda2kNN_inp)
-table(dadosOnda2kNN_inp$hip)
-summary(dadosOnda2kNN_inp)
+dadosOnda3 <- dadosOnda3kNN_inp
+View(dadosOnda3kNN_inp)   
+glimpse(dadosOnda3kNN_inp)
+table(dadosOnda3kNN_inp$hip)
+summary(dadosOnda3kNN_inp)
 
-dadosOnda2$hip <- ifelse(dadosOnda2$hip == 0, 'N', 'S')
-dadosOnda2$hip <- as.factor(dadosOnda2$hip)
-dadosOnda2$hip <- relevel(dadosOnda2$hip, ref="S")
+dadosOnda3$hip <- ifelse(dadosOnda3$hip == 0, 'N', 'S')
+dadosOnda3$hip <- as.factor(dadosOnda3$hip)
+#dadosOnda3$hip <- relevel(dadosOnda3$hip, ref="S")
 ################################################################################
-flag <- caret::createDataPartition(dadosOnda2$hip, p=0.6, list=F)
-train <- dadosOnda2[flag, ]
+flag <- caret::createDataPartition(dadosOnda3$hip, p=0.6, list=F)
+train <- dadosOnda3[flag, ]
 dim(train)
-test <- dadosOnda2[-flag, ]
+test <- dadosOnda3[-flag, ]
 dim(test)
 ################################################################################
 ### Garantindo reprodutibilidade
