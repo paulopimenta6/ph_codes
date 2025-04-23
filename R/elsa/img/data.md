@@ -7,7 +7,7 @@
 
 ### Summary Statistics — Wave 1 
 
-| Variable    | Statistic       | `dadosOnda1Mice_inp` | `dadosOnda1kNN_inp` |
+| Variable    | Statistic       | `pmm` | `kNN` |
 |-------------|------------------|-----------------------|----------------------|
 | **hip**     | 0                | 3411                  | 3410                 |
 |             | 1                | 1650                  | 1651                 |
@@ -50,7 +50,7 @@
 
 ### Summary Statistics — Wave 2
 
-| Variable     | Statistic       | `dadosOnda2Mice_inp` | `dadosOnda2kNN_inp` |
+| Variable     | Statistic       | `pmm` | `kNN` |
 |--------------|------------------|-----------------------|----------------------|
 | **hip**      | 0                | 3140                  | 2893                 |
 |              | 1                | 1921                  | 2168                 |
@@ -94,7 +94,7 @@
 
 ### Summary Statistics — Wave 3
 
-| Variable | Statistic       | `dadosOnda3Mice_inp` | `dadosOnda3kNN_inp` |
+| Variable | Statistic       | `pmm` | `kNN` |
 |----------|------------------|-----------------------|----------------------|
 | **hip**  | 0                | 2813                  | 2277                 |
 |          | 1                | 2248                  | 2784                 |
@@ -177,3 +177,17 @@
 |          | kNN                | 79.63322 | 79.5   | 11.03426            |
 |          | PMM                | 76.95673 | 76.5   | 10.69407            |
 
+
+### Graphics of missing data
+
+<p align="center">
+  <img src="img\missing_data/onda1.png" alt="Ubuntu" width="300">
+</p>
+
+<p align="center">
+  <img src="img\missing_data/onda2.png" alt="Ubuntu" width="300">
+</p>
+
+<p align="center">
+  <img src="img\missing_data/onda3.png" alt="Ubuntu" width="300">
+</p>
