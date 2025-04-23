@@ -185,10 +185,12 @@
   <figcaption><em>Figura 1:</em> Histograma e padrão de valores ausentes - Onda 1</figcaption>
 </figure>
 
+
 <figure style="text-align: center;">
   <img src="missing_data/onda2.png" alt="Histogram and pattern of missing values - wave 2" width="900">
   <figcaption><em>Figura 2:</em> Histograma e padrão de valores ausentes - Onda 2</figcaption>
 </figure>
+
 
 <figure style="text-align: center;">
   <img src="missing_data/onda3.png" alt="Histogram and pattern of missing values - wave 3" width="900">
