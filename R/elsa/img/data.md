@@ -192,5 +192,5 @@
 
 <figure style="text-align: center;">
   <img src="missing_data/onda3.png" alt="Histogram and pattern of missing values - wave 3" width="900">
-  <figcaption><em>Figura 2:</em> Histograma e padrão de valores ausentes - Onda 3</figcaption>
+  <figcaption><em>Figura 3:</em> Histograma e padrão de valores ausentes - Onda 3</figcaption>
 </figure>
