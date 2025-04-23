@@ -181,13 +181,13 @@
 ### Graphics of missing data
 
 <p align="center">
-  <img src="img\missing_data/onda1.png" alt="Ubuntu" width="300">
+  <img src="img/missing_data/onda1.png" alt="Histogram and pattern of missing values - wave 1" width="300">
 </p>
 
 <p align="center">
-  <img src="img\missing_data/onda2.png" alt="Ubuntu" width="300">
+  <img src="img/missing_data/onda2.png" alt="Histogram and pattern of missing values - wave 2" width="300">
 </p>
 
 <p align="center">
-  <img src="img\missing_data/onda3.png" alt="Ubuntu" width="300">
+  <img src="img/missing_data/onda3.png" alt="Histogram and pattern of missing values - wave 3" width="300">
 </p>
