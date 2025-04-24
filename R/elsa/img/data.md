@@ -197,22 +197,68 @@
 
 ### Distribution of variables (original data, kNN and pmm)
 
+#### Wave 1
+
 <p align="center">
     <img src="missing_data/onda1/distribuicao_potassio_onda1.png" alt="Sodium - Density x interval class - wave 1" width="900">
 </p>
-<p align="center"><em>Figure 1: Histogram and pattern of missing values for wave 1.</em></p>
+<p align="center"><em>Figure 4: Histogram and pattern of missing values for wave 1.</em></p>
 
 <p align="center">
   <img src="missing_data/onda1/distribuicao_sodio_onda1.png" alt="Potassium - Density x interval class - wave 1" width="900">
 </p>
-<p align="center"><em>Figure 2: Histogram and pattern of missing values for wave 2.</em></p>
+<p align="center"><em>Figure 5: Histogram and pattern of missing values for wave 1.</em></p>
 
 <p align="center">
   <img src="missing_data/onda1/distribuicao_pas_onda1.png" alt="PAS - Density x interval class - wave 1" width="900">
 </p>
-<p align="center"><em>Figure 3: Histogram and pattern of missing values for wave 3.</em></p>
+<p align="center"><em>Figure 6: Histogram and pattern of missing values for wave 1.</em></p>
 
 <p align="center">
   <img src="missing_data/onda1/distribuicao_pad_onda1.png" alt="PAD - Density x interval class - wave 1" width="900">
 </p>
-<p align="center"><em>Figure 3: Histogram and pattern of missing values for wave 3.</em></p>
+<p align="center"><em>Figure 7: Histogram and pattern of missing values for wave 1.</em></p>
+
+#### Wave 2 
+
+<p align="center">
+    <img src="missing_data/onda2/distribuicao_potassio_onda2.png" alt="Sodium - Density x interval class - wave 1" width="900">
+</p>
+<p align="center"><em>Figure 8: Histogram and pattern of missing values for wave 2.</em></p>
+
+<p align="center">
+  <img src="missing_data/onda2/distribuicao_sodio_onda2.png" alt="Potassium - Density x interval class - wave 1" width="900">
+</p>
+<p align="center"><em>Figure 9: Histogram and pattern of missing values for wave 2.</em></p>
+
+<p align="center">
+  <img src="missing_data/onda2/distribuicao_pas_onda2.png" alt="PAS - Density x interval class - wave 1" width="900">
+</p>
+<p align="center"><em>Figure 10: Histogram and pattern of missing values for wave 2.</em></p>
+
+<p align="center">
+  <img src="missing_data/onda2/distribuicao_pad_onda2.png" alt="PAD - Density x interval class - wave 1" width="900">
+</p>
+<p align="center"><em>Figure 11: Histogram and pattern of missing values for wave 2.</em></p>
+
+#### Wave 3 
+
+<p align="center">
+    <img src="missing_data/onda3/distribuicao_potassio_onda3.png" alt="Sodium - Density x interval class - wave 3" width="900">
+</p>
+<p align="center"><em>Figure 12: Histogram and pattern of missing values for wave 3.</em></p>
+
+<p align="center">
+  <img src="missing_data/onda3/distribuicao_sodio_onda3.png" alt="Potassium - Density x interval class - wave 3" width="900">
+</p>
+<p align="center"><em>Figure 13: Histogram and pattern of missing values for wave 3.</em></p>
+
+<p align="center">
+  <img src="missing_data/onda3/distribuicao_pas_onda3.png" alt="PAS - Density x interval class - wave 3" width="900">
+</p>
+<p align="center"><em>Figure 14: Histogram and pattern of missing values for wave 3.</em></p>
+
+<p align="center">
+  <img src="missing_data/onda3/distribuicao_pad_onda3.png" alt="PAD - Density x interval class - wave 3" width="900">
+</p>
+<p align="center"><em>Figure 15: Histogram and pattern of missing values for wave 3.</em></p>
