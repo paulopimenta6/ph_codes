@@ -180,19 +180,14 @@
 
 ### Graphics of missing data
 
-<figure style="text-align: center;">
+<p align="center">
   <img src="missing_data/onda1.png" alt="Histogram and pattern of missing values - wave 1" width="900">
-  <figcaption><em>Figura 1:</em> Histograma e padrão de valores ausentes - Onda 1</figcaption>
-</figure>
+</p>
 
-
-<figure style="text-align: center;">
+<p align="center">
   <img src="missing_data/onda2.png" alt="Histogram and pattern of missing values - wave 2" width="900">
-  <figcaption><em>Figura 2:</em> Histograma e padrão de valores ausentes - Onda 2</figcaption>
-</figure>
+</p>
 
-
-<figure style="text-align: center;">
+<p align="center">
   <img src="missing_data/onda3.png" alt="Histogram and pattern of missing values - wave 3" width="900">
-  <figcaption><em>Figura 3:</em> Histograma e padrão de valores ausentes - Onda 3</figcaption>
-</figure>
+</p>
