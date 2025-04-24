@@ -415,3 +415,39 @@
 | S         | 18     | 287    |
 
 
+### kNN
+#### Wave 1
+
+<p align="center">
+    <img src="arvores/arvore_inferencial_kNN/arvore_inferencial_kNN_onda1.png" alt="Árvore inferencial - wave 1" width="900">
+</p>
+<p align="center"><em>Figure 1: Árvore inferencial - wave 1.</em></p>
+
+<p align="center">
+  <img src="arvores/arvore_inferencial_kNN/classificacao_kNN_onda1.png" alt="Classificação - wave 1" width="900">
+</p>
+<p align="center"><em>Figure 2: Classificação - wave 1.</em></p>
+
+
+#### Wave 2 
+
+<p align="center">
+    <img src="arvores/arvore_inferencial_kNN/arvore_inferencial_kNN_onda2.png" alt="Árvore inferencial - wave 2" width="900">
+</p>
+<p align="center"><em>Figure 3: Árvore inferencial - wave 2.</em></p>
+
+<p align="center">
+  <img src="arvores/arvore_inferencial_kNN/classificacao_kNN_onda2.png" alt="Classificação - wave 2" width="900">
+</p>
+<p align="center"><em>Figure 4: Classificação - wave 2.</em></p>
+
+#### Wave 3 
+<p align="center">
+    <img src="arvores/arvore_inferencial_kNN/arvore_inferencial_kNN_onda3.png" alt="Árvore inferencial - wave 3" width="900">
+</p>
+<p align="center"><em>Figure 5: Árvore inferencial - wave 3.</em></p>
+
+<p align="center">
+  <img src="arvores/arvore_inferencial_kNN/classificacao_kNN_onda3.png" alt="Classificação - wave 3" width="900">
+</p>
+<p align="center"><em>Figure 6: Classificação - wave 3.</em></p>
