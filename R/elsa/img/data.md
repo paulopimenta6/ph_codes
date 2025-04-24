@@ -330,3 +330,64 @@
   <img src="missing_data/onda3/boxplot_pad_onda3.png" alt="PAD - Boxplot - wave 3" width="900">
 </p>
 <p align="center"><em>Figure 15: PAD - boxplot - wave 3.</em></p>
+
+### Imputation Method Comparison (kNN vs PMM) — Anderson-Darling & Wilcoxon Tests
+
+## Evaluation of Imputed Data: Comparison between kNN and PMM
+
+This section presents the results of the normality tests (Anderson-Darling) and the paired Wilcoxon test to compare the imputation methods `kNN` and `PMM` applied to the variables Potassium, Sodium, Systolic Blood Pressure (SBP), and Diastolic Blood Pressure (DBP) across three study waves.
+
+### 📊 Normality Test (Anderson-Darling)
+
+All imputed variables, using both `kNN` and `PMM` methods, showed **p-values < 2.2e-16**, indicating **non-normality**. Therefore, the **paired Wilcoxon test** was chosen for method comparison.
+
+---
+
+###  Results by Variable and Wave
+
+#### Potassium
+
+| Wave  | Wilcoxon Test (V) | p-value     | Significant Difference?  |
+|-------|--------------------|-------------|---------------------------|
+| Wave 1 | 1546.5             | 0.1203      |  No                     |
+| Wave 2 | 159197             | 6.726e-07   |  Yes                    |
+| Wave 3 | *(results not included)* | -       | -                         |
+
+####  Sodium
+
+| Wave  | Wilcoxon Test (V) | p-value     | Significant Difference?  |
+|-------|--------------------|-------------|---------------------------|
+| Wave 1 | 1310.5             | 0.003041    |  Yes                    |
+| Wave 2 | 197431             | < 2.2e-16   |  Yes                    |
+| Wave 3 | *(results not included)* | -       | -                         |
+
+#### Systolic Blood Pressure (SBP)
+
+| Wave  | Wilcoxon Test (V) | p-value     | Significant Difference?  |
+|-------|--------------------|-------------|---------------------------|
+| Wave 1 | 0                  | NA          |  Unable to evaluate (identical or zero values) |
+| Wave 2 | 72758              | < 2.2e-16   |  Yes                    |
+| Wave 3 | *(results not included)* | -       | -                         |
+
+#### Diastolic Blood Pressure (DBP)
+
+| Wave  | Wilcoxon Test (V) | p-value     | Significant Difference?  |
+|-------|--------------------|-------------|---------------------------|
+| Wave 1 | 0                  | NA          |  Unable to evaluate (identical or zero values) |
+| Wave 2 | 73178              | < 2.2e-16   |  Yes                    |
+| Wave 3 | *(results not included)* | -       | -                         |
+
+---
+
+#### General Interpretation
+
+- **Non-normality** was observed in all imputed datasets.
+- The comparison between imputation methods revealed:
+  - In **Wave 1**, only **Sodium** showed a significant difference.
+  - In **Wave 2**, **all variables** showed statistically significant differences between methods.
+  - **Wave 3** has not been included in this analysis yet.
+
+ The differences found in some variables suggest that `kNN` and `PMM` may impute values in **substantially different** ways, which deserves attention in data interpretation.
+
+---
+
