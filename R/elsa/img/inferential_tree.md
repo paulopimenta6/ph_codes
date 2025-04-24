@@ -5,15 +5,15 @@
 
 # Inference Tree Analysis Results (kNN)
 
-## Wave 1
+### Wave 1
 
-## 1. Original Class Distribution
+### 1. Original Class Distribution
 | Class | Count |
 |-------|-------|
 | 0     | 3410  |
 | 1     | 1651  |
 
-## 2. Summary Statistics of Key Predictors
+### 2. Summary Statistics of Key Predictors
 - **pot** (Potassium intake): Min 4.00, 1st Qu 20.00, Median 29.00, Mean 32.52, 3rd Qu 41.00, Max 144.00  
 - **sod** (Sodium intake): Min 9.0, 1st Qu 69.0, Median 101.0, Mean 109.3, 3rd Qu 144.0, Max 327.0  
 - **albCreat** (Albumin–Creatinine): Min 1.83, 1st Qu 5.09, Median 6.60, Mean 19.61, 3rd Qu 8.59, Max 5014.83  
@@ -21,17 +21,17 @@
 - **pas** (Systolic BP): Min 77.0, 1st Qu 108.0, Median 118.0, Mean 119.8, 3rd Qu 129.0, Max 219.5  
 - **pad** (Diastolic BP): Min 44.50, 1st Qu 67.50, Median 74.50, Mean 75.19, 3rd Qu 82.00, Max 131.50  
 
-## 3. Class Distribution After Undersampling
+### 3. Class Distribution After Undersampling
 | Class | Count |
 |-------|-------|
 | N (0) | 1651  |
 | S (1) | 1651  |
 
-## 4. Train/Test Split
+### 4. Train/Test Split
 - **Train:** 1982 observations × 7 variables  
 - **Test:** 1320 observations × 7 variables  
 
-## 5. Conditional Inference Tree Structure
+### 5. Conditional Inference Tree Structure
 - **Inner nodes:** 8  
 - **Terminal nodes:** 9  
 
@@ -53,7 +53,7 @@
   - `pas ≤ 139` → **S** (n = 117, err = 21.4%)  
   - `pas > 139` → **S** (n = 343, err = 0.3%)  
 
-## 6. Confusion Matrix & Key Metrics
+### 6. Confusion Matrix & Key Metrics
 
 |               | Reference N | Reference S |
 |---------------|-------------|-------------|
@@ -67,24 +67,24 @@
 - **F1 Score** (for S): 0.6686  
 - **Balanced Accuracy:** 0.7409  
 
-## 7. Prediction Distribution
+### 7. Prediction Distribution
 | Predicted | True N | True S |
 |-----------|--------|--------|
 | N         | 633    | 315    |
 | S         | 27     | 345    |
 
 
-## Wave 2
+### Wave 2
 
-# Inference Tree Analysis Results
+## Inference Tree Analysis Results
 
-## 1. Original Class Distribution
+### 1. Original Class Distribution
 | Class | Count |
 |-------|-------|
 | 0     | 2893  |
 | 1     | 2168  |
 
-## 2. Summary Statistics of Key Predictors
+### 2. Summary Statistics of Key Predictors
 - **pot** (Potassium intake): Min 1.50, 1st Qu 22.00, Median 29.00, Mean 33.93, 3rd Qu 43.00, Max 167.00  
 - **sod** (Sodium intake): Min 5.0, 1st Qu 70.0, Median 109.0, Mean 108.1, 3rd Qu 140.0, Max 303.0  
 - **albCreat** (Albumin–Creatinine): Min 0.000, 1st Qu 5.630, Median 7.395, Mean 24.353, 3rd Qu 10.380, Max 23049.850  
@@ -92,17 +92,17 @@
 - **pas** (Systolic BP): Min 72.5, 1st Qu 110.0, Median 121.5, Mean 124.9, 3rd Qu 134.5, Max 223.5  
 - **pad** (Diastolic BP): Min 44.00, 1st Qu 69.00, Median 76.50, Mean 77.46, 3rd Qu 85.00, Max 122.50  
 
-## 3. Class Distribution After Undersampling
+### 3. Class Distribution After Undersampling
 | Class | Count |
 |-------|-------|
 | N (0) | 2168  |
 | S (1) | 2168  |
 
-## 4. Train/Test Split
+### 4. Train/Test Split
 - **Train:** 3037 observations × 7 variables  
 - **Test:** 2024 observations × 7 variables  
 
-## 5. Conditional Inference Tree Structure
+### 5. Conditional Inference Tree Structure
 - **Inner nodes:** 8  
 - **Terminal nodes:** 9  
 
@@ -127,7 +127,7 @@
   - `pas ≤ 139` → Predict **S** (n = 117, err = 21.4%)  
   - `pas > 139` → Predict **S** (n = 343, err = 0.3%)  
 
-## 6. Confusion Matrix & Key Metrics
+### 6. Confusion Matrix & Key Metrics
 
 |               | Reference N | Reference S |
 |---------------|-------------|-------------|
@@ -141,7 +141,7 @@
 - **F1 Score** (for S): 0.7008  
 - **Balanced Accuracy:** 0.7672  
 
-## 7. Prediction Distribution
+### 7. Prediction Distribution
 | Predicted | True N | True S |
 |-----------|--------|--------|
 | N         | 1136   | 388    |
@@ -149,23 +149,23 @@
 
 ### Wave 3
 
-## 1. Original Class Distribution
+### 1. Original Class Distribution
 | Class | Count |
 |-------|-------|
 | 0     | 2273  |
 | 1     | 2788  |
 
-## 2. Summary Statistics of Key Predictors
+### 2. Summary Statistics of Key Predictors
 - **pot** (Potassium intake): Min 6.70, 1st Qu 48.30, Median 59.05, Mean 63.68, 3rd Qu 77.60, Max 226.50  
 - **sod** (Sodium intake): Min 10.0, 1st Qu 86.0, Median 125.0, Mean 116.9, 3rd Qu 140.5, Max 292.0  
 - **pas** (Systolic BP): Min 70.0, 1st Qu 114.0, Median 127.0, Mean 132.2, 3rd Qu 150.0, Max 223.0  
 - **pad** (Diastolic BP): Min 48.00, 1st Qu 71.50, Median 79.50, Mean 79.63, 3rd Qu 91.00, Max 133.00  
 
-## 3. Train/Test Split
+### 3. Train/Test Split
 - **Train:** 3037 observations × 5 variables  
 - **Test:** 2024 observations × 5 variables  
 
-## 4. Conditional Inference Tree Structure
+### 4. Conditional Inference Tree Structure
 - **Inner nodes:** 6  
 - **Terminal nodes:** 7  
 
@@ -183,7 +183,7 @@
   - **`pas ≤ 139.5`** → Predict **S** (n = 16, err = 31.2%)  
   - **`pas > 139.5`** → Predict **S** (n = 973, err = 0.0%)  
 
-## 5. Confusion Matrix & Key Metrics
+### 5. Confusion Matrix & Key Metrics
 
 |                 | Reference N | Reference S |
 |-----------------|-------------|-------------|
@@ -199,13 +199,13 @@
 - **Negative Predictive Value:** 0.6848  
 - **Balanced Accuracy:** 0.8120  
 
-## 6. Evaluation Metrics
+### 6. Evaluation Metrics
 - **Accuracy:** 0.79298  
 - **Precision (S):** 0.62511  
 - **Recall (S):** 0.99857  
 - **F1 Score (S):** 0.76889  
 
-## 7. Prediction Distribution
+### 7. Prediction Distribution
 | Predicted | True N | True S |
 |-----------|--------|--------|
 | N         | 908    | 418    |
@@ -215,19 +215,19 @@
 
 ### Wave 1
 
-# Inference Tree Analysis Results – Wave 1 (MICE‐Balanced)
+### Inference Tree Analysis Results – Wave 1 (MICE‐Balanced)
 
-## 1. Original Class Distribution
+### 1. Original Class Distribution
 | Class | Count |
 |-------|-------|
 | 0     | 1650  |
 | 1     | 1650  |
 
-## 2. Train/Test Split
+### 2. Train/Test Split
 - **Train:** 2310 observations × 7 variables  
 - **Test:** 990 observations × 7 variables  
 
-## 3. Conditional Inference Tree Structure
+### 3. Conditional Inference Tree Structure
 - **Inner nodes:** 9  
 - **Terminal nodes:** 10  
 
@@ -251,7 +251,7 @@
     - **`pad > 89.5`** → Predict **S** (n = 59, err = 0.0%)  
   - **`pas > 139.5`** → Predict **S** (n = 382, err = 0.0%)  
 
-## 4. Confusion Matrix & Key Metrics
+### 4. Confusion Matrix & Key Metrics
 
 |               | Reference N | Reference S |
 |---------------|-------------|-------------|
@@ -267,13 +267,13 @@
 - **Negative Predictive Value:** 0.6852  
 - **Balanced Accuracy:** 0.7556  
 
-## 5. Evaluation Metrics
+### 5. Evaluation Metrics
 - **Accuracy:** 0.75556  
 - **Precision (S):** 0.56566  
 - **Recall (S):** 0.91205  
 - **F1 Score (S):** 0.69825  
 
-## 6. Prediction Distribution
+### 6. Prediction Distribution
 | Predicted | True N | True S |
 |-----------|--------|--------|
 | N         | 468    | 215    |
@@ -281,7 +281,7 @@
 
 ### Wave 2
 
-# Inference Tree Analysis Results – Wave 2 (MICE-Balanced)
+## Inference Tree Analysis Results – Wave 2 (MICE-Balanced)
 
 ## 1. Original Class Distribution
 | Class | Count |
@@ -289,11 +289,11 @@
 | 0     | 1921  |
 | 1     | 1921  |
 
-## 2. Train/Test Split
+### 2. Train/Test Split
 - **Train:** 2690 observations × 7 variables  
 - **Test:** 1152 observations × 7 variables  
 
-## 3. Conditional Inference Tree Structure
+### 3. Conditional Inference Tree Structure
 - **Inner nodes:** 8  
 - **Terminal nodes:** 9  
 
@@ -315,7 +315,7 @@
     - `pad > 89` → Predict **S** (n = 50, err = 0.0%)  
   - **`pas > 139.5`** → Predict **S** (n = 452, err = 0.7%)  
 
-## 4. Confusion Matrix & Key Metrics
+### 4. Confusion Matrix & Key Metrics
 
 |                 | Reference N | Reference S |
 |-----------------|-------------|-------------|
@@ -331,13 +331,13 @@
 - **Negative Predictive Value:** 0.6933  
 - **Balanced Accuracy:** 0.7144  
 
-## 5. Evaluation Metrics
+### 5. Evaluation Metrics
 - **Accuracy:** 0.71441  
 - **Precision (S):** 0.65972  
 - **Recall (S):** 0.74074  
 - **F1 Score (S):** 0.69789  
 
-## 6. Prediction Distribution
+### 6. Prediction Distribution
 | Predicted | True N | True S |
 |-----------|--------|--------|
 | N         | 443    | 196    |
@@ -346,25 +346,25 @@
 
 ### Wave 3
 
-# Inference Tree Analysis Results – Wave 3 (MICE‐Balanced)
+## Inference Tree Analysis Results – Wave 3 (MICE‐Balanced)
 
-## 1. Original Class Distribution
+### 1. Original Class Distribution
 | Class | Count |
 |-------|-------|
 | 0     | 2813  |
 | 1     | 2248  |
 
-## 2. Summary Statistics of Key Predictors
+### 2. Summary Statistics of Key Predictors
 - **pot** (Potassium intake): Min 6.70, 1st Qu 43.50, Median 62.00, Mean 65.06, 3rd Qu 83.40, Max 226.50  
 - **sod** (Sodium intake): Min 10.0, 1st Qu 77.0, Median 113.0, Mean 114.8, 3rd Qu 150.0, Max 292.0  
 - **pas** (Systolic BP): Min 70.0, 1st Qu 111.0, Median 122.0, Mean 123.4, 3rd Qu 133.5, Max 223.0  
 - **pad** (Diastolic BP): Min 48.00, 1st Qu 69.50, Median 76.50, Mean 76.96, 3rd Qu 83.50, Max 133.00  
 
-## 3. Train/Test Split
+### 3. Train/Test Split
 - **Train:** 3 543 observations × 5 variables  
 - **Test:** 1 518 observations × 5 variables  
 
-## 4. Conditional Inference Tree Structure
+### 4. Conditional Inference Tree Structure
 - **Inner nodes:** 8  
 - **Terminal nodes:** 9  
 
@@ -386,7 +386,7 @@
   - **`pad ≤ 66.5`** → Predict **S** (n = 12, err = 16.7%)  
   - **`pad > 66.5`** → Predict **S** (n = 559, err = 2.1%)  
 
-## 5. Confusion Matrix & Key Metrics
+### 5. Confusion Matrix & Key Metrics
 
 |                 | Reference N | Reference S |
 |-----------------|-------------|-------------|
@@ -402,13 +402,13 @@
 - **Negative Predictive Value:** 0.6807  
 - **Balanced Accuracy:** 0.7022  
 
-## 6. Evaluation Metrics
+### 6. Evaluation Metrics
 - **Accuracy:** 0.73303  
 - **Precision (S):** 0.42582  
 - **Recall (S):** 0.94098  
 - **F1 Score (S):** 0.58631  
 
-## 7. Prediction Distribution
+### 7. Prediction Distribution
 | Predicted | True N | True S |
 |-----------|--------|--------|
 | N         | 825    | 387    |
