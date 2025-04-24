@@ -8,7 +8,8 @@
 ## Summary
 
 - [Data and its characteristics](#Data-and-its-characteristics)
-- [Graphical analysis](#Graphical-analysis)
+- [Initial exploratory analysis](#Initial-exploratory-analysis)
+- [Methods and analysis](#Methods-and-Analysis)
 
 ## About statistical Analysis
 
@@ -17,5 +18,8 @@
 [Data and its characteristics](./data.md)
 
 ## Graphical analysis
-[Graphical analysis](./analysis.md)
+[Initial exploratory analysis](./initial_exploratory_analysis.md)
+
+## Methods and analysis
+[Methods and analysis](./methods-and-analysis.md)
 

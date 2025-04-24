@@ -63,7 +63,9 @@ ggparty(ct, terminal_space = 0.3) +
   geom_edge_label() +
   geom_node_splitvar() +
   geom_node_plot(gglist = list(
-    geom_bar(aes(x = hip))))
+    geom_bar(aes(x = hip))))+ 
+  ggtitle("Árvore inferencial - Onda 2") +
+  theme(plot.title = element_text(hjust = 0.5, size = 14, face = "bold"))
 ################################################################################
 ### Classificacao das variaveis alvo
 test$classific <- predict(ct, newdata = test)
@@ -89,4 +91,4 @@ table(Predito = test$classific, Real = test$hip)
 
 ggplot(test, aes(x = hip, fill = classific)) +
   geom_bar(position = "dodge") +
-  labs(title = "Classificação da Árvore vs Real", x = "Classe Real", fill = "Predição")
+  labs(title = "Classificação da Árvore vs Real", x = "Classe Real - Onda 2", fill = "Predição")

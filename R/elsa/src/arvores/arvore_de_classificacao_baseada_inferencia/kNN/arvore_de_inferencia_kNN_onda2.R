@@ -47,13 +47,41 @@ ggparty(ct) +
   geom_node_plot(gglist = list(geom_bar(aes(x = "", fill = hip),
                                         position = position_fill()),
                                xlab("hip"))
-  )
+  ) +
+  ggtitle("Árvore inferencial - Onda 2") +
+  theme(plot.title = element_text(hjust = 0.5, size = 14, face = "bold"))
 ################################################################################
 ggparty(ct, terminal_space = 0.3) +
   geom_edge() +
   geom_edge_label() +
   geom_node_splitvar() +
   geom_node_plot(gglist = list(
-    geom_bar(aes(x = hip))))
+    geom_bar(aes(x = hip)))) +
+  ggtitle("Árvore inferencial - Onda 2") +
+  theme(plot.title = element_text(hjust = 0.5, size = 14, face = "bold"))
+################################################################################
+### Classificacao das variaveis alvo
+test$classific <- predict(ct, newdata = test)
+head(test$classific)
 
-#############################################################
+### matriz de confusao
+confusionMatrix(data = test$classific,
+                reference = test$hip,
+                positive = "S")  # Ajuste se "S" for a classe de interesse
+
+### Metricas de avalicao
+# Converta para vetor, se necessário
+y_true <- as.vector(test$hip)
+y_pred <- as.vector(test$classific)
+
+Accuracy(y_pred, y_true)         # Acurácia
+Precision(y_pred, y_true, positive = "S")   # Precisão para classe S
+Recall(y_pred, y_true, positive = "S")      # Revocação (Sensibilidade)
+F1_Score(y_pred, y_true, positive = "S")    # F1 Score
+
+### Distribuicao das predicoes
+table(Predito = test$classific, Real = test$hip)
+
+ggplot(test, aes(x = hip, fill = classific)) +
+  geom_bar(position = "dodge") +
+  labs(title = "Classificação da Árvore vs Real - Onda 2", x = "Classe Real", fill = "Predição")
