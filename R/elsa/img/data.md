@@ -262,3 +262,71 @@
   <img src="missing_data/onda3/distribuicao_pad_onda3.png" alt="PAD - Density x interval class - wave 3" width="900">
 </p>
 <p align="center"><em>Figure 15: PAD - Density x interval class - wave 3.</em></p>
+
+### Boxplots of variables (original data, kNN and pmm)
+
+#### Wave 1
+
+<p align="center">
+    <img src="missing_data/onda1/boxplot_potassio_onda1.png" alt="Sodium - boxplot - wave 1" width="900">
+</p>
+<p align="center"><em>Figure 4: Sodium - boxplot - wave 1.</em></p>
+
+<p align="center">
+  <img src="missing_data/onda1/boxplot_sodio_onda1.png" alt="Potassium - boxplot - wave 1" width="900">
+</p>
+<p align="center"><em>Figure 5: Potassium - boxplot - wave 1.</em></p>
+
+<p align="center">
+  <img src="missing_data/onda1/boxplot_pas_onda1.png" alt="PAS - Boxplot - wave 1" width="900">
+</p>
+<p align="center"><em>Figure 6: PAS - boxplot - wave 1.</em></p>
+
+<p align="center">
+  <img src="missing_data/onda1/boxplot_pad_onda1.png" alt="PAD - Boxplot - wave 1" width="900">
+</p>
+<p align="center"><em>Figure 7: PAD - boxplot - wave 1.</em></p>
+
+#### Wave 2 
+
+<p align="center">
+    <img src="missing_data/onda2/boxplot_potassio_onda2.png" alt="Sodium - Boxplot - wave 2" width="900">
+</p>
+<p align="center"><em>Figure 8: Sodium - boxplot - wave 2.</em></p>
+
+<p align="center">
+  <img src="missing_data/onda2/boxplot_sodio_onda2.png" alt="Potassium - Boxplot - wave 2" width="900">
+</p>
+<p align="center"><em>Figure 9: Potassium - boxplot - wave 2.</em></p>
+
+<p align="center">
+  <img src="missing_data/onda2/boxplot_pas_onda2.png" alt="PAS - Boxplot - wave 2" width="900">
+</p>
+<p align="center"><em>Figure 10: PAS - boxplot - wave 2.</em></p>
+
+<p align="center">
+  <img src="missing_data/onda2/boxplot_pad_onda2.png" alt="PAD - Boxplot - wave 2" width="900">
+</p>
+<p align="center"><em>Figure 11: PAD - boxplot - wave 2.</em></p>
+
+#### Wave 3 
+
+<p align="center">
+    <img src="missing_data/onda3/boxplot_potassio_onda3.png" alt="Sodium - Boxplot - wave 3" width="900">
+</p>
+<p align="center"><em>Figure 12: Sodium - boxplot - wave 3.</em></p>
+
+<p align="center">
+  <img src="missing_data/onda3/boxplot_sodio_onda3.png" alt="Potassium - Boxplot - wave 3" width="900">
+</p>
+<p align="center"><em>Figure 13: Potassium - boxplot - wave 3.</em></p>
+
+<p align="center">
+  <img src="missing_data/onda3/boxplot_pas_onda3.png" alt="PAS - Boxplot - wave 3" width="900">
+</p>
+<p align="center"><em>Figure 14: PAS - boxplot - wave 3.</em></p>
+
+<p align="center">
+  <img src="missing_data/onda3/boxplot_pad_onda3.png" alt="PAD - Boxplot - wave 3" width="900">
+</p>
+<p align="center"><em>Figure 15: PAD - boxplot - wave 3.</em></p>
