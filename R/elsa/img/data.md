@@ -188,7 +188,9 @@
 <p align="center">
   <img src="missing_data/onda2.png" alt="Histogram and pattern of missing values - wave 2" width="900">
 </p>
+<p align="center"><em>Figure 2: Histogram and pattern of missing values for wave 2.</em></p>
 
 <p align="center">
   <img src="missing_data/onda3.png" alt="Histogram and pattern of missing values - wave 3" width="900">
 </p>
+<p align="center"><em>Figure 3: Histogram and pattern of missing values for wave 3.</em></p>
