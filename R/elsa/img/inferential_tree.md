@@ -5,8 +5,9 @@
 
 # Summary
 
-- [Inference Tree Analysis Results (kNN)](#Inference-Tree-Analysis-Results-(kNN))
-- [Inference Tree Analysis Results (pmm)](#Inference-Tree-Analysis-Results-(pmm))
+- [Inference Tree Analysis Results (kNN)](#inference-tree-analysis-results-knn)
+- [Inference Tree Analysis Results (pmm)](#inference-tree-analysis-results-pmm)
+
 
 # Inference Tree Analysis Results (kNN)
 
