@@ -3,9 +3,14 @@
 ![R](https://img.shields.io/badge/R-276DC3?logo=r&logoColor=white&style=flat)
 ![RStudio](https://img.shields.io/badge/RStudio-75AADB?logo=rstudio&logoColor=white&style=flat)
 
+# Summary
+
+- [Inference Tree Analysis Results (kNN)](#Inference-Tree-Analysis-Results-(kNN))
+- [Inference Tree Analysis Results (pmm)](#Inference-Tree-Analysis-Results-(pmm))
+
 # Inference Tree Analysis Results (kNN)
 
-### Wave 1
+### Wave 1 
 
 ### 1. Original Class Distribution
 | Class | Count |
@@ -53,12 +58,11 @@
   - `pas ≤ 139` → **S** (n = 117, err = 21.4%)  
   - `pas > 139` → **S** (n = 343, err = 0.3%)  
 
-### 6. Confusion Matrix & Key Metrics
-
-|               | Reference N | Reference S |
-|---------------|-------------|-------------|
-| **Predicted N** | 633         | 315         |
-| **Predicted S** | 27          | 345         |
+### 6. Prediction Distribution
+| Predicted | True N | True S |
+|-----------|--------|--------|
+| N         | 633    | 315    |
+| S         | 27     | 345    |
 
 - **Accuracy:** 0.7409  
 - **Sensitivity** (Recall for S): 0.5227  
@@ -66,13 +70,6 @@
 - **Precision** (for S): 0.9274  
 - **F1 Score** (for S): 0.6686  
 - **Balanced Accuracy:** 0.7409  
-
-### 7. Prediction Distribution
-| Predicted | True N | True S |
-|-----------|--------|--------|
-| N         | 633    | 315    |
-| S         | 27     | 345    |
-
 
 ### Wave 2
 
@@ -127,12 +124,11 @@
   - `pas ≤ 139` → Predict **S** (n = 117, err = 21.4%)  
   - `pas > 139` → Predict **S** (n = 343, err = 0.3%)  
 
-### 6. Confusion Matrix & Key Metrics
-
-|               | Reference N | Reference S |
-|---------------|-------------|-------------|
-| **Predicted N** | 1136         | 388         |
-| **Predicted S** | 21          | 479         |
+### 6. Prediction Distribution
+| Predicted | True N | True S |
+|-----------|--------|--------|
+| N         | 1136   | 388    |
+| S         | 21     | 479    |
 
 - **Accuracy:** 0.7979  
 - **Sensitivity** (Recall for S): 0.958  
@@ -140,12 +136,6 @@
 - **Precision** (for S): 0.9274  
 - **F1 Score** (for S): 0.7008  
 - **Balanced Accuracy:** 0.7672  
-
-### 7. Prediction Distribution
-| Predicted | True N | True S |
-|-----------|--------|--------|
-| N         | 1136   | 388    |
-| S         | 21     | 479    |
 
 ### Wave 3
 
