@@ -15,7 +15,7 @@
 
 ## Data and its characteristics
 
-[Data and its characteristics](./data.md)
+- [Data and its characteristics](./data.md)
 
 ## Graphical analysis
 - [Initial exploratory analysis](./initial_exploratory_analysis.md)
