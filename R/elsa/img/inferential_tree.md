@@ -7,6 +7,8 @@
 
 - [Inference Tree Analysis Results (kNN)](#inference-tree-analysis-results-knn)
 - [Inference Tree Analysis Results (pmm)](#inference-tree-analysis-results-pmm)
+- [kNN](#kNN)
+- [pmm](#pmm)
 
 
 # Inference Tree Analysis Results (kNN)
