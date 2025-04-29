@@ -18,8 +18,8 @@
 [Data and its characteristics](./data.md)
 
 ## Graphical analysis
-[Initial exploratory analysis](./initial_exploratory_analysis.md)
+- [Initial exploratory analysis](./initial_exploratory_analysis.md)
 
 ## Methods and analysis
-[Methods and analysis](./methods-and-analysis.md)
+- [Methods and analysis](./methods-and-analysis.md)
 
