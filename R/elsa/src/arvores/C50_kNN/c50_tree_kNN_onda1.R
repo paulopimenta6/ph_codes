@@ -69,3 +69,5 @@ prob.teste <- predict(modeloC50, newdata = teste, type = "prob")
 roc_curve <- roc(teste$hip, prob.teste[, "S"])  # "S" é a classe positiva
 plot(roc_curve, col = "blue", main = "Curva ROC - Modelo C5.0")
 auc(roc_curve)
+
+################################################################################

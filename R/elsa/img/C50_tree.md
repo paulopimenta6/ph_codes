@@ -21,23 +21,23 @@
 | 0     | 3410  |
 | 1     | 1651  |
 
-#### Summary Statistics of Key Predictors
-
-| Variable    | Description         | Min   | 1st Qu | Median | Mean  | 3rd Qu | Max    |
-|-------------|----------------------|-------|--------|--------|-------|--------|--------|
-| **pot**     | Potassium intake      | 4.00  | 20.00  | 29.00  | 32.52 | 41.00  | 144.00 |
-| **sod**     | Sodium intake         | 9.00  | 69.00  | 101.00 | 109.30| 144.00 | 327.00 |
-| **albCreat**| Albumin–Creatinine    | 1.83  | 5.09   | 6.60   | 19.61 | 8.59   | 5014.83|
-| **taxaFilt**| GFR class (counts)    | 1 (1959), 2 (2864), 3 (200), 4 (25), 5 (7), 6 (6) | | | | | |
-| **pas**     | Systolic BP           | 77.00 | 108.00 | 118.00 | 119.80| 129.00 | 219.50 |
-| **pad**     | Diastolic BP          | 44.50 | 67.50  | 74.50  | 75.19 | 82.00  | 131.50 |
-
-
 #### Class Distribution After Undersampling
 | Class | Count |
 |-------|-------|
 | N (0) | 1651  |
 | S (1) | 1651  |
+
+#### Summary Statistics of Key Predictors
+
+| Variable    | Description         | Min    | 1st Qu | Median | Mean   | 3rd Qu | Max    | Categories       |
+|-------------|---------------------|--------|--------|--------|--------|--------|--------|------------------|
+| **pot**     | Potassium intake     | 4.00   | 20.00  | 29.00  | 32.52  | 41.00  | 144.00 |                  |
+| **sod**     | Sodium intake        | 9.00   | 69.00  | 101.00 | 109.30 | 144.00 | 327.00 |                  |
+| **albCreat**| Albumin–Creatinine   | 1.83   | 5.09   | 6.60   | 19.61  | 8.59   | 5014.83 |                  |
+| **pas**     | Systolic BP          | 77.00  | 108.00 | 118.00 | 119.80 | 129.00 | 219.50 |                  |
+| **pad**     | Diastolic BP         | 44.50  | 67.50  | 74.50  | 75.19  | 82.00  | 131.50 |                  |
+| **taxaFilt**| GFR class (taxaFilt) | 1 (1959), 2 (2864), 3 (200), 4 (25), 5 (7), 6 (6) | | | | | | |
+
 
 #### Train/Test Split
 - **Train:** 1982 observations × 7 variables  
@@ -46,15 +46,17 @@
 #### Prediction Distribution
 | Predicted | True N | True S |
 |-----------|--------|--------|
-| N         | 633    | 315    |
-| S         | 27     | 345    |
+| N         | 456    | 200    |
+| S         | 39     | 295    |
 
-- **Accuracy:** 0.7409  
-- **Sensitivity** (Recall for S): 0.5227  
-- **Specificity:** 0.9591  
-- **Precision** (for S): 0.5227273  
-- **F1 Score** (for S): 0.6686  
-- **Balanced Accuracy:** 0.7409  
+- **Accuracy:** 0.7586
+- **95% CI:** (0.7307, 0.7849)
+- **Kappa:** 0.5172  
+- **Precision** (Pos Pred Value for S): 0.8832
+- **Sensitivity** (Recall for S): 0.5960            
+- **Specificity:** 0.9212               
+- **Balanced Accuracy:** 0.7586
+- **Area under the curve:** 0.8018  
 
 ### Wave 2
 
@@ -77,28 +79,20 @@
 | **pad**     | Diastolic BP          | 44.00  | 69.00  | 76.50  | 77.46  | 85.00  | 122.50   |
  
 
-#### Class Distribution After Undersampling
-| Class | Count |
-|-------|-------|
-| N (0) | 2168  |
-| S (1) | 2168  |
-
-#### Train/Test Split
-- **Train:** 3037 observations × 7 variables  
-- **Test:** 2024 observations × 7 variables  
-
 #### Prediction Distribution
 | Predicted | True N | True S |
 |-----------|--------|--------|
-| N         | 1157   | 419    |
-| S         | 0     | 448    |
+| N         | 847    | 288    |
+| S         | 20     | 362    |
 
-- **Accuracy:** 0.7979  
-- **Sensitivity** (Recall for S): 0.958  
-- **Specificity:** 0.9591  
-- **Precision** (for S): 0.5167243  
-- **F1 Score** (for S): 0.7008  
-- **Balanced Accuracy:** 0.7672  
+- **Accuracy:** 0.797
+- **95% CI:** (0.7758, 0.8169)
+- **Kappa:** 0.5629  
+- **Precision** (Pos Pred Value for S): 0.9476 
+- **Sensitivity** (Recall for S): 0.5569            
+- **Specificity:** 0.9769               
+- **Balanced Accuracy:** 0.7669 
+- **Area under the curve:** 0.7727  
 
 ### Wave 3
 
@@ -115,28 +109,21 @@
 | **sod**     | Sodium intake         | 10.00  | 86.00  | 125.00 | 116.90 | 140.50 | 292.00 |
 | **pas**     | Systolic BP           | 70.00  | 114.00 | 127.00 | 132.20 | 150.00 | 223.00 |
 | **pad**     | Diastolic BP          | 48.00  | 71.50  | 79.50  | 79.63  | 91.00  | 133.00 |
- 
-
-#### Train/Test Split
-- **Train:** 3037 observations × 5 variables  
-- **Test:** 2024 observations × 5 variables  
 
  #### Prediction Distribution
 | Predicted | True N | True S |
 |-----------|--------|--------|
-| N         | 874    | 375    |
-| S         | 36      | 739    |
+| N         | 657    | 261    |
+| S         | 25     | 574    |
 
-- **Accuracy:** 0.7969368  
-- **95% CI:** (0.7747, 0.8104)  
-- **Kappa:** 0.5986  
-- **Sensitivity** (Recall for S): 0.6251  
-- **Specificity:** 0.9989  
-- **Precision** (for S): 0.6633752  
-- **Negative Predictive Value:** 0.6848  
-- **Balanced Accuracy:** 0.8120
-- **Recall (S):** 0.9535484  
-- **F1 Score (S):** 0.76889  
+- **Accuracy:** 0.8115  
+- **95% CI:** (0.7909, 0.8309)  
+- **Kappa:** 0.6308  
+- **Sensitivity** (Recall for S): 0.6874  
+- **Specificity:** 0.9633  
+- **Precision** (Pos Pred Value for S): 0.9583    
+- **Balanced Accuracy:** 0.8254
+- **Area under the curve:** 0.8851  
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -168,26 +155,20 @@
 | **pas**     | Systolic BP           | 77.00  | 108.00 | 118.00 | 119.80 | 129.00 | 219.50 |
 | **pad**     | Diastolic BP          | 44.50  | 67.50  | 74.50  | 75.19  | 82.00  | 131.50 |
 
-
-#### Train/Test Split
-- **Train:** 2310 observations × 7 variables  
-- **Test:** 990 observations × 7 variables  
-
 #### Evaluation Metrics
-- **Accuracy:** 0.75556
+- **Accuracy:** 0.7566
 - **Kappa:** 0.5111
-- **95% CI:** (0.7275, 0.782)  
-- **Precision (S):** 0.56566
-- **Sensitivity:** 0.5657         
-- **Specificity:** 0.9455  
-- **Recall (S):** 0.91205  
-- **F1 Score (S):** 0.69825  
+- **95% CI:** (0.7286, 0.783)  
+- **Precision:** (Pos Pred Value for S): 0.9071
+- **Sensitivity:** 0.5717         
+- **Specificity:** 0.9414
+- **Area under the curve:** 0.8028 
 
 #### Prediction Distribution
 | Predicted | True N | True S |
 |-----------|--------|--------|
-| N         | 468    | 215    |
-| S         | 27     | 280    |
+| N         | 466    | 212    |
+| S         | 29     | 283    |
 
 ### Wave 2
 
@@ -216,21 +197,20 @@
 | pas        | 72.5    | 109.5         | 119.5   | 121.2  | 130.5        | 223.5     |
 | pad        | 44.0    | 68.5          | 75.5    | 76.0   | 82.5         | 122.5     |
 
-
 #### Prediction Distribution
 | Predicted | True N | True S |
 |-----------|--------|--------|
-| N         | 443    | 196    |
-| S         | 133    | 380    |
+| N         | 477    | 213    |
+| S         | 99    | 363    |
 
-- **Accuracy:** 0.7144  
-- **95% CI:** (0.6874, 0.7404)  
-- **Kappa:** 0.4288  
-- **Sensitivity** (Recall for S): 0.6597  
-- **Specificity:** 0.7691  
-- **Precision** (for S): 0.65972
-- **Recall (S):** 0.74074  
-- **F1 Score (S):** 0.69789  
+#### Evaluation Metrics
+- **Accuracy:** 0.7292
+- **Kappa:** 0.4583
+- **95% CI:** (0.7025, 0.7547)  
+- **Precision:** (Pos Pred Value for S): 0.7857
+- **Sensitivity:** 0.6302         
+- **Specificity:** 0.8281
+- **Area under the curve:** 0.7927  
 
 ### Wave 3
 
@@ -260,92 +240,88 @@
 Prediction Distribution
 | Predicted | True N | True S |
 |-----------|--------|--------|
-| N         | 825    | 387    |
-| S         | 18     | 287    |
+| N         | 741    | 271    |
+| S         | 102    | 403    |
 
-- **Accuracy:** 0.733  
-- **95% CI:** (0.7100, 0.7551)  
-- **Kappa:** 0.4279  
-- **Sensitivity** (Recall for S): 0.4258  
-- **Specificity:** 0.9786  
-- **Precision** (for S): 0.42582  
-- **Negative Predictive Value:** 0.6807  
-- **Balanced Accuracy:** 0.7022
-- **Recall (S):** 0.94098  
-- **F1 Score (S):** 0.58631  
+#### Evaluation Metrics
+- **Accuracy:** 0.7541
+- **Kappa:** 0.4892 
+- **95% CI:** (0.7316, 0.7756)  
+- **Precision:** (Pos Pred Value for S): 0.7980
+- **Sensitivity:** 0.5979         
+- **Specificity:** 0.8790
+- **Area under the curve:** 0.8014   
 
 
 ### kNN
 #### Wave 1
 
 <p align="center">
-    <img src="arvores/arvore_inferencial_kNN/arvore_inferencial_kNN_onda1.png" alt="Árvore inferencial - wave 1" width="900">
+    <img src="arvores/C50_kNN/kNN_onda1.png" alt="Árvore C5.0 kNN - wave 1" width="900">
 </p>
-<p align="center"><em>Figure 1: Árvore inferencial - wave 1.</em></p>
+<p align="center"><em>Figure 1: Árvore C5.0 kNN - wave 1.</em></p>
 
 <p align="center">
-  <img src="arvores/arvore_inferencial_kNN/classificacao_kNN_onda1.png" alt="Classificação - wave 1" width="900">
+  <img src="arvores/C50_kNN/kNN_roc_onda1.png" alt="Curva ROC kNN - wave 1" width="900">
 </p>
-<p align="center"><em>Figure 2: Classificação - wave 1.</em></p>
+<p align="center"><em>Figure 2: Curva ROC kNN - wave 1.</em></p>
 
 
 #### Wave 2 
 
 <p align="center">
-    <img src="arvores/arvore_inferencial_kNN/arvore_inferencial_kNN_onda2.png" alt="Árvore inferencial - wave 2" width="900">
+    <img src="arvores/C50_kNN/kNN_onda2.png" alt="Árvore C5.0 kNN - wave 2" width="900">
 </p>
-<p align="center"><em>Figure 3: Árvore inferencial - wave 2.</em></p>
+<p align="center"><em>Figure 4: Árvore C5.0 kNN - wave 2.</em></p>
 
 <p align="center">
-  <img src="arvores/arvore_inferencial_kNN/classificacao_kNN_onda2.png" alt="Classificação - wave 2" width="900">
+  <img src="arvores/C50_kNN/kNN_roc_onda2.png" alt="Curva ROC kNN - wave 2" width="900">
 </p>
-<p align="center"><em>Figure 4: Classificação - wave 2.</em></p>
+<p align="center"><em>Figure 4: Curva ROC kNN - wave 2.</em></p>
 
 #### Wave 3 
 <p align="center">
-    <img src="arvores/arvore_inferencial_kNN/arvore_inferencial_kNN_onda3.png" alt="Árvore inferencial - wave 3" width="900">
+    <img src="arvores/C50_kNN/kNN_onda3.png" alt="Árvore C5.0 kNN - wave 3" width="900">
 </p>
-<p align="center"><em>Figure 5: Árvore inferencial - wave 3.</em></p>
+<p align="center"><em>Figure 5: Árvore C5.0 kNN - wave 3.</em></p>
 
 <p align="center">
-  <img src="arvores/arvore_inferencial_kNN/classificacao_kNN_onda3.png" alt="Classificação - wave 3" width="900">
+  <img src="arvores/C50_kNN/kNN_roc_onda3.png" alt="Curva ROC kNN - wave 3" width="900">
 </p>
-<p align="center"><em>Figure 6: Classificação - wave 3.</em></p>
+<p align="center"><em>Figure 6: Curva ROC kNN - wave 3.</em></p>
 
 
 ### pmm
 #### Wave 1
+<p align="center">
+    <img src="arvores/C50_pmm/pmm_onda1.png" alt="Árvore C5.0 pmm - wave 3" width="900">
+</p>
+<p align="center"><em>Figure 7: Árvore C5.0 pmm - wave 1.</em></p>
 
 <p align="center">
-    <img src="arvores/arvore_inferencial_pmm/arvore_inferencial_pmm_onda1.png" alt="Árvore inferencial - wave 1" width="900">
+  <img src="arvores/C50_pmm/pmm_roc_onda1.png" alt="Curva ROC pmm - wave 1" width="900">
 </p>
-<p align="center"><em>Figure 7: Árvore inferencial - wave 1.</em></p>
-
-<p align="center">
-  <img src="arvores/arvore_inferencial_pmm/classificacao_pmm_onda1.png" alt="Classificação - wave 1" width="900">
-</p>
-<p align="center"><em>Figure 8: Classificação - wave 1.</em></p>
+<p align="center"><em>Figure 8: Curva ROC pmm - wave 1.</em></p>
 
 
 #### Wave 2 
+<p align="center">
+    <img src="arvores/C50_pmm/pmm_onda2.png" alt="Árvore C5.0 pmm - wave 2" width="900">
+</p>
+<p align="center"><em>Figure 9: Árvore C5.0 pmm - wave 2.</em></p>
 
 <p align="center">
-    <img src="arvores/arvore_inferencial_pmm/arvore_inferencial_pmm_onda2.png" alt="Árvore inferencial - wave 2" width="900">
+  <img src="arvores/C50_pmm/pmm_roc_onda2.png" alt="Curva ROC pmm - wave 2" width="900">
 </p>
-<p align="center"><em>Figure 9: Árvore inferencial - wave 2.</em></p>
-
-<p align="center">
-  <img src="arvores/arvore_inferencial_pmm/classificacao_pmm_onda2.png" alt="Classificação - wave 2" width="900">
-</p>
-<p align="center"><em>Figure 10: Classificação - wave 2.</em></p>
+<p align="center"><em>Figure 10: Curva ROC pmm - wave 2.</em></p>
 
 #### Wave 3 
 <p align="center">
-    <img src="arvores/arvore_inferencial_pmm/arvore_inferencial_pmm_onda3.png" alt="Árvore inferencial - wave 3" width="900">
+    <img src="arvores/C50_pmm/pmm_onda3.png" alt="Árvore C5.0 pmm - wave 3" width="900">
 </p>
-<p align="center"><em>Figure 11: Árvore inferencial - wave 3.</em></p>
+<p align="center"><em>Figure 11: Árvore C5.0 pmm - wave 3.</em></p>
 
 <p align="center">
-  <img src="arvores/arvore_inferencial_pmm/classificacao_pmm_onda3.png" alt="Classificação - wave 3" width="900">
+  <img src="arvores/C50_pmm/pmm_roc_onda3.png" alt="Curva ROC pmm - wave 3" width="900">
 </p>
-<p align="center"><em>Figure 12: Classificação - wave 3.</em></p>
+<p align="center"><em>Figure 12: Curva ROC pmm - wave 3.</em></p>

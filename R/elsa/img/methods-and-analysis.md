@@ -113,3 +113,4 @@ Each technique has specific advantages and may be better suited for different co
 ---
 
 [Inferential tree](./inferential_tree.md)
+[C5.0](./C50_tree.md)
