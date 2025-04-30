@@ -40,7 +40,7 @@
 
 #### Model
 
-| Variable    | Estimate    | Std. Error | z value | Pr(>|z|) | Significance |
+| Variable    | Estimate    | Std. Error | z value | Pr(>z) | Significance |
 |-------------|-------------|------------|---------|----------|--------------|
 | (Intercept) | -11.832565  | 0.533486   | -22.180 | < 2e-16  | ***          |
 | pot         | 0.006053    | 0.003424   | 1.768   | 0.077088 | .            |
