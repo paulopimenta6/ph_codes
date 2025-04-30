@@ -1,5 +1,5 @@
 ### Passo 0: Carregar dados
-source("./src/mice_inputation_v2.R")  # Verifique se 'data' está corretamente carregado
+source("./src/data/mice_inputation_v2.R")  # Verifique se 'data' está corretamente carregado
 
 ### Passo 1: Carregar os pacotes
 if (!require(pacman)) install.packages("pacman")
