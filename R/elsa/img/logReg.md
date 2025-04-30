@@ -47,7 +47,6 @@
 | sod         | -0.003507   | 0.001153   | -3.040  | 0.002364 | **           |
 | pas         | 0.080932    | 0.005926   | 13.658  | < 2e-16  | ***          |
 | pad         | 0.028060    | 0.008018   | 3.500   | 0.000466 | ***          |
-|-------------|-------------|------------|---------|----------|--------------|
 
 #### Prediction Distribution
 | Predicted | True N | True S |
@@ -84,7 +83,7 @@
 | **pad**     | Diastolic BP          | 44.00  | 69.00  | 76.50  | 77.46  | 85.00  | 122.50   |
 
 #### Model
-| Variable     | Estimate     | Std. Error  | z value | Pr(>|z|)   | Significance  |
+| Variable     | Estimate     | Std. Error  | z value | Pr(>\|z\|)   | Significance  |
 |--------------|--------------|-------------|---------|------------|----------------|
 | (Intercept)  | -12.065426   | 0.442508    | -27.266 | < 2e-16    | ***            |
 | pot          | 0.006977     | 0.002894    | 2.411   | 0.01590    | *              |
@@ -125,7 +124,7 @@
 | **pad**     | Diastolic BP          | 48.00  | 71.50  | 79.50  | 79.63  | 91.00  | 133.00 |
 
 #### Model
-| Variable     | Estimate     | Std. Error  | z value | Pr(>|z|)   | Significance  |
+| Variable     | Estimate     | Std. Error  | z value | Pr(>\|z\|)   | Significance  |
 |--------------|--------------|-------------|---------|------------|----------------|
 | (Intercept)  | -11.400000   | 0.454300    | -25.082 | < 2e-16    | ***            |
 | pot          | -0.001593    | 0.001610    | -0.989  | 0.322460   |                |
@@ -178,7 +177,7 @@
 | **pad**     | Diastolic BP          | 44.50 | 67.50  | 74.50  | 75.19 | 82.00  | 131.50 |
 
 #### Model
-| Variable     | Estimate     | Std. Error  | z value | Pr(>|z|)   | Significance  |
+| Variable     | Estimate     | Std. Error  | z value | Pr(>\|z\|)   | Significance  |
 |--------------|--------------|-------------|---------|------------|----------------|
 | (Intercept)  | -11.256782   | 0.517962    | -21.733 | < 2e-16    | ***            |
 | pot          | 0.004244     | 0.003227    | 1.315   | 0.188439   |                |
@@ -228,7 +227,7 @@
 | **pad**     | Diastolic BP          | 44.00  | 69.00  | 76.50  | 77.46  | 85.00  | 122.50   |
 
 #### Model
-| Variable     | Estimate     | Std. Error  | z value | Pr(>|z|)   | Significance  |
+| Variable     | Estimate     | Std. Error  | z value | Pr(>\|z\|)   | Significance  |
 |--------------|--------------|-------------|---------|------------|----------------|
 | (Intercept)  | -10.461175   | 0.468319    | -22.338 | < 2e-16    | ***            |
 | pot          | 0.006234     | 0.002972    | 2.097   | 0.0360     | *              |
@@ -269,7 +268,7 @@
 | **pad**     | Diastolic BP          | 48.00  | 71.50  | 79.50  | 79.63  | 91.00  | 133.00 |
 
 #### Model
-| Variable     | Estimate     | Std. Error  | z value | Pr(>|z|)   | Significance  |
+| Variable     | Estimate     | Std. Error  | z value | Pr(>\|z\|)   | Significance  |
 |--------------|--------------|-------------|---------|------------|----------------|
 | (Intercept)  | -10.640000   | 0.429400    | -24.778 | < 2e-16    | ***            |
 | pot          | -0.002626    | 0.001418    | -1.853  | 0.06395    | .              |
