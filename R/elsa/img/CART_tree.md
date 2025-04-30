@@ -5,15 +5,17 @@
 
 # Summary
 
-- [Inference Tree Analysis Results (kNN)](#inference-tree-analysis-results-knn)
-- [Inference Tree Analysis Results (pmm)](#inference-tree-analysis-results-pmm)
+- [CART (kNN)](#CART-knn)
+- [CART (pmm)](#CART-pmm)
 - [kNN](#kNN)
 - [pmm](#pmm)
 
 
-# Inference Tree Analysis Results (kNN)
+# CART (kNN)
 
 ### Wave 1 
+
+#### CART Results
 
 #### Original Class Distribution
 | Class | Count |
@@ -57,7 +59,7 @@
 
 ### Wave 2
 
-#### Inference Tree Analysis Results
+#### CART Results
 
 #### Original Class Distribution
 | Class | Count |
@@ -95,6 +97,8 @@
 
 ### Wave 3
 
+#### CART Results
+
 #### Original Class Distribution
 | Class | Count |
 |-------|-------|
@@ -129,11 +133,11 @@
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
-# Inference Tree Analysis Results (pmm)
+# CART (pmm)
 
 ### Wave 1
 
-#### Inference Tree Analysis Results 
+#### CART Results 
 
 #### Original Class Distribution
 | Class | Count |
@@ -178,7 +182,7 @@
 
 ### Wave 2
 
-## Inference Tree Analysis Results – Wave 2 (MICE-Balanced)
+## CART – Wave 2 (MICE-Balanced)
 
 ## 1. Original Class Distribution
 | Class | Count |
@@ -222,7 +226,7 @@
 
 ### Wave 3
 
-#### Inference Tree Analysis Results – Wave 3 (MICE‐Balanced)
+#### CART – Wave 3 (MICE‐Balanced)
 
 #### Original Class Distribution
 | Class | Count |

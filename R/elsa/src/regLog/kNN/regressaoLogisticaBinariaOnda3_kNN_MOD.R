@@ -1,5 +1,5 @@
 ### Passo 0: Carregar dados (ajuste o caminho do arquivo)
-source("./src/data_kNN_v2.R")  # Verifique se esta etapa está importando 'data' corretamente
+source("./src/data/data_kNN_v2.R")  # Verifique se esta etapa está importando 'data' corretamente
 
 if (!require(pacman)) install.packages("pacman")
 library(pacman)

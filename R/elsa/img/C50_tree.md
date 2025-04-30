@@ -11,9 +11,11 @@
 - [pmm](#pmm)
 
 
-# Inference Tree Analysis Results (kNN)
+# C5.0 Results (kNN)
 
 ### Wave 1 
+
+#### C5.0 Results
 
 #### Original Class Distribution
 | Class | Count |
@@ -60,7 +62,7 @@
 
 ### Wave 2
 
-#### Inference Tree Analysis Results
+#### C5.0 Results
 
 #### Original Class Distribution
 | Class | Count |
@@ -95,6 +97,8 @@
 - **Area under the curve:** 0.7727  
 
 ### Wave 3
+
+#### C5.0 Results
 
 #### Original Class Distribution
 | Class | Count |
@@ -131,7 +135,7 @@
 
 ### Wave 1
 
-#### Inference Tree Analysis Results 
+#### C5.0 Results 
 
 #### Original Class Distribution
 | Class | Count |
@@ -172,7 +176,7 @@
 
 ### Wave 2
 
-## Inference Tree Analysis Results – Wave 2 (MICE-Balanced)
+## C5.0 – Wave 2 (MICE-Balanced)
 
 ## 1. Original Class Distribution
 | Class | Count |
@@ -214,7 +218,7 @@
 
 ### Wave 3
 
-#### Inference Tree Analysis Results – Wave 3 (MICE‐Balanced)
+#### C5.0 – Wave 3 (MICE‐Balanced)
 
 #### Original Class Distribution
 | Class | Count |

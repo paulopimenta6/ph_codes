@@ -1,11 +1,11 @@
 ### Passo 0: Carregar dados
-source("./src/data_kNN_v2.R")  # Verifique se 'data' está corretamente carregado
+source("./src/data/data_kNN_v2.R")  # Verifique se 'data' está corretamente carregado
 
 ### Passo 1: Carregar os pacotes
 if (!require(pacman)) install.packages("pacman")
 library(pacman)
 
-pacman::p_load(caret, ROSE, pROC, pscl, car, dplyr, ggplot2)
+pacman::p_load(caret, ROSE, pROC, pscl, car, dplyr, ggplot2, ResourceSelection)
 
 View(dadosOnda1kNN_inp)   
 glimpse(dadosOnda1kNN_inp)
