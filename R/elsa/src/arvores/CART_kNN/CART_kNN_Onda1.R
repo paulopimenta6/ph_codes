@@ -16,7 +16,7 @@ summary(dadosOnda1kNN_inp)
 ################################################################################
 ### Exemplo de undersampling com ROSE
 set.seed(123)  # Para reprodutibilidade
-dadosOnda1kNN_inp_balanced <- ovun.sample(hip ~ ., data = dadosOnda1kNN_inp, method = "under", N = 1650 * 2)$data
+dadosOnda1kNN_inp_balanced <- ovun.sample(hip ~ ., data = dadosOnda1kNN_inp, method = "under", N = 1651 * 2)$data
 # Verificando a nova distribuição das classes
 table(dadosOnda1kNN_inp_balanced$hip)
 
@@ -87,3 +87,4 @@ test$hip <- factor(test$hip, levels = c("N", "S"))
 conf_matrix <- caret::confusionMatrix(kprev, test$hip, positive = "S")
 print(conf_matrix)
 cat("Acurácia:", MLmetrics::Accuracy(kprev, test$hip))
+cat("Precisão:", MLmetrics::Precision(kprev, test$hip, positive = "S"))

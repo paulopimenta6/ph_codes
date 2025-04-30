@@ -14,11 +14,15 @@ table(dadosOnda2kNN_inp$hip)
 summary(dadosOnda2kNN_inp)
 ####################################################################################
 ### Passo 4: Checagem das categorias de referência
-# Converte "0" para "N" e "1" para "S" e transforma em fatordosOnda2kNN_inp$hip)
-# Exibe os níveis atuais
-levels(dadosOnda2kNN_inp$hip)  # Deve mostrar "N" e "S"
-# Define "S" como a categoria de referência
-#dadosOnda2kNN_inp$hip <- relevel(dadosOnda2kNN_inp$hip, ref = "S")
+# Converter valores
+dadosOnda2kNN_inp$hip <- ifelse(dadosOnda2kNN_inp$hip == "0", "N", "S")
+dadosOnda2kNN_inp$hip <- as.factor(dadosOnda2kNN_inp$hip)
+
+# (Opcional) Definir referência como "S", se quiser
+# dadosOnda2kNN_inp$hip <- relevel(dadosOnda2kNN_inp$hip, ref = "S")
+
+# Verificar se níveis estão corretos
+levels(dadosOnda2kNN_inp$hip)  # Deve retornar: "N" "S"
 
 ################################################################################
 ### Passo 3: Divisão treino-teste
@@ -77,3 +81,4 @@ test$hip <- factor(test$hip, levels = c("N", "S"))
 conf_matrix <- caret::confusionMatrix(kprev, test$hip, positive = "S")
 print(conf_matrix)
 cat("Acurácia:", MLmetrics::Accuracy(kprev, test$hip))
+Precision(y_pred = kprev, y_true = test$hip, positive = "S")
