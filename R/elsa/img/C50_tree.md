@@ -286,7 +286,7 @@ Prediction Distribution
 <p align="center"><em>Figure 5: Árvore C5.0 kNN - wave 3.</em></p>
 
 <p align="center">
-  <img src="arvores/C50_kNN/kNN_roc_onda3.png" alt="Curva ROC kNN - wave 3" width="700">
+  <img src="arvores/C50_kNN/kNN_roc_onda3.png" alt="Curva ROC kNN - wave 3" width="900">
 </p>
 <p align="center"><em>Figure 6: Curva ROC kNN - wave 3.</em></p>
 
@@ -294,7 +294,7 @@ Prediction Distribution
 ### pmm
 #### Wave 1
 <p align="center">
-    <img src="arvores/C50_pmm/pmm_onda1.png" alt="Árvore C5.0 pmm - wave 3" width="700">
+    <img src="arvores/C50_pmm/pmm_onda1.png" alt="Árvore C5.0 pmm - wave 3" width="900">
 </p>
 <p align="center"><em>Figure 7: Árvore C5.0 pmm - wave 1.</em></p>
 
