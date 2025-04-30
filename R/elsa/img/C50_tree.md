@@ -286,7 +286,7 @@ Prediction Distribution
 <p align="center"><em>Figure 5: Árvore C5.0 kNN - wave 3.</em></p>
 
 <p align="center">
-  <img src="arvores/C50_kNN/kNN_roc_onda3.png" alt="Curva ROC kNN - wave 3" width="900">
+  <img src="arvores/C50_kNN/kNN_roc_onda3.png" alt="Curva ROC kNN - wave 3" width="800">
 </p>
 <p align="center"><em>Figure 6: Curva ROC kNN - wave 3.</em></p>
 
