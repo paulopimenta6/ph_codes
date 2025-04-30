@@ -116,3 +116,5 @@ Each technique has specific advantages and may be better suited for different co
 - [C5.0](./C50_tree.md)
 - [CART](./CART_tree.md)
 - [LogReg](./logReg.md)
+- [Random Forest](./randomForest.md)
+- [AdaBoost](./adaBoost.md)
