@@ -23,7 +23,6 @@ dadosOnda2kNN_inp$hip <- as.factor(dadosOnda2kNN_inp$hip)
 
 # Verificar se níveis estão corretos
 levels(dadosOnda2kNN_inp$hip)  # Deve retornar: "N" "S"
-
 ################################################################################
 ### Passo 3: Divisão treino-teste
 flag <- caret::createDataPartition(dadosOnda2kNN_inp$hip, p = 0.7, list = FALSE)
@@ -31,19 +30,15 @@ train <- dadosOnda2kNN_inp[flag, ]
 dim(train)
 test <- dadosOnda2kNN_inp[-flag,]
 dim(test)
-
 ########dadosOnda2kNN_inp##############################################
 ### Passo 4: Treino do modelo
 mod <- rpart(hip ~ ., data = train, method = "class")
-
 ################################################################################
 ### Plot da árvore
 rpart.plot::prp(mod, type = 5, extra = 104, nn = TRUE, fallen.leaves = TRUE, branch.lty = 5, cex = 0.55)
-
 ################################################################################
 ### Verificação da necessidade de poda da árvore
 rpart::printcp(mod)
-
 ################################################################################
 ### Verificando a importância das variáveis
 round(mod$variable.importance, 2)
@@ -57,14 +52,14 @@ plot(importance_df$Importance, type = 'b', pch = 16, col = 'black',
      main = "Importância das Variáveis")
 ### Adicionar os nomes das variáveis ao eixo X
 axis(1, at = 1:length(importance_df$Variable), labels = importance_df$Variable, las = 1)
-
+################################################################################
+predictors <- setdiff(names(test), "hip")
 ################################################################################
 ### Classificando novos elementos (variável test)
 # Obtendo as probabilidades para cada classe
-test$probs_all <- predict(mod, newdata = test, type = "prob")
+test$probs_all <- predict(mod, newdata = test[, predictors], type = "prob")
 # Visualizando as primeiras linhas
 head(round(test$probs_all, 3))
-
 ################################################################################
 ### Passo 5: Avaliação
 # Extraindo a probabilidade da classe "S"
@@ -75,10 +70,7 @@ kprev <- factor(ifelse(test$probs >= 0.5, "S", "N"), levels = c("N", "S"))
 
 # Garantir que a variável real também possua os mesmos níveis e ordem
 test$hip <- factor(test$hip, levels = c("N", "S"))
-
 ################################################################################
 # Métricas
 conf_matrix <- caret::confusionMatrix(kprev, test$hip, positive = "S")
 print(conf_matrix)
-cat("Acurácia:", MLmetrics::Accuracy(kprev, test$hip))
-Precision(y_pred = kprev, y_true = test$hip, positive = "S")

@@ -12,14 +12,12 @@ glimpse(dadosOnda1kNN_inp)
 
 table(dadosOnda1kNN_inp$hip)
 summary(dadosOnda1kNN_inp)
-
 ################################################################################
 ### Exemplo de undersampling com ROSE
 set.seed(123)  # Para reprodutibilidade
 dadosOnda1kNN_inp_balanced <- ovun.sample(hip ~ ., data = dadosOnda1kNN_inp, method = "under", N = 1651 * 2)$data
 # Verificando a nova distribuição das classes
 table(dadosOnda1kNN_inp_balanced$hip)
-
 ################################################################################
 ### Passo 4: Checagem das categorias de referência
 # Converte "0" para "N" e "1" para "S" e transforma em fator
@@ -29,7 +27,6 @@ dadosOnda1kNN_inp_balanced$hip <- as.factor(dadosOnda1kNN_inp_balanced$hip)
 levels(dadosOnda1kNN_inp_balanced$hip)  # Deve mostrar "N" e "S"
 # Define "S" como a categoria de referência
 #dadosOnda1kNN_inp_balanced$hip <- relevel(dadosOnda1kNN_inp_balanced$hip, ref = "S")
-
 ################################################################################
 ### Passo 3: Divisão treino-teste
 flag <- caret::createDataPartition(dadosOnda1kNN_inp_balanced$hip, p = 0.7, list = FALSE)
@@ -37,19 +34,15 @@ train <- dadosOnda1kNN_inp_balanced[flag, ]
 dim(train)
 test <- dadosOnda1kNN_inp_balanced[-flag, ]
 dim(test)
-
 ################################################################################
 ### Passo 4: Treino do modelo
 mod <- rpart(hip ~ ., data = train, method = "class")
-
 ################################################################################
 ### Plot da árvore
 rpart.plot::prp(mod, type = 5, extra = 104, nn = TRUE, fallen.leaves = TRUE, branch.lty = 5, cex = 0.55)
-
 ################################################################################
 ### Verificação da necessidade de poda da árvore
 rpart::printcp(mod)
-
 ################################################################################
 ### Verificando a importância das variáveis
 round(mod$variable.importance, 2)
@@ -63,14 +56,14 @@ plot(importance_df$Importance, type = 'b', pch = 16, col = 'black',
      main = "Importância das Variáveis")
 ### Adicionar os nomes das variáveis ao eixo X
 axis(1, at = 1:length(importance_df$Variable), labels = importance_df$Variable, las = 1)
-
+################################################################################
+predictors <- setdiff(names(test), "hip")
 ################################################################################
 ### Classificando novos elementos (variável test)
 # Obtendo as probabilidades para cada classe
-test$probs_all <- predict(mod, newdata = test, type = "prob")
+test$probs_all <- predict(mod, newdata = test[,predictors], type = "prob")
 # Visualizando as primeiras linhas
 head(round(test$probs_all, 3))
-
 ################################################################################
 ### Passo 5: Avaliação
 # Extraindo a probabilidade da classe "S"
@@ -81,10 +74,7 @@ kprev <- factor(ifelse(test$probs >= 0.5, "S", "N"), levels = c("N", "S"))
 
 # Garantir que a variável real também possua os mesmos níveis e ordem
 test$hip <- factor(test$hip, levels = c("N", "S"))
-
 ################################################################################
 # Métricas
 conf_matrix <- caret::confusionMatrix(kprev, test$hip, positive = "S")
 print(conf_matrix)
-cat("Acurácia:", MLmetrics::Accuracy(kprev, test$hip))
-cat("Precisão:", MLmetrics::Precision(kprev, test$hip, positive = "S"))
