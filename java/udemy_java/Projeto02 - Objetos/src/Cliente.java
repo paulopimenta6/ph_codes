@@ -1,6 +1,10 @@
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+/**
+* @author Paulo Henrique Pimenta
+*/
+
 public class Cliente {
     
     private static Socket socket;
