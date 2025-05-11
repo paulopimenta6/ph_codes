@@ -1,3 +1,4 @@
+package local.redes;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -9,7 +10,7 @@ import java.net.Socket;
 public class Servidor {
     public static void main(String args[]) throws IOException{
         while(true){
-            try(ServerSocket servidor = new ServerSocket(55000);
+            try(ServerSocket servidor = new ServerSocket(50000);
                 Socket conexao = servidor.accept();                
                 ObjectInputStream entrada = new ObjectInputStream(conexao.getInputStream());
                 ObjectOutputStream saida = new ObjectOutputStream(conexao.getOutputStream())){

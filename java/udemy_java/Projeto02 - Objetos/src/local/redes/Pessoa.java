@@ -1,3 +1,4 @@
+package local.redes;
 import java.io.Serializable;
 
 /**
