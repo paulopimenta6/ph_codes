@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+    <title>Calculadora EJB</title>
+</h:head>
+<h:body>
+    <h:form>
+        <h3>Calculadora EJB com JSF</h3>
+
+        <h:outputLabel value="Número A: " />
+        <h:inputText value="#{calcManagedBean.a}" /><br/>
+
+        <h:outputLabel value="Número B: " />
+        <h:inputText value="#{calcManagedBean.b}" /><br/>
+
+        <h:commandButton value="Calcular" action="#{calcManagedBean.calcular}" /><br/><br/>
+
+        <h:panelGroup rendered="#{not empty calcManagedBean.erro}">
+            <h:outputText value="Erro: #{calcManagedBean.erro}" style="color:red;"/>
+        </h:panelGroup>
+
+        <h:outputText value="Soma: #{calcManagedBean.resultadoSoma}" /><br/>
+        <h:outputText value="Subtração: #{calcManagedBean.resultadoSubtracao}" /><br/>
+        <h:outputText value="Multiplicação: #{calcManagedBean.resultadoMultiplicacao}" /><br/>
+        <h:outputText value="Divisão: #{calcManagedBean.resultadoDivisao}" /><br/>
+    </h:form>
+</h:body>
+</html>

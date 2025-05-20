@@ -1,0 +1,17 @@
+import remoto
+
+tv = remoto.Televisao(2,14)
+pilha = remoto.Pilha()
+controle = remoto.ControleRemoto(tv, pilha)
+controle.liga()
+print(f"Estado da tv: {tv.ligada}")
+print(f"O canal atual esta em : {tv.canal}")
+controle.canal_mais()
+controle.canal_mais()
+controle.canal_mais()
+controle.canal_mais()
+print(f"O canal atual + 4 posicoes esta em : {tv.canal}")
+controle.canal_menos()
+controle.canal_menos()
+print(f"O canal atual - 2 posicoes esta em : {tv.canal}")
+print(f"O estado da pilha: {pilha.energia/100}")
