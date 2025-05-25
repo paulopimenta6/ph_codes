@@ -1,0 +1,52 @@
+Linear mixed model fit by REML ['lmerMod']
+Formula: y ~ x + x2 + categoria1 + categoria2 + (1 | grupo)
+   Data: dados
+Control: controle
+
+REML criterion at convergence: 284582.6
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-4.0916 -0.6734  0.0030  0.6717  4.5216 
+
+Random effects:
+ Groups   Name        Variance Std.Dev.
+ grupo    (Intercept) 1.249    1.118   
+ Residual             1.000    1.000   
+Number of obs: 100000, groups:  grupo, 100
+
+Fixed effects:
+                 Estimate Std. Error t value
+(Intercept)      0.117543   0.112342   1.046
+x                2.498149   0.003164 789.437
+x2               0.500000   0.001576 317.257
+categoria1B     -0.004684   0.009986  -0.469
+categoria1C     -0.001707   0.009983  -0.171
+categoria1D     -0.001985   0.009974  -0.199
+categoria1E      0.002331   0.010019   0.233
+categoria2Baixo -0.012477   0.007748  -1.610
+categoria2Médio -0.006295   0.007751  -0.812
+
+Correlation of Fixed Effects:
+            (Intr) x      x2     ctgr1B ctgr1C ctgr1D ctgr1E ctgr2B
+x            0.000                                                 
+x2          -0.070  0.003                                          
+categoria1B -0.044  0.003 -0.003                                   
+categoria1C -0.044  0.002  0.000  0.498                            
+categoria1D -0.044  0.001 -0.006  0.498  0.499                     
+categoria1E -0.044  0.002  0.001  0.496  0.496  0.497              
+categori2Bx -0.035 -0.004  0.002  0.002 -0.004  0.000 -0.002       
+categori2Md -0.034  0.002  0.000  0.001 -0.003  0.000  0.001  0.499
+
+ANOVA do modelo:
+Analysis of Variance Table
+           npar Sum Sq Mean Sq    F value
+x             1 622083  622083 6.2195e+05
+x2            1 100679  100679 1.0066e+05
+categoria1    4      1       0 1.3130e-01
+categoria2    2      3       1 1.2967e+00
+
+Parâmetros de variância:
+ Groups   Name        Std.Dev.
+ grupo    (Intercept) 1.1175  
+ Residual             1.0001  
