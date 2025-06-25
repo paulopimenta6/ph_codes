@@ -1,0 +1,11 @@
+library(magick)
+
+single_image = image_read("C:/Users/paulo.pimenta/Pictures/1722522941769.jpg")
+class((single_image))
+print(single_image)
+
+#image_display(single_image)
+#plot(single_image)
+
+img_gray <- image_convert(single_image, colorspace = "gray")
+plot(img_gray)

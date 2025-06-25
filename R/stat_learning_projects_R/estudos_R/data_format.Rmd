@@ -1,0 +1,116 @@
+---
+title: "Data Format"
+output: html_document
+---
+
+# Data format
+
+## Time series
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo       = TRUE,
+  message    = FALSE,
+  warning    = FALSE
+)
+```
+
+```{r}
+ts_data_raw <- read.csv(
+  "https://raw.githubusercontent.com/jbrownlee/Datasets/master/daily-min-temperatures.csv")
+```
+
+```{r}
+df_ts <- ts(
+  ts_data_raw$Temp,
+  start     = c(1981, 1),
+  end       = c(1990, 12, 31),
+  frequency = 365
+)
+```
+
+```{r}
+class(df_ts)
+head(df_ts)
+```
+
+```{r}
+plot(df_ts, main = "Temperatura Mínima Diária (1981–1990)")
+decomposed_ts <- decompose(df_ts)
+plot(decomposed_ts, xlab = "Tempo")
+title(main = "Decomposição da Série", outer = TRUE, line = -1)
+```
+
+```{r}
+library(geodata)
+library(terra)
+```
+
+```{r}
+climate_variables <- worldclim_global(var = "bio", res = 10, path = "worldclim")
+```
+
+```{r}
+climate_variables
+plot(climate_variables[[1]], main = names(climate_variables)[1])
+```
+
+```{r}
+library(sdmbench)
+library(maptools)   # para wrld_simpl
+data("wrld_simpl", package = "maptools")
+```
+
+```{r}
+bd <- get_benchmarking_data("Loxodonta africana")
+```
+
+```{r}
+bd$df_data <- partition_data(
+  dataset_raster = bd$raster_data,
+  dataset        = bd$df_data,
+  env            = climate_variables,
+  method         = "block"
+)
+```
+
+```{r}
+bd$df_data <- na.omit(bd$df_data)
+```
+
+```{r}
+learners <- list(
+  mlr::makeLearner("classif.randomForest", predict.type = "prob"),
+  mlr::makeLearner("classif.logreg",        predict.type = "prob"),
+  mlr::makeLearner("classif.rpart",         predict.type = "prob"),
+  mlr::makeLearner("classif.ksvm",          predict.type = "prob")
+)
+```
+
+```{r}
+bmr <- benchmark_sdm(
+  data         = bd$df_data,
+  learners     = learners,
+  dataset_type = "block",
+  sample       = FALSE
+)
+```
+
+```{r}
+best_results <- get_best_model_results(bmr)
+bmr_models   <- mlr::getBMRModels(bmr)
+```
+
+```{r}
+library(raster)  # para plot de wrld_simpl
+plot_sdm_map(
+  raster_data     = bd$raster_data,
+  bmr_models      = bmr_models,
+  model_id        = best_results$learner.id[1],
+  model_iteration = best_results$iter[1],
+  map_type        = "static"
+) 
+plot(wrld_simpl,
+       add    = TRUE,
+       border = "darkgrey")
+```
