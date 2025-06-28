@@ -30,6 +30,37 @@ dfSodio <- data.frame(sod_onda1 = sodioUrinaOnda1,
                       sod_onda3 = sodioUrinaOnda3
 )
 
+############################ Indicador de diabetes #############################
+dfHemoglobinaGlicada <- data.frame(hbac_onda1 = hemoglobinaGlicadaHba1cOnda1,
+                                   hbac_onda2 = hemoglobinaGlicadaHba2cOnda2,
+                                   hbac_onda3 = hemoglobinaGlicadaHba3cOnda3
+)
+
+dfFazUsoContinuoInsulina <- data.frame(insulina_onda1 = fazUsoContinuoInsulinaONda1,
+                                       insulina_onda2 = fazUsoContinuoInsulinaONda2,
+                                       insulina_onda3 = fazUsoContinuoInsulinaONda3
+)
+
+dfFazUsoContinuoInsulina <- dfFazUsoContinuoInsulina %>%
+  dplyr::mutate(
+    insulina_onda1 = as.factor(insulina_onda1),
+    insulina_onda2 = as.factor(insulina_onda2),
+    insulina_onda3 = as.factor(insulina_onda3),
+)
+
+dfFazUsoAntidiabeticosOrais <- data.frame(antidiabeticos_onda1 = tomaAntidiabeticosOraisOnda1,
+                                          antidiabeticos_onda2 = tomaAntidiabeticosOraisOnda2,
+                                          antidiabeticos_onda3 = tomaAntidiabeticosOraisOnda3
+)
+
+dfFazUsoAntidiabeticosOrais <- dfFazUsoAntidiabeticosOrais %>%
+  dplyr::mutate(
+    antidiabeticos_onda1 = as.factor(antidiabeticos_onda1),
+    antidiabeticos_onda2 = as.factor(antidiabeticos_onda2),
+    antidiabeticos_onda3 = as.factor(antidiabeticos_onda3),
+)
+################################################################################
+
 dfRazaoAlbuminaCreatinina <- data.frame(albCreat_onda1 = razaoAlbuminaCreatininaRastreavelOnda1,
                                         albCreat_onda2 = razaoAlbuminaCreatininaRastreavelOnda2
 )
@@ -55,9 +86,16 @@ dfPAD <- data.frame(PAD_onda1 = pressaoDiastolicamediaOnda1,
 ################################################################################
 ### Criando os novos data frames que serao imputados
 dadosOnda1kNN <- data.frame(
+  idElsa = idElsa,
+  sexo = sexo,
   hip = dfPresencaHipertensaoSistem$hip_onda1,
   pot = dfPotassio$pot_onda1,
   sod = dfSodio$sod_onda1,
+  ###Inclusao de indicadores de diabetes
+  hba1c = dfHemoglobinaGlicada$hbac_onda1,
+  insulina = dfFazUsoContinuoInsulina$insulina_onda1,
+  antidiabeticosOrais = dfFazUsoAntidiabeticosOrais$antidiabeticos_onda1,
+  ###Fim dos indicadores de diabetes
   albCreat = dfRazaoAlbuminaCreatinina$albCreat_onda1,
   taxaFilt = dfTaxaFiltracaoGlomerular$filt_onda1,
   pas = dfPAS$PAS_onda1,
@@ -65,9 +103,16 @@ dadosOnda1kNN <- data.frame(
 )
 
 dadosOnda2kNN <- data.frame(
+  idElsa = idElsa,
+  sexo = sexo,
   hip = dfPresencaHipertensaoSistem$hip_onda2,
   pot = dfPotassio$pot_onda2,
   sod = dfSodio$sod_onda2,
+  ###Inclusao de indicadores de diabetes
+  hba1c = dfHemoglobinaGlicada$hbac_onda2,
+  insulina = dfFazUsoContinuoInsulina$insulina_onda2,
+  antidiabeticosOrais = dfFazUsoAntidiabeticosOrais$antidiabeticos_onda2,
+  ###Fim dos indicadores de diabetes
   albCreat = dfRazaoAlbuminaCreatinina$albCreat_onda2,
   taxaFilt = dfTaxaFiltracaoGlomerular$filt_onda2,
   pas = dfPAS$PAS_onda2,
@@ -75,9 +120,16 @@ dadosOnda2kNN <- data.frame(
 )
 
 dadosOnda3kNN <- data.frame(
+  idElsa = idElsa,
+  sexo = sexo,
   hip = dfPresencaHipertensaoSistem$hip_onda3,
   pot = dfPotassio$pot_onda3,
   sod = dfSodio$sod_onda3,
+  ###Inclusao de indicadores de diabetes
+  hba1c = dfHemoglobinaGlicada$hbac_onda3,
+  insulina = dfFazUsoContinuoInsulina$insulina_onda3,
+  antidiabeticosOrais = dfFazUsoAntidiabeticosOrais$antidiabeticos_onda3,
+  ###Fim dos indicadores de diabetes
   pas = dfPAS$PAS_onda3,
   pad = dfPAD$PAD_onda3
 )
@@ -133,3 +185,16 @@ dadosOnda2kNN_inp <- subset(dadosOnda2kNN_inp, select = hip:pad)
 dadosOnda3kNN_inp <- VIM::kNN(dadosOnda3kNN, k = 10)
 dadosOnda3kNN_inp <- subset(dadosOnda3kNN_inp, select = hip:pad)
 ################################################################################
+################ Criando coluna para diabetes mellitus #########################
+### Onda 1
+dadosOnda1kNN_inp$diabetes <- ifelse(
+  dadosOnda1kNN_inp$hba1c >= 6.5, 1, 0
+)
+### Onda 2
+dadosOnda2kNN_inp$diabetes <- ifelse(
+  dadosOnda2kNN_inp$hba1c >= 6.5, 1, 0
+)
+### Onda 3
+dadosOnda3kNN_inp$diabetes <- ifelse(
+  dadosOnda3kNN_inp$hba1c >= 6.5, 1, 0
+)

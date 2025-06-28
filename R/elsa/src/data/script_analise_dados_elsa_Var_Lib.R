@@ -13,6 +13,10 @@ importaDadosLib <- readr::read_csv2(
 #ID Elsa para o metodo de friedman (teste nao parametrico)
 idElsa <- importaDadosLib$IDELSA
 
+#Sexo
+sexo <- importaDadosLib$SEXO
+sexo <- ifelse(sexo==1, 1, 0)
+
 ###idade
 idadeNaOnda1 <- importaDadosLib$IDADEA
 idadeNaOnda2 <- importaDadosLib$IDADEB
