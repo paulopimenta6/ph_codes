@@ -1,6 +1,6 @@
 if(!require(pacman)) install.packages("pacman")
 library(pacman)
-pacman::p_load(dplyr, ordinal, MuMIn, ggeffects, effects)
+pacman::p_load(dplyr, ordinal, MuMIn, ggeffects, effects, tidyr)
 
 # Carrega os dados
 source("./src/data/script_analise_dados_elsa_Var_Lib.R")
@@ -67,7 +67,7 @@ dfPAD <- data.frame(
 # Criação dos data frames por onda
 dadosOnda1 <- data.frame(
   idElsa = as.factor(idElsa),
-  sexo = sexo,
+  sexo = as.factor(sexo),
   hip = dfPresencaHipertensaoSistem$hip_onda1,
   pot = dfPotassio$pot_onda1,
   sod = dfSodio$sod_onda1,
@@ -83,7 +83,7 @@ dadosOnda1 <- data.frame(
 
 dadosOnda2 <- data.frame(
   idElsa = as.factor(idElsa),
-  sexo = sexo,
+  sexo = as.factor(sexo),
   hip = dfPresencaHipertensaoSistem$hip_onda2,
   pot = dfPotassio$pot_onda2,
   sod = dfSodio$sod_onda2,
@@ -100,7 +100,7 @@ dadosOnda2 <- data.frame(
 # Onda 3 sem taxaFilt
 dadosOnda3 <- data.frame(
   idElsa = as.factor(idElsa),
-  sexo = sexo,
+  sexo = as.factor(sexo),
   hip = dfPresencaHipertensaoSistem$hip_onda3,
   pot = dfPotassio$pot_onda3,
   sod = dfSodio$sod_onda3,
@@ -135,8 +135,11 @@ dadosLong <- dadosLong %>%
     hba1c = scale(hba1c),
     albCreat = scale(albCreat),
     onda = as.factor(onda),
-    taxaFilt = factor(taxaFilt, ordered = TRUE)  # se for ordinal
-  )
+    taxaFilt = factor(taxaFilt)
+)
+
+dados_modelo <- dadosLong %>%
+  drop_na(taxaFilt, sexo, hip, pot, sod, hba1c, insulina, antidiabeticosOrais, albCreat, pas, pad, onda)
 
 # Modelo com efeito aleatório
 modelo_misto <- clmm(
@@ -150,7 +153,7 @@ summary(modelo_misto)
 modelo_fixed <- clm(
   taxaFilt ~ sexo + hip + pot + sod + hba1c + insulina + antidiabeticosOrais +
     albCreat + pas + pad + onda,
-  data = dadosLong,
+  data = dados_modelo,
   na.action = na.fail
 )
 
@@ -159,13 +162,13 @@ modelo_dredge <- dredge(modelo_fixed, trace = TRUE)
 best_model <- get.models(modelo_dredge, 1)[[1]]
 summary(best_model)
 
-# Modelo final com estrutura do best_model + efeito aleatório
-modelo_final <- clmm(
-  formula(best_model),
-  random = ~1 | idElsa,
-  data = dadosLong
-)
-summary(modelo_final)
+# Extrai a fórmula sem efeito aleatório
+fml <- formula(best_model)
 
-# Visualização dos efeitos marginais
-plot(allEffects(modelo_final))
+# Ajusta o modelo misto (clmm) com o mesmo preditor, mas adicionando o efeito aleatório
+modelo_final <- clmm(
+  formula = update(fml, . ~ . + (1 | idElsa)),
+  data = dados_modelo
+)
+
+summary(modelo_final)
