@@ -138,6 +138,8 @@ dadosLong <- dadosLong %>%
     taxaFilt = factor(taxaFilt)
 )
 
+car::vif(lm(scale(as.numeric(taxaFilt)) ~ sexo + hip + pot + sod + hba1c + insulina + antidiabeticosOrais + albCreat + pas + pad + onda, data = dadosLong))
+
 dados_modelo <- dadosLong %>%
   drop_na(taxaFilt, sexo, hip, pot, sod, hba1c, insulina, antidiabeticosOrais, albCreat, pas, pad, onda)
 
