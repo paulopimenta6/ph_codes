@@ -135,7 +135,9 @@ dadosLong <- dadosLong %>%
     hba1c = scale(hba1c),
     albCreat = scale(albCreat),
     onda = as.factor(onda),
-    taxaFilt = factor(taxaFilt)
+    dadosLong$taxaFilt <- factor(dadosLong$taxaFilt,
+                                 levels = c("1", "2", "3", "4", "5", "6"),
+                                 ordered = TRUE)
 )
 
 car::vif(lm(scale(as.numeric(taxaFilt)) ~ sexo + hip + pot + sod + hba1c + insulina + antidiabeticosOrais + albCreat + pas + pad + onda, data = dadosLong))
