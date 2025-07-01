@@ -65,14 +65,18 @@ dfRazaoAlbuminaCreatinina <- data.frame(albCreat_onda1 = razaoAlbuminaCreatinina
                                         albCreat_onda2 = razaoAlbuminaCreatininaRastreavelOnda2
 )
 
-dfTaxaFiltracaoGlomerular <- data.frame(filt_onda1 = categoriasTaxaFiltracaoGlomerulaComCalibracaoOnda1,
-                                        filt_onda2 = categoriasTaxaFiltracaoGlomerulaComCalibracaoOnda2
+dfTaxaFiltracaoGlomerular <- data.frame(filt_onda1 = categoriasTaxaFiltracaoGlomerularAjustadaOnda1,
+                                        filt_onda2 = categoriasTaxaFiltracaoGlomerularAjustadaOnda2
 )
 dfTaxaFiltracaoGlomerular <- dfTaxaFiltracaoGlomerular %>%
   dplyr::mutate(
     filt_onda1 = as.factor(filt_onda1),
     filt_onda2 = as.factor(filt_onda2)
-  )
+)
+
+dfTaxaFiltracaoGlomerularCal <- data.frame(filt_cal_onda1 = taxaFiltracaoGlomerularComCalibracaoOnda1,
+                                           filt_cal_onda2 = taxaFiltracaoGlomerularComCalibracaoOnda2
+)
 
 dfPAS <- data.frame(PAS_onda1 = pressaoArterialSistolicaMediaOnda1,
                     PAS_onda2 = pressaoArterialSistolicaMediaOnda2,
@@ -98,6 +102,7 @@ dadosOnda1kNN <- data.frame(
   ###Fim dos indicadores de diabetes
   albCreat = dfRazaoAlbuminaCreatinina$albCreat_onda1,
   taxaFilt = dfTaxaFiltracaoGlomerular$filt_onda1,
+  taxaFiltCal = dfTaxaFiltracaoGlomerularCal$filt_cal_onda1,
   pas = dfPAS$PAS_onda1,
   pad = dfPAD$PAD_onda1
 )
@@ -115,6 +120,7 @@ dadosOnda2kNN <- data.frame(
   ###Fim dos indicadores de diabetes
   albCreat = dfRazaoAlbuminaCreatinina$albCreat_onda2,
   taxaFilt = dfTaxaFiltracaoGlomerular$filt_onda2,
+  taxaFiltCal = dfTaxaFiltracaoGlomerularCal$filt_cal_onda2,
   pas = dfPAS$PAS_onda2,
   pad = dfPAD$PAD_onda2
 )
@@ -175,15 +181,15 @@ nacounts_onda3[hasNA_onda3]
 
 ### Onda 1
 dadosOnda1kNN_inp <- VIM::kNN(dadosOnda1kNN, k = 10)
-dadosOnda1kNN_inp <- subset(dadosOnda1kNN_inp, select = hip:pad)
+dadosOnda1kNN_inp <- subset(dadosOnda1kNN_inp, select = idElsa:pad)
 
 ### Onda 2
 dadosOnda2kNN_inp <- VIM::kNN(dadosOnda2kNN, k = 10)
-dadosOnda2kNN_inp <- subset(dadosOnda2kNN_inp, select = hip:pad)
+dadosOnda2kNN_inp <- subset(dadosOnda2kNN_inp, select = idElsa:pad)
 
 ### Onda 3
 dadosOnda3kNN_inp <- VIM::kNN(dadosOnda3kNN, k = 10)
-dadosOnda3kNN_inp <- subset(dadosOnda3kNN_inp, select = hip:pad)
+dadosOnda3kNN_inp <- subset(dadosOnda3kNN_inp, select = idElsa:pad)
 ################################################################################
 ################ Criando coluna para diabetes mellitus #########################
 ### Onda 1
@@ -198,3 +204,4 @@ dadosOnda2kNN_inp$diabetes <- ifelse(
 dadosOnda3kNN_inp$diabetes <- ifelse(
   dadosOnda3kNN_inp$hba1c >= 6.5, 1, 0
 )
+################################################################################

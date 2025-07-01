@@ -256,12 +256,12 @@ razaoAlbuminaCreatininaRastreávelOnda1 <- importaDadosLib$A_RAC_R_2
 razaoAlbuminaCreatininaRastreávelOnda1 <- importaDadosLib$B_RAC_2
 
 ###taxa filtração glomerular com creatinina ajustada
-categoriasTaxaFiltracaoGlomerularComCalibracaoOnda1 <- importaDadosLib$A_CKDEPI_R_CAT_2
-categoriasTaxaFiltracaoGlomerularComCalibracaoOnda2 <- importaDadosLib$B_CKDEPI_R_CAT
+categoriasTaxaFiltracaoGlomerularAjustadaOnda1 <- importaDadosLib$A_CKDEPI_R_CAT_2
+categoriasTaxaFiltracaoGlomerularAjustadaOnda2 <- importaDadosLib$B_CKDEPI_R_CAT
 
 ###categorias taxa filtração glomerular com calibração
-categoriasTaxaFiltracaoGlomerularComCalibracaoOnda1 <- importaDadosLib$A_CKDEPI_R_3
-categoriasTaxaFiltracaoGlomerularComCalibracaoOnda2 <- importaDadosLib$B_CKDEPI_R_2
+taxaFiltracaoGlomerularComCalibracaoOnda1 <- importaDadosLib$A_CKDEPI_R_3
+taxaFiltracaoGlomerularComCalibracaoOnda2 <- importaDadosLib$B_CKDEPI_R_2
 
 ###microalbuminúria (mcg/min)
 microalbuminuriaMInOnda1 <- importaDadosLib$A_LABA19MCGMIN
