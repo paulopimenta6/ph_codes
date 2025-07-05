@@ -1,0 +1,5 @@
+br\bean\SomaBean.class
+br\bean\UsuarioBean.class
+br\bean\RankingBean.class
+br\bean\RankingBean$1.class
+br\servlet\RankingServlet.class
