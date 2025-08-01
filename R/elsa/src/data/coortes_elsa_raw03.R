@@ -1,6 +1,6 @@
 if(!require(pacman)) install.packages("pacman")
 library(pacman)
-pacman::p_load(dplyr, lme4, lmerTest, bbmle, sjPlot, ggeffects)
+pacman::p_load(bbmle, car, dplyr, ggeffects, lme4, lmerTest, performance, sjPlot)
 
 # Carrega os dados
 source("./src/data/script_analise_dados_elsa_Var_Lib.R")
@@ -138,16 +138,16 @@ dadosLong$antidiabeticosOrais <- as.factor(dadosLong$antidiabeticosOrais)
 str(dadosLong)
 
 ### Verificando colinearidade
-vif(lm(taxaFilt ~ albCreat + sod + pot + pas + pad + diabetes, data = dadosLong))
+car::vif(lm(taxaFilt ~ albCreat + sod + pot + pas + pad + diabetes, data = dadosLong))
 
 ### Criando modelos 
 m0 <- lm(taxaFilt ~ albCreat + sod + pot + pas + pad + diabetes, data = dadosLong)
-m1 <- lmer(taxaFilt ~ albCreat + sod + pot + pas + pad + diabetes + (1 | idElsa), data = dadosLong)
-m2 <- lmer(taxaFilt ~ albCreat * diabetes + sod + pot + pas + pad + (1 | idElsa), data = dadosLong)
-m3 <- lmer(taxaFilt ~ sod * pot + albCreat + pas + pad + diabetes + (1 | idElsa), data = dadosLong)
-m4 <- lmer(taxaFilt ~ pas * pad + albCreat + sod + pot + diabetes + (1 | idElsa), data = dadosLong)
-m5 <- lmer(taxaFilt ~ albCreat * diabetes + sod * pot + pas * pad + (1 | idElsa), data = dadosLong)
-m6 <- lmer(taxaFilt ~ onda * diabetes + onda * albCreat + sod + pot + pas + pad + (1 | idElsa), data = dadosLong)
+m1 <- lmer(taxaFilt ~ albCreat + sod + pot + pas + pad + diabetes + (1 | idElsa), data = dadosLong, refit = FALSE)
+m2 <- lmer(taxaFilt ~ albCreat * diabetes + sod + pot + pas + pad + (1 | idElsa), data = dadosLong, refit = FALSE)
+m3 <- lmer(taxaFilt ~ sod * pot + albCreat + pas + pad + diabetes + (1 | idElsa), data = dadosLong, refit = FALSE)
+m4 <- lmer(taxaFilt ~ pas * pad + albCreat + sod + pot + diabetes + (1 | idElsa), data = dadosLong, refit = FALSE)
+m5 <- lmer(taxaFilt ~ albCreat * diabetes + sod * pot + pas * pad + (1 | idElsa), data = dadosLong, refit = FALSE)
+m6 <- lmer(taxaFilt ~ onda * diabetes + onda * albCreat + sod + pot + pas + pad + (1 | idElsa), data = dadosLong, refit = FALSE)
 
 ### Anova
 anova(m1, m2, m3, m4, m5, m6)

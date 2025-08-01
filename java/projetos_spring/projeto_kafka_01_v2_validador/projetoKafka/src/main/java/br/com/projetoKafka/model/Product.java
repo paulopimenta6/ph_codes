@@ -1,4 +1,4 @@
-package org.shop_validator.model;
+package br.com.projetoKafka.model;
 
 import jakarta.persistence.*;
 import jakarta.persistence.Id;
@@ -14,7 +14,6 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "identifier")
     private String identifier;
 
     private Integer amount;
