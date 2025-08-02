@@ -16,7 +16,7 @@ public class Main {
 
         try {
             SpringApplication.run(Main.class, args);
-            logger.info(">>> Aplicacao executada com sucesso");
+            logger.info(">>> Aplicacao de validacao da compra executada com sucesso");
         } catch (Exception e) {
             logger.info(">>> Erro ao iniciar a aplicacao: ", e.getMessage(), e);
             System.exit(1);
