@@ -120,16 +120,16 @@ dadosOnda3$diabetes <- ifelse(dadosOnda3$hba1c >= 6.5, 1, 0)
 dadosLong <- bind_rows(dadosOnda1, dadosOnda2, dadosOnda3)
 
 # Padroniza variáveis contínuas
-dadosLong <- dadosLong %>%
-  mutate(
-    pot = (scale(pot)),
-    sod = (scale(sod)),
-    pas = (scale(pas)),
-    pad = (scale(pad)),
-    hba1c = (scale(hba1c)),
-    albCreat = (scale(albCreat)),
-    taxaFilt = (scale(taxaFilt))
-)
+#dadosLong <- dadosLong %>%
+#  mutate(
+#    pot = (scale(pot)),
+#    sod = (scale(sod)),
+#    pas = (scale(pas)),
+#    pad = (scale(pad)),
+#    hba1c = (scale(hba1c)),
+#    albCreat = (scale(albCreat)),
+#    taxaFilt = (scale(taxaFilt))
+#)
 
 dadosLong$diabetes <- as.factor(dadosLong$diabetes)
 dadosLong$antidiabeticosOrais <- as.factor(dadosLong$antidiabeticosOrais)
@@ -142,12 +142,12 @@ car::vif(lm(taxaFilt ~ albCreat + sod + pot + pas + pad + diabetes, data = dados
 
 ### Criando modelos 
 m0 <- lm(taxaFilt ~ albCreat + sod + pot + pas + pad + diabetes, data = dadosLong)
-m1 <- lmer(taxaFilt ~ albCreat + sod + pot + pas + pad + diabetes + (1 | idElsa), data = dadosLong, refit = FALSE)
-m2 <- lmer(taxaFilt ~ albCreat * diabetes + sod + pot + pas + pad + (1 | idElsa), data = dadosLong, refit = FALSE)
-m3 <- lmer(taxaFilt ~ sod * pot + albCreat + pas + pad + diabetes + (1 | idElsa), data = dadosLong, refit = FALSE)
-m4 <- lmer(taxaFilt ~ pas * pad + albCreat + sod + pot + diabetes + (1 | idElsa), data = dadosLong, refit = FALSE)
-m5 <- lmer(taxaFilt ~ albCreat * diabetes + sod * pot + pas * pad + (1 | idElsa), data = dadosLong, refit = FALSE)
-m6 <- lmer(taxaFilt ~ onda * diabetes + onda * albCreat + sod + pot + pas + pad + (1 | idElsa), data = dadosLong, refit = FALSE)
+m1 <- lmer(taxaFilt ~ albCreat + sod + pot + pas + pad + diabetes + (1 | idElsa), data = dadosLong)
+m2 <- lmer(taxaFilt ~ albCreat * diabetes + sod + pot + pas + pad + (1 | idElsa), data = dadosLong)
+m3 <- lmer(taxaFilt ~ sod * pot + albCreat + pas + pad + diabetes + (1 | idElsa), data = dadosLong)
+m4 <- lmer(taxaFilt ~ pas * pad + albCreat + sod + pot + diabetes + (1 | idElsa), data = dadosLong)
+m5 <- lmer(taxaFilt ~ albCreat * diabetes + sod * pot + pas * pad + (1 | idElsa), data = dadosLong)
+m6 <- lmer(taxaFilt ~ onda * diabetes + onda * albCreat + sod + pot + pas + pad + (1 | idElsa), data = dadosLong)
 
 ### Anova
 anova(m1, m2, m3, m4, m5, m6)
