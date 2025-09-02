@@ -32,17 +32,6 @@ if("antidiabeticos_orais" %in% names(dados_sub)){
   dados_sub$antidiabeticos_orais <- factor(dados_sub$antidiabeticos_orais)
 }
 ################################################################################
-# dimensões e primeiras linhas
-dim(dados_sub)
-str(dados_sub)
-summary(dados_sub$taxa_filt)
-table(is.na(dados$taxa_filt))   # original
-table(is.na(dados_sub$taxa_filt))# após complete.cases
-# número de observações por id
-tab <- table(dados_sub$id_elsa)
-summary(tab)
-head(sort(tab), 20)   # IDs com menos observações (se houver)
-################################################################################
 ################ Passo 2. Modelo inicial (intercepto aleatório #################
 mod_taxa0 <- lmer(taxa_filt ~ onda + pot + sod + hba1c + insulina + 
                     antidiabeticos_orais + albcreat + pad + pas + diabetes + 

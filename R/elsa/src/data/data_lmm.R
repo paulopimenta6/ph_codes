@@ -109,7 +109,7 @@ dados_long <- df_hip |>
   left_join(df_pas, by = c("id_elsa", "onda")) |>
   left_join(df_pad, by = c("id_elsa", "onda")) |>
   mutate(
-    diabetes = ifelse(!is.na(hba1c) & hba1c >= 6.5, 1, 0)
+    diabetes = ifelse(hba1c >= 6.5, 1, 0)
   )
 
 write.csv(
