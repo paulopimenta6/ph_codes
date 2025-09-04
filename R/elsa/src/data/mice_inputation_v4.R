@@ -1,6 +1,6 @@
 if(!require(pacman)) install.packages("pacman")
 library(pacman)
-pacman::p_load(mice, ROSE, VIM)
+pacman::p_load(mice, VIM)
 library(dplyr)
 source("./src/data/script_analise_dados_elsa_Var_Lib.R")
 ################################################################################
@@ -81,7 +81,7 @@ dfPAD <- data.frame(PAD_onda1 = pressaoDiastolicamediaOnda1,
 )
 ################################################################################
 ### Criando os novos data frames que serao imputados
-dadosOnda1kNN <- data.frame(
+dadosOnda1Mice <- data.frame(
   idElsa = idElsa,
   sexo = sexo,
   hip = dfPresencaHipertensaoSistem$hip_onda1,
@@ -98,7 +98,7 @@ dadosOnda1kNN <- data.frame(
   pad = dfPAD$PAD_onda1
 )
 
-dadosOnda2kNN <- data.frame(
+dadosOnda2Mice <- data.frame(
   idElsa = idElsa,
   sexo = sexo,
   hip = dfPresencaHipertensaoSistem$hip_onda2,
@@ -115,7 +115,7 @@ dadosOnda2kNN <- data.frame(
   pad = dfPAD$PAD_onda2
 )
 
-dadosOnda3kNN <- data.frame(
+dadosOnda3Mice <- data.frame(
   idElsa = idElsa,
   sexo = sexo,
   hip = dfPresencaHipertensaoSistem$hip_onda3,
@@ -130,68 +130,104 @@ dadosOnda3kNN <- data.frame(
   pad = dfPAD$PAD_onda3
 )
 ################################################################################
-#agg_plot <- aggr(dadosOnda1kNN, col = c('navyblue', 'red'), 
-#                 numbers = TRUE, sortvars = TRUE, 
-#                 labels = names(dadosOnda1kNN), 
-#                 cex.axis = 0.7, cex.numbers = 0.5,  # Ajuste o tamanho dos números
-#                 ylab = c("Histogram of missing data - onda 1", "Pattern - onda 1"))
+agg_plot <- VIM::aggr(dadosOnda1Mice, col = c('navyblue', 'red'), 
+                      numbers = TRUE, sortvars = TRUE, 
+                      labels = names(dadosOnda1Mice), 
+                      cex.axis = 0.7, cex.numbers = 0.5,  # Ajuste o tamanho dos números
+                      ylab = c("Histogram of missing data - onda 1", "Pattern - onda 1"))
 
-#agg_plot <- aggr(dadosOnda2kNN, col = c('navyblue', 'red'), 
-#                 numbers = TRUE, sortvars = TRUE, 
-#                 labels = names(dadosOnda2kNN), 
-#                 cex.axis = 0.7, cex.numbers = 0.5,  # Ajuste o tamanho dos números
-#                 ylab = c("Histogram of missing data - onda 2", "Pattern - onda 2"))
+agg_plot <- VIM::aggr(dadosOnda2Mice, col = c('navyblue', 'red'), 
+                      numbers = TRUE, sortvars = TRUE, 
+                      labels = names(dadosOnda2Mice), 
+                      cex.axis = 0.7, cex.numbers = 0.5,  # Ajuste o tamanho dos números
+                      ylab = c("Histogram of missing data - onda 2", "Pattern - onda 2"))
 
-#agg_plot <- aggr(dadosOnda3kNN, col = c('navyblue', 'red'), 
-#                 numbers = TRUE, sortvars = TRUE, 
-#                 labels = names(dadosOnda3kNN), 
-#                 cex.axis = 0.7, cex.numbers = 0.5,  # Ajuste o tamanho dos números
-#                 ylab = c("Histogram of missing data - onda 3", "Pattern - onda 3"))
+agg_plot <- VIM::aggr(dadosOnda3Mice, col = c('navyblue', 'red'), 
+                      numbers = TRUE, sortvars = TRUE, 
+                      labels = names(dadosOnda3Mice), 
+                      cex.axis = 0.7, cex.numbers = 0.5,  # Ajuste o tamanho dos números
+                      ylab = c("Histogram of missing data - onda 3", "Pattern - onda 3"))
 ################################################################################
 ### onda 1
-summary(dadosOnda1kNN)
-nacounts_onda1 <- count_missing(dadosOnda1kNN)
+summary(dadosOnda1Mice)
+nacounts_onda1 <- count_missing(dadosOnda1Mice)
 hasNA_onda1 <- which(nacounts_onda1>0)
 nacounts_onda1[hasNA_onda1]
 
 ### onda 2
-summary(dadosOnda2kNN)
-nacounts_onda2 <- count_missing(dadosOnda2kNN)
+summary(dadosOnda2Mice)
+nacounts_onda2 <- count_missing(dadosOnda2Mice)
 hasNA_onda2 <- which(nacounts_onda2>0)
 nacounts_onda2[hasNA_onda2]
 
 ### onda 3
-summary(dadosOnda3kNN)
-nacounts_onda3 <- count_missing(dadosOnda3kNN)
+summary(dadosOnda3Mice)
+nacounts_onda3 <- count_missing(dadosOnda3Mice)
 hasNA_onda3 <- which(nacounts_onda3>0)
 nacounts_onda3[hasNA_onda3]
 ################################################################################
-### Imputando valores para Hipertensao com kNN
+### Imputando valores para Hipertensao com pmm
 ### Rodar o algoritmo de imputação múltipla
 
-### Onda 1
-dadosOnda1kNN_inp <- VIM::kNN(dadosOnda1kNN, k = 10)
-dadosOnda1kNN_inp <- subset(dadosOnda1kNN_inp, select = idElsa:pad)
+### Onda 1 
+dadosOnda1Mice_tmp_inp <- mice(dadosOnda1Mice, method = "pmm", m = 5, seed = 123)
+### Gerar dataset com valores imputados (usando a primeira imputação completa)
+dadosOnda1Mice_inp <- complete(dadosOnda1Mice_tmp_inp, 1)
 
-### Onda 2
-dadosOnda2kNN_inp <- VIM::kNN(dadosOnda2kNN, k = 10)
-dadosOnda2kNN_inp <- subset(dadosOnda2kNN_inp, select = idElsa:pad)
+### Onda 2 
+dadosOnda2Mice_tmp_inp <- mice(dadosOnda2Mice, method = "pmm", m = 5, seed = 123)
+### Gerar dataset com valores imputados (usando a primeira imputação completa)
+dadosOnda2Mice_inp <- complete(dadosOnda2Mice_tmp_inp, 1)
 
-### Onda 3
-dadosOnda3kNN_inp <- VIM::kNN(dadosOnda3kNN, k = 10)
-dadosOnda3kNN_inp <- subset(dadosOnda3kNN_inp, select = idElsa:pad)
+### Onda 3 
+dadosOnda3Mice_tmp_inp <- mice(dadosOnda3Mice, method = "pmm", m = 5, seed = 123)
+### Gerar dataset com valores imputados (usando a primeira imputação completa)
+dadosOnda3Mice_inp <- complete(dadosOnda3Mice_tmp_inp, 1)
 ################################################################################
 ################ Criando coluna para diabetes mellitus #########################
 ### Onda 1
-dadosOnda1kNN_inp$diabetes <- ifelse(
-  dadosOnda1kNN_inp$hba1c >= 6.5, 1, 0
+dadosOnda1Mice_inp$diabetes <- ifelse(
+  dadosOnda1Mice_inp$hba1c >= 6.5, 1, 0
 )
 ### Onda 2
-dadosOnda2kNN_inp$diabetes <- ifelse(
-  dadosOnda2kNN_inp$hba1c >= 6.5, 1, 0
+dadosOnda2Mice_inp$diabetes <- ifelse(
+  dadosOnda2Mice_inp$hba1c >= 6.5, 1, 0
 )
 ### Onda 3
-dadosOnda3kNN_inp$diabetes <- ifelse(
-  dadosOnda3kNN_inp$hba1c >= 6.5, 1, 0
+dadosOnda3Mice_inp$diabetes <- ifelse(
+  dadosOnda3Mice_inp$hba1c >= 6.5, 1, 0
 )
-################################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

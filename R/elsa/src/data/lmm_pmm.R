@@ -6,7 +6,7 @@ library(pacman)
 pacman::p_load(DHARMa, ggeffects, ggplot2, lme4, performance, tidyr)
 
 # carregar base
-dados <- read.csv("./dados_elsa/dados_long_kNN.csv", stringsAsFactors = FALSE)
+dados <- read.csv("./dados_elsa/dados_long_pmm.csv", stringsAsFactors = FALSE)
 
 # fatores
 #dados$id_elsa <- factor(dados$id_elsa)
