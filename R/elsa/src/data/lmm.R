@@ -168,3 +168,4 @@ ggplot(mydata_model_1, aes(x = Pred_model_1, y = taxa_filt)) +
   theme_bw(base_size = 16) +  
   xlab("Taxa de filtração glomerular prevista") +  
   ylab("Taxa de filtração glomerular Medida")
+################################################################################
