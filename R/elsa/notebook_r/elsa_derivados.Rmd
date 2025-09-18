@@ -1,0 +1,34 @@
+---
+title: "R Notebook ELSA derivados"
+output: html_notebook
+---
+
+Carregando Lib haven
+
+```{r}
+library(haven)
+library(readr)
+library(writexl)
+```
+
+```{r}
+dados1 <- read_sav("../dados_elsa/ELSA_BRASIL_DATA_BOOK/derivo2_elsa_160216_IDELSA.sav")
+dados2 <- read_sav("../dados_elsa/ELSA_BRASIL_DATA_BOOK/labo2_elsa_160216_IDELSA.sav")
+```
+
+```{r}
+head(dados1)
+```
+
+```{r}
+head(dados2)
+```
+
+Salvando em csv e XLSX
+
+```{r}
+write_csv(dados1, "derivo2_elsa_160216_IDELSA.csv")
+write_csv(dados2, "labo2_elsa_160216_IDELSA.csv")
+write_xlsx(dados1, "derivo2_elsa_160216_IDELSA.xlsx")
+write_xlsx(dados2, "labo2_elsa_160216_IDELSA.xlsx")
+```
