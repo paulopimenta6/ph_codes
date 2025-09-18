@@ -1,0 +1,95 @@
+---
+title: "Consumo de alimentos ultraprocessados e função renal: análise da taxa de filtração glomerular no Estudo Longitudinal de Saúde do Adulto (ELSA-Brasil)"
+author: "Paulo Henrique de Almeida Soares Pimenta"
+date: "`r format(Sys.Date(), '%d de %B de %Y')`"
+output: 
+  pdf_document:
+    toc: true
+    number_sections: true
+    latex_engine: xelatex
+  word_document: 
+    toc: true
+    number_sections: true
+fontsize: 12pt
+geometry: a4paper, top=2.5cm, left=2.5cm, right=2.5cm, bottom=2.5cm
+lang: pt
+bibliography: referencias.bib
+csl: apa.csl
+header-includes:
+  - \renewcommand{\contentsname}{Índice}
+---
+
+# Introdução
+
+A função renal é essencial para a manutenção da homeostase do organismo, sendo a taxa de filtração glomerular (TFG) o principal marcador de avaliação clínica da função renal.\
+A doença renal crônica (DRC) representa um importante problema de saúde pública, com elevada morbimortalidade, impacto econômico e crescente prevalência no Brasil e no mundo.
+
+O consumo de alimentos ultraprocessados, de acordo com a classificação NOVA, tem aumentado de forma expressiva nas últimas décadas. Esses produtos, caracterizados por formulações industriais de ingredientes refinados, aditivos e alta densidade energética, estão associados a maior risco de obesidade, doenças metabólicas, cardiovasculares e renais.
+
+Estudos internacionais sugerem que dietas com elevada participação de ultraprocessados podem estar relacionadas ao declínio da TFG e ao aumento do risco de progressão para DRC [@chen2020]. No entanto, no Brasil, ainda são escassas as análises longitudinais que explorem esse tema.
+
+O Estudo Longitudinal de Saúde do Adulto (ELSA-Brasil) constitui a maior coorte nacional com dados detalhados de dieta, exames laboratoriais e medidas clínicas, configurando-se como uma oportunidade ímpar para investigar a associação entre consumo de ultraprocessados e função renal.
+
+# Justificativa
+
+A relevância deste estudo fundamenta-se em quatro pontos principais:
+
+1. A doença renal crônica encontra-se em ascensão no Brasil, gerando elevado custo ao Sistema Único de Saúde (SUS).
+2. A alimentação é um fator modificável, o que torna o tema central para estratégias de prevenção e promoção da saúde.
+3. O ELSA-Brasil oferece uma base de dados única e representativa, que possibilita a análise longitudinal dessa associação.
+4. Os resultados poderão contribuir com evidências científicas inéditas, auxiliando na formulação de políticas públicas voltadas para a alimentação saudável e prevenção de DRC.
+
+# Objetivos
+
+## Objetivo geral
+
+Avaliar a associação entre consumo de alimentos ultraprocessados e taxa de filtração glomerular em participantes do ELSA-Brasil.
+
+## Objetivos específicos
+
+- Estimar a prevalência de consumo de ultraprocessados na coorte.  
+- Calcular TFG pela equação CKD-EPI.  
+- Correlacionar quartis de consumo de ultraprocessados com TFG.  
+- Avaliar modificadores do efeito (idade, sexo, IMC, hipertensão, diabetes).  
+- Investigar o declínio longitudinal da TFG em função da dieta.  
+
+# Hipótese
+
+Indivíduos com maior consumo de ultraprocessados apresentam menor TFG e maior risco de declínio da função renal, independentemente de fatores confundidores.
+
+# Metodologia
+
+## Delineamento
+
+Estudo de coorte prospectiva, utilizando dados das ondas do ELSA-Brasil.
+
+## População do estudo
+
+- **Inclusão:** adultos de 35 a 74 anos com dados completos de dieta e função renal.  
+- **Exclusão:** TFG < 30 ml/min/1,73m² na linha de base, gestantes, dados incompletos.  
+
+## Exposição
+
+- Consumo alimentar obtido via QFA validado do ELSA-Brasil.  
+- Classificação dos alimentos segundo a classificação NOVA.  
+- Variável principal: percentual da energia proveniente de ultraprocessados.  
+
+## Desfecho
+
+- TFG estimada pela fórmula CKD-EPI.  
+- Albuminúria como desfecho complementar, quando disponível.  
+
+## Covariáveis
+
+Idade, sexo, escolaridade, renda, tabagismo, atividade física, IMC, pressão arterial, glicemia, perfil lipídico, uso de medicamentos.
+
+
+
+| Etapa | Mês 1-6 | Mês 7-12 | Mês 13-18 | Mês 19-24 |
+|---------------|---------------|---------------|---------------|---------------|
+| Revisão bibliográfica | x |  |  |  |
+| Preparação e submissão ao Comitê de Ética | x |  |  |  |
+| Extração e organização dos dados (ELSA) |  | x |  |  |
+| Análise estatística |  | x | x |  |
+| Redação preliminar (dissertação/artigos) |  |  | x |  |
+| Revisão, ajustes e defesa |  |  |  | x |
