@@ -1,0 +1,154 @@
+---
+title: "Consumo de alimentos ultraprocessados e função renal: análise da taxa de filtração glomerular no Estudo Longitudinal de Saúde do Adulto (ELSA-Brasil)"
+author: "Paulo Henrique de Almeida Soares Pimenta"
+date: "`r format(Sys.Date(), '%d de %B de %Y')`"
+output: 
+  pdf_document: 
+    toc: true
+    number_sections: true
+    latex_engine: xelatex
+  word_document: 
+    toc: true
+    number_sections: true
+fontsize: 12pt
+geometry: a4paper, top=2.5cm, left=2.5cm, right=2.5cm, bottom=2.5cm
+lang: pt
+bibliography: referencias.bib
+csl: apa.csl
+header-includes:
+  - \renewcommand{\contentsname}{Índice}
+---
+
+\begin{titlepage}
+    \centering
+    \vspace*{\fill}
+    {\Large UNIVERSIDADE DE SÃO PAULO (USP) \\[0.5cm]}
+    {\large FACULDADE DE MEDICINA \\[4cm]}
+
+    {\bfseries\LARGE Consumo de alimentos ultraprocessados e função renal: análise da taxa de filtração glomerular no Estudo Longitudinal de Saúde do Adulto (ELSA-Brasil) \\[3cm]}
+
+    {\Large Paulo Henrique de Almeida Soares Pimenta \\[4cm]}
+
+    {\large Projeto de Pesquisa apresentado ao Programa de Pós-Graduação em Ciências Médicas da Faculdade de Medicina da USP, como requisito para ingresso programa de mestrado da Faculdade Medcina da USP. \\[3cm]}
+
+    {\large SÃO PAULO – SP \\[0.3cm]}
+    {\large \today}
+    \vspace*{\fill}
+\end{titlepage}
+
+# Introdução
+
+A função renal desempenha um papel crucial na manutenção da homeostase do organismo, sendo a taxa de filtração glomerular (TFG) o principal indicador clínico para sua avaliação. A doença renal crônica (DRC) emerge como um grave problema de saúde pública global, caracterizada por elevada morbimortalidade, significativo impacto econômico e uma prevalência crescente tanto no Brasil quanto internacionalmente.
+
+Nas últimas décadas, observou-se um aumento expressivo no consumo de alimentos ultraprocessados, conforme a classificação NOVA. Estes produtos, resultantes de formulações industriais complexas que incluem ingredientes refinados, aditivos e alta densidade energética, têm sido consistentemente associados a um risco elevado de obesidade, doenças metabólicas, cardiovasculares e renais.
+
+Evidências de estudos internacionais indicam que padrões dietéticos com alta ingestão de ultraprocessados podem estar relacionados ao declínio da TFG e ao aumento do risco de progressão para DRC. Contudo, no contexto brasileiro, ainda há uma lacuna de estudos longitudinais que investiguem essa associação de forma aprofundada.
+
+O Estudo Longitudinal de Saúde do Adulto (ELSA-Brasil) representa a maior coorte nacional, dispondo de dados abrangentes sobre dieta, exames laboratoriais e medidas clínicas. Este vasto conjunto de informações oferece uma oportunidade ímpar para investigar a relação entre o consumo de alimentos ultraprocessados e a função renal na população brasileira.
+
+# Justificativa
+
+Diante da crescente prevalência da Doença Renal Crônica (DRC) e do seu impacto significativo na saúde pública e nos sistemas de saúde, torna-se imperativo investigar fatores modificáveis que possam influenciar sua progressão. O consumo de alimentos ultraprocessados, um padrão alimentar em ascensão globalmente, tem sido apontado como um potencial contribuinte para diversas condições crônicas, incluindo a DRC.
+
+A relevância deste estudo é multifacetada e se fundamenta em pontos cruciais:
+
+1.  **Impacto da DRC:** A DRC continua a ser uma condição de saúde pública com custos elevados para o Sistema Único de Saúde (SUS) no Brasil, demandando estratégias eficazes de prevenção e manejo.
+2.  **Fator Modificável:** A dieta, e em particular o consumo de alimentos ultraprocessados, representa um fator modificável que pode ser alvo de intervenções de saúde pública. Compreender essa associação é fundamental para o desenvolvimento de estratégias de prevenção primária e secundária da DRC.
+3.  **Dados Longitudinais do ELSA-Brasil:** O Estudo Longitudinal de Saúde do Adulto (ELSA-Brasil) oferece uma base de dados robusta e representativa da população adulta brasileira, com informações detalhadas sobre hábitos alimentares e marcadores de saúde renal. A natureza longitudinal do ELSA-Brasil permite investigar relações de causa e efeito e o declínio da função renal ao longo do tempo, o que é escasso na literatura nacional.
+4.  **Contribuição Científica e Política Pública:** Os resultados deste estudo têm o potencial de gerar evidências científicas inéditas sobre a associação entre o consumo de ultraprocessados e a TFG no Brasil. Tais achados poderão subsidiar a formulação de políticas públicas de alimentação e nutrição, bem como diretrizes clínicas para a prevenção e o controle da DRC, promovendo uma alimentação mais saudável e sustentável para a população.
+
+# Objetivos
+
+## Objetivo Geral
+
+Este estudo tem como objetivo geral avaliar a associação entre o consumo de alimentos ultraprocessados e a taxa de filtração glomerular (TFG) em participantes do Estudo Longitudinal de Saúde do Adulto (ELSA-Brasil).
+
+## Objetivos Específicos
+
+Para alcançar o objetivo geral, serão desenvolvidos os seguintes objetivos específicos:
+
+- Estimar a prevalência e os padrões de consumo de alimentos ultraprocessados na coorte do ELSA-Brasil.
+- Calcular a TFG utilizando a equação CKD-EPI e caracterizar a função renal dos participantes.
+- Analisar a correlação entre os quartis de consumo de ultraprocessados e os valores da TFG.
+- Avaliar o papel de potenciais modificadores de efeito, como idade, sexo, índice de massa corporal (IMC), hipertensão e diabetes, na associação investigada.
+- Investigar o declínio longitudinal da TFG em função dos diferentes níveis de consumo de alimentos ultraprocessados ao longo do período de acompanhamento do ELSA-Brasil.
+
+# Hipótese
+
+Nossa hipótese central é que indivíduos com um padrão de maior consumo de alimentos ultraprocessados apresentarão uma menor taxa de filtração glomerular (TFG) e um risco elevado de declínio da função renal ao longo do tempo, mesmo após o ajuste para fatores de confusão relevantes, como idade, sexo, comorbidades e estilo de vida. Esta hipótese é embasada por estudos prévios que demonstraram a associação entre dietas ricas em ultraprocessados e desfechos adversos na saúde renal.
+
+# Metodologia
+
+## Desenho do Estudo e População
+
+Este será um estudo longitudinal observacional de coorte prospectiva, utilizando dados provenientes das diferentes ondas do Estudo Longitudinal de Saúde do Adulto (ELSA-Brasil). A população do estudo será composta por participantes adultos (com idades entre 35 e 74 anos) do ELSA-Brasil, uma coorte multicêntrica de servidores públicos de seis instituições de ensino e pesquisa no Brasil, que visa investigar a incidência e os fatores de risco para doenças crônicas não transmissíveis.
+
+## Variáveis do Estudo
+
+### Variável de Exposição
+
+A exposição principal será o consumo de alimentos ultraprocessados. Os dados de consumo alimentar serão obtidos por meio de Questionários de Frequência Alimentar (QFA) validados para a população brasileira, aplicados nas diferentes ondas do ELSA-Brasil. Os alimentos serão classificados de acordo com o sistema NOVA, que categoriza os alimentos em quatro grupos com base na extensão e propósito do processamento industrial. A variável de exposição será operacionalizada como o percentual da energia total diária proveniente de alimentos ultraprocessados.
+
+### Variável de Desfecho
+
+O desfecho primário será a Taxa de Filtração Glomerular (TFG) estimada, calculada utilizando a equação CKD-EPI (Chronic Kidney Disease Epidemiology Collaboration). A TFG será avaliada em diferentes momentos do estudo para analisar seu declínio longitudinal. A albuminúria, quando disponível, será considerada um desfecho complementar para avaliar danos renais.
+
+### Covariáveis
+
+Serão consideradas como covariáveis potenciais fatores de confusão e modificadores de efeito, incluindo: idade, sexo, escolaridade, renda, tabagismo, nível de atividade física, Índice de Massa Corporal (IMC), pressão arterial (sistólica e diastólica), glicemia de jejum, perfil lipídico (colesterol total, HDL-c, LDL-c, triglicerídeos) e uso de medicamentos (anti-hipertensivos, hipoglicemiantes orais, insulina, etc.). Outras variáveis laboratoriais como potássio, sódio, HbA1c e relação albumina/creatinina também serão incluídas na análise.
+
+## Análise Estatística
+
+As análises estatísticas serão realizadas em etapas:
+
+1.  **Análise Descritiva:** Serão apresentadas estatísticas descritivas (médias, desvios-padrão, medianas, quartis, frequências e percentuais) para caracterizar a população do estudo e as variáveis de interesse.
+2.  **Modelos Lineares Mistos (LMM):** Para avaliar a associação longitudinal entre o consumo de alimentos ultraprocessados e a TFG, serão ajustados modelos lineares mistos com intercepto aleatório por indivíduo, considerando a natureza hierárquica e repetida dos dados. A inclusão de um termo de *slope* aleatório será avaliada quando apropriado para capturar a variabilidade individual na trajetória da TFG.
+3.  **Seleção de Modelos:** A comparação entre os modelos será realizada utilizando critérios de informação como o Critério de Informação de Akaike (AIC) e o Critério de Informação Bayesiano (BIC).
+4.  **Diagnóstico e Robustez:** A avaliação de resíduos e o diagnóstico de ajuste dos modelos serão conduzidos para verificar a adequação das premissas. Adicionalmente, será explorada a utilização de versões robustas de LMM (e.g., `robustlmm` no R) para mitigar a influência de potenciais *outliers* ou observações influentes.
+5.  **Análise de Modificadores de Efeito:** Serão realizadas análises estratificadas e/ou inclusão de termos de interação nos modelos para investigar se a associação entre ultraprocessados e TFG difere em subgrupos específicos (e.g., por idade, sexo, presença de hipertensão ou diabetes).
+
+## Relevância do Estudo
+
+### Relevância Científica
+
+A aplicação de métodos modernos de análise estatística em saúde, como os modelos lineares mistos, permitirá uma compreensão aprofundada das trajetórias da TFG e sua relação com o consumo de ultraprocessados, contribuindo para o avanço do conhecimento epidemiológico e clínico na área de nefrologia e nutrição.
+
+### Relevância Clínica
+
+A identificação de padrões alimentares, como o alto consumo de ultraprocessados, que aceleram a perda da TFG, pode fornecer subsídios importantes para a prática clínica, orientando profissionais de saúde na elaboração de recomendações dietéticas preventivas e terapêuticas para pacientes em risco ou com DRC.
+
+### Relevância Social
+
+Os resultados deste estudo poderão oferecer subsídios robustos para a formulação e implementação de políticas públicas de saúde e nutrição no Brasil, visando à promoção de hábitos alimentares mais saudáveis e à prevenção da DRC, com potencial impacto na redução da morbimortalidade e dos custos associados a essa condição. 
+
+# Cronograma
+
+| Etapa                         | Meses 1–6 | Meses 7–12 | Meses 13–18 | Meses 19–24 |
+|-------------------------------|:---------:|:----------:|:-----------:|:-----------:|
+| Revisão bibliográfica         |     X     |            |             |             |
+| Organização dos dados (ELSA)  |           |     X      |             |             |
+| Análises exploratórias        |           |     X      |             |             |
+| Modelagem estatística         |           |            |      X      |             |
+| Redação preliminar            |           |            |      X      |             |
+| Revisão, ajustes e defesa     |           |            |             |      X      |
+
+# Resultados Esperados
+
+Com base na hipótese formulada e na metodologia proposta, espera-se que este estudo identifique uma associação significativa entre o maior consumo de alimentos ultraprocessados e uma menor taxa de filtração glomerular (TFG), bem como um risco aumentado de declínio da função renal ao longo do tempo em participantes do ELSA-Brasil. A confirmação dessa hipótese reforçaria a evidência de que padrões alimentares ricos em ultraprocessados contribuem para a etiologia e progressão da doença renal crônica.
+
+Os resultados detalhados deverão incluir:
+
+-   A prevalência e as características do consumo de ultraprocessados na coorte do ELSA-Brasil, fornecendo um panorama atualizado dos hábitos alimentares da população estudada.
+-   A quantificação da associação entre os quartis de consumo de ultraprocessados e os valores da TFG, ajustada para uma série de covariáveis sociodemográficas, clínicas e de estilo de vida.
+-   A identificação de potenciais modificadores de efeito, como idade, sexo, IMC, hipertensão e diabetes, que podem influenciar a força ou a direção dessa associação.
+-   Evidências sobre o declínio longitudinal da TFG em diferentes grupos de consumo de ultraprocessados, o que é crucial para entender a dinâmica da doença renal.
+
+Esses achados terão implicações importantes para a saúde pública e a prática clínica. Poderão embasar o desenvolvimento de recomendações alimentares nacionais mais específicas e eficazes, bem como estratégias de prevenção primária e secundária da DRC no Brasil. Além disso, o estudo contribuirá para a literatura científica ao fornecer dados longitudinais de uma grande coorte brasileira, preenchendo lacunas existentes e fortalecendo a base de evidências sobre o impacto dos alimentos ultraprocessados na saúde renal.
+
+
+
+# Referências Bibliográficas
+
+<div id="refs"></div>
+</div>
+
