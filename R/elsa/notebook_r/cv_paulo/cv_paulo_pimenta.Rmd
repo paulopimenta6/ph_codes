@@ -1,0 +1,96 @@
+---
+title: "Resume"
+author: "Paulo Henrique Pimenta"
+date: "`r Sys.Date()`"
+output: 
+  pdf_document:
+    latex_engine: xelatex
+mainfont: "DejaVu Sans"
+header-includes:
+  - \usepackage{fontspec}
+---
+
+## Personal Information
+
+- Location: São Paulo, Brazil  
+- Email: paulopimenta315@gmail.com
+- Mobile: +55 11 981318435
+- [Linkedin](https://www.linkedin.com/in/paulo-henrique-pimenta/)  
+- [Github](https://github.com/paulopimenta6)
+
+---
+
+## Professional Experience
+
+### Software Developer/Test Analyst — Meta  
+*Jul 2024 – Present | São Paulo, Brazil (Remote)*  
+
+- Development in **C/C++, Java, and Python** for asset management systems.  
+- Source code versioning using **Git/SVN**.  
+- Support for **test automation**, ensuring reliability and code quality.  
+
+---
+
+### Software Engineer/Test Analyst — FBM Brasil  
+*Jun 2023 – May 2024 | São Paulo, Brazil (On-site)*  
+
+- Development of **embedded systems** for international clients (Mexico and the Philippines).  
+- Technologies: **C++, Lua, SQLite3, TFS**.  
+- Focus on software robustness and reliability in embedded environments.  
+
+---
+
+### Back-End Developer/Test Analyst — AT&M Tecnologia (NSTech)  
+*Feb 2022 – Jun 2023 | São Paulo, Brazil (Hybrid)*  
+
+- Implemented new features and fixed bugs in a **mission-critical insurance system**.  
+- Technologies: **NodeJS, PHP, MySQL, Docker** within an **Agile environment** (Azure DevOps, Git).  
+- Strong contribution to **test automation culture**:  
+  - Defined and executed **test plans**.  
+  - Redesigned and reimplemented **automated test suites**.  
+  - Ensured **back-end reliability** and reduced failures in production.  
+
+---
+
+### Business Intelligence Analyst & Software Developer — ATECH  
+*Dec 2020 – Feb 2022 | São Paulo, Brazil (On-site)*  
+
+- Developed Python applications for **meteorological data processing** (GRIB decoding for the Global Forecast System).  
+- Built **market intelligence reports** for sectors including Defense, Aviation, and B2B.  
+- Supported management decisions with **data-driven insights** on global markets.  
+
+---
+
+### Software Developer — ATECH (Air Traffic Control Systems)  
+*Apr 2017 – Dec 2020 | São Paulo, Brazil (On-site)*  
+
+- Contributed to the **Air Traffic Control System** of the Brazilian Air Force using **C and Java**.  
+- Designed and implemented **test automation scripts** with **Python and Bash**, using **Froglogic Squish**.  
+- Achieved recognition for test automation projects at major conferences (SITRAER and SETI).  
+- Ensured quality assurance in **ATM/ATC critical systems**.  
+
+---
+
+### Scientific Researcher (Internship) — IAG/USP  
+*Jul 2011 – Jul 2012 | São Paulo, Brazil (On-site)*  
+
+- Conducted research on **South Atlantic cyclones** using NASA/NOAA reanalysis datasets.  
+- Developed scripts in **GrADS and Bash Shell** for **time-series meteorological analysis**.  
+- Worked in the MASTER Laboratory with a focus on data-driven atmospheric research.  
+
+---
+
+## Education
+
+- **Bachelor’s Degree in Atmospheric Sciences** — University of São Paulo (USP)
+- **Bachelor’s Degree in Data Sciences** - UNIVESP
+- **Master of Arts in Java Technology** - UTFPR 
+
+---
+
+## Technical Skills
+
+- **Languages:** C, C++, Java, Python, NodeJS, PHP, Lua, SQL  
+- **Testing & QA Tools:** Automated Testing, Selenium, Squish, Test Plans, Git, SVN, Azure DevOps  
+- **Infrastructure:** Docker  
+- **Expertise Areas:** Test Automation, Manual test, Software Quality Assurance, Embedded Systems, Data Analysis, Business Intelligence  
