@@ -6,10 +6,10 @@
 #A_MINMODERADO:Tempo de atividade física moderada por semana (minutos)
 #A_MINFRACO: Tempo de caminhada por semana (minutos)
 #A_MINFORTE: Atividade física forte por semana (minutos)
-#A_MET:Soma ponderada do tempo de atividade física por semana (minutos)
-#A_CONSDIAFASTFOOD:Consumo diário de fast food
+#A_MET: Soma ponderada do tempo de atividade física por semana (minutos)
+#A_CONSDIAFASTFOOD: Consumo diário de fast food
 #A_CONSDIAVERDURAS: Consumo diário de verduras e legumes
-#A_CONSDIAFRUTAS:Consumo diário de frutas
+#A_CONSDIAFRUTAS: Consumo diário de frutas
 #---------------------------------------------
 #Terceira onda da taxa de filtração glomerular
 #A_K_TOT -> exceção de potássio urinário

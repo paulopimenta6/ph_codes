@@ -33,18 +33,28 @@ header-includes:
 
     {\large SÃO PAULO – SP \\[0.3cm]}
     {\large \today}
-    \vspace*{\fill}
+    \vspace*{\fill}s
 \end{titlepage}
 
 # Introdução
 
 A função renal desempenha um papel crucial na manutenção da homeostase do organismo, sendo a taxa de filtração glomerular (TFG) o principal indicador clínico para sua avaliação. A doença renal crônica (DRC) emerge como um grave problema de saúde pública global, caracterizada por elevada morbimortalidade, significativo impacto econômico e uma prevalência crescente tanto no Brasil quanto internacionalmente.
 
-Nas últimas décadas, observou-se um aumento expressivo no consumo de alimentos ultraprocessados, conforme a classificação NOVA. Estes produtos, resultantes de formulações industriais complexas que incluem ingredientes refinados, aditivos e alta densidade energética, têm sido consistentemente associados a um risco elevado de obesidade, doenças metabólicas, cardiovasculares e renais.
+Nas últimas décadas, observou-se um aumento expressivo no consumo de alimentos ultraprocessados, conforme a classificação NOVA [@monteiro2019ultra]. Estes produtos, resultantes de formulações industriais complexas que incluem ingredientes refinados, aditivos e alta densidade energética, têm sido consistentemente associados a um risco elevado de obesidade, doenças metabólicas, cardiovasculares e renais.
 
 Evidências de estudos internacionais indicam que padrões dietéticos com alta ingestão de ultraprocessados podem estar relacionados ao declínio da TFG e ao aumento do risco de progressão para DRC. Contudo, no contexto brasileiro, ainda há uma lacuna de estudos longitudinais que investiguem essa associação de forma aprofundada.
 
 O Estudo Longitudinal de Saúde do Adulto (ELSA-Brasil) representa a maior coorte nacional, dispondo de dados abrangentes sobre dieta, exames laboratoriais e medidas clínicas. Este vasto conjunto de informações oferece uma oportunidade ímpar para investigar a relação entre o consumo de alimentos ultraprocessados e a função renal na população brasileira.
+
+| **Grupo** | **Descrição** | **Exemplos** |
+|------------|----------------|---------------|
+| **1. In natura ou minimamente processados** | Alimentos obtidos diretamente da natureza, submetidos apenas a processos simples como lavagem, refrigeração, moagem ou pasteurização, sem aditivos. | Frutas, legumes, carnes frescas, arroz, leite. |
+| **2. Ingredientes culinários processados** | Substâncias extraídas de alimentos do grupo 1 ou da natureza e usadas na preparação culinária de alimentos. | Óleos vegetais, manteiga, açúcar, sal. |
+| **3. Processados** | Produtos fabricados com adição de ingredientes do grupo 2, com o objetivo de aumentar a durabilidade ou modificar o sabor. | Pães caseiros, queijos, conservas. |
+| **4. Ultraprocessados** | Formulações industriais que contêm ingredientes de uso exclusivamente industrial (como aditivos, corantes, emulsificantes, aromatizantes) e técnicas de processamento que distorcem a matriz alimentar original. | Refrigerantes, embutidos, salgadinhos, biscoitos recheados, cereais matinais. |
+
+**Tabela 1.** Classificação dos alimentos segundo o sistema **NOVA**, proposto por Monteiro et al. (2019), que organiza os alimentos de acordo com o grau e propósito do processamento industrial.  
+*Fonte: Adaptado de Monteiro, C.A. et al. (2019). Ultra-processed foods: what they are and how to identify them. Public Health Nutrition, 22(5), 936–941. [DOI: 10.1017/S1368980018003762]*
 
 # Justificativa
 
@@ -123,14 +133,14 @@ Os resultados deste estudo poderão oferecer subsídios robustos para a formula�
 
 # Cronograma
 
-| Etapa                         | Meses 1–6 | Meses 7–12 | Meses 13–18 | Meses 19–24 |
-|-------------------------------|:---------:|:----------:|:-----------:|:-----------:|
-| Revisão bibliográfica         |     X     |            |             |             |
-| Organização dos dados (ELSA)  |           |     X      |             |             |
-| Análises exploratórias        |           |     X      |             |             |
-| Modelagem estatística         |           |            |      X      |             |
-| Redação preliminar            |           |            |      X      |             |
-| Revisão, ajustes e defesa     |           |            |             |      X      |
+| Etapa                            | 1-6 meses | 7-12 meses | 13-18 meses | 19-24 meses |
+| -------------------------------- | --------- | ---------- | ----------- | ----------- |
+| Revisão bibliográfica            | x         |            |             |             |
+| Aprovação no Comitê de Ética     | x         |            |             |             |
+| Extração e organização dos dados |           | x          |             |             |
+| Análise estatística              |           | x          | x           |             |
+| Redação preliminar               |           |            | x           |             |
+| Revisão e defesa                 |           |            |             | x           |
 
 # Resultados Esperados
 
