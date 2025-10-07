@@ -11,6 +11,26 @@
 namespace fs = std::filesystem;
 const std::string music_path = "/home/paulo/Música/Best of - Jamiroquai - Greatests hits";
 
+double getDuracaoMusica(const std::string& arquivo) {
+    std::string comando = "ffprobe -v error -show_entries format=duration -of csv=p=0 \"" + arquivo + "\"";
+    FILE* pipe = popen(comando.c_str(), "r");
+    if (!pipe) return -1.0;
+
+    char buffer[128];
+    std::string result = "";
+    while (fgets(buffer, sizeof(buffer), pipe) != nullptr) {
+        result += buffer;
+    }
+    pclose(pipe);
+
+    try{
+        return std::stod(result);
+    } catch(...){
+        return -1.0;
+    }
+}
+
+
 int main(){
     std::map<int, std::string> musicas;
     std::vector<std::string> arquivos;
@@ -42,13 +62,11 @@ int main(){
 
         for(size_t i = 0; i < arquivos.size(); i++){
             std::string nome = fs::path(arquivos[i]).stem().string();
-            if(escolha == -1){
-                std::cout << i + 1 << " - " << nome << std::endl; 
-            }            
+            std::cout << i + 1 << " - " << nome << std::endl;         
         }
 
         std::cout << "Escolha uma musica [1 - " << musicas.size() << "] ou 0 para sair: ";
-        std::cin >> escolha;
+        std::cin >> escolha;    
 
         if(!std::cin){
             std::cin.clear();
@@ -65,13 +83,17 @@ int main(){
         if(musicas.count(escolha)){
             std::string arquivo = music_path + "/" + musicas[escolha];
             std::string comando = "ffplay -nodisp -autoexit \"" + arquivo + "\" > /dev/null 2>&1 &";
-            //std::string duracao = "ffprobe -v error -show_entries format=duration -of csv=p=0 \"" + arquivo + "\"";
+            double duracao = getDuracaoMusica(arquivo);
             std::cout << "===============================================================" << std::endl;
             std::cout << "Tocando agora: " << fs::path(musicas[escolha]).stem().string() << std::endl;
-            //std::cout << "Duracao: " << duracao << std::endl;
+            if (duracao > 0) {
+                int minutos = static_cast<int>(duracao) / 60;
+                int segundos = static_cast<int>(duracao) % 60;
+                std::cout << "Duração: " << minutos << "m " << segundos << "s" << std::endl;
+            }
             std::system(comando.c_str());
             std::cout << "===============================================================" << std::endl;
-            std::this_thread::sleep_for(std::chrono::seconds(20)); // Give ffplay time to start  
+            std::this_thread::sleep_for(std::chrono::seconds(static_cast<int>(duracao)+1)); // Give ffplay time to start  
             escolha = -1; // Reset choice to show the list again             
         } else {
             std::cout << "Escolha invalida! Tente novamente. " << std::endl;
