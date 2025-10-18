@@ -38,13 +38,15 @@ header-includes:
 
 # Introdução
 
-A função renal desempenha um papel crucial na manutenção da homeostase do organismo, sendo a taxa de filtração glomerular (TFG) o principal indicador clínico para sua avaliação. A doença renal crônica (DRC) emerge como um grave problema de saúde pública global, caracterizada por elevada morbimortalidade, significativo impacto econômico e uma prevalência crescente tanto no Brasil quanto internacionalmente.
+A função renal desempenha um papel crucial na manutenção da homeostase do organismo, sendo a taxa de filtração glomerular (TFG) o principal indicador clínico para sua avaliação. A doença renal crônica (DRC) emerge como um grave problema de saúde pública global, caracterizada por elevada morbimortalidade, significativo impacto econômico e uma prevalência crescente tanto no Brasil quanto internacionalmente [@srour2019ultra; @he2024ultra; @rey2021ultra].
 
-Nas últimas décadas, observou-se um aumento expressivo no consumo de alimentos ultraprocessados, conforme a classificação NOVA [@monteiro2019ultra]. Estes produtos, resultantes de formulações industriais complexas que incluem ingredientes refinados, aditivos e alta densidade energética, têm sido consistentemente associados a um risco elevado de obesidade, doenças metabólicas, cardiovasculares e renais.
+O padrão dietético moderno tem sido marcado por uma crescente substituição de alimentos *in natura* ou minimamente processados por Alimentos Ultraprocessados (AUPs), conforme a classificação NOVA [@monteiro2019ultra], cujo consumo já corresponde a mais da metade da energia dietética total em países de alta renda e entre um quinto e um terço em países de renda média, como o Brasil [@canhada2020ultra; @monteiro2019ultra]. Estes produtos, resultantes de formulações industriais complexas que incluem ingredientes refinados, aditivos e alta densidade energética, têm sido consistentemente associados a um risco elevado de obesidade, doenças metabólicas, cardiovasculares e renais.
 
-Evidências de estudos internacionais indicam que padrões dietéticos com alta ingestão de ultraprocessados podem estar relacionados ao declínio da TFG e ao aumento do risco de progressão para DRC. Contudo, no contexto brasileiro, ainda há uma lacuna de estudos longitudinais que investiguem essa associação de forma aprofundada.
+Evidências de estudos internacionais, como revisões sistemáticas e meta-análises, indicam que padrões dietéticos com alta ingestão de ultraprocessados podem estar relacionados ao declínio da TFG e ao aumento do risco de progressão para DRC [@he2024ultra; @cecchini2025food]. Um aumento de 10% no consumo de AUPs foi associado a um risco 7% maior de DRC [@he2024ultra] e o alto consumo está associado a um declínio da função renal, particularmente em idosos [@rey2021ultra; @leonberg2025trends].
 
-O Estudo Longitudinal de Saúde do Adulto (ELSA-Brasil) representa a maior coorte nacional, dispondo de dados abrangentes sobre dieta, exames laboratoriais e medidas clínicas. Este vasto conjunto de informações oferece uma oportunidade ímpar para investigar a relação entre o consumo de alimentos ultraprocessados e a função renal na população brasileira.
+A relevância do tema no Brasil é sublinhada pelo aumento do consumo de AUPs e pela necessidade de ferramentas de rastreamento, como envidenciado pelo Escore Nova o qual, primeiramente, estabeleceu um questionário eletrônico de autorrelato [@costa2021escore], contudo, no contexto brasileiro, ainda há uma lacuna de estudos longitudinais que investiguem essa associação de forma aprofundada.
+
+Diante deste impacto crescente referente ao aumento sugnificativo da DRC e suas consequências e das necessidades de estratégia de prevenção primária [@avesani2023ultraprocessed] o Estudo Longitudinal de Saúde do Adulto (ELSA-Brasil) representa a maior coorte nacional, dispondo de dados abrangentes sobre dieta, exames laboratoriais e medidas clínicas [canhada2020ultra]. Este vasto conjunto de informações oferece uma oportunidade ímpar para investigar a relação entre o consumo de alimentos ultraprocessados e a função renal na população brasileira o qual este projeto propõe avaliar através de métodos estatísticos e revisões sistemáticas.
 
 | **Grupo** | **Descrição** | **Exemplos** |
 |------------|----------------|---------------|
@@ -71,16 +73,16 @@ A relevância deste estudo é multifacetada e se fundamenta em pontos cruciais:
 
 ## Objetivo Geral
 
-Este estudo tem como objetivo geral avaliar a associação entre o consumo de alimentos ultraprocessados e a taxa de filtração glomerular (TFG) em participantes do Estudo Longitudinal de Saúde do Adulto (ELSA-Brasil).
+Este estudo tem como objetivo geral avaliar a associação prospectiva entre o consumo de alimentos ultraprocessados e a taxa de filtração glomerular (TFG) em participantes do Estudo Longitudinal de Saúde do Adulto (ELSA-Brasil) e os riscos do declínio da função renal e o desenvolvimento da doença renal crônica.
 
 ## Objetivos Específicos
 
 Para alcançar o objetivo geral, serão desenvolvidos os seguintes objetivos específicos:
 
-- Estimar a prevalência e os padrões de consumo de alimentos ultraprocessados na coorte do ELSA-Brasil.
+- Estimar a prevalência e os padrões de consumo de alimentos ultraprocessados na coorte do ELSA-Brasil [@artes2023metodos].
 - Calcular a TFG utilizando a equação CKD-EPI e caracterizar a função renal dos participantes.
-- Analisar a correlação entre os quartis de consumo de ultraprocessados e os valores da TFG.
-- Avaliar o papel de potenciais modificadores de efeito, como idade, sexo, índice de massa corporal (IMC), hipertensão e diabetes, na associação investigada.
+- Analisar a correlação entre os quartis de consumo de ultraprocessados e os valores da TFG [@canhada2020ultra; @leonberg2025trends].
+- Avaliar o papel de potenciais modificadores de efeito, como idade, sexo, índice de massa corporal (IMC), hipertensão e diabetes, na associação investigada e as vulnerabilidades [@leonberg2025trends].
 - Investigar o declínio longitudinal da TFG em função dos diferentes níveis de consumo de alimentos ultraprocessados ao longo do período de acompanhamento do ELSA-Brasil.
 
 # Hipótese
@@ -88,6 +90,20 @@ Para alcançar o objetivo geral, serão desenvolvidos os seguintes objetivos esp
 Nossa hipótese central é que indivíduos com um padrão de maior consumo de alimentos ultraprocessados apresentarão uma menor taxa de filtração glomerular (TFG) e um risco elevado de declínio da função renal ao longo do tempo, mesmo após o ajuste para fatores de confusão relevantes, como idade, sexo, comorbidades e estilo de vida. Esta hipótese é embasada por estudos prévios que demonstraram a associação entre dietas ricas em ultraprocessados e desfechos adversos na saúde renal.
 
 # Metodologia
+
+## Revisão de Literatura (Desenho Conceitual)
+
+### O Sistema NOVA e a Classificação de Alimentos Ultraprocessados
+
+A classificação NOVA é fundamentada na extensão e propósito do processamento [@monteiro2019ultra]. Os AUPs (Grupo 4) são identificáveis pela presença de substâncias que raramente são usadas em preparações culinárias domésticas (como xarope de milho com alto teor de frutose, óleos interesterificados e proteínas hidrolisadas) ou pela inclusão de aditivos cosméticos (como aromatizantes, intensificadores de sabor, corantes, emulsificantes e edulcorantes). O consumo de AUPs tem um impacto negativo na qualidade nutricional da dieta global [@avesani2023ultraprocessed; @cecchini2025food].
+
+### AUPs e Doenças Crônicas: Mecanismos Além da Nutrição
+
+Embora os AUPs tenham tipicamente um perfil nutricional ruim (baixo teor de fibra, alto teor de gorduras saturadas, sódio e açúcar)[ @rey2021ultra], as associações com doenças persistem mesmo após o ajuste para esses nutrientes, sugerindo que o risco reside em outros fatores relacionados ao processamento [@avesani2023ultraprocessed; @srour2019ultra].
+
+### A Avaliação Simplificada do Consumo de AUPs no Brasil
+
+A avaliação detalhada do consumo de AUPs, tipicamente realizada por caracterização da população, suas frequências e avaliações cruzadas. 
 
 ## Desenho do Estudo e População
 
@@ -111,11 +127,11 @@ Serão consideradas como covariáveis potenciais fatores de confusão e modifica
 
 As análises estatísticas serão realizadas em etapas:
 
-1.  **Análise Descritiva:** Serão apresentadas estatísticas descritivas (médias, desvios-padrão, medianas, quartis, frequências e percentuais) para caracterizar a população do estudo e as variáveis de interesse.
-2.  **Modelos Lineares Mistos (LMM):** Para avaliar a associação longitudinal entre o consumo de alimentos ultraprocessados e a TFG, serão ajustados modelos lineares mistos com intercepto aleatório por indivíduo, considerando a natureza hierárquica e repetida dos dados. A inclusão de um termo de *slope* aleatório será avaliada quando apropriado para capturar a variabilidade individual na trajetória da TFG.
-3.  **Seleção de Modelos:** A comparação entre os modelos será realizada utilizando critérios de informação como o Critério de Informação de Akaike (AIC) e o Critério de Informação Bayesiano (BIC).
-4.  **Diagnóstico e Robustez:** A avaliação de resíduos e o diagnóstico de ajuste dos modelos serão conduzidos para verificar a adequação das premissas. Adicionalmente, será explorada a utilização de versões robustas de LMM (e.g., `robustlmm` no R) para mitigar a influência de potenciais *outliers* ou observações influentes.
-5.  **Análise de Modificadores de Efeito:** Serão realizadas análises estratificadas e/ou inclusão de termos de interação nos modelos para investigar se a associação entre ultraprocessados e TFG difere em subgrupos específicos (e.g., por idade, sexo, presença de hipertensão ou diabetes).
+1.  **Análise Descritiva:** Serão apresentadas estatísticas descritivas (médias, desvios-padrão, medianas, quartis, frequências e percentuais) para caracterizar a população do estudo e as variáveis de interesse [@artes2023metodos].
+2.  **Modelos Lineares Mistos (LMM):** Para avaliar a associação longitudinal entre o consumo de alimentos ultraprocessados e a TFG, serão ajustados modelos lineares mistos com intercepto aleatório por indivíduo, considerando a natureza hierárquica e repetida dos dados. A inclusão de um termo de *slope* aleatório será avaliada quando apropriado para capturar a variabilidade individual na trajetória da TFG [@demidenko2013mixed; @favero2017manual].
+3.  **Seleção de Modelos:** A comparação entre os modelos será realizada utilizando critérios de informação como o Critério de Informação de Akaike (AIC) e o Critério de Informação Bayesiano (BIC) [@demidenko2013mixed; @favero2017manual].
+4.  **Diagnóstico e Robustez:** A avaliação de resíduos e o diagnóstico de ajuste dos modelos serão conduzidos para verificar a adequação das premissas. Adicionalmente, será explorada a utilização de versões robustas de LMM (e.g., `robustlmm` no R) para mitigar a influência de potenciais *outliers* ou observações influentes [@artes2023metodos; @demidenko2013mixed; @favero2017manual].
+5.  **Análise de Modificadores de Efeito:** Serão realizadas análises estratificadas e/ou inclusão de termos de interação nos modelos para investigar se a associação entre ultraprocessados e TFG difere em subgrupos específicos (e.g., por idade, sexo, presença de hipertensão ou diabetes) [@artes2023metodos].
 
 ## Relevância do Estudo
 
@@ -154,8 +170,6 @@ Os resultados detalhados deverão incluir:
 -   Evidências sobre o declínio longitudinal da TFG em diferentes grupos de consumo de ultraprocessados, o que é crucial para entender a dinâmica da doença renal.
 
 Esses achados terão implicações importantes para a saúde pública e a prática clínica. Poderão embasar o desenvolvimento de recomendações alimentares nacionais mais específicas e eficazes, bem como estratégias de prevenção primária e secundária da DRC no Brasil. Além disso, o estudo contribuirá para a literatura científica ao fornecer dados longitudinais de uma grande coorte brasileira, preenchendo lacunas existentes e fortalecendo a base de evidências sobre o impacto dos alimentos ultraprocessados na saúde renal.
-
-
 
 # Referências Bibliográficas
 
