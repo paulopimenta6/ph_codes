@@ -1,6 +1,6 @@
 # Credit Card Fraud Detection - ML Project
 
-Projeto criado automaticamente por assistente. Contém:
+Projeto de Machine Learning criado como desafio. Contém:
 
 - Treinamento e avaliação de modelo de detecção de fraude (XGBoost quando disponível).
 - API (FastAPI) para predições instantâneas.
