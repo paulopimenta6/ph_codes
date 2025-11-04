@@ -11,9 +11,9 @@ Projeto de Machine Learning criado como desafio. Contém:
 
 Como usar (resumo):
 1. Criar ambiente e instalar dependências: `pip install -r requirements.txt`
-2. Treinar: `python src/train.py --data data/creditcard.csv --model-output models/model.joblib --metrics-output models/metrics.json`
-3. Rodar API: `uvicorn src.predict_api:app --host 0.0.0.0 --port 8000`
-4. Predição em lote: `python src/batch_predict.py --input large_input.csv --model models/model.joblib --output preds.csv`
+2. Treinar: `python src/model_pipeline/train.py --data data/creditcard.csv --model-output models/model.joblib --metrics-output models/metrics.json`
+3. Rodar API: `uvicorn src.predict_api:app --host 0.0.0.0 --port 8080`
+4. Predição em lote: `python src/batch/batch_predict.py --input large_input.csv --model models/model.joblib --output preds.csv`
 
 Arquivos principais:
 - `src/model_pipeline/train.py` : treinamento e avaliação
@@ -29,3 +29,10 @@ conda create -n cc-fraud python=3.10 -y
 conda activate cc-fraud
 pip install -r requirements.txt
 ``` 
+
+Treinamento do modelo:
+Neste exemplo usou-se o método de XGBoost que pode ser conhecido [aqui](https://www.datageeks.com.br/xgboost/). O comando para treino, por sua vez é: 
+
+```{bash}
+python src/train.py --data data/creditcard.csv --model-output models/model.joblib --metrics-output models/metrics.json
+```
