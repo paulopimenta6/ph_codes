@@ -4,8 +4,8 @@ import pandas as pd
 import numpy as np
 from pathlib import Path
 import joblib
-from src.features import basic_feature_generation
-from src.utils import load_model if False else None
+from src.features.features import basic_feature_generation
+from src.utils.utils import load_model
 
 def load_artifact(path):
     return joblib.load(path)

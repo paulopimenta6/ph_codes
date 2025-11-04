@@ -1,6 +1,6 @@
 import pytest
 import pandas as pd
-from src.features import basic_feature_generation
+from src.features.features import basic_feature_generation
 from pathlib import Path
 import joblib
 

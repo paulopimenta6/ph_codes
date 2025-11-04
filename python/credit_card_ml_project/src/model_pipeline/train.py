@@ -11,7 +11,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import HistGradientBoostingClassifier
 from sklearn.metrics import roc_auc_score
-from features import basic_feature_generation
+from src.features.features import basic_feature_generation
 from utils import save_model, compute_metrics
 
 def try_import_xgb():

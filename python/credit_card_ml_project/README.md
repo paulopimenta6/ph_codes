@@ -16,10 +16,16 @@ Como usar (resumo):
 4. Predição em lote: `python src/batch_predict.py --input large_input.csv --model models/model.joblib --output preds.csv`
 
 Arquivos principais:
-- `src/train.py` : treinamento e avaliação
-- `src/features.py` : funções de engenharia de features
+- `src/model_pipeline/train.py` : treinamento e avaliação
+- `src/feattures/features.py` : funções de engenharia de features
 - `src/predict_api.py` : FastAPI para predições instantâneas
-- `src/batch_predict.py` : processamento por chunks para predições em lote
-- `src/utils.py` : utilitários (salvar/carregar modelos, métricas)
+- `src/btach/batch_predict.py` : processamento por chunks para predições em lote
+- `src/utils/utils.py` : utilitários (salvar/carregar modelos, métricas)
 - `tests/test_model.py` : testes pytest básicos
 
+Como rodar localmente (passo a passo):
+```{bash}
+conda create -n cc-fraud python=3.10 -y
+conda activate cc-fraud
+pip install -r requirements.txt
+``` 
