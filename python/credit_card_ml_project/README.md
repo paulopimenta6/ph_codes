@@ -23,16 +23,59 @@ Arquivos principais:
 - `src/utils/utils.py` : utilitários (salvar/carregar modelos, métricas)
 - `tests/test_model.py` : testes pytest básicos
 
-Como rodar localmente (passo a passo):
+## Cookbook
+1 - Como rodar localmente:
 ```{bash}
 conda create -n cc-fraud python=3.10 -y
 conda activate cc-fraud
 pip install -r requirements.txt
 ``` 
 
-Treinamento do modelo:
-Neste exemplo usou-se o método de XGBoost que pode ser conhecido [aqui](https://www.datageeks.com.br/xgboost/). O comando para treino, por sua vez é: 
+2 - Treinamento do modelo:
+Neste exemplo usou-se o método de XGBoost que pode ser conhecido [aqui](https://www.datageeks.com.br/xgboost/). O comando para treino, por sua vez, é: 
 
 ```{bash}
 python src/train.py --data data/creditcard.csv --model-output models/model.joblib --metrics-output models/metrics.json
+```
+
+Após executar o comando azim algumas saídas serão criadas, tais como:
+- models/model.joblib: Artefato contendo informaçẽos do treino: { 'model': model, 'scaler': scaler, 'features': [...], 'trained_with': ... }
+- models/metrics.josn: Métricas de avaliação (roc_auc, precision, reclamm, f1, matriz de confusão)
+
+3 - Execução de testes
+```{bash}
+pytest -q
+```
+
+4 - API (predição instantânea):
+```{bash}
+uvicorn src.predict_api:app --host 0.0.0.0 --port 8080
+```
+
+Lembrando que a porta 8080 pode estar em uso, por esta razão aconselha-se verificar se a porta está livre ou optar por outra, tal como 8081, 8082,...
+
+ENDPOINTS (Aconselha-se usar o POSTMAN):
+
+[Donwload do POSTMAN](https://www.postman.com/)
+
+Fazendo um POST em http://localhist:8080/predict_single com o json:
+
+```{json}
+{
+           "features": {
+             "Time": 12345,
+             "V1": -1.3598,
+             "V2": 1.1918,
+             "V3": -0.1234,
+             "V4": 2.345,
+             "V5": -0.987,
+             "Amount": 150.0
+           }
+         }
+```
+
+a resposta será algo como:
+
+```{json}
+{"probability_fraud":1.8722910226642853e-06,"threshold_0.5_pred":0}
 ```
