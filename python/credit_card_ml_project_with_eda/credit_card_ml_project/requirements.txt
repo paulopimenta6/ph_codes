@@ -133,7 +133,7 @@ threadpoolctl==3.6.0
 tinycss2 @ file:///home/conda/feedstock_root/build_artifacts/tinycss2_1729802851396/work
 tomli @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_tomli_1760014679/work
 tornado @ file:///croot/tornado_1748956929273/work
-tqdm==4.66.1
+tqdm==4.66.3
 traitlets @ file:///home/conda/feedstock_root/build_artifacts/traitlets_1733367359838/work
 typeguard==4.1.5
 typing_extensions @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_typing_extensions_1756220668/work
