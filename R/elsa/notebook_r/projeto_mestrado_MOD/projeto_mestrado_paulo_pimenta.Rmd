@@ -19,6 +19,7 @@ header-includes:
   - \renewcommand{\contentsname}{Índice}
 ---
 
+```{=tex}
 \begin{titlepage}
     \centering
     \vspace*{\fill}
@@ -35,7 +36,7 @@ header-includes:
     {\large \today}
     \vspace*{\fill}s
 \end{titlepage}
-
+```
 # Introdução
 
 A função renal desempenha um papel crucial na manutenção da homeostase do organismo, sendo a taxa de filtração glomerular (TFG) o principal indicador clínico para sua avaliação. A doença renal crônica (DRC) emerge como um grave problema de saúde pública global, caracterizada por elevada morbimortalidade, significativo impacto econômico e uma prevalência crescente tanto no Brasil quanto internacionalmente [@srour2019ultra; @he2024ultra; @rey2021ultra].
@@ -48,15 +49,15 @@ A relevância do tema no Brasil é sublinhada pelo aumento do consumo de AUPs e 
 
 Diante deste impacto crescente referente ao aumento sugnificativo da DRC e suas consequências e das necessidades de estratégia de prevenção primária [@avesani2023ultraprocessed] o Estudo Longitudinal de Saúde do Adulto (ELSA-Brasil) representa a maior coorte nacional, dispondo de dados abrangentes sobre dieta, exames laboratoriais e medidas clínicas [canhada2020ultra]. Este vasto conjunto de informações oferece uma oportunidade ímpar para investigar a relação entre o consumo de alimentos ultraprocessados e a função renal na população brasileira o qual este projeto propõe avaliar através de métodos estatísticos e revisões sistemáticas.
 
-| **Grupo** | **Descrição** | **Exemplos** |
-|------------|----------------|---------------|
-| **1. In natura ou minimamente processados** | Alimentos obtidos diretamente da natureza, submetidos apenas a processos simples como lavagem, refrigeração, moagem ou pasteurização, sem aditivos. | Frutas, legumes, carnes frescas, arroz, leite. |
-| **2. Ingredientes culinários processados** | Substâncias extraídas de alimentos do grupo 1 ou da natureza e usadas na preparação culinária de alimentos. | Óleos vegetais, manteiga, açúcar, sal. |
-| **3. Processados** | Produtos fabricados com adição de ingredientes do grupo 2, com o objetivo de aumentar a durabilidade ou modificar o sabor. | Pães caseiros, queijos, conservas. |
-| **4. Ultraprocessados** | Formulações industriais que contêm ingredientes de uso exclusivamente industrial (como aditivos, corantes, emulsificantes, aromatizantes) e técnicas de processamento que distorcem a matriz alimentar original. | Refrigerantes, embutidos, salgadinhos, biscoitos recheados, cereais matinais. |
+| **Grupo**                                   | **Descrição**                                                                                                                                                                                                    | **Exemplos**                                                                  |
+|---------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
+| **1. In natura ou minimamente processados** | Alimentos obtidos diretamente da natureza, submetidos apenas a processos simples como lavagem, refrigeração, moagem ou pasteurização, sem aditivos.                                                              | Frutas, legumes, carnes frescas, arroz, leite.                                |
+| **2. Ingredientes culinários processados**  | Substâncias extraídas de alimentos do grupo 1 ou da natureza e usadas na preparação culinária de alimentos.                                                                                                      | Óleos vegetais, manteiga, açúcar, sal.                                        |
+| **3. Processados**                          | Produtos fabricados com adição de ingredientes do grupo 2, com o objetivo de aumentar a durabilidade ou modificar o sabor.                                                                                       | Pães caseiros, queijos, conservas.                                            |
+| **4. Ultraprocessados**                     | Formulações industriais que contêm ingredientes de uso exclusivamente industrial (como aditivos, corantes, emulsificantes, aromatizantes) e técnicas de processamento que distorcem a matriz alimentar original. | Refrigerantes, embutidos, salgadinhos, biscoitos recheados, cereais matinais. |
 
-**Tabela 1.** Classificação dos alimentos segundo o sistema **NOVA**, proposto por Monteiro et al. (2019), que organiza os alimentos de acordo com o grau e propósito do processamento industrial.  
-*Fonte: Adaptado de Monteiro, C.A. et al. (2019). Ultra-processed foods: what they are and how to identify them. Public Health Nutrition, 22(5), 936–941. [DOI: 10.1017/S1368980018003762]*
+**Tabela 1.** Classificação dos alimentos segundo o sistema **NOVA**, proposto por Monteiro et al. (2019), que organiza os alimentos de acordo com o grau e propósito do processamento industrial.\
+*Fonte: Adaptado de Monteiro, C.A. et al. (2019). Ultra-processed foods: what they are and how to identify them. Public Health Nutrition, 22(5), 936--941. [DOI: 10.1017/S1368980018003762]*
 
 # Justificativa
 
@@ -79,11 +80,11 @@ Este estudo tem como objetivo geral avaliar a associação prospectiva entre o c
 
 Para alcançar o objetivo geral, serão desenvolvidos os seguintes objetivos específicos:
 
-- Estimar a prevalência e os padrões de consumo de alimentos ultraprocessados na coorte do ELSA-Brasil [@artes2023metodos].
-- Calcular a TFG utilizando a equação CKD-EPI e caracterizar a função renal dos participantes.
-- Analisar a correlação entre os quartis de consumo de ultraprocessados e os valores da TFG [@canhada2020ultra; @leonberg2025trends].
-- Avaliar o papel de potenciais modificadores de efeito, como idade, sexo, índice de massa corporal (IMC), hipertensão e diabetes, na associação investigada e as vulnerabilidades [@leonberg2025trends].
-- Investigar o declínio longitudinal da TFG em função dos diferentes níveis de consumo de alimentos ultraprocessados ao longo do período de acompanhamento do ELSA-Brasil.
+-   Estimar a prevalência e os padrões de consumo de alimentos ultraprocessados na coorte do ELSA-Brasil [@artes2023metodos].
+-   Calcular a TFG utilizando a equação CKD-EPI e caracterizar a função renal dos participantes.
+-   Analisar a correlação entre os quartis de consumo de ultraprocessados e os valores da TFG [@canhada2020ultra; @leonberg2025trends].
+-   Avaliar o papel de potenciais modificadores de efeito, como idade, sexo, índice de massa corporal (IMC), hipertensão e diabetes, na associação investigada e as vulnerabilidades [@leonberg2025trends].
+-   Investigar o declínio longitudinal da TFG em função dos diferentes níveis de consumo de alimentos ultraprocessados ao longo do período de acompanhamento do ELSA-Brasil.
 
 # Hipótese
 
@@ -99,11 +100,11 @@ A classificação NOVA é fundamentada na extensão e propósito do processament
 
 ### AUPs e Doenças Crônicas: Mecanismos Além da Nutrição
 
-Embora os AUPs tenham tipicamente um perfil nutricional ruim (baixo teor de fibra, alto teor de gorduras saturadas, sódio e açúcar)[ @rey2021ultra], as associações com doenças persistem mesmo após o ajuste para esses nutrientes, sugerindo que o risco reside em outros fatores relacionados ao processamento [@avesani2023ultraprocessed; @srour2019ultra].
+Embora os AUPs tenham tipicamente um perfil nutricional ruim (baixo teor de fibra, alto teor de gorduras saturadas, sódio e açúcar)[@rey2021ultra], as associações com doenças persistem mesmo após o ajuste para esses nutrientes, sugerindo que o risco reside em outros fatores relacionados ao processamento [@avesani2023ultraprocessed; @srour2019ultra].
 
 ### A Avaliação Simplificada do Consumo de AUPs no Brasil
 
-A avaliação detalhada do consumo de AUPs, tipicamente realizada por caracterização da população, suas frequências e avaliações cruzadas. 
+A avaliação detalhada do consumo de AUPs, tipicamente realizada por caracterização da população, suas frequências e avaliações cruzadas.
 
 ## Desenho do Estudo e População
 
@@ -145,12 +146,12 @@ A identificação de padrões alimentares, como o alto consumo de ultraprocessad
 
 ### Relevância Social
 
-Os resultados deste estudo poderão oferecer subsídios robustos para a formulação e implementação de políticas públicas de saúde e nutrição no Brasil, visando à promoção de hábitos alimentares mais saudáveis e à prevenção da DRC, com potencial impacto na redução da morbimortalidade e dos custos associados a essa condição. 
+Os resultados deste estudo poderão oferecer subsídios robustos para a formulação e implementação de políticas públicas de saúde e nutrição no Brasil, visando à promoção de hábitos alimentares mais saudáveis e à prevenção da DRC, com potencial impacto na redução da morbimortalidade e dos custos associados a essa condição.
 
 # Cronograma
 
 | Etapa                            | 1-6 meses | 7-12 meses | 13-18 meses | 19-24 meses |
-| -------------------------------- | --------- | ---------- | ----------- | ----------- |
+|----------------------------------|-----------|------------|-------------|-------------|
 | Revisão bibliográfica            | x         |            |             |             |
 | Aprovação no Comitê de Ética     | x         |            |             |             |
 | Extração e organização dos dados |           | x          |             |             |
@@ -173,6 +174,7 @@ Esses achados terão implicações importantes para a saúde pública e a práti
 
 # Referências Bibliográficas
 
-<div id="refs"></div>
-</div>
+::: {#refs}
+:::
 
+</div>
