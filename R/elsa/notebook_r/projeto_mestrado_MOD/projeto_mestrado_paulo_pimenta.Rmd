@@ -49,14 +49,13 @@ A relevância do tema no Brasil é sublinhada pelo aumento do consumo de AUPs e 
 
 Diante deste impacto crescente referente ao aumento sugnificativo da DRC e suas consequências e das necessidades de estratégia de prevenção primária [@avesani2023ultraprocessed] o Estudo Longitudinal de Saúde do Adulto (ELSA-Brasil) representa a maior coorte nacional, dispondo de dados abrangentes sobre dieta, exames laboratoriais e medidas clínicas [canhada2020ultra]. Este vasto conjunto de informações oferece uma oportunidade ímpar para investigar a relação entre o consumo de alimentos ultraprocessados e a função renal na população brasileira o qual este projeto propõe avaliar através de métodos estatísticos e revisões sistemáticas.
 
-| **Grupo**                                   | **Descrição**                                                                                                                                                                                                    | **Exemplos**                                                                  |
-|---------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
-| **1. In natura ou minimamente processados** | Alimentos obtidos diretamente da natureza, submetidos apenas a processos simples como lavagem, refrigeração, moagem ou pasteurização, sem aditivos.                                                              | Frutas, legumes, carnes frescas, arroz, leite.                                |
-| **2. Ingredientes culinários processados**  | Substâncias extraídas de alimentos do grupo 1 ou da natureza e usadas na preparação culinária de alimentos.                                                                                                      | Óleos vegetais, manteiga, açúcar, sal.                                        |
-| **3. Processados**                          | Produtos fabricados com adição de ingredientes do grupo 2, com o objetivo de aumentar a durabilidade ou modificar o sabor.                                                                                       | Pães caseiros, queijos, conservas.                                            |
-| **4. Ultraprocessados**                     | Formulações industriais que contêm ingredientes de uso exclusivamente industrial (como aditivos, corantes, emulsificantes, aromatizantes) e técnicas de processamento que distorcem a matriz alimentar original. | Refrigerantes, embutidos, salgadinhos, biscoitos recheados, cereais matinais. |
 
-**Tabela 1.** Classificação dos alimentos segundo o sistema **NOVA**, proposto por Monteiro et al. (2019), que organiza os alimentos de acordo com o grau e propósito do processamento industrial.\
+| **Grupo**                                   | **Descrição**                                                                                                                                                                                                               | **Exemplos**                                                                                     |
+|----------------|----------------------------------------|-----------------|
+| **1. In natura ou minimamente processados** | Alimentos obtidos diretamente da natureza, submetidos apenas a processos simples como lavagem, refrigeração, moagem, secagem, fermentação simples ou pasteurização, **sem aditivos**.                                       | Frutas, legumes, verduras, carnes frescas, ovos, arroz, feijão, leite.                           |
+| **2. Ingredientes culinários processados**  | Substâncias extraídas do grupo 1 ou da natureza e usadas para temperar, cozinhar ou preparar alimentos. Geralmente passam por processos como prensagem, refino, moagem ou extração.                                         | Óleos vegetais, manteiga, açúcar, sal, mel.                                                      |
+| **3. Processados**                          | Produtos feitos com adição de ingredientes do grupo 2 a alimentos do grupo 1, para maior durabilidade ou para modificação moderada de sabor. Normalmente têm poucos ingredientes.                                           | Pães caseiros, queijos, conservas de vegetais ou frutas.                                         |
+| **4. Ultraprocessados**                     | Formulações industriais com **ingredientes exclusivos do uso industrial**, como corantes, aromatizantes, emulsificantes e outros aditivos; frequentemente incluem técnicas que descaracterizam a matriz alimentar original. | Refrigerantes, embutidos, salgadinhos, biscoitos recheados, cereais matinais, refeições prontas. |
 *Fonte: Adaptado de Monteiro, C.A. et al. (2019). Ultra-processed foods: what they are and how to identify them. Public Health Nutrition, 22(5), 936--941. [DOI: 10.1017/S1368980018003762]*
 
 # Justificativa
@@ -110,6 +109,13 @@ A avaliação detalhada do consumo de AUPs, tipicamente realizada por caracteriz
 
 Este será um estudo longitudinal observacional de coorte prospectiva, utilizando dados provenientes das diferentes ondas do Estudo Longitudinal de Saúde do Adulto (ELSA-Brasil). A população do estudo será composta por participantes adultos (com idades entre 35 e 74 anos) do ELSA-Brasil, uma coorte multicêntrica de servidores públicos de seis instituições de ensino e pesquisa no Brasil, que visa investigar a incidência e os fatores de risco para doenças crônicas não transmissíveis.
 
+
+$$
+y_i = X_i \beta + Z_i b_i + e_i,\quad i = 1,\dots,n
+$$
+
+
+
 ## Variáveis do Estudo
 
 ### Variável de Exposição
@@ -151,7 +157,7 @@ Os resultados deste estudo poderão oferecer subsídios robustos para a formula�
 # Cronograma
 
 | Etapa                            | 1-6 meses | 7-12 meses | 13-18 meses | 19-24 meses |
-|----------------------------------|-----------|------------|-------------|-------------|
+|------------------|--------------|--------------|--------------|--------------|
 | Revisão bibliográfica            | x         |            |             |             |
 | Aprovação no Comitê de Ética     | x         |            |             |             |
 | Extração e organização dos dados |           | x          |             |             |
