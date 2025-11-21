@@ -73,17 +73,16 @@ A relevância deste estudo é multifacetada e se fundamenta em pontos cruciais:
 
 ## Objetivo Geral
 
-Este estudo tem como objetivo geral avaliar a associação prospectiva entre o consumo de alimentos ultraprocessados e a taxa de filtração glomerular (TFG) em participantes do Estudo Longitudinal de Saúde do Adulto (ELSA-Brasil) e os riscos do declínio da função renal e o desenvolvimento da doença renal crônica.
+Avaliar a associação longitudinal entre o consumo de alimentos ultraprocessados (AUP) e a taxa de declínio da função renal em particpanntes do Estudo Longitudinal de Saúde do Adulto (ELSA-Brasil), avaliar os riscos causados oriundos desta mesma diminuição de função renal e o desenvolvimento da doença renal crônica através dos modelos lineares mistos.
 
 ## Objetivos Específicos
 
 Para alcançar o objetivo geral, serão desenvolvidos os seguintes objetivos específicos:
 
--   Estimar a prevalência e os padrões de consumo de alimentos ultraprocessados na coorte do ELSA-Brasil [@artes2023metodos].
--   Calcular a TFG utilizando a equação CKD-EPI e caracterizar a função renal dos participantes.
--   Analisar a correlação entre os quartis de consumo de ultraprocessados e os valores da TFG [@canhada2020ultra; @leonberg2025trends].
--   Avaliar o papel de potenciais modificadores de efeito, como idade, sexo, índice de massa corporal (IMC), hipertensão e diabetes, na associação investigada e as vulnerabilidades [@leonberg2025trends].
--   Investigar o declínio longitudinal da TFG em função dos diferentes níveis de consumo de alimentos ultraprocessados ao longo do período de acompanhamento do ELSA-Brasil.
+- Estimar o consumo de AUP (% do Valor Energético Total - VET) nos diferentes momentos de coleta do ELSA-Brasil.
+- Descrever e modelar os perfis individuais e médios da eGFR (taxa de filtração glomerular estimada) ao longo do período de acompanhamento do estudo [@singer1986analise]
+- Aplicar Modelos Lineares Mistos (MLM) para estimar o efeito do consumo de AUP na interceptação (valor basal esperado) e na inclinação (taxa de declínio) da eGFR, controlando para variáveis sociodemográficas e clínicas [@singer1986analise; @leonberg2025trends]
+- Utilizar técnicas de diagnóstico (análise de resíduos e pontos alavanca) para avaliar a qualidade e as suposições subjacentes ao ajuste do MLM [@singer1986analise]
 
 # Hipótese
 
