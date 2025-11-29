@@ -69,11 +69,55 @@ A relevância deste estudo é multifacetada e se fundamenta em pontos cruciais:
 3.  **Dados Longitudinais do ELSA-Brasil:** O Estudo Longitudinal de Saúde do Adulto (ELSA-Brasil) oferece uma base de dados robusta e representativa da população adulta brasileira, com informações detalhadas sobre hábitos alimentares e marcadores de saúde renal. A natureza longitudinal do ELSA-Brasil permite investigar relações de causa e efeito e o declínio da função renal ao longo do tempo, o que é escasso na literatura nacional.
 4.  **Contribuição Científica e Política Pública:** Os resultados deste estudo têm o potencial de gerar evidências científicas inéditas sobre a associação entre o consumo de ultraprocessados e a TFG no Brasil. Tais achados poderão subsidiar a formulação de políticas públicas de alimentação e nutrição, bem como diretrizes clínicas para a prevenção e o controle da DRC, promovendo uma alimentação mais saudável e sustentável para a população.
 
+# Descrição do ELSA-Brasil (Estudo Longitudinal de Saúde do Adulto)
+
+O ELSA-Brasil é um estudo de coorte prospectivo e multicêntrico que tem como principal objetivo investigar a incidência e os fatores de risco associados a doenças cardiovasculares (DCV) e diabetes tipo 2 na população brasileira
+
+
+
 # Objetivos
 
 ## Objetivo Geral
 
 Avaliar a associação longitudinal entre o consumo de alimentos ultraprocessados (AUP) e a taxa de declínio da função renal em particpanntes do Estudo Longitudinal de Saúde do Adulto (ELSA-Brasil), avaliar os riscos causados oriundos desta mesma diminuição de função renal e o desenvolvimento da doença renal crônica através dos modelos lineares mistos.
+
+- População: Foram recrutados 15.105 servidores públicos (ativos e aposentados). Os participantes eram homens e mulheres, com idade entre 35 e 74 anos na linha de base.
+
+- Centros de Pesquisa: O estudo foi realizado em seis capitais brasileiras, em instituições públicas de ensino superior e pesquisa: Salvador, Belo Horizonte, Rio de Janeiro, São Paulo, Vitória e Porto Alegre.
+
+- Fases de Coleta (Ondas): A linha de base (Onda 1) foi coletada entre agosto de 2008 e dezembro de 2010. O estudo é longitudinal, com acompanhamentos subsequentes, incluindo a Onda 2 (2012–2014) e a Onda 3 (2017–2019). O rigor metodológico do ELSA-Brasil é garantido pelo protocolo de entrevistas e exames padronizados e por um rígido controle de qualidade.
+
+- Desfechos Principais: Embora o foco inicial fosse a incidência de diabetes e DCV, o ELSA-Brasil também coleta informações detalhadas sobre DRC, dependentes de valores laboratoriais e medidas clínicas sofisticadas, preenchendo uma lacuna importante em estudos brasileiros.
+
+# Variáveis do ELSA-Brasil
+
+As variáveis necessárias para este projeto estão disponíveis nos dados do ELSA-Brasil, principalmente na linha de base e nas ondas de acompanhamento [@cacau2025adherence; @silva2021aplicacao].
+
+## Variável de Exposição: Consumo de AUPs
+
+- Medição: O consumo alimentar habitual dos participantes foi obtido através de um Questionário de Frequência Alimentar (QFA) semiquantitativo. O QFA foi desenvolvido e validado para o ELSA-Brasil, apresentando uma lista de 114 itens alimentares/preparações, e avalia o consumo nos últimos 12 meses
+
+- Classificação e Operacionalização: Os alimentos serão classificados utilizando o sistema NOVA, que categoriza os alimentos de acordo com o grau de processamento. A exposição principal será o percentual da energia total diária (VET) proveniente de alimentos ultraprocessados. O consumo de nutrientes é ajustado pela energia total utilizando o método dos resíduos.
+
+## Variável Dependente (Desfecho): Declínio da Função Renal (TFG)
+
+O desfecho primário é a Taxa de Filtração Glomerular (TFG) estimada longitudinalmente, que é uma variável contínua.
+
+- Medição e Cálculo: O nível de creatinina sérica (SCr) é determinado por procedimentos laboratoriais padronizados. A TFG estimada (eGFR) será calculada utilizando a equação CKD-EPI (Chronic Kidney Disease Epidemiology Collaboration).
+
+- Definição de DRC (Complementar): Embora o foco seja o declínio contínuo da TFG, a incidência de DRC pode ser definida pela TFG estimada < 60 mL/min/1.73m² ou pela relação albumina/creatinina (albuminúria) ≥ 30 mg/g
+
+- Natureza Longitudinal: O declínio da função renal é a mudança na TFG observada entre as diferentes ondas de avaliação do ELSA-Brasil.
+
+## Variáveis Independentes (Covariáveis)
+
+Diversas covariáveis demográficas, socioeconômicas, de estilo de vida e clínicas serão incluídas nos modelos estatísticos para ajuste, com base no que é capturado pela coorte ELSA-Brasil:
+
+- Demográficas/Socioeconômicas: Sexo, idade (em anos), raça/cor (branco, pardo, preto, outros), escolaridade (fundamental, médio, superior), renda per capita (categorizada), estado civil, se vive sozinho, e centro de pesquisa ELSA-Brasil.
+
+- Estilo de Vida: Tabagismo (nunca fumou, ex-fumante, fumante atual), Nível de Atividade Física (sedentário, insuficientemente ativo, ativo e utilizando).
+
+- Condições Clínicas/Comorbidades (Ajuste): Índice de Massa Corporal (IMC em Kg/m²), Hipertensão Arterial (HAS) (uso de anti-hipertensivo ou pressão alta), Diabetes Mellitus (DM) (diagnóstico prévio ou valores laboratoriais/uso de medicação), Dislipidemia (LDL ≥ 130mg/dL ou uso de hipolipemiantes), Doença Cardiovascular prévia (DCV, autorrelato).
 
 ## Objetivos Específicos
 

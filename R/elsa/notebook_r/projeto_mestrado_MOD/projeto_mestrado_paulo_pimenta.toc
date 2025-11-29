@@ -1,25 +1,30 @@
 \babel@toc {nil}{}\relax 
 \contentsline {section}{\numberline {1}Introdução}{1}{section.1}%
 \contentsline {section}{\numberline {2}Justificativa}{2}{section.2}%
-\contentsline {section}{\numberline {3}Objetivos}{3}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Objetivo Geral}{3}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Objetivos Específicos}{3}{subsection.3.2}%
-\contentsline {section}{\numberline {4}Hipótese}{3}{section.4}%
-\contentsline {section}{\numberline {5}Metodologia}{4}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Revisão de Literatura (Desenho Conceitual)}{4}{subsection.5.1}%
-\contentsline {subsubsection}{\numberline {5.1.1}O Sistema NOVA e a Classificação de Alimentos Ultraprocessados}{4}{subsubsection.5.1.1}%
-\contentsline {subsubsection}{\numberline {5.1.2}AUPs e Doenças Crônicas: Mecanismos Além da Nutrição}{4}{subsubsection.5.1.2}%
-\contentsline {subsubsection}{\numberline {5.1.3}A Avaliação Simplificada do Consumo de AUPs no Brasil}{4}{subsubsection.5.1.3}%
-\contentsline {subsection}{\numberline {5.2}Desenho do Estudo e População}{4}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Variáveis do Estudo}{4}{subsection.5.3}%
-\contentsline {subsubsection}{\numberline {5.3.1}Variável de Exposição}{4}{subsubsection.5.3.1}%
-\contentsline {subsubsection}{\numberline {5.3.2}Variável de Desfecho}{5}{subsubsection.5.3.2}%
-\contentsline {subsubsection}{\numberline {5.3.3}Covariáveis}{5}{subsubsection.5.3.3}%
-\contentsline {subsection}{\numberline {5.4}Análise Estatística}{5}{subsection.5.4}%
-\contentsline {subsection}{\numberline {5.5}Relevância do Estudo}{6}{subsection.5.5}%
-\contentsline {subsubsection}{\numberline {5.5.1}Relevância Científica}{6}{subsubsection.5.5.1}%
-\contentsline {subsubsection}{\numberline {5.5.2}Relevância Clínica}{6}{subsubsection.5.5.2}%
-\contentsline {subsubsection}{\numberline {5.5.3}Relevância Social}{6}{subsubsection.5.5.3}%
-\contentsline {section}{\numberline {6}Cronograma}{6}{section.6}%
-\contentsline {section}{\numberline {7}Resultados Esperados}{6}{section.7}%
-\contentsline {section}{\numberline {8}Referências Bibliográficas}{7}{section.8}%
+\contentsline {section}{\numberline {3}Descrição do ELSA-Brasil (Estudo Longitudinal de Saúde do Adulto)}{3}{section.3}%
+\contentsline {section}{\numberline {4}Objetivos}{3}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Objetivo Geral}{3}{subsection.4.1}%
+\contentsline {section}{\numberline {5}Variáveis do ELSA-Brasil}{4}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Variável de Exposição: Consumo de AUPs}{4}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Variável Dependente (Desfecho): Declínio da Função Renal (TFG)}{4}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Variáveis Independentes (Covariáveis)}{4}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Objetivos Específicos}{5}{subsection.5.4}%
+\contentsline {section}{\numberline {6}Hipótese}{5}{section.6}%
+\contentsline {section}{\numberline {7}Metodologia}{5}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Revisão de Literatura (Desenho Conceitual)}{5}{subsection.7.1}%
+\contentsline {subsubsection}{\numberline {7.1.1}O Sistema NOVA e a Classificação de Alimentos Ultraprocessados}{5}{subsubsection.7.1.1}%
+\contentsline {subsubsection}{\numberline {7.1.2}AUPs e Doenças Crônicas: Mecanismos Além da Nutrição}{6}{subsubsection.7.1.2}%
+\contentsline {subsubsection}{\numberline {7.1.3}A Avaliação Simplificada do Consumo de AUPs no Brasil}{6}{subsubsection.7.1.3}%
+\contentsline {subsection}{\numberline {7.2}Desenho do Estudo e População}{6}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Variáveis do Estudo}{6}{subsection.7.3}%
+\contentsline {subsubsection}{\numberline {7.3.1}Variável de Exposição}{6}{subsubsection.7.3.1}%
+\contentsline {subsubsection}{\numberline {7.3.2}Variável de Desfecho}{6}{subsubsection.7.3.2}%
+\contentsline {subsubsection}{\numberline {7.3.3}Covariáveis}{7}{subsubsection.7.3.3}%
+\contentsline {subsection}{\numberline {7.4}Análise Estatística}{7}{subsection.7.4}%
+\contentsline {subsection}{\numberline {7.5}Relevância do Estudo}{7}{subsection.7.5}%
+\contentsline {subsubsection}{\numberline {7.5.1}Relevância Científica}{7}{subsubsection.7.5.1}%
+\contentsline {subsubsection}{\numberline {7.5.2}Relevância Clínica}{8}{subsubsection.7.5.2}%
+\contentsline {subsubsection}{\numberline {7.5.3}Relevância Social}{8}{subsubsection.7.5.3}%
+\contentsline {section}{\numberline {8}Cronograma}{8}{section.8}%
+\contentsline {section}{\numberline {9}Resultados Esperados}{8}{section.9}%
+\contentsline {section}{\numberline {10}Referências Bibliográficas}{9}{section.10}%
