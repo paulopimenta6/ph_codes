@@ -16,7 +16,7 @@
     <dependency>
         <groupId>org.apache.kafka</groupId>
         <artifactId>kafka-clients</artifactId>
-        <version>3.7.0</version> <!-- Versão mais recente -->
+        <version>3.9.1</version> <!-- Versão mais recente -->
     </dependency>
     <!-- Logging -->
     <dependency>
