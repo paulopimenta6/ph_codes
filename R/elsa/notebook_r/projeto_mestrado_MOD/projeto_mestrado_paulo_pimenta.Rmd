@@ -212,8 +212,115 @@ As análises estatísticas serão realizadas em etapas:
 4.  **Diagnóstico e Robustez:** A avaliação de resíduos e o diagnóstico de ajuste dos modelos serão conduzidos para verificar a adequação das premissas. Adicionalmente, será explorada a utilização de versões robustas de LMM (e.g., `robustlmm` no R) para mitigar a influência de potenciais *outliers* ou observações influentes [@artes2023metodos; @demidenko2013mixed; @favero2017manual].
 5.  **Análise de Modificadores de Efeito:** Serão realizadas análises estratificadas e/ou inclusão de termos de interação nos modelos para investigar se a associação entre ultraprocessados e TFG difere em subgrupos específicos (e.g., por idade, sexo, presença de hipertensão ou diabetes) [@artes2023metodos].
 
+### O Modelo Linear Misto (MLM)
 
+O Modelo Linear Misto (MLM), ou Linear Mixed Effects (LME) Model, é o framework estatístico mais adequado para analisar a diminuição da função renal (representada pela TFGe) em um estudo longitudinal com medidas repetidas, como a coorte ELSA-Brasil. Este modelo é uma extensão da regressão linear que lida explicitamente com a dependência dos dados, modelando a correlação que existe entre as múltiplas observações coletadas do mesmo indivíduo ao longo do tempo.
 
+O modelo MLM decompõe a variação total em efeitos fixos (a trajetória média populacional) e efeitos aleatórios (a variação individual em torno dessa média) [@field2012discovering; @demidenko2013mixed; @favero2017manual; @gail2010statistics, @singer1986analise]. 
+
+#### Formulação Matemática Detalhada do Modelo Linear Misto
+
+O Modelo Linear Misto (MLM), seguindo a formulação de **Laird e Ware (1982)**, combina dois níveis:
+
+#### Modelo para o Indivíduo *i* no Tempo *j* (Notação Matricial)
+
+A resposta \( \mathbf{Y}_i \) (vetor de medidas da TFGe ao longo do tempo para o participante \( i \)) é dada por:
+
+\[
+\mathbf{Y}_i = \mathbf{X}_i \boldsymbol{\beta} + \mathbf{Z}_i \mathbf{b}_i + \boldsymbol{\epsilon}_i,
+\quad i = 1,\ldots,N
+\]
+
+#### Componentes do Modelo
+
+| Componente | Dimensão | Descrição |
+|-----------|----------|-----------|
+| \( \mathbf{Y}_i \) | \( n_i \times 1 \) | Vetor das observações da TFGe para o indivíduo \( i \). |
+| \( \mathbf{X}_i \) | \( n_i \times p \) | Matriz de design dos efeitos fixos. |
+| \( \boldsymbol{\beta} \) | \( p \times 1 \) | Vetor de parâmetros fixos (efeitos populacionais). |
+| \( \mathbf{Z}_i \) | \( n_i \times q \) | Matriz de design dos efeitos aleatórios. |
+| \( \mathbf{b}_i \) | \( q \times 1 \) | Vetor de efeitos aleatórios do indivíduo \( i \). |
+| \( \boldsymbol{\epsilon}_i \) | \( n_i \times 1 \) | Vetor de erros residuais. |
+
+#### Suposições de Distribuição
+
+Assume-se independência entre \( \mathbf{b}_i \) e \( \boldsymbol{\epsilon}_i \):
+
+- **Efeitos aleatórios:**
+\[
+\mathbf{b}_i \sim N(\mathbf{0}, \mathbf{D}^*)
+\]
+
+- **Erros residuais:**
+\[
+\boldsymbol{\epsilon}_i \sim N(\mathbf{0}, \mathbf{R}_i)
+\]
+
+No modelo básico:
+\[
+\mathbf{R}_i = \sigma^2 \mathbf{I}_{n_i}
+\]
+
+Em modelos longitudinais mais complexos, podem ser usadas estruturas como:
+- AR(1)
+- Toeplitz
+- Heteroscedasticidade dependente do tempo
+
+---
+
+#### Especificação do Modelo Aplicado à TFGe
+
+O modelo longitudinal para a TFGe do participante \( i \) na visita \( j \) é dado por:
+
+\[
+\text{TFGe}_{ij} =
+(\underbrace{\beta_0 + \beta_1 \text{Tempo}_{j} + \beta_2 \text{UPFc}_i + 
+\beta_3 (\text{Tempo}_{j} \times \text{UPFc}_i) + \mathbf{X}'_{ij} \boldsymbol{\gamma}}_{\text{Efeitos Fixos}})
++
+(\underbrace{b_{0i} + b_{1i}\,\text{Tempo}_{j}}_{\text{Efeitos Aleatórios}})
++ \epsilon_{ij}
+\]
+
+#### Efeitos Fixos
+
+- \( \beta_0 \): Intercepto populacional médio  
+- \( \beta_1 \): Declínio médio da TFGe por unidade de tempo  
+- \( \beta_2 \): Efeito do consumo de UPFc  
+- \( \beta_3 \): Interação Tempo × UPFc  
+- \( \mathbf{X}'_{ij} \boldsymbol{\gamma} \): Outras covariáveis (Idade, Sexo, DM, HAS, etc.)
+
+#### Efeitos Aleatórios
+
+Para \( q = 2 \):
+
+- \( b_{0i} \): desvio aleatório do intercepto  
+- \( b_{1i} \): desvio aleatório da inclinação do tempo  
+
+\[
+\mathbf{b}_i = 
+\begin{pmatrix}
+b_{0i} \\ b_{1i}
+\end{pmatrix}
+\]
+
+#### Matriz de Covariância dos Efeitos Aleatórios
+
+\[
+D^{*} = \sigma^{2} D = \sigma^{2}
+\begin{pmatrix}
+d_{00} & d_{10} \\
+d_{01} & d_{11}
+\end{pmatrix}
+\]
+
+Onde:
+
+- \( d_{00} \): variância do intercepto aleatório  
+- \( d_{11} \): variância da inclinação aleatória  
+- \( d_{01} = d_{10} \): covariância entre intercepto e inclinação  
+
+Se \( d_{01} \neq 0 \):  
+OBS: participantes com TFGe mais alta na linha de base podem ter um declínio mais rápido ou mais lento.
 
 ## Relevância do Estudo
 
