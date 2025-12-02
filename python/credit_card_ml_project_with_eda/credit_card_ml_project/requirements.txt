@@ -29,7 +29,7 @@ executing @ file:///home/conda/feedstock_root/build_artifacts/executing_17567293
 fastapi==0.120.4
 fastjsonschema @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_python-fastjsonschema_1755304154/work/dist
 filelock==3.12.4
-fonttools==4.44.0
+fonttools==4.61.0
 fqdn @ file:///home/conda/feedstock_root/build_artifacts/fqdn_1733327382592/work/dist
 h11 @ file:///home/conda/feedstock_root/build_artifacts/h11_1745526374115/work
 h2 @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_h2_1756364871/work
