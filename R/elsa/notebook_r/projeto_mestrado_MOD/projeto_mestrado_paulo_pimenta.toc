@@ -6,21 +6,28 @@
 \contentsline {subsection}{\numberline {4.1}Objetivo Geral}{3}{subsection.4.1}%
 \contentsline {subsection}{\numberline {4.2}Objetivos Específicos}{4}{subsection.4.2}%
 \contentsline {section}{\numberline {5}Hipótese}{4}{section.5}%
-\contentsline {section}{\numberline {6}Metodologia}{4}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Variáveis de estudo}{4}{subsection.6.1}%
-\contentsline {subsubsection}{\numberline {6.1.1}Variáveis de desfecho (função renal)}{4}{subsubsection.6.1.1}%
-\contentsline {paragraph}{\numberline {6.1.1.1}Taxa de Filtração Glomerular Estimada (TFGe)}{4}{paragraph.6.1.1.1}%
+\contentsline {section}{\numberline {6}Metodologia}{5}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Variáveis de estudo}{5}{subsection.6.1}%
+\contentsline {subsubsection}{\numberline {6.1.1}Variáveis de desfecho (função renal)}{5}{subsubsection.6.1.1}%
+\contentsline {paragraph}{\numberline {6.1.1.1}Taxa de Filtração Glomerular Estimada (TFGe)}{5}{paragraph.6.1.1.1}%
 \contentsline {paragraph}{\numberline {6.1.1.2}Creatinina Sérica (SCr)}{5}{paragraph.6.1.1.2}%
-\contentsline {subsection}{\numberline {6.2}Revisão de Literatura (Desenho Conceitual)}{5}{subsection.6.2}%
-\contentsline {subsubsection}{\numberline {6.2.1}O Sistema NOVA e a Classificação de Alimentos Ultraprocessados}{5}{subsubsection.6.2.1}%
-\contentsline {subsubsection}{\numberline {6.2.2}AUPs e Doenças Crônicas: Mecanismos Além da Nutrição}{5}{subsubsection.6.2.2}%
-\contentsline {subsubsection}{\numberline {6.2.3}A Avaliação Simplificada do Consumo de AUPs no Brasil}{5}{subsubsection.6.2.3}%
-\contentsline {subsection}{\numberline {6.3}Desenho do Estudo e População}{5}{subsection.6.3}%
-\contentsline {subsection}{\numberline {6.4}Análise Estatística}{5}{subsection.6.4}%
-\contentsline {subsection}{\numberline {6.5}Relevância do Estudo}{6}{subsection.6.5}%
-\contentsline {subsubsection}{\numberline {6.5.1}Relevância Científica}{6}{subsubsection.6.5.1}%
-\contentsline {subsubsection}{\numberline {6.5.2}Relevância Clínica}{6}{subsubsection.6.5.2}%
-\contentsline {subsubsection}{\numberline {6.5.3}Relevância Social}{6}{subsubsection.6.5.3}%
-\contentsline {section}{\numberline {7}Cronograma}{6}{section.7}%
-\contentsline {section}{\numberline {8}Resultados Esperados}{7}{section.8}%
-\contentsline {section}{\numberline {9}Referências Bibliográficas}{8}{section.9}%
+\contentsline {paragraph}{\numberline {6.1.1.3}Razão Albumina-Creatinina na Urina (UACR)}{5}{paragraph.6.1.1.3}%
+\contentsline {subsubsection}{\numberline {6.1.2}Variáveis de Exposição e Avaliação Dietética}{5}{subsubsection.6.1.2}%
+\contentsline {paragraph}{\numberline {6.1.2.1}Questionário de Frequência Alimentar (QFA)}{5}{paragraph.6.1.2.1}%
+\contentsline {paragraph}{\numberline {6.1.2.2}Variáveis Dietéticas Derivadas do QFA e sua Relação com a Função Renal}{6}{paragraph.6.1.2.2}%
+\contentsline {subsubsection}{\numberline {6.1.3}Dados Antropométricos}{7}{subsubsection.6.1.3}%
+\contentsline {subsection}{\numberline {6.2}Coleta das Variáveis Relacionadas à Função Renal}{7}{subsection.6.2}%
+\contentsline {subsubsection}{\numberline {6.2.1}Coleta de Amostras Biológicas}{7}{subsubsection.6.2.1}%
+\contentsline {subsection}{\numberline {6.3}Revisão de Literatura (Desenho Conceitual)}{8}{subsection.6.3}%
+\contentsline {subsubsection}{\numberline {6.3.1}O Sistema NOVA e a Classificação de Alimentos Ultraprocessados}{8}{subsubsection.6.3.1}%
+\contentsline {subsubsection}{\numberline {6.3.2}AUPs e Doenças Crônicas: Mecanismos Além da Nutrição}{8}{subsubsection.6.3.2}%
+\contentsline {subsubsection}{\numberline {6.3.3}A Avaliação Simplificada do Consumo de AUPs no Brasil}{8}{subsubsection.6.3.3}%
+\contentsline {subsection}{\numberline {6.4}Desenho do Estudo e População}{8}{subsection.6.4}%
+\contentsline {subsection}{\numberline {6.5}Análise Estatística}{9}{subsection.6.5}%
+\contentsline {subsection}{\numberline {6.6}Relevância do Estudo}{9}{subsection.6.6}%
+\contentsline {subsubsection}{\numberline {6.6.1}Relevância Científica}{9}{subsubsection.6.6.1}%
+\contentsline {subsubsection}{\numberline {6.6.2}Relevância Clínica}{9}{subsubsection.6.6.2}%
+\contentsline {subsubsection}{\numberline {6.6.3}Relevância Social}{9}{subsubsection.6.6.3}%
+\contentsline {section}{\numberline {7}Cronograma}{10}{section.7}%
+\contentsline {section}{\numberline {8}Resultados Esperados}{10}{section.8}%
+\contentsline {section}{\numberline {9}Referências Bibliográficas}{11}{section.9}%

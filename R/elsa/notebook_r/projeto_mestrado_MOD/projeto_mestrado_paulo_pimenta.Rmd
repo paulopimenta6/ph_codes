@@ -70,7 +70,14 @@ A relevância deste estudo é multifacetada e se fundamenta em pontos cruciais:
 
 # Descrição do ELSA-Brasil (Estudo Longitudinal de Saúde do Adulto)
 
-O ELSA-Brasil é um estudo de coorte prospectivo e multicêntrico que tem como principal objetivo investigar a incidência e os fatores de risco associados a doenças cardiovasculares (DCV) e diabetes tipo 2 na população brasileira
+O ELSA-Brasil é um estudo longitudinal, multicêntrico, recrutou 15.105 servidores públicos de instituições de ensino e pesquisa em seis cidades (Belo Horizonte, Porto Alegre, Rio de Janeiro, Salvador, São Paulo e Vitória) em três diferentes regiões no Brasil. O estudo foi criado a partir de uma chamada pública lançada, em 2005, pelo Ministério da Saúde e pelo Ministério da Ciência e Tecnologia. Além disso, é a maior pesquisa multicêntrica de coorte realizada por um país fora do eixo dos países desenvolvidos. Participam do ELSA-Brasil: a Universidade Federal da Bahia (UFBA), a Universidade Federal de Minas Gerais (UFMG), a Universidade Federal do Espírito Santo (UFES), a Fundação Oswaldo Cruz (Fiocruz, Rio de Janeiro), a Universidade de São Paulo (USP) e a Universidade
+Federal do Rio Grande do Sul (UFRGS).
+
+Os funcionários e docentes responderam questionários sobre suas condições gerais de saúde, história familiar de doenças, uso de medicamentos, saúde mental,
+entre outros tópicos. Além disso, foram submetidos a uma série de exames laboratoriais e físicos. Originalmente a coorte foi desenvolvida com o objetivo de
+estudar a incidência de diabetes e doenças cardiovasculares na população brasileira e os seus determinantes biológicos e sociais [@silva2021aplicacao; @silva2017aposentadoria].
+
+O estudo recebeu significativo financiamento governamental, sendo apoiado pelo Ministério da Saúde do Brasil (Departamento de Ciência e Tecnologia) e pelo Ministério da Ciência, Tecnologia e Inovação (FINEP, Financiadora de Estudos e Projetos), além do CNPq (Conselho Nacional de Desenvolvimento Científico e Tecnológico) [@lotufo2023elsa].
 
 # Objetivos
 
@@ -79,11 +86,8 @@ O ELSA-Brasil é um estudo de coorte prospectivo e multicêntrico que tem como p
 Avaliar a associação longitudinal entre o consumo de alimentos ultraprocessados (AUP) e a taxa de declínio da função renal em particpanntes do Estudo Longitudinal de Saúde do Adulto (ELSA-Brasil), avaliar os riscos causados oriundos desta mesma diminuição de função renal e o desenvolvimento da doença renal crônica através dos modelos lineares mistos.
 
 -   População: Foram recrutados 15.105 servidores públicos (ativos e aposentados). Os participantes eram homens e mulheres, com idade entre 35 e 74 anos na linha de base.
-
 -   Centros de Pesquisa: O estudo foi realizado em seis capitais brasileiras, em instituições públicas de ensino superior e pesquisa: Salvador, Belo Horizonte, Rio de Janeiro, São Paulo, Vitória e Porto Alegre.
-
 -   Fases de Coleta (Ondas): A linha de base (Onda 1) foi coletada entre agosto de 2008 e dezembro de 2010. O estudo é longitudinal, com acompanhamentos subsequentes, incluindo a Onda 2 (2012–2014) e a Onda 3 (2017–2019). O rigor metodológico do ELSA-Brasil é garantido pelo protocolo de entrevistas e exames padronizados e por um rígido controle de qualidade.
-
 -   Desfechos Principais: Embora o foco inicial fosse a incidência de diabetes e DCV, o ELSA-Brasil também coleta informações detalhadas sobre DRC, dependentes de valores laboratoriais e medidas clínicas sofisticadas, preenchendo uma lacuna importante em estudos brasileiros.
 
 ## Objetivos Específicos
@@ -126,8 +130,59 @@ A creatinina sérica é um marcador importante usado para estimar a TFGe e avali
 A UACR é um marcador de lesão renal, particularmente de albuminúria [@he2024ultra].
 
 - Descrição e Definição: O critério para a DRC inclui uma razão albumina-creatinina ≥ 30 mg/g [@he2024ultra]. No Estudo Longitudinal de Saúde do Adulto (ELSA-Brasil), a razão albumina-creatinina na urina (UACR) foi utilizada para definir "UACR Elevada" como ≥ 3,4 mg/mmol (30 mg/g), a partir de coleta noturna validada [@schmidt2015cohort].
- 
+
+### Variáveis de Exposição e Avaliação Dietética
+
+#### Questionário de Frequência Alimentar (QFA)
+
+O QFA é o principal instrumento utilizado em grandes estudos de coorte para avaliar a ingestão alimentar habitual dos participantes [@silva2021aplicacao].
+
+- Descrição e Coleta: O QFA utilizado no Estudo Longitudinal de Saúde do Adulto (ELSA-Brasil) é semi-quantitativo e foi previamente desenvolvido e validado para a população do estudo. Ele consiste em uma lista de 114 alimentos/preparações [@canhada2020ultra; @silva2021aplicacao].
+
+    - Os participantes são questionados sobre a frequência do consumo de uma porção padrão de cada alimento nos últimos 12 meses [@silva2021aplicacao].
+    - A coleta visa estimar o hábito alimentar dos participantes, considerando variações no consumo entre as estações do ano [@silva2021aplicacao].
+    - O questionário possui oito opções de resposta para frequência, desde "mais de 3 vezes ao dia" até "nunca/quase nunca" [@naud2019consumo].
+    - A reprodutibilidade e a validade relativa do QFA no ELSA-Brasil foram avaliadas por meio do coeficiente de correlação intraclasse (ICC), mostrando confiabilidade satisfatória para todos os nutrientes e validade relativa aceitável para energia, macronutrientes, cálcio, potássio e vitaminas E e C [@cacau2025adherence; @silva2021aplicacao; @naud2019consumo; @canhada2020ultra].
+    - Para quantificar o consumo diário, o número de porções consumidas por dia é multiplicado pelo peso da porção padrão e pelo peso da frequência de consumo [@canhada2020ultra; @silva2021aplicacao; @naud2019consumo].
+    - Valores extremos de consumo energético (por exemplo, abaixo de 500 Kcal/dia ou acima de 4.000 Kcal/dia) são frequentemente excluídos para garantir a plausibilidade dos dados [@silva2021aplicacao; @canhada2020ultra].
+
+#### Variáveis Dietéticas Derivadas do QFA e sua Relação com a Função Renal
+
+A partir do QFA, diversas variáveis de consumo podem ser calculadas e adicionadas aos modelos de função renal:
+
+1.  Ingestão de Nutrientes e Energia: O QFA permite estimar a ingestão energética diária (em quilocalorias) e a ingestão de macronutrientes (carboidratos, proteínas, lipídios) e ácidos graxos (saturados, monoinsaturados, poli-insaturados). A ingestão de nutrientes é tipicamente ajustada pelo valor energético total (VET), utilizando o método residual, em análises epidemiológicas [@naud2019consumo].
+
+2.  Consumo de Alimentos Ultraprocessados (UPF):
+    - O consumo de UPFs classificado utilizando o sistema NOVA, que categoriza alimentos com base na extensão e propósito do processamento industrial [@costa2021escore; @he2024ultra; @rey2021ultra; @avesani2023ultraprocessed].
+    - O consumo de UPFs, geralmente expresso como a porcentagem da energia total diária ingerida proveniente desses alimentos (UPFc), tem sido associado ao risco aumentado de diversas DCNT, incluindo o declínio da função renal (CKD) [@costa2021escore; @he2024ultra].
+    
+3. Padrões Dietéticos:
+    - A análise de padrões dietéticos, como a dieta ocidental (rica em alimentos ultraprocessados) versus dietas mais saudáveis (ricas em frutas, vegetais e grãos integrais), pode ser realizada utilizando técnicas como análise fatorial ou análise de componentes principais [@silva2021aplicacao; @naud2019consumo].
+    - Esses padrões podem ser associados à função renal, fornecendo uma visão mais abrangente do impacto dietético na saúde renal.
+
+4. Índices de qualidade de dieta: 
+    - Índices como o de Índice de Qualidade de Dieta revisado (IQD-R) ou escores baseados m dietas saudáveis tais como o Planetary Health Diet Index (PHDI). Tais índices fornecem uma pontuação única relativa a qualidade geral da dieta, que pode ser correlacionada com a função renal [@silva2017aposentadoria; @naud2019consumo].     
+
+### Dados Antropométricos 
+
+- Índice de Massa Corporal (IMC)
+- Condições Clínicas e Comorbidades (Fatores de Risco para DRC): Dislipidemia (LDL ≥130 mg/dL ou uso de hipolipemiantes), Hipertensão Arterial Sistêmica (HAS) (pressão sistólica ≥ 140 mm Hg, pressão diastólica ≥ 90 mm Hg ou tratamento com anti-hipertensivo), Diabetes Mellitus (DM) (diagnóstico prévio, uso de medicação, glicose sanguínea ≥ 126 mg/dL, glicose 2h ≥200 mg/dL ou HbA1C ≥ 6,5%), e Doença Cardiovascular [@silva2021aplicacao].
+- Hábitos de Vida: Tabagismo, nível de atividade física, consumo de álcool [@silva2021aplicacao].
+
+A associação entre TFGe e fatores de risco modificáveis, como o consumo de alimentos ultraprocessados (AUPF), tem sido consistentemente investigada, visto que o aumento de 10% no consumo de AUPF foi associado a um risco 7% maior de DRC (RR = 1,07). O consumo de AUPF, que é um fator de risco modificável para doenças crônicas, tem sido consistentemente associado à diminuição da função renal [@he2024ultra; @avesani2023ultraprocessed].
+
 ## Coleta das Variáveis Relacionadas à Função Renal
+
+As metodologias de coleta e análise dessas variáveis geralmente seguem protocolos padronizados, como observado em grandes estudos de coorte como o ELSA-Brasil.
+
+### Coleta de Amostras Biológicas
+
+A coleta de material biológico é crucial para a determinação das variáveis sanguíneas e urinárias.
+
+- Tipos de amostras: As variáveis são determinadas a partir de amostras de sangue em jejum, amostras pontuais ou coleta de urina durante determinado horário [@naud2019consumo; @rey2021ultra].
+- Preparação do participante: Os participantes são orientados a seguir protocolos específicos antes da coleta, como jejum de 8 a 12 horas para amostras de sangue [@naud2019consumo].
+- Procedimentos de coleta: A coleta é realizada por profissionais treinados, utilizando técnicas assépticas para garantir a integridade das amostras. As amostras de sangue são tipicamente colhidas utilizando um sistema vacutainer em vários tubos específicos (EDTA, gel ativador para separação de soro, citrato, fluoreto/oxalato, heparina) [@naud2019consumo].
+- Processamento da amostra: Após a coleta, as amostras são processadas conforme protocolos padronizados, incluindo centrifugação para separar o soro ou plasma, e armazenamento em temperaturas adequadas (-20°C ou -80°C) até a análise. Para garantir a qualidade, as amostras são processadas rapidamente. Elas são mantidas em gelo e centrifugadas no máximo até 30 minutos após a coleta. Depois da centrifugação, o material biológico é aliquotado e armazenado. [@naud2019consumo].
 
 ## Revisão de Literatura (Desenho Conceitual)
 
