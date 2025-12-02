@@ -77,7 +77,7 @@ Os funcionários e docentes responderam questionários sobre suas condições ge
 entre outros tópicos. Além disso, foram submetidos a uma série de exames laboratoriais e físicos. Originalmente a coorte foi desenvolvida com o objetivo de
 estudar a incidência de diabetes e doenças cardiovasculares na população brasileira e os seus determinantes biológicos e sociais [@silva2021aplicacao; @silva2017aposentadoria].
 
-O estudo recebeu significativo financiamento governamental, sendo apoiado pelo Ministério da Saúde do Brasil (Departamento de Ciência e Tecnologia) e pelo Ministério da Ciência, Tecnologia e Inovação (FINEP, Financiadora de Estudos e Projetos), além do CNPq (Conselho Nacional de Desenvolvimento Científico e Tecnológico) [@lotufo2023elsa].
+O estudo recebeu significativo financiamento governamental, sendo apoiado pelo Ministério da Saúde do Brasil (Departamento de Ciência e Tecnologia) e pelo Ministério da Ciência, Tecnologia e Inovação (FINEP, Financiadora de Estudos e Projetos), além do CNPq (Conselho Nacional de Desenvolvimento Científico e Tecnológico) [@schmidt2015cohort].
 
 # Objetivos
 
@@ -211,6 +211,9 @@ As análises estatísticas serão realizadas em etapas:
 3.  **Seleção de Modelos:** A comparação entre os modelos será realizada utilizando critérios de informação como o Critério de Informação de Akaike (AIC) e o Critério de Informação Bayesiano (BIC) [@demidenko2013mixed; @favero2017manual].
 4.  **Diagnóstico e Robustez:** A avaliação de resíduos e o diagnóstico de ajuste dos modelos serão conduzidos para verificar a adequação das premissas. Adicionalmente, será explorada a utilização de versões robustas de LMM (e.g., `robustlmm` no R) para mitigar a influência de potenciais *outliers* ou observações influentes [@artes2023metodos; @demidenko2013mixed; @favero2017manual].
 5.  **Análise de Modificadores de Efeito:** Serão realizadas análises estratificadas e/ou inclusão de termos de interação nos modelos para investigar se a associação entre ultraprocessados e TFG difere em subgrupos específicos (e.g., por idade, sexo, presença de hipertensão ou diabetes) [@artes2023metodos].
+
+
+
 
 ## Relevância do Estudo
 
