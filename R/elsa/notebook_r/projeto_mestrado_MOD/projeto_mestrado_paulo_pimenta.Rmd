@@ -19,7 +19,6 @@ header-includes:
   - \renewcommand{\contentsname}{Índice}
 ---
 
-```{=tex}
 \begin{titlepage}
     \centering
     \vspace*{\fill}
@@ -36,7 +35,7 @@ header-includes:
     {\large \today}
     \vspace*{\fill}s
 \end{titlepage}
-```
+
 # Introdução
 
 A função renal desempenha um papel crucial na manutenção da homeostase do organismo, sendo a taxa de filtração glomerular (TFG) o principal indicador clínico para sua avaliação. A doença renal crônica (DRC) emerge como um grave problema de saúde pública global, caracterizada por elevada morbimortalidade, significativo impacto econômico e uma prevalência crescente tanto no Brasil quanto internacionalmente [@srour2019ultra; @he2024ultra; @rey2021ultra].
@@ -47,16 +46,16 @@ Evidências de estudos internacionais, como revisões sistemáticas e meta-anál
 
 A relevância do tema no Brasil é sublinhada pelo aumento do consumo de AUPs e pela necessidade de ferramentas de rastreamento, como envidenciado pelo Escore Nova o qual, primeiramente, estabeleceu um questionário eletrônico de autorrelato [@costa2021escore], contudo, no contexto brasileiro, ainda há uma lacuna de estudos longitudinais que investiguem essa associação de forma aprofundada.
 
-Diante deste impacto crescente referente ao aumento sugnificativo da DRC e suas consequências e das necessidades de estratégia de prevenção primária [@avesani2023ultraprocessed] o Estudo Longitudinal de Saúde do Adulto (ELSA-Brasil) representa a maior coorte nacional, dispondo de dados abrangentes sobre dieta, exames laboratoriais e medidas clínicas [canhada2020ultra]. Este vasto conjunto de informações oferece uma oportunidade ímpar para investigar a relação entre o consumo de alimentos ultraprocessados e a função renal na população brasileira o qual este projeto propõe avaliar através de métodos estatísticos e revisões sistemáticas.
+Diante deste impacto crescente referente ao aumento sugnificativo da DRC e suas consequências e das necessidades de estratégia de prevenção primária [@avesani2023ultraprocessed] o Estudo Longitudinal de Saúde do Adulto (ELSA-Brasil) representa a maior coorte nacional, dispondo de dados abrangentes sobre dieta, exames laboratoriais e medidas clínicas \[canhada2020ultra\]. Este vasto conjunto de informações oferece uma oportunidade ímpar para investigar a relação entre o consumo de alimentos ultraprocessados e a função renal na população brasileira o qual este projeto propõe avaliar através de métodos estatísticos e revisões sistemáticas.
 
+| **Grupo** | **Descrição** | **Exemplos** |
+|------------------|------------------------------------|------------------|
+| **1. In natura ou minimamente processados** | Alimentos obtidos diretamente da natureza, submetidos apenas a processos simples como lavagem, refrigeração, moagem, secagem, fermentação simples ou pasteurização, **sem aditivos**. | Frutas, legumes, verduras, carnes frescas, ovos, arroz, feijão, leite. |
+| **2. Ingredientes culinários processados** | Substâncias extraídas do grupo 1 ou da natureza e usadas para temperar, cozinhar ou preparar alimentos. Geralmente passam por processos como prensagem, refino, moagem ou extração. | Óleos vegetais, manteiga, açúcar, sal, mel. |
+| **3. Processados** | Produtos feitos com adição de ingredientes do grupo 2 a alimentos do grupo 1, para maior durabilidade ou para modificação moderada de sabor. Normalmente têm poucos ingredientes. | Pães caseiros, queijos, conservas de vegetais ou frutas. |
+| **4. Ultraprocessados** | Formulações industriais com **ingredientes exclusivos do uso industrial**, como corantes, aromatizantes, emulsificantes e outros aditivos; frequentemente incluem técnicas que descaracterizam a matriz alimentar original. | Refrigerantes, embutidos, salgadinhos, biscoitos recheados, cereais matinais, refeições prontas. |
 
-| **Grupo**                                   | **Descrição**                                                                                                                                                                                                               | **Exemplos**                                                                                     |
-|----------------|----------------------------------------|-----------------|
-| **1. In natura ou minimamente processados** | Alimentos obtidos diretamente da natureza, submetidos apenas a processos simples como lavagem, refrigeração, moagem, secagem, fermentação simples ou pasteurização, **sem aditivos**.                                       | Frutas, legumes, verduras, carnes frescas, ovos, arroz, feijão, leite.                           |
-| **2. Ingredientes culinários processados**  | Substâncias extraídas do grupo 1 ou da natureza e usadas para temperar, cozinhar ou preparar alimentos. Geralmente passam por processos como prensagem, refino, moagem ou extração.                                         | Óleos vegetais, manteiga, açúcar, sal, mel.                                                      |
-| **3. Processados**                          | Produtos feitos com adição de ingredientes do grupo 2 a alimentos do grupo 1, para maior durabilidade ou para modificação moderada de sabor. Normalmente têm poucos ingredientes.                                           | Pães caseiros, queijos, conservas de vegetais ou frutas.                                         |
-| **4. Ultraprocessados**                     | Formulações industriais com **ingredientes exclusivos do uso industrial**, como corantes, aromatizantes, emulsificantes e outros aditivos; frequentemente incluem técnicas que descaracterizam a matriz alimentar original. | Refrigerantes, embutidos, salgadinhos, biscoitos recheados, cereais matinais, refeições prontas. |
-*Fonte: Adaptado de Monteiro, C.A. et al. (2019). Ultra-processed foods: what they are and how to identify them. Public Health Nutrition, 22(5), 936--941. [DOI: 10.1017/S1368980018003762]*
+*Fonte: Adaptado de Monteiro, C.A. et al. (2019). Ultra-processed foods: what they are and how to identify them. Public Health Nutrition, 22(5), 936--941. \[DOI: 10.1017/S1368980018003762\]*
 
 # Justificativa
 
@@ -73,66 +72,62 @@ A relevância deste estudo é multifacetada e se fundamenta em pontos cruciais:
 
 O ELSA-Brasil é um estudo de coorte prospectivo e multicêntrico que tem como principal objetivo investigar a incidência e os fatores de risco associados a doenças cardiovasculares (DCV) e diabetes tipo 2 na população brasileira
 
-
-
 # Objetivos
 
 ## Objetivo Geral
 
 Avaliar a associação longitudinal entre o consumo de alimentos ultraprocessados (AUP) e a taxa de declínio da função renal em particpanntes do Estudo Longitudinal de Saúde do Adulto (ELSA-Brasil), avaliar os riscos causados oriundos desta mesma diminuição de função renal e o desenvolvimento da doença renal crônica através dos modelos lineares mistos.
 
-- População: Foram recrutados 15.105 servidores públicos (ativos e aposentados). Os participantes eram homens e mulheres, com idade entre 35 e 74 anos na linha de base.
+-   População: Foram recrutados 15.105 servidores públicos (ativos e aposentados). Os participantes eram homens e mulheres, com idade entre 35 e 74 anos na linha de base.
 
-- Centros de Pesquisa: O estudo foi realizado em seis capitais brasileiras, em instituições públicas de ensino superior e pesquisa: Salvador, Belo Horizonte, Rio de Janeiro, São Paulo, Vitória e Porto Alegre.
+-   Centros de Pesquisa: O estudo foi realizado em seis capitais brasileiras, em instituições públicas de ensino superior e pesquisa: Salvador, Belo Horizonte, Rio de Janeiro, São Paulo, Vitória e Porto Alegre.
 
-- Fases de Coleta (Ondas): A linha de base (Onda 1) foi coletada entre agosto de 2008 e dezembro de 2010. O estudo é longitudinal, com acompanhamentos subsequentes, incluindo a Onda 2 (2012–2014) e a Onda 3 (2017–2019). O rigor metodológico do ELSA-Brasil é garantido pelo protocolo de entrevistas e exames padronizados e por um rígido controle de qualidade.
+-   Fases de Coleta (Ondas): A linha de base (Onda 1) foi coletada entre agosto de 2008 e dezembro de 2010. O estudo é longitudinal, com acompanhamentos subsequentes, incluindo a Onda 2 (2012–2014) e a Onda 3 (2017–2019). O rigor metodológico do ELSA-Brasil é garantido pelo protocolo de entrevistas e exames padronizados e por um rígido controle de qualidade.
 
-- Desfechos Principais: Embora o foco inicial fosse a incidência de diabetes e DCV, o ELSA-Brasil também coleta informações detalhadas sobre DRC, dependentes de valores laboratoriais e medidas clínicas sofisticadas, preenchendo uma lacuna importante em estudos brasileiros.
-
-# Variáveis do ELSA-Brasil
-
-As variáveis necessárias para este projeto estão disponíveis nos dados do ELSA-Brasil, principalmente na linha de base e nas ondas de acompanhamento [@cacau2025adherence; @silva2021aplicacao].
-
-## Variável de Exposição: Consumo de AUPs
-
-- Medição: O consumo alimentar habitual dos participantes foi obtido através de um Questionário de Frequência Alimentar (QFA) semiquantitativo. O QFA foi desenvolvido e validado para o ELSA-Brasil, apresentando uma lista de 114 itens alimentares/preparações, e avalia o consumo nos últimos 12 meses
-
-- Classificação e Operacionalização: Os alimentos serão classificados utilizando o sistema NOVA, que categoriza os alimentos de acordo com o grau de processamento. A exposição principal será o percentual da energia total diária (VET) proveniente de alimentos ultraprocessados. O consumo de nutrientes é ajustado pela energia total utilizando o método dos resíduos.
-
-## Variável Dependente (Desfecho): Declínio da Função Renal (TFG)
-
-O desfecho primário é a Taxa de Filtração Glomerular (TFG) estimada longitudinalmente, que é uma variável contínua.
-
-- Medição e Cálculo: O nível de creatinina sérica (SCr) é determinado por procedimentos laboratoriais padronizados. A TFG estimada (eGFR) será calculada utilizando a equação CKD-EPI (Chronic Kidney Disease Epidemiology Collaboration).
-
-- Definição de DRC (Complementar): Embora o foco seja o declínio contínuo da TFG, a incidência de DRC pode ser definida pela TFG estimada < 60 mL/min/1.73m² ou pela relação albumina/creatinina (albuminúria) ≥ 30 mg/g
-
-- Natureza Longitudinal: O declínio da função renal é a mudança na TFG observada entre as diferentes ondas de avaliação do ELSA-Brasil.
-
-## Variáveis Independentes (Covariáveis)
-
-Diversas covariáveis demográficas, socioeconômicas, de estilo de vida e clínicas serão incluídas nos modelos estatísticos para ajuste, com base no que é capturado pela coorte ELSA-Brasil:
-
-- Demográficas/Socioeconômicas: Sexo, idade (em anos), raça/cor (branco, pardo, preto, outros), escolaridade (fundamental, médio, superior), renda per capita (categorizada), estado civil, se vive sozinho, e centro de pesquisa ELSA-Brasil.
-
-- Estilo de Vida: Tabagismo (nunca fumou, ex-fumante, fumante atual), Nível de Atividade Física (sedentário, insuficientemente ativo, ativo e utilizando).
-
-- Condições Clínicas/Comorbidades (Ajuste): Índice de Massa Corporal (IMC em Kg/m²), Hipertensão Arterial (HAS) (uso de anti-hipertensivo ou pressão alta), Diabetes Mellitus (DM) (diagnóstico prévio ou valores laboratoriais/uso de medicação), Dislipidemia (LDL ≥ 130mg/dL ou uso de hipolipemiantes), Doença Cardiovascular prévia (DCV, autorrelato).
+-   Desfechos Principais: Embora o foco inicial fosse a incidência de diabetes e DCV, o ELSA-Brasil também coleta informações detalhadas sobre DRC, dependentes de valores laboratoriais e medidas clínicas sofisticadas, preenchendo uma lacuna importante em estudos brasileiros.
 
 ## Objetivos Específicos
 
 Para alcançar o objetivo geral, serão desenvolvidos os seguintes objetivos específicos:
 
-- Estimar o consumo de AUP (% do Valor Energético Total - VET) nos diferentes momentos de coleta do ELSA-Brasil.
-- Descrever e modelar os perfis individuais e médios da eGFR (taxa de filtração glomerular estimada) ao longo do período de acompanhamento do estudo [@singer1986analise]
-- Aplicar Modelos Lineares Mistos (MLM) para estimar o efeito do consumo de AUP na interceptação (valor basal esperado) e na inclinação (taxa de declínio) da eGFR, controlando para variáveis sociodemográficas e clínicas [@singer1986analise; @leonberg2025trends]
-- Utilizar técnicas de diagnóstico (análise de resíduos e pontos alavanca) para avaliar a qualidade e as suposições subjacentes ao ajuste do MLM [@singer1986analise]
+-   Estimar o consumo de AUP (% do Valor Energético Total - VET) nos diferentes momentos de coleta do ELSA-Brasil.
+-   Descrever e modelar os perfis individuais e médios da eGFR (taxa de filtração glomerular estimada) ao longo do período de acompanhamento do estudo [@singer1986analise]
+-   Aplicar Modelos Lineares Mistos (MLM) para estimar o efeito do consumo de AUP na interceptação (valor basal esperado) e na inclinação (taxa de declínio) da eGFR, controlando para variáveis sociodemográficas e clínicas [@singer1986analise; @leonberg2025trends]
+-   Utilizar técnicas de diagnóstico (análise de resíduos e pontos alavanca) para avaliar a qualidade e as suposições subjacentes ao ajuste do MLM [@singer1986analise]
 
 # Hipótese
 
 Nossa hipótese central é que indivíduos com um padrão de maior consumo de alimentos ultraprocessados apresentarão uma menor taxa de filtração glomerular (TFG) e um risco elevado de declínio da função renal ao longo do tempo, mesmo após o ajuste para fatores de confusão relevantes, como idade, sexo, comorbidades e estilo de vida. Esta hipótese é embasada por estudos prévios que demonstraram a associação entre dietas ricas em ultraprocessados e desfechos adversos na saúde renal.
 
 # Metodologia
+
+## Variáveis de estudo
+
+### Variáveis de desfecho (função renal)
+
+A diminuição da função renal é avaliada através de variáveis sanguíneas, urinárias (que descrevem a capacidade de filtração e o dano renal) e variáveis coletadas através do QFA (questionário de frequência alimentar).
+
+#### Taxa de Filtração Glomerular Estimada (TFGe)
+
+A TFGe é uma ferramenta vital para decisões clínicas, rastreamento populacional e fins regulatórios [@leonberg2025trends]
+
+- Descrição e Definição: A TFGe estima o volume de filtrado pelos rins por unidade de tempo. A DRC é definida, entre outros critérios, por uma TFGe estimada inferior a 60 mL/min/1,73m² [@he2024ultra; @avesani2023ultraprocessed].
+- Declínio da Função Renal: O declínio da função renal pode ser definido como uma diminuição da TFGe além do esperado para a idade [@rey2021ultra].
+
+#### Creatinina Sérica (SCr)
+
+A creatinina sérica é um marcador importante usado para estimar a TFGe e avaliar a função renal [@rey2021ultra; @leonberg2025trends].
+
+- Descrição e Definição: Níveis de SCr são utilizados no cálculo da TFGe. Um critério para o declínio da função renal é um aumento da SCr [@rey2021ultra; @leonberg2025trends].
+- Critério de Disfunção Renal Específico: Em estudos clínicos, a ocorrência de disfunção renal pode ser definida como o momento em que o nível de creatinina sérica tem um valor 15% maior do que o valor basal correspondente [@singer1986analise].
+
+#### Razão Albumina-Creatinina na Urina (UACR)
+
+A UACR é um marcador de lesão renal, particularmente de albuminúria [@he2024ultra].
+
+- Descrição e Definição: O critério para a DRC inclui uma razão albumina-creatinina ≥ 30 mg/g [@he2024ultra]. No Estudo Longitudinal de Saúde do Adulto (ELSA-Brasil), a razão albumina-creatinina na urina (UACR) foi utilizada para definir "UACR Elevada" como ≥ 3,4 mg/mmol (30 mg/g), a partir de coleta noturna validada [@schmidt2015cohort].
+ 
+## Coleta das Variáveis Relacionadas à Função Renal
 
 ## Revisão de Literatura (Desenho Conceitual)
 
@@ -151,27 +146,6 @@ A avaliação detalhada do consumo de AUPs, tipicamente realizada por caracteriz
 ## Desenho do Estudo e População
 
 Este será um estudo longitudinal observacional de coorte prospectiva, utilizando dados provenientes das diferentes ondas do Estudo Longitudinal de Saúde do Adulto (ELSA-Brasil). A população do estudo será composta por participantes adultos (com idades entre 35 e 74 anos) do ELSA-Brasil, uma coorte multicêntrica de servidores públicos de seis instituições de ensino e pesquisa no Brasil, que visa investigar a incidência e os fatores de risco para doenças crônicas não transmissíveis.
-
-
-$$
-y_i = X_i \beta + Z_i b_i + e_i,\quad i = 1,\dots,n
-$$
-
-
-
-## Variáveis do Estudo
-
-### Variável de Exposição
-
-A exposição principal será o consumo de alimentos ultraprocessados. Os dados de consumo alimentar serão obtidos por meio de Questionários de Frequência Alimentar (QFA) validados para a população brasileira, aplicados nas diferentes ondas do ELSA-Brasil. Os alimentos serão classificados de acordo com o sistema NOVA, que categoriza os alimentos em quatro grupos com base na extensão e propósito do processamento industrial. A variável de exposição será operacionalizada como o percentual da energia total diária proveniente de alimentos ultraprocessados.
-
-### Variável de Desfecho
-
-O desfecho primário será a Taxa de Filtração Glomerular (TFG) estimada, calculada utilizando a equação CKD-EPI (Chronic Kidney Disease Epidemiology Collaboration). A TFG será avaliada em diferentes momentos do estudo para analisar seu declínio longitudinal. A albuminúria, quando disponível, será considerada um desfecho complementar para avaliar danos renais.
-
-### Covariáveis
-
-Serão consideradas como covariáveis potenciais fatores de confusão e modificadores de efeito, incluindo: idade, sexo, escolaridade, renda, tabagismo, nível de atividade física, Índice de Massa Corporal (IMC), pressão arterial (sistólica e diastólica), glicemia de jejum, perfil lipídico (colesterol total, HDL-c, LDL-c, triglicerídeos) e uso de medicamentos (anti-hipertensivos, hipoglicemiantes orais, insulina, etc.). Outras variáveis laboratoriais como potássio, sódio, HbA1c e relação albumina/creatinina também serão incluídas na análise.
 
 ## Análise Estatística
 
@@ -199,14 +173,14 @@ Os resultados deste estudo poderão oferecer subsídios robustos para a formula�
 
 # Cronograma
 
-| Etapa                            | 1-6 meses | 7-12 meses | 13-18 meses | 19-24 meses |
-|------------------|--------------|--------------|--------------|--------------|
-| Revisão bibliográfica            | x         |            |             |             |
-| Aprovação no Comitê de Ética     | x         |            |             |             |
-| Extração e organização dos dados |           | x          |             |             |
-| Análise estatística              |           | x          | x           |             |
-| Redação preliminar               |           |            | x           |             |
-| Revisão e defesa                 |           |            |             | x           |
+| Etapa | 1-6 meses | 7-12 meses | 13-18 meses | 19-24 meses |
+|---------------|---------------|---------------|---------------|---------------|
+| Revisão bibliográfica | x |  |  |  |
+| Aprovação no Comitê de Ética | x |  |  |  |
+| Extração e organização dos dados |  | x |  |  |
+| Análise estatística |  | x | x |  |
+| Redação preliminar |  |  | x |  |
+| Revisão e defesa |  |  |  | x |
 
 # Resultados Esperados
 
