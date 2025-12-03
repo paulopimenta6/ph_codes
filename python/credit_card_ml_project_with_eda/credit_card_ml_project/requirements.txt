@@ -29,7 +29,7 @@ executing @ file:///home/conda/feedstock_root/build_artifacts/executing_17567293
 fastapi==0.120.4
 fastjsonschema @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_python-fastjsonschema_1755304154/work/dist
 filelock==3.12.4
-fonttools==4.44.0
+fonttools==4.61.0
 fqdn @ file:///home/conda/feedstock_root/build_artifacts/fqdn_1733327382592/work/dist
 h11 @ file:///home/conda/feedstock_root/build_artifacts/h11_1745526374115/work
 h2 @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_h2_1756364871/work
@@ -46,7 +46,7 @@ ipykernel @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_
 ipython @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_ipython_1748711175/work
 isoduration @ file:///home/conda/feedstock_root/build_artifacts/isoduration_1733493628631/work/dist
 jedi @ file:///home/conda/feedstock_root/build_artifacts/jedi_1733300866624/work
-Jinja2==3.1.2
+Jinja2==3.1.6
 joblib==1.3.2
 json5 @ file:///home/conda/feedstock_root/build_artifacts/json5_1755034879854/work
 jsonpointer @ file:///home/conda/feedstock_root/build_artifacts/jsonpointer_1756754132747/work
@@ -133,7 +133,7 @@ threadpoolctl==3.6.0
 tinycss2 @ file:///home/conda/feedstock_root/build_artifacts/tinycss2_1729802851396/work
 tomli @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_tomli_1760014679/work
 tornado @ file:///croot/tornado_1748956929273/work
-tqdm==4.66.1
+tqdm==4.66.3
 traitlets @ file:///home/conda/feedstock_root/build_artifacts/traitlets_1733367359838/work
 typeguard==4.1.5
 typing_extensions @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_typing_extensions_1756220668/work
@@ -142,7 +142,7 @@ tzdata==2023.3
 uri-template @ file:///home/conda/feedstock_root/build_artifacts/uri-template_1733323593477/work/dist
 urllib3 @ file:///home/conda/feedstock_root/build_artifacts/urllib3_1750271362675/work
 uvicorn==0.38.0
-virtualenv==20.24.5
+virtualenv==20.26.6
 visions==0.7.5
 wcwidth @ file:///home/conda/feedstock_root/build_artifacts/wcwidth_1758622279606/work
 webcolors @ file:///home/conda/feedstock_root/build_artifacts/webcolors_1761899299899/work
