@@ -7,13 +7,13 @@ output:
   html_document:
     toc: true
     df_print: paged
-  word_document:
-    toc: true
-    number_sections: true
   pdf_document:
     toc: true
     number_sections: true
     latex_engine: xelatex
+  word_document:
+    toc: true
+    number_sections: true
 fontsize: 12pt
 geometry: a4paper, top=2.5cm, left=2.5cm, right=2.5cm, bottom=2.5cm
 lang: pt
@@ -25,6 +25,7 @@ editor_options:
     wrap: 72
 ---
 
+```{=tex}
 \begin{titlepage}
     \centering
     \vspace*{\fill}
@@ -41,196 +42,470 @@ editor_options:
     {\large \today}
     \vspace*{\fill}
 \end{titlepage}
-
+```
 # Introdução
 
-A função renal desempenha um papel crucial na manutenção da homeostase do organismo, sendo a taxa de filtração glomerular (TFG) o principal indicador clínico para sua avaliação. A doença renal crônica (DRC) emerge como um grave problema de saúde pública global, caracterizada por elevada morbimortalidade, significativo impacto econômico e uma prevalência crescente tanto no Brasil quanto internacionalmente [@srour2019ultra; @he2024ultra; @rey2021ultra]. 
+A função renal desempenha um papel crucial na manutenção da homeostase
+do organismo, sendo a taxa de filtração glomerular (TFG) o principal
+indicador clínico para sua avaliação. A doença renal crônica (DRC)
+emerge como um grave problema de saúde pública global, caracterizada por
+elevada morbimortalidade, significativo impacto econômico e uma
+prevalência crescente tanto no Brasil quanto internacionalmente
+[@srour2019ultra; @he2024ultra; @rey2021ultra].
 
-O padrão dietético moderno tem sido marcado por uma crescente substituição de alimentos *in natura* ou minimamente processados por Alimentos Ultraprocessados (AUPs), conforme a classificação NOVA [@monteiro2019ultra], cujo consumo já corresponde a mais da metade da energia dietética total em países de alta renda e entre um quinto e um terço em países de renda média, como o Brasil [@canhada2020ultra; @monteiro2019ultra]. Estes produtos, resultantes de formulações industriais complexas que incluem ingredientes refinados, aditivos e alta densidade energética, têm sido consistentemente associados a um risco elevado de obesidade, doenças metabólicas, cardiovasculares e renais.
+O padrão dietético moderno tem sido marcado por uma crescente
+substituição de alimentos *in natura* ou minimamente processados por
+Alimentos Ultraprocessados (AUPs), conforme a classificação NOVA
+[@monteiro2019ultra], cujo consumo já corresponde a mais da metade da
+energia dietética total em países de alta renda e entre um quinto e um
+terço em países de renda média, como o Brasil [@canhada2020ultra;
+@monteiro2019ultra]. Estes produtos, resultantes de formulações
+industriais complexas que incluem ingredientes refinados, aditivos e
+alta densidade energética, têm sido consistentemente associados a um
+risco elevado de obesidade, doenças metabólicas, cardiovasculares e
+renais.
 
-Evidências de estudos internacionais, como revisões sistemáticas e meta-análises, indicam que padrões dietéticos com alta ingestão de ultraprocessados podem estar relacionados ao declínio da TFG e ao aumento do risco de progressão para DRC [@he2024ultra; @cecchini2025food]. Um aumento de 10% no consumo de AUPs foi associado a um risco 7% maior de DRC [@he2024ultra] e o alto consumo está associado a um declínio da função renal, particularmente em idosos [@rey2021ultra; @leonberg2025trends].
+Evidências de estudos internacionais, como revisões sistemáticas e
+meta-análises, indicam que padrões dietéticos com alta ingestão de
+ultraprocessados podem estar relacionados ao declínio da TFG e ao
+aumento do risco de progressão para DRC [@he2024ultra;
+@cecchini2025food]. Um aumento de 10% no consumo de AUPs foi associado a
+um risco 7% maior de DRC [@he2024ultra] e o alto consumo está associado
+a um declínio da função renal, particularmente em idosos [@rey2021ultra;
+@leonberg2025trends].
 
-A relevância do tema no Brasil é sublinhada pelo aumento do consumo de AUPs e pela necessidade de ferramentas de rastreamento, como envidenciado pelo Escore Nova o qual, primeiramente, estabeleceu um questionário eletrônico de autorrelato [@costa2021escore], contudo, no contexto brasileiro, ainda há uma lacuna de estudos longitudinais que investiguem essa associação de forma aprofundada.
+A relevância do tema no Brasil é sublinhada pelo aumento do consumo de
+AUPs e pela necessidade de ferramentas de rastreamento, como evidenciado
+pela classificação NOVA apresentada na **Tabela 1**. Inicialmente, esse
+sistema estabeleceu um questionário eletrônico de autorrelato
+[@costa2021escore]; contudo, no contexto brasileiro, ainda há uma lacuna
+de estudos longitudinais que investiguem essa associação de forma
+aprofundada.
 
-Diante deste impacto crescente referente ao aumento sugnificativo da DRC e suas consequências e das necessidades de estratégia de prevenção primária [@avesani2023ultraprocessed] o Estudo Longitudinal de Saúde do Adulto (ELSA-Brasil) representa a maior coorte nacional, dispondo de dados abrangentes sobre dieta, exames laboratoriais e medidas clínicas [@canhada2020ultra]. Este vasto conjunto de informações oferece uma oportunidade ímpar para investigar a relação entre o consumo de alimentos ultraprocessados e a função renal na população brasileira o qual este projeto propõe avaliar através de métodos estatísticos e revisões sistemáticas.
+Diante deste impacto crescente referente ao aumento significativo da
+DRC, suas consequências e das necessidades de estratégia de prevenção
+primária [@avesani2023ultraprocessed] é importante avaliar o impacto dos
+AUP nas doenças renais em Sao Paulo. Para isso o Estudo Longitudinal de
+Saúde do Adulto (ELSA-Brasil) representa a maior coorte nacional,
+dispondo de dados abrangentes sobre dieta, exames laboratoriais e
+medidas clínicas [@canhada2020ultra]. Este vasto conjunto de informações
+oferece uma oportunidade ímpar para investigar a relação entre o consumo
+de alimentos ultraprocessados e a função renal na população brasileira o
+qual este projeto propõe avaliar através de métodos estatísticos e
+revisões sistemáticas.
 
-| **Grupo** | **Descrição** | **Exemplos** |
-|------------------------|------------------------|------------------------|
-| **1. In natura ou minimamente processados** | Alimentos obtidos diretamente da natureza, submetidos apenas a processos simples como lavagem, refrigeração, moagem, secagem, fermentação simples ou pasteurização, **sem aditivos**. | Frutas, legumes, verduras, carnes frescas, ovos, arroz, feijão, leite. |
-| **2. Ingredientes culinários processados** | Substâncias extraídas do grupo 1 ou da natureza e usadas para temperar, cozinhar ou preparar alimentos. Geralmente passam por processos como prensagem, refino, moagem ou extração. | Óleos vegetais, manteiga, açúcar, sal, mel. |
-| **3. Processados** | Produtos feitos com adição de ingredientes do grupo 2 a alimentos do grupo 1, para maior durabilidade ou para modificação moderada de sabor. Normalmente têm poucos ingredientes. | Pães caseiros, queijos, conservas de vegetais ou frutas. |
-| **4. Ultraprocessados** | Formulações industriais com **ingredientes exclusivos do uso industrial**, como corantes, aromatizantes, emulsificantes e outros aditivos; frequentemente incluem técnicas que descaracterizam a matriz alimentar original. | Refrigerantes, embutidos, salgadinhos, biscoitos recheados, cereais matinais, refeições prontas. |
+| **Grupo**                                   | **Descrição**                                                                                                                                                                                                               | **Exemplos**                                                                                     |
+|--------------------|---------------------------|-------------------------|
+| **1. In natura ou minimamente processados** | Alimentos obtidos diretamente da natureza, submetidos apenas a processos simples como lavagem, refrigeração, moagem, secagem, fermentação simples ou pasteurização, **sem aditivos**.                                       | Frutas, legumes, verduras, carnes frescas, ovos, arroz, feijão, leite.                           |
+| **2. Ingredientes culinários processados**  | Substâncias extraídas do grupo 1 ou da natureza e usadas para temperar, cozinhar ou preparar alimentos. Geralmente passam por processos como prensagem, refino, moagem ou extração.                                         | Óleos vegetais, manteiga, açúcar, sal, mel.                                                      |
+| **3. Processados**                          | Produtos feitos com adição de ingredientes do grupo 2 a alimentos do grupo 1, para maior durabilidade ou modificação moderada de sabor. Normalmente têm poucos ingredientes.                                                | Pães caseiros, queijos, conservas de vegetais ou frutas.                                         |
+| **4. Ultraprocessados**                     | Formulações industriais com **ingredientes exclusivos do uso industrial**, como corantes, aromatizantes, emulsificantes e outros aditivos; frequentemente incluem técnicas que descaracterizam a matriz alimentar original. | Refrigerantes, embutidos, salgadinhos, biscoitos recheados, cereais matinais, refeições prontas. |
 
-*Fonte: Adaptado de Monteiro, C.A. et al. (2019). Ultra-processed foods: what they are and how to identify them. Public Health Nutrition, 22(5), 936--941.* $$DOI: 10.1017/S1368980018003762$$
+**Tabela 1:** Classificação NOVA adaptada de Monteiro et al. (2019).
+Fonte: Monteiro, C.A. et al. (2019). Ultra-processed foods: what they
+are and how to identify them. Public Health Nutrition, 22(5), 936--941.
+DOI: 10.1017/S1368980018003762.
 
 # Justificativa
 
-Diante da crescente prevalência da Doença Renal Crônica (DRC) e do seu impacto significativo na saúde pública e nos sistemas de saúde, torna-se imperativo investigar fatores modificáveis que possam influenciar sua progressão. O consumo de alimentos ultraprocessados, um padrão alimentar em ascensão globalmente, tem sido apontado como um potencial contribuinte para diversas condições crônicas, incluindo a DRC. A relevância deste estudo é multifacetada e se fundamenta em pontos cruciais:
+Diante da crescente prevalência da Doença Renal Crônica (DRC) e do
+seuimpacto significativo na saúde pública e nos sistemas de saúde,
+torna-se imperativo investigar fatores modificáveis que possam
+influenciar sua progressão. O consumo de alimentos ultraprocessados, um
+padrão alimentar em ascensão globalmente, tem sido apontado como um
+potencial contribuinte para diversas condições crônicas, incluindo a
+DRC. A relevância deste estudo é multifacetada e se fundamenta em pontos
+cruciais:
 
-1.  **Impacto da DRC:** A DRC continua a ser uma condição de saúde  pública com custos elevados para o Sistema Único de Saúde (SUS) no Brasil, demandando estratégias eficazes de prevenção e manejo.
-2.  **Fator Modificável:** A dieta, e em particular o consumo de alimentos ultraprocessados, representa um fator modificável que pode ser alvo de intervenções de saúde pública. Compreender essa associação é fundamental para o desenvolvimento de estratégias de prevenção primária e secundária da DRC.
-3.  **Dados Longitudinais do ELSA-Brasil:** O Estudo Longitudinal de Saúde do Adulto (ELSA-Brasil) oferece uma base de dados robusta e representativa da população adulta brasileira, com informações detalhadas sobre hábitos alimentares e marcadores de saúde renal. A natureza longitudinal do ELSA-Brasil permite investigar relações de causa e efeito e o declínio da função renal ao longo do tempo, o que é escasso na literatura nacional.
-4.  **Contribuição Científica e Política Pública:** Os resultados deste estudo têm o potencial de gerar evidências científicas inéditas sobre a associação entre o consumo de ultraprocessados e a TFG no Brasil. Tais achados poderão subsidiar a formulação de políticas públicas de alimentação e nutrição, bem como diretrizes clínicas para a prevenção e o controle da DRC, promovendo uma alimentação mais saudável e sustentável para a população.
-
-# Descrição do ELSA-Brasil (Estudo Longitudinal de Saúde do Adulto)
-
-O ELSA-Brasil é um estudo longitudinal, multicêntrico, recrutou 15.105 servidores públicos de instituições de ensino e pesquisa em seis cidades (Belo Horizonte, Porto Alegre, Rio de Janeiro, Salvador, São Paulo e Vitória) em três diferentes regiões no Brasil. O estudo foi criado a partir de uma chamada pública lançada, em 2005, pelo Ministério da Saúde e pelo Ministério da Ciência e Tecnologia. Além disso, é a maior pesquisa multicêntrica de coorte realizada por um país fora do eixo dos países desenvolvidos. Participam do ELSA-Brasil: a Universidade Federal da Bahia (UFBA), a Universidade Federal de Minas Gerais (UFMG), a Universidade Federal do Espírito Santo (UFES), a Fundação Oswaldo Cruz (Fiocruz, Rio de Janeiro), a Universidade de São Paulo (USP) e a Universidade Federal do Rio Grande do Sul (UFRGS).
-
-Os funcionários e docentes responderam questionários sobre suas condições gerais de saúde, história familiar de doenças, uso de medicamentos, saúde mental, entre outros tópicos. Além disso, foram submetidos a uma série de exames laboratoriais e físicos. Originalmente a coorte foi desenvolvida com o objetivo de estudar a incidência de diabetes e doenças cardiovasculares na população brasileira e os seus determinantes biológicos e sociais [@silva2021aplicacao; @silva2017aposentadoria].
-
-O estudo recebeu significativo financiamento governamental, sendo apoiado pelo Ministério da Saúde do Brasil (Departamento de Ciência e Tecnologia) e pelo Ministério da Ciência, Tecnologia e Inovação (FINEP, Financiadora de Estudos e Projetos), além do CNPq (Conselho Nacional de Desenvolvimento Científico e Tecnológico) [@schmidt2015cohort].
+1.  **Impacto da DRC:** A DRC continua a ser uma condição de saúde
+    pública com custos elevados para o Sistema Único de Saúde (SUS) no
+    Brasil, demandando estratégias eficazes de prevenção e manejo.
+2.  **Fator Modificável:** A dieta, e em particular o consumo de
+    alimentos ultraprocessados, representa um fator modificável que pode
+    ser alvo de intervenções de saúde pública. Compreender essa
+    associação é fundamental para o desenvolvimento de estratégias de
+    prevenção primária e secundária da DRC.
+3.  **Dados Longitudinais do ELSA-Brasil:** O Estudo Longitudinal de
+    saúde do Adulto (ELSA-Brasil) oferece uma base de dados robusta e
+    representativa da população adulta brasileira, com informações
+    detalhadas sobre hábitos alimentares e marcadores de saúde renal. A
+    natureza longitudinal do ELSA-Brasil permite investigar relações de
+    causa e efeito e o declínio da função renal ao longo do tempo, o que
+    é escasso na literatura nacional.
+4.  **Contribuição Científica e Política Pública:** Os resultados deste
+    estudo têm o potencial de gerar evidências científicas inéditas
+    sobre a associação entre o consumo de ultraprocessados e a TFG no
+    Brasil. Tais achados poderão subsidiar a formulação de políticas
+    públicas de alimentação e nutrição, bem como diretrizes clínicas
+    para a prevenção e o controle da DRC, promovendo uma alimentação
+    mais saudável e sustentável para a população.
 
 # Objetivos
 
 ## Objetivo Geral
 
-Avaliar a associação longitudinal entre o consumo de alimentos ultraprocessados (AUP) e a taxa de declínio da função renal em particpanntes do Estudo Longitudinal de Saúde do Adulto (ELSA-Brasil), avaliar os riscos causados oriundos desta mesma diminuição de função renal e o desenvolvimento da doença renal crônica através dos modelos lineares mistos.
-
--   População: Foram recrutados 15.105 servidores públicos (ativos e aposentados). Os participantes eram homens e mulheres, com idade entre 35 e 74 anos na linha de base.
--   Centros de Pesquisa: O estudo foi realizado em seis capitais brasileiras, em instituições públicas de ensino superior e pesquisa: Salvador, Belo Horizonte, Rio de Janeiro, São Paulo, Vitória e Porto Alegre.
--   Fases de Coleta (Ondas): A linha de base (Onda 1) foi coletada entre agosto de 2008 e dezembro de 2010. O estudo é longitudinal, com acompanhamentos subsequentes, incluindo a Onda 2 (2012–2014) e a Onda 3 (2017–2019). O rigor metodológico do ELSA-Brasil é garantido pelo protocolo de entrevistas e exames padronizados e por um rígido controle de qualidade.
--   Desfechos Principais: Embora o foco inicial fosse a incidência de diabetes e DCV, o ELSA-Brasil também coleta informações detalhadas sobre DRC, dependentes de valores laboratoriais e medidas clínicas sofisticadas, preenchendo uma lacuna importante em estudos brasileiros.
+Avaliar a associação longitudinal entre o consumo de alimentos
+ultraprocessados (AUP) e a taxa de declínio da função renal em
+participanntes do Estudo Longitudinal de Saúde do Adulto (ELSA-Brasil),
+avaliar os riscos causados oriundos desta mesma diminuição de função
+renal e o desenvolvimento da doença renal crônica através dos modelos
+lineares mistos.
 
 ## Objetivos Específicos
 
 Para alcançar o objetivo geral, serão desenvolvidos os seguintes
 objetivos específicos:
 
--   Estimar o consumo de AUP (% do Valor Energético Total - VET) nos diferentes momentos de coleta do ELSA-Brasil.
--   Descrever e modelar os perfis individuais e médios da eGFR (taxa de filtração glomerular estimada) ao longo do período de acompanhamento do estudo [@singer1986analise].
--   Aplicar Modelos Lineares Mistos (MLM) para estimar o efeito do consumo de AUP na interceptação (valor basal esperado) e na inclinação (taxa de declínio) da eGFR, controlando para variáveis sociodemográficas e clínicas [@singer1986analise; @leonberg2025trends].
--   Utilizar técnicas de diagnóstico (análise de resíduos e pontos alavancagem) para avaliar a qualidade e as suposições subjacentes ao ajuste do MLM [@singer1986analise].
+-   Estimar o consumo de AUP (% do Valor Energético Total - VET) nos
+    diferentes momentos de coleta do ELSA-Brasil.
+-   Descrever e modelar os perfis individuais e médios da eGFR (taxa de
+    filtração glomerular estimada) ao longo do período de acompanhamento
+    do estudo [@singer1986analise].
+-   Aplicar Modelos Lineares Mistos (MLM) para estimar o efeito do
+    consumo de AUP na interceptação (valor basal esperado) e na
+    inclinação (taxa de declínio) da eGFR, controlando para variáveis
+    sociodemográficas e clínicas [@singer1986analise;
+    @leonberg2025trends].
+-   Utilizar técnicas de diagnóstico (análise de resíduos e pontos
+    alavancagem) para avaliar a qualidade e as suposições subjacentes ao
+    ajuste do MLM [@singer1986analise].
 
 # Hipótese
 
-Nossa hipótese central é que indivíduos com um padrão de maior consumo de alimentos ultraprocessados apresentarão uma menor taxa de filtração glomerular (TFG) e um risco elevado de declínio da função renal ao longo do tempo, mesmo após o ajuste para fatores de confusão relevantes, como idade, sexo, comorbidades e estilo de vida. Esta hipótese é embasada por estudos prévios que demonstraram a associação entre dietas ricas em ultraprocessados e desfechos adversos na saúde renal.
+Nossa hipótese central é que indivíduos com um padrão de maior consumo
+de alimentos ultraprocessados apresentarão uma menor taxa de filtração
+glomerular (TFG) e um risco elevado de declínio da função renal ao longo
+do tempo, mesmo após o ajuste para fatores de confusão relevantes, como
+idade, sexo, comorbidades e estilo de vida. Esta hipótese é embasada por
+estudos prévios que demonstraram a associação entre dietas ricas em
+ultraprocessados e desfechos adversos na saúde renal.
 
 # Metodologia
 
-## Variáveis de estudo
+## Descrição do ELSA-Brasil (Estudo Longitudinal de Saúde do Adulto)
 
-### Variáveis de desfecho (função renal)
+O ELSA-Brasil é um estudo longitudinal, multicêntrico, recrutou 15.105
+servidores públicos de instituições de ensino e pesquisa em seis cidades
+(Belo Horizonte, Porto Alegre, Rio de Janeiro, Salvador, São Paulo e
+Vitória) em três diferentes regiões do Brasil. O estudo foi criado a
+partir de uma chamada pública lançada, em 2005, pelo Ministério da Saúde
+e pelo Ministério da Ciência e Tecnologia. Além disso, é a maior
+pesquisa multicêntrica de coorte realizada por um país fora do eixo dos
+países desenvolvidos. Participam do ELSA-Brasil: a Universidade Federal
+da Bahia (UFBA), a Universidade Federal de Minas Gerais (UFMG), a
+Universidade Federal do Espírito Santo (UFES), a Fundação Oswaldo Cruz
+(Fiocruz, Rio de Janeiro), a Universidade de São Paulo (USP) e a
+Universidade Federal do Rio Grande do Sul (UFRGS).
 
-A diminuição da função renal é avaliada através de variáveis sanguíneas, urinárias (que descrevem a capacidade de filtração e o dano renal) e variáveis coletadas através do QFA (questionário de frequência alimentar).
+Os funcionários e docentes participaram de questionários abrangendo
+condições gerais de saúde, histórico familiar de doenças, uso de
+medicamentos, saúde mental, entre outros tópicos relevantes.
+Adicionalmente, foram submetidos a uma bateria de exames laboratoriais e
+avaliações físicas. A coorte foi originalmente concebida para investigar
+a incidência de diabetes e doenças cardiovasculares na população
+brasileira, bem como seus determinantes biológicos e sociais
+[@silva2021aplicacao; @silva2017aposentadoria].
 
-#### Taxa de Filtração Glomerular Estimada (TFGe)
+O estudo recebeu significativo financiamento governamental, sendo
+apoiado pelo Ministério da Saúde do Brasil (Departamento de Ciência e
+Tecnologia) e pelo Ministério da Ciência, Tecnologia e Inovação (FINEP,
+Financiadora de Estudos e Projetos), além do CNPq (Conselho Nacional de
+Desenvolvimento Científico e Tecnológico) [@schmidt2015cohort].
 
-A TFGe é uma ferramenta vital para decisões clínicas, rastreamento populacional e fins regulatórios [@leonberg2025trends]
+-   População: Foram recrutados 15.105 servidores públicos (ativos e
+    aposentados). Os participantes eram homens e mulheres, com idade
+    entre 35 e 74 anos na linha de base.
+-   Centros de Pesquisa: O estudo foi realizado em seis capitais
+    brasileiras, em instituições públicas de ensino superior e pesquisa:
+    Salvador, Belo Horizonte, Rio de Janeiro, São Paulo, Vitória e Porto
+    Alegre.
+-   Fases de Coleta (Ondas): A linha de base (Onda 1) foi coletada entre
+    agosto de 2008 e dezembro de 2010. O estudo é longitudinal, com
+    acompanhamentos subsequentes, incluindo a Onda 2 (2012--2014) e a
+    Onda 3 (2017--2019). O rigor metodológico do ELSA-Brasil é garantido
+    pelo protocolo de entrevistas e exames padronizados e por um rígido
+    controle de qualidade.
+-   Desfechos Principais: Embora o foco inicial fosse a incidência de
+    diabetes e DCV, o ELSA-Brasil também coleta informações detalhadas
+    sobre DRC, dependentes de valores laboratoriais e medidas clínicas
+    sofisticadas, preenchendo uma lacuna importante em estudos
+    brasileiros.
 
--   Descrição e Definição: A TFGe estima o volume de filtrado pelos rins por unidade de tempo. A DRC é definida, entre outros critérios, por uma TFGe estimada inferior a 60 mL/min/1,73m² [@he2024ultra; @avesani2023ultraprocessed].
--   Declínio da Função Renal: O declínio da função renal pode ser definido como uma diminuição da TFGe além do esperado para a idade [@rey2021ultra].
+## Variáveis de desfecho (função renal)
+
+A diminuição da função renal é avaliada através de variáveis sanguíneas,
+urinárias (que descrevem a capacidade de filtração e o dano renal) e
+variáveis coletadas através do QFA (questionário de frequência
+alimentar).
+
+### Taxa de Filtração Glomerular Estimada (TFGe)
+
+A TFGe é uma ferramenta vital para decisões clínicas, rastreamento
+populacional e fins regulatórios [@leonberg2025trends]
+
+-   Descrição e Definição: A TFGe estima o volume de filtrado pelos rins
+    por unidade de tempo. A DRC é definida, entre outros critérios, por
+    uma TFGe estimada inferior a 60 mL/min/1,73m² [@he2024ultra;
+    @avesani2023ultraprocessed].
+-   Declínio da Função Renal: O declínio da função renal pode ser
+    definido como uma diminuição da TFGe além do esperado para a idade
+    [@rey2021ultra].
 
 #### Creatinina Sérica (SCr)
 
-A creatinina sérica é um marcador importante usado para estimar a TFGe e avaliar a função renal [@rey2021ultra; @leonberg2025trends].
+A creatinina sérica é um marcador importante usado para estimar a TFGe e
+avaliar a função renal [@rey2021ultra; @leonberg2025trends].
 
--   Descrição e Definição: Níveis de SCr são utilizados no cálculo da TFGe. Um critério para o declínio da função renal é um aumento da SCr [@rey2021ultra; @leonberg2025trends].
--   Critério de Disfunção Renal Específico: Em estudos clínicos, a ocorrência de disfunção renal pode ser definida como o momento em que o nível de creatinina sérica tem um valor 15% maior do que o valor basal correspondente [@singer1986analise].
+-   Descrição e Definição: Níveis de SCr são utilizados no cálculo da
+    TFGe. Um critério para o declínio da função renal é um aumento da
+    SCr [@rey2021ultra; @leonberg2025trends].
+-   Critério de Disfunção Renal Específico: Em estudos clínicos, a
+    ocorrência de disfunção renal pode ser definida como o momento em
+    que o nível de creatinina sérica tem um valor 15% maior do que o
+    valor basal correspondente [@singer1986analise].
 
 #### Razão Albumina-Creatinina na Urina (UACR)
 
-A UACR é um marcador de lesão renal, particularmente de albuminúria [@he2024ultra].
+A UACR é um marcador de lesão renal, particularmente de albuminúria
+[@he2024ultra].
 
--   Descrição e Definição: O critério para a DRC inclui uma razão albumina-creatinina ≥ 30 mg/g [@he2024ultra]. No Estudo Longitudinal de Saúde do Adulto (ELSA-Brasil), a razão albumina-creatinina na urina (UACR) foi utilizada para definir "UACR Elevada" como ≥ 3,4 mg/mmol (30 mg/g), a partir de coleta noturna validada [@schmidt2015cohort].
+-   Descrição e Definição: O critério para a DRC inclui uma razão
+    albumina-creatinina ≥ 30 mg/g [@he2024ultra]. No Estudo Longitudinal
+    de Saúde do Adulto (ELSA-Brasil), a razão albumina-creatinina na
+    urina (UACR) foi utilizada para definir "UACR Elevada" como ≥ 3,4
+    mg/mmol (30 mg/g), a partir de coleta noturna validada
+    [@schmidt2015cohort].
 
 ### Variáveis de Exposição e Avaliação Dietética
 
 #### Questionário de Frequência Alimentar (QFA)
 
-O QFA é o principal instrumento utilizado em grandes estudos de coorte para avaliar a ingestão alimentar habitual dos participantes [@silva2021aplicacao].
+O QFA é o principal instrumento utilizado em grandes estudos de coorte
+para avaliar a ingestão alimentar habitual dos participantes
+[@silva2021aplicacao].
 
--   Descrição e Coleta: O QFA utilizado no Estudo Longitudinal de Saúde do Adulto (ELSA-Brasil) é semi-quantitativo e foi previamente desenvolvido e validado para a população do estudo. Ele consiste em uma lista de 114 alimentos/preparações [@canhada2020ultra; @silva2021aplicacao].
+-   Descrição e Coleta: O QFA utilizado no Estudo Longitudinal de Saúde
+    do Adulto (ELSA-Brasil) é semi-quantitativo e foi previamente
+    desenvolvido e validado para a população do estudo. Ele consiste em
+    uma lista de 114 alimentos/preparações [@canhada2020ultra;
+    @silva2021aplicacao].
 
-    -   Os participantes são questionados sobre a frequência do consumo de uma porção padrão de cada alimento nos últimos 12 meses [@silva2021aplicacao].
-    -   A coleta visa estimar o hábito alimentar dos participantes, considerando variações no consumo entre as estações do ano [@silva2021aplicacao].
-    -   O questionário possui oito opções de resposta para frequência, desde "mais de 3 vezes ao dia" até "nunca/quase nunca" [@naud2019consumo].
-    -   A reprodutibilidade e a validade relativa do QFA no ELSA-Brasil foram avaliadas por meio do coeficiente de correlação intraclasse (ICC), mostrando confiabilidade satisfatória para todos os nutrientes e validade relativa aceitável para energia, macronutrientes, cálcio, potássio e vitaminas E e C [@cacau2025adherence; @silva2021aplicacao; @naud2019consumo; @canhada2020ultra].
-    -   Para quantificar o consumo diário, o número de porções consumidas por dia é multiplicado pelo peso da porção padrão e pelo peso da frequência de consumo [@canhada2020ultra; @silva2021aplicacao; @naud2019consumo].
-    -   Valores extremos de consumo energético (por exemplo, abaixo de 500 Kcal/dia ou acima de 4.000 Kcal/dia) são frequentemente excluídos para garantir a plausibilidade dos dados [@silva2021aplicacao; @canhada2020ultra].
+    -   Os participantes são questionados sobre a frequência do consumo
+        de uma porção padrão de cada alimento nos últimos 12 meses
+        [@silva2021aplicacao].
+    -   A coleta visa estimar o hábito alimentar dos participantes,
+        considerando variações no consumo entre as estações do ano
+        [@silva2021aplicacao].
+    -   O questionário possui oito opções de resposta para frequência,
+        desde "mais de 3 vezes ao dia" até "nunca/quase nunca"
+        [@naud2019consumo].
+    -   A reprodutibilidade e a validade relativa do QFA no ELSA-Brasil
+        foram avaliadas por meio do coeficiente de correlação
+        intraclasse (ICC), mostrando confiabilidade satisfatória para
+        todos os nutrientes e validade relativa aceitável para energia,
+        macronutrientes, cálcio, potássio e vitaminas E e C
+        [@cacau2025adherence; @silva2021aplicacao; @naud2019consumo;
+        @canhada2020ultra].
+    -   Para quantificar o consumo diário, o número de porções
+        consumidas por dia é multiplicado pelo peso da porção padrão e
+        pelo peso da frequência de consumo [@canhada2020ultra;
+        @silva2021aplicacao; @naud2019consumo].
+    -   Valores extremos de consumo energético (por exemplo, abaixo de
+        500 Kcal/dia ou acima de 4.000 Kcal/dia) são frequentemente
+        excluídos para garantir a plausibilidade dos dados
+        [@silva2021aplicacao; @canhada2020ultra].
 
 #### Variáveis Dietéticas Derivadas do QFA e sua Relação com a Função Renal
 
-A partir do QFA, diversas variáveis de consumo podem ser calculadas e adicionadas aos modelos de função renal:
+A partir do QFA, diversas variáveis de consumo podem ser calculadas e
+adicionadas aos modelos de função renal:
 
-1.  Ingestão de Nutrientes e Energia: O QFA permite estimar a ingestão energética diária (em quilocalorias) e a ingestão de macronutrientes (carboidratos, proteínas, lipídios) e ácidos graxos (saturados, monoinsaturados, poli-insaturados). A ingestão de nutrientes é tipicamente ajustada pelo valor energético total (VET), utilizando o método residual, em análises epidemiológicas [@naud2019consumo].
+1.  Ingestão de Nutrientes e Energia: O QFA permite estimar a ingestão
+    energética diária (em quilocalorias) e a ingestão de macronutrientes
+    (carboidratos, proteínas, lipídios) e ácidos graxos (saturados,
+    monoinsaturados, poli-insaturados). A ingestão de nutrientes é
+    tipicamente ajustada pelo valor energético total (VET), utilizando o
+    método residual, em análises epidemiológicas [@naud2019consumo].
 
 2.  Consumo de Alimentos Ultraprocessados (UPF):
 
-    -   O consumo de UPFs classificado utilizando o sistema NOVA, que categoriza alimentos com base na extensão e propósito do processamento industrial [@costa2021escore; @he2024ultra; @rey2021ultra; @avesani2023ultraprocessed].
-    -   O consumo de UPFs, geralmente expresso como a porcentagem da energia total diária ingerida proveniente desses alimentos (UPFc), tem sido associado ao risco aumentado de diversas DCNT, incluindo o declínio da função renal (CKD) [@costa2021escore; @he2024ultra].
+    -   O consumo de UPFs classificado utilizando o sistema NOVA, que
+        categoriza alimentos com base na extensão e propósito do
+        processamento industrial [@costa2021escore; @he2024ultra;
+        @rey2021ultra; @avesani2023ultraprocessed].
+    -   O consumo de UPFs, geralmente expresso como a porcentagem da
+        energia total diária ingerida proveniente desses alimentos
+        (UPFc), tem sido associado ao risco aumentado de diversas DCNT,
+        incluindo o declínio da função renal (CKD) [@costa2021escore;
+        @he2024ultra].
 
 3.  Padrões Dietéticos:
 
-    -   A análise de padrões dietéticos, como a dieta ocidental (rica em alimentos ultraprocessados) versus dietas mais saudáveis (ricas em frutas, vegetais e grãos integrais), pode ser realizada utilizando técnicas como análise fatorial ou análise de componentes principais [@silva2021aplicacao; @naud2019consumo].
-    -   Esses padrões podem ser associados à função renal, fornecendo uma visão mais abrangente do impacto dietético na saúde renal.
+    -   A análise de padrões dietéticos, como a dieta ocidental (rica em
+        alimentos ultraprocessados) versus dietas mais saudáveis (ricas
+        em frutas, vegetais e grãos integrais), pode ser realizada
+        utilizando técnicas como análise fatorial ou análise de
+        componentes principais [@silva2021aplicacao; @naud2019consumo].
+    -   Esses padrões podem ser associados à função renal, fornecendo
+        uma visão mais abrangente do impacto dietético na saúde renal.
 
 4.  Índices de qualidade de dieta:
 
-    -   Índices como o de Índice de Qualidade de Dieta revisado (IQD-R) ou escores baseados m dietas saudáveis tais como o Planetary Health Diet Index (PHDI). Tais índices fornecem uma pontuação única relativa a qualidade geral da dieta, que pode ser correlacionada com a função renal [@silva2017aposentadoria; @naud2019consumo].
+    -   Índices como o de Índice de Qualidade de Dieta revisado (IQD-R)
+        ou escores baseados m dietas saudáveis tais como o Planetary
+        Health Diet Index (PHDI). Tais índices fornecem uma pontuação
+        única relativa a qualidade geral da dieta, que pode ser
+        correlacionada com a função renal [@silva2017aposentadoria;
+        @naud2019consumo].
 
 ### Dados Antropométricos
 
 -   Índice de Massa Corporal (IMC)
--   Condições Clínicas e Comorbidades (Fatores de Risco para DRC): Dislipidemia (LDL ≥130 mg/dL ou uso de hipolipemiantes), Hipertensão Arterial Sistêmica (HAS) (pressão sistólica ≥ 140 mm Hg, pressão diastólica ≥ 90 mm Hg ou tratamento com anti-hipertensivo), Diabetes Mellitus (DM) (diagnóstico prévio, uso de medicação, glicose sanguínea ≥ 126 mg/dL, glicose 2h ≥200 mg/dL ou HbA1C ≥ 6,5%), e Doença Cardiovascular [@silva2021aplicacao].
--   Hábitos de Vida: Tabagismo, nível de atividade física, consumo de álcool [@silva2021aplicacao].
+-   Condições Clínicas e Comorbidades (Fatores de Risco para DRC):
+    Dislipidemia (LDL ≥130 mg/dL ou uso de hipolipemiantes), Hipertensão
+    Arterial Sistêmica (HAS) (pressão sistólica ≥ 140 mm Hg, pressão
+    diastólica ≥ 90 mm Hg ou tratamento com anti-hipertensivo), Diabetes
+    Mellitus (DM) (diagnóstico prévio, uso de medicação, glicose
+    sanguínea ≥ 126 mg/dL, glicose 2h ≥200 mg/dL ou HbA1C ≥ 6,5%), e
+    Doença Cardiovascular [@silva2021aplicacao].
+-   Hábitos de Vida: Tabagismo, nível de atividade física, consumo de
+    álcool [@silva2021aplicacao].
 
-A associação entre TFGe e fatores de risco modificáveis, como o consumo de alimentos ultraprocessados (AUPF), tem sido consistentemente investigada, visto que o aumento de 10% no consumo de AUPF foi associado a um risco 7% maior de DRC (RR = 1,07). O consumo de AUPF, que é um fator de risco modificável para doenças crônicas, tem sido consistentemente associado à diminuição da função renal [@he2024ultra; @avesani2023ultraprocessed].
+A associação entre TFGe e fatores de risco modificáveis, como o consumo
+de alimentos ultraprocessados (AUPF), tem sido consistentemente
+investigada, visto que o aumento de 10% no consumo de AUPF foi associado
+a um risco 7% maior de DRC (RR = 1,07). O consumo de AUPF, que é um
+fator de risco modificável para doenças crônicas, tem sido
+consistentemente associado à diminuição da função renal [@he2024ultra;
+@avesani2023ultraprocessed].
 
 ## Coleta das Variáveis Relacionadas à Função Renal
 
-As metodologias de coleta e análise dessas variáveis geralmente seguem protocolos padronizados, como observado em grandes estudos de coorte como o ELSA-Brasil.
+As metodologias de coleta e análise dessas variáveis geralmente seguem
+protocolos padronizados, como observado em grandes estudos de coorte
+como o ELSA-Brasil.
 
 ### Coleta de Amostras Biológicas
 
-A coleta de material biológico é crucial para a determinação das variáveis sanguíneas e urinárias.
+A coleta de material biológico é crucial para a determinação das
+variáveis sanguíneas e urinárias.
 
--   Tipos de amostras: As variáveis são determinadas a partir de amostras de sangue em jejum, amostras pontuais ou coleta de urina durante determinado horário [@naud2019consumo; @rey2021ultra].
--   Preparação do participante: Os participantes são orientados a seguir protocolos específicos antes da coleta, como jejum de 8 a 12 horas para amostras de sangue [@naud2019consumo].
--   Procedimentos de coleta: A coleta é realizada por profissionais treinados, utilizando técnicas assépticas para garantir a integridade das amostras. As amostras de sangue são tipicamente colhidas utilizando um sistema vacutainer em vários tubos específicos (EDTA, gel ativador para separação de soro, citrato, fluoreto/oxalato, heparina) [@naud2019consumo].
--   Processamento da amostra: Após a coleta, as amostras são processadas conforme protocolos padronizados, incluindo centrifugação para separar o soro ou plasma, e armazenamento em temperaturas adequadas (-20°C ou -80°C) até a análise. Para garantir a qualidade, as amostras são processadas rapidamente. Elas são mantidas em gelo e centrifugadas no máximo até 30 minutos após a coleta. Depois da centrifugação, o material biológico é aliquotado e armazenado [@naud2019consumo].
+-   Tipos de amostras: As variáveis foram determinadas a partir de
+    amostras de sangue em jejum, amostras pontuais ou coleta de urina
+    durante determinado horário [@naud2019consumo; @rey2021ultra].
+-   Preparação do participante: Os participantes foram orientados a
+    seguir protocolos específicos antes da coleta, como jejum de 8 a 12
+    horas para amostras de sangue [@naud2019consumo].
+-   Procedimentos de coleta: A coleta foi realizada por profissionais
+    treinados, utilizando técnicas assépticas para garantir a
+    integridade das amostras. As amostras de sangue foram tipicamente
+    colhidas utilizando um sistema vacutainer em vários tubos
+    específicos (EDTA, gel ativador para separação de soro, citrato,
+    fluoreto/oxalato, heparina) [@naud2019consumo].
+-   Processamento da amostra: Após a coleta, as amostras são processadas
+    conforme protocolos padronizados, incluindo centrifugação para
+    separar o soro ou plasma, e armazenamento em temperaturas adequadas
+    (-20°C ou -80°C) até a análise. Para garantir a qualidade, as
+    amostras foram processadas rapidamente. Elas foram mantidas em gelo
+    e centrifugadas no máximo até 30 minutos após a coleta. Depois da
+    centrifugação, o material biológico foi aliquotado e armazenado
+    [@naud2019consumo].
 
 ## Revisão de Literatura (Desenho Conceitual)
 
 ### O Sistema NOVA e a Classificação de Alimentos Ultraprocessados
 
-A classificação NOVA é fundamentada na extensão e propósito do processamento [@monteiro2019ultra]. Os AUPs (Grupo 4) são identificáveis pela presença de substâncias que raramente são usadas em preparações culinárias domésticas (como xarope de milho com alto teor de frutose, óleos interesterificados e proteínas hidrolisadas) ou pela inclusão de aditivos cosméticos (como aromatizantes, intensificadores de sabor, corantes, emulsificantes e edulcorantes). O consumo de AUPs tem um impacto negativo na qualidade nutricional da dieta global [@avesani2023ultraprocessed; @cecchini2025food].
+A classificação NOVA é fundamentada na extensão e propósito do
+processamento [@monteiro2019ultra]. Os AUPs (Grupo 4) são identificáveis
+pela presença de substâncias que raramente são usadas em preparações
+culinárias domésticas (como xarope de milho com alto teor de frutose,
+óleos interesterificados e proteínas hidrolisadas) ou pela inclusão de
+aditivos cosméticos (como aromatizantes, intensificadores de sabor,
+corantes, emulsificantes e edulcorantes). O consumo de AUPs tem um
+impacto negativo na qualidade nutricional da dieta global
+[@avesani2023ultraprocessed; @cecchini2025food].
 
 ### AUPs e Doenças Crônicas: Mecanismos Além da Nutrição
 
-Embora os AUPs tenham tipicamente um perfil nutricional ruim (baixo teor de fibra, alto teor de gorduras saturadas, sódio e açúcar)[@rey2021ultra], as associações com doenças persistem mesmo após o ajuste para esses nutrientes, sugerindo que o risco reside em outros fatores relacionados ao processamento [@avesani2023ultraprocessed; @srour2019ultra].
+Embora os AUPs tenham tipicamente um perfil nutricional ruim (baixo teor
+de fibra, alto teor de gorduras saturadas, sódio e
+açúcar)[@rey2021ultra], as associações com doenças persistem mesmo após
+o ajuste para esses nutrientes, sugerindo que o risco reside em outros
+fatores relacionados ao processamento [@avesani2023ultraprocessed;
+@srour2019ultra].
 
 ### A Avaliação Simplificada do Consumo de AUPs no Brasil
 
-A avaliação detalhada do consumo de AUPs, tipicamente realizada por caracterização da população, suas frequências e avaliações cruzadas.
+A avaliação detalhada do consumo de AUPs, tipicamente realizada por
+caracterização da população, suas frequências e avaliações cruzadas.
 
 ## Desenho do Estudo e População
 
-Este será um estudo longitudinal observacional de coorte prospectiva, utilizando dados provenientes das diferentes ondas do Estudo Longitudinal de Saúde do Adulto (ELSA-Brasil). A população do estudo será composta por participantes adultos (com idades entre 35 e 74 anos) do ELSA-Brasil, uma coorte multicêntrica de servidores públicos de seis instituições de ensino e pesquisa no Brasil, que visa investigar a incidência e os fatores de risco para doenças crônicas não transmissíveis.
+Este será um estudo longitudinal observacional de coorte prospectiva,
+utilizando dados provenientes das diferentes ondas do Estudo
+Longitudinal de Saúde do Adulto (ELSA-Brasil). A população do estudo
+será composta por participantes adultos (com idades entre 35 e 74 anos)
+do ELSA-Brasil, uma coorte multicêntrica de servidores públicos de seis
+instituições de ensino e pesquisa no Brasil, que visa investigar a
+incidência e os fatores de risco para doenças crônicas não
+transmissíveis.
 
 ## Análise Estatística
 
 As análises estatísticas serão realizadas em etapas:
 
-1.  **Análise Descritiva:** Serão apresentadas estatísticas descritivas (médias, desvios-padrão, medianas, quartis, frequências e percentuais) para caracterizar a população do estudo e as variáveis de interesse [@artes2023metodos].
-2.  **Modelos Lineares Mistos (LMM):** Para avaliar a associação longitudinal entre o consumo de alimentos ultraprocessados e a TFG, serão ajustados modelos lineares mistos com intercepto aleatório por indivíduo, considerando a natureza hierárquica e repetida dos dados. A inclusão de um termo de *slope* aleatório será avaliada quando apropriado para capturar a variabilidade individual na trajetória da TFG [@demidenko2013mixed; @favero2017manual].
-3.  **Seleção de Modelos:** A comparação entre os modelos será realizada utilizando critérios de informação como o Critério de Informação de Akaike (AIC) e o Critério de Informação Bayesiano (BIC) [@demidenko2013mixed; @favero2017manual].
-4.  **Diagnóstico e Robustez:** A avaliação de resíduos e o diagnóstico de ajuste dos modelos serão conduzidos para verificar a adequação das premissas. Adicionalmente, será explorada a utilização de versões robustas de LMM (e.g., `robustlmm` no R) para mitigar a influência de potenciais *outliers* ou observações influentes [@artes2023metodos; @demidenko2013mixed; @favero2017manual].
-5.  **Análise de Modificadores de Efeito:** Serão realizadas análises estratificadas e/ou inclusão de termos de interação nos modelos para investigar se a associação entre ultraprocessados e TFG difere em subgrupos específicos (e.g., por idade, sexo, presença de hipertensão ou diabetes) [@artes2023metodos].
+1.  **Análise Descritiva:** Serão apresentadas estatísticas descritivas
+    (médias, desvios-padrão, medianas, quartis, frequências e
+    percentuais) para caracterizar a população do estudo e as variáveis
+    de interesse [@artes2023metodos].
+2.  **Modelos Lineares Mistos (LMM):** Para avaliar a associação
+    longitudinal entre o consumo de alimentos ultraprocessados e a TFG,
+    serão ajustados modelos lineares mistos com intercepto aleatório por
+    indivíduo, considerando a natureza hierárquica e repetida dos dados.
+    A inclusão de um termo de *slope* aleatório será avaliada quando
+    apropriado para capturar a variabilidade individual na trajetória da
+    TFG [@demidenko2013mixed; @favero2017manual].
+3.  **Seleção de Modelos:** A comparação entre os modelos será realizada
+    utilizando critérios de informação como o Critério de Informação de
+    Akaike (AIC) e o Critério de Informação Bayesiano (BIC)
+    [@demidenko2013mixed; @favero2017manual].
+4.  **Diagnóstico e Robustez:** A avaliação de resíduos e o diagnóstico
+    de ajuste dos modelos serão conduzidos para verificar a adequação
+    das premissas. Adicionalmente, será explorada a utilização de
+    versões robustas de LMM (e.g., `robustlmm` no R) para mitigar a
+    influência de potenciais *outliers* ou observações influentes
+    [@artes2023metodos; @demidenko2013mixed; @favero2017manual].
+5.  **Análise de Modificadores de Efeito:** Serão realizadas análises
+    estratificadas e/ou inclusão de termos de interação nos modelos para
+    investigar se a associação entre ultraprocessados e TFG difere em
+    subgrupos específicos (e.g., por idade, sexo, presença de
+    hipertensão ou diabetes) [@artes2023metodos].
 
 ### O Modelo Linear Misto (MLM)
 
-O Modelo Linear Misto (MLM), ou Linear Mixed Effects (LME) Model, é o framework estatístico mais adequado para analisar a diminuição da função renal (representada pela TFGe) em um estudo longitudinal com medidas repetidas, como a coorte ELSA-Brasil. Este modelo é uma extensão da regressão linear que lida explicitamente com a dependência dos dados, modelando a correlação que existe entre as múltiplas observações coletadas do mesmo indivíduo ao longo do tempo. 
-O modelo MLM decompõe a variação total em efeitos fixos (a trajetória média populacional) e efeitos aleatórios (a variação individual em torno dessa média) [@field2012discovering; @demidenko2013mixed; @favero2017manual; @gail2010statistics; @singer1986analise].
+O Modelo Linear Misto (MLM), ou Linear Mixed Effects (LME) Model, é o
+framework estatístico mais adequado para analisar a diminuição da função
+renal (representada pela TFGe) em um estudo longitudinal com medidas
+repetidas, como a coorte ELSA-Brasil. Este modelo é uma extensão da
+regressão linear que lida explicitamente com a dependência dos dados,
+modelando a correlação que existe entre as múltiplas observações
+coletadas do mesmo indivíduo ao longo do tempo. O modelo MLM decompõe a
+variação total em efeitos fixos (a trajetória média populacional) e
+efeitos aleatórios (a variação individual em torno dessa média)
+[@field2012discovering; @demidenko2013mixed; @favero2017manual;
+@gail2010statistics; @singer1986analise].
 
 #### Modelo Linear Misto para Taxa de Filtração Glomerular Estimada (TFGe)
 
 ##### Formulação Matemática Detalhada do Modelo Linear Misto
 
-O MLM para a TFGe, utilizando a formulação de Laird e Ware (1982), é representado pela combinação de dois níveis.
+O MLM para a TFGe, utilizando a formulação de Laird e Ware (1982), é
+representado pela combinação de dois níveis.
 
 ###### Modelo para o Indivíduo $i$ no Tempo $j$ (Notação Matricial Condicional)
 
-A resposta $Y_i$ (vetor de medições da TFGe ao longo do tempo para o participante $i$) é dada por:
+A resposta $Y_i$ (vetor de medições da TFGe ao longo do tempo para o
+participante $i$) é dada por:
 
 $$
 Y_i = X_i \beta + Z_i b_i + \epsilon_i \quad \text{para } i = 1, \dots, N
@@ -238,57 +513,83 @@ $$
 
 Onde:
 
-| Componente | Dimensão | Descrição |
-|------------|----------|-----------|
-| $Y_i$      | $n_i \times 1$ | Vetor das $n_i$ observações da TFGe para o participante $i$. |
-| $X_i$      | $n_i \times p$ | Matriz de *design* das variáveis fixas (preditoras) para o indivíduo $i$. |
-| $\beta$    | $p \times 1$   | Vetor de **Efeitos Fixos** (parâmetros populacionais). |
-| $Z_i$      | $n_i \times q$ | Matriz de *design* das variáveis aleatórias para o indivíduo $i$. |
-| $b_i$      | $q \times 1$   | Vetor de **Efeitos Aleatórios** (desvios específicos do indivíduo). |
-| $\epsilon_i$ | $n_i \times 1$ | Vetor de erros residuais (*within-subject error term*). |
+| Componente   | Dimensão       | Descrição                                                                 |
+|--------------------------|----------------------|------------------------|
+| $Y_i$        | $n_i \times 1$ | Vetor das $n_i$ observações da TFGe para o participante $i$.              |
+| $X_i$        | $n_i \times p$ | Matriz de *design* das variáveis fixas (preditoras) para o indivíduo $i$. |
+| $\beta$      | $p \times 1$   | Vetor de **Efeitos Fixos** (parâmetros populacionais).                    |
+| $Z_i$        | $n_i \times q$ | Matriz de *design* das variáveis aleatórias para o indivíduo $i$.         |
+| $b_i$        | $q \times 1$   | Vetor de **Efeitos Aleatórios** (desvios específicos do indivíduo).       |
+| $\epsilon_i$ | $n_i \times 1$ | Vetor de erros residuais (*within-subject error term*).                   |
 
 ###### Suposições da Distribuição (Second Stage Model)
 
-Assume-se que os efeitos aleatórios $b_i$ e os erros residuais $\epsilon_i$ são independentes e normalmente distribuídos:
+Assume-se que os efeitos aleatórios $b_i$ e os erros residuais
+$\epsilon_i$ são independentes e normalmente distribuídos:
 
-*   **Efeitos Aleatórios:** $b_i \sim N(0, D^*)$
-    - $D^*$ é a matriz de covariância entre os efeitos aleatórios (variância *between-subject* ou *between-cluster*), frequentemente escalonada como $D^* = \sigma^2 D$, onde $\sigma^2$ é a variância *within-subject*.
-    - A TFGe exibe notória heterogeneidade de respostas, tornando a modelagem de efeitos aleatórios essencial.
-
-*   **Erros Residuais:** $\epsilon_i \sim N(0, R_i)$
-    - Para o MLM básico, $R_i = \sigma^2 I_{n_i}$, onde $I_{n_i}$ é a matriz identidade, implicando independência entre os resíduos no tempo.
-    - Em modelos longitudinais avançados (e.g., modelos de crescimento), pode-se optar por estruturas de correlação residual mais complexas, como a Autorregressiva de Ordem 1 (AR(1)), para modelar a dependência residual ao longo do tempo.
+-   **Efeitos Aleatórios:** $b_i \sim N(0, D^*)$
+    -   $D^*$ é a matriz de covariância entre os efeitos aleatórios
+        (variância *between-subject* ou *between-cluster*),
+        frequentemente escalonada como $D^* = \sigma^2 D$, onde
+        $\sigma^2$ é a variância *within-subject*.
+    -   A TFGe exibe notória heterogeneidade de respostas, tornando a
+        modelagem de efeitos aleatórios essencial.
+-   **Erros Residuais:** $\epsilon_i \sim N(0, R_i)$
+    -   Para o MLM básico, $R_i = \sigma^2 I_{n_i}$, onde $I_{n_i}$ é a
+        matriz identidade, implicando independência entre os resíduos no
+        tempo.
+    -   Em modelos longitudinais avançados (e.g., modelos de
+        crescimento), pode-se optar por estruturas de correlação
+        residual mais complexas, como a Autorregressiva de Ordem 1
+        (AR(1)), para modelar a dependência residual ao longo do tempo.
 
 ##### Especificação do Modelo Aplicado à Função Renal (TFGe)
 
-Para modelar o declínio da TFGe em função do consumo de Alimentos Ultraprocessados (`UPFc`) e outras covariáveis, a formulação por observação $j$ (visita) no participante $i$ é:
+Para modelar o declínio da TFGe em função do consumo de Alimentos
+Ultraprocessados (`UPFc`) e outras covariáveis, a formulação por
+observação $j$ (visita) no participante $i$ é:
 
 $$
 \text{TFGe}_{ij} = \underbrace{\beta_0 + \beta_1 \text{Tempo}_j + \beta_2 \text{UPFc}_i + \beta_3 (\text{Tempo}_j \times \text{UPFc}_i) + X_{ij}' \gamma}_{\text{Efeitos Fixos } (X_i \beta)} + \underbrace{b_{0i} + b_{1i} \text{Tempo}_j}_{\text{Efeitos Aleatórios } (Z_i b_i)} + \epsilon_{ij}
 $$
 
 ###### Efeitos Fixos ($X_i \beta$)
+
 Representam o declínio **médio populacional** de TFGe:
 
-- $\beta_0$: Intercepto médio populacional (TFGe média na Linha de Base, quando `Tempo=0` e covariáveis contínuas centradas são zero).
+-   $\beta_0$: Intercepto médio populacional (TFGe média na Linha de
+    Base, quando `Tempo=0` e covariáveis contínuas centradas são zero).
 
-- $\beta_1$: Efeito fixo do `Tempo` (Declínio médio populacional da TFGe por unidade de tempo).
+-   $\beta_1$: Efeito fixo do `Tempo` (Declínio médio populacional da
+    TFGe por unidade de tempo).
 
-- $\beta_2$: Efeito fixo do `UPFc` (Associação média do consumo de UPFc com a TFGe inicial).
+-   $\beta_2$: Efeito fixo do `UPFc` (Associação média do consumo de
+    UPFc com a TFGe inicial).
 
-- $\beta_3$: Efeito da **Interação** `Tempo × UPFc` (Indica se a taxa de declínio da TFGe ($\beta_1$) difere conforme o nível de consumo de UPFc).
+-   $\beta_3$: Efeito da **Interação** `Tempo × UPFc` (Indica se a taxa
+    de declínio da TFGe ($\beta_1$) difere conforme o nível de consumo
+    de UPFc).
 
-- $X_{ij}' \gamma$: Contribuição das demais covariáveis fixas (e.g., Idade, Sexo, DM, HAS, IMC, Renda *per capita*).
+-   $X_{ij}' \gamma$: Contribuição das demais covariáveis fixas (e.g.,
+    Idade, Sexo, DM, HAS, IMC, Renda *per capita*).
 
 ###### Efeitos Aleatórios ($Z_i b_i$)
-Capturam a **variação individual** na trajetória de declínio. Neste modelo, $q=2$, e a matriz $Z_i$ contém uma coluna de 1's (intercepto) e a coluna do `Tempo_j`:
 
-- $b_{0i}$: Desvio aleatório do **Intercepto** do indivíduo $i$ em relação ao intercepto médio populacional ($\beta_0$).
+Capturam a **variação individual** na trajetória de declínio. Neste
+modelo, $q=2$, e a matriz $Z_i$ contém uma coluna de 1's (intercepto) e
+a coluna do `Tempo_j`:
 
-- $b_{1i}$: Desvio aleatório da **Inclinação (Tempo)** do indivíduo $i$ em relação à inclinação média populacional ($\beta_1$).
+-   $b_{0i}$: Desvio aleatório do **Intercepto** do indivíduo $i$ em
+    relação ao intercepto médio populacional ($\beta_0$).
+
+-   $b_{1i}$: Desvio aleatório da **Inclinação (Tempo)** do indivíduo
+    $i$ em relação à inclinação média populacional ($\beta_1$).
 
 ### 2.3 Matriz de Covariância dos Efeitos Aleatórios ($D^*$)
-Esta matriz $2 \times 2$ é geralmente assumida como *General positive-definite* (não estruturada), permitindo a correlação entre o ponto de partida ($b_{0i}$) e a taxa de declínio ($b_{1i}$):
+
+Esta matriz $2 \times 2$ é geralmente assumida como *General
+positive-definite* (não estruturada), permitindo a correlação entre o
+ponto de partida ($b_{0i}$) e a taxa de declínio ($b_{1i}$):
 
 $$
 D^* = \sigma^2 D = \sigma^2 \begin{pmatrix}
@@ -299,40 +600,62 @@ $$
 
 Onde:
 
-- $d_{00}$ é a variância do intercepto aleatório.
+-   $d_{00}$ é a variância do intercepto aleatório.
 
-- $d_{11}$ é a variância da inclinação aleatória.
+-   $d_{11}$ é a variância da inclinação aleatória.
 
-- $d_{01} = d_{10}$ é a covariância entre o intercepto e a inclinação. Se significativamente diferente de zero, indica que indivíduos com TFGe inicial mais alta tendem a ter uma taxa de declínio (mais rápida ou mais lenta) diferente da média.
+-   $d_{01} = d_{10}$ é a covariância entre o intercepto e a inclinação.
+    Se significativamente diferente de zero, indica que indivíduos com
+    TFGe inicial mais alta tendem a ter uma taxa de declínio (mais
+    rápida ou mais lenta) diferente da média.
 
 ## Relevância do Estudo
 
 ### Relevância Científica
 
-A aplicação de métodos modernos de análise estatística em saúde, como os modelos lineares mistos, permitirá uma compreensão aprofundada das trajetórias da TFG e sua relação com o consumo de ultraprocessados, contribuindo para o avanço do conhecimento epidemiológico e clínico na área de nefrologia e nutrição.
+A aplicação de métodos modernos de análise estatística em saúde, como os
+modelos lineares mistos, permitirá uma compreensão aprofundada das
+trajetórias da TFG e sua relação com o consumo de ultraprocessados,
+contribuindo para o avanço do conhecimento epidemiológico e clínico na
+área de nefrologia e nutrição.
 
 ### Relevância Clínica
 
-A identificação de padrões alimentares, como o alto consumo de ultraprocessados, que aceleram a perda da TFG, pode fornecer subsídios importantes para a prática clínica, orientando profissionais de saúde na elaboração de recomendações dietéticas preventivas e terapêuticas para pacientes em risco ou com DRC.
+A identificação de padrões alimentares, como o alto consumo de
+ultraprocessados, que aceleram a perda da TFG, pode fornecer subsídios
+importantes para a prática clínica, orientando profissionais de saúde na
+elaboração de recomendações dietéticas preventivas e terapêuticas para
+pacientes em risco ou com DRC.
 
 ### Relevância Social
 
-Os resultados deste estudo poderão oferecer subsídios robustos para a formulação e implementação de políticas públicas de saúde e nutrição no Brasil, visando à promoção de hábitos alimentares mais saudáveis e à prevenção da DRC, com potencial impacto na redução da morbimortalidade e dos custos associados a essa condição.
+Os resultados deste estudo poderão oferecer subsídios robustos para a
+formulação e implementação de políticas públicas de saúde e nutrição no
+Brasil, visando à promoção de hábitos alimentares mais saudáveis e à
+prevenção da DRC, com potencial impacto na redução da morbimortalidade e
+dos custos associados a essa condição.
 
 # Cronograma
 
-| Etapa | 1-6 meses | 7-12 meses | 13-18 meses | 19-24 meses |
-|----|----|----|----|----|
-| Revisão bibliográfica | x |  |  |  |
-| Aprovação no Comitê de Ética | x |  |  |  |
-| Extração e organização dos dados |  | x |  |  |
-| Análise estatística |  | x | x |  |
-| Redação preliminar |  |  | x |  |
-| Revisão e defesa |  |  |  | x |
+| Etapa                            | 1-6 meses | 7-12 meses | 13-18 meses | 19-24 meses |
+|---------------|---------------|---------------|---------------|---------------|
+| Revisão bibliográfica            | x         |            |             |             |
+| Aprovação no Comitê de Ética     | x         |            |             |             |
+| Extração e organização dos dados |           | x          |             |             |
+| Análise estatística              |           | x          | x           |             |
+| Redação preliminar               |           |            | x           |             |
+| Revisão e defesa                 |           |            |             | x           |
 
 # Resultados Esperados
 
-Com base na hipótese formulada e na metodologia proposta, espera-se que este estudo identifique uma associação significativa entre o maior consumo de alimentos ultraprocessados e uma menor taxa de filtração glomerular (TFG), bem como um risco aumentado de declínio da função renal ao longo do tempo em participantes do ELSA-Brasil. A confirmação dessa hipótese reforçaria a evidência de que padrões alimentares ricos em ultraprocessados contribuem para a etiologia e progressão da doença renal crônica.
+Com base na hipótese formulada e na metodologia proposta, espera-se que
+este estudo identifique uma associação significativa entre o maior
+consumo de alimentos ultraprocessados e uma menor taxa de filtração
+glomerular (TFG), bem como um risco aumentado de declínio da função
+renal ao longo do tempo em participantes do ELSA-Brasil. A confirmação
+dessa hipótese reforçaria a evidência de que padrões alimentares ricos
+em ultraprocessados contribuem para a etiologia e progressão da doença
+renal crônica.
 
 Os resultados detalhados deverão incluir:
 
@@ -349,7 +672,14 @@ Os resultados detalhados deverão incluir:
     de consumo de ultraprocessados, o que é crucial para entender a
     dinâmica da doença renal.
 
-Esses achados terão implicações importantes para a saúde pública e a prática clínica. Poderão embasar o desenvolvimento de recomendações alimentares nacionais mais específicas e eficazes, bem como estratégias de prevenção primária e secundária da DRC no Brasil. Além disso, o estudo contribuirá para a literatura científica ao fornecer dados longitudinais de uma grande coorte brasileira, preenchendo lacunas existentes e fortalecendo a base de evidências sobre o impacto dos alimentos ultraprocessados na saúde renal.
+Esses achados terão implicações importantes para a saúde pública e a
+prática clínica. Poderão embasar o desenvolvimento de recomendações
+alimentares nacionais mais específicas e eficazes, bem como estratégias
+de prevenção primária e secundária da DRC no Brasil. Além disso, o
+estudo contribuirá para a literatura científica ao fornecer dados
+longitudinais de uma grande coorte brasileira, preenchendo lacunas
+existentes e fortalecendo a base de evidências sobre o impacto dos
+alimentos ultraprocessados na saúde renal.
 
 # Referências Bibliográficas
 
