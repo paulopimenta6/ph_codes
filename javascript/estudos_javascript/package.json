@@ -123,7 +123,7 @@
     "makeerror": "^1.0.12",
     "make-dir": "^3.1.0",
     "merge-stream": "^2.0.0",
-    "micromatch": "^4.0.5",
+    "micromatch": "^4.0.8",
     "mimic-fn": "^2.1.0",
     "minimatch": "^3.1.2",
     "ms": "^2.1.2",
