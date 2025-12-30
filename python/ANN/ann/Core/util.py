@@ -1,5 +1,5 @@
 from typing import List
-from matth import exp
+from math import exp
 
 # Funcao para calcular o produto escalar entre dois vetores
 # Definicao: https://en.wikipedia.org/wiki/Dot_product
