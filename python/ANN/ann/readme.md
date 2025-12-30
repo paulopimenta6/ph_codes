@@ -1,4 +1,4 @@
-# 🧠 Tutorial: Redes Neurais Artificiais do Zero
+# Tutorial: Redes Neurais Artificiais do Zero
 ### Baseado na obra de David Kopec | Implementação em Python
 
 Este guia serve como material de apoio para estudantes e desenvolvedores que desejam entender a implementação de uma **Rede Neural Artificial (ANN)** construída puramente em Python, focando nos fundamentos matemáticos e na arquitetura de código, sem o uso de frameworks externos.
