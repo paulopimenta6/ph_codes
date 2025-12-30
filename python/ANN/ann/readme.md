@@ -30,7 +30,11 @@ O neurônio realiza duas operações principais:
 
 2.  **Função de Ativação:** O resultado $z$ passa por uma função que "esmaga" o valor para um intervalo conhecido (geralmente entre 0 e 1). Neste projeto, usamos a **Sigmoide**: $$S(x) = \frac{1}{1 + e^{-x}}$$
 
-**Nota:** A derivada da Sigmoide ($S'(x) = S(x) \cdot (1 - S(x))$) é crucial para o algoritmo de aprendizagem (backpropagation).
+**Nota:** A derivada da Sigmoide é crucial para o algoritmo de aprendizagem (*backpropagation*):
+
+$$
+S'(x) = S(x)\cdot(1 - S(x))
+$$
 
 ------------------------------------------------------------------------
 
