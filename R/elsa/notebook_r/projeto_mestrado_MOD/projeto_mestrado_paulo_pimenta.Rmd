@@ -4,16 +4,16 @@ title: "Consumo de alimentos ultraprocessados e função renal: análise da taxa
 author: "Paulo Henrique de Almeida Soares Pimenta"
 date: "`r format(Sys.Date(), '%d de %B de %Y')`"
 output:
-  html_document:
+  word_document:
     toc: true
-    df_print: paged
+    number_sections: true
   pdf_document:
     toc: true
     number_sections: true
     latex_engine: xelatex
-  word_document:
+  html_document:
     toc: true
-    number_sections: true
+    df_print: paged
 fontsize: 12pt
 geometry: a4paper, top=2.5cm, left=2.5cm, right=2.5cm, bottom=2.5cm
 lang: pt
