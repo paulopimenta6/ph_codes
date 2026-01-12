@@ -49,7 +49,7 @@ class Layer:
         # Para cada neurônio, calcula o delta com base na diferença entre a saída esperada e a saída atual 
         for n in range(len(self.neurons)):
             self.neurons[n].delta = self.neurons[n].derivative_activation_function(
-                self.neurons[n].output_cache)*(exptected[n]-self.output_cache[n])
+                self.neurons[n].output_cache)*(expected[n]-self.output_cache[n])
 
     #Nao deve ser chamado na camada de saida
     def calculate_deltas_for_hidden_layer(self, next_layer: Layer) -> None:
