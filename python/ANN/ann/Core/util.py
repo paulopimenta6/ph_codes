@@ -26,4 +26,9 @@ def derivative_sigmoid(x: float) -> float:
 # Todo neuronio em nossa rede gera valores entre 0 a 1 como resultado da funcao de ativacao signoide. 
 # Parece logivo que uma escala entre 0 a 1 faria sentido para os atributos do conjunto de dados de entrada tambem.
 def normalize_by_feature_scaling(dataset: List[List[float]]) -> None:
-    for col_num in range
+    for col_num in range(len(dataset[0])):
+        column: List[float] = [row[col_num] for row in dataset]
+        maximum: float = max(column)
+        minimum: float = min(column)
+        for row_num in range(len(dataset)):
+            dataset[row_num][col_num]= (dataset[row_num][col_num]-minimum)/(maximum-minimum)  
