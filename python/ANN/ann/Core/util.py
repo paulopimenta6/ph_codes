@@ -20,3 +20,9 @@ def derivative_sigmoid(x: float) -> float:
     sig: float = sigmoid(x)
     return sig*(1-sig)     
 
+# Supoe-se que todas as linhas tem o mesmo tamanho
+# e esta funcao e a feature scaling de cada coluna para que esteja no intervalo de 0 a 1
+# ou seja, a normalizacao.
+# Todo neuronio em nossa rede gera valores entre 0 a 1 como resultado da funcao de ativacao signoide. 
+# Parece logivo que uma escala entre 0 a 1 faria sentido para os atributos do conjunto de dados de entrada tambem.
+def   
