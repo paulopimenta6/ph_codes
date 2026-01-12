@@ -85,11 +85,11 @@ Alguns códigos estão integrados com contextos específicos. Por exemplo, no di
 ## Estatísticas
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=paulopimenta6&show_icons=true&theme=dracula&locale=pt-br" alt="Estatísticas do GitHub" />
+  <img src="https://github-readme-stats.vercel.app/api?username=paulopimenta6&show_icons=true&theme=dracula" />
 </p>
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=paulopimenta6&layout=compact&theme=dracula&locale=pt-br" alt="Linguagens mais usadas" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=paulopimenta6&layout=compact&theme=dracula" />
 </p>
 
 ---
