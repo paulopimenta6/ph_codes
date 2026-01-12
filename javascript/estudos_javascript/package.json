@@ -194,7 +194,7 @@
     "yallist": "^4.0.0",
     "yargs-parser": "^21.0.1",
     "concat-map": "^0.0.1",
-    "cross-spawn": "^7.0.3"
+    "cross-spawn": "^7.0.6"
   },
   "scripts": {
     "test": "jest"
