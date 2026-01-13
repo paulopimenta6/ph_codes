@@ -85,11 +85,12 @@ Alguns códigos estão integrados com contextos específicos. Por exemplo, no di
 ## Estatísticas
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=paulopimenta6&show_icons=true&theme=dracula" />
+  <!-- Estática dinâmica: cache_seconds ajuda a evitar rate-limit e fetch errors -->
+  <img src="https://github-readme-stats.vercel.app/api?username=paulopimenta6&show_icons=true&theme=dracula&cache_seconds=21600" alt="Estatísticas do GitHub" />
 </p>
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=paulopimenta6&layout=compact&theme=dracula" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=paulopimenta6&layout=compact&theme=dracula&cache_seconds=21600" alt="Linguagens mais usadas" />
 </p>
 
 ---
