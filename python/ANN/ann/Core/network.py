@@ -75,4 +75,4 @@ class Network:
             if result == expected:
                 correct += 1
         percentage: float = correct/len(inputs)
-        return correct, len(inputs), percentage        
+        return correct, len(inputs), percentage
