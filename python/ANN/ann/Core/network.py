@@ -1,8 +1,8 @@
 from __future__ import annotations
 from typing import List, Callable, TypeVar, Tuple
 from functools import reduce
-from layer import Layer
-from util import sigmoid, derivative_sigmoid
+from .layer import Layer
+from .util import sigmoid, derivative_sigmoid
 
 # Tipo generico para entradas e saidas da rede neural
 T = TypeVar('T')

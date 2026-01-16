@@ -30,8 +30,9 @@ def normalize_by_feature_scaling(dataset: List[List[float]]) -> None:
         column: List[float] = [row[col_num] for row in dataset]
         maximum: float = max(column)
         minimum: float = min(column)
-        for row_num in range(len(dataset)):
-            if maximum - minimum == 0:
-                dataset[row_num][col_num]=0.0
-            else:
-                dataset[row_num][col_num]=(dataset[row_num][col_num]-minimum)/(maximum-minimum)  
+        if maximum - minimum == 0:
+            for row_num in range(len(dataset)):
+                dataset[row_num][col_num] = 0.0
+        else:
+            for row_num in range(len(dataset)):
+                dataset[row_num][col_num] = (dataset[row_num][col_num] - minimum) / (maximum - minimum)

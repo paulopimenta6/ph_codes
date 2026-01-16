@@ -1,5 +1,5 @@
-from tyuping import List, Callable
-from util import dot_product
+from typing import List, Callable
+from .util import dot_product
 
 class Neuron:
     def __init__(self, weights:List[float], learning_rate: float, activation_function: Callable[[float], float],
