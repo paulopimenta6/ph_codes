@@ -87,7 +87,7 @@ A fase de propagação reversa (`backpropagate` em `Network`) é o coração do 
 4.  **Atualização dos Pesos:** Os pesos são ajustados na direção oposta ao gradiente do erro, multiplicados pela **Taxa de Aprendizado** (`learning_rate`).
 
 $$
-w_{\text{novo}} = w_{\text{antigo}} + (\text{learning\_rate} \cdot \text{delta} \cdot \text{output\_cache})
+w_{\mathrm{novo}} = w_{\mathrm{antigo}} + (\mathrm{learning\ rate} \cdot \delta \cdot \mathrm{output\ cache})
 $$
 
 ## 4. Estrutura do Código
