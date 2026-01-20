@@ -28,7 +28,7 @@ exceptiongroup @ file:///home/conda/feedstock_root/build_artifacts/exceptiongrou
 executing @ file:///home/conda/feedstock_root/build_artifacts/executing_1756729339227/work
 fastapi==0.120.4
 fastjsonschema @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_python-fastjsonschema_1755304154/work/dist
-filelock==3.20.1
+filelock==3.20.3
 fonttools==4.61.0
 fqdn @ file:///home/conda/feedstock_root/build_artifacts/fqdn_1733327382592/work/dist
 h11 @ file:///home/conda/feedstock_root/build_artifacts/h11_1745526374115/work
@@ -142,7 +142,7 @@ tzdata==2023.3
 uri-template @ file:///home/conda/feedstock_root/build_artifacts/uri-template_1733323593477/work/dist
 urllib3 @ file:///home/conda/feedstock_root/build_artifacts/urllib3_1750271362675/work
 uvicorn==0.38.0
-virtualenv==20.26.6
+virtualenv==20.36.1
 visions==0.7.5
 wcwidth @ file:///home/conda/feedstock_root/build_artifacts/wcwidth_1758622279606/work
 webcolors @ file:///home/conda/feedstock_root/build_artifacts/webcolors_1761899299899/work
