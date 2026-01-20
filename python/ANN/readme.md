@@ -10,7 +10,7 @@ A implementação é baseada nos conceitos apresentados no livro *Classic Comput
 
 ------------------------------------------------------------------------
 
-## 📋 Sumário
+## Sumário
 
 1.  [Arquitetura e Componentes](#1-arquitetura-e-componentes)
     *   [1.1. O Neurônio (`Neuron`)](#11-o-neurônio-neuron)
@@ -86,15 +86,17 @@ A fase de propagação reversa (`backpropagate` em `Network`) é o coração do 
 3.  **Cálculo dos Deltas:** Para cada neurônio, é calculado o **delta** (a contribuição do neurônio para o erro total), usando a derivada da função de ativação.
 4.  **Atualização dos Pesos:** Os pesos são ajustados na direção oposta ao gradiente do erro, multiplicados pela **Taxa de Aprendizado** (`learning_rate`).
 
-$$w_{novo} = w_{antigo} + (\text{learning\_rate} \cdot \text{delta} \cdot \text{output\_cache})$$
+$$
+w_{\text{novo}} = w_{\text{antigo}} + (\text{learning\_rate} \cdot \text{delta} \cdot \text{output\_cache})
+$$
 
 ## 4. Estrutura do Código
 
 O projeto está organizado da seguinte forma:
 
-\`\`\`
+```text
 ann/
-├── Core/   
+├── Core/
 │   ├── layer.py      # Implementa a Camada
 │   ├── network.py    # Implementa a Rede Neural (Orquestrador)
 │   ├── neuron.py     # Implementa o Neurônio
@@ -102,8 +104,8 @@ ann/
 ├── examples/
 │   ├── iris_test.py  # Exemplo de classificação do dataset Iris
 │   └── wine_test.py  # Exemplo de classificação do dataset Wine
-└── readme.md         # O README original (será substituído)
-\`\`\`
+└── README.md         # O README original (será substituído
+``` 
 
 ## 5. Como Executar os Exemplos
 
