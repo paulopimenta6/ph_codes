@@ -134,7 +134,7 @@ cd ~/python/ANN   # diretório que contém a pasta 'ann'
 ~/envs/positron/bin/python -m ann.examples.iris_test
 ```
 
-O script `iris_test.py` carrega o dataset Iris, normaliza os dados, treina a rede com 140 amostras por 50 vezes e testa a acurácia com as 10 amostras restantes. O script `wine_test.py` normaliza os dados, treina a rede com 150 amostras por 10 vezes e testa com 28 dados.  
+O script `iris_test.py` carrega o dataset iris.csv, normaliza os dados, treina a rede com 140 amostras por 50 vezes e testa a acurácia com as 10 amostras restantes. O script `wine_test.py` carrega o dataset wine.csv normaliza os dados, treina a rede com 150 amostras por 10 vezes e testa com 28 dados.  
 
 ## 6. Referências
 
