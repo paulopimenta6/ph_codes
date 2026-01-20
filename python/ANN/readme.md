@@ -113,27 +113,27 @@ Para testar a rede neural, você pode executar os exemplos de classificação in
 
 1.  **Pré-requisitos:** Certifique-se de ter o Python e as libs necessárias instaladas, estas últimas se encontram no arquivo requirements.txt. O projeto utiliza apenas bibliotecas padrão (como `csv` e `typing`). É aconselhável ter um ambiente Python para este projeto. A criação é simples e usa os seguintes comandos:
 
-\`\`\`bash
+```bash
 mkdir ~/envs
 python3 -m venv ~/envs/positron
 source ~/envs/positron/bin/activate
-\`\`\`
+```
 
 e para instalar pacotes básicos use os comandos:
 
-\`\`\`bash
+```bash
 pip3 install --upgrade pip
 pip3 install numpy pandas matplotlib seaborn scikit-learn
-\`\`\`
+```
 
 2.  **Execução:** Navegue até a pasta `ann/examples` e execute o arquivo desejado.
 
 **Exemplo: Classificação do Dataset Iris**
 
-\`\`\`bash
+```bash
 cd ~/python/ANN   # diretório que contém a pasta 'ann'
 ~/envs/positron/bin/python -m ann.examples.iris_test
-\`\`\`
+```
 
 O script `iris_test.py` carrega o dataset Iris, normaliza os dados, treina a rede com 140 amostras por 50 épocas e testa a acurácia com as 10 amostras restantes.
 
@@ -141,4 +141,4 @@ O script `iris_test.py` carrega o dataset Iris, normaliza os dados, treina a red
 
 Este projeto é uma implementação prática dos conceitos de redes neurais multicamadas com backpropagation, inspirada no trabalho de:
 
-*   **[Kopec, David.](https://classicproblems.com/)** *Deep Learning from Scratch: Building with Python from First Principles*. Manning Publications, 2019. (Referência principal para a arquitetura e lógica de implementação).
+*   **[Kopec, David.](https://classicproblems.com/)** *Classic Computer Science Problems*. Manning Publications, 2019. (Referência principal para a arquitetura e lógica de implementação).
