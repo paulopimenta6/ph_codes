@@ -1,4 +1,4 @@
-\babel@toc {nil}{}\relax 
+\xpg@aux {}{portuguese}
 \contentsline {section}{\numberline {1}Introdução}{1}{section.1}%
 \contentsline {section}{\numberline {2}Justificativa}{2}{section.2}%
 \contentsline {section}{\numberline {3}Objetivos}{3}{section.3}%
@@ -12,26 +12,27 @@
 \contentsline {paragraph}{\numberline {5.2.1.1}Creatinina Sérica (SCr)}{5}{paragraph.5.2.1.1}%
 \contentsline {paragraph}{\numberline {5.2.1.2}Razão Albumina-Creatinina na Urina (UACR)}{5}{paragraph.5.2.1.2}%
 \contentsline {subsubsection}{\numberline {5.2.2}Variáveis de Exposição e Avaliação Dietética}{6}{subsubsection.5.2.2}%
-\contentsline {paragraph}{\numberline {5.2.2.1}Questionário de Frequência Alimentar (QFA)}{6}{paragraph.5.2.2.1}%
-\contentsline {paragraph}{\numberline {5.2.2.2}Variáveis Dietéticas Derivadas do QFA e sua Relação com a Função Renal}{6}{paragraph.5.2.2.2}%
+\contentsline {paragraph}{\numberline {5.2.2.1}Variável de Desfecho: Função Renal (CKD-EPI)}{6}{paragraph.5.2.2.1}%
+\contentsline {paragraph}{\numberline {5.2.2.2}Questionário de Frequência Alimentar (QFA)}{6}{paragraph.5.2.2.2}%
+\contentsline {paragraph}{\numberline {5.2.2.3}Variáveis Dietéticas Derivadas do QFA e sua Relação com a Função Renal}{7}{paragraph.5.2.2.3}%
 \contentsline {subsubsection}{\numberline {5.2.3}Dados Antropométricos}{7}{subsubsection.5.2.3}%
-\contentsline {subsection}{\numberline {5.3}Coleta das Variáveis Relacionadas à Função Renal}{7}{subsection.5.3}%
-\contentsline {subsubsection}{\numberline {5.3.1}Coleta de Amostras Biológicas}{7}{subsubsection.5.3.1}%
-\contentsline {subsection}{\numberline {5.4}Revisão de Literatura (Desenho Conceitual)}{8}{subsection.5.4}%
-\contentsline {subsubsection}{\numberline {5.4.1}O Sistema NOVA e a Classificação de Alimentos Ultraprocessados}{8}{subsubsection.5.4.1}%
-\contentsline {subsubsection}{\numberline {5.4.2}AUPs e Doenças Crônicas: Mecanismos Além da Nutrição}{8}{subsubsection.5.4.2}%
-\contentsline {subsubsection}{\numberline {5.4.3}A Avaliação Simplificada do Consumo de AUPs no Brasil}{8}{subsubsection.5.4.3}%
-\contentsline {subsection}{\numberline {5.5}Desenho do Estudo e População}{8}{subsection.5.5}%
-\contentsline {subsection}{\numberline {5.6}Análise Estatística}{9}{subsection.5.6}%
-\contentsline {subsubsection}{\numberline {5.6.1}O Modelo Linear Misto (MLM)}{9}{subsubsection.5.6.1}%
-\contentsline {paragraph}{\numberline {5.6.1.1}Modelo Linear Misto para Taxa de Filtração Glomerular Estimada (TFGe)}{9}{paragraph.5.6.1.1}%
-\contentsline {subparagraph}{\numberline {5.6.1.1.1}Formulação Matemática Detalhada do Modelo Linear Misto}{9}{subparagraph.5.6.1.1.1}%
-\contentsline {subparagraph}{\numberline {5.6.1.1.2}Especificação do Modelo Aplicado à Função Renal (TFGe)}{11}{subparagraph.5.6.1.1.2}%
-\contentsline {subsubsection}{\numberline {5.6.2}2.3 Matriz de Covariância dos Efeitos Aleatórios (\(D^*\))}{11}{subsubsection.5.6.2}%
-\contentsline {subsection}{\numberline {5.7}Relevância do Estudo}{12}{subsection.5.7}%
-\contentsline {subsubsection}{\numberline {5.7.1}Relevância Científica}{12}{subsubsection.5.7.1}%
-\contentsline {subsubsection}{\numberline {5.7.2}Relevância Clínica}{12}{subsubsection.5.7.2}%
-\contentsline {subsubsection}{\numberline {5.7.3}Relevância Social}{12}{subsubsection.5.7.3}%
-\contentsline {section}{\numberline {6}Cronograma}{12}{section.6}%
-\contentsline {section}{\numberline {7}Resultados Esperados}{13}{section.7}%
-\contentsline {section}{\numberline {8}Referências Bibliográficas}{13}{section.8}%
+\contentsline {subsection}{\numberline {5.3}Coleta das Variáveis Relacionadas à Função Renal}{8}{subsection.5.3}%
+\contentsline {subsubsection}{\numberline {5.3.1}Coleta de Amostras Biológicas}{9}{subsubsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.4}Revisão de Literatura (Desenho Conceitual)}{9}{subsection.5.4}%
+\contentsline {subsubsection}{\numberline {5.4.1}O Sistema NOVA e a Classificação de Alimentos Ultraprocessados}{9}{subsubsection.5.4.1}%
+\contentsline {subsubsection}{\numberline {5.4.2}AUPs e Doenças Crônicas: Mecanismos Além da Nutrição}{9}{subsubsection.5.4.2}%
+\contentsline {subsubsection}{\numberline {5.4.3}A Avaliação Simplificada do Consumo de AUPs no Brasil}{9}{subsubsection.5.4.3}%
+\contentsline {subsection}{\numberline {5.5}Desenho do Estudo e População}{10}{subsection.5.5}%
+\contentsline {subsection}{\numberline {5.6}Análise Estatística}{10}{subsection.5.6}%
+\contentsline {subsubsection}{\numberline {5.6.1}O Modelo Linear Misto (MLM)}{10}{subsubsection.5.6.1}%
+\contentsline {paragraph}{\numberline {5.6.1.1}Modelo Linear Misto para Taxa de Filtração Glomerular Estimada (TFGe)}{11}{paragraph.5.6.1.1}%
+\contentsline {subparagraph}{\numberline {5.6.1.1.1}Formulação Matemática Detalhada do Modelo Linear Misto}{11}{subparagraph.5.6.1.1.1}%
+\contentsline {subparagraph}{\numberline {5.6.1.1.2}Especificação do Modelo Aplicado à Função Renal (TFGe)}{12}{subparagraph.5.6.1.1.2}%
+\contentsline {subsubsection}{\numberline {5.6.2}2.3 Matriz de Covariância dos Efeitos Aleatórios (\(D^*\))}{12}{subsubsection.5.6.2}%
+\contentsline {subsection}{\numberline {5.7}Relevância do Estudo}{13}{subsection.5.7}%
+\contentsline {subsubsection}{\numberline {5.7.1}Relevância Científica}{13}{subsubsection.5.7.1}%
+\contentsline {subsubsection}{\numberline {5.7.2}Relevância Clínica}{13}{subsubsection.5.7.2}%
+\contentsline {subsubsection}{\numberline {5.7.3}Relevância Social}{13}{subsubsection.5.7.3}%
+\contentsline {section}{\numberline {6}Cronograma}{13}{section.6}%
+\contentsline {section}{\numberline {7}Resultados Esperados}{14}{section.7}%
+\contentsline {section}{\numberline {8}Referências Bibliográficas}{14}{section.8}%

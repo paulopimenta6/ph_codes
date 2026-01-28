@@ -7,25 +7,26 @@ output:
   word_document:
     toc: true
     number_sections: true
+  html_document:
+    toc: true
+    df_print: paged
   pdf_document:
     toc: true
     number_sections: true
     latex_engine: xelatex
-  html_document:
-    toc: true
-    df_print: paged
 fontsize: 12pt
 geometry: a4paper, top=2.5cm, left=2.5cm, right=2.5cm, bottom=2.5cm
-lang: pt
 bibliography: referencias.bib
 csl: apa.csl
-header-includes: \renewcommand{\contentsname}{Índice}
+header-includes:
+  - \usepackage{polyglossia}
+  - \setdefaultlanguage{portuguese}
+  - \renewcommand{\contentsname}{Índice}
 editor_options:
   markdown:
     wrap: 72
 ---
 
-```{=tex}
 \begin{titlepage}
     \centering
     \vspace*{\fill}
@@ -34,7 +35,12 @@ editor_options:
 
     {\bfseries\LARGE Consumo de alimentos ultraprocessados e função renal: análise da taxa de filtração glomerular no Estudo Longitudinal de Saúde do Adulto (ELSA-Brasil) \\[3cm]}
 
-    {\Large Paulo Henrique de Almeida Soares Pimenta \\[4cm]}
+    {\Large Paulo Henrique de Almeida Soares Pimenta \\[1.3cm]}
+
+{\large
+Orientadora: Profª. Dra. Lúcia da Conceição Andrade \\[0.3cm]
+Coorientadora: Profª. Dra. Tiana Carla Lopes Moreira\\[2cm]
+}
 
     {\large Projeto de Pesquisa apresentado ao Programa de Pós-Graduação em Ciências Médicas da Faculdade de Medicina da USP, como requisito para ingresso programa de mestrado da Faculdade Medcina da USP. \\[3cm]}
 
@@ -42,7 +48,7 @@ editor_options:
     {\large \today}
     \vspace*{\fill}
 \end{titlepage}
-```
+
 # Introdução
 
 A função renal desempenha um papel crucial na manutenção da homeostase
@@ -94,12 +100,12 @@ de alimentos ultraprocessados e a função renal na população brasileira o
 qual este projeto propõe avaliar através de métodos estatísticos e
 revisões sistemáticas.
 
-| **Grupo**                                   | **Descrição**                                                                                                                                                                                                               | **Exemplos**                                                                                     |
+| **Grupo** | **Descrição** | **Exemplos** |
 |--------------------|---------------------------|-------------------------|
-| **1. In natura ou minimamente processados** | Alimentos obtidos diretamente da natureza, submetidos apenas a processos simples como lavagem, refrigeração, moagem, secagem, fermentação simples ou pasteurização, **sem aditivos**.                                       | Frutas, legumes, verduras, carnes frescas, ovos, arroz, feijão, leite.                           |
-| **2. Ingredientes culinários processados**  | Substâncias extraídas do grupo 1 ou da natureza e usadas para temperar, cozinhar ou preparar alimentos. Geralmente passam por processos como prensagem, refino, moagem ou extração.                                         | Óleos vegetais, manteiga, açúcar, sal, mel.                                                      |
-| **3. Processados**                          | Produtos feitos com adição de ingredientes do grupo 2 a alimentos do grupo 1, para maior durabilidade ou modificação moderada de sabor. Normalmente têm poucos ingredientes.                                                | Pães caseiros, queijos, conservas de vegetais ou frutas.                                         |
-| **4. Ultraprocessados**                     | Formulações industriais com **ingredientes exclusivos do uso industrial**, como corantes, aromatizantes, emulsificantes e outros aditivos; frequentemente incluem técnicas que descaracterizam a matriz alimentar original. | Refrigerantes, embutidos, salgadinhos, biscoitos recheados, cereais matinais, refeições prontas. |
+| **1. In natura ou minimamente processados** | Alimentos obtidos diretamente da natureza, submetidos apenas a processos simples como lavagem, refrigeração, moagem, secagem, fermentação simples ou pasteurização, **sem aditivos**. | Frutas, legumes, verduras, carnes frescas, ovos, arroz, feijão, leite. |
+| **2. Ingredientes culinários processados** | Substâncias extraídas do grupo 1 ou da natureza e usadas para temperar, cozinhar ou preparar alimentos. Geralmente passam por processos como prensagem, refino, moagem ou extração. | Óleos vegetais, manteiga, açúcar, sal, mel. |
+| **3. Processados** | Produtos feitos com adição de ingredientes do grupo 2 a alimentos do grupo 1, para maior durabilidade ou modificação moderada de sabor. Normalmente têm poucos ingredientes. | Pães caseiros, queijos, conservas de vegetais ou frutas. |
+| **4. Ultraprocessados** | Formulações industriais com **ingredientes exclusivos do uso industrial**, como corantes, aromatizantes, emulsificantes e outros aditivos; frequentemente incluem técnicas que descaracterizam a matriz alimentar original. | Refrigerantes, embutidos, salgadinhos, biscoitos recheados, cereais matinais, refeições prontas. |
 
 **Tabela 1:** Classificação NOVA adaptada de Monteiro et al. (2019).
 Fonte: Monteiro, C.A. et al. (2019). Ultra-processed foods: what they
@@ -278,6 +284,35 @@ A UACR é um marcador de lesão renal, particularmente de albuminúria
 
 ### Variáveis de Exposição e Avaliação Dietética
 
+#### Variável de Desfecho: Função Renal (CKD-EPI)
+
+A função renal será avaliada através da Taxa de Filtração Glomerular
+estimada (TFGe), que é considerada uma ferramenta vital para o
+rastreamento populacional, decisões clínicas e monitoramento da
+progressão da Doença Renal Crônica (DRC) [@leonberg2025trends].
+
+Método de Cálculo: A TFGe será calculada a partir da creatinina sérica
+(SCr), idade e sexo, utilizando a equação do consórcio CKD-EPI (2021).
+Esta equação é preferencial por sua precisão em diferentes níveis de
+função renal e por não incluir correções baseadas em raça, evitando
+disparidades em decisões clínicas. [@leonberg2025trends; @he2024ultra].
+
+A fórmula matemática seguirá a estimativa da fórmula:
+
+$$
+TFGe = 142 \times \min\left(\frac{SCr}{k}, 1\right)^{\alpha}
+\times \max\left(\frac{SCr}{k}, 1\right)^{-1.2}
+\times 0.9938^{\text{Idade}}
+$$
+
+Onde k é 0.7 para mulheres e 0.9 para homens; α é -0.241 para mulheres e
+-0.302 para homens; e o fator_sexo é 1.012 para mulheres e 1 para
+homens [@leonberg2025trends; @he2024ultra].
+
+- Coleta da Creatinina: A creatinina sérica será determinada através de amostras de sangue coletadas após jejum noturno de 12 horas, processadas e analisadas por métodos laboratoriais padronizados, como a reação cinética de Jaffé (picrato alcalino). [@rey2021ultra].
+
+- Critérios de Definição de DRC: Indivíduos com TFGe < 60 mL/min/1,73m² serão classificados como portadores de disfunção renal persistente (Estágio G3a ou superior) [@schmidt2015cohort; @rey2021ultra; @leonberg2025trends].
+
 #### Questionário de Frequência Alimentar (QFA)
 
 O QFA é o principal instrumento utilizado em grandes estudos de coorte
@@ -360,7 +395,24 @@ adicionadas aos modelos de função renal:
 
 ### Dados Antropométricos
 
--   Índice de Massa Corporal (IMC)
+-   Índice de Massa Corporal (IMC) (kg/m²):
+Foi utilizado como indicador do estado nutricional dos participantes, sendo calculado pela razão entre o peso corporal, em quilogramas, e o quadrado da altura, em metros (kg/m²), conforme a seguinte expressão:
+
+$$
+IMC = \frac{peso\ (kg)}{altura^2\ (m)}
+$$
+A classificação do IMC seguiu os critérios estabelecidos pela Organização Mundial da Saúde (OMS), sendo categorizada da seguinte forma:
+
+-   **Baixo peso:** IMC < 18,5 kg/m²  
+-   **Eutrofia:** IMC ≥ 18,5 e < 25,0 kg/m²  
+-   **Sobrepeso:** IMC ≥ 25,0 e < 30,0 kg/m²  
+-   **Obesidade grau I:** IMC ≥ 30,0 e < 35,0 kg/m²  
+-   **Obesidade grau II:** IMC ≥ 35,0 e < 40,0 kg/m²  
+-   **Obesidade grau III:** IMC ≥ 40,0 kg/m²
+
+Essa classificação permite avaliar o excesso de peso e a obesidade, condições reconhecidas como fatores de risco para alterações metabólicas, inflamatórias e hemodinâmicas, associadas ao desenvolvimento e à progressão da Doença Renal Crônica (DRC). 
+
+-   Concentração de sódio e potássio (excreção) 
 -   Condições Clínicas e Comorbidades (Fatores de Risco para DRC):
     Dislipidemia (LDL ≥130 mg/dL ou uso de hipolipemiantes), Hipertensão
     Arterial Sistêmica (HAS) (pressão sistólica ≥ 140 mm Hg, pressão
@@ -368,7 +420,7 @@ adicionadas aos modelos de função renal:
     Mellitus (DM) (diagnóstico prévio, uso de medicação, glicose
     sanguínea ≥ 126 mg/dL, glicose 2h ≥200 mg/dL ou HbA1C ≥ 6,5%), e
     Doença Cardiovascular [@silva2021aplicacao].
--   Hábitos de Vida: Tabagismo, nível de atividade física, consumo de
+-   Hábitos de Vida: Tabagismo, nível de atividade física (IPAC), consumo de
     álcool [@silva2021aplicacao].
 
 A associação entre TFGe e fatores de risco modificáveis, como o consumo
@@ -513,14 +565,14 @@ $$
 
 Onde:
 
-| Componente   | Dimensão       | Descrição                                                                 |
+| Componente | Dimensão | Descrição |
 |--------------------------|----------------------|------------------------|
-| $Y_i$        | $n_i \times 1$ | Vetor das $n_i$ observações da TFGe para o participante $i$.              |
-| $X_i$        | $n_i \times p$ | Matriz de *design* das variáveis fixas (preditoras) para o indivíduo $i$. |
-| $\beta$      | $p \times 1$   | Vetor de **Efeitos Fixos** (parâmetros populacionais).                    |
-| $Z_i$        | $n_i \times q$ | Matriz de *design* das variáveis aleatórias para o indivíduo $i$.         |
-| $b_i$        | $q \times 1$   | Vetor de **Efeitos Aleatórios** (desvios específicos do indivíduo).       |
-| $\epsilon_i$ | $n_i \times 1$ | Vetor de erros residuais (*within-subject error term*).                   |
+| $Y_i$ | $n_i \times 1$ | Vetor das $n_i$ observações da TFGe para o participante $i$. |
+| $X_i$ | $n_i \times p$ | Matriz de *design* das variáveis fixas (preditoras) para o indivíduo $i$. |
+| $\beta$ | $p \times 1$ | Vetor de **Efeitos Fixos** (parâmetros populacionais). |
+| $Z_i$ | $n_i \times q$ | Matriz de *design* das variáveis aleatórias para o indivíduo $i$. |
+| $b_i$ | $q \times 1$ | Vetor de **Efeitos Aleatórios** (desvios específicos do indivíduo). |
+| $\epsilon_i$ | $n_i \times 1$ | Vetor de erros residuais (*within-subject error term*). |
 
 ###### Suposições da Distribuição (Second Stage Model)
 
@@ -637,14 +689,14 @@ dos custos associados a essa condição.
 
 # Cronograma
 
-| Etapa                            | 1-6 meses | 7-12 meses | 13-18 meses | 19-24 meses |
+| Etapa | 1-6 meses | 7-12 meses | 13-18 meses | 19-24 meses |
 |---------------|---------------|---------------|---------------|---------------|
-| Revisão bibliográfica            | x         |            |             |             |
-| Aprovação no Comitê de Ética     | x         |            |             |             |
-| Extração e organização dos dados |           | x          |             |             |
-| Análise estatística              |           | x          | x           |             |
-| Redação preliminar               |           |            | x           |             |
-| Revisão e defesa                 |           |            |             | x           |
+| Revisão bibliográfica | x |  |  |  |
+| Aprovação no Comitê de Ética | x |  |  |  |
+| Extração e organização dos dados |  | x |  |  |
+| Análise estatística |  | x | x |  |
+| Redação preliminar |  |  | x |  |
+| Revisão e defesa |  |  |  | x |
 
 # Resultados Esperados
 

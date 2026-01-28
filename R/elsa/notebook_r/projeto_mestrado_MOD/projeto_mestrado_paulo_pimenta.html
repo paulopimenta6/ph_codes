@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="pt" xml:lang="pt">
+<html>
 
 <head>
 
@@ -1647,7 +1647,7 @@ display: none;
 função renal: análise da taxa de filtração glomerular no Estudo
 Longitudinal de Saúde do Adulto (ELSA-Brasil)</h1>
 <h4 class="author">Paulo Henrique de Almeida Soares Pimenta</h4>
-<h4 class="date">06 de janeiro de 2026</h4>
+<h4 class="date">28 de janeiro de 2026</h4>
 
 </div>
 
@@ -1994,6 +1994,40 @@ validada <span class="citation">(Schmidt et al., 2015)</span>.</li>
 </div>
 <div id="variáveis-de-exposição-e-avaliação-dietética" class="section level3">
 <h3>Variáveis de Exposição e Avaliação Dietética</h3>
+<div id="variável-de-desfecho-função-renal-ckd-epi" class="section level4">
+<h4>Variável de Desfecho: Função Renal (CKD-EPI)</h4>
+<p>A função renal será avaliada através da Taxa de Filtração Glomerular
+estimada (TFGe), que é considerada uma ferramenta vital para o
+rastreamento populacional, decisões clínicas e monitoramento da
+progressão da Doença Renal Crônica (DRC) <span class="citation">(Leonberg et al., 2025)</span>.</p>
+<p>Método de Cálculo: A TFGe será calculada a partir da creatinina
+sérica (SCr), idade e sexo, utilizando a equação do consórcio CKD-EPI
+(2021). Esta equação é preferencial por sua precisão em diferentes
+níveis de função renal e por não incluir correções baseadas em raça,
+evitando disparidades em decisões clínicas. <span class="citation">(He
+et al., 2024; Leonberg et al., 2025)</span>.</p>
+<p>A fórmula matemática seguirá a estimativa da fórmula:</p>
+<p><span class="math display">\[
+TFGe = 142 \times \min\left(\frac{SCr}{k}, 1\right)^{\alpha}
+\times \max\left(\frac{SCr}{k}, 1\right)^{-1.2}
+\times 0.9938^{\text{Idade}}
+\]</span></p>
+<p>Onde k é 0.7 para mulheres e 0.9 para homens; α é -0.241 para
+mulheres e -0.302 para homens; e o fator_sexo é 1.012 para mulheres e 1
+para homens <span class="citation">(He et al., 2024; Leonberg et al.,
+2025)</span>.</p>
+<ul>
+<li><p>Coleta da Creatinina: A creatinina sérica será determinada
+através de amostras de sangue coletadas após jejum noturno de 12 horas,
+processadas e analisadas por métodos laboratoriais padronizados, como a
+reação cinética de Jaffé (picrato alcalino). <span class="citation">(Rey-Garcı́a et al., 2021)</span>.</p></li>
+<li><p>Critérios de Definição de DRC: Indivíduos com TFGe &lt; 60
+mL/min/1,73m² serão classificados como portadores de disfunção renal
+persistente (Estágio G3a ou superior) <span class="citation">(Leonberg
+et al., 2025; Rey-Garcı́a et al., 2021; Schmidt et al.,
+2015)</span>.</p></li>
+</ul>
+</div>
 <div id="questionário-de-frequência-alimentar-qfa" class="section level4">
 <h4>Questionário de Frequência Alimentar (QFA)</h4>
 <p>O QFA é o principal instrumento utilizado em grandes estudos de
@@ -2077,7 +2111,37 @@ qualidade geral da dieta, que pode ser correlacionada com a função renal
 <div id="dados-antropométricos" class="section level3">
 <h3>Dados Antropométricos</h3>
 <ul>
-<li>Índice de Massa Corporal (IMC)</li>
+<li>Índice de Massa Corporal (IMC) (kg/m²): Foi utilizado como indicador
+do estado nutricional dos participantes, sendo calculado pela razão
+entre o peso corporal, em quilogramas, e o quadrado da altura, em metros
+(kg/m²), conforme a seguinte expressão:</li>
+</ul>
+<p><span class="math display">\[
+IMC = \frac{peso\ (kg)}{altura^2\ (m)}
+\]</span> A classificação do IMC seguiu os critérios estabelecidos pela
+Organização Mundial da Saúde (OMS), sendo categorizada da seguinte
+forma:</p>
+<ul>
+<li><strong>Baixo peso:</strong> IMC &lt; 18,5 kg/m²<br />
+</li>
+<li><strong>Eutrofia:</strong> IMC ≥ 18,5 e &lt; 25,0 kg/m²<br />
+</li>
+<li><strong>Sobrepeso:</strong> IMC ≥ 25,0 e &lt; 30,0 kg/m²<br />
+</li>
+<li><strong>Obesidade grau I:</strong> IMC ≥ 30,0 e &lt; 35,0
+kg/m²<br />
+</li>
+<li><strong>Obesidade grau II:</strong> IMC ≥ 35,0 e &lt; 40,0
+kg/m²<br />
+</li>
+<li><strong>Obesidade grau III:</strong> IMC ≥ 40,0 kg/m²</li>
+</ul>
+<p>Essa classificação permite avaliar o excesso de peso e a obesidade,
+condições reconhecidas como fatores de risco para alterações
+metabólicas, inflamatórias e hemodinâmicas, associadas ao
+desenvolvimento e à progressão da Doença Renal Crônica (DRC).</p>
+<ul>
+<li>Concentração de sódio e potássio (excreção)</li>
 <li>Condições Clínicas e Comorbidades (Fatores de Risco para DRC):
 Dislipidemia (LDL ≥130 mg/dL ou uso de hipolipemiantes), Hipertensão
 Arterial Sistêmica (HAS) (pressão sistólica ≥ 140 mm Hg, pressão
@@ -2085,8 +2149,8 @@ diastólica ≥ 90 mm Hg ou tratamento com anti-hipertensivo), Diabetes
 Mellitus (DM) (diagnóstico prévio, uso de medicação, glicose sanguínea ≥
 126 mg/dL, glicose 2h ≥200 mg/dL ou HbA1C ≥ 6,5%), e Doença
 Cardiovascular <span class="citation">(Silva, 2021)</span>.</li>
-<li>Hábitos de Vida: Tabagismo, nível de atividade física, consumo de
-álcool <span class="citation">(Silva, 2021)</span>.</li>
+<li>Hábitos de Vida: Tabagismo, nível de atividade física (IPAC),
+consumo de álcool <span class="citation">(Silva, 2021)</span>.</li>
 </ul>
 <p>A associação entre TFGe e fatores de risco modificáveis, como o
 consumo de alimentos ultraprocessados (AUPF), tem sido consistentemente
@@ -2535,14 +2599,14 @@ multivariados de an<span>á</span>lise estat<span>ı́</span>stica.
 <div id="ref-avesani2023ultraprocessed" class="csl-entry">
 Avesani, C. M., Cuppari, L., Nerbass, F. B., Lindholm, B., &amp;
 Stenvinkel, P. (2023). Ultraprocessed foods and chronic kidney
-disease—double trouble. <em>Clinical kidney journal</em>,
+disease—double trouble. <em>Clinical Kidney Journal</em>,
 <em>16</em>(11), 1723–1736.
 </div>
 <div id="ref-cacau2025adherence" class="csl-entry">
 Cacau, L. T., Bittencourt, M. S., Santos, I. S., Lotufo, P. A.,
 Benseñor, I. M., &amp; Marchioni, D. M. (2025). Adherence to different
-EAT-Lancet diet scores and subclinical atherosclerosis: results from
-ELSA-Brasil cohort study. <em>Nutrition, Metabolism and Cardiovascular
+EAT-lancet diet scores and subclinical atherosclerosis: Results from
+ELSA-brasil cohort study. <em>Nutrition, Metabolism and Cardiovascular
 Diseases</em>, 104228.
 </div>
 <div id="ref-canhada2020ultra" class="csl-entry">
@@ -2550,46 +2614,46 @@ Canhada, S. L., Luft, V. C., Giatti, L., Duncan, B. B., Chor, D.,
 Fonseca, M. de J. M. da, Matos, S. M. A., Molina, M. del C. B., Barreto,
 S. M., Levy, R. B., et al. (2020). Ultra-processed foods, incident
 overweight and obesity, and longitudinal changes in weight and waist
-circumference: the Brazilian Longitudinal Study of Adult Health
-(ELSA-Brasil). <em>Public health nutrition</em>, <em>23</em>(6),
+circumference: The brazilian longitudinal study of adult health
+(ELSA-brasil). <em>Public Health Nutrition</em>, <em>23</em>(6),
 1076–1086.
 </div>
 <div id="ref-cecchini2025food" class="csl-entry">
 Cecchini, V., Sabatino, A., Contzen, B., &amp; Avesani, C. M. (2025).
 Food additives containing potassium, phosphorus, and sodium in
-ultra-processed foods: potential harms to individuals with chronic
+ultra-processed foods: Potential harms to individuals with chronic
 kidney disease. <em>European Journal of Clinical Nutrition</em>, 1–6.
 </div>
 <div id="ref-costa2021escore" class="csl-entry">
 Costa, C. dos S., Faria, F. R. de, Gabe, K. T., Sattamini, I. F.,
 Khandpur, N., Leite, F. H. M., Steele, E. M., Louzada, M. L. da C.,
-Levy, R. B., &amp; Monteiro, C. A. (2021). Escore Nova de consumo de
-alimentos ultraprocessados: descri<span>ç</span><span>ã</span>o e
-avalia<span>ç</span><span>ã</span>o de desempenho no Brasil. <em>Revista
+Levy, R. B., &amp; Monteiro, C. A. (2021). Escore nova de consumo de
+alimentos ultraprocessados: Descri<span>ç</span><span>ã</span>o e
+avalia<span>ç</span><span>ã</span>o de desempenho no brasil. <em>Revista
 de Sa<span>ú</span>de P<span>ú</span>blica</em>, <em>55</em>, 13.
 </div>
 <div id="ref-demidenko2013mixed" class="csl-entry">
-Demidenko, E. (2013). <em>Mixed models: theory and applications with
-R</em>. John Wiley &amp; Sons.
+Demidenko, E. (2013). <em>Mixed models: Theory and applications with
+r</em>. John Wiley &amp; Sons.
 </div>
 <div id="ref-favero2017manual" class="csl-entry">
 Fávero, L. P., &amp; Belfiore, P. (2017). <em>Manual de
-an<span>á</span>lise de dados: estat<span>ı́</span>stica e modelagem
-multivariada com Excel<span></span>, SPSS<span></span> e
-Stata<span></span></em>. Elsevier Brasil.
+an<span>á</span>lise de dados: Estat<span>ı́</span>stica e modelagem
+multivariada com excel<span></span>, SPSS<span></span> e
+stata<span></span></em>. Elsevier Brasil.
 </div>
 <div id="ref-field2012discovering" class="csl-entry">
 Field, A., Field, Z., &amp; Miles, J. (2012). <em>Discovering statistics
-using R</em>.
+using r</em>.
 </div>
 <div id="ref-gail2010statistics" class="csl-entry">
 Gail, M., Krickeberg, K., Samet, J., Tsiatis, A., &amp; Wong, W. (2010).
-<em>Statistics for Biology and Health</em>.
+<em>Statistics for biology and health</em>.
 </div>
 <div id="ref-he2024ultra" class="csl-entry">
 He, X., Zhang, X., Si, C., Feng, Y., Zhu, Q., Li, S., &amp; Shu, L.
 (2024). Ultra-processed food consumption and chronic kidney disease
-risk: a systematic review and dose–response meta-analysis. <em>Frontiers
+risk: A systematic review and dose–response meta-analysis. <em>Frontiers
 in Nutrition</em>, <em>11</em>, 1359229.
 </div>
 <div id="ref-leonberg2025trends" class="csl-entry">
@@ -2601,42 +2665,41 @@ from ultra-processed foods: NHANES at the highly granular level.
 <div id="ref-monteiro2019ultra" class="csl-entry">
 Monteiro, C. A., Cannon, G., Levy, R. B., Moubarac, J.-C., Louzada, M.
 L., Rauber, F., Khandpur, N., Cediel, G., Neri, D., Martinez-Steele, E.,
-et al. (2019). Ultra-processed foods: what they are and how to identify
-them. <em>Public health nutrition</em>, <em>22</em>(5), 936–941.
+et al. (2019). Ultra-processed foods: What they are and how to identify
+them. <em>Public Health Nutrition</em>, <em>22</em>(5), 936–941.
 </div>
 <div id="ref-naud2019consumo" class="csl-entry">
-Naud, L. M. (2019). <em>Consumo de <span>á</span>cidos graxos e
-<span>á</span>lcool e sua rela<span>ç</span><span>ã</span>o com
+Naud, L. M. (2019). <em>Consumo de <span class="nocase">á</span>cidos
+graxos e <span class="nocase">á</span>lcool e sua
+rela<span>ç</span><span>ã</span>o com
 subfra<span>ç</span><span>õ</span>es lip<span>ı́</span>dicas
 quantificadas por ultracentrifuga<span>ç</span><span>ã</span>o
-vertical</em> [Tese de doutorado]. Universidade de S<span>ã</span>o
-Paulo.
+vertical</em> [PhD thesis]. Universidade de S<span>ã</span>o Paulo.
 </div>
 <div id="ref-rey2021ultra" class="csl-entry">
 Rey-Garcı́a, J., Donat-Vargas, C., Sandoval-Insausti, H., Bayan-Bravo,
 A., Moreno-Franco, B., Banegas, J. R., Rodrı́guez-Artalejo, F., &amp;
 Guallar-Castillón, P. (2021). Ultra-processed food consumption is
-associated with renal function decline in older adults: a prospective
+associated with renal function decline in older adults: A prospective
 cohort study. <em>Nutrients</em>, <em>13</em>(2), 428.
 </div>
 <div id="ref-schmidt2015cohort" class="csl-entry">
 Schmidt, M. I., Duncan, B. B., Mill, J. G., Lotufo, P. A., Chor, D.,
 Barreto, S. M., Aquino, E. M., Passos, V. M. A., Matos, S. M., Molina,
-M. del C. B., et al. (2015). Cohort profile: longitudinal study of adult
-health (ELSA-Brasil). <em>International journal of epidemiology</em>,
+M. del C. B., et al. (2015). Cohort profile: Longitudinal study of adult
+health (ELSA-brasil). <em>International Journal of Epidemiology</em>,
 <em>44</em>(1), 68–75.
 </div>
 <div id="ref-silva2017aposentadoria" class="csl-entry">
 Silva, V. C. da. (2017). <em>Aposentadoria,
-alimenta<span>ç</span><span>ã</span>o e fatores de risco <span>à</span>
-sa<span>ú</span>de no Estudo Longitudinal de Sa<span>ú</span>de do
-Adulto (ELSA-Brasil)</em> [Tese de doutorado]. Universidade de
-S<span>ã</span>o Paulo.
+alimenta<span>ç</span><span>ã</span>o e fatores de risco <span class="nocase">à</span> sa<span>ú</span>de no estudo longitudinal de
+sa<span>ú</span>de do adulto (ELSA-brasil)</em> [PhD thesis].
+Universidade de S<span>ã</span>o Paulo.
 </div>
 <div id="ref-silva2021aplicacao" class="csl-entry">
 Silva, V. C. da. (2021). <em>Aplicação de algoritmos de machine learning
-na avaliação do consumo alimentar: resultados da linha de base do Estudo
-Longitudinal de Saúde do Adulto (ELSA-Brasil)</em> [Tese de doutorado].
+na avaliação do consumo alimentar: Resultados da linha de base do estudo
+longitudinal de saúde do adulto (ELSA-brasil)</em> [PhD thesis].
 Universidade de São Paulo.
 </div>
 <div id="ref-singer1986analise" class="csl-entry">
@@ -2648,8 +2711,8 @@ e Estat<span>ı́</span>stica</em>, <em>7</em>.
 Srour, B., Fezeu, L. K., Kesse-Guyot, E., Allès, B., Méjean, C.,
 Andrianasolo, R. M., Chazelas, E., Deschasaux, M., Hercberg, S., Galan,
 P., et al. (2019). Ultra-processed food intake and risk of
-cardiovascular disease: prospective cohort study
-(NutriNet-Sant<span>é</span>). <em>bmj</em>, <em>365</em>.
+cardiovascular disease: Prospective cohort study
+(NutriNet-sant<span>é</span>). <em>Bmj</em>, <em>365</em>.
 </div>
 </div>
 </div>
