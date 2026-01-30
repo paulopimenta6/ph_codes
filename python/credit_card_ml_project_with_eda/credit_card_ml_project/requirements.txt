@@ -106,7 +106,7 @@ PySocks @ file:///home/conda/feedstock_root/build_artifacts/pysocks_173321723672
 pytest==8.4.2
 python-dateutil==2.8.2
 python-json-logger @ file:///home/conda/feedstock_root/build_artifacts/python-json-logger_1677079630776/work
-python-multipart==0.0.20
+python-multipart==0.0.22
 pytz @ file:///home/conda/feedstock_root/build_artifacts/pytz_1742920838005/work
 PyWavelets==1.4.1
 PyYAML @ file:///home/conda/feedstock_root/build_artifacts/pyyaml_1648757090803/work
