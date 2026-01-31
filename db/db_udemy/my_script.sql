@@ -115,5 +115,6 @@ INSERT INTO telefone(idtelefone, tipo, numero, id_cliente) VALUES(NULL, "cel", "
 INSERT INTO telefone(idtelefone, tipo, numero, id_cliente) VALUES(NULL, "com", "66687899", 1);
 INSERT INTO telefone(idtelefone, tipo, numero, id_cliente) VALUES(NULL, "res", "89986668", 5);
 INSERT INTO telefone(idtelefone, tipo, numero, id_cliente) VALUES(NULL, "cel", "88687909", 2);
-
+-- verificando os dados inseridos
+select * from telefone;
 
