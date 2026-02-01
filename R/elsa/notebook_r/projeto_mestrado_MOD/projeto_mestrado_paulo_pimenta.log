@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2026.1.28)  28 JAN 2026 03:33
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2026.1.28)  1 FEB 2026 19:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -960,8 +960,12 @@ Overfull \hbox (33.34894pt too wide) detected at line 907
  []
 
 [12]
+Overfull \hbox (30.39243pt too wide) in paragraph at lines 1034--1034
+[]|\TU/lmr/m/n/12 submissão/publicação 
+ []
+
 ignored error: Infinite glue shrinkage found in box being split [13]
-Underfull \hbox (badness 1024) in paragraph at lines 1038--1046
+Underfull \hbox (badness 1024) in paragraph at lines 1039--1047
 \TU/lmr/m/n/12 Com base na hipótese formulada e na metodologia proposta, espera-- se que este
  []
 
@@ -974,7 +978,7 @@ L3 programming layer <2026-01-19>
 Here is how much of TeX's memory you used:
  17827 strings out of 470190
  328510 string characters out of 5478762
- 902367 words of memory out of 5000000
+ 902369 words of memory out of 5000000
  46200 multiletter control sequences out of 15000+600000
  634158 words of font info for 92 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191

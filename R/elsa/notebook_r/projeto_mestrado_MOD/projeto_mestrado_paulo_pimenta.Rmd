@@ -7,13 +7,13 @@ output:
   word_document:
     toc: true
     number_sections: true
-  html_document:
-    toc: true
-    df_print: paged
   pdf_document:
     toc: true
     number_sections: true
     latex_engine: xelatex
+  html_document:
+    toc: true
+    df_print: paged
 fontsize: 12pt
 geometry: a4paper, top=2.5cm, left=2.5cm, right=2.5cm, bottom=2.5cm
 bibliography: referencias.bib
@@ -306,12 +306,18 @@ TFGe = 142 \times \min\left(\frac{SCr}{k}, 1\right)^{\alpha}
 $$
 
 Onde k é 0.7 para mulheres e 0.9 para homens; α é -0.241 para mulheres e
--0.302 para homens; e o fator_sexo é 1.012 para mulheres e 1 para
-homens [@leonberg2025trends; @he2024ultra].
+-0.302 para homens; e o fator_sexo é 1.012 para mulheres e 1 para homens
+[@leonberg2025trends; @he2024ultra].
 
-- Coleta da Creatinina: A creatinina sérica será determinada através de amostras de sangue coletadas após jejum noturno de 12 horas, processadas e analisadas por métodos laboratoriais padronizados, como a reação cinética de Jaffé (picrato alcalino). [@rey2021ultra].
+-   Coleta da Creatinina: A creatinina sérica será determinada através
+    de amostras de sangue coletadas após jejum noturno de 12 horas,
+    processadas e analisadas por métodos laboratoriais padronizados,
+    como a reação cinética de Jaffé (picrato alcalino). [@rey2021ultra].
 
-- Critérios de Definição de DRC: Indivíduos com TFGe < 60 mL/min/1,73m² serão classificados como portadores de disfunção renal persistente (Estágio G3a ou superior) [@schmidt2015cohort; @rey2021ultra; @leonberg2025trends].
+-   Critérios de Definição de DRC: Indivíduos com TFGe \< 60
+    mL/min/1,73m² serão classificados como portadores de disfunção renal
+    persistente (Estágio G3a ou superior) [@schmidt2015cohort;
+    @rey2021ultra; @leonberg2025trends].
 
 #### Questionário de Frequência Alimentar (QFA)
 
@@ -395,24 +401,30 @@ adicionadas aos modelos de função renal:
 
 ### Dados Antropométricos
 
--   Índice de Massa Corporal (IMC) (kg/m²):
-Foi utilizado como indicador do estado nutricional dos participantes, sendo calculado pela razão entre o peso corporal, em quilogramas, e o quadrado da altura, em metros (kg/m²), conforme a seguinte expressão:
+-   Índice de Massa Corporal (IMC) (kg/m²): Foi utilizado como indicador
+    do estado nutricional dos participantes, sendo calculado pela razão
+    entre o peso corporal, em quilogramas, e o quadrado da altura, em
+    metros (kg/m²), conforme a seguinte expressão:
 
 $$
 IMC = \frac{peso\ (kg)}{altura^2\ (m)}
-$$
-A classificação do IMC seguiu os critérios estabelecidos pela Organização Mundial da Saúde (OMS), sendo categorizada da seguinte forma:
+$$ A classificação do IMC seguiu os critérios estabelecidos pela
+Organização Mundial da Saúde (OMS), sendo categorizada da seguinte
+forma:
 
--   **Baixo peso:** IMC < 18,5 kg/m²  
--   **Eutrofia:** IMC ≥ 18,5 e < 25,0 kg/m²  
--   **Sobrepeso:** IMC ≥ 25,0 e < 30,0 kg/m²  
--   **Obesidade grau I:** IMC ≥ 30,0 e < 35,0 kg/m²  
--   **Obesidade grau II:** IMC ≥ 35,0 e < 40,0 kg/m²  
+-   **Baixo peso:** IMC \< 18,5 kg/m²\
+-   **Eutrofia:** IMC ≥ 18,5 e \< 25,0 kg/m²\
+-   **Sobrepeso:** IMC ≥ 25,0 e \< 30,0 kg/m²\
+-   **Obesidade grau I:** IMC ≥ 30,0 e \< 35,0 kg/m²\
+-   **Obesidade grau II:** IMC ≥ 35,0 e \< 40,0 kg/m²\
 -   **Obesidade grau III:** IMC ≥ 40,0 kg/m²
 
-Essa classificação permite avaliar o excesso de peso e a obesidade, condições reconhecidas como fatores de risco para alterações metabólicas, inflamatórias e hemodinâmicas, associadas ao desenvolvimento e à progressão da Doença Renal Crônica (DRC). 
+Essa classificação permite avaliar o excesso de peso e a obesidade,
+condições reconhecidas como fatores de risco para alterações
+metabólicas, inflamatórias e hemodinâmicas, associadas ao
+desenvolvimento e à progressão da Doença Renal Crônica (DRC).
 
--   Concentração de sódio e potássio (excreção) 
+-   Concentração de sódio e potássio (excreção urinária)
 -   Condições Clínicas e Comorbidades (Fatores de Risco para DRC):
     Dislipidemia (LDL ≥130 mg/dL ou uso de hipolipemiantes), Hipertensão
     Arterial Sistêmica (HAS) (pressão sistólica ≥ 140 mm Hg, pressão
@@ -420,8 +432,8 @@ Essa classificação permite avaliar o excesso de peso e a obesidade, condiçõe
     Mellitus (DM) (diagnóstico prévio, uso de medicação, glicose
     sanguínea ≥ 126 mg/dL, glicose 2h ≥200 mg/dL ou HbA1C ≥ 6,5%), e
     Doença Cardiovascular [@silva2021aplicacao].
--   Hábitos de Vida: Tabagismo, nível de atividade física (IPAC), consumo de
-    álcool [@silva2021aplicacao].
+-   Hábitos de Vida: Tabagismo, nível de atividade física (IPAC),
+    consumo de álcool [@silva2021aplicacao].
 
 A associação entre TFGe e fatores de risco modificáveis, como o consumo
 de alimentos ultraprocessados (AUPF), tem sido consistentemente
@@ -697,6 +709,7 @@ dos custos associados a essa condição.
 | Análise estatística |  | x | x |  |
 | Redação preliminar |  |  | x |  |
 | Revisão e defesa |  |  |  | x |
+| submissão/publicação do artigo gerado |  |  |  | x |
 
 # Resultados Esperados
 
