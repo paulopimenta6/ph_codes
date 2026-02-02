@@ -21,6 +21,30 @@ Linear Mixed-Effects Models will be used to assess the longitudinal association 
 
 Outcomes include estimated glomerular filtration rate, serum creatinine, and urinary albumin-to-creatinine ratio. The main exposure variable is ultra-processed food consumption, classified according to the NOVA system and expressed as a percentage of total energy intake. Covariates encompass sociodemographic, anthropometric, clinical, and lifestyle characteristics.
 
+- Sociodemographic Variables
+
+Sociodemographic characteristics were obtained through standardized interviews conducted as part of the ELSA-Brasil protocol. Age was treated as a continuous variable and expressed in years at baseline. Sex was analyzed as a categorical variable (male/female) and was also used in the estimation of kidney function. These variables were considered essential confounders in all analytical models evaluating renal function decline. 
+
+- Clinical Variables
+
+Clinical variables were collected through standardized medical examinations, laboratory tests, and validated questionnaires. Kidney function was assessed using estimated glomerular filtration rate (eGFR), calculated based on serum creatinine levels, age, and sex using the CKD-EPI equation (2021). Chronic kidney disease (CKD) was defined as an eGFR < 60 mL/min/1.73 m² or elevated urinary albumin-to-creatinine ratio.
+
+Serum creatinine (SCr) was measured from fasting blood samples using standardized laboratory methods, and changes in renal function were evaluated longitudinally. Urinary albumin-to-creatinine ratio (UACR) was obtained from validated overnight urine collections, with elevated UACR defined as ≥ 30 mg/g.
+
+Clinical comorbidities considered as risk factors for CKD included hypertension (systolic blood pressure ≥ 140 mmHg, diastolic blood pressure ≥ 90 mmHg, or use of antihypertensive medication), diabetes mellitus (previous diagnosis, use of antidiabetic medication, fasting glucose ≥ 126 mg/dL, 2-hour glucose ≥ 200 mg/dL, or HbA1c ≥ 6.5%), dyslipidemia (LDL cholesterol ≥ 130 mg/dL or use of lipid-lowering medication), and cardiovascular disease.
+
+Lifestyle-related clinical variables included smoking status, alcohol consumption, and level of physical activity, assessed using validated instruments, including the International Physical Activity Questionnaire (IPAQ).
+
+- Anthropometric Variables
+
+Anthropometric measurements were obtained using standardized procedures. Body mass index (BMI) was calculated as body weight in kilograms divided by height in meters squared (kg/m²). BMI was categorized according to World Health Organization criteria as underweight (< 18.5 kg/m²), normal weight (18.5–24.9 kg/m²), overweight (25.0–29.9 kg/m²), and obesity grades I (30.0–34.9 kg/m²), II (35.0–39.9 kg/m²), and III (≥ 40.0 kg/m²).
+
+Additionally, urinary sodium and potassium excretion were included as biomarkers related to dietary intake and renal function, providing complementary information on electrolyte balance and kidney health.
+
+- Dietary Exposure Variables (Contextual Adjustment)
+
+Dietary exposure was assessed using a validated semi-quantitative food frequency questionnaire (FFQ). Ultra-processed food (UPF) consumption was classified according to the NOVA food classification system and expressed as the percentage of total daily energy intake derived from UPFs. Nutrient intake estimates were adjusted for total energy intake using the residual method. Dietary quality indices and dietary patterns were also derived and included in multivariable models as appropriate.
+
 **Expected relevance**
 
 This study may provide robust national evidence on the role of ultra-processed food consumption in renal function decline, contributing to epidemiological knowledge and supporting clinical practice and public health policies aimed at CKD prevention through healthier dietary patterns.

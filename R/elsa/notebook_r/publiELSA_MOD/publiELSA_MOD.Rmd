@@ -1,0 +1,75 @@
+---
+output:
+  word_document: default
+  html_document: default
+  pdf_document: default
+---
+```{r setup, include=FALSE}
+Sys.setlocale("LC_TIME", "en_US.UTF-8")
+```
+
+---
+title: "Ultra-processed food consumption and renal function decline in ELSA-Brasil"
+author: "Paulo Henrique de Almeida Soares Pimenta"
+date: "`r format(Sys.Date(), '%B %d, %Y')`"
+---
+
+## Background
+
+Chronic Kidney Disease (CKD) is a major public health problem worldwide, associated with high morbidity, mortality, and substantial economic burden. Estimated glomerular filtration rate (eGFR) is the primary clinical marker of renal function, and its progressive decline represents a key pathway to advanced stages of CKD. Over recent decades, there has been a marked increase in the consumption of ultra-processed foods (UPF), as defined by the NOVA classification system in Brazil and around the world. Evidence from observational studies, systematic reviews, and meta-analyses suggests that diets rich in UPF are associated with impaired renal function and increased risk of CKD. However, longitudinal studies addressing this association in Brazilian populations remain scarce. In this context, the Brazilian Longitudinal Study of Adult Health (ELSA-Brasil) provides a unique opportunity to investigate the relationship between UPF consumption and renal function trajectories in a large national cohort.
+
+## Research questions / hypotheses
+
+This study aims to investigate the longitudinal association between ultra-processed food consumption and renal function decline. We hypothesize that higher UPF consumption correlates with lower baseline eGFR and a faster decline in renal function over time. Furthermore,  we anticipate that this association will remain after adjusting for other factors, such as sociodemographic, clinical, and behavioral factors, and to vary across clinical subgroups such as hypertension, diabetes mellitus, and obesity.
+
+## Statistical analysis
+
+Linear Mixed-Effects Models will be used to assess the longitudinal association between UPF consumption, expressed as a percentage of total energy intake, and eGFR trajectories across ELSA-Brasil waves. Models will include random intercepts and slopes at the individual level, allowing for interindividual heterogeneity in baseline renal function and rate of decline. Crude and multivariable-adjusted models will be fitted, controlling for age, sex, income, body mass index, hypertension, diabetes mellitus, dyslipidemia, smoking status, alcohol consumption, and physical activity. Model adequacy will be evaluated using information criteria and residual diagnostics.
+
+## Variables
+
+Outcomes include estimated glomerular filtration rate, serum creatinine, and urinary albumin-to-creatinine ratio. The main exposure variable is ultra-processed food consumption, classified according to the NOVA system and expressed as a percentage of total energy intake. Covariates encompass sociodemographic, anthropometric, clinical, and lifestyle characteristics.
+
+### Sociodemographic Variables
+
+Sociodemographic characteristics were obtained through standardized interviews conducted as part of the ELSA-Brasil protocol. Age was treated as a continuous variable and expressed in years at baseline. Sex was analyzed as a categorical variable (male/female) and was also used in the estimation of kidney function. These variables were considered essential confounders in all analytical models evaluating renal function decline.
+
+### Clinical Variables
+
+Clinical variables were collected through standardized medical examinations, laboratory tests, and validated questionnaires. Kidney function was assessed using estimated glomerular filtration rate (eGFR), calculated based on serum creatinine levels, age, and sex using the CKD-EPI equation (2021). Chronic kidney disease (CKD) was defined as an eGFR $< 60$ mL/min/1.73 m² or elevated urinary albumin-to-creatinine ratio.
+
+Serum creatinine (SCr) was measured from fasting blood samples using standardized laboratory methods, and changes in renal function were evaluated longitudinally. Urinary albumin-to-creatinine ratio (UACR) was obtained from validated overnight urine collections, with elevated UACR defined as $\geq$ 30 mg/g.
+
+Clinical comorbidities considered as risk factors for CKD included hypertension (systolic blood pressure $\geq$ 140 mmHg, diastolic blood pressure $\geq$ 90 mmHg, or use of antihypertensive medication), diabetes mellitus (previous diagnosis, use of antidiabetic medication, fasting glucose $\geq$ 126 mg/dL, 2-hour glucose $\geq$ 200 mg/dL, or HbA1c $\geq$ 6.5%), dyslipidemia (LDL cholesterol $\geq$ 130 mg/dL or use of lipid-lowering medication), and cardiovascular disease.
+
+Lifestyle-related clinical variables included smoking status, alcohol consumption, and level of physical activity, assessed using validated instruments, including the International Physical Activity Questionnaire (IPAQ).
+
+### Anthropometric Variables
+
+Anthropometric measurements were obtained using standardized procedures. Body mass index (BMI) was calculated as body weight in kilograms divided by height in meters squared (kg/m²). BMI was categorized according to World Health Organization criteria as underweight ($< 18.5$ kg/m²), normal weight (18.5–24.9 kg/m²), overweight (25.0–29.9 kg/m²), and obesity grades I (30.0–34.9 kg/m²), II (35.0–39.9 kg/m²), and III ($\geq$ 40.0 kg/m²).
+
+Additionally, urinary sodium and potassium excretion were included as biomarkers related to dietary intake and renal function, providing complementary information on electrolyte balance and kidney health.
+
+### Dietary Exposure Variables
+
+Dietary exposure was assessed using a validated semi-quantitative food frequency questionnaire (FFQ). Ultra-processed food (UPF) consumption was classified according to the NOVA food classification system and expressed as the percentage of total daily energy intake derived from UPFs. Nutrient intake estimates were adjusted for total energy intake using the residual method. Dietary quality indices and dietary patterns were also derived and included in multivariable models as appropriate.
+
+## Expected relevance
+
+This study may provide robust national evidence on the role of ultra-processed food consumption in renal function decline, contributing to epidemiological knowledge and supporting clinical practice and public health policies aimed at CKD prevention through healthier dietary patterns.
+
+## References
+
+1. Monteiro CA et al. Ultra-processed foods: what they are and how to identify them. *Public Health Nutrition*, 2019.
+
+2. Canhada SL et al. Ultra-processed foods and longitudinal changes in weight: ELSA-Brasil. *Public Health Nutrition*, 2020.
+
+3. Costa CS et al. NOVA score for ultra-processed food consumption in Brazil. *Revista de Saúde Pública*, 2021.
+
+4. Rey-García J et al. Ultra-processed food consumption and renal function decline. *Nutrients*, 2021.
+
+5. Avesani CM et al. Ultra-processed foods and chronic kidney disease. *Clinical Kidney Journal*, 2023.
+
+6. He X et al. Ultra-processed food consumption and CKD risk: systematic review and meta-analysis. *Frontiers in Nutrition*, 2024.
+
+7. Leonberg KE et al. Trends in CKD and calories from ultra-processed foods. *Discover Public Health*, 2025.
