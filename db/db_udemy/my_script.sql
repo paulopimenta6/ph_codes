@@ -30,7 +30,7 @@ INSERT INTO cliente VALUES('ANA','F','ANA@GLOBO.COM',85548962,'548556985','PRES 
 INSERT INTO cliente(NOME,SEXO,ENDERECO,TELEFONE,CPF) VALUES('CLARA','F','SENADOR SOARES - TIJUCA - RIO DE JANEIRO - RJ','883665843',999999999);
 INSERT INTO cliente(NOME,SEXO,ENDERECO,TELEFONE,CPF) 
 VALUES('CLARA','F','SENADOR SOARES - TIJUCA - RIO DE JANEIRO - RJ','883665843',222222222);
-
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 /*Criando uma nova tabela usando foreign key*/
 create database comercio;
 use comercio;
@@ -82,8 +82,7 @@ insert into cliente(idcliente, nome, sexo, email, cpf) values(NULL, "Carlos", "M
 insert into cliente(idcliente, nome, sexo, email, cpf) values(NULL, "Ana", "F", "ana@ig.com", "456545678");
 insert into cliente(idcliente, nome, sexo, email, cpf) values(NULL, "Clara", "F", NULL, "5687766856");
 insert into cliente(idcliente, nome, sexo, email, cpf) values(NULL, "Jorge", "M", "jorge@ig.com", "8756547688");
-insert into cliente(idcliente, nome, sexo, email, cpf) values(NULL, "Celia", "M", "jcelia@ig.com", "5767876889"); 
-
+insert into cliente(idcliente, nome, sexo, email, cpf) values(NULL, "Celia", "M", "jcelia@ig.com", "5767876889");
 -- verificando os dados inseridos
 select * from cliente;
 -- select usando count para verificar os grupos diferentes
@@ -103,7 +102,6 @@ insert into endereco(idendereco, rua, bairro, cidade, estado, id_cliente) values
 insert into endereco(idendereco, rua, bairro, cidade, estado, id_cliente) values(NULL, "Rua da Alfandega", "Centro", "Sao Paulo", "SP", 5);
 -- verificando os dados inseridos
 select * from endereco;
-
 -- inserindo os dados na tabela telefone
 insert into telefone(idtelefone, tipo, numero, id_cliente) values(NULL, "cel", "78458743", 5);
 insert into telefone(idtelefone, tipo, numero, id_cliente) values(NULL, "res", "56576876", 5);
@@ -115,6 +113,69 @@ INSERT INTO telefone(idtelefone, tipo, numero, id_cliente) VALUES(NULL, "cel", "
 INSERT INTO telefone(idtelefone, tipo, numero, id_cliente) VALUES(NULL, "com", "66687899", 1);
 INSERT INTO telefone(idtelefone, tipo, numero, id_cliente) VALUES(NULL, "res", "89986668", 5);
 INSERT INTO telefone(idtelefone, tipo, numero, id_cliente) VALUES(NULL, "cel", "88687909", 2);
+/* Usando delete */
+INSERT INTO cliente VALUES(NULL,'XXX','M',NULL,'XXX');
+SELECT * FROM cliente
+WHERE IDCLIENTE = 8;
+
+DELETE FROM CLIENTE WHERE idcliente = 8;
 -- verificando os dados inseridos
 select * from telefone;
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+-- Exercicio DML
+use comercio;
+select * from cliente;
+-- Inserindo novos clientes
+INSERT INTO cliente VALUES(NULL,'FLAVIO','M','FLAVIO@IG.COM','4657765');
+INSERT INTO cliente VALUES(NULL,'ANDRE','M','ANDRE@GLOBO.COM','7687567');
+INSERT INTO cliente VALUES(NULL,'GIOVANA','F',NULL,'0876655');
+INSERT INTO cliente VALUES(NULL,'KARLA','M','KARLA@GMAIL.COM','545676778');
+INSERT INTO cliente VALUES(NULL,'DANIELE','M','DANIELE@GMAIL.COM','43536789');
+INSERT INTO cliente VALUES(NULL,'LORENA','M',NULL,'774557887');
+INSERT INTO cliente VALUES(NULL,'EDUARDO','M',NULL,'54376457');
+INSERT INTO cliente VALUES(NULL,'ANTONIO','F','ANTONIO@IG.COM','12436767');
+INSERT INTO cliente VALUES(NULL,'ANTONIO','M','ANTONIO@UOL.COM','3423565');
+INSERT INTO cliente VALUES(NULL,'ELAINE','M','ELAINE@GLOBO.COM','32567763');
+INSERT INTO cliente VALUES(NULL,'CARMEM','M','CARMEM@IG.COM','787832213');
+INSERT INTO cliente VALUES(NULL,'ADRIANA','F','ADRIANA@GMAIL.COM','88556942');
+INSERT INTO cliente VALUES(NULL,'JOICE','F','JOICE@GMAIL.COM','55412256');
+-- Inserindo os enderecos dos clientes
+INSERT INTO endereco VALUES(NULL,'RUA GUEDES','CASCADURA','B. HORIZONTE','MG',9);
+INSERT INTO endereco VALUES(NULL,'RUA MAIA LACERDA','ESTACIO','RIO DE JANEIRO','RJ',10);
+INSERT INTO endereco VALUES(NULL,'RUA VISCONDESSA','CENTRO','RIO DE JANEIRO','RJ',11);
+INSERT INTO endereco VALUES(NULL,'RUA NELSON MANDELA','COPACABANA','RIO DE JANEIRO','RJ',12);
+INSERT INTO endereco VALUES(NULL,'RUA ARAUJO LIMA','CENTRO','VITORIA','ES',13);
+INSERT INTO endereco VALUES(NULL,'RUA CASTRO ALVES','LEBLON','RIO DE JANEIRO','RJ',14);
+INSERT INTO endereco VALUES(NULL,'AV CAPITAO ANTUNES','CENTRO','CURITIBA','PR',15);
+INSERT INTO endereco VALUES(NULL,'AV CARLOS BARROSO','JARDINS','SAO PAULO','SP',16);
+INSERT INTO endereco VALUES(NULL,'ALAMEDA SAMPAIO','BOM RETIRO','CURITIBA','PR',17);
+INSERT INTO endereco VALUES(NULL,'RUA DA LAPA','LAPA','SAO PAULO','SP',18);
+INSERT INTO endereco VALUES(NULL,'RUA GERONIMO','CENTRO','RIO DE JANEIRO','RJ',19);
+INSERT INTO endereco VALUES(NULL,'RUA GOMES FREIRE','CENTRO','RIO DE JANEIRO','RJ',20);
+INSERT INTO endereco VALUES(NULL,'RUA GOMES FREIRE','CENTRO','RIO DE JANEIRO','RJ',21);
+-- Inserindo telefone para os clientes 
+INSERT INTO telefone VALUES(NULL,'RES','68976565',9);
+INSERT INTO telefone VALUES(NULL,'CEL','99656675',9);
+INSERT INTO telefone VALUES(NULL,'CEL','33567765',11);
+INSERT INTO telefone VALUES(NULL,'CEL','88668786',11);
+INSERT INTO telefone VALUES(NULL,'COM','55689654',11);
+INSERT INTO telefone VALUES(NULL,'COM','88687979',12);
+INSERT INTO telefone VALUES(NULL,'COM','88965676',13);
+INSERT INTO telefone VALUES(NULL,'CEL','89966809',15);
+INSERT INTO telefone VALUES(NULL,'COM','88679978',16);
+INSERT INTO telefone VALUES(NULL,'CEL','99655768',17);
+INSERT INTO telefone VALUES(NULL,'RES','89955665',18);
+INSERT INTO telefone VALUES(NULL,'RES','77455786',19);
+INSERT INTO telefone VALUES(NULL,'RES','89766554',19);
+INSERT INTO telefone VALUES(NULL,'RES','77755785',20);
+INSERT INTO telefone VALUES(NULL,'COM','44522578',20);
+INSERT INTO telefone VALUES(NULL,'CEL','44522578',21);
+-- Exercicio
+-- Relatorio geral de todos os clientes
+-- Relatorio de homens
+-- relatorio de mulheres
+-- Quantidade de homens e mulheres
+-- ids e email das mulheres que morem no centro do Rio de Janeiro e Não tenham celular 
+
+
 
