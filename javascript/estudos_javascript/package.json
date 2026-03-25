@@ -143,7 +143,7 @@
     "path-exists": "^4.0.0",
     "path-parse": "^1.0.7",
     "picocolors": "^1.0.0",
-    "picomatch": "^2.3.1",
+    "picomatch": "^2.3.2",
     "pkg-dir": "^4.2.0",
     "pirates": "^4.0.5",
     "pretty-format": "^28.1.1",
