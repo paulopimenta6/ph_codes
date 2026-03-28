@@ -172,10 +172,195 @@ INSERT INTO telefone VALUES(NULL,'COM','44522578',20);
 INSERT INTO telefone VALUES(NULL,'CEL','44522578',21);
 -- Exercicio
 -- Relatorio geral de todos os clientes
+use comercio;
+desc cliente;
+desc endereco;
+desc telefone;
 -- Relatorio de homens
+select c.idcliente, c.nome, c.email, c.cpf,
+       e.rua, e.bairro, e.cidade, e.estado,
+       t.tipo, t.numero
+from cliente c
+inner join endereco e
+on c.idcliente = e.id_cliente
+inner join telefone t
+on c.idcliente = t.id_cliente;
+/*
++-----------+---------+-------------------+-------------+--------------------+------------+----------------+--------+------+----------+
+| idcliente | nome    | email             | cpf         | rua                | bairro     | cidade         | estado | tipo | numero   |
++-----------+---------+-------------------+-------------+--------------------+------------+----------------+--------+------+----------+
+|         1 | Joao    | joaoa@ig.com      | 76567587887 | Rua Capitao Hermes | Centro     | Rio de Janeiro | RJ     | cel  | 87866896 |
+|         1 | Joao    | joaoa@ig.com      | 76567587887 | Rua Capitao Hermes | Centro     | Rio de Janeiro | RJ     | res  | 99667587 |
+|         1 | Joao    | joaoa@ig.com      | 76567587887 | Rua Capitao Hermes | Centro     | Rio de Janeiro | RJ     | com  | 66687899 |
+|         3 | Ana     | ana@ig.com        | 456545678   | Rua Pres. Vargas   | Jardins    | Sao Paulo      | SP     | cel  | 78989765 |
+|         3 | Ana     | ana@ig.com        | 456545678   | Rua Pres. Vargas   | Jardins    | Sao Paulo      | SP     | cel  | 99766676 |
+|         2 | Carlos  | carlosa@ig.com    | 5464553466  | Rua da Alfandega   | Estacio    | Rio de Janeiro | RJ     | com  | 54768899 |
+|         2 | Carlos  | carlosa@ig.com    | 5464553466  | Rua da Alfandega   | Estacio    | Rio de Janeiro | RJ     | cel  | 88687909 |
+|         5 | Jorge   | jorge@ig.com      | 8756547688  | Rua da Uruguaiana  | Centro     | Vitoria        | ES     | cel  | 78458743 |
+|         5 | Jorge   | jorge@ig.com      | 8756547688  | Rua da Uruguaiana  | Centro     | Vitoria        | ES     | res  | 56576876 |
+|         5 | Jorge   | jorge@ig.com      | 8756547688  | Rua da Uruguaiana  | Centro     | Vitoria        | ES     | res  | 89986668 |
+|         9 | FLAVIO  | FLAVIO@IG.COM     | 4657765     | RUA GUEDES         | CASCADURA  | B. HORIZONTE   | MG     | res  | 68976565 |
+|         9 | FLAVIO  | FLAVIO@IG.COM     | 4657765     | RUA GUEDES         | CASCADURA  | B. HORIZONTE   | MG     | cel  | 99656675 |
+|        11 | GIOVANA | NULL              | 0876655     | RUA VISCONDESSA    | CENTRO     | RIO DE JANEIRO | RJ     | cel  | 33567765 |
+|        11 | GIOVANA | NULL              | 0876655     | RUA VISCONDESSA    | CENTRO     | RIO DE JANEIRO | RJ     | cel  | 88668786 |
+|        11 | GIOVANA | NULL              | 0876655     | RUA VISCONDESSA    | CENTRO     | RIO DE JANEIRO | RJ     | com  | 55689654 |
+|        12 | KARLA   | KARLA@GMAIL.COM   | 545676778   | RUA NELSON MANDELA | COPACABANA | RIO DE JANEIRO | RJ     | com  | 88687979 |
+|        13 | DANIELE | DANIELE@GMAIL.COM | 43536789    | RUA ARAUJO LIMA    | CENTRO     | VITORIA        | ES     | com  | 88965676 |
+|        15 | EDUARDO | NULL              | 54376457    | AV CAPITAO ANTUNES | CENTRO     | CURITIBA       | PR     | cel  | 89966809 |
+|        16 | ANTONIO | ANTONIO@IG.COM    | 12436767    | AV CARLOS BARROSO  | JARDINS    | SAO PAULO      | SP     | com  | 88679978 |
+|        17 | ANTONIO | ANTONIO@UOL.COM   | 3423565     | ALAMEDA SAMPAIO    | BOM RETIRO | CURITIBA       | PR     | cel  | 99655768 |
+|        18 | ELAINE  | ELAINE@GLOBO.COM  | 32567763    | RUA DA LAPA        | LAPA       | SAO PAULO      | SP     | res  | 89955665 |
+|        19 | CARMEM  | CARMEM@IG.COM     | 787832213   | RUA GERONIMO       | CENTRO     | RIO DE JANEIRO | RJ     | res  | 77455786 |
+|        19 | CARMEM  | CARMEM@IG.COM     | 787832213   | RUA GERONIMO       | CENTRO     | RIO DE JANEIRO | RJ     | res  | 89766554 |
+|        20 | ADRIANA | ADRIANA@GMAIL.COM | 88556942    | RUA GOMES FREIRE   | CENTRO     | RIO DE JANEIRO | RJ     | res  | 77755785 |
+|        20 | ADRIANA | ADRIANA@GMAIL.COM | 88556942    | RUA GOMES FREIRE   | CENTRO     | RIO DE JANEIRO | RJ     | com  | 44522578 |
+|        21 | JOICE   | JOICE@GMAIL.COM   | 55412256    | RUA GOMES FREIRE   | CENTRO     | RIO DE JANEIRO | RJ     | cel  | 44522578 |
++-----------+---------+-------------------+-------------+--------------------+------------+----------------+--------+------+----------+
+*/
+/* Relatorio dos homens usando filtro de sexo = 'M' */
+select c.idcliente, c.nome, c.sexo, c.email, c.cpf,
+       e.rua, e.bairro, e.cidade, e.estado,
+       t.tipo, t.numero
+from cliente c
+inner join endereco e
+on c.idcliente = e.id_cliente
+inner join telefone t
+on c.idcliente = t.id_cliente
+where sexo = 'M';
+/* Os indices 12, 13, 18 e 19 precisam ser modificados */
+select * from cliente
+where idcliente = 12
+or idcliente = 13
+or idcliente = 18
+or idcliente = 19;
+/* usando a clausula IN */
+select * from cliente
+where idcliente in (12,13,18,19);
+/* Realizando atualizacao da base de dados */
+update cliente set sexo = 'F'
+where idcliente in (12,13,18,19);
+/* relatorio completo com o ajuste de sexo */ 
+select c.idcliente, c.nome, c.sexo, c.email, c.cpf,
+       e.rua, e.bairro, e.cidade, e.estado,
+       t.tipo, t.numero
+from cliente c
+inner join endereco e
+on c.idcliente = e.id_cliente
+inner join telefone t
+on c.idcliente = t.id_cliente
+where sexo = 'M';
+/*
++-----------+---------+------+-----------------+-------------+--------------------+------------+----------------+--------+------+----------+
+| idcliente | nome    | sexo | email           | cpf         | rua                | bairro     | cidade         | estado | tipo | numero   |
++-----------+---------+------+-----------------+-------------+--------------------+------------+----------------+--------+------+----------+
+|         1 | Joao    | M    | joaoa@ig.com    | 76567587887 | Rua Capitao Hermes | Centro     | Rio de Janeiro | RJ     | cel  | 87866896 |
+|         1 | Joao    | M    | joaoa@ig.com    | 76567587887 | Rua Capitao Hermes | Centro     | Rio de Janeiro | RJ     | res  | 99667587 |
+|         1 | Joao    | M    | joaoa@ig.com    | 76567587887 | Rua Capitao Hermes | Centro     | Rio de Janeiro | RJ     | com  | 66687899 |
+|         2 | Carlos  | M    | carlosa@ig.com  | 5464553466  | Rua da Alfandega   | Estacio    | Rio de Janeiro | RJ     | com  | 54768899 |
+|         2 | Carlos  | M    | carlosa@ig.com  | 5464553466  | Rua da Alfandega   | Estacio    | Rio de Janeiro | RJ     | cel  | 88687909 |
+|         5 | Jorge   | M    | jorge@ig.com    | 8756547688  | Rua da Uruguaiana  | Centro     | Vitoria        | ES     | cel  | 78458743 |
+|         5 | Jorge   | M    | jorge@ig.com    | 8756547688  | Rua da Uruguaiana  | Centro     | Vitoria        | ES     | res  | 56576876 |
+|         5 | Jorge   | M    | jorge@ig.com    | 8756547688  | Rua da Uruguaiana  | Centro     | Vitoria        | ES     | res  | 89986668 |
+|         9 | FLAVIO  | M    | FLAVIO@IG.COM   | 4657765     | RUA GUEDES         | CASCADURA  | B. HORIZONTE   | MG     | res  | 68976565 |
+|         9 | FLAVIO  | M    | FLAVIO@IG.COM   | 4657765     | RUA GUEDES         | CASCADURA  | B. HORIZONTE   | MG     | cel  | 99656675 |
+|        15 | EDUARDO | M    | NULL            | 54376457    | AV CAPITAO ANTUNES | CENTRO     | CURITIBA       | PR     | cel  | 89966809 |
+|        17 | ANTONIO | M    | ANTONIO@UOL.COM | 3423565     | ALAMEDA SAMPAIO    | BOM RETIRO | CURITIBA       | PR     | cel  | 99655768 |
++-----------+---------+------+-----------------+-------------+--------------------+------------+----------------+--------+------+----------+
+*/   
 -- relatorio de mulheres
+select c.idcliente, c.nome, c.sexo, c.email, c.cpf,
+       e.rua, e.bairro, e.cidade, e.estado,
+       t.tipo, t.numero
+from cliente c
+inner join endereco e
+on c.idcliente = e.id_cliente
+inner join telefone t
+on c.idcliente = t.id_cliente
+where sexo = 'F';
+/* Atualizar o elemento de indice 16 */
+update cliente set sexo = 'M'
+where idcliente = 16;
+/* Relatorio completo com o ajuste no campo sexo */
+select c.idcliente, c.nome, c.sexo, c.email, c.cpf,
+       e.rua, e.bairro, e.cidade, e.estado,
+       t.tipo, t.numero
+from cliente c
+inner join endereco e
+on c.idcliente = e.id_cliente
+inner join telefone t
+on c.idcliente = t.id_cliente
+where sexo = 'F';
 -- Quantidade de homens e mulheres
--- ids e email das mulheres que morem no centro do Rio de Janeiro e Não tenham celular 
+select count(*), sexo
+from cliente
+group by sexo;
+-- ids e email das mulheres que morem no centro do Rio de Janeiro e Não tenham celular
+select c.idcliente, c.email, c.nome, c.sexo
+from cliente c 
+inner join endereco e
+on c.idcliente = e.id_cliente
+inner join telefone t
+on c.idcliente = t.id_cliente;
+
+select c.idcliente, c.email, c.nome, c.sexo
+from cliente c 
+inner join endereco e
+on c.idcliente = e.id_cliente
+inner join telefone t
+on c.idcliente = t.id_cliente
+where sexo = 'F';
+
+select c.idcliente, c.email, c.nome, c.sexo
+from cliente c
+inner join endereco e
+on c.idcliente = e.id_cliente
+inner join telefone t
+on c.idcliente = t.id_cliente
+where c.sexo = 'F'
+and e.bairro = 'Centro' and e.cidade = 'Rio de Janeiro';
+
+select c.idcliente, c.email, c.nome, c.sexo, t.tipo, e.bairro, e.cidade
+from cliente c
+inner join endereco e
+on c.idcliente = e.id_cliente
+inner join telefone t
+on c.idcliente = t.id_cliente
+where c.sexo = 'F'
+and e.bairro = 'Centro' and e.cidade = 'Rio de Janeiro';
+
+select c.idcliente, c.email, c.nome, c.sexo, t.tipo, e.bairro, e.cidade
+from cliente c
+inner join endereco e
+on c.idcliente = e.id_cliente
+inner join telefone t
+on c.idcliente = t.id_cliente
+where c.sexo = 'F'
+and e.bairro = 'Centro' and e.cidade = 'Rio de Janeiro'
+and (t.tipo = 'res' or t.tipo = 'com');
 
 
+/* PARA UMA CAMPANHA DE MARKETING, O SETOR SOLICITOU UM
+RELATÓRIO COM O NOME, EMAIL E TELEFONE CELULAR 
+DOS CLIENTES QUE MORAM NO ESTADO DO RIO DE JANEIRO 
+VOCÊ TERÁ QUE PASSAR A QUERY PARA GERAR O RELATORIO PARA
+O PROGRAMADOR */
+select c.nome, c.email, t.numero as celular
+from cliente c
+inner join endereco e
+on c.idcliente = e.id_cliente
+inner join telefone t
+on c.idcliente = t.id_cliente
+where t.tipo = 'cel' and e.estado = 'RJ';
 
+/* PARA UMA CAMPANHA DE PRODUTOS DE BELEZA, O COMERCIAL SOLICITOU UM
+RELATÓRIO COM O NOME, EMAIL E TELEFONE CELULAR 
+DAS MULHERES QUE MORAM NO ESTADO DE SÃO PAULO 
+VOCÊ TERÁ QUE PASSAR A QUERY PARA GERAR O RELATORIO PARA
+O PROGRAMADOR */
+select c.nome, c.email, t.numero as celular -- , t.tipo 
+from cliente c
+inner join endereco e
+on c.idcliente = e.id_cliente
+inner join telefone t
+on c.idcliente = t.id_cliente
+where t.tipo = 'cel' and e.estado = 'SP' and sexo = 'F';
