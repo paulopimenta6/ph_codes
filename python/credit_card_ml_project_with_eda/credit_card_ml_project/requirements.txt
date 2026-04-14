@@ -103,7 +103,7 @@ pydantic_core==2.10.1
 Pygments @ file:///home/conda/feedstock_root/build_artifacts/pygments_1750615794071/work
 pyparsing==3.2.5
 PySocks @ file:///home/conda/feedstock_root/build_artifacts/pysocks_1733217236728/work
-pytest==8.4.2
+pytest==9.0.3
 python-dateutil==2.8.2
 python-json-logger @ file:///home/conda/feedstock_root/build_artifacts/python-json-logger_1677079630776/work
 python-multipart==0.0.22
