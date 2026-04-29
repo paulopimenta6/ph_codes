@@ -4,14 +4,14 @@ import matplotlib.pyplot as plt
 import cv2
 import numpy as np
 
-single_image = cv2.imread("/home/paulo/Imagens/aluno_1.png")
+single_image = cv2.imread("./conde_de_monte_cristo_e_mercedes.jpg")
 print(single_image)
 
 #plt.imshow(single_image)
 #plt.show()
 
 print(single_image.shape)
-single_image_resize = cv2.resize(single_image, (200, 350))
+single_image_resize = cv2.resize(single_image, (300, 350))
 
 #plt.imshow(single_image_resize)
 #plt.show()
