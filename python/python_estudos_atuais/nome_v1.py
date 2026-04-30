@@ -21,12 +21,23 @@ class Nome:
     def nome(self):
         return self.__nome
 
+    @property
+    def chave(self):
+        return self.__chave   
+    
     @nome.setter
     def nome(self, valor):
         if valor is None or not valor.strip():
             raise ValueError("Nome nao pode ser nulo nem em branco")
-        self.__nome = valor
-        self.__chave = Nome.CriaChave(valor)
+        else:
+            self.__nome = valor
+
+    @chave.setter
+    def chave(self, valor):
+        if valor is None or not valor.strip():
+            raise ValueError("Chave nao pode ser nulo nem em branco")
+        else:
+            self.__chave = valor        
     
     @staticmethod
     def CriaChave(nome):
