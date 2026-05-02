@@ -8,6 +8,7 @@ output:
     toc: true
     toc_depth: 3
     number_sections: true
+    latex_engine: xelatex
   html_document:
     toc: true
     toc_float: true
@@ -30,125 +31,133 @@ knitr::opts_chunk$set(
 
 ---
 
-# Introdução
+# Introducao
 
-Este tutorial apresenta de forma prática e objetiva como utilizar modelos de inteligência artificial (IA) localmente, sem depender de serviços em nuvem. Abordaremos desde os conceitos fundamentais até a criação de um servidor de IA acessível por múltiplos dispositivos na mesma rede.
+Este tutorial apresenta de forma pratica e objetiva como utilizar modelos de inteligencia artificial (IA) localmente, sem depender de servicos em nuvem. Abordaremos desde os conceitos fundamentais ate a criacao de um servidor de IA acessivel por multiplos dispositivos na mesma rede.
 
-A execução local de modelos de linguagem (LLMs) oferece vantagens importantes:
+A execucao local de modelos de linguagem (LLMs) oferece vantagens importantes:
 
-- **Privacidade**: os dados não saem do seu computador
+- **Privacidade**: os dados nao saem do seu computador
 - **Custo zero**: sem limites de uso ou assinaturas
 - **Disponibilidade offline**: funciona sem internet
-- **Controle total**: você escolhe e gerencia os modelos
+- **Controle total**: voce escolhe e gerencia os modelos
 
 ---
 
 # O Ollama e os Modelos de IA
 
-## O que é o Ollama?
+## O que e o Ollama?
 
-O **Ollama** é uma plataforma de código aberto que permite baixar, gerenciar e executar modelos de linguagem grandes (LLMs) localmente, diretamente no seu computador. Ele abstrai toda a complexidade técnica de executar esses modelos, oferecendo uma interface simples via linha de comando e uma API REST integrada.
+O **Ollama** e uma plataforma de codigo aberto que permite baixar, gerenciar e executar modelos de linguagem grandes (LLMs) localmente, diretamente no seu computador. Ele abstrai toda a complexidade tecnica de executar esses modelos, oferecendo uma interface simples via linha de comando e uma API REST integrada.
 
-Em termos práticos, o Ollama funciona como um gerenciador de modelos de IA — de modo similar ao que o `pip` é para pacotes Python ou o `apt` é para pacotes no Ubuntu.
+Em termos praticos, o Ollama funciona como um gerenciador de modelos de IA -- de modo similar ao que o `pip` e para pacotes Python ou o `apt` e para pacotes no Ubuntu.
 
-## O que são Modelos de Linguagem (LLMs)?
+## O que sao Modelos de Linguagem (LLMs)?
 
-Modelos de linguagem grandes (do inglês *Large Language Models*, LLMs) são sistemas de IA treinados em enormes volumes de texto com o objetivo de compreender e gerar linguagem natural. Eles são capazes de:
+Modelos de linguagem grandes (do ingles *Large Language Models*, LLMs) sao sistemas de IA treinados em enormes volumes de texto com o objetivo de compreender e gerar linguagem natural. Eles sao capazes de:
 
 - Responder perguntas e manter conversas
-- Escrever, revisar e explicar código
+- Escrever, revisar e explicar codigo
 - Resumir e analisar documentos
-- Auxiliar em tarefas de ciência de dados
+- Auxiliar em tarefas de ciencia de dados
 
-## Principais modelos disponíveis no Ollama
+## Principais modelos disponiveis no Ollama
 
-A tabela a seguir apresenta os modelos mais relevantes disponíveis via Ollama, organizados por finalidade e tamanho:
+A tabela a seguir apresenta os modelos mais relevantes disponiveis via Ollama, organizados por finalidade e tamanho:
 
 | Modelo | Tamanho | Especialidade | Indicado para |
 |---|---|---|---|
 | `tinyllama` | 637 MB | Uso geral leve | Hardware limitado |
-| `qwen2.5-coder:0.5b` | 400 MB | Código | Hardware limitado |
-| `qwen2.5-coder:1.5b` | 1.0 GB | Código e dados | Hardware intermediário |
-| `qwen2.5-coder:7b` | 4.7 GB | Código avançado | Hardware potente |
-| `llama3.2:1b` | 1.3 GB | Uso geral | Hardware intermediário |
-| `llama3.2:latest` | 2.0 GB | Uso geral | Hardware intermediário |
-| `phi3:mini` | 2.3 GB | Raciocínio | Hardware intermediário |
-| `deepseek-coder:6.7b` | 3.8 GB | Código avançado | Hardware potente |
-| `mistral:7b` | 4.1 GB | Uso geral avançado | Hardware potente |
+| `qwen2.5-coder:0.5b` | 400 MB | Codigo | Hardware limitado |
+| `qwen2.5-coder:1.5b` | 1.0 GB | Codigo e dados | Hardware intermediario |
+| `qwen2.5-coder:7b` | 4.7 GB | Codigo avancado | Hardware potente |
+| `llama3.2:1b` | 1.3 GB | Uso geral | Hardware intermediario |
+| `llama3.2:latest` | 2.0 GB | Uso geral | Hardware intermediario |
+| `phi3:mini` | 2.3 GB | Raciocinio | Hardware intermediario |
+| `deepseek-coder:6.7b` | 3.8 GB | Codigo avancado | Hardware potente |
+| `mistral:7b` | 4.1 GB | Uso geral avancado | Hardware potente |
 
-> **Nota**: o tamanho do modelo influencia diretamente a qualidade das respostas e os recursos de hardware necessários para executá-lo. Modelos maiores tendem a ser mais capazes, porém mais lentos em hardware limitado.
+> **Nota**: o tamanho do modelo influencia diretamente a qualidade das respostas e os recursos de hardware necessarios para executa-lo. Modelos maiores tendem a ser mais capazes, porem mais lentos em hardware limitado.
 
 ## Tipos de modelos por finalidade
 
 ### Modelos generalistas
-São treinados para tarefas diversas como conversação, redação, resumo e raciocínio geral. Exemplos: `llama3.2`, `tinyllama`, `mistral`.
 
-### Modelos especialistas em código
-Treinados com grande volume de código-fonte em múltiplas linguagens. São superiores aos generalistas para escrever, depurar e explicar código. Exemplos: `qwen2.5-coder`, `deepseek-coder`, `codellama`.
+Sao treinados para tarefas diversas como conversacao, redacao, resumo e raciocinio geral. Exemplos: `llama3.2`, `tinyllama`, `mistral`.
+
+### Modelos especialistas em codigo
+
+Treinados com grande volume de codigo-fonte em multiplas linguagens. Sao superiores aos generalistas para escrever, depurar e explicar codigo. Exemplos: `qwen2.5-coder`, `deepseek-coder`, `codellama`.
 
 ---
 
-# Hardware e Configuração dos Modelos
+# Hardware e Configuracao dos Modelos
 
 ## Por que o hardware importa?
 
-A execução local de LLMs é intensiva em recursos computacionais. O hardware determina diretamente:
+A execucao local de LLMs e intensiva em recursos computacionais. O hardware determina diretamente:
 
-- **Quais modelos** você consegue executar
-- **A velocidade** de geração de respostas (tokens por segundo)
-- **A qualidade** máxima que você pode alcançar
+- **Quais modelos** voce consegue executar
+- **A velocidade** de geracao de respostas (tokens por segundo)
+- **A qualidade** maxima que voce pode alcancar
 
-## Componentes críticos
+## Componentes criticos
 
-### GPU (Placa de Vídeo)
-É o componente mais importante para executar LLMs com eficiência. GPUs possuem centenas ou milhares de núcleos paralelos, ideais para as operações matriciais exigidas pelos modelos.
+### GPU (Placa de Video)
 
-- **NVIDIA**: melhor suporte via CUDA — recomendada para uso com Ollama
+E o componente mais importante para executar LLMs com eficiencia. GPUs possuem centenas ou milhares de nucleos paralelos, ideais para as operacoes matriciais exigidas pelos modelos.
+
+- **NVIDIA**: melhor suporte via CUDA -- recomendada para uso com Ollama
 - **AMD**: suporte via ROCm (mais limitado no Windows)
-- **GPU integrada**: não é aproveitada pelo Ollama na maioria dos casos
+- **GPU integrada**: nao e aproveitada pelo Ollama na maioria dos casos
 
 ### RAM
-Quando o modelo não cabe inteiramente na VRAM da GPU, o excedente é carregado na RAM do sistema. Quanto mais RAM disponível, maiores os modelos que podem ser executados.
+
+Quando o modelo nao cabe inteiramente na VRAM da GPU, o excedente e carregado na RAM do sistema. Quanto mais RAM disponivel, maiores os modelos que podem ser executados.
 
 ### CPU
-Utilizada quando não há GPU compatível. CPUs modernas executam LLMs de forma funcional, porém significativamente mais lenta que GPUs dedicadas.
 
-## Tabela de recomendações por hardware
+Utilizada quando nao ha GPU compativel. CPUs modernas executam LLMs de forma funcional, porem significativamente mais lenta que GPUs dedicadas.
 
-| Configuração | RAM | VRAM | Modelos recomendados |
+## Tabela de recomendacoes por hardware
+
+| Configuracao | RAM | VRAM | Modelos recomendados |
 |---|---|---|---|
 | Hardware muito limitado | 8 GB | Sem GPU dedicada | `tinyllama`, `qwen2.5-coder:0.5b` |
-| Hardware intermediário | 16 GB | 2–4 GB | `qwen2.5-coder:1.5b`, `llama3.2:1b`, `phi3:mini` |
-| Hardware bom | 16 GB | 6–8 GB | `qwen2.5-coder:7b`, `deepseek-coder:6.7b` |
-| Hardware avançado | 32 GB+ | 12 GB+ | `llama3.1:70b`, `deepseek-coder-v2` |
+| Hardware intermediario | 16 GB | 2-4 GB | `qwen2.5-coder:1.5b`, `llama3.2:1b`, `phi3:mini` |
+| Hardware bom | 16 GB | 6-8 GB | `qwen2.5-coder:7b`, `deepseek-coder:6.7b` |
+| Hardware avancado | 32 GB+ | 12 GB+ | `llama3.1:70b`, `deepseek-coder-v2` |
 
-## Exemplos práticos de configuração
+## Exemplos praticos de configuracao
 
 ### Notebook com CPU antiga e GPU integrada
+
 **Exemplo**: HP Pavilion com AMD A10-5745M (2013), 16 GB RAM, GPU Radeon HD 8610G integrada.
 
 - Sem suporte a CUDA ou ROCm moderno
-- Execução apenas na CPU — velocidade limitada (~2–5 tokens/segundo)
+- Execucao apenas na CPU -- velocidade limitada (2 a 5 tokens/segundo)
 - Modelos recomendados: `qwen2.5-coder:0.5b` e `tinyllama`
 
 ### Notebook moderno com GPU dedicada de entrada
+
 **Exemplo**: Dell com Intel Core i7-1165G7, 16 GB RAM, NVIDIA MX350 (2 GB VRAM).
 
-- Suporte a CUDA — Ollama usa a GPU automaticamente
-- Execução híbrida GPU + RAM para modelos até ~5 GB
-- Velocidade estimada: 10–20 tokens/segundo
+- Suporte a CUDA -- Ollama usa a GPU automaticamente
+- Execucao hibrida GPU + RAM para modelos ate 5 GB
+- Velocidade estimada: 10 a 20 tokens/segundo
 - Modelos recomendados: `qwen2.5-coder:1.5b`, `llama3.2:latest`, `phi3:mini`
 
 ---
 
 # Instalando o Ollama
 
-## Instalação no Windows
+## Instalacao no Windows
 
 ### Requisitos
+
 - Windows 10 ou superior (64 bits)
 - Pelo menos 8 GB de RAM
-- Espaço em disco suficiente para os modelos desejados
+- Espaco em disco suficiente para os modelos desejados
 
 ### Passo a passo
 
@@ -158,9 +167,9 @@ Acesse [https://ollama.com/download](https://ollama.com/download) e clique em **
 
 **2. Executar o instalador**
 
-Execute o arquivo `.exe` baixado e siga as instruções da tela. O Ollama será instalado e iniciado automaticamente como um serviço em segundo plano.
+Execute o arquivo `.exe` baixado e siga as instrucoes da tela. O Ollama sera instalado e iniciado automaticamente como um servico em segundo plano.
 
-**3. Verificar a instalação**
+**3. Verificar a instalacao**
 
 Abra o **PowerShell** e execute:
 
@@ -168,27 +177,28 @@ Abra o **PowerShell** e execute:
 ollama --version
 ```
 
-Se a instalação foi bem-sucedida, você verá a versão instalada, por exemplo:
+Se a instalacao foi bem-sucedida, voce vera a versao instalada, por exemplo:
 
 ```
 ollama version 0.3.12
 ```
 
-**4. Verificar se o serviço está ativo**
+**4. Verificar se o servico esta ativo**
 
 ```{bash}
-# No navegador ou PowerShell
 curl http://localhost:11434
 ```
 
-A resposta esperada é:
+A resposta esperada e:
+
 ```
 Ollama is running
 ```
 
-## Instalação no Linux (Ubuntu 22.04 LTS)
+## Instalacao no Linux (Ubuntu 22.04 LTS)
 
 ### Requisitos
+
 - Ubuntu 20.04 ou superior
 - Pelo menos 8 GB de RAM
 - Curl instalado
@@ -201,35 +211,35 @@ Ollama is running
 curl -fsSL https://ollama.com/install.sh | sh
 ```
 
-O script detecta automaticamente a arquitetura do sistema e instala a versão adequada.
+O script detecta automaticamente a arquitetura do sistema e instala a versao adequada.
 
-**2. Verificar a instalação**
+**2. Verificar a instalacao**
 
 ```{bash}
 ollama --version
 ```
 
-**3. Verificar se o serviço está ativo**
+**3. Verificar se o servico esta ativo**
 
 ```{bash}
 systemctl status ollama
 ```
 
-A saída deve mostrar `active (running)`.
+A saida deve mostrar `active (running)`.
 
-**4. Iniciar o serviço manualmente (se necessário)**
+**4. Iniciar o servico manualmente (se necessario)**
 
 ```{bash}
 ollama serve
 ```
 
-> **Nota**: em instalações via script oficial, o Ollama é registrado como serviço do sistema e iniciado automaticamente. Caso tenha instalado via Snap ou Flatpak, o diretório dos modelos pode estar em um caminho diferente do padrão (`~/.ollama/models`).
+> **Nota**: em instalacoes via script oficial, o Ollama e registrado como servico do sistema e iniciado automaticamente. Caso tenha instalado via Snap ou Flatpak, o diretorio dos modelos pode estar em um caminho diferente do padrao (`~/.ollama/models`).
 
 ---
 
 # Instalando Modelos pelo Ollama
 
-## O comando `ollama pull`
+## O comando ollama pull
 
 Para baixar um modelo, utilize o comando `ollama pull` seguido do nome do modelo:
 
@@ -237,7 +247,7 @@ Para baixar um modelo, utilize o comando `ollama pull` seguido do nome do modelo
 ollama pull <nome_do_modelo>
 ```
 
-## Exemplos práticos
+## Exemplos praticos
 
 ### Windows (PowerShell)
 
@@ -245,17 +255,17 @@ ollama pull <nome_do_modelo>
 # Baixar o TinyLlama (leve, ideal para hardware limitado)
 ollama pull tinyllama
 
-# Baixar o Qwen 2.5 Coder 0.5b (especialista em código, muito leve)
+# Baixar o Qwen 2.5 Coder 0.5b (especialista em codigo, muito leve)
 ollama pull qwen2.5-coder:0.5b
 
-# Baixar o Qwen 2.5 Coder 1.5b (especialista em código, intermediário)
+# Baixar o Qwen 2.5 Coder 1.5b (especialista em codigo, intermediario)
 ollama pull qwen2.5-coder:1.5b
 ```
 
 ### Linux (Terminal)
 
 ```{bash}
-# Os comandos são idênticos ao Windows
+# Os comandos sao identicos ao Windows
 ollama pull tinyllama
 ollama pull qwen2.5-coder:0.5b
 ```
@@ -266,28 +276,26 @@ ollama pull qwen2.5-coder:0.5b
 # Listar todos os modelos instalados
 ollama list
 
-# Remover um modelo (libera espaço em disco)
+# Remover um modelo (libera espaco em disco)
 ollama rm tinyllama
 
-# Exibir informações detalhadas de um modelo
+# Exibir informacoes detalhadas de um modelo
 ollama show qwen2.5-coder:0.5b
 ```
 
-> **Importante**: o comando `ollama rm` remove completamente os arquivos do modelo do disco. Não é necessário remover diretórios manualmente — o Ollama gerencia tudo internamente.
+> **Importante**: o comando `ollama rm` remove completamente os arquivos do modelo do disco. Nao e necessario remover diretorios manualmente -- o Ollama gerencia tudo internamente.
 
-## Monitorando o espaço em disco
+## Monitorando o espaco em disco
 
 ### Windows
 
 ```{bash}
-# Ver espaço disponível em disco
 Get-PSDrive -PSProvider FileSystem
 ```
 
 ### Linux
 
 ```{bash}
-# Ver espaço disponível em disco
 df -h
 ```
 
@@ -297,7 +305,7 @@ df -h
 
 ## Uso via linha de comando
 
-A forma mais direta de interagir com um modelo é pelo terminal:
+A forma mais direta de interagir com um modelo e pelo terminal:
 
 ```{bash}
 # Iniciar uma conversa interativa
@@ -311,13 +319,13 @@ Para encerrar o modo interativo, digite `/bye` ou pressione `Ctrl+D`.
 
 ## Uso via Python
 
-### Instalação da biblioteca
+### Instalacao da biblioteca
 
 ```{bash}
 pip install ollama
 ```
 
-### Exemplo básico
+### Exemplo basico
 
 ```{python}
 import ollama
@@ -325,14 +333,14 @@ import ollama
 response = ollama.chat(
     model='qwen2.5-coder:0.5b',
     messages=[
-        {'role': 'user', 'content': 'Explique o que é regressão linear.'}
+        {'role': 'user', 'content': 'Explique o que e regressao linear.'}
     ]
 )
 
 print(response['message']['content'])
 ```
 
-### Chat com histórico de conversa
+### Chat com historico de conversa
 
 ```{python}
 import ollama
@@ -342,7 +350,7 @@ historico = []
 print("Chat iniciado! Digite 'sair' para encerrar.\n")
 
 while True:
-    pergunta = input("Você: ")
+    pergunta = input("Voce: ")
 
     if pergunta.lower() == 'sair':
         print("Encerrando...")
@@ -363,29 +371,29 @@ while True:
 
 ### Streaming de respostas
 
-O streaming exibe a resposta progressivamente, melhorando a experiência em hardware mais lento:
+O streaming exibe a resposta progressivamente, melhorando a experiencia em hardware mais lento:
 
 ```{python}
 import ollama
 
 for chunk in ollama.chat(
     model='qwen2.5-coder:0.5b',
-    messages=[{'role': 'user', 'content': 'O que é machine learning?'}],
+    messages=[{'role': 'user', 'content': 'O que e machine learning?'}],
     stream=True
 ):
     print(chunk['message']['content'], end='', flush=True)
 ```
 
-### Exemplo aplicado à ciência de dados
+### Exemplo aplicado a ciencia de dados
 
 ```{python}
 import ollama
 
 pergunta = """
-Em Python, usando pandas e matplotlib, como faço para:
+Em Python, usando pandas e matplotlib, como faco para:
 1. Carregar um CSV
-2. Calcular estatísticas descritivas
-3. Plotar um histograma da coluna 'idade'
+2. Calcular estatisticas descritivas
+3. Plotar um histograma da coluna idade
 """
 
 for chunk in ollama.chat(
@@ -398,16 +406,15 @@ for chunk in ollama.chat(
 
 ## Uso via API REST
 
-O Ollama expõe uma API REST na porta 11434, compatível com o formato da API da OpenAI:
+O Ollama expoe uma API REST na porta 11434, compativel com o formato da API da OpenAI:
 
 ```{bash}
-# Enviar uma requisição via curl
 curl http://localhost:11434/api/chat \
   -H "Content-Type: application/json" \
   -d '{
     "model": "qwen2.5-coder:0.5b",
     "messages": [
-      {"role": "user", "content": "O que é uma função recursiva?"}
+      {"role": "user", "content": "O que e uma funcao recursiva?"}
     ],
     "stream": false
   }'
@@ -417,28 +424,25 @@ curl http://localhost:11434/api/chat \
 
 # Integrando Modelos nas IDEs com o Plugin Continue
 
-## O que é o Continue?
+## O que e o Continue?
 
-O **Continue** é um plugin de código aberto para IDEs que integra modelos de IA diretamente no ambiente de desenvolvimento. Ele suporta VS Code e toda a família JetBrains (PyCharm, IntelliJ, etc.) e permite usar modelos locais via Ollama sem custo e sem enviar código para servidores externos.
+O **Continue** e um plugin de codigo aberto para IDEs que integra modelos de IA diretamente no ambiente de desenvolvimento. Ele suporta VS Code e toda a familia JetBrains (PyCharm, IntelliJ, etc.) e permite usar modelos locais via Ollama sem custo e sem enviar codigo para servidores externos.
 
-## Instalação no VS Code
+## Instalacao no VS Code
 
-**1.** Abra o VS Code e pressione `Ctrl+Shift+X`
+1. Abra o VS Code e pressione `Ctrl+Shift+X`
+2. Pesquise por **"Continue"** na barra de busca
+3. Clique em **Install**
+4. Apos a instalacao, o icone do Continue aparecera na barra lateral esquerda
 
-**2.** Pesquise por **"Continue"** na barra de busca
+## Configuracao do arquivo config.yaml
 
-**3.** Clique em **Install**
-
-**4.** Após a instalação, o ícone do Continue aparecerá na barra lateral esquerda
-
-## Configuração do arquivo `config.yaml`
-
-O Continue é configurado pelo arquivo `config.yaml`, localizado em:
+O Continue e configurado pelo arquivo `config.yaml`, localizado em:
 
 - **Windows**: `C:\Users\<seu_usuario>\.continue\config.yaml`
 - **Linux/macOS**: `~/.continue/config.yaml`
 
-Para abrir o arquivo diretamente pelo terminal do VS Code (`Ctrl+`):
+Para abrir o arquivo diretamente pelo terminal do VS Code:
 
 ```{bash}
 # Windows
@@ -448,9 +452,9 @@ code $env:USERPROFILE\.continue\config.yaml
 code ~/.continue/config.yaml
 ```
 
-### Configuração com um único modelo
+### Configuracao com um unico modelo
 
-```{yaml}
+```{r, engine='text', eval=FALSE}
 name: Local Config
 version: 1.0.0
 schema: v1
@@ -464,9 +468,9 @@ models:
 allowAnonymousTelemetry: false
 ```
 
-### Configuração com múltiplos modelos
+### Configuracao com multiplos modelos
 
-```{yaml}
+```{r, engine='text', eval=FALSE}
 name: Local Config
 version: 1.0.0
 schema: v1
@@ -485,31 +489,30 @@ models:
 allowAnonymousTelemetry: false
 ```
 
-> **Atenção**: o campo `tabAutocompleteModel` pode não ser suportado em versões mais recentes do Continue (1.2+). Nesse caso, configure o autocomplete diretamente pelo painel da extensão.
+> **Atencao**: o campo `tabAutocompleteModel` pode nao ser suportado em versoes mais recentes do Continue (1.2+). Nesse caso, configure o autocomplete diretamente pelo painel da extensao.
 
-## Explicação dos campos do config.yaml
+## Explicacao dos campos do config.yaml
 
-| Campo | Descrição |
+| Campo | Descricao |
 |---|---|
-| `name` | Nome da configuração — apenas identificação |
-| `version` | Versão da sua configuração |
-| `schema` | Versão do esquema do Continue — manter `v1` |
-| `models` | Lista de modelos disponíveis para o chat |
-| `name` (dentro de models) | Nome exibido no dropdown do Continue |
+| `name` | Nome da configuracao -- apenas identificacao |
+| `version` | Versao da sua configuracao |
+| `schema` | Versao do esquema do Continue -- manter `v1` |
+| `models` | Lista de modelos disponiveis para o chat |
 | `provider` | Quem fornece o modelo (`ollama` para uso local) |
 | `model` | Nome exato do modelo conforme aparece no `ollama list` |
-| `apiBase` | Endereço da API do Ollama (`localhost:11434` para uso local) |
-| `allowAnonymousTelemetry` | Envio de dados anônimos de uso — recomenda-se `false` |
+| `apiBase` | Endereco da API do Ollama (`localhost:11434` para uso local) |
+| `allowAnonymousTelemetry` | Envio de dados anonimos -- recomenda-se `false` |
 
 ## Principais atalhos do Continue no VS Code
 
-| Atalho | Ação |
+| Atalho | Acao |
 |---|---|
 | `Ctrl+Alt+I` | Abre o painel de chat |
-| `Ctrl+Shift+L` | Envia o código selecionado para o chat |
-| `Ctrl+I` | Edita o código selecionado inline com IA |
-| `Tab` | Aceita sugestão de autocomplete |
-| `Esc` | Rejeita sugestão de autocomplete |
+| `Ctrl+Shift+L` | Envia o codigo selecionado para o chat |
+| `Ctrl+I` | Edita o codigo selecionado inline com IA |
+| `Tab` | Aceita sugestao de autocomplete |
+| `Esc` | Rejeita sugestao de autocomplete |
 
 ## Referenciando contexto no chat
 
@@ -517,9 +520,9 @@ O Continue permite referenciar partes do projeto diretamente no chat:
 
 | Comando | O que referencia |
 |---|---|
-| `@arquivo.py` | Um arquivo específico do projeto |
+| `@arquivo.py` | Um arquivo especifico do projeto |
 | `@codebase` | Todo o projeto |
-| `@terminal` | A saída do terminal integrado |
+| `@terminal` | A saida do terminal integrado |
 | `@problems` | Os erros e avisos do VS Code |
 
 ---
@@ -528,66 +531,64 @@ O Continue permite referenciar partes do projeto diretamente no chat:
 
 ## Conceito
 
-O Ollama expõe uma API REST local na porta `11434`. Por padrão, essa API só aceita conexões do próprio computador (`localhost`). É possível configurá-lo para aceitar conexões de outros dispositivos na rede local, transformando seu computador — ou um dispositivo embarcado como uma Jetson Nano — em um servidor de IA compartilhado.
+O Ollama expoe uma API REST local na porta `11434`. Por padrao, essa API so aceita conexoes do proprio computador (`localhost`). E possivel configura-lo para aceitar conexoes de outros dispositivos na rede local, transformando seu computador em um servidor de IA compartilhado.
 
-```
-Servidor (Ollama)                    Clientes na rede
-┌─────────────────────┐              ┌──────────────────┐
-│ Modelo rodando      │ ──────────►  │ Notebook         │
-│ API: 0.0.0.0:11434  │   rede local │ Desktop          │
-│ IP: 192.168.1.100   │              │ Celular          │
-└─────────────────────┘              └──────────────────┘
-```
+O fluxo de comunicacao funciona da seguinte forma:
 
-## Configuração no Linux (Ubuntu)
+- O servidor executa o Ollama com o modelo carregado
+- O servidor aguarda requisicoes na porta 11434 de qualquer IP da rede
+- Os clientes enviam perguntas para o IP do servidor
+- O servidor processa e retorna as respostas
 
-**1. Editar o serviço do Ollama**
+## Configuracao no Linux (Ubuntu)
+
+**1. Editar o servico do Ollama**
 
 ```{bash}
 sudo systemctl edit ollama.service
 ```
 
-**2. Adicionar a variável de ambiente**
+**2. Adicionar a variavel de ambiente**
 
 ```{bash}
 [Service]
 Environment="OLLAMA_HOST=0.0.0.0"
 ```
 
-**3. Reiniciar o serviço**
+**3. Reiniciar o servico**
 
 ```{bash}
 sudo systemctl daemon-reload
 sudo systemctl restart ollama
 ```
 
-**4. Verificar se está aceitando conexões externas**
+**4. Verificar se esta aceitando conexoes externas**
 
 ```{bash}
 # Substitua pelo IP do servidor na sua rede
 curl http://192.168.1.100:11434
 ```
 
-## Configuração no Windows
+## Configuracao no Windows
 
 No PowerShell como administrador:
 
 ```{bash}
-# Definir variável de ambiente permanente
+# Definir variavel de ambiente permanente
 [System.Environment]::SetEnvironmentVariable(
   "OLLAMA_HOST",
   "0.0.0.0",
   "Machine"
 )
 
-# Reiniciar o serviço do Ollama
+# Reiniciar o servico do Ollama
 Stop-Service ollama
 Start-Service ollama
 ```
 
 ## Acessando o servidor remotamente
 
-Após configurar o servidor, os outros dispositivos da rede acessam o modelo apontando para o IP do servidor:
+Apos configurar o servidor, os outros dispositivos da rede acessam o modelo apontando para o IP do servidor.
 
 ### Via Python
 
@@ -599,17 +600,17 @@ client = ollama.Client(host='http://192.168.1.100:11434')
 
 response = client.chat(
     model='qwen2.5-coder:0.5b',
-    messages=[{'role': 'user', 'content': 'Olá! Você está funcionando?'}]
+    messages=[{'role': 'user', 'content': 'Ola! Voce esta funcionando?'}]
 )
 
 print(response['message']['content'])
 ```
 
-### Via Continue (VS Code em outro computador)
+### Via Continue no VS Code de outro computador
 
-Basta apontar o `apiBase` no `config.yaml` para o IP do servidor:
+Aponte o `apiBase` no `config.yaml` para o IP do servidor:
 
-```{yaml}
+```{r, engine='text', eval=FALSE}
 models:
   - name: Qwen no Servidor
     provider: ollama
@@ -624,14 +625,14 @@ curl http://192.168.1.100:11434/api/chat \
   -H "Content-Type: application/json" \
   -d '{
     "model": "qwen2.5-coder:0.5b",
-    "messages": [{"role": "user", "content": "Olá!"}],
+    "messages": [{"role": "user", "content": "Ola!"}],
     "stream": false
   }'
 ```
 
 ## Servidor em dispositivo embarcado: Jetson Nano
 
-A NVIDIA Jetson Nano é uma opção interessante para servidor de IA de baixo consumo energético (5–10W), porém o Ollama oficial não suporta sua arquitetura ARM com GPU Maxwell nativamente. A alternativa recomendada é o **llama.cpp**:
+A NVIDIA Jetson Nano e uma opcao interessante para servidor de IA de baixo consumo energetico (5 a 10W), porem o Ollama oficial nao suporta sua arquitetura ARM com GPU Maxwell nativamente. A alternativa recomendada e o **llama.cpp**:
 
 ```{bash}
 # Clonar e compilar o llama.cpp com suporte CUDA
@@ -650,30 +651,30 @@ Modelos recomendados para a Jetson Nano (4 GB RAM compartilhada):
 
 | Modelo | Viabilidade |
 |---|---|
-| `tinyllama` | ✅ Roda bem |
-| `qwen2.5-coder:0.5b` | ✅ Roda bem |
-| `llama3.2:1b` | ⚠️ Aceitável |
-| `phi3:mini` | ⚠️ Lento |
-| `llama3.2:3b` | ❌ Muito pesado |
+| `tinyllama` | Roda bem |
+| `qwen2.5-coder:0.5b` | Roda bem |
+| `llama3.2:1b` | Aceitavel |
+| `phi3:mini` | Lento |
+| `llama3.2:3b` | Muito pesado |
 
-## Boas práticas de segurança para o servidor
+## Boas praticas de seguranca para o servidor
 
-- **Use apenas em rede local confiável** — não exponha a porta 11434 para a internet sem autenticação
+- **Use apenas em rede local confiavel** -- nao exponha a porta 11434 para a internet sem autenticacao
 - **Configure um firewall** para limitar o acesso apenas aos dispositivos autorizados
-- **Monitore o consumo de recursos** — múltiplos clientes simultâneos podem sobrecarregar o servidor
-- Se precisar de acesso remoto seguro, use uma **VPN** ou **túnel SSH**
+- **Monitore o consumo de recursos** -- multiplos clientes simultaneos podem sobrecarregar o servidor
+- Se precisar de acesso remoto seguro, use uma **VPN** ou **tunel SSH**
 
 ---
 
-# Referências e Recursos
+# Referencias e Recursos
 
-- [Ollama — Site oficial](https://ollama.com)
-- [Ollama — Repositório no GitHub](https://github.com/ollama/ollama)
-- [Continue — Site oficial](https://continue.dev)
-- [llama.cpp — Repositório no GitHub](https://github.com/ggerganov/llama.cpp)
+- [Ollama -- Site oficial](https://ollama.com)
+- [Ollama -- Repositorio no GitHub](https://github.com/ollama/ollama)
+- [Continue -- Site oficial](https://continue.dev)
+- [llama.cpp -- Repositorio no GitHub](https://github.com/ggerganov/llama.cpp)
 - [Biblioteca Python do Ollama](https://github.com/ollama/ollama-python)
-- [Modelos disponíveis no Ollama](https://ollama.com/library)
+- [Modelos disponiveis no Ollama](https://ollama.com/library)
 
 ---
 
-*Tutorial elaborado com base em experiência prática com Ubuntu 22.04 LTS e Windows 11.*
+*Tutorial elaborado com base em experiencia pratica com Ubuntu 22.04 LTS e Windows 11.*
