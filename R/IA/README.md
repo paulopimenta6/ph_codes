@@ -7,7 +7,6 @@
 ![Ollama](https://img.shields.io/badge/Ollama-0.21.0-green)
 
 #### Um guia prático e completo para rodar modelos de IA no seu próprio computador — do zero ao servidor de IA.
-#### Feito com dedicação para ajudar a comunidade a dar os primeiros passos com IA local.
 
 ---
 
