@@ -473,11 +473,11 @@ Este projeto está sob a licença MIT. Consulte o arquivo [LICENSE](LICENSE) par
 ## Estatísticas
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=paulopimenta6&show_icons=true&theme=dracula&cache_seconds=21600" alt="Estatísticas do GitHub" />
+  <img src="https://github-readme-stats.vercel.app/api?username=paulopimenta6&show_icons=true&theme=dracula" alt="Estatísticas do GitHub" />
 </p>
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=paulopimenta6&layout=compact&theme=dracula&cache_seconds=21600" alt="Linguagens mais usadas" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=paulopimenta6&layout=compact&theme=dracula" alt="Linguagens mais usadas" />
 </p>
 
 <p align="center">
@@ -488,4 +488,10 @@ Este projeto está sob a licença MIT. Consulte o arquivo [LICENSE](LICENSE) par
 
 ## Autor
 
-**Autor:** Paulo Pimenta | **GitHub:** paulopimenta6 | **LinkedIn:** linkedin.com/in/paulopimenta6
+| Informação | Detalhes |
+|---|---|
+| **Nome** | Paulo Pimenta |
+| **GitHub** | [paulopimenta6](https://github.com/paulopimenta6) |
+| **LinkedIn** | [linkedin.com/in/paulopimenta6](https://www.linkedin.com/in/paulopimenta6) |
+| **Lattes** | [Currículo Lattes](http://lattes.cnpq.br/2122008846451890) |
+| **E-mail** | [paulopimenta1850@gmail.com](mailto:paulopimenta1850@gmail.com) |
