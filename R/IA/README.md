@@ -491,10 +491,7 @@ Este projeto está sob a licença MIT. Consulte o arquivo [LICENSE](LICENSE) par
 
 ## Autor
 
-| Informação | Detalhes |
-|---|---|
-| **Nome** | Paulo Pimenta |
-| **GitHub** | [paulopimenta6](https://github.com/paulopimenta6) |
-| **LinkedIn** | [linkedin.com/in/paulopimenta6](https://www.linkedin.com/in/paulopimenta6) |
-| **Lattes** | [Currículo Lattes](http://lattes.cnpq.br/2122008846451890) |
-| **E-mail** | [paulopimenta1850@gmail.com](mailto:paulopimenta1850@gmail.com) |
+<p align="center">
+  <a href="https://github.com/paulopimenta6">GitHub</a>
+  <a href="mailto:paulopimenta1850@gmail.com">E-mail</a>
+</p>
