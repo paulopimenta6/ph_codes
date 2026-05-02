@@ -1,12 +1,15 @@
-# Inteligência Artificial Local com Ollama
+---
+title: "Inteligência Artificial Local com Ollama"
+---
+
+> Um guia prático e completo para rodar modelos de IA no seu próprio computador — do zero ao servidor de IA.
 
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux-lightgrey)
 ![Ubuntu](https://img.shields.io/badge/Ubuntu-Linux-orange)
 ![Windows11](https://img.shields.io/badge/Windows-11-blue)
 ![Ollama](https://img.shields.io/badge/Ollama-0.21.0-green)
-
-#### Um guia prático e completo para rodar modelos de IA no seu próprio computador — do zero ao servidor de IA.
+![Python](https://img.shields.io/badge/Python-3.8%2B-yellow?logo=python&logoColor=white)
 
 ---
 
