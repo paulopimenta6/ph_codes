@@ -1,4 +1,4 @@
-# 💻 Repositório de Códigos e Projetos de Paulo Pimenta
+# Repositório de Códigos e Projetos de Paulo Pimenta
 
 <p align="center">
   <a href="https://github.com/paulopimenta6">
@@ -17,7 +17,7 @@
 
 ---
 
-## 👋 Sobre mim
+## Sobre mim
 
 Sou meteorologista formado pela USP, apaixonado por estatística, ciência de dados e desenvolvimento de sistemas. Atualmente estudo Ciência de Dados e estou finalizando uma especialização em Computação com ênfase em Java. Neste repositório você encontrará uma coleção de projetos pessoais e estudos nas mais diversas linguagens de programação.
 
@@ -25,7 +25,7 @@ Sou meteorologista formado pela USP, apaixonado por estatística, ciência de da
 
 ---
 
-## 📚 Índice
+## Índice
 
 - [Introdução](#introdução)
 - [Organização](#organização)
@@ -74,11 +74,11 @@ Alguns códigos estão integrados com contextos específicos. Por exemplo, no di
 
 ## Contato
 
-- 📧 **Email:** paulopimenta1850@gmail.com  
-- 🌐 [LinkedIn](https://www.linkedin.com/in/paulo-henrique-pimenta/)  
-- 📸 [Instagram](https://www.instagram.com/paulopimenta6/)  
-- 📷 [500px (fotografia)](https://500px.com/p/paulopimenta6?view=photos)  
-- 🎮 [YouTube](https://www.youtube.com/@paulopi997)
+- **Email:** paulopimenta1850@gmail.com  
+- [LinkedIn](https://www.linkedin.com/in/paulo-henrique-pimenta/)  
+- [Instagram](https://www.instagram.com/paulopimenta6/)  
+- [500px (fotografia)](https://500px.com/p/paulopimenta6?view=photos)  
+- [YouTube](https://www.youtube.com/@paulopi997)
 
 ---
 

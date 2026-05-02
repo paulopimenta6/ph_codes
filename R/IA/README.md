@@ -1,13 +1,13 @@
 # Inteligência Artificial Local com Ollama
 
-> Um guia prático e completo para rodar modelos de IA no seu próprio computador — do zero ao servidor de IA.
-*Feito com dedicação para ajudar a comunidade a dar os primeiros passos com IA local.*
-
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux-lightgrey)
 ![Ubuntu](https://img.shields.io/badge/Ubuntu-Linux-orange)
 ![Windows11](https://img.shields.io/badge/Windows-11-blue)
 ![Ollama](https://img.shields.io/badge/Ollama-0.21.0-green)
+
+#### Um guia prático e completo para rodar modelos de IA no seu próprio computador — do zero ao servidor de IA.
+#### Feito com dedicação para ajudar a comunidade a dar os primeiros passos com IA local.
 
 ---
 
@@ -470,4 +470,4 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir uma *issue* ou e
 Este projeto está sob a licença MIT. Consulte o arquivo [LICENSE](LICENSE) para mais detalhes.
 
 ---
-**Autor:** Paulo Pimenta | **GitHub:** paulopimenta6 | **LinkedIn:** linkedin.com/in/paulopimenta6  
+**Autor:** Paulo Pimenta | **GitHub:** paulopimenta6 | **LinkedIn:** linkedin.com/in/paulopimenta6
