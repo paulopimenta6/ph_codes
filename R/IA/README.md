@@ -2,6 +2,7 @@
 title: "Inteligência Artificial Local com Ollama"
 ---
 
+# Inteligência Artificial Local com Ollama
 > Um guia prático e completo para rodar modelos de IA no seu próprio computador — do zero ao servidor de IA.
 
 ![License](https://img.shields.io/badge/license-MIT-blue)
@@ -476,22 +477,5 @@ Este projeto está sob a licença MIT. Consulte o arquivo [LICENSE](LICENSE) par
 ## Estatísticas
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=paulopimenta6&show_icons=true&theme=dracula" alt="Estatísticas do GitHub" />
-</p>
-
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=paulopimenta6&layout=compact&theme=dracula" alt="Linguagens mais usadas" />
-</p>
-
-<p align="center">
   <img src="https://komarev.com/ghpvc/?username=paulopimenta6&style=flat-square&color=blue" alt="Visitas no perfil" />
-</p>
-
----
-
-## Autor
-
-<p align="center">
-  <a href="https://github.com/paulopimenta6">GitHub</a>
-  <a href="mailto:paulopimenta1850@gmail.com">E-mail</a>
 </p>
