@@ -469,4 +469,23 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir uma *issue* ou e
 Este projeto está sob a licença MIT. Consulte o arquivo [LICENSE](LICENSE) para mais detalhes.
 
 ---
+
+## Estatísticas
+
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=paulopimenta6&show_icons=true&theme=dracula&cache_seconds=21600" alt="Estatísticas do GitHub" />
+</p>
+
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=paulopimenta6&layout=compact&theme=dracula&cache_seconds=21600" alt="Linguagens mais usadas" />
+</p>
+
+<p align="center">
+  <img src="https://komarev.com/ghpvc/?username=paulopimenta6&style=flat-square&color=blue" alt="Visitas no perfil" />
+</p>
+
+---
+
+## Autor
+
 **Autor:** Paulo Pimenta | **GitHub:** paulopimenta6 | **LinkedIn:** linkedin.com/in/paulopimenta6
