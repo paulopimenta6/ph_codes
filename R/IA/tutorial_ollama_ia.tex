@@ -1,0 +1,1125 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Inteligência Artificial Local com Ollama},
+  pdfauthor={Paulo Pimenta},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Inteligência Artificial Local com Ollama}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{Um guia prático do zero ao servidor de IA}
+\author{Paulo Pimenta}
+\date{2026-05-02}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Introdução}\label{introduuxe7uxe3o}
+
+Este tutorial apresenta de forma prática e objetiva como utilizar
+modelos de inteligência artificial (IA) localmente, sem depender de
+serviços em nuvem. Abordaremos desde os conceitos fundamentais até a
+criação de um servidor de IA acessível por múltiplos dispositivos na
+mesma rede.
+
+A execução local de modelos de linguagem (LLMs) oferece vantagens
+importantes:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Privacidade}: os dados não saem do seu computador
+\item
+  \textbf{Custo zero}: sem limites de uso ou assinaturas
+\item
+  \textbf{Disponibilidade offline}: funciona sem internet
+\item
+  \textbf{Controle total}: você escolhe e gerencia os modelos
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{O Ollama e os Modelos de IA}\label{o-ollama-e-os-modelos-de-ia}
+
+\subsection{O que é o Ollama?}\label{o-que-uxe9-o-ollama}
+
+O \textbf{Ollama} é uma plataforma de código aberto que permite baixar,
+gerenciar e executar modelos de linguagem grandes (LLMs) localmente,
+diretamente no seu computador. Ele abstrai toda a complexidade técnica
+de executar esses modelos, oferecendo uma interface simples via linha de
+comando e uma API REST integrada.
+
+Em termos práticos, o Ollama funciona como um gerenciador de modelos de
+IA --- de modo similar ao que o \texttt{pip} é para pacotes Python ou o
+\texttt{apt} é para pacotes no Ubuntu.
+
+\subsection{O que são Modelos de Linguagem
+(LLMs)?}\label{o-que-suxe3o-modelos-de-linguagem-llms}
+
+Modelos de linguagem grandes (do inglês \emph{Large Language Models},
+LLMs) são sistemas de IA treinados em enormes volumes de texto com o
+objetivo de compreender e gerar linguagem natural. Eles são capazes de:
+
+\begin{itemize}
+\tightlist
+\item
+  Responder perguntas e manter conversas
+\item
+  Escrever, revisar e explicar código
+\item
+  Resumir e analisar documentos
+\item
+  Auxiliar em tarefas de ciência de dados
+\end{itemize}
+
+\subsection{Principais modelos disponíveis no
+Ollama}\label{principais-modelos-disponuxedveis-no-ollama}
+
+A tabela a seguir apresenta os modelos mais relevantes disponíveis via
+Ollama, organizados por finalidade e tamanho:
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Modelo
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Tamanho
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Especialidade
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Indicado para
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{tinyllama} & 637 MB & Uso geral leve & Hardware limitado \\
+\texttt{qwen2.5-coder:0.5b} & 400 MB & Código & Hardware limitado \\
+\texttt{qwen2.5-coder:1.5b} & 1.0 GB & Código e dados & Hardware
+intermediário \\
+\texttt{qwen2.5-coder:7b} & 4.7 GB & Código avançado & Hardware
+potente \\
+\texttt{llama3.2:1b} & 1.3 GB & Uso geral & Hardware intermediário \\
+\texttt{llama3.2:latest} & 2.0 GB & Uso geral & Hardware
+intermediário \\
+\texttt{phi3:mini} & 2.3 GB & Raciocínio & Hardware intermediário \\
+\texttt{deepseek-coder:6.7b} & 3.8 GB & Código avançado & Hardware
+potente \\
+\texttt{mistral:7b} & 4.1 GB & Uso geral avançado & Hardware potente \\
+\end{longtable}
+
+\begin{quote}
+\textbf{Nota}: o tamanho do modelo influencia diretamente a qualidade
+das respostas e os recursos de hardware necessários para executá-lo.
+Modelos maiores tendem a ser mais capazes, porém mais lentos em hardware
+limitado.
+\end{quote}
+
+\subsection{Tipos de modelos por
+finalidade}\label{tipos-de-modelos-por-finalidade}
+
+\subsubsection{Modelos generalistas}\label{modelos-generalistas}
+
+São treinados para tarefas diversas como conversação, redação, resumo e
+raciocínio geral. Exemplos: \texttt{llama3.2}, \texttt{tinyllama},
+\texttt{mistral}.
+
+\subsubsection{Modelos especialistas em
+código}\label{modelos-especialistas-em-cuxf3digo}
+
+Treinados com grande volume de código-fonte em múltiplas linguagens. São
+superiores aos generalistas para escrever, depurar e explicar código.
+Exemplos: \texttt{qwen2.5-coder}, \texttt{deepseek-coder},
+\texttt{codellama}.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Hardware e Configuração dos
+Modelos}\label{hardware-e-configurauxe7uxe3o-dos-modelos}
+
+\subsection{Por que o hardware
+importa?}\label{por-que-o-hardware-importa}
+
+A execução local de LLMs é intensiva em recursos computacionais. O
+hardware determina diretamente:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Quais modelos} você consegue executar
+\item
+  \textbf{A velocidade} de geração de respostas (tokens por segundo)
+\item
+  \textbf{A qualidade} máxima que você pode alcançar
+\end{itemize}
+
+\subsection{Componentes críticos}\label{componentes-cruxedticos}
+
+\subsubsection{GPU (Placa de Vídeo)}\label{gpu-placa-de-vuxeddeo}
+
+É o componente mais importante para executar LLMs com eficiência. GPUs
+possuem centenas ou milhares de núcleos paralelos, ideais para as
+operações matriciais exigidas pelos modelos.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{NVIDIA}: melhor suporte via CUDA --- recomendada para uso com
+  Ollama
+\item
+  \textbf{AMD}: suporte via ROCm (mais limitado no Windows)
+\item
+  \textbf{GPU integrada}: não é aproveitada pelo Ollama na maioria dos
+  casos
+\end{itemize}
+
+\subsubsection{RAM}\label{ram}
+
+Quando o modelo não cabe inteiramente na VRAM da GPU, o excedente é
+carregado na RAM do sistema. Quanto mais RAM disponível, maiores os
+modelos que podem ser executados.
+
+\subsubsection{CPU}\label{cpu}
+
+Utilizada quando não há GPU compatível. CPUs modernas executam LLMs de
+forma funcional, porém significativamente mais lenta que GPUs dedicadas.
+
+\subsection{Tabela de recomendações por
+hardware}\label{tabela-de-recomendauxe7uxf5es-por-hardware}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Configuração
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+RAM
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+VRAM
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Modelos recomendados
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Hardware muito limitado & 8 GB & Sem GPU dedicada & \texttt{tinyllama},
+\texttt{qwen2.5-coder:0.5b} \\
+Hardware intermediário & 16 GB & 2--4 GB & \texttt{qwen2.5-coder:1.5b},
+\texttt{llama3.2:1b}, \texttt{phi3:mini} \\
+Hardware bom & 16 GB & 6--8 GB & \texttt{qwen2.5-coder:7b},
+\texttt{deepseek-coder:6.7b} \\
+Hardware avançado & 32 GB+ & 12 GB+ & \texttt{llama3.1:70b},
+\texttt{deepseek-coder-v2} \\
+\end{longtable}
+
+\subsection{Exemplos práticos de
+configuração}\label{exemplos-pruxe1ticos-de-configurauxe7uxe3o}
+
+\subsubsection{Notebook com CPU antiga e GPU
+integrada}\label{notebook-com-cpu-antiga-e-gpu-integrada}
+
+\textbf{Exemplo}: HP Pavilion com AMD A10-5745M (2013), 16 GB RAM, GPU
+Radeon HD 8610G integrada.
+
+\begin{itemize}
+\tightlist
+\item
+  Sem suporte a CUDA ou ROCm moderno
+\item
+  Execução apenas na CPU --- velocidade limitada (\textasciitilde2--5
+  tokens/segundo)
+\item
+  Modelos recomendados: \texttt{qwen2.5-coder:0.5b} e \texttt{tinyllama}
+\end{itemize}
+
+\subsubsection{Notebook moderno com GPU dedicada de
+entrada}\label{notebook-moderno-com-gpu-dedicada-de-entrada}
+
+\textbf{Exemplo}: Dell com Intel Core i7-1165G7, 16 GB RAM, NVIDIA MX350
+(2 GB VRAM).
+
+\begin{itemize}
+\tightlist
+\item
+  Suporte a CUDA --- Ollama usa a GPU automaticamente
+\item
+  Execução híbrida GPU + RAM para modelos até \textasciitilde5 GB
+\item
+  Velocidade estimada: 10--20 tokens/segundo
+\item
+  Modelos recomendados: \texttt{qwen2.5-coder:1.5b},
+  \texttt{llama3.2:latest}, \texttt{phi3:mini}
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Instalando o Ollama}\label{instalando-o-ollama}
+
+\subsection{Instalação no Windows}\label{instalauxe7uxe3o-no-windows}
+
+\subsubsection{Requisitos}\label{requisitos}
+
+\begin{itemize}
+\tightlist
+\item
+  Windows 10 ou superior (64 bits)
+\item
+  Pelo menos 8 GB de RAM
+\item
+  Espaço em disco suficiente para os modelos desejados
+\end{itemize}
+
+\subsubsection{Passo a passo}\label{passo-a-passo}
+
+\textbf{1. Baixar o instalador}
+
+Acesse \url{https://ollama.com/download} e clique em \textbf{Download
+for Windows}.
+
+\textbf{2. Executar o instalador}
+
+Execute o arquivo \texttt{.exe} baixado e siga as instruções da tela. O
+Ollama será instalado e iniciado automaticamente como um serviço em
+segundo plano.
+
+\textbf{3. Verificar a instalação}
+
+Abra o \textbf{PowerShell} e execute:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{ollama} \AttributeTok{{-}{-}version}
+\end{Highlighting}
+\end{Shaded}
+
+Se a instalação foi bem-sucedida, você verá a versão instalada, por
+exemplo:
+
+\begin{verbatim}
+ollama version 0.3.12
+\end{verbatim}
+
+\textbf{4. Verificar se o serviço está ativo}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# No navegador ou PowerShell}
+\ExtensionTok{curl}\NormalTok{ http://localhost:11434}
+\end{Highlighting}
+\end{Shaded}
+
+A resposta esperada é:
+
+\begin{verbatim}
+Ollama is running
+\end{verbatim}
+
+\subsection{Instalação no Linux (Ubuntu 22.04
+LTS)}\label{instalauxe7uxe3o-no-linux-ubuntu-22.04-lts}
+
+\subsubsection{Requisitos}\label{requisitos-1}
+
+\begin{itemize}
+\tightlist
+\item
+  Ubuntu 20.04 ou superior
+\item
+  Pelo menos 8 GB de RAM
+\item
+  Curl instalado
+\end{itemize}
+
+\subsubsection{Passo a passo}\label{passo-a-passo-1}
+
+\textbf{1. Instalar via script oficial}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{curl} \AttributeTok{{-}fsSL}\NormalTok{ https://ollama.com/install.sh }\KeywordTok{|} \FunctionTok{sh}
+\end{Highlighting}
+\end{Shaded}
+
+O script detecta automaticamente a arquitetura do sistema e instala a
+versão adequada.
+
+\textbf{2. Verificar a instalação}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{ollama} \AttributeTok{{-}{-}version}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{3. Verificar se o serviço está ativo}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{systemctl}\NormalTok{ status ollama}
+\end{Highlighting}
+\end{Shaded}
+
+A saída deve mostrar \texttt{active\ (running)}.
+
+\textbf{4. Iniciar o serviço manualmente (se necessário)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{ollama}\NormalTok{ serve}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Nota}: em instalações via script oficial, o Ollama é registrado
+como serviço do sistema e iniciado automaticamente. Caso tenha instalado
+via Snap ou Flatpak, o diretório dos modelos pode estar em um caminho
+diferente do padrão (\texttt{\textasciitilde{}/.ollama/models}).
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Instalando Modelos pelo
+Ollama}\label{instalando-modelos-pelo-ollama}
+
+\subsection{\texorpdfstring{O comando
+\texttt{ollama\ pull}}{O comando ollama pull}}\label{o-comando-ollama-pull}
+
+Para baixar um modelo, utilize o comando \texttt{ollama\ pull} seguido
+do nome do modelo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{ollama}\NormalTok{ pull }\OperatorTok{\textless{}}\NormalTok{nome\_do\_modelo}\OperatorTok{\textgreater{}}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Exemplos práticos}\label{exemplos-pruxe1ticos}
+
+\subsubsection{Windows (PowerShell)}\label{windows-powershell}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Baixar o TinyLlama (leve, ideal para hardware limitado)}
+\ExtensionTok{ollama}\NormalTok{ pull tinyllama}
+
+\CommentTok{\# Baixar o Qwen 2.5 Coder 0.5b (especialista em código, muito leve)}
+\ExtensionTok{ollama}\NormalTok{ pull qwen2.5{-}coder:0.5b}
+
+\CommentTok{\# Baixar o Qwen 2.5 Coder 1.5b (especialista em código, intermediário)}
+\ExtensionTok{ollama}\NormalTok{ pull qwen2.5{-}coder:1.5b}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Linux (Terminal)}\label{linux-terminal}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Os comandos são idênticos ao Windows}
+\ExtensionTok{ollama}\NormalTok{ pull tinyllama}
+\ExtensionTok{ollama}\NormalTok{ pull qwen2.5{-}coder:0.5b}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Gerenciando modelos
+instalados}\label{gerenciando-modelos-instalados}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Listar todos os modelos instalados}
+\ExtensionTok{ollama}\NormalTok{ list}
+
+\CommentTok{\# Remover um modelo (libera espaço em disco)}
+\ExtensionTok{ollama}\NormalTok{ rm tinyllama}
+
+\CommentTok{\# Exibir informações detalhadas de um modelo}
+\ExtensionTok{ollama}\NormalTok{ show qwen2.5{-}coder:0.5b}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Importante}: o comando \texttt{ollama\ rm} remove completamente
+os arquivos do modelo do disco. Não é necessário remover diretórios
+manualmente --- o Ollama gerencia tudo internamente.
+\end{quote}
+
+\subsection{Monitorando o espaço em
+disco}\label{monitorando-o-espauxe7o-em-disco}
+
+\subsubsection{Windows}\label{windows}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Ver espaço disponível em disco}
+\ExtensionTok{Get{-}PSDrive} \AttributeTok{{-}PSProvider}\NormalTok{ FileSystem}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Linux}\label{linux}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Ver espaço disponível em disco}
+\FunctionTok{df} \AttributeTok{{-}h}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Usando os Modelos}\label{usando-os-modelos}
+
+\subsection{Uso via linha de comando}\label{uso-via-linha-de-comando}
+
+A forma mais direta de interagir com um modelo é pelo terminal:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Iniciar uma conversa interativa}
+\ExtensionTok{ollama}\NormalTok{ run tinyllama}
+
+\CommentTok{\# Enviar uma pergunta direta (sem modo interativo)}
+\ExtensionTok{ollama}\NormalTok{ run qwen2.5{-}coder:0.5b }\StringTok{"Como fazer um loop em Python?"}
+\end{Highlighting}
+\end{Shaded}
+
+Para encerrar o modo interativo, digite \texttt{/bye} ou pressione
+\texttt{Ctrl+D}.
+
+\subsection{Uso via Python}\label{uso-via-python}
+
+\subsubsection{Instalação da
+biblioteca}\label{instalauxe7uxe3o-da-biblioteca}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{pip}\NormalTok{ install ollama}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Exemplo básico}\label{exemplo-buxe1sico}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ ollama}
+
+\NormalTok{response }\OperatorTok{=}\NormalTok{ ollama.chat(}
+\NormalTok{    model}\OperatorTok{=}\StringTok{\textquotesingle{}qwen2.5{-}coder:0.5b\textquotesingle{}}\NormalTok{,}
+\NormalTok{    messages}\OperatorTok{=}\NormalTok{[}
+\NormalTok{        \{}\StringTok{\textquotesingle{}role\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}user\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}content\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}Explique o que é regressão linear.\textquotesingle{}}\NormalTok{\}}
+\NormalTok{    ]}
+\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(response[}\StringTok{\textquotesingle{}message\textquotesingle{}}\NormalTok{][}\StringTok{\textquotesingle{}content\textquotesingle{}}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Chat com histórico de
+conversa}\label{chat-com-histuxf3rico-de-conversa}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ ollama}
+
+\NormalTok{historico }\OperatorTok{=}\NormalTok{ []}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Chat iniciado! Digite \textquotesingle{}sair\textquotesingle{} para encerrar.}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+
+\ControlFlowTok{while} \VariableTok{True}\NormalTok{:}
+\NormalTok{    pergunta }\OperatorTok{=} \BuiltInTok{input}\NormalTok{(}\StringTok{"Você: "}\NormalTok{)}
+
+    \ControlFlowTok{if}\NormalTok{ pergunta.lower() }\OperatorTok{==} \StringTok{\textquotesingle{}sair\textquotesingle{}}\NormalTok{:}
+        \BuiltInTok{print}\NormalTok{(}\StringTok{"Encerrando..."}\NormalTok{)}
+        \ControlFlowTok{break}
+
+\NormalTok{    historico.append(\{}\StringTok{\textquotesingle{}role\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}user\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}content\textquotesingle{}}\NormalTok{: pergunta\})}
+
+\NormalTok{    response }\OperatorTok{=}\NormalTok{ ollama.chat(}
+\NormalTok{        model}\OperatorTok{=}\StringTok{\textquotesingle{}qwen2.5{-}coder:0.5b\textquotesingle{}}\NormalTok{,}
+\NormalTok{        messages}\OperatorTok{=}\NormalTok{historico}
+\NormalTok{    )}
+
+\NormalTok{    resposta }\OperatorTok{=}\NormalTok{ response[}\StringTok{\textquotesingle{}message\textquotesingle{}}\NormalTok{][}\StringTok{\textquotesingle{}content\textquotesingle{}}\NormalTok{]}
+\NormalTok{    historico.append(\{}\StringTok{\textquotesingle{}role\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}assistant\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}content\textquotesingle{}}\NormalTok{: resposta\})}
+
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Modelo: }\SpecialCharTok{\{}\NormalTok{resposta}\SpecialCharTok{\}}\CharTok{\textbackslash{}n}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Streaming de respostas}\label{streaming-de-respostas}
+
+O streaming exibe a resposta progressivamente, melhorando a experiência
+em hardware mais lento:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ ollama}
+
+\ControlFlowTok{for}\NormalTok{ chunk }\KeywordTok{in}\NormalTok{ ollama.chat(}
+\NormalTok{    model}\OperatorTok{=}\StringTok{\textquotesingle{}qwen2.5{-}coder:0.5b\textquotesingle{}}\NormalTok{,}
+\NormalTok{    messages}\OperatorTok{=}\NormalTok{[\{}\StringTok{\textquotesingle{}role\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}user\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}content\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}O que é machine learning?\textquotesingle{}}\NormalTok{\}],}
+\NormalTok{    stream}\OperatorTok{=}\VariableTok{True}
+\NormalTok{):}
+    \BuiltInTok{print}\NormalTok{(chunk[}\StringTok{\textquotesingle{}message\textquotesingle{}}\NormalTok{][}\StringTok{\textquotesingle{}content\textquotesingle{}}\NormalTok{], end}\OperatorTok{=}\StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{, flush}\OperatorTok{=}\VariableTok{True}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Exemplo aplicado à ciência de
+dados}\label{exemplo-aplicado-uxe0-ciuxeancia-de-dados}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ ollama}
+
+\NormalTok{pergunta }\OperatorTok{=} \StringTok{"""}
+\StringTok{Em Python, usando pandas e matplotlib, como faço para:}
+\StringTok{1. Carregar um CSV}
+\StringTok{2. Calcular estatísticas descritivas}
+\StringTok{3. Plotar um histograma da coluna \textquotesingle{}idade\textquotesingle{}}
+\StringTok{"""}
+
+\ControlFlowTok{for}\NormalTok{ chunk }\KeywordTok{in}\NormalTok{ ollama.chat(}
+\NormalTok{    model}\OperatorTok{=}\StringTok{\textquotesingle{}qwen2.5{-}coder:0.5b\textquotesingle{}}\NormalTok{,}
+\NormalTok{    messages}\OperatorTok{=}\NormalTok{[\{}\StringTok{\textquotesingle{}role\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}user\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}content\textquotesingle{}}\NormalTok{: pergunta\}],}
+\NormalTok{    stream}\OperatorTok{=}\VariableTok{True}
+\NormalTok{):}
+    \BuiltInTok{print}\NormalTok{(chunk[}\StringTok{\textquotesingle{}message\textquotesingle{}}\NormalTok{][}\StringTok{\textquotesingle{}content\textquotesingle{}}\NormalTok{], end}\OperatorTok{=}\StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{, flush}\OperatorTok{=}\VariableTok{True}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Uso via API REST}\label{uso-via-api-rest}
+
+O Ollama expõe uma API REST na porta 11434, compatível com o formato da
+API da OpenAI:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Enviar uma requisição via curl}
+\ExtensionTok{curl}\NormalTok{ http://localhost:11434/api/chat }\DataTypeTok{\textbackslash{}}
+  \AttributeTok{{-}H} \StringTok{"Content{-}Type: application/json"} \DataTypeTok{\textbackslash{}}
+  \AttributeTok{{-}d} \StringTok{\textquotesingle{}\{}
+\StringTok{    "model": "qwen2.5{-}coder:0.5b",}
+\StringTok{    "messages": [}
+\StringTok{      \{"role": "user", "content": "O que é uma função recursiva?"\}}
+\StringTok{    ],}
+\StringTok{    "stream": false}
+\StringTok{  \}\textquotesingle{}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Integrando Modelos nas IDEs com o Plugin
+Continue}\label{integrando-modelos-nas-ides-com-o-plugin-continue}
+
+\subsection{O que é o Continue?}\label{o-que-uxe9-o-continue}
+
+O \textbf{Continue} é um plugin de código aberto para IDEs que integra
+modelos de IA diretamente no ambiente de desenvolvimento. Ele suporta VS
+Code e toda a família JetBrains (PyCharm, IntelliJ, etc.) e permite usar
+modelos locais via Ollama sem custo e sem enviar código para servidores
+externos.
+
+\subsection{Instalação no VS Code}\label{instalauxe7uxe3o-no-vs-code}
+
+\textbf{1.} Abra o VS Code e pressione \texttt{Ctrl+Shift+X}
+
+\textbf{2.} Pesquise por \textbf{``Continue''} na barra de busca
+
+\textbf{3.} Clique em \textbf{Install}
+
+\textbf{4.} Após a instalação, o ícone do Continue aparecerá na barra
+lateral esquerda
+
+\subsection{\texorpdfstring{Configuração do arquivo
+\texttt{config.yaml}}{Configuração do arquivo config.yaml}}\label{configurauxe7uxe3o-do-arquivo-config.yaml}
+
+O Continue é configurado pelo arquivo \texttt{config.yaml}, localizado
+em:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Windows}:
+  \texttt{C:\textbackslash{}Users\textbackslash{}\textless{}seu\_usuario\textgreater{}\textbackslash{}.continue\textbackslash{}config.yaml}
+\item
+  \textbf{Linux/macOS}: \texttt{\textasciitilde{}/.continue/config.yaml}
+\end{itemize}
+
+Para abrir o arquivo diretamente pelo terminal do VS Code
+(\texttt{Ctrl+}):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Windows}
+\ExtensionTok{code} \VariableTok{$env}\NormalTok{:USERPROFILE}\DataTypeTok{\textbackslash{}.}\NormalTok{continue}\DataTypeTok{\textbackslash{}c}\NormalTok{onfig.yaml}
+
+\CommentTok{\# Linux}
+\ExtensionTok{code}\NormalTok{ \textasciitilde{}/.continue/config.yaml}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Configuração com um único
+modelo}\label{configurauxe7uxe3o-com-um-uxfanico-modelo}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{name}\KeywordTok{:}\AttributeTok{ Local Config}
+\FunctionTok{version}\KeywordTok{:}\AttributeTok{ }\FloatTok{1.0.0}
+\FunctionTok{schema}\KeywordTok{:}\AttributeTok{ v1}
+
+\FunctionTok{models}\KeywordTok{:}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ }\FunctionTok{name}\KeywordTok{:}\AttributeTok{ Qwen 2.5 Coder 0.5b}
+\AttributeTok{    }\FunctionTok{provider}\KeywordTok{:}\AttributeTok{ ollama}
+\AttributeTok{    }\FunctionTok{model}\KeywordTok{:}\AttributeTok{ qwen2.5{-}coder:0.5b}
+\AttributeTok{    }\FunctionTok{apiBase}\KeywordTok{:}\AttributeTok{ http://localhost:11434}
+
+\FunctionTok{allowAnonymousTelemetry}\KeywordTok{:}\AttributeTok{ }\CharTok{false}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Configuração com múltiplos
+modelos}\label{configurauxe7uxe3o-com-muxfaltiplos-modelos}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{name}\KeywordTok{:}\AttributeTok{ Local Config}
+\FunctionTok{version}\KeywordTok{:}\AttributeTok{ }\FloatTok{1.0.0}
+\FunctionTok{schema}\KeywordTok{:}\AttributeTok{ v1}
+
+\FunctionTok{models}\KeywordTok{:}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ }\FunctionTok{name}\KeywordTok{:}\AttributeTok{ Qwen 2.5 Coder 0.5b}
+\AttributeTok{    }\FunctionTok{provider}\KeywordTok{:}\AttributeTok{ ollama}
+\AttributeTok{    }\FunctionTok{model}\KeywordTok{:}\AttributeTok{ qwen2.5{-}coder:0.5b}
+\AttributeTok{    }\FunctionTok{apiBase}\KeywordTok{:}\AttributeTok{ http://localhost:11434}
+
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ }\FunctionTok{name}\KeywordTok{:}\AttributeTok{ TinyLlama}
+\AttributeTok{    }\FunctionTok{provider}\KeywordTok{:}\AttributeTok{ ollama}
+\AttributeTok{    }\FunctionTok{model}\KeywordTok{:}\AttributeTok{ tinyllama:latest}
+\AttributeTok{    }\FunctionTok{apiBase}\KeywordTok{:}\AttributeTok{ http://localhost:11434}
+
+\FunctionTok{allowAnonymousTelemetry}\KeywordTok{:}\AttributeTok{ }\CharTok{false}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Atenção}: o campo \texttt{tabAutocompleteModel} pode não ser
+suportado em versões mais recentes do Continue (1.2+). Nesse caso,
+configure o autocomplete diretamente pelo painel da extensão.
+\end{quote}
+
+\subsection{Explicação dos campos do
+config.yaml}\label{explicauxe7uxe3o-dos-campos-do-config.yaml}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Campo
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Descrição
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{name} & Nome da configuração --- apenas identificação \\
+\texttt{version} & Versão da sua configuração \\
+\texttt{schema} & Versão do esquema do Continue --- manter
+\texttt{v1} \\
+\texttt{models} & Lista de modelos disponíveis para o chat \\
+\texttt{name} (dentro de models) & Nome exibido no dropdown do
+Continue \\
+\texttt{provider} & Quem fornece o modelo (\texttt{ollama} para uso
+local) \\
+\texttt{model} & Nome exato do modelo conforme aparece no
+\texttt{ollama\ list} \\
+\texttt{apiBase} & Endereço da API do Ollama (\texttt{localhost:11434}
+para uso local) \\
+\texttt{allowAnonymousTelemetry} & Envio de dados anônimos de uso ---
+recomenda-se \texttt{false} \\
+\end{longtable}
+
+\subsection{Principais atalhos do Continue no VS
+Code}\label{principais-atalhos-do-continue-no-vs-code}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Atalho & Ação \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{Ctrl+Alt+I} & Abre o painel de chat \\
+\texttt{Ctrl+Shift+L} & Envia o código selecionado para o chat \\
+\texttt{Ctrl+I} & Edita o código selecionado inline com IA \\
+\texttt{Tab} & Aceita sugestão de autocomplete \\
+\texttt{Esc} & Rejeita sugestão de autocomplete \\
+\end{longtable}
+
+\subsection{Referenciando contexto no
+chat}\label{referenciando-contexto-no-chat}
+
+O Continue permite referenciar partes do projeto diretamente no chat:
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Comando & O que referencia \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{@arquivo.py} & Um arquivo específico do projeto \\
+\texttt{@codebase} & Todo o projeto \\
+\texttt{@terminal} & A saída do terminal integrado \\
+\texttt{@problems} & Os erros e avisos do VS Code \\
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Criando um Servidor de IA com
+Ollama}\label{criando-um-servidor-de-ia-com-ollama}
+
+\subsection{Conceito}\label{conceito}
+
+O Ollama expõe uma API REST local na porta \texttt{11434}. Por padrão,
+essa API só aceita conexões do próprio computador (\texttt{localhost}).
+É possível configurá-lo para aceitar conexões de outros dispositivos na
+rede local, transformando seu computador --- ou um dispositivo embarcado
+como uma Jetson Nano --- em um servidor de IA compartilhado.
+
+\begin{verbatim}
+Servidor (Ollama)                    Clientes na rede
+┌─────────────────────┐              ┌──────────────────┐
+│ Modelo rodando      │ ──────────►  │ Notebook         │
+│ API: 0.0.0.0:11434  │   rede local │ Desktop          │
+│ IP: 192.168.1.100   │              │ Celular          │
+└─────────────────────┘              └──────────────────┘
+\end{verbatim}
+
+\subsection{Configuração no Linux
+(Ubuntu)}\label{configurauxe7uxe3o-no-linux-ubuntu}
+
+\textbf{1. Editar o serviço do Ollama}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sudo}\NormalTok{ systemctl edit ollama.service}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{2. Adicionar a variável de ambiente}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{[Service]}
+\VariableTok{Environment}\OperatorTok{=}\StringTok{"OLLAMA\_HOST=0.0.0.0"}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{3. Reiniciar o serviço}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sudo}\NormalTok{ systemctl daemon{-}reload}
+\FunctionTok{sudo}\NormalTok{ systemctl restart ollama}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{4. Verificar se está aceitando conexões externas}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Substitua pelo IP do servidor na sua rede}
+\ExtensionTok{curl}\NormalTok{ http://192.168.1.100:11434}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Configuração no
+Windows}\label{configurauxe7uxe3o-no-windows}
+
+No PowerShell como administrador:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Definir variável de ambiente permanente}
+\ExtensionTok{[System.Environment]::SetEnvironmentVariable}\ErrorTok{(}
+  \StringTok{"OLLAMA\_HOST"}\ExtensionTok{,}
+  \StringTok{"0.0.0.0"}\ExtensionTok{,}
+  \StringTok{"Machine"}
+\KeywordTok{)}
+
+\CommentTok{\# Reiniciar o serviço do Ollama}
+\ExtensionTok{Stop{-}Service}\NormalTok{ ollama}
+\ExtensionTok{Start{-}Service}\NormalTok{ ollama}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Acessando o servidor
+remotamente}\label{acessando-o-servidor-remotamente}
+
+Após configurar o servidor, os outros dispositivos da rede acessam o
+modelo apontando para o IP do servidor:
+
+\subsubsection{Via Python}\label{via-python}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ ollama}
+
+\CommentTok{\# Apontando para o servidor remoto}
+\NormalTok{client }\OperatorTok{=}\NormalTok{ ollama.Client(host}\OperatorTok{=}\StringTok{\textquotesingle{}http://192.168.1.100:11434\textquotesingle{}}\NormalTok{)}
+
+\NormalTok{response }\OperatorTok{=}\NormalTok{ client.chat(}
+\NormalTok{    model}\OperatorTok{=}\StringTok{\textquotesingle{}qwen2.5{-}coder:0.5b\textquotesingle{}}\NormalTok{,}
+\NormalTok{    messages}\OperatorTok{=}\NormalTok{[\{}\StringTok{\textquotesingle{}role\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}user\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}content\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}Olá! Você está funcionando?\textquotesingle{}}\NormalTok{\}]}
+\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(response[}\StringTok{\textquotesingle{}message\textquotesingle{}}\NormalTok{][}\StringTok{\textquotesingle{}content\textquotesingle{}}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Via Continue (VS Code em outro
+computador)}\label{via-continue-vs-code-em-outro-computador}
+
+Basta apontar o \texttt{apiBase} no \texttt{config.yaml} para o IP do
+servidor:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{models}\KeywordTok{:}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ }\FunctionTok{name}\KeywordTok{:}\AttributeTok{ Qwen no Servidor}
+\AttributeTok{    }\FunctionTok{provider}\KeywordTok{:}\AttributeTok{ ollama}
+\AttributeTok{    }\FunctionTok{model}\KeywordTok{:}\AttributeTok{ qwen2.5{-}coder:0.5b}
+\AttributeTok{    }\FunctionTok{apiBase}\KeywordTok{:}\AttributeTok{ http://192.168.1.100:11434}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Via API REST (qualquer
+dispositivo)}\label{via-api-rest-qualquer-dispositivo}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{curl}\NormalTok{ http://192.168.1.100:11434/api/chat }\DataTypeTok{\textbackslash{}}
+  \AttributeTok{{-}H} \StringTok{"Content{-}Type: application/json"} \DataTypeTok{\textbackslash{}}
+  \AttributeTok{{-}d} \StringTok{\textquotesingle{}\{}
+\StringTok{    "model": "qwen2.5{-}coder:0.5b",}
+\StringTok{    "messages": [\{"role": "user", "content": "Olá!"\}],}
+\StringTok{    "stream": false}
+\StringTok{  \}\textquotesingle{}}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Servidor em dispositivo embarcado: Jetson
+Nano}\label{servidor-em-dispositivo-embarcado-jetson-nano}
+
+A NVIDIA Jetson Nano é uma opção interessante para servidor de IA de
+baixo consumo energético (5--10W), porém o Ollama oficial não suporta
+sua arquitetura ARM com GPU Maxwell nativamente. A alternativa
+recomendada é o \textbf{llama.cpp}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Clonar e compilar o llama.cpp com suporte CUDA}
+\FunctionTok{git}\NormalTok{ clone https://github.com/ggerganov/llama.cpp}
+\BuiltInTok{cd}\NormalTok{ llama.cpp}
+\FunctionTok{make}\NormalTok{ LLAMA\_CUBLAS=1}
+
+\CommentTok{\# Iniciar o servidor}
+\ExtensionTok{./server} \DataTypeTok{\textbackslash{}}
+  \AttributeTok{{-}m}\NormalTok{ models/tinyllama.gguf }\DataTypeTok{\textbackslash{}}
+  \AttributeTok{{-}{-}host}\NormalTok{ 0.0.0.0 }\DataTypeTok{\textbackslash{}}
+  \AttributeTok{{-}{-}port}\NormalTok{ 11434}
+\end{Highlighting}
+\end{Shaded}
+
+Modelos recomendados para a Jetson Nano (4 GB RAM compartilhada):
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Modelo & Viabilidade \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{tinyllama} & ✅ Roda bem \\
+\texttt{qwen2.5-coder:0.5b} & ✅ Roda bem \\
+\texttt{llama3.2:1b} & ⚠️ Aceitável \\
+\texttt{phi3:mini} & ⚠️ Lento \\
+\texttt{llama3.2:3b} & ❌ Muito pesado \\
+\end{longtable}
+
+\subsection{Boas práticas de segurança para o
+servidor}\label{boas-pruxe1ticas-de-seguranuxe7a-para-o-servidor}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Use apenas em rede local confiável} --- não exponha a porta
+  11434 para a internet sem autenticação
+\item
+  \textbf{Configure um firewall} para limitar o acesso apenas aos
+  dispositivos autorizados
+\item
+  \textbf{Monitore o consumo de recursos} --- múltiplos clientes
+  simultâneos podem sobrecarregar o servidor
+\item
+  Se precisar de acesso remoto seguro, use uma \textbf{VPN} ou
+  \textbf{túnel SSH}
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Referências e Recursos}\label{referuxeancias-e-recursos}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://ollama.com}{Ollama --- Site oficial}
+\item
+  \href{https://github.com/ollama/ollama}{Ollama --- Repositório no
+  GitHub}
+\item
+  \href{https://continue.dev}{Continue --- Site oficial}
+\item
+  \href{https://github.com/ggerganov/llama.cpp}{llama.cpp ---
+  Repositório no GitHub}
+\item
+  \href{https://github.com/ollama/ollama-python}{Biblioteca Python do
+  Ollama}
+\item
+  \href{https://ollama.com/library}{Modelos disponíveis no Ollama}
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\emph{Tutorial elaborado com base em experiência prática com Ubuntu
+22.04 LTS e Windows 11.}
+
+\end{document}
