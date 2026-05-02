@@ -2,7 +2,7 @@
 title: "Inteligência Artificial Local com Ollama"
 ---
 
-# Inteligência Artificial Local com Ollama
+# "Inteligência Artificial Local com Ollama"
 > Um guia prático e completo para rodar modelos de IA no seu próprio computador — do zero ao servidor de IA.
 
 ![License](https://img.shields.io/badge/license-MIT-blue)
