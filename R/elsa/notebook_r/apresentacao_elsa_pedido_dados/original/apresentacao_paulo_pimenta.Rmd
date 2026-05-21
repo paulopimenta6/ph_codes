@@ -1,0 +1,34 @@
+---
+title: "Consumo de Alimentos Ultraprocessados e Função Renal"
+author: |
+  Paulo Pimenta \newline
+  \small Mestrando em Medicina (PPGNEGRO)
+date: "`r Sys.Date()`"
+output:
+  beamer_presentation:
+    theme: AnnArbor
+    colortheme: dolphin
+    fonttheme: structurebold
+  ioslides_presentation: default
+institute: Faculdade de Medicina da USP
+header-includes:
+- \usepackage{fontawesome5}
+- \usepackage{graphicx}
+- \titlegraphic{\vspace{0.3cm}\faRProject\, \textbf{R Markdown}}
+- \setbeamertemplate{footline}[frame number]
+- \setbeamerfont{title}{size=\large}
+- \setbeamerfont{author}{size=\normalsize}
+- \setbeamerfont{institute}{size=\small}
+- \setbeamercolor{title}{fg=white}
+- \setbeamercolor{frametitle}{fg=white}
+---
+
+## Índice
+
+- Introdução
+- O Sistema NOVA e a Definição de AUPs
+- Metodologia do Estudo ELSA-Brasil
+- Evidências: AUPs e Declínio Renal
+- Mecanismos Fisiopatológicos I (Composição)
+- Relevância para a saúde coletiva 
+- Conclusões

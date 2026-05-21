@@ -1,0 +1,212 @@
+---
+title: "Alimentos Ultraprocessados e Doença Renal Crônica"
+author: "Paulo Henrique de Almeida Soares Pimenta \\newline {\\small Mestrando em Ciências pela Faculdade de Medicina da USP}"
+date: "2026"
+
+output: 
+  beamer_presentation:
+    theme: "Madrid"
+    latex_engine: xelatex
+    citation_package: biblatex
+
+bibliography: referencias.bib
+suppress-bibliography: true
+
+header-includes:
+  - \usepackage{graphicx}
+  - \usepackage{tikz}
+  - \setbeamertemplate{headline}{}
+  - \setbeamertemplate{navigation symbols}{}
+  - \AtBeginPart{}
+  - \AtBeginSection{}
+  - \AtBeginSubsection{}
+  - \AtBeginSubsubsection{}
+  - \setbeamertemplate{section page}{}
+  - \setbeamertemplate{subsection page}{}
+  - |
+    \titlegraphic{
+      \begin{tikzpicture}[overlay, remember picture]
+
+        % Logo FMUSP inferior centralizada
+        \node[anchor=south] at (current page.south)
+          [yshift=-0.1cm]
+          {\includegraphics[height=2.2cm]{fmusp_logo.png}};
+
+        % Logos R e RMarkdown
+        \node[anchor=south east] at (current page.south east)
+          [xshift=-0.3cm, yshift=0.3cm]
+          {\includegraphics[height=0.7cm]{Rlogo.png}%
+           \hspace{0.3cm}%
+           \includegraphics[height=0.7cm]{rmarkdown_logo.png}};
+
+      \end{tikzpicture}
+    }
+---
+
+# Índice
+
+## Sumário
+
+\tableofcontents
+
+# Introdução
+
+## O Desafio da Doença Renal Crônica (DRC)
+
+- A DRC é um problema global de saúde pública com alta morbimortalidade [@Monteiro2019].
+- A Taxa de Filtração Glomerular (TFG) é o principal marcador clínico de função renal [@Schmidt2015].
+- A transição nutricional substituiu alimentos frescos por Alimentos Ultraprocessados (AUPs) [@Monteiro2019].
+
+# O Sistema NOVA
+
+## Definindo Alimentos Ultraprocessados
+
+- **Grupo 4 (AUPs):** Formulações industriais ricas em aditivos cosméticos e substâncias sintetizadas [@Monteiro2019].
+- **Características:** Hiperpalatáveis, longa vida de prateleira e baixo custo [@Monteiro2019].
+- **Impacto no Brasil:** Representam uma parcela crescente da energia dietética total [@Costa2021].
+
+# Problemas Associados ao Consumo de AUPs
+
+## Principais problemas
+
+- Fortemente associados a desfechos sistêmicos negativos:
+    - Ganho de circunferência abdominal e obesidade [@Srour2019].
+    - Síndrome metabólica, hipertensão e diabetes tipo 2 [@Srour2019].
+    - Aumento do risco de doenças cardiovasculares [@Srour2019; @Avesani2023].
+
+# Evidências Epidemiológicas
+
+## AUPs e Rins
+
+- **Risco de DRC:** Um aumento de 10% no consumo de AUPs eleva em 7% o risco de desenvolver a doença [@He2024].
+- **Declínio Renal:** Alto consumo está ligado a um declínio acelerado da TFG longitudinalmente [@He2024; @ReyGarcia2021].
+- Indivíduos no maior quartil de consumo têm risco significativamente superior [@He2024].
+- Associações são observadas independentemente de comorbidades tradicionais [@He2024].
+
+# Mecanismos de Lesão Renal I
+
+## Nutrientes críticos
+
+- **Excesso de Sódio:** Aditivos para conservação aumentam a pressão intraglomerular [@Avesani2023].
+- **Açúcares Adicionados:** Bebidas adoçadas induzem estresse oxidativo e albuminúria [@Avesani2023].
+- **Pobreza Nutricional:** Baixo teor de fibras e potássio orgânico, essenciais para a proteção renal [@Avesani2023].
+
+# Mecanismos de Lesão Renal II
+
+## Aditivos e Contaminantes
+
+- **Fosfatos Inorgânicos:** Biodisponibilidade próxima a 100%, causando sobrecarga de fósforo e toxicidade tubular [@Cecchini2025].
+- **AGEs (Produtos de Glicação Avançada):** Gerados no processamento térmico industrial, danificam a estrutura glomerular [@Avesani2023].
+- **Contaminantes:** Presença de bisfenóis de embalagens plásticas com potencial nefrotóxico [@Avesani2023].
+
+# Mecanismos de Lesão Renal III
+
+## Eixo Intestino-Rim
+
+- Dietas ricas em AUPs induzem **disbiose intestinal** [@Avesani2023].
+- O aumento da permeabilidade intestinal eleva a produção de **toxinas urêmicas** (ex: indoxil sulfato) [@Avesani2023].
+- Consequência: Inflamação sistêmica crônica e aceleração da fibrose renal [@Avesani2023].
+
+# Metodologia do Trabalho de Mestrado
+
+## O Estudo ELSA-Brasil
+
+- **População:** 15.105 servidores públicos da coorte ELSA-Brasil.
+- Maior coorte multicêntrica de adultos no Brasil (n=15.105) [@Schmidt2015].
+- **Instrumentos:** Coleta de dados alimentares via Questionário de Frequência Alimentar (QFA) validado [@Costa2021].
+- **Trajetória:** Acompanhamento longitudinal da TFG ao longo de múltiplas ondas (Ondas 1 a 3) [@Schmidt2015].
+
+## Questionário de Frequência Alimentar
+
+- O Questionário de Frequência Alimentar (QFA) é amplamente utilizado em estudos de coorte para avaliar o consumo alimentar habitual [@silva2021aplicacao]. No ELSA-Brasil, foi utilizado um QFA semi-quantitativo validado, composto por 114 alimentos/preparações, com frequência de consumo referente aos últimos 12 meses [@canhada2020ultra; @silva2021aplicacao].
+
+- O instrumento permite estimar ingestão energética, macronutrientes, padrões alimentares e consumo de alimentos ultraprocessados (UPFs), classificados segundo o sistema NOVA [@naud2019consumo; @costa2021escore]. O consumo elevado de UPFs tem sido associado ao declínio da função renal e ao aumento do risco de DRC [@he2024ultra; @costa2021escore].
+
+- Além disso, índices de qualidade da dieta e padrões dietéticos saudáveis podem ser relacionados à função renal, fornecendo uma avaliação global do impacto da alimentação sobre a saúde [@silva2017aposentadoria; @naud2019consumo].
+
+## Dados Antropométricos e Clínicos
+
+O Índice de Massa Corporal (IMC) foi utilizado como indicador do estado nutricional, sendo calculado pela razão entre peso e altura ao quadrado. A classificação seguiu os critérios da OMS, permitindo identificar excesso de peso e obesidade, fatores associados ao desenvolvimento e progressão da Doença Renal Crônica (DRC).
+
+Também foram avaliadas a excreção urinária de sódio e potássio, além de comorbidades relacionadas à DRC, como hipertensão arterial, diabetes mellitus, dislipidemia e doença cardiovascular [@silva2021aplicacao].
+
+Hábitos de vida, incluindo tabagismo, atividade física e consumo de álcool, também foram considerados [@silva2021aplicacao]. Estudos mostram que o aumento do consumo de alimentos ultraprocessados (AUPF) está associado à redução da função renal e maior risco de DRC [@he2024ultra; @avesani2023ultraprocessed].
+
+## Abordagem estatística - Parte I
+
+- A função renal será avaliada através da Taxa de Filtração Glomerular
+estimada (TFGe), que é considerada uma ferramenta vital para o
+rastreamento populacional, decisões clínicas e monitoramento da
+progressão da Doença Renal Crônica (DRC) [@leonberg2025trends].
+
+- Método de Cálculo: A TFGe será calculada a partir da creatinina sérica
+(SCr), idade e sexo, utilizando a equação do consórcio CKD-EPI (2021).
+Esta equação é preferencial por sua precisão em diferentes níveis de
+função renal e por não incluir correções baseadas em raça, evitando
+disparidades em decisões clínicas. [@leonberg2025trends; @he2024ultra]
+
+
+## Abordagem estatística - Parte II
+
+A fórmula matemática seguirá a estimativa da fórmula:
+
+$$
+TFGe = 142 \times \min\left(\frac{SCr}{k}, 1\right)^{\alpha}
+\times \max\left(\frac{SCr}{k}, 1\right)^{-1.2}
+\times 0.9938^{\text{Idade}}
+$$
+
+Onde k é 0.7 para mulheres e 0.9 para homens; α é -0.241 para mulheres e
+-0.302 para homens; e o $\alpha$ é 1.012 para mulheres e 1 para homens
+[@leonberg2025trends; @he2024ultra].
+
+-   Coleta da Creatinina: A creatinina sérica será determinada através
+    de amostras de sangue coletadas após jejum noturno de 12 horas,
+    processadas e analisadas por métodos laboratoriais padronizados,
+    como a reação cinética de Jaffé (picrato alcalino). [@rey2021ultra].
+
+-   Critérios de Definição de DRC: Indivíduos com TFGe \< 60
+    mL/min/1,73m² serão classificados como portadores de disfunção renal
+    persistente (Estágio G3a ou superior) [@schmidt2015cohort;
+    @rey2021ultra; @leonberg2025trends].
+
+## Modelos Lineares Mistos (MLM)
+
+- Uso de **MLM** para analisar as medidas repetidas da TFGe ao longo do tempo [@singer1986analise].
+- **Efeitos Fixos:** Relação entre o consumo de AUP basal e a inclinação do declínio renal.
+- **Efeitos Aleatórios:** Captura da variabilidade individual na trajetória da TFG.
+- Ajustes por idade, sexo, diabetes, hipertensão e estilo de vida.
+
+## Modelo Linear Misto para TFGe
+
+- Foi utilizado um Modelo Linear Misto (MLM) para analisar o declínio longitudinal da TFGe, considerando efeitos fixos populacionais e efeitos aleatórios individuais. O modelo permite avaliar a associação entre consumo de alimentos ultraprocessados (UPFc), tempo de seguimento e covariáveis clínicas.
+
+$$
+Y_i =
+\underbrace{X_i \beta}_{\text{Efeitos Fixos}}
++
+\underbrace{Z_i b_i + \epsilon_i}_{\text{Efeitos Aleatórios}}
+\quad \text{para } i = 1, \dots, N
+$$
+
+- Os efeitos fixos representam a trajetória média populacional da TFGe, enquanto os efeitos aleatórios capturam a variabilidade individual entre participantes. A interação `Tempo × UPFc` avalia se diferentes níveis de consumo de ultraprocessados influenciam a taxa de declínio da função renal.
+
+- Assumiu-se distribuição normal para efeitos aleatórios e resíduos, com matriz de covariância não estruturada para modelar a heterogeneidade entre indivíduos e a correlação entre intercepto e inclinação.
+
+# Ganhos Esperados e Relevância
+
+## Principais contribuições
+
+- **Científicos:** Compreensão das trajetórias da TFG sob o impacto da dieta moderna no Brasil.
+- **Clínicos:** Embasa recomendações dietéticas para preservação da reserva funcional renal [@Avesani2023].
+- **Políticas Públicas:** Subsídios para rotulagem nutricional e estratégias preventivas no SUS [@Monteiro2019].
+
+# Conclusões
+
+## Síntese final
+
+- O consumo de AUPs é um fator de risco modificável crítico para a saúde renal.
+- Recomenda-se a redução drástica conforme o **Guia Alimentar para a População Brasileira**.
+- A proteção renal exige dietas baseadas em alimentos *in natura* [@Monteiro2019].
+
+# Bibliografia

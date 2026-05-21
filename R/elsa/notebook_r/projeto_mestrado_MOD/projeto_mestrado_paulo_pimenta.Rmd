@@ -306,7 +306,7 @@ TFGe = 142 \times \min\left(\frac{SCr}{k}, 1\right)^{\alpha}
 $$
 
 Onde k é 0.7 para mulheres e 0.9 para homens; α é -0.241 para mulheres e
--0.302 para homens; e o fator_sexo é 1.012 para mulheres e 1 para homens
+-0.302 para homens; e o $\alpha$ é 1.012 para mulheres e 1 para homens
 [@leonberg2025trends; @he2024ultra].
 
 -   Coleta da Creatinina: A creatinina sérica será determinada através
