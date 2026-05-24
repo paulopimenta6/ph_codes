@@ -126,11 +126,11 @@ header-includes:
 
 ## Dados Antropométricos e Clínicos
 
-O Índice de Massa Corporal (IMC) foi utilizado como indicador do estado nutricional, sendo calculado pela razão entre peso e altura ao quadrado. A classificação seguiu os critérios da OMS, permitindo identificar excesso de peso e obesidade, fatores associados ao desenvolvimento e progressão da Doença Renal Crônica (DRC).
+O Índice de Massa Corporal (IMC) será utilizado como indicador do estado nutricional, sendo calculado pela razão entre peso e altura ao quadrado. A classificação seguirá os critérios da OMS, permitindo identificar excesso de peso e obesidade, fatores associados ao desenvolvimento e progressão da Doença Renal Crônica (DRC).
 
-Também foram avaliadas a excreção urinária de sódio e potássio, além de comorbidades relacionadas à DRC, como hipertensão arterial, diabetes mellitus, dislipidemia e doença cardiovascular [@silva2021aplicacao].
+Também serão avaliadas a excreção urinária de sódio e potássio, além de comorbidades relacionadas à DRC, como hipertensão arterial, diabetes mellitus, dislipidemia e doença cardiovascular [@silva2021aplicacao].
 
-Hábitos de vida, incluindo tabagismo, atividade física e consumo de álcool, também foram considerados [@silva2021aplicacao]. Estudos mostram que o aumento do consumo de alimentos ultraprocessados (AUPF) está associado à redução da função renal e maior risco de DRC [@he2024ultra; @avesani2023ultraprocessed].
+Hábitos de vida, incluindo tabagismo, atividade física e consumo de álcool, também serão considerados [@silva2021aplicacao]. Estudos mostram que o aumento do consumo de alimentos ultraprocessados (AUPF) está associado à redução da função renal e maior risco de DRC [@he2024ultra; @avesani2023ultraprocessed].
 
 ## Abordagem estatística - Parte I
 
@@ -179,7 +179,7 @@ Onde k é 0.7 para mulheres e 0.9 para homens; α é -0.241 para mulheres e
 
 ## Modelo Linear Misto para TFGe
 
-- Foi utilizado um Modelo Linear Misto (MLM) para analisar o declínio longitudinal da TFGe, considerando efeitos fixos populacionais e efeitos aleatórios individuais. O modelo permite avaliar a associação entre consumo de alimentos ultraprocessados (UPFc), tempo de seguimento e covariáveis clínicas.
+- Será utilizado um Modelo Linear Misto (MLM) para analisar o declínio longitudinal da TFGe, considerando efeitos fixos populacionais e efeitos aleatórios individuais. O modelo permite avaliar a associação entre consumo de alimentos ultraprocessados (UPFc), tempo de seguimento e covariáveis clínicas.
 
 $$
 Y_i =
