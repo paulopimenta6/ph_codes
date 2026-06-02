@@ -2,7 +2,7 @@
 
 # 1. Instalação e Carregamento de Pacotes
 # Se você ainda não tem esses pacotes instalados, remova o '#' da linha abaixo e execute-a.
-# install.packages(c("neuralnet", "caret", "dplyr"))
+#install.packages(c("neuralnet", "caret", "dplyr"))
 
 library(neuralnet)
 library(caret) # Para one-hot encoding e pré-processamento
