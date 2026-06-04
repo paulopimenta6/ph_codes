@@ -1,7 +1,5 @@
 Regressão Logística Binária
 ================
-Paulo
-04 de junho de 2026
 
 - [1. Introdução e Motivação](#1-introdução-e-motivação)
   - [1.1 Por que não usar regressão
@@ -368,7 +366,7 @@ Na regressão logística não existe um $R^2$ com interpretação geométrica
 direta. O **pseudo-$R^2$ de McFadden** (1974) é a medida mais usada:
 
 $$\boxed{R^2_{\text{McFadden}} = -\frac{L^_}{L_0} = -\frac{L^_}{N_1\log_e N_1 + N_0\log_e N_0 - (N_1+N_0)\log_e(N_1+N_0)}}$$
-
+$$\boxed{R^2_{\text{McFadden}} = -\frac{L^{*}}{L_0} = -\frac{L^{*}}{N_1\log_e N_1 + N_0\log_e N_0 - (N_1+N_0)\log_e(N_1+N_0)}}$$
 onde:
 
 | Símbolo | Definição                                                |
