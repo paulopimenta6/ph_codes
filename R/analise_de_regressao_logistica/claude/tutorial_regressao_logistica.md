@@ -367,7 +367,16 @@ por algoritmos de otimização iterativa:
 Na regressão logística não existe um $R^2$ com interpretação geométrica
 direta. O **pseudo-$R^2$ de McFadden** (1974) é a medida mais usada:
 
-$$\boxed{R^2_{\mathrm{McFadden}}=1 - \frac{L^*}{L_0}=1 - \frac{L^*}{N_1\ln(N_1) + N_0\ln(N_0) - (N_1+N_0)\ln(N_1+N_0)}}$$
+$$
+\boxed{
+R^2_{\text{McFadden}}
+=
+1 - \frac{L^{*}}{L_0}
+=
+1 - \frac{L^{*}}
+{N_1\log_e(N_1) + N_0\log_e(N_0) - (N_1+N_0)\log_e(N_1+N_0)}
+}
+$$
 
 onde:
 
