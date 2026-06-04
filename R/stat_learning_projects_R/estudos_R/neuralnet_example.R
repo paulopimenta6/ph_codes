@@ -104,7 +104,7 @@ plot(nnet_model)
 # Se você tivesse um conjunto de teste, usaria ele aqui.
 
 # Exemplo de previsão no conjunto de treinamento
-predicoes_prob <- compute(nnet_model, treino %>% select(-Comprara))$net.result
+predicoes_prob <- neuralnet::compute(nnet_model, treino %>% select(-Comprara))$net.result
 predicoes_classe <- ifelse(predicoes_prob > 0.5, 1, 0)
 
 cat("\nProbabilidades de Previsão (primeiras 10):\n")
