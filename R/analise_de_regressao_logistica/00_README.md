@@ -4,7 +4,7 @@ editor_options:
     wrap: 72
 ---
 
-# 📊 Regressão Logística Binária --- Tutorial Completo
+# Regressão Logística Binária --- Tutorial Completo
 
 **Teoria + Formalismo + Implementação R e Python**
 
@@ -13,13 +13,13 @@ editor_options:
 
 ------------------------------------------------------------------------
 
-## 🎯 Sobre este Tutorial
+## Sobre este Tutorial
 
 Este é um **tutorial abrangente sobre regressão logística binária** que
 nasceu de notas de aula manuscritas e foi expandido com formalismo
 estatístico completo.
 
-### ✨ Características
+### Características
 
 -   ✅ **Cobertura teórica completa** --- da motivação até implementação
     prática
@@ -35,10 +35,10 @@ estatístico completo.
 
 ------------------------------------------------------------------------
 
-## 📑 Estrutura do Tutorial
+## Estrutura do Tutorial
 
 | Seção                                           | Tempo  | Descrição                                         |
-|-------------------------------------------------|--------|---------------------------------------------------|
+|---------------------|---------------------|------------------------------|
 | [1. Introdução](./01_introducao.md)             | 5 min  | Por que não usar regressão linear? Aplicações.    |
 | [2. Modelo Logístico](./02_modelo_logistico.md) | 10 min | Função sigmoide, transformação logit, odds ratio. |
 | [3. Estimação MV](./03_estimacao.md)            | 15 min | Máxima verossimilhança, exemplo café.             |
@@ -50,11 +50,11 @@ estatístico completo.
 
 ------------------------------------------------------------------------
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Ler a Teoria
 
-👉
+
 [**regressao_logistica_binaria.md**](./analise_de_regressao_logistica_versao_1.pdf)
 
 ### Rodar Código
@@ -70,7 +70,7 @@ python 08_implementacao_python.py
 
 ------------------------------------------------------------------------
 
-## 📚 Arquivos
+## Arquivos
 
 ```         
 R/analise_de_regressao_logistica/
@@ -89,14 +89,14 @@ R/analise_de_regressao_logistica/
 
 ------------------------------------------------------------------------
 
-## 💡 Pré-requisitos
+## Pré-requisitos
 
 -   **R** ≥ 4.0 \| **Python** ≥ 3.8
 -   Conhecimento básico de probabilidade e estatística
 
 ------------------------------------------------------------------------
 
-## ❓ FAQ
+## FAQ
 
 **Por que Pseudo-R² é diferente?** Não há soma de quadrados em
 logística. Compara log-verossimilhanças.
@@ -109,13 +109,13 @@ class_weight='balanced' 3. Threshold adaptativo via ROC
 
 ------------------------------------------------------------------------
 
-## 📄 Licença
+## Licença
 
 MIT --- Livre para usar e modificar
 
 ------------------------------------------------------------------------
 
-## 👨‍💻 Autor
+## Autor
 
 **Paulo Pimenta** --- Baseado em notas de aula revisadas
 
