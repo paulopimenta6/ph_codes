@@ -39,7 +39,7 @@ Este é um **tutorial abrangente sobre regressão logística binária** que nasc
 ## 🚀 Quick Start
 
 ### Ler a Teoria
-👉 [**regressao_logistica_binaria.md**](./regressao_logistica_binaria.md)
+👉 [**regressao_logistica_binaria.md**](./analise_de_regressao_logistica_versao_1.pdf)
 
 ### Rodar Código
 
