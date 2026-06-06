@@ -1,6 +1,7 @@
 # Regressão Logística Binária
 
 *Tutorial Completo — Teoria, Formalismo e Implementação em R e Python*
+
 O tutorial nasceu de notas de estudos feitas manuscritas. As leituras que embasaram este estudo são de livros de estatística e ciência de dados
 que serão referenciadas nesta apresentação.
 
@@ -8,7 +9,7 @@ O manuscrito que deu origem a esta apresentação foi [Manuscrito Original](anal
 
 Caso esta apresentação não este renderizando de forma adequada use o pdf gerado ou o html para realizar a leitura! 
 
-**Autor:** Paulo  
+**Autor:** Paulo Pimenta 
 
 ---
 
