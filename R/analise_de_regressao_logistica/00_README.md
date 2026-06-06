@@ -1,9 +1,3 @@
----
-editor_options: 
-  markdown: 
-    wrap: 72
----
-
 # Regressão Logística Binária --- Tutorial Completo
 
 **Teoria + Formalismo + Implementação R e Python**
