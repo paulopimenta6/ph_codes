@@ -1,3 +1,9 @@
+---
+output:
+  pdf_document:
+    latex_engine: xelatex
+  html_document: default
+---
 # Regressão Logística Binária
 
 *Tutorial Completo — Teoria, Formalismo e Implementação em R e Python*
@@ -54,21 +60,21 @@ O pipeline completo de uma análise de regressão logística binária:
 
 ```
 Dados .csv
-    │
-    ▼
-① Exploração (dispersão, boxplots, balanço de classes)
-    │
-    ▼
-② Estimação do modelo (Máxima Verossimilhança)
-    │
-    ▼
-③ Avaliação da acurácia (pseudo-R², acurácia, AUC-ROC)
-    │
-    ▼
-④ Testes de hipóteses (TRV global + Wald individual)
-    │
-    ▼
-⑤ Previsão para novas observações
+   |
+   v
+1) Exploração
+   |
+   v
+2) Estimação do modelo
+   |
+   v
+3) Avaliação do modelo
+   |
+   v
+4) Testes de hipóteses
+   |
+   v
+5) Previsão
 ```
 
 ---
