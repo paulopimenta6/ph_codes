@@ -1,6 +1,12 @@
 # Regressão Logística Binária
 
 *Tutorial Completo — Teoria, Formalismo e Implementação em R e Python*
+O tutorial nasceu de notas de estudos feitas manuscritas. As leituras que embasaram este estudo são de livros de estatística e ciência de dados
+que serão referenciadas nesta apresentação.
+
+O manuscrito que deu origem a esta apresentação foi [Manuscrito Original](analise_de_regressao_logistica_versao_1.pdf)
+
+Caso esta apresentação não este renderizando de forma adequada use o pdf gerado ou o html para realizar a leitura! 
 
 **Autor:** Paulo  
 
@@ -1133,29 +1139,6 @@ print(f"Classificação (τ = {LIMIAR_DECISAO}): {classe_nova}")
 - [x] Matriz de confusão com sensibilidade, especificidade, F1
 - [x] Curva ROC e AUC calculadas e interpretadas
 - [x] Previsão para nova observação realizada
-
----
-
-# 11. Referências
-
-- **Hosmer, D. W., Lemeshow, S., & Sturdivant, R. X.** (2013).
-  *Applied Logistic Regression* (3ª ed.). Wiley.
-
-- **McFadden, D.** (1974). Conditional logit analysis of qualitative choice behavior.
-  In P. Zarembka (Ed.), *Frontiers in Econometrics* (pp. 105–142). Academic Press.
-
-- **James, G., Witten, D., Hastie, T., & Tibshirani, R.** (2021).
-  *An Introduction to Statistical Learning with Applications in R* (2ª ed.). Springer.
-  Disponível em: <https://www.statlearning.com>
-
-- **McCullagh, P., & Nelder, J. A.** (1989).
-  *Generalized Linear Models* (2ª ed.). Chapman & Hall/CRC.
-
-- **Pedregosa, F. et al.** (2011). Scikit-learn: Machine Learning in Python.
-  *Journal of Machine Learning Research*, 12, 2825–2830.
-
-- **Seabold, S., & Perktold, J.** (2010). Statsmodels: Econometric and Statistical
-  Modeling with Python. *Proceedings of the 9th Python in Science Conference*.
 
 ---
 
