@@ -49,7 +49,7 @@ estatístico completo.
 ### Ler a Teoria
 
 
-[**regressao_logistica_binaria.md**](./analise_de_regressao_logistica_versao_1.pdf)
+[**Notas manuscritas da teoria**](./analise_de_regressao_logistica_versao_1.pdf)
 
 ### Rodar Código
 
