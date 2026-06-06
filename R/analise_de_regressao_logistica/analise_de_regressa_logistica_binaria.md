@@ -1,49 +1,8 @@
----
-title: "Regressão Logística Binária"
-subtitle: "Tutorial Completo — Teoria, Formalismo e Implementação em R e Python"
-author: "Paulo"
-date: "`r format(Sys.Date(), '%d de %B de %Y')`"
-output:
-  github_document:
-    toc: true
-    toc_depth: 4
-    html_preview: false
-  html_document:
-    toc: true
-    toc_float:
-      collapsed: false
-      smooth_scroll: true
-    toc_depth: 4
-    number_sections: true
-    theme: flatly
-    highlight: tango
-    code_folding: show
-    fig_width: 9
-    fig_height: 5
-    df_print: paged
-fontsize: 12pt
-lang: pt-BR
----
+# Regressão Logística Binária
 
-<!-- ================================================================
-     INSTRUÇÕES DE USO
-     - GitHub  : output: github_document  (gera .md pronto para push)
-     - HTML    : output: html_document    (relatório interativo local)
-     - Compilar: rmarkdown::render("tutorial_regressao_logistica.Rmd")
-     ================================================================ -->
+*Tutorial Completo — Teoria, Formalismo e Implementação em R e Python*
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(
-  echo      = TRUE,
-  message   = FALSE,
-  warning   = FALSE,
-  fig.align = "center",
-  fig.path  = "figuras/",
-  comment   = "#>",
-  cache     = FALSE
-)
-set.seed(42)
-```
+**Autor:** Paulo  
 
 ---
 
@@ -66,7 +25,7 @@ regressão linear ordinária apresenta problemas fundamentais:
 
 | Problema | Descrição |
 |:---|:---|
-| **Previsões fora de \[0,1\]** | $\hat{y} = \mathbf{x}^\top\boldsymbol{\beta}$ pode assumir qualquer valor real, resultando em "probabilidades" negativas ou maiores que 1 |
+| **Previsões fora de [0,1]** | $\hat{y} = \mathbf{x}^\top\pmb{\beta}$ pode assumir qualquer valor real, resultando em "probabilidades" negativas ou maiores que 1 |
 | **Heterocedasticidade estrutural** | A variância de $y \sim \text{Bernoulli}(p)$ é $p(1-p)$, que varia com $p$, violando a homocedasticidade |
 | **Distribuição dos resíduos** | Os resíduos não seguem distribuição normal, invalidando os testes da regressão linear |
 
@@ -113,7 +72,7 @@ Dados .csv
 
 A equação central do modelo é:
 
-$$\boxed{\hat{y} = P(Y = 1 \mid \mathbf{x}) = \frac{1}{1 + e^{-z}}, \quad z = a_1 x_1 + a_2 x_2 + \cdots + a_p x_p + b}$$
+$$\hat{y} = P(Y = 1 \mid \mathbf{x}) = \frac{1}{1 + e^{-z}}, \quad z = a_1 x_1 + a_2 x_2 + \cdots + a_p x_p + b$$
 
 onde:
 
@@ -128,7 +87,7 @@ onde:
 **Propriedade fundamental:** independentemente do valor de $z$,
 $0 < \hat{y} < 1$ sempre. O modelo nunca produz uma probabilidade inválida.
 
-```{r fig-sigmoide, fig.cap="Figura 1. Função Sigmoide: mapeamento do espaço real no intervalo (0,1). A região verde indica P ≥ 0,5 (classificado como 1); a vermelha, P < 0,5 (classificado como 0).", fig.height=4.5}
+```r
 library(ggplot2)
 library(dplyr)
 library(pROC)
@@ -169,7 +128,7 @@ ggplot(sig_df, aes(x = z, y = y)) +
 
 Invertendo a função sigmoide:
 
-$$\underbrace{\log_e\!\left(\frac{p}{1-p}\right)}_{\text{logit}(p)} = z = a_1 x_1 + \cdots + a_p x_p + b$$
+$$\log_e\!\left(\frac{p}{1-p}\right) \; [\text{logit}(p)] = z = a_1 x_1 + \cdots + a_p x_p + b$$
 
 O termo $\dfrac{p}{1-p}$ é a **razão de chances** (*odds*): razão entre a
 probabilidade de ocorrência e de não-ocorrência do evento. A transformação
@@ -196,7 +155,7 @@ $$OR_i = e^{a_i}$$
 
 ## 3.1 O princípio
 
-A **Máxima Verossimilhança** (MV) encontra os valores de $\boldsymbol{a}$ e $b$
+A **Máxima Verossimilhança** (MV) encontra os valores de $\mathbf{a}$ e $b$
 que **maximizam a probabilidade de se observar exatamente os dados coletados**,
 dada a estrutura do modelo.
 
@@ -206,7 +165,7 @@ Para $n$ observações independentes, com $y_i \in \{0,1\}$, cada observação
 segue uma distribuição de Bernoulli com parâmetro $\hat{y}_i$. A verossimilhança
 conjunta é:
 
-$$\mathcal{L}(\boldsymbol{a}, b) = \prod_{i=1}^{n} \hat{y}_i^{\;y_i} \cdot (1 - \hat{y}_i)^{1-y_i}$$
+$$\mathcal{L}(\mathbf{a}, b) = \prod_{i=1}^{n} \hat{y}_i^{\;y_i} \cdot (1 - \hat{y}_i)^{1-y_i}$$
 
 Cada fator contribui com:
 - $\hat{y}_i$ quando $y_i = 1$ (probabilidade prevista de sucesso)  
@@ -217,7 +176,7 @@ Cada fator contribui com:
 Para evitar *underflow* numérico e transformar o produto em soma,
 maximiza-se o logaritmo natural:
 
-$$\boxed{L(\boldsymbol{a}, b) = \sum_{i=1}^{n}\left[\, y_i \log_e(\hat{y}_i) + (1-y_i)\log_e(1-\hat{y}_i) \,\right]}$$
+$$L(\mathbf{a}, b) = \sum_{i=1}^{n}\left[\, y_i \log_e(\hat{y}_i) + (1-y_i)\log_e(1-\hat{y}_i) \,\right]$$
 
 **Propriedades:**
 
@@ -228,7 +187,7 @@ $$\boxed{L(\boldsymbol{a}, b) = \sum_{i=1}^{n}\left[\, y_i \log_e(\hat{y}_i) + (
 
 ## 3.4 Exemplo: preferência por café
 
-Pesquisa com 10 pessoas, das quais 7 responderam "Sim" e 3, "Não".
+Pesquisa com 10 pessoas, das quais 7 responderam "Sim" e 3 "Não".
 Parâmetro a estimar: $p$ (proporção que gosta de café).
 
 **Verossimilhança** (desconsiderando combinatórias — não afetam o maximizador):
@@ -246,7 +205,7 @@ $$\frac{d^2L}{dp^2} = -\frac{7}{p^2} - \frac{3}{(1-p)^2} < 0 \quad \forall\, p \
 Como a segunda derivada é estritamente negativa, $\hat{p} = 0{,}7$ é um
 **máximo global** — coincide, como esperado, com a proporção amostral.
 
-```{r fig-mv-cafe, fig.cap="Figura 2. Log-verossimilhança para o exemplo do café. O máximo global em p = 0,7 coincide com a proporção amostral.", fig.height=4.2}
+```r
 p_seq  <- seq(0.01, 0.99, length.out = 500)
 L_cafe <- 7 * log(p_seq) + 3 * log(1 - p_seq)
 p_hat  <- 7 / 10
@@ -280,7 +239,7 @@ ggplot(mv_df, aes(x = p, y = L)) +
 
 Substituindo $\hat{y}_i = \sigma(z_i)$:
 
-$$L(\boldsymbol{a}, b) = \sum_{i=1}^{n} \left[\, y_i \log_e\!\left(\frac{1}{1+e^{-z_i}}\right) + (1-y_i)\log_e\!\left(\frac{e^{-z_i}}{1+e^{-z_i}}\right) \,\right]$$
+$$L(\mathbf{a}, b) = \sum_{i=1}^{n} \left[\, y_i \log_e\!\left(\frac{1}{1+e^{-z_i}}\right) + (1-y_i)\log_e\!\left(\frac{e^{-z_i}}{1+e^{-z_i}}\right) \,\right]$$
 
 **Não existe solução analítica fechada.** Os coeficientes são estimados por
 algoritmos de otimização iterativa:
@@ -295,12 +254,14 @@ algoritmos de otimização iterativa:
 
 # 4. Avaliação do Modelo
 
+
+
 ## 4.1 Pseudo-R² de McFadden
 
 Na regressão logística não existe um $R^2$ com interpretação geométrica direta.
 O **pseudo-$R^2$ de McFadden** (1974) é a medida mais usada:
 
-$$\boxed{R^2_{\text{McFadden}} = -\frac{L^*}{L_0} = -\frac{L^*}{N_1\log_e N_1 + N_0\log_e N_0 - (N_1+N_0)\log_e(N_1+N_0)}}$$
+$$R^2_{\text{McFadden}} = 1 -\frac{L^*}{L_0} = 1 - \frac{L^*}{N_1\log_e N_1 + N_0\log_e N_0 - (N_1+N_0)\log_e(N_1+N_0)}$$
 
 onde:
 
@@ -325,6 +286,87 @@ $\hat{p} = N_1/N$ para todos — o "pior" modelo útil.
 > Na regressão logística, valores relativamente baixos de pseudo-$R^2$ são
 > esperados e não indicam necessariamente um modelo ruim. Um $R^2_{\text{McFadden}} \approx 0{,}4$
 > em regressão logística é comparável a um $R^2 \approx 0{,}9$ em regressão linear.
+
+## 4.1 R² de McFadden – Fórmula detalhada
+
+### 4.1.1 Fórmula correta (conceitual)
+
+$$
+R^2_{\text{McFadden}} = 1 - \frac{\ln L^*}{\ln L_0}
+$$
+
+- $\ln L^*$ = log-verossimilhança do **modelo completo** (com preditores).  
+- $\ln L_0$ = log-verossimilhança do **modelo nulo** (apenas intercepto).
+
+Ambos são números **negativos** (ou zero).  
+Como o modelo completo é pelo menos tão bom quanto o nulo, $$\ln L^* \ge \ln L_0$$ (menos negativo).  
+Portanto 
+$$
+0 \le \frac{\ln L^*}{\ln L_0} \le 1
+$$ 
+e o $R^2$ fica entre 0 e 1.
+
+> O erro comum é omitir o termo $1 - \cdots$, escrevendo apenas $$-\frac{L^*}{L_0}$$, o que gera valor e sinal incorretos.
+
+---
+
+### 4.1.2 Fórmula detalhada do modelo nulo ($L_0$)
+
+Em regressão logística binária ($Y \in \{0,1\}$), o modelo nulo prevê a mesma probabilidade para todos:  
+$\hat{p} = \frac{N_1}{N}$, onde:
+
+- $N_1$ = observações com $Y=1$  
+- $N_0$ = observações com $Y=0$  
+- $N = N_1 + N_0$
+
+A log-verossimilhança do modelo nulo é:
+
+$$
+\ln L_0 = N_1 \ln\!\left(\frac{N_1}{N}\right) + N_0 \ln\!\left(\frac{N_0}{N}\right)
+$$
+
+Expandindo os logaritmos:
+
+$$
+\ln L_0 = N_1 \ln N_1 + N_0 \ln N_0 - N \ln N
+$$
+
+Essa expressão aparecia no denominador da caixa original e está correta — o erro estava apenas na fórmula geral do $R^2$.
+
+---
+
+### 4.1.3 Fórmula completa para uso prático
+
+$$
+\boxed{
+R^2_{\text{McFadden}} = 1 - \frac{\ln L^*}{\,N_1 \ln N_1 + N_0 \ln N_0 - N \ln N\,}
+}
+$$
+
+Ou, com a notação de logaritmo natural ($\log_e$):
+
+$$
+\boxed{
+R^2_{\text{McFadden}} = 1 - \frac{L^*}{\,N_1\log_e N_1 + N_0\log_e N_0 - (N_1+N_0)\log_e(N_1+N_0)\,}
+}
+$$
+
+---
+
+### 4.1.4 Exemplo numérico
+
+Dados: $N_1 = 60$, $N_0 = 40$, $N = 100$.
+
+Modelo nulo:  
+$\ln L_0 = 60\ln(0{,}6) + 40\ln(0{,}4) \approx -67{,}3$
+
+Suponha que o modelo completo tenha $\ln L^* = -50{,}0$:
+
+$$
+R^2_{\text{McFadden}} = 1 - \frac{-50{,}0}{-67{,}3} \approx 1 - 0{,}743 = 0{,}257
+$$
+
+Interpretação: o modelo completo reduz cerca de **25,7%** da incerteza (deviance) em relação ao modelo nulo — análogo ao $R^2$ tradicional, mas na escala da log-verossimilhança.
 
 ## 4.2 Acurácia e taxa de erro aparente
 
@@ -389,7 +431,7 @@ ao modelo nulo (sem preditoras).
 $$H_0: a_1 = a_2 = \cdots = a_p = 0 \qquad \text{vs.} \qquad H_1: \exists\, i: a_i \neq 0$$
 
 **Estatística de teste:**
-$$G = 2(L^* - L_0) \;\xrightarrow{H_0}\; \chi^2_{(p)}$$
+$$G = 2(L^* - L_0) \;\overset{H_0}{\longrightarrow}\; \chi^2_{(p)}$$
 
 onde $p$ é o número de preditoras (graus de liberdade). Rejeita-se $H_0$
 se o valor-p $< \alpha$.
@@ -412,12 +454,12 @@ Avalia a significância de **cada coeficiente** separadamente.
 $$H_0: a_i = 0 \qquad \text{vs.} \qquad H_1: a_i \neq 0$$
 
 **Estatística de Wald:**
-$$W_i = \left(\frac{\hat{a}_i}{SE(\hat{a}_i)}\right)^2 \;\xrightarrow{H_0}\; \chi^2_{(1)}$$
+$$W_i = \left(\frac{\hat{a}_i}{SE(\hat{a}_i)}\right)^2 \;\overset{H_0}{\longrightarrow}\; \chi^2_{(1)}$$
 
 O erro padrão $SE(\hat{a}_i)$ é a raiz quadrada do $i$-ésimo elemento
 diagonal da matriz de covariância dos estimadores:
 
-$$\widehat{\text{Var}}(\hat{\boldsymbol{a}}) = \left(\mathbf{X}^\top \widehat{W}\, \mathbf{X}\right)^{-1}, \quad \widehat{W} = \text{diag}\{\hat{y}_i(1-\hat{y}_i)\}$$
+$$\widehat{\text{Var}}(\hat{\mathbf{a}}) = \left(\mathbf{X}^\top \widehat{W}\, \mathbf{X}\right)^{-1}, \quad \widehat{W} = \text{diag}\{\hat{y}_i(1-\hat{y}_i)\}$$
 
 A estatística equivalente em escala normal é $z_i = \hat{a}_i / SE(\hat{a}_i) \sim \mathcal{N}(0,1)$,
 reportada como "z value" na saída do R.
@@ -458,7 +500,7 @@ para equilibrar sensibilidade e especificidade conforme o contexto.
 
 ## 7.1 Pacotes
 
-```{r r-pacotes}
+```r
 # Instalação automática dos pacotes ausentes
 pkgs_necessarios <- c("ggplot2", "dplyr", "pROC", "caret",
                       "DescTools", "gridExtra", "knitr")
@@ -482,7 +524,7 @@ suppressPackageStartupMessages({
 
 ## 7.2 Configuração e importação dos dados
 
-```{r r-config}
+```r
 # ════════════════════════════════════════════════════════════
 #  CONFIGURAÇÃO — ajuste apenas estas variáveis
 # ════════════════════════════════════════════════════════════
@@ -538,7 +580,7 @@ cat(sprintf("Observações válidas: %d\n", n_depois))
 
 ## 7.3 Análise exploratória
 
-```{r r-eda, fig.cap="Figura 3. Esquerda: dispersão das preditoras com separação por classe. Centro e direita: distribuição de cada preditora por classe.", fig.height=4.5, fig.width=11}
+```r
 N1 <- sum(dados$y == 1)
 N0 <- sum(dados$y == 0)
 N  <- nrow(dados)
@@ -585,7 +627,7 @@ do.call(grid.arrange, c(list(p_disp), plots_bp, list(ncol = 3)))
 
 ## 7.4 Divisão treino/teste e ajuste do modelo
 
-```{r r-ajuste}
+```r
 set.seed(SEMENTE)
 
 # Partição estratificada (mantém proporção de classes)
@@ -609,7 +651,7 @@ print(summary(modelo))
 
 ## 7.5 Coeficientes e odds ratios
 
-```{r r-or}
+```r
 ci_logit  <- suppressMessages(confint(modelo))
 or_table  <- exp(cbind(OR = coef(modelo), ci_logit))
 colnames(or_table) <- c("OR", "IC 2,5%", "IC 97,5%")
@@ -621,7 +663,7 @@ kable(round(or_table, 4),
 
 ## 7.6 Pseudo-R² de McFadden
 
-```{r r-pseudor2}
+```r
 L_star    <- as.numeric(logLik(modelo))
 L_nulo_val <- N1 * log(N1) + N0 * log(N0) - N * log(N)
 r2_mcf    <- -L_star / L_nulo_val
@@ -639,7 +681,7 @@ cat("Avaliação:",
 
 ## 7.7 Teste da razão de verossimilhanças
 
-```{r r-trv}
+```r
 modelo_nulo <- glm(y ~ 1, data = treino, family = binomial(link = "logit"))
 
 G        <- 2 * (as.numeric(logLik(modelo)) - as.numeric(logLik(modelo_nulo)))
@@ -659,7 +701,7 @@ cat("Decisão (α = 0,05):",
 
 ## 7.8 Teste de Wald
 
-```{r r-wald}
+```r
 coefs_v   <- coef(modelo)
 ep_v      <- sqrt(diag(vcov(modelo)))
 w_stat_v  <- (coefs_v / ep_v)^2
@@ -679,7 +721,7 @@ kable(wald_df, caption = "Tabela 2. Teste de Wald para cada coeficiente")
 
 ## 7.9 Previsão e avaliação no conjunto de teste
 
-```{r r-previsao}
+```r
 prob_teste <- predict(modelo, newdata = teste, type = "response")
 y_pred_r   <- ifelse(prob_teste >= LIMIAR_DECISAO, 1, 0)
 
@@ -702,7 +744,7 @@ print(cm_r)
 
 ## 7.10 Visualizações: matriz de confusão e curva ROC
 
-```{r r-viz, fig.cap="Figura 4. Esquerda: Matriz de Confusão. Direita: Curva ROC com AUC.", fig.height=4.8, fig.width=10}
+```r
 # ── Matriz de confusão ──────────────────────────────────────────────────────
 cm_df_r <- as.data.frame(cm_r$table)
 names(cm_df_r) <- c("Predito", "Real", "N")
@@ -754,7 +796,7 @@ cat(sprintf("\nAUC: %.4f — %s\n", auc_r,
 
 ## 7.11 Previsão para nova observação
 
-```{r r-nova-obs}
+```r
 # ── Defina aqui a nova observação (um valor por preditora) ──────────────────
 valores_novos_r <- c(45, 55)   # altere conforme sua análise
 # ────────────────────────────────────────────────────────────────────────────
@@ -1078,26 +1120,19 @@ print(f"Classificação (τ = {LIMIAR_DECISAO}): {classe_nova}")
 
 # 10. Checklist da Análise Completa
 
-```{r r-checklist, echo=FALSE}
-items <- c(
-  "Importação e validação do arquivo .csv",
-  "Análise exploratória: dispersão e boxplots por classe",
-  "Balanceamento de classes verificado",
-  "Divisão estratificada treino/teste",
-  "Ajuste do modelo logístico por Máxima Verossimilhança",
-  "Coeficientes, erros-padrão e odds ratios com IC 95%",
-  "Pseudo-R² de McFadden calculado e interpretado",
-  "Teste da Razão de Verossimilhanças (significância global)",
-  "Teste de Wald (significância individual de cada coeficiente)",
-  "Acurácia e taxa de erro no conjunto de teste",
-  "Matriz de confusão com sensibilidade, especificidade, F1",
-  "Curva ROC e AUC calculadas e interpretadas",
-  "Previsão para nova observação realizada"
-)
-
-for (i in seq_along(items))
-  cat(sprintf("  [✓] %s\n", items[i]))
-```
+- [x] Importação e validação do arquivo .csv
+- [x] Análise exploratória: dispersão e boxplots por classe
+- [x] Balanceamento de classes verificado
+- [x] Divisão estratificada treino/teste
+- [x] Ajuste do modelo logístico por Máxima Verossimilhança
+- [x] Coeficientes, erros-padrão e odds ratios com IC 95%
+- [x] Pseudo-R² de McFadden calculado e interpretado
+- [x] Teste da Razão de Verossimilhanças (significância global)
+- [x] Teste de Wald (significância individual de cada coeficiente)
+- [x] Acurácia e taxa de erro no conjunto de teste
+- [x] Matriz de confusão com sensibilidade, especificidade, F1
+- [x] Curva ROC e AUC calculadas e interpretadas
+- [x] Previsão para nova observação realizada
 
 ---
 
