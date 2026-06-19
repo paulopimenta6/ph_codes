@@ -1,0 +1,123 @@
+---
+output:
+  word_document: default
+  html_document: default
+  pdf_document: default
+---
+```{r setup, include=FALSE}
+Sys.setlocale("LC_TIME", "en_US.UTF-8")
+```
+
+---
+title: "Determinantes Sociais e Espaciais da Doença Renal Crônica: Uma Perspectiva Espacial"
+author: "Paulo Henrique de Almeida Soares Pimenta"
+date: "`r format(Sys.Date(), '%B %d, %Y')`"
+---
+
+## Contexto
+
+A doença renal crônica (DRC) afeta mais de 850 milhões de pessoas mundialmente e está projetada para se tornar a quinta causa de morte global até 2050. Embora o diabetes e a hipertensão sejam as causas principais em países de alta renda, a DRC é considerada uma doença arquetípica da desigualdade, afetando desproporcionalmente populações em condições de privação socioeconômica. Em países de baixa e média renda (LMICs), a urbanização não planejada e a transição nutricional têm acelerado a prevalência da doença.
+
+## Perguntas de pesquisa / Hipóteses
+
+Este estudo tem como objetivo investigar a associação longitudinal entre espaços territoriais e o declínio da função renal. Nossa hipótese é que determinadas regiões possuem características específicas relacionadas as variáveis socioconomicas, demográficas ambientais, demográficas e espaciais que são associadas a uma menor taxa de filtração glomerular estimada (eGFR) no momento basal e a um declínio mais acelerado da função renal ao longo do tempo. Além disso, esperamos que essa associação permaneça significativa mesmo após o ajuste para outros fatores, como características clínicas e comportamentais, e que varie entre subgrupos clínicos, como indivíduos com hipertensão arterial, diabetes mellitus e obesidade.
+
+Alguns fatores importantes foram levantados como:
+
+- Como os fatores do ambiente construído (caminhabilidade, espaços verdes) influenciam o surgimento e a progressão da DRC.
+
+- Pacientes com DRC e vulnerabilidade socioeconomicam tendem a apresentar piores desfechos clínicos (progressão para falência renal e mortalidade) do que aqueles de status elevado.
+
+- A segregação residencial e a pobreza do bairro tendem a ser preditores independentes de falência renal, além dos riscos individuais.
+
+## Análise estatística
+
+Modelos Lineares de Efeitos Mistos serão utilizados para avaliar a associação longitudinal entre a variabilidade regional, com dados expresso como percentual da ingestão energética total, e as trajetórias da taxa de filtração glomerular estimada (eGFR) ao longo das ondas do ELSA-Brasil. Os modelos incluirão interceptos e inclinações aleatórios no nível individual, permitindo capturar a heterogeneidade interindividual tanto na função renal basal quanto na taxa de declínio da função renal. Serão ajustados modelos brutos e modelos multivariados ajustados, controlando para idade, sexo, renda, índice de massa corporal, hipertensão arterial, diabetes mellitus, dislipidemia, tabagismo, consumo de álcool e nível de atividade física. A adequação dos modelos será avaliada por meio de critérios de informação e da análise dos resíduos.
+
+Além disso serão incluídos metodologias variadas para medir associações, tais como:
+
+- Modelos de riscos proporcionais de Cox e Razão de Riscos Ajustada (aHR) para avaliar mortalidade e progressão para falência renal (ESKD).
+
+- Meta-análises para agregar riscos relativos (RR) entre diferentes populações.
+
+- Pareamento por escore de propensão em estudos de coortes baseados em registros eletrônicos de saúde (EHR) para reduzir vieses de seleção.
+
+- Modelos espaciais e temporais para estimar a exposição à poluição (PM2.5).
+
+## Variáveis
+
+Os desfechos incluem a taxa de filtração glomerular estimada (eGFR), a creatinina sérica e a razão albumina-creatinina urinária (RAC). As covariáveis abrangem características sociodemográficas, antropométricas, clínicas e relacionadas ao estilo de vida.
+
+### Variáveis Clínicas
+
+As variáveis clínicas foram obtidas por meio de exames médicos padronizados, testes laboratoriais e questionários validados. A função renal foi avaliada pela taxa de filtração glomerular estimada (eGFR), calculada com base nos níveis de creatinina sérica, idade e sexo, utilizando a equação CKD-EPI (2021). A doença renal crônica (DRC) foi definida por $< 60$ mL/min/1.73 m² ou razão albumina-creatinina urinária (RAC) elevada.
+
+A creatinina sérica (CrS) foi mensurada em amostras de sangue obtidas após jejum, por meio de métodos laboratoriais padronizados, e as alterações da função renal foram avaliadas longitudinalmente. A razão albumina-creatinina urinária (RAC) foi obtida a partir de amostras de urina noturna coletadas por métodos validados, sendo considerada elevada quando $\geq$ 30 mg/g.
+
+As comorbidades clínicas consideradas fatores de risco para DRC incluíram hipertensão arterial (pressão arterial sistólica $\geq$ 140 mmHg, pressão arterial diastólica $\geq$ 90 mmHg ou uso de medicamentos anti-hipertensivos), diabetes mellitus (diagnóstico prévio, uso de medicamentos antidiabéticos, glicemia de jejum $\geq$ 126 mg/dL, glicemia de 2 horas $\geq$ 200 mg/dL ou hemoglobina glicada [HbA1c] $\geq$ 6,5%), dislipidemia (colesterol LDL $\geq$ 130 mg/dL ou uso de medicamentos hipolipemiantes) e doença cardiovascular.
+
+As variáveis clínicas relacionadas ao estilo de vida incluíram o tabagismo, o consumo de bebidas alcoólicas e o nível de atividade física, avaliados por meio de instrumentos validados, incluindo o Questionário Internacional de Atividade Física (IPAQ).
+
+- Função Renal: Taxa de filtração glomerular estimada (eGFR) e níveis de creatinina sérica
+
+- Dano Renal: Presença de albuminúria ou proteinúria
+
+- Comorbidades: Presença de diabetes mellitus, hipertensão e doenças cardiovasculares
+
+- Desfechos: Falência renal terminal (ESKD), necessidade de diálise e mortalidade por todas as causas
+
+### Variáveis Sociodemográficas
+
+As características sociodemográficas foram obtidas por meio de entrevistas padronizadas realizadas como parte do protocolo do ELSA-Brasil. A idade foi tratada como uma variável contínua e expressa em anos na linha de base. O sexo foi analisado como uma variável categórica (masculino/feminino) e também foi utilizado na estimativa da função renal. Essas variáveis foram consideradas potenciais fatores de confusão essenciais em todos os modelos analíticos destinados a avaliar o declínio da função renal.
+
+- Renda e Pobreza: Renda familiar anual e níveis de pobreza do bairro
+
+- Escolaridade: Nível educacional alcançado (fundamental, médio ou superior)
+
+- Ocupação: Tipo de emprego (especializado vs. não especializado) e status de desemprego
+
+- Raça/Etnia: Identificação étnica e seu cruzamento com a privação
+
+- Habitação: Instabilidade habitacional e situação de rua
+
+### Variáveis Antropométricas
+
+As medidas antropométricas foram obtidas por meio de procedimentos padronizados. O índice de massa corporal (IMC) foi calculado pela razão entre o peso corporal, em quilogramas, e a altura, em metros, ao quadrado (kg/m²). O IMC foi classificado de acordo com os critérios da Organização Mundial da Saúde em baixo peso ($< 18.5$ kg/m²), eutrofia (18,5–24,9 kg/m²), sobrepeso (25,0–29,9 kg/m²) e obesidade graus I (30,0–34,9 kg/m²), II (35,0–39,9 kg/m²) e III ($\geq$ 40,0 kg/m²).
+
+Adicionalmente, a excreção urinária de sódio e de potássio foi incluída como biomarcador relacionado à ingestão alimentar e à função renal, fornecendo informações complementares sobre o equilíbrio eletrolítico e a saúde renal.
+
+- Índice de Massa Corporal (IMC): Utilizado para avaliar a relação entre obesidade, ambiente de vizinhança e risco de DRC.
+
+### Variáveis de Exposição Dietética
+
+A exposição alimentar foi avaliada por meio de um questionário de frequência alimentar (QFA) semiquantitativo validado. O consumo de alimentos foi classificado de acordo com o sistema de classificação NOVA e expresso como o percentual da ingestão energética diária total proveniente de alimentos. As estimativas de ingestão de nutrientes foram ajustadas pela ingestão energética total utilizando o método dos resíduos. Índices de qualidade da dieta e padrões alimentares também foram derivados e incluídos nos modelos multivariados, quando apropriado. 
+
+Durante a pesquisa será analisada como em cada região se comporta o padrão dietético e como o mesmo se relaciona aos hábitos e as variáveis socioeconomicas e demográficas, para tal serão investigadas algumas variáveis como:
+
+- Insegurança Alimentar: Disponibilidade incerta de alimentos nutritivos e seguros.
+
+- Ambiente Alimentar: Proximidade de supermercados versus densidade de restaurantes de fast-food ("desertos alimentares").
+
+- Consumo de Nutrientes: Ingestão de sódio, proteína animal e alimentos ultraprocessados.
+
+- Consumo de Álcool: Padrões de uso regular ou episódico excessivo.
+
+## Relevância esperada
+
+A síntese dessas variáveis visa identificar fatores modificáveis no nível da comunidade para intervenções baseadas no lugar (place-based). Compreender os determinantes sociais permite que políticas públicas foquem na prevenção primária e no diagnóstico precoce em populações vulneráveis, reduzindo o custo econômico e humano da falência renal terminal
+
+## References
+
+Kim, B., et al. (2025). Built Environment and Chronic Kidney Disease: Current State and Future Directions. Curr Opin Nephrol Hypertens.
+ 
+ Grant, C. H., et al. (2023). Deprivation and chronic kidney disease—a review of the evidence. Clinical Kidney Journal.
+ 
+ Zhang, L., et al. (2026). Effects of social determinants of health on the landscape of kidney disease. Nature Reviews Nephrology.
+ 
+ Vanholder, R., et al. (2023). Inequities in kidney health and kidney care. Nature Reviews Nephrology.
+ 
+ Crews, D. C., & Novick, T. (2019). Social Determinants of CKD Hotspots. Seminars in Nephrology.
+ 
+ Moosa, M. R., & Norris, K. C. (2020). Sustainable social development: tackling poverty to achieve kidney health equity. Nature Reviews Nephrology.
+ 
+ Lapedis, C. J., et al. (2020). Understanding the Link between Neighborhoods and Kidney Disease. Kidney360.

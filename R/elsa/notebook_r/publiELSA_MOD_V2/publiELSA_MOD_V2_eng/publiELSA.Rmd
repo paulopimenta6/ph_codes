@@ -1,0 +1,123 @@
+---
+output:
+  word_document: default
+  html_document: default
+  pdf_document: default
+---
+```{r setup, include=FALSE}
+Sys.setlocale("LC_TIME", "en_US.UTF-8")
+```
+
+---
+title: "Social and Spatial Determinants of Chronic Kidney Disease: A Spatial Perspective"
+author: "Paulo Henrique de Almeida Soares Pimenta"
+date: "`r format(Sys.Date(), '%B %d, %Y')`"
+---
+
+## Background
+
+Chronic kidney disease (CKD) affects more than 850 million people worldwide and is projected to become the fifth leading cause of death globally by 2050. Although diabetes and hypertension are the main causes in high-income countries, CKD is considered an archetypal disease of inequality, disproportionately affecting populations living in conditions of socioeconomic deprivation. In low- and middle-income countries (LMICs), unplanned urbanization and nutritional transition have accelerated the prevalence of the disease.
+
+## Research Questions / Hypotheses
+
+This study aims to investigate the longitudinal association between territorial spaces and the decline in renal function. Our hypothesis is that certain regions have specific characteristics related to socioeconomic, demographic, environmental, and spatial variables that are associated with a lower estimated glomerular filtration rate (eGFR) at baseline and a more accelerated decline in renal function over time. Furthermore, we expect this association to remain significant even after adjustment for other factors, such as clinical and behavioral characteristics, and to vary across clinical subgroups, including individuals with arterial hypertension, diabetes mellitus, and obesity.
+
+Several important factors were raised, including:
+
+- How built environment factors (walkability, green spaces) influence the onset and progression of CKD.
+
+- Patients with CKD and socioeconomic vulnerability tend to present worse clinical outcomes (progression to renal failure and mortality) than those of higher socioeconomic status.
+
+- Residential segregation and neighborhood poverty tend to be independent predictors of renal failure, beyond individual-level risks.
+
+## Statistical Analysis
+
+Linear Mixed-Effects Models will be used to evaluate the longitudinal association between regional variability, with data expressed as a percentage of total energy intake, and the trajectories of estimated glomerular filtration rate (eGFR) across the ELSA-Brasil waves. The models will include random intercepts and slopes at the individual level, allowing the capture of inter-individual heterogeneity in both baseline renal function and the rate of renal function decline. Crude models and adjusted multivariate models will be fitted, controlling for age, sex, income, body mass index, arterial hypertension, diabetes mellitus, dyslipidemia, smoking, alcohol consumption, and physical activity level. Model fit will be assessed using information criteria and residual analysis.
+
+In addition, various methodologies will be included to measure associations, such as:
+
+- Cox proportional hazards models and Adjusted Hazard Ratios (aHR) to evaluate mortality and progression to renal failure (ESKD).
+
+- Meta-analyses to aggregate relative risks (RR) across different populations.
+
+- Propensity score matching in cohort studies based on electronic health records (EHR) to reduce selection biases.
+
+- Spatial and temporal models to estimate exposure to pollution (PM2.5).
+
+## Variables
+
+Outcomes include the estimated glomerular filtration rate (eGFR), serum creatinine, and the urine albumin-to-creatinine ratio (ACR). Covariates encompass sociodemographic, anthropometric, clinical, and lifestyle-related characteristics.
+
+### Clinical Variables
+
+Clinical variables were obtained through standardized medical examinations, laboratory tests, and validated questionnaires. Renal function was assessed by the estimated glomerular filtration rate (eGFR), calculated based on serum creatinine levels, age, and sex, using the CKD-EPI (2021) equation. Chronic kidney disease (CKD) was defined by eGFR $< 60$ mL/min/1.73 m² or elevated urine albumin-to-creatinine ratio (ACR).
+
+Serum creatinine (sCr) was measured in blood samples obtained after fasting, using standardized laboratory methods, and changes in renal function were assessed longitudinally. The urine albumin-to-creatinine ratio (ACR) was obtained from overnight urine samples collected by validated methods, and was considered elevated when $\geq$ 30 mg/g.
+
+Clinical comorbidities considered as risk factors for CKD included arterial hypertension (systolic blood pressure $\geq$ 140 mmHg, diastolic blood pressure $\geq$ 90 mmHg, or use of antihypertensive medications), diabetes mellitus (previous diagnosis, use of antidiabetic medications, fasting blood glucose $\geq$ 126 mg/dL, 2-hour blood glucose $\geq$ 200 mg/dL, or glycated hemoglobin [HbA1c] $\geq$ 6.5%), dyslipidemia (LDL cholesterol $\geq$ 130 mg/dL or use of lipid-lowering medications), and cardiovascular disease.
+
+Clinical lifestyle-related variables included smoking, alcohol consumption, and physical activity level, assessed through validated instruments, including the International Physical Activity Questionnaire (IPAQ).
+
+- Renal Function: Estimated glomerular filtration rate (eGFR) and serum creatinine levels
+
+- Renal Damage: Presence of albuminuria or proteinuria
+
+- Comorbidities: Presence of diabetes mellitus, hypertension, and cardiovascular diseases
+
+- Outcomes: End-stage renal disease (ESKD), need for dialysis, and all-cause mortality
+
+### Sociodemographic Variables
+
+Sociodemographic characteristics were obtained through standardized interviews conducted as part of the ELSA-Brasil protocol. Age was treated as a continuous variable and expressed in years at baseline. Sex was analyzed as a categorical variable (male/female) and was also used in the estimation of renal function. These variables were considered essential potential confounders in all analytical models designed to evaluate the decline in renal function.
+
+- Income and Poverty: Annual household income and neighborhood poverty levels
+
+- Education: Highest educational level attained (primary, secondary, or higher education)
+
+- Occupation: Type of employment (skilled vs. unskilled) and unemployment status
+
+- Race/Ethnicity: Ethnic identification and its intersection with deprivation
+
+- Housing: Housing instability and homelessness
+
+### Anthropometric Variables
+
+Anthropometric measurements were obtained using standardized procedures. Body mass index (BMI) was calculated as the ratio of body weight, in kilograms, to height, in meters, squared (kg/m²). BMI was classified according to World Health Organization criteria as underweight ($< 18.5$ kg/m²), normal weight (18.5–24.9 kg/m²), overweight (25.0–29.9 kg/m²), and obesity grade I (30.0–34.9 kg/m²), grade II (35.0–39.9 kg/m²), and grade III ($\geq$ 40.0 kg/m²).
+
+Additionally, urinary sodium and potassium excretion were included as biomarkers related to dietary intake and renal function, providing complementary information on electrolyte balance and kidney health.
+
+- Body Mass Index (BMI): Used to assess the relationship between obesity, neighborhood environment, and CKD risk.
+
+### Dietary Exposure Variables
+
+Dietary exposure was assessed using a validated semi-quantitative food frequency questionnaire (FFQ). Food consumption was classified according to the NOVA classification system and expressed as the percentage of total daily energy intake derived from food groups. Nutrient intake estimates were adjusted for total energy intake using the residual method. Dietary quality indices and dietary patterns were also derived and included in multivariate models when appropriate.
+
+During the research, the dietary pattern in each region will be analyzed, as well as how it relates to habits and socioeconomic and demographic variables. To this end, the following variables will be investigated:
+
+- Food Insecurity: Uncertain availability of nutritious and safe food.
+
+- Food Environment: Proximity to supermarkets versus fast-food restaurant density ("food deserts").
+
+- Nutrient Consumption: Intake of sodium, animal protein, and ultra-processed foods.
+
+- Alcohol Consumption: Patterns of regular or episodic heavy use.
+
+## Expected Relevance
+
+The synthesis of these variables aims to identify modifiable community-level factors for place-based interventions. Understanding the social determinants allows public policies to focus on primary prevention and early diagnosis in vulnerable populations, reducing the economic and human burden of end-stage renal disease.
+
+## References
+
+Kim, B., et al. (2025). Built Environment and Chronic Kidney Disease: Current State and Future Directions. Curr Opin Nephrol Hypertens.
+ 
+Grant, C. H., et al. (2023). Deprivation and chronic kidney disease—a review of the evidence. Clinical Kidney Journal.
+ 
+Zhang, L., et al. (2026). Effects of social determinants of health on the landscape of kidney disease. Nature Reviews Nephrology.
+ 
+Vanholder, R., et al. (2023). Inequities in kidney health and kidney care. Nature Reviews Nephrology.
+ 
+Crews, D. C., & Novick, T. (2019). Social Determinants of CKD Hotspots. Seminars in Nephrology.
+ 
+Moosa, M. R., & Norris, K. C. (2020). Sustainable social development: tackling poverty to achieve kidney health equity. Nature Reviews Nephrology.
+ 
+Lapedis, C. J., et al. (2020). Understanding the Link between Neighborhoods and Kidney Disease. Kidney360.
