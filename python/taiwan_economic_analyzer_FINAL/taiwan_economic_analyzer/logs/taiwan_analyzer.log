@@ -1,0 +1,2025 @@
+2026-06-23 14:39:00 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 14:39:00 | INFO     | TaiwanMain | INICIANDO DAEMON DE PRODUCAO
+2026-06-23 14:39:00 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 14:39:00 | INFO     | TaiwanMain | Intervalo: 5 minutos
+2026-06-23 14:39:00 | INFO     | TaiwanMain | Banco: /media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/data/taiwan_economy.db
+2026-06-23 14:39:00 | INFO     | TaiwanMain | Dashboard: /media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/assets/taiwan_dashboard.png
+2026-06-23 14:39:00 | INFO     | TaiwanMain | Comandos: Ctrl+C para parar | SIGUSR1 para forcar execucao
+2026-06-23 14:39:00 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 14:39:00 | INFO     | TaiwanMain | 
+======================================================================
+2026-06-23 14:39:00 | INFO     | TaiwanMain | CICLO #1 - 2026-06-23 14:39:00
+2026-06-23 14:39:00 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 14:39:00 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 14:39:00 | INFO     | TaiwanMain | EXECUCAO #1 - 2026-06-23 14:39:00
+2026-06-23 14:39:00 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 14:39:00 | INFO     | TaiwanMain | 
+[ETAPA 1/5] COLETA DE DADOS
+2026-06-23 14:39:00 | INFO     | TaiwanScraper | ======================================================================
+2026-06-23 14:39:00 | INFO     | TaiwanScraper | COLETA DE DADOS
+2026-06-23 14:39:00 | INFO     | TaiwanScraper | ======================================================================
+2026-06-23 14:39:00 | INFO     | TaiwanScraper | [FONTE 1] Trading Economics...
+2026-06-23 14:39:01 | INFO     | TaiwanScraper |   exports: 2 tabelas encontradas
+2026-06-23 14:39:01 | INFO     | TaiwanScraper |   OK exports: 1 registros
+2026-06-23 14:39:01 | INFO     | TaiwanScraper |   imports: 2 tabelas encontradas
+2026-06-23 14:39:01 | INFO     | TaiwanScraper |   OK imports: 1 registros
+2026-06-23 14:39:02 | INFO     | TaiwanScraper |   balance: 3 tabelas encontradas
+2026-06-23 14:39:02 | INFO     | TaiwanScraper |   OK balance: 4 registros
+2026-06-23 14:39:02 | INFO     | TaiwanScraper |   gdp: 2 tabelas encontradas
+2026-06-23 14:39:02 | INFO     | TaiwanScraper |   OK gdp: 1 registros
+2026-06-23 14:39:03 | INFO     | TaiwanScraper |   inflation: 3 tabelas encontradas
+2026-06-23 14:39:03 | INFO     | TaiwanScraper |   OK inflation: 4 registros
+2026-06-23 14:39:04 | INFO     | TaiwanScraper |   unemployment: 3 tabelas encontradas
+2026-06-23 14:39:04 | INFO     | TaiwanScraper |   OK unemployment: 4 registros
+2026-06-23 14:39:04 | INFO     | TaiwanScraper |   interest_rate: 3 tabelas encontradas
+2026-06-23 14:39:04 | INFO     | TaiwanScraper |   OK interest_rate: 6 registros
+2026-06-23 14:39:04 | INFO     | TaiwanScraper | OK Trading Economics: 15 registros consolidados
+2026-06-23 14:39:04 | INFO     | TaiwanScraper | OK Fonte 'Trading Economics' utilizada: 15 registros
+2026-06-23 14:39:04 | INFO     | TaiwanMain | Dados coletados: 15 registros (fonte: Trading Economics)
+2026-06-23 14:39:04 | INFO     | TaiwanMain | 
+[ETAPA 2/5] PROCESSAMENTO
+2026-06-23 14:39:04 | INFO     | TaiwanProcessor | 
+======================================================================
+2026-06-23 14:39:04 | INFO     | TaiwanProcessor | PROCESSAMENTO DE DADOS
+2026-06-23 14:39:04 | INFO     | TaiwanProcessor | ======================================================================
+2026-06-23 14:39:04 | INFO     | TaiwanProcessor | [1/6] Padronizando colunas...
+2026-06-23 14:39:04 | INFO     | TaiwanProcessor | [2/6] Removendo duplicados...
+2026-06-23 14:39:04 | INFO     | TaiwanProcessor |   Nenhum duplicado encontrado
+2026-06-23 14:39:04 | INFO     | TaiwanProcessor | [3/6] Tratando missing values...
+2026-06-23 14:39:04 | CRITICAL | TaiwanMain | ERRO FATAL: "['gdp_growth', 'industrial_production', 'exchange_rate'] not in index"
+Traceback (most recent call last):
+  File "/media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/main.py", line 188, in run_pipeline
+    self.df_clean = self.processor.process(self.df_raw)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/processor.py", line 50, in process
+    df = self._handle_missing(df)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/processor.py", line 113, in _handle_missing
+    missing_before = df[numeric_cols].isnull().sum().sum()
+                     ~~^^^^^^^^^^^^^^
+  File "/home/paulo/anaconda3/lib/python3.11/site-packages/pandas/core/frame.py", line 4119, in __getitem__
+    indexer = self.columns._get_indexer_strict(key, "columns")[1]
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paulo/anaconda3/lib/python3.11/site-packages/pandas/core/indexes/base.py", line 6212, in _get_indexer_strict
+    self._raise_if_missing(keyarr, indexer, axis_name)
+  File "/home/paulo/anaconda3/lib/python3.11/site-packages/pandas/core/indexes/base.py", line 6264, in _raise_if_missing
+    raise KeyError(f"{not_found} not in index")
+KeyError: "['gdp_growth', 'industrial_production', 'exchange_rate'] not in index"
+2026-06-23 14:39:04 | INFO     | TaiwanDatabase | Conectado ao banco: /media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/data/taiwan_economy.db
+2026-06-23 14:39:04 | INFO     | TaiwanDatabase | 
+======================================================================
+2026-06-23 14:39:04 | INFO     | TaiwanDatabase | CRIANDO SCHEMA DO BANCO DE DADOS
+2026-06-23 14:39:04 | INFO     | TaiwanDatabase | ======================================================================
+2026-06-23 14:39:09 | INFO     | TaiwanDatabase | Schema criado com sucesso!
+2026-06-23 14:39:10 | INFO     | TaiwanDatabase | Conexao com banco fechada
+2026-06-23 14:39:10 | WARNING  | TaiwanMain | Ciclo falhou. Falhas consecutivas: 1
+2026-06-23 14:41:20 | INFO     | TaiwanMain | SIGTERM recebido. Encerrando graciosamente...
+2026-06-23 14:41:20 | INFO     | TaiwanMain | Solicitando parada do daemon...
+2026-06-23 14:41:20 | INFO     | TaiwanMain | Daemon encerrado
+2026-06-23 14:41:29 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 14:41:29 | INFO     | TaiwanMain | INICIANDO DAEMON DE PRODUCAO
+2026-06-23 14:41:29 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 14:41:29 | INFO     | TaiwanMain | Intervalo: 60 minutos
+2026-06-23 14:41:29 | INFO     | TaiwanMain | Banco: /media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/data/taiwan_economy.db
+2026-06-23 14:41:29 | INFO     | TaiwanMain | Dashboard: /media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/assets/taiwan_dashboard.png
+2026-06-23 14:41:29 | INFO     | TaiwanMain | Comandos: Ctrl+C para parar | SIGUSR1 para forcar execucao
+2026-06-23 14:41:29 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 14:41:29 | INFO     | TaiwanMain | 
+======================================================================
+2026-06-23 14:41:29 | INFO     | TaiwanMain | CICLO #1 - 2026-06-23 14:41:29
+2026-06-23 14:41:29 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 14:41:29 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 14:41:29 | INFO     | TaiwanMain | EXECUCAO #1 - 2026-06-23 14:41:29
+2026-06-23 14:41:29 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 14:41:29 | INFO     | TaiwanMain | 
+[ETAPA 1/5] COLETA DE DADOS
+2026-06-23 14:41:29 | INFO     | TaiwanScraper | ======================================================================
+2026-06-23 14:41:29 | INFO     | TaiwanScraper | COLETA DE DADOS
+2026-06-23 14:41:29 | INFO     | TaiwanScraper | ======================================================================
+2026-06-23 14:41:29 | INFO     | TaiwanScraper | [FONTE 1] Trading Economics...
+2026-06-23 14:41:30 | INFO     | TaiwanScraper |   exports: 2 tabelas encontradas
+2026-06-23 14:41:30 | INFO     | TaiwanScraper |   OK exports: 1 registros
+2026-06-23 14:41:31 | INFO     | TaiwanScraper |   imports: 2 tabelas encontradas
+2026-06-23 14:41:31 | INFO     | TaiwanScraper |   OK imports: 1 registros
+2026-06-23 14:41:31 | INFO     | TaiwanScraper |   balance: 3 tabelas encontradas
+2026-06-23 14:41:31 | INFO     | TaiwanScraper |   OK balance: 4 registros
+2026-06-23 14:41:31 | INFO     | TaiwanScraper |   gdp: 2 tabelas encontradas
+2026-06-23 14:41:31 | INFO     | TaiwanScraper |   OK gdp: 1 registros
+2026-06-23 14:41:32 | INFO     | TaiwanScraper |   inflation: 3 tabelas encontradas
+2026-06-23 14:41:32 | INFO     | TaiwanScraper |   OK inflation: 4 registros
+2026-06-23 14:41:32 | INFO     | TaiwanScraper |   unemployment: 3 tabelas encontradas
+2026-06-23 14:41:32 | INFO     | TaiwanScraper |   OK unemployment: 4 registros
+2026-06-23 14:41:33 | INFO     | TaiwanScraper |   interest_rate: 3 tabelas encontradas
+2026-06-23 14:41:33 | INFO     | TaiwanScraper |   OK interest_rate: 6 registros
+2026-06-23 14:41:33 | INFO     | TaiwanScraper | OK Trading Economics: 15 registros consolidados
+2026-06-23 14:41:33 | INFO     | TaiwanScraper | OK Fonte 'Trading Economics' utilizada: 15 registros
+2026-06-23 14:41:33 | INFO     | TaiwanMain | Dados coletados: 15 registros (fonte: Trading Economics)
+2026-06-23 14:41:33 | INFO     | TaiwanMain | 
+[ETAPA 2/5] PROCESSAMENTO
+2026-06-23 14:41:33 | INFO     | TaiwanProcessor | 
+======================================================================
+2026-06-23 14:41:33 | INFO     | TaiwanProcessor | PROCESSAMENTO DE DADOS
+2026-06-23 14:41:33 | INFO     | TaiwanProcessor | ======================================================================
+2026-06-23 14:41:33 | INFO     | TaiwanProcessor | [1/6] Padronizando colunas...
+2026-06-23 14:41:33 | INFO     | TaiwanProcessor | [2/6] Removendo duplicados...
+2026-06-23 14:41:33 | INFO     | TaiwanProcessor |   Nenhum duplicado encontrado
+2026-06-23 14:41:33 | INFO     | TaiwanProcessor | [3/6] Tratando missing values...
+2026-06-23 14:41:33 | CRITICAL | TaiwanMain | ERRO FATAL: "['gdp_growth', 'industrial_production', 'exchange_rate'] not in index"
+Traceback (most recent call last):
+  File "/media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/main.py", line 188, in run_pipeline
+    self.df_clean = self.processor.process(self.df_raw)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/processor.py", line 50, in process
+    df = self._handle_missing(df)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/processor.py", line 113, in _handle_missing
+    missing_before = df[numeric_cols].isnull().sum().sum()
+                     ~~^^^^^^^^^^^^^^
+  File "/home/paulo/anaconda3/lib/python3.11/site-packages/pandas/core/frame.py", line 4119, in __getitem__
+    indexer = self.columns._get_indexer_strict(key, "columns")[1]
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paulo/anaconda3/lib/python3.11/site-packages/pandas/core/indexes/base.py", line 6212, in _get_indexer_strict
+    self._raise_if_missing(keyarr, indexer, axis_name)
+  File "/home/paulo/anaconda3/lib/python3.11/site-packages/pandas/core/indexes/base.py", line 6264, in _raise_if_missing
+    raise KeyError(f"{not_found} not in index")
+KeyError: "['gdp_growth', 'industrial_production', 'exchange_rate'] not in index"
+2026-06-23 14:41:33 | INFO     | TaiwanDatabase | Conectado ao banco: /media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/data/taiwan_economy.db
+2026-06-23 14:41:33 | INFO     | TaiwanDatabase | 
+======================================================================
+2026-06-23 14:41:33 | INFO     | TaiwanDatabase | CRIANDO SCHEMA DO BANCO DE DADOS
+2026-06-23 14:41:33 | INFO     | TaiwanDatabase | ======================================================================
+2026-06-23 14:41:33 | INFO     | TaiwanDatabase | Schema criado com sucesso!
+2026-06-23 14:41:35 | INFO     | TaiwanDatabase | Conexao com banco fechada
+2026-06-23 14:41:35 | WARNING  | TaiwanMain | Ciclo falhou. Falhas consecutivas: 1
+2026-06-23 14:47:00 | INFO     | TaiwanMain | SIGTERM recebido. Encerrando graciosamente...
+2026-06-23 14:47:00 | INFO     | TaiwanMain | Solicitando parada do daemon...
+2026-06-23 14:47:00 | INFO     | TaiwanMain | Daemon encerrado
+2026-06-23 14:47:58 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 14:47:58 | INFO     | TaiwanMain | EXECUCAO #1 - 2026-06-23 14:47:58
+2026-06-23 14:47:58 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 14:47:58 | INFO     | TaiwanMain | 
+[ETAPA 1/5] COLETA DE DADOS
+2026-06-23 14:47:58 | INFO     | TaiwanScraper | ======================================================================
+2026-06-23 14:47:58 | INFO     | TaiwanScraper | COLETA DE DADOS
+2026-06-23 14:47:58 | INFO     | TaiwanScraper | ======================================================================
+2026-06-23 14:47:58 | INFO     | TaiwanScraper | [FONTE 1] Trading Economics...
+2026-06-23 14:47:58 | ERROR    | TaiwanScraper | Erro https://tradingeconomics.com/taiwan/exports (tentativa 1): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:48:00 | ERROR    | TaiwanScraper | Erro https://tradingeconomics.com/taiwan/exports (tentativa 2): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:48:04 | ERROR    | TaiwanScraper | Erro https://tradingeconomics.com/taiwan/exports (tentativa 3): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:48:04 | ERROR    | TaiwanScraper | Erro https://tradingeconomics.com/taiwan/imports (tentativa 1): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:48:06 | ERROR    | TaiwanScraper | Erro https://tradingeconomics.com/taiwan/imports (tentativa 2): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:48:10 | ERROR    | TaiwanScraper | Erro https://tradingeconomics.com/taiwan/imports (tentativa 3): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:48:10 | ERROR    | TaiwanScraper | Erro https://tradingeconomics.com/taiwan/balance-of-trade (tentativa 1): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:48:12 | ERROR    | TaiwanScraper | Erro https://tradingeconomics.com/taiwan/balance-of-trade (tentativa 2): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:48:16 | ERROR    | TaiwanScraper | Erro https://tradingeconomics.com/taiwan/balance-of-trade (tentativa 3): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:48:16 | ERROR    | TaiwanScraper | Erro https://tradingeconomics.com/taiwan/gdp-growth (tentativa 1): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:48:18 | ERROR    | TaiwanScraper | Erro https://tradingeconomics.com/taiwan/gdp-growth (tentativa 2): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:48:22 | ERROR    | TaiwanScraper | Erro https://tradingeconomics.com/taiwan/gdp-growth (tentativa 3): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:48:22 | ERROR    | TaiwanScraper | Erro https://tradingeconomics.com/taiwan/inflation-cpi (tentativa 1): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:48:24 | ERROR    | TaiwanScraper | Erro https://tradingeconomics.com/taiwan/inflation-cpi (tentativa 2): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:48:28 | ERROR    | TaiwanScraper | Erro https://tradingeconomics.com/taiwan/inflation-cpi (tentativa 3): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:48:28 | ERROR    | TaiwanScraper | Erro https://tradingeconomics.com/taiwan/unemployment-rate (tentativa 1): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:48:30 | ERROR    | TaiwanScraper | Erro https://tradingeconomics.com/taiwan/unemployment-rate (tentativa 2): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:48:34 | ERROR    | TaiwanScraper | Erro https://tradingeconomics.com/taiwan/unemployment-rate (tentativa 3): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:48:34 | ERROR    | TaiwanScraper | Erro https://tradingeconomics.com/taiwan/interest-rate (tentativa 1): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:48:36 | ERROR    | TaiwanScraper | Erro https://tradingeconomics.com/taiwan/interest-rate (tentativa 2): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:48:40 | ERROR    | TaiwanScraper | Erro https://tradingeconomics.com/taiwan/interest-rate (tentativa 3): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:48:40 | INFO     | TaiwanScraper | [FONTE 2] World Bank API...
+2026-06-23 14:48:40 | ERROR    | TaiwanScraper | Erro https://api.worldbank.org/v2/country/TWN/indicator/NE.EXP.GNFS.CD (tentativa 1): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:48:42 | ERROR    | TaiwanScraper | Erro https://api.worldbank.org/v2/country/TWN/indicator/NE.EXP.GNFS.CD (tentativa 2): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:48:46 | ERROR    | TaiwanScraper | Erro https://api.worldbank.org/v2/country/TWN/indicator/NE.EXP.GNFS.CD (tentativa 3): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:48:46 | ERROR    | TaiwanScraper | Erro https://api.worldbank.org/v2/country/TWN/indicator/NE.IMP.GNFS.CD (tentativa 1): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:48:48 | ERROR    | TaiwanScraper | Erro https://api.worldbank.org/v2/country/TWN/indicator/NE.IMP.GNFS.CD (tentativa 2): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:48:52 | ERROR    | TaiwanScraper | Erro https://api.worldbank.org/v2/country/TWN/indicator/NE.IMP.GNFS.CD (tentativa 3): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:48:52 | ERROR    | TaiwanScraper | Erro https://api.worldbank.org/v2/country/TWN/indicator/BN.CAB.XOKA.CD (tentativa 1): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:48:54 | ERROR    | TaiwanScraper | Erro https://api.worldbank.org/v2/country/TWN/indicator/BN.CAB.XOKA.CD (tentativa 2): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:48:58 | ERROR    | TaiwanScraper | Erro https://api.worldbank.org/v2/country/TWN/indicator/BN.CAB.XOKA.CD (tentativa 3): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:48:58 | ERROR    | TaiwanScraper | Erro https://api.worldbank.org/v2/country/TWN/indicator/NY.GDP.MKTP.KD.ZG (tentativa 1): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:49:00 | ERROR    | TaiwanScraper | Erro https://api.worldbank.org/v2/country/TWN/indicator/NY.GDP.MKTP.KD.ZG (tentativa 2): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:49:04 | ERROR    | TaiwanScraper | Erro https://api.worldbank.org/v2/country/TWN/indicator/NY.GDP.MKTP.KD.ZG (tentativa 3): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:49:04 | ERROR    | TaiwanScraper | Erro https://api.worldbank.org/v2/country/TWN/indicator/FP.CPI.TOTL.ZG (tentativa 1): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:49:06 | ERROR    | TaiwanScraper | Erro https://api.worldbank.org/v2/country/TWN/indicator/FP.CPI.TOTL.ZG (tentativa 2): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:49:10 | ERROR    | TaiwanScraper | Erro https://api.worldbank.org/v2/country/TWN/indicator/FP.CPI.TOTL.ZG (tentativa 3): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:49:10 | ERROR    | TaiwanScraper | Erro https://api.worldbank.org/v2/country/TWN/indicator/SL.UEM.TOTL.ZS (tentativa 1): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:49:12 | ERROR    | TaiwanScraper | Erro https://api.worldbank.org/v2/country/TWN/indicator/SL.UEM.TOTL.ZS (tentativa 2): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:49:16 | ERROR    | TaiwanScraper | Erro https://api.worldbank.org/v2/country/TWN/indicator/SL.UEM.TOTL.ZS (tentativa 3): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:49:16 | INFO     | TaiwanScraper | [FONTE 3] IMF Data...
+2026-06-23 14:49:16 | ERROR    | TaiwanScraper | Erro https://data.imf.org/api/data/DOT/TXG_FOB_USD (tentativa 1): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:49:18 | ERROR    | TaiwanScraper | Erro https://data.imf.org/api/data/DOT/TXG_FOB_USD (tentativa 2): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:49:22 | ERROR    | TaiwanScraper | Erro https://data.imf.org/api/data/DOT/TXG_FOB_USD (tentativa 3): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:49:22 | ERROR    | TaiwanScraper | Erro https://data.imf.org/api/data/DOT/TMG_CIF_USD (tentativa 1): ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-06-23 14:49:24 | ERROR    | TaiwanScraper | Erro https://data.imf.org/api/data/DOT/TMG_CIF_USD (tentativa 2): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:49:28 | ERROR    | TaiwanScraper | Erro https://data.imf.org/api/data/DOT/TMG_CIF_USD (tentativa 3): ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-06-23 14:49:28 | INFO     | TaiwanScraper | [FONTE 4] MOEA Taiwan...
+2026-06-23 14:49:28 | ERROR    | TaiwanScraper | Erro https://www.moea.gov.tw/Mns/dos/bulletin/Bulletin.aspx?kind=9&html=1&menu_id=18808&bull_id=3605 (tentativa 1): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:49:30 | ERROR    | TaiwanScraper | Erro https://www.moea.gov.tw/Mns/dos/bulletin/Bulletin.aspx?kind=9&html=1&menu_id=18808&bull_id=3605 (tentativa 2): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:49:34 | ERROR    | TaiwanScraper | Erro https://www.moea.gov.tw/Mns/dos/bulletin/Bulletin.aspx?kind=9&html=1&menu_id=18808&bull_id=3605 (tentativa 3): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:49:34 | ERROR    | TaiwanScraper | Erro https://www.moea.gov.tw/Mns/dos/bulletin/Bulletin.aspx?kind=9&html=1&menu_id=18808&bull_id=3606 (tentativa 1): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:49:36 | ERROR    | TaiwanScraper | Erro https://www.moea.gov.tw/Mns/dos/bulletin/Bulletin.aspx?kind=9&html=1&menu_id=18808&bull_id=3606 (tentativa 2): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:49:40 | ERROR    | TaiwanScraper | Erro https://www.moea.gov.tw/Mns/dos/bulletin/Bulletin.aspx?kind=9&html=1&menu_id=18808&bull_id=3606 (tentativa 3): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:49:40 | ERROR    | TaiwanScraper | Erro https://www.moea.gov.tw/Mns/dos/bulletin/Bulletin.aspx?kind=9&html=1&menu_id=18808&bull_id=3607 (tentativa 1): ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-06-23 14:49:42 | ERROR    | TaiwanScraper | Erro https://www.moea.gov.tw/Mns/dos/bulletin/Bulletin.aspx?kind=9&html=1&menu_id=18808&bull_id=3607 (tentativa 2): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:49:46 | ERROR    | TaiwanScraper | Erro https://www.moea.gov.tw/Mns/dos/bulletin/Bulletin.aspx?kind=9&html=1&menu_id=18808&bull_id=3607 (tentativa 3): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:49:46 | WARNING  | TaiwanScraper |   Nenhum dado MOEA encontrado
+2026-06-23 14:49:46 | WARNING  | TaiwanScraper | Todas as fontes reais falharam. Usando simulado.
+2026-06-23 14:49:46 | INFO     | TaiwanScraper | [FONTE 5] Dados simulados (Fallback)...
+2026-06-23 14:49:46 | INFO     | TaiwanScraper |   OK Simulado: 138 registros
+2026-06-23 14:49:46 | INFO     | TaiwanMain | Dados coletados: 138 registros (fonte: simulated)
+2026-06-23 14:49:46 | INFO     | TaiwanMain | 
+[ETAPA 2/5] PROCESSAMENTO
+2026-06-23 14:49:46 | INFO     | TaiwanProcessor | 
+======================================================================
+2026-06-23 14:49:46 | INFO     | TaiwanProcessor | PROCESSAMENTO DE DADOS
+2026-06-23 14:49:46 | INFO     | TaiwanProcessor | ======================================================================
+2026-06-23 14:49:47 | INFO     | TaiwanProcessor | [1/6] Padronizando colunas...
+2026-06-23 14:49:47 | INFO     | TaiwanProcessor | [2/6] Removendo duplicados...
+2026-06-23 14:49:47 | INFO     | TaiwanProcessor |   Nenhum duplicado encontrado
+2026-06-23 14:49:47 | INFO     | TaiwanProcessor | [3/6] Tratando missing values...
+2026-06-23 14:49:47 | INFO     | TaiwanProcessor |   Missing antes: 6 valores
+2026-06-23 14:49:47 | INFO     | TaiwanProcessor |     exports: 4 valores tratados
+2026-06-23 14:49:47 | INFO     | TaiwanProcessor |     imports: 2 valores tratados
+2026-06-23 14:49:47 | INFO     | TaiwanProcessor |   Missing depois: 0 valores
+2026-06-23 14:49:47 | INFO     | TaiwanProcessor | [4/6] Detectando e tratando outliers...
+2026-06-23 14:49:47 | INFO     | TaiwanProcessor |     exports: 3 outliers -> winsorizados
+2026-06-23 14:49:47 | INFO     | TaiwanProcessor |     imports: 2 outliers -> winsorizados
+2026-06-23 14:49:47 | INFO     | TaiwanProcessor |   Isolation Forest: 7 outliers multivariados detectados
+2026-06-23 14:49:47 | INFO     | TaiwanProcessor | [5/6] Engenharia de features...
+2026-06-23 14:49:47 | INFO     | TaiwanProcessor |   Features criadas: 43 novas features
+2026-06-23 14:49:47 | INFO     | TaiwanProcessor | [6/6] Validando dados...
+2026-06-23 14:49:47 | INFO     | TaiwanProcessor |   Validacao OK - Missing remanescentes: 128
+2026-06-23 14:49:47 | INFO     | TaiwanProcessor | OK Processamento concluido!
+2026-06-23 14:49:47 | INFO     | TaiwanProcessor |   Registros: 138
+2026-06-23 14:49:47 | INFO     | TaiwanProcessor |   Colunas: 53
+2026-06-23 14:49:47 | INFO     | TaiwanMain | Dados processados: 138 registros, 53 colunas
+2026-06-23 14:49:47 | INFO     | TaiwanMain | 
+[ETAPA 3/5] ANALISE ESTATISTICA
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer | 
+======================================================================
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer | ANALISE ESTATISTICA MULTIVARIADA
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer | ======================================================================
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer | 
+[1/11] ESTATISTICAS DESCRITIVAS
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer | 
+             exports     imports     balance  gdp_growth  inflation  unemployment  industrial_production
+count       138.0000    138.0000    138.0000    138.0000   138.0000      138.0000               138.0000
+mean      35350.9100  27199.0200   8151.8900      2.2700     1.4900        3.6800                98.6900
+std       10178.8800   7500.2400   8536.7700      1.4600     0.6600        0.6100                 5.5300
+min       13047.9400   5569.2100  -5883.7400     -0.8700     0.0900        2.7600                80.9500
+25%       27548.1100  21844.8400   5000.8600      1.1500     0.9600        3.1900                95.4500
+50%       32873.2900  25601.2600   6504.7800      2.2000     1.4700        3.5600                99.4400
+75%       42239.8100  32811.9600   8566.2800      3.4900     1.9900        4.0000               102.5600
+max       73374.8500  41775.9700  67805.6400      5.5100     2.8800        5.3300               109.3600
+skewness      0.8416     -0.0451      4.5888      0.0008     0.0389        0.7484                -0.6096
+kurtosis      1.4639     -0.0322     24.7492     -0.7908    -0.9738       -0.0918                 0.4830
+range     60326.9100  36206.7600  73689.3800      6.3800     2.7900        2.5700                28.4100
+cv           28.7900     27.5800    104.7200     64.4100    44.5500       16.6100                 5.6000
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer | 
+[2/11] ANALISE DE CORRELACAO
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer | 
+Matriz de Correlacao:
+                       exports  imports  balance  gdp_growth  inflation  unemployment  industrial_production
+exports                 1.0000   0.5697   0.6918     -0.2641    -0.0488        0.1943                 0.0502
+imports                 0.5697   1.0000  -0.1993     -0.2295    -0.0391        0.1801                 0.1374
+balance                 0.6918  -0.1993   1.0000     -0.1133    -0.0237        0.0734                -0.0608
+gdp_growth             -0.2641  -0.2295  -0.1133      1.0000     0.0475       -0.5246                 0.3096
+inflation              -0.0488  -0.0391  -0.0237      0.0475     1.0000        0.0513                 0.0445
+unemployment            0.1943   0.1801   0.0734     -0.5246     0.0513        1.0000                -0.4230
+industrial_production   0.0502   0.1374  -0.0608      0.3096     0.0445       -0.4230                 1.0000
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer | 
+  Testes de Pearson:
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     exports vs imports: r=0.5697, p=0.000000 ***
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     exports vs balance: r=0.6918, p=0.000000 ***
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     exports vs gdp_growth: r=-0.2641, p=0.001749 **
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     exports vs inflation: r=-0.0488, p=0.570159 ns
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     exports vs unemployment: r=0.1943, p=0.022415 *
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     exports vs industrial_production: r=0.0502, p=0.558576 ns
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     imports vs balance: r=-0.1993, p=0.019109 *
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     imports vs gdp_growth: r=-0.2295, p=0.006780 **
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     imports vs inflation: r=-0.0391, p=0.648611 ns
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     imports vs unemployment: r=0.1801, p=0.034547 *
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     imports vs industrial_production: r=0.1374, p=0.108123 ns
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     balance vs gdp_growth: r=-0.1133, p=0.185930 ns
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     balance vs inflation: r=-0.0237, p=0.782189 ns
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     balance vs unemployment: r=0.0734, p=0.392080 ns
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     balance vs industrial_production: r=-0.0608, p=0.478623 ns
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     gdp_growth vs inflation: r=0.0475, p=0.579861 ns
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     gdp_growth vs unemployment: r=-0.5246, p=0.000000 ***
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     gdp_growth vs industrial_production: r=0.3096, p=0.000220 ***
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     inflation vs unemployment: r=0.0513, p=0.550086 ns
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     inflation vs industrial_production: r=0.0445, p=0.604342 ns
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     unemployment vs industrial_production: r=-0.4230, p=0.000000 ***
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer | 
+[3/11] TESTES DE NORMALIDADE
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |   exports:
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     Shapiro-Wilk: p=0.000021 (Nao Normal)
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     Jarque-Bera: p=0.000002
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     D'Agostino: p=0.000039
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |   imports:
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     Shapiro-Wilk: p=0.000689 (Nao Normal)
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     Jarque-Bera: p=0.962044
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     D'Agostino: p=0.971620
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |   balance:
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     Shapiro-Wilk: p=0.000000 (Nao Normal)
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     Jarque-Bera: p=0.000000
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     D'Agostino: p=0.000000
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer | 
+[4/11] ANALISE DE TENDENCIA
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |   exports:
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     Tendencia: 181.85 unidades/mes
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     R2: 0.5102
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     Direcao: Crescente
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |   imports:
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     Tendencia: 131.31 unidades/mes
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     R2: 0.4900
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     Direcao: Crescente
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |   balance:
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     Tendencia: 50.54 unidades/mes
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     R2: 0.0560
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     Direcao: Crescente
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer | 
+[5/11] ANALISE DE SAZONALIDADE
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer | 
+Estatisticas Mensais:
+        exports                                 imports                                balance                             
+           mean       std       min       max      mean      std       min       max      mean       std      min       max
+month                                                                                                                      
+1      31844.10  10019.25  13047.94  49029.49  26797.13  7106.13  18767.91  40990.22   5046.97   3775.33 -5719.97   8579.88
+2      36917.82   9157.41  25089.98  53689.32  29239.81  7137.65  19689.55  40190.45   7678.01   2618.11  5334.63  13498.87
+3      37719.04   9089.98  27400.35  53692.49  27159.30  8930.70   6435.68  41117.63  10559.74  11729.16  4396.14  47256.81
+4      37803.75   8991.00  27799.22  55535.60  30515.58  6960.11  22486.09  41775.97   7288.17   2755.63  3471.98  13759.63
+5      39434.33  13914.13  24753.26  73374.85  28160.13  6306.23  20094.06  37437.49  11274.20  12018.75  3559.30  47931.47
+6      35970.63   9310.34  24056.24  51324.27  29098.18  7058.88  20142.93  41247.22   6872.45   3442.67  2558.57  12646.45
+7      34428.24   7763.78  26055.98  46650.07  27691.48  6735.97  20068.18  39824.50   6736.76   2384.50  3478.55  11565.01
+8      36225.60  15539.45  13047.94  73374.85  25191.62  9227.19   5569.21  39133.80  11033.97  19310.92 -5883.74  67805.64
+9      36621.32  10634.99  24123.00  58581.05  26622.59  7575.60  17399.10  41775.97   9998.74  10053.79  4059.25  39342.15
+10     31853.70   8476.68  22709.89  45461.72  25540.59  6933.93  17959.37  36672.73   6313.12   2163.29  4041.65   9905.22
+11     31859.50   8656.69  21483.36  44199.46  25747.53  7659.53  17488.69  39243.22   6111.97   1685.97  3371.84   8549.62
+12     32843.45   8806.65  22606.03  46473.30  23917.39  8875.50   5569.21  38491.98   8926.06   9948.57  3977.35  38308.85
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |   exports CV Sazonal: 7.51%
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |   imports CV Sazonal: 7.03%
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |   balance CV Sazonal: 26.06%
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |   exports Kruskal-Wallis: p=0.644456 (Nao Sazonal)
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |   imports Kruskal-Wallis: p=0.604838 (Nao Sazonal)
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |   balance Kruskal-Wallis: p=0.725022 (Nao Sazonal)
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer | 
+[6/11] ANALISE DE COMPONENTES PRINCIPAIS (PCA)
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |   Variancia explicada:
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     PC1: 31.27%
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     PC2: 22.04%
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     PC3: 17.95%
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     PC4: 14.42%
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     PC5: 8.08%
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     PC6: 6.24%
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |     PC7: 0.00%
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer |   Variancia acumulada: [ 31.27047718  53.30828323  71.26054757  85.68511819  93.76085322
+ 100.         100.        ]
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer | 
+  Loadings:
+                          PC1     PC2     PC3     PC4     PC5     PC6     PC7
+exports                0.5277  0.4869 -0.0558  0.0343 -0.1838 -0.0348  0.6672
+imports                0.3305  0.2689  0.6849 -0.0042 -0.3145 -0.0928 -0.4916
+balance                0.3388  0.3443 -0.6683  0.0446  0.0572  0.0401 -0.5596
+gdp_growth            -0.4791  0.2925 -0.1163  0.0326 -0.6529  0.4940 -0.0000
+inflation             -0.0480 -0.0458  0.0048  0.9856 -0.0487 -0.1477 -0.0000
+unemployment           0.4536 -0.4134  0.0766  0.1215  0.0601  0.7740  0.0000
+industrial_production -0.2448  0.5599  0.2483  0.0980  0.6571  0.3515 -0.0000
+2026-06-23 14:49:47 | INFO     | TaiwanAnalyzer | 
+[7/11] TESTES DE ESTACIONARIEDADE
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer |   exports:
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer |     ADF: stat=-0.0775, p=0.951635 (Nao Estacionaria)
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer |     KPSS: stat=1.6806, p=0.010000
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer |   imports:
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer |     ADF: stat=-1.4506, p=0.557798 (Nao Estacionaria)
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer |     KPSS: stat=1.6237, p=0.010000
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer |   balance:
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer |     ADF: stat=-7.0295, p=0.000000 (Estacionaria)
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer |     KPSS: stat=0.6653, p=0.016702
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer | 
+[8/11] ANALISE DE CLUSTERING
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer |   Numero otimo de clusters: 3
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer |   Silhouette Score: 0.6108
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer | 
+  Resumo dos Clusters:
+          exports                   imports                  balance                
+             mean       std count      mean      std count      mean       std count
+cluster                                                                             
+0.0      27697.74   4117.73    75  22517.12  2887.78    75   5180.62   2375.95    75
+1.0      43072.31   4680.32    58  34524.56  3973.32    58   8547.76   2451.86    58
+2.0      60580.26  12823.85     5  12451.28  9297.58     5  48128.98  11849.20     5
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer | 
+[9/11] ANALISE DE VOLATILIDADE
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer |   exports:
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer |     Volatilidade media: 5588.35
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer |     Retorno medio: 3.6705%
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer |     Retorno std: 29.9575%
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer |   imports:
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer |     Volatilidade media: 3781.28
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer |     Retorno medio: 8.3832%
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer |     Retorno std: 63.9940%
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer |   balance:
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer |     Volatilidade media: 5615.18
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer |     Retorno medio: 17.3499%
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer |     Retorno std: 140.2012%
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer | 
+[10/11] ANALISE DE COINTEGRACAO
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer |   Exports vs Imports:
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer |     Score: -4.6579
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer |     p-value: 0.000666
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer |     Cointegrados: Sim
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer | 
+[11/11] FORECASTING SIMPLES
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer |   exports:
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer |     Ultimo valor: 51324.27
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer |     Previsao MA: 49349.68
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer |     Previsao Tendencia: 47989.83
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer |     Previsao Combinada: 51113.13
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer |   imports:
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer |     Ultimo valor: 38677.82
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer |     Previsao MA: 36447.89
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer |     Previsao Tendencia: 36325.35
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer |     Previsao Combinada: 37504.56
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer |   balance:
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer |     Ultimo valor: 12646.45
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer |     Previsao MA: 12901.79
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer |     Previsao Tendencia: 11664.48
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer |     Previsao Combinada: 13608.57
+2026-06-23 14:49:48 | INFO     | TaiwanAnalyzer | 
+Analise estatistica concluida!
+2026-06-23 14:49:48 | INFO     | TaiwanMain | Relatorio salvo: /media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/logs/analysis_report_20260623_144948.txt
+2026-06-23 14:49:48 | INFO     | TaiwanMain | 
+[ETAPA 4/5] BANCO DE DADOS
+2026-06-23 14:49:48 | INFO     | TaiwanDatabase | Conectado ao banco: /media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/data/taiwan_economy.db
+2026-06-23 14:49:48 | INFO     | TaiwanDatabase | 
+======================================================================
+2026-06-23 14:49:48 | INFO     | TaiwanDatabase | CRIANDO SCHEMA DO BANCO DE DADOS
+2026-06-23 14:49:48 | INFO     | TaiwanDatabase | ======================================================================
+2026-06-23 14:49:48 | INFO     | TaiwanDatabase | Schema criado com sucesso!
+2026-06-23 14:49:50 | INFO     | TaiwanDatabase | 138 registros inseridos em economic_data
+2026-06-23 14:49:50 | INFO     | TaiwanDatabase | Estatisticas mensais inseridas
+2026-06-23 14:49:50 | INFO     | TaiwanDatabase | 138 registros MOEA inseridos
+2026-06-23 14:49:50 | INFO     | TaiwanDatabase | 14 parceiros inseridos
+2026-06-23 14:49:50 | INFO     | TaiwanDatabase | Conexao com banco fechada
+2026-06-23 14:49:50 | CRITICAL | TaiwanMain | ERRO FATAL: keys must be str, int, float, bool or None, not tuple
+Traceback (most recent call last):
+  File "/media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/main.py", line 239, in run_pipeline
+    self.db.insert_analysis(self.analysis_results)
+  File "/media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/database.py", line 286, in insert_analysis
+    """, ('multivariate', key, json.dumps(value, default=str)))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paulo/anaconda3/lib/python3.11/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/home/paulo/anaconda3/lib/python3.11/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paulo/anaconda3/lib/python3.11/json/encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+TypeError: keys must be str, int, float, bool or None, not tuple
+2026-06-23 14:49:50 | INFO     | TaiwanDatabase | Conectado ao banco: /media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/data/taiwan_economy.db
+2026-06-23 14:49:50 | INFO     | TaiwanDatabase | 
+======================================================================
+2026-06-23 14:49:50 | INFO     | TaiwanDatabase | CRIANDO SCHEMA DO BANCO DE DADOS
+2026-06-23 14:49:50 | INFO     | TaiwanDatabase | ======================================================================
+2026-06-23 14:49:50 | INFO     | TaiwanDatabase | Schema criado com sucesso!
+2026-06-23 14:49:51 | INFO     | TaiwanDatabase | Conexao com banco fechada
+2026-06-23 14:50:34 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 14:50:34 | INFO     | TaiwanMain | EXECUCAO #1 - 2026-06-23 14:50:34
+2026-06-23 14:50:34 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 14:50:34 | INFO     | TaiwanMain | 
+[ETAPA 1/5] COLETA DE DADOS
+2026-06-23 14:50:34 | INFO     | TaiwanScraper | ======================================================================
+2026-06-23 14:50:34 | INFO     | TaiwanScraper | COLETA DE DADOS
+2026-06-23 14:50:34 | INFO     | TaiwanScraper | ======================================================================
+2026-06-23 14:50:34 | INFO     | TaiwanScraper | [FONTE 1] Trading Economics...
+2026-06-23 14:50:34 | ERROR    | TaiwanScraper | Erro https://tradingeconomics.com/taiwan/exports (tentativa 1): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:50:36 | ERROR    | TaiwanScraper | Erro https://tradingeconomics.com/taiwan/exports (tentativa 2): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:50:40 | ERROR    | TaiwanScraper | Erro https://tradingeconomics.com/taiwan/exports (tentativa 3): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:50:40 | ERROR    | TaiwanScraper | Erro https://tradingeconomics.com/taiwan/imports (tentativa 1): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:50:42 | ERROR    | TaiwanScraper | Erro https://tradingeconomics.com/taiwan/imports (tentativa 2): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:50:46 | ERROR    | TaiwanScraper | Erro https://tradingeconomics.com/taiwan/imports (tentativa 3): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:50:46 | ERROR    | TaiwanScraper | Erro https://tradingeconomics.com/taiwan/balance-of-trade (tentativa 1): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:50:48 | ERROR    | TaiwanScraper | Erro https://tradingeconomics.com/taiwan/balance-of-trade (tentativa 2): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:50:52 | ERROR    | TaiwanScraper | Erro https://tradingeconomics.com/taiwan/balance-of-trade (tentativa 3): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:50:52 | ERROR    | TaiwanScraper | Erro https://tradingeconomics.com/taiwan/gdp-growth (tentativa 1): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:50:54 | ERROR    | TaiwanScraper | Erro https://tradingeconomics.com/taiwan/gdp-growth (tentativa 2): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:50:58 | ERROR    | TaiwanScraper | Erro https://tradingeconomics.com/taiwan/gdp-growth (tentativa 3): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:50:58 | ERROR    | TaiwanScraper | Erro https://tradingeconomics.com/taiwan/inflation-cpi (tentativa 1): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:51:00 | ERROR    | TaiwanScraper | Erro https://tradingeconomics.com/taiwan/inflation-cpi (tentativa 2): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:51:04 | ERROR    | TaiwanScraper | Erro https://tradingeconomics.com/taiwan/inflation-cpi (tentativa 3): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:51:04 | ERROR    | TaiwanScraper | Erro https://tradingeconomics.com/taiwan/unemployment-rate (tentativa 1): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:51:06 | ERROR    | TaiwanScraper | Erro https://tradingeconomics.com/taiwan/unemployment-rate (tentativa 2): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:51:10 | ERROR    | TaiwanScraper | Erro https://tradingeconomics.com/taiwan/unemployment-rate (tentativa 3): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:51:10 | ERROR    | TaiwanScraper | Erro https://tradingeconomics.com/taiwan/interest-rate (tentativa 1): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:51:12 | ERROR    | TaiwanScraper | Erro https://tradingeconomics.com/taiwan/interest-rate (tentativa 2): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:51:16 | ERROR    | TaiwanScraper | Erro https://tradingeconomics.com/taiwan/interest-rate (tentativa 3): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:51:16 | INFO     | TaiwanScraper | [FONTE 2] World Bank API...
+2026-06-23 14:51:16 | ERROR    | TaiwanScraper | Erro https://api.worldbank.org/v2/country/TWN/indicator/NE.EXP.GNFS.CD (tentativa 1): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:51:18 | ERROR    | TaiwanScraper | Erro https://api.worldbank.org/v2/country/TWN/indicator/NE.EXP.GNFS.CD (tentativa 2): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:51:22 | ERROR    | TaiwanScraper | Erro https://api.worldbank.org/v2/country/TWN/indicator/NE.EXP.GNFS.CD (tentativa 3): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:51:22 | ERROR    | TaiwanScraper | Erro https://api.worldbank.org/v2/country/TWN/indicator/NE.IMP.GNFS.CD (tentativa 1): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:51:24 | ERROR    | TaiwanScraper | Erro https://api.worldbank.org/v2/country/TWN/indicator/NE.IMP.GNFS.CD (tentativa 2): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:51:28 | ERROR    | TaiwanScraper | Erro https://api.worldbank.org/v2/country/TWN/indicator/NE.IMP.GNFS.CD (tentativa 3): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:51:28 | ERROR    | TaiwanScraper | Erro https://api.worldbank.org/v2/country/TWN/indicator/BN.CAB.XOKA.CD (tentativa 1): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:51:30 | ERROR    | TaiwanScraper | Erro https://api.worldbank.org/v2/country/TWN/indicator/BN.CAB.XOKA.CD (tentativa 2): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:51:34 | ERROR    | TaiwanScraper | Erro https://api.worldbank.org/v2/country/TWN/indicator/BN.CAB.XOKA.CD (tentativa 3): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:51:34 | ERROR    | TaiwanScraper | Erro https://api.worldbank.org/v2/country/TWN/indicator/NY.GDP.MKTP.KD.ZG (tentativa 1): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:51:36 | ERROR    | TaiwanScraper | Erro https://api.worldbank.org/v2/country/TWN/indicator/NY.GDP.MKTP.KD.ZG (tentativa 2): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:51:40 | ERROR    | TaiwanScraper | Erro https://api.worldbank.org/v2/country/TWN/indicator/NY.GDP.MKTP.KD.ZG (tentativa 3): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:51:40 | ERROR    | TaiwanScraper | Erro https://api.worldbank.org/v2/country/TWN/indicator/FP.CPI.TOTL.ZG (tentativa 1): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:51:42 | ERROR    | TaiwanScraper | Erro https://api.worldbank.org/v2/country/TWN/indicator/FP.CPI.TOTL.ZG (tentativa 2): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:51:46 | ERROR    | TaiwanScraper | Erro https://api.worldbank.org/v2/country/TWN/indicator/FP.CPI.TOTL.ZG (tentativa 3): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:51:46 | ERROR    | TaiwanScraper | Erro https://api.worldbank.org/v2/country/TWN/indicator/SL.UEM.TOTL.ZS (tentativa 1): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:51:48 | ERROR    | TaiwanScraper | Erro https://api.worldbank.org/v2/country/TWN/indicator/SL.UEM.TOTL.ZS (tentativa 2): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:51:52 | ERROR    | TaiwanScraper | Erro https://api.worldbank.org/v2/country/TWN/indicator/SL.UEM.TOTL.ZS (tentativa 3): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:51:52 | INFO     | TaiwanScraper | [FONTE 3] IMF Data...
+2026-06-23 14:51:52 | ERROR    | TaiwanScraper | Erro https://data.imf.org/api/data/DOT/TXG_FOB_USD (tentativa 1): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:51:54 | ERROR    | TaiwanScraper | Erro https://data.imf.org/api/data/DOT/TXG_FOB_USD (tentativa 2): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:51:58 | ERROR    | TaiwanScraper | Erro https://data.imf.org/api/data/DOT/TXG_FOB_USD (tentativa 3): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:51:58 | ERROR    | TaiwanScraper | Erro https://data.imf.org/api/data/DOT/TMG_CIF_USD (tentativa 1): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:52:00 | ERROR    | TaiwanScraper | Erro https://data.imf.org/api/data/DOT/TMG_CIF_USD (tentativa 2): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:52:04 | ERROR    | TaiwanScraper | Erro https://data.imf.org/api/data/DOT/TMG_CIF_USD (tentativa 3): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:52:04 | INFO     | TaiwanScraper | [FONTE 4] MOEA Taiwan...
+2026-06-23 14:52:04 | ERROR    | TaiwanScraper | Erro https://www.moea.gov.tw/Mns/dos/bulletin/Bulletin.aspx?kind=9&html=1&menu_id=18808&bull_id=3605 (tentativa 1): ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-06-23 14:52:06 | ERROR    | TaiwanScraper | Erro https://www.moea.gov.tw/Mns/dos/bulletin/Bulletin.aspx?kind=9&html=1&menu_id=18808&bull_id=3605 (tentativa 2): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:52:10 | ERROR    | TaiwanScraper | Erro https://www.moea.gov.tw/Mns/dos/bulletin/Bulletin.aspx?kind=9&html=1&menu_id=18808&bull_id=3605 (tentativa 3): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:52:10 | ERROR    | TaiwanScraper | Erro https://www.moea.gov.tw/Mns/dos/bulletin/Bulletin.aspx?kind=9&html=1&menu_id=18808&bull_id=3606 (tentativa 1): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:52:12 | ERROR    | TaiwanScraper | Erro https://www.moea.gov.tw/Mns/dos/bulletin/Bulletin.aspx?kind=9&html=1&menu_id=18808&bull_id=3606 (tentativa 2): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:52:16 | ERROR    | TaiwanScraper | Erro https://www.moea.gov.tw/Mns/dos/bulletin/Bulletin.aspx?kind=9&html=1&menu_id=18808&bull_id=3606 (tentativa 3): ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-06-23 14:52:16 | ERROR    | TaiwanScraper | Erro https://www.moea.gov.tw/Mns/dos/bulletin/Bulletin.aspx?kind=9&html=1&menu_id=18808&bull_id=3607 (tentativa 1): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:52:18 | ERROR    | TaiwanScraper | Erro https://www.moea.gov.tw/Mns/dos/bulletin/Bulletin.aspx?kind=9&html=1&menu_id=18808&bull_id=3607 (tentativa 2): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:52:22 | ERROR    | TaiwanScraper | Erro https://www.moea.gov.tw/Mns/dos/bulletin/Bulletin.aspx?kind=9&html=1&menu_id=18808&bull_id=3607 (tentativa 3): ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-06-23 14:52:22 | WARNING  | TaiwanScraper |   Nenhum dado MOEA encontrado
+2026-06-23 14:52:22 | WARNING  | TaiwanScraper | Todas as fontes reais falharam. Usando simulado.
+2026-06-23 14:52:22 | INFO     | TaiwanScraper | [FONTE 5] Dados simulados (Fallback)...
+2026-06-23 14:52:22 | INFO     | TaiwanScraper |   OK Simulado: 138 registros
+2026-06-23 14:52:22 | INFO     | TaiwanMain | Dados coletados: 138 registros (fonte: simulated)
+2026-06-23 14:52:22 | INFO     | TaiwanMain | 
+[ETAPA 2/5] PROCESSAMENTO
+2026-06-23 14:52:22 | INFO     | TaiwanProcessor | 
+======================================================================
+2026-06-23 14:52:22 | INFO     | TaiwanProcessor | PROCESSAMENTO DE DADOS
+2026-06-23 14:52:22 | INFO     | TaiwanProcessor | ======================================================================
+2026-06-23 14:52:22 | INFO     | TaiwanProcessor | [1/6] Padronizando colunas...
+2026-06-23 14:52:22 | INFO     | TaiwanProcessor | [2/6] Removendo duplicados...
+2026-06-23 14:52:22 | INFO     | TaiwanProcessor |   Nenhum duplicado encontrado
+2026-06-23 14:52:22 | INFO     | TaiwanProcessor | [3/6] Tratando missing values...
+2026-06-23 14:52:22 | INFO     | TaiwanProcessor |   Missing antes: 6 valores
+2026-06-23 14:52:22 | INFO     | TaiwanProcessor |     exports: 4 valores tratados
+2026-06-23 14:52:22 | INFO     | TaiwanProcessor |     imports: 2 valores tratados
+2026-06-23 14:52:22 | INFO     | TaiwanProcessor |   Missing depois: 0 valores
+2026-06-23 14:52:22 | INFO     | TaiwanProcessor | [4/6] Detectando e tratando outliers...
+2026-06-23 14:52:22 | INFO     | TaiwanProcessor |     exports: 3 outliers -> winsorizados
+2026-06-23 14:52:22 | INFO     | TaiwanProcessor |     imports: 2 outliers -> winsorizados
+2026-06-23 14:52:23 | INFO     | TaiwanProcessor |   Isolation Forest: 7 outliers multivariados detectados
+2026-06-23 14:52:23 | INFO     | TaiwanProcessor | [5/6] Engenharia de features...
+2026-06-23 14:52:23 | INFO     | TaiwanProcessor |   Features criadas: 43 novas features
+2026-06-23 14:52:23 | INFO     | TaiwanProcessor | [6/6] Validando dados...
+2026-06-23 14:52:23 | INFO     | TaiwanProcessor |   Validacao OK - Missing remanescentes: 128
+2026-06-23 14:52:23 | INFO     | TaiwanProcessor | OK Processamento concluido!
+2026-06-23 14:52:23 | INFO     | TaiwanProcessor |   Registros: 138
+2026-06-23 14:52:23 | INFO     | TaiwanProcessor |   Colunas: 53
+2026-06-23 14:52:23 | INFO     | TaiwanMain | Dados processados: 138 registros, 53 colunas
+2026-06-23 14:52:23 | INFO     | TaiwanMain | 
+[ETAPA 3/5] ANALISE ESTATISTICA
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer | 
+======================================================================
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer | ANALISE ESTATISTICA MULTIVARIADA
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer | ======================================================================
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer | 
+[1/11] ESTATISTICAS DESCRITIVAS
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer | 
+             exports     imports     balance  gdp_growth  inflation  unemployment  industrial_production
+count       138.0000    138.0000    138.0000    138.0000   138.0000      138.0000               138.0000
+mean      35350.9100  27199.0200   8151.8900      2.2700     1.4900        3.6800                98.6900
+std       10178.8800   7500.2400   8536.7700      1.4600     0.6600        0.6100                 5.5300
+min       13047.9400   5569.2100  -5883.7400     -0.8700     0.0900        2.7600                80.9500
+25%       27548.1100  21844.8400   5000.8600      1.1500     0.9600        3.1900                95.4500
+50%       32873.2900  25601.2600   6504.7800      2.2000     1.4700        3.5600                99.4400
+75%       42239.8100  32811.9600   8566.2800      3.4900     1.9900        4.0000               102.5600
+max       73374.8500  41775.9700  67805.6400      5.5100     2.8800        5.3300               109.3600
+skewness      0.8416     -0.0451      4.5888      0.0008     0.0389        0.7484                -0.6096
+kurtosis      1.4639     -0.0322     24.7492     -0.7908    -0.9738       -0.0918                 0.4830
+range     60326.9100  36206.7600  73689.3800      6.3800     2.7900        2.5700                28.4100
+cv           28.7900     27.5800    104.7200     64.4100    44.5500       16.6100                 5.6000
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer | 
+[2/11] ANALISE DE CORRELACAO
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer | 
+Matriz de Correlacao:
+                       exports  imports  balance  gdp_growth  inflation  unemployment  industrial_production
+exports                 1.0000   0.5697   0.6918     -0.2641    -0.0488        0.1943                 0.0502
+imports                 0.5697   1.0000  -0.1993     -0.2295    -0.0391        0.1801                 0.1374
+balance                 0.6918  -0.1993   1.0000     -0.1133    -0.0237        0.0734                -0.0608
+gdp_growth             -0.2641  -0.2295  -0.1133      1.0000     0.0475       -0.5246                 0.3096
+inflation              -0.0488  -0.0391  -0.0237      0.0475     1.0000        0.0513                 0.0445
+unemployment            0.1943   0.1801   0.0734     -0.5246     0.0513        1.0000                -0.4230
+industrial_production   0.0502   0.1374  -0.0608      0.3096     0.0445       -0.4230                 1.0000
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer | 
+  Testes de Pearson:
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     exports vs imports: r=0.5697, p=0.000000 ***
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     exports vs balance: r=0.6918, p=0.000000 ***
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     exports vs gdp_growth: r=-0.2641, p=0.001749 **
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     exports vs inflation: r=-0.0488, p=0.570159 ns
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     exports vs unemployment: r=0.1943, p=0.022415 *
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     exports vs industrial_production: r=0.0502, p=0.558576 ns
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     imports vs balance: r=-0.1993, p=0.019109 *
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     imports vs gdp_growth: r=-0.2295, p=0.006780 **
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     imports vs inflation: r=-0.0391, p=0.648611 ns
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     imports vs unemployment: r=0.1801, p=0.034547 *
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     imports vs industrial_production: r=0.1374, p=0.108123 ns
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     balance vs gdp_growth: r=-0.1133, p=0.185930 ns
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     balance vs inflation: r=-0.0237, p=0.782189 ns
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     balance vs unemployment: r=0.0734, p=0.392080 ns
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     balance vs industrial_production: r=-0.0608, p=0.478623 ns
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     gdp_growth vs inflation: r=0.0475, p=0.579861 ns
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     gdp_growth vs unemployment: r=-0.5246, p=0.000000 ***
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     gdp_growth vs industrial_production: r=0.3096, p=0.000220 ***
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     inflation vs unemployment: r=0.0513, p=0.550086 ns
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     inflation vs industrial_production: r=0.0445, p=0.604342 ns
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     unemployment vs industrial_production: r=-0.4230, p=0.000000 ***
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer | 
+[3/11] TESTES DE NORMALIDADE
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |   exports:
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     Shapiro-Wilk: p=0.000021 (Nao Normal)
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     Jarque-Bera: p=0.000002
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     D'Agostino: p=0.000039
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |   imports:
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     Shapiro-Wilk: p=0.000689 (Nao Normal)
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     Jarque-Bera: p=0.962044
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     D'Agostino: p=0.971620
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |   balance:
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     Shapiro-Wilk: p=0.000000 (Nao Normal)
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     Jarque-Bera: p=0.000000
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     D'Agostino: p=0.000000
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer | 
+[4/11] ANALISE DE TENDENCIA
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |   exports:
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     Tendencia: 181.85 unidades/mes
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     R2: 0.5102
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     Direcao: Crescente
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |   imports:
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     Tendencia: 131.31 unidades/mes
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     R2: 0.4900
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     Direcao: Crescente
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |   balance:
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     Tendencia: 50.54 unidades/mes
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     R2: 0.0560
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     Direcao: Crescente
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer | 
+[5/11] ANALISE DE SAZONALIDADE
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer | 
+Estatisticas Mensais:
+        exports                                 imports                                balance                             
+           mean       std       min       max      mean      std       min       max      mean       std      min       max
+month                                                                                                                      
+1      31844.10  10019.25  13047.94  49029.49  26797.13  7106.13  18767.91  40990.22   5046.97   3775.33 -5719.97   8579.88
+2      36917.82   9157.41  25089.98  53689.32  29239.81  7137.65  19689.55  40190.45   7678.01   2618.11  5334.63  13498.87
+3      37719.04   9089.98  27400.35  53692.49  27159.30  8930.70   6435.68  41117.63  10559.74  11729.16  4396.14  47256.81
+4      37803.75   8991.00  27799.22  55535.60  30515.58  6960.11  22486.09  41775.97   7288.17   2755.63  3471.98  13759.63
+5      39434.33  13914.13  24753.26  73374.85  28160.13  6306.23  20094.06  37437.49  11274.20  12018.75  3559.30  47931.47
+6      35970.63   9310.34  24056.24  51324.27  29098.18  7058.88  20142.93  41247.22   6872.45   3442.67  2558.57  12646.45
+7      34428.24   7763.78  26055.98  46650.07  27691.48  6735.97  20068.18  39824.50   6736.76   2384.50  3478.55  11565.01
+8      36225.60  15539.45  13047.94  73374.85  25191.62  9227.19   5569.21  39133.80  11033.97  19310.92 -5883.74  67805.64
+9      36621.32  10634.99  24123.00  58581.05  26622.59  7575.60  17399.10  41775.97   9998.74  10053.79  4059.25  39342.15
+10     31853.70   8476.68  22709.89  45461.72  25540.59  6933.93  17959.37  36672.73   6313.12   2163.29  4041.65   9905.22
+11     31859.50   8656.69  21483.36  44199.46  25747.53  7659.53  17488.69  39243.22   6111.97   1685.97  3371.84   8549.62
+12     32843.45   8806.65  22606.03  46473.30  23917.39  8875.50   5569.21  38491.98   8926.06   9948.57  3977.35  38308.85
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |   exports CV Sazonal: 7.51%
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |   imports CV Sazonal: 7.03%
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |   balance CV Sazonal: 26.06%
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |   exports Kruskal-Wallis: p=0.644456 (Nao Sazonal)
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |   imports Kruskal-Wallis: p=0.604838 (Nao Sazonal)
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |   balance Kruskal-Wallis: p=0.725022 (Nao Sazonal)
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer | 
+[6/11] ANALISE DE COMPONENTES PRINCIPAIS (PCA)
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |   Variancia explicada:
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     PC1: 31.27%
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     PC2: 22.04%
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     PC3: 17.95%
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     PC4: 14.42%
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     PC5: 8.08%
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     PC6: 6.24%
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     PC7: 0.00%
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |   Variancia acumulada: [ 31.27047718  53.30828323  71.26054757  85.68511819  93.76085322
+ 100.         100.        ]
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer | 
+  Loadings:
+                          PC1     PC2     PC3     PC4     PC5     PC6     PC7
+exports                0.5277  0.4869 -0.0558  0.0343 -0.1838 -0.0348  0.6672
+imports                0.3305  0.2689  0.6849 -0.0042 -0.3145 -0.0928 -0.4916
+balance                0.3388  0.3443 -0.6683  0.0446  0.0572  0.0401 -0.5596
+gdp_growth            -0.4791  0.2925 -0.1163  0.0326 -0.6529  0.4940 -0.0000
+inflation             -0.0480 -0.0458  0.0048  0.9856 -0.0487 -0.1477 -0.0000
+unemployment           0.4536 -0.4134  0.0766  0.1215  0.0601  0.7740  0.0000
+industrial_production -0.2448  0.5599  0.2483  0.0980  0.6571  0.3515 -0.0000
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer | 
+[7/11] TESTES DE ESTACIONARIEDADE
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |   exports:
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     ADF: stat=-0.0775, p=0.951635 (Nao Estacionaria)
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     KPSS: stat=1.6806, p=0.010000
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |   imports:
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     ADF: stat=-1.4506, p=0.557798 (Nao Estacionaria)
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     KPSS: stat=1.6237, p=0.010000
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |   balance:
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     ADF: stat=-7.0295, p=0.000000 (Estacionaria)
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     KPSS: stat=0.6653, p=0.016702
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer | 
+[8/11] ANALISE DE CLUSTERING
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |   Numero otimo de clusters: 3
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |   Silhouette Score: 0.6108
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer | 
+  Resumo dos Clusters:
+          exports                   imports                  balance                
+             mean       std count      mean      std count      mean       std count
+cluster                                                                             
+0.0      27697.74   4117.73    75  22517.12  2887.78    75   5180.62   2375.95    75
+1.0      43072.31   4680.32    58  34524.56  3973.32    58   8547.76   2451.86    58
+2.0      60580.26  12823.85     5  12451.28  9297.58     5  48128.98  11849.20     5
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer | 
+[9/11] ANALISE DE VOLATILIDADE
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |   exports:
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     Volatilidade media: 5588.35
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     Retorno medio: 3.6705%
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     Retorno std: 29.9575%
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |   imports:
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     Volatilidade media: 3781.28
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     Retorno medio: 8.3832%
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     Retorno std: 63.9940%
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |   balance:
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     Volatilidade media: 5615.18
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     Retorno medio: 17.3499%
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     Retorno std: 140.2012%
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer | 
+[10/11] ANALISE DE COINTEGRACAO
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |   Exports vs Imports:
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     Score: -4.6579
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     p-value: 0.000666
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     Cointegrados: Sim
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer | 
+[11/11] FORECASTING SIMPLES
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |   exports:
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     Ultimo valor: 51324.27
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     Previsao MA: 49349.68
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     Previsao Tendencia: 47989.83
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     Previsao Combinada: 51113.13
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |   imports:
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     Ultimo valor: 38677.82
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     Previsao MA: 36447.89
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     Previsao Tendencia: 36325.35
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     Previsao Combinada: 37504.56
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |   balance:
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     Ultimo valor: 12646.45
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     Previsao MA: 12901.79
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     Previsao Tendencia: 11664.48
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer |     Previsao Combinada: 13608.57
+2026-06-23 14:52:23 | INFO     | TaiwanAnalyzer | 
+Analise estatistica concluida!
+2026-06-23 14:52:24 | INFO     | TaiwanMain | Relatorio salvo: /media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/logs/analysis_report_20260623_145223.txt
+2026-06-23 14:52:24 | INFO     | TaiwanMain | 
+[ETAPA 4/5] BANCO DE DADOS
+2026-06-23 14:52:24 | INFO     | TaiwanDatabase | Conectado ao banco: /media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/data/taiwan_economy.db
+2026-06-23 14:52:24 | INFO     | TaiwanDatabase | 
+======================================================================
+2026-06-23 14:52:24 | INFO     | TaiwanDatabase | CRIANDO SCHEMA DO BANCO DE DADOS
+2026-06-23 14:52:24 | INFO     | TaiwanDatabase | ======================================================================
+2026-06-23 14:52:24 | INFO     | TaiwanDatabase | Schema criado com sucesso!
+2026-06-23 14:52:24 | INFO     | TaiwanDatabase | 138 registros inseridos em economic_data
+2026-06-23 14:52:25 | INFO     | TaiwanDatabase | Estatisticas mensais inseridas
+2026-06-23 14:52:25 | INFO     | TaiwanDatabase | 138 registros MOEA inseridos
+2026-06-23 14:52:25 | INFO     | TaiwanDatabase | 14 parceiros inseridos
+2026-06-23 14:52:25 | INFO     | TaiwanDatabase | Resultados de analise inseridos
+2026-06-23 14:52:25 | INFO     | TaiwanMain | Resumo DB: {'economic_data': 138, 'monthly_stats': 12, 'trade_partners': 14, 'analysis_results': 11, 'execution_log': 4, 'moea_data': 138, 'alerts': 0}
+2026-06-23 14:52:26 | INFO     | TaiwanDatabase | Conexao com banco fechada
+2026-06-23 14:52:26 | INFO     | TaiwanMain | 
+[ETAPA 5/5] DASHBOARD PNG
+2026-06-23 14:52:26 | INFO     | TaiwanDashboardPNG | 
+======================================================================
+2026-06-23 14:52:26 | INFO     | TaiwanDashboardPNG | CONSTRUINDO DASHBOARD PNG
+2026-06-23 14:52:26 | INFO     | TaiwanDashboardPNG | ======================================================================
+2026-06-23 14:52:47 | INFO     | TaiwanDashboardPNG | Dashboard salvo: /media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/assets/taiwan_dashboard.png
+2026-06-23 14:52:47 | INFO     | TaiwanMain | 
+======================================================================
+2026-06-23 14:52:47 | INFO     | TaiwanMain | PIPELINE CONCLUIDO EM 132.80s
+2026-06-23 14:52:47 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 14:52:47 | INFO     | TaiwanMain | DB: /media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/data/taiwan_economy.db
+2026-06-23 14:52:47 | INFO     | TaiwanMain | Dashboard PNG: /media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/assets/taiwan_dashboard.png
+2026-06-23 14:52:47 | INFO     | TaiwanMain | Dashboard Streamlit: streamlit run app.py
+2026-06-23 14:55:12 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 14:55:12 | INFO     | TaiwanMain | INICIANDO DAEMON DE PRODUCAO
+2026-06-23 14:55:12 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 14:55:12 | INFO     | TaiwanMain | Intervalo: 60 minutos
+2026-06-23 14:55:12 | INFO     | TaiwanMain | Banco: /media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/data/taiwan_economy.db
+2026-06-23 14:55:12 | INFO     | TaiwanMain | Dashboard: /media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/assets/taiwan_dashboard.png
+2026-06-23 14:55:12 | INFO     | TaiwanMain | Comandos: Ctrl+C para parar | SIGUSR1 para forcar execucao
+2026-06-23 14:55:12 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 14:55:12 | INFO     | TaiwanMain | 
+======================================================================
+2026-06-23 14:55:12 | INFO     | TaiwanMain | CICLO #1 - 2026-06-23 14:55:12
+2026-06-23 14:55:12 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 14:55:12 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 14:55:12 | INFO     | TaiwanMain | EXECUCAO #1 - 2026-06-23 14:55:12
+2026-06-23 14:55:12 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 14:55:12 | INFO     | TaiwanMain | 
+[ETAPA 1/5] COLETA DE DADOS
+2026-06-23 14:55:12 | INFO     | TaiwanScraper | ======================================================================
+2026-06-23 14:55:12 | INFO     | TaiwanScraper | COLETA DE DADOS
+2026-06-23 14:55:12 | INFO     | TaiwanScraper | ======================================================================
+2026-06-23 14:55:12 | INFO     | TaiwanScraper | [FONTE 1] Trading Economics...
+2026-06-23 14:55:13 | INFO     | TaiwanScraper |   exports: 2 tabelas encontradas
+2026-06-23 14:55:13 | INFO     | TaiwanScraper |   OK exports: 1 registros
+2026-06-23 14:55:13 | INFO     | TaiwanScraper |   imports: 2 tabelas encontradas
+2026-06-23 14:55:13 | INFO     | TaiwanScraper |   OK imports: 1 registros
+2026-06-23 14:55:14 | INFO     | TaiwanScraper |   balance: 3 tabelas encontradas
+2026-06-23 14:55:14 | INFO     | TaiwanScraper |   OK balance: 4 registros
+2026-06-23 14:55:15 | INFO     | TaiwanScraper |   gdp_growth: 2 tabelas encontradas
+2026-06-23 14:55:15 | INFO     | TaiwanScraper |   OK gdp_growth: 1 registros
+2026-06-23 14:55:15 | INFO     | TaiwanScraper |   inflation: 3 tabelas encontradas
+2026-06-23 14:55:15 | INFO     | TaiwanScraper |   OK inflation: 4 registros
+2026-06-23 14:55:16 | INFO     | TaiwanScraper |   unemployment: 3 tabelas encontradas
+2026-06-23 14:55:16 | INFO     | TaiwanScraper |   OK unemployment: 4 registros
+2026-06-23 14:55:16 | INFO     | TaiwanScraper |   interest_rate: 3 tabelas encontradas
+2026-06-23 14:55:16 | INFO     | TaiwanScraper |   OK interest_rate: 6 registros
+2026-06-23 14:55:16 | INFO     | TaiwanScraper | OK Trading Economics: 15 registros consolidados
+2026-06-23 14:55:16 | INFO     | TaiwanScraper | OK Fonte 'Trading Economics' utilizada: 15 registros
+2026-06-23 14:55:16 | INFO     | TaiwanMain | Dados coletados: 15 registros (fonte: Trading Economics)
+2026-06-23 14:55:16 | INFO     | TaiwanMain | 
+[ETAPA 2/5] PROCESSAMENTO
+2026-06-23 14:55:16 | INFO     | TaiwanProcessor | 
+======================================================================
+2026-06-23 14:55:16 | INFO     | TaiwanProcessor | PROCESSAMENTO DE DADOS
+2026-06-23 14:55:16 | INFO     | TaiwanProcessor | ======================================================================
+2026-06-23 14:55:16 | INFO     | TaiwanProcessor | [1/6] Padronizando colunas...
+2026-06-23 14:55:16 | INFO     | TaiwanProcessor | [2/6] Removendo duplicados...
+2026-06-23 14:55:16 | INFO     | TaiwanProcessor |   Nenhum duplicado encontrado
+2026-06-23 14:55:16 | INFO     | TaiwanProcessor | [3/6] Tratando missing values...
+2026-06-23 14:55:16 | INFO     | TaiwanProcessor |   Missing antes: 84 valores
+2026-06-23 14:55:16 | INFO     | TaiwanProcessor |     exports: 14 valores tratados
+2026-06-23 14:55:16 | INFO     | TaiwanProcessor |     imports: 14 valores tratados
+2026-06-23 14:55:16 | INFO     | TaiwanProcessor |     balance: 11 valores tratados
+2026-06-23 14:55:16 | INFO     | TaiwanProcessor |     gdp_growth: 14 valores tratados
+2026-06-23 14:55:16 | INFO     | TaiwanProcessor |     inflation: 11 valores tratados
+2026-06-23 14:55:16 | INFO     | TaiwanProcessor |     unemployment: 11 valores tratados
+2026-06-23 14:55:16 | INFO     | TaiwanProcessor |     interest_rate: 9 valores tratados
+2026-06-23 14:55:16 | INFO     | TaiwanProcessor |   Missing depois: 0 valores
+2026-06-23 14:55:16 | INFO     | TaiwanProcessor | [4/6] Detectando e tratando outliers...
+2026-06-23 14:55:16 | INFO     | TaiwanProcessor |     exports: 0 outliers -> winsorizados
+2026-06-23 14:55:16 | INFO     | TaiwanProcessor |     imports: 0 outliers -> winsorizados
+2026-06-23 14:55:16 | INFO     | TaiwanProcessor | [5/6] Engenharia de features...
+2026-06-23 14:55:16 | INFO     | TaiwanProcessor |   Features criadas: 28 novas features
+2026-06-23 14:55:16 | INFO     | TaiwanProcessor | [6/6] Validando dados...
+2026-06-23 14:55:16 | CRITICAL | TaiwanMain | ERRO FATAL: Datas nao ordenadas!
+Traceback (most recent call last):
+  File "/media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/main.py", line 188, in run_pipeline
+    self.df_clean = self.processor.process(self.df_raw)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/processor.py", line 68, in process
+    df = self._validate(df)
+         ^^^^^^^^^^^^^^^^^^
+  File "/media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/processor.py", line 273, in _validate
+    assert df['date'].is_monotonic_increasing, "Datas nao ordenadas!"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Datas nao ordenadas!
+2026-06-23 14:55:16 | INFO     | TaiwanDatabase | Conectado ao banco: /media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/data/taiwan_economy.db
+2026-06-23 14:55:16 | INFO     | TaiwanDatabase | 
+======================================================================
+2026-06-23 14:55:16 | INFO     | TaiwanDatabase | CRIANDO SCHEMA DO BANCO DE DADOS
+2026-06-23 14:55:16 | INFO     | TaiwanDatabase | ======================================================================
+2026-06-23 14:55:16 | INFO     | TaiwanDatabase | Schema criado com sucesso!
+2026-06-23 14:55:18 | INFO     | TaiwanDatabase | Conexao com banco fechada
+2026-06-23 14:55:18 | WARNING  | TaiwanMain | Ciclo falhou. Falhas consecutivas: 1
+2026-06-23 15:00:14 | INFO     | TaiwanMain | SIGTERM recebido. Encerrando graciosamente...
+2026-06-23 15:00:14 | INFO     | TaiwanMain | Solicitando parada do daemon...
+2026-06-23 15:00:14 | INFO     | TaiwanMain | Daemon encerrado
+2026-06-23 15:00:23 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 15:00:23 | INFO     | TaiwanMain | INICIANDO DAEMON DE PRODUCAO
+2026-06-23 15:00:23 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 15:00:23 | INFO     | TaiwanMain | Intervalo: 60 minutos
+2026-06-23 15:00:23 | INFO     | TaiwanMain | Banco: /media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/data/taiwan_economy.db
+2026-06-23 15:00:23 | INFO     | TaiwanMain | Dashboard: /media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/assets/taiwan_dashboard.png
+2026-06-23 15:00:23 | INFO     | TaiwanMain | Comandos: Ctrl+C para parar | SIGUSR1 para forcar execucao
+2026-06-23 15:00:23 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 15:00:23 | INFO     | TaiwanMain | 
+======================================================================
+2026-06-23 15:00:23 | INFO     | TaiwanMain | CICLO #1 - 2026-06-23 15:00:23
+2026-06-23 15:00:23 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 15:00:23 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 15:00:23 | INFO     | TaiwanMain | EXECUCAO #1 - 2026-06-23 15:00:23
+2026-06-23 15:00:23 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 15:00:23 | INFO     | TaiwanMain | 
+[ETAPA 1/5] COLETA DE DADOS
+2026-06-23 15:00:23 | INFO     | TaiwanScraper | ======================================================================
+2026-06-23 15:00:23 | INFO     | TaiwanScraper | COLETA DE DADOS
+2026-06-23 15:00:23 | INFO     | TaiwanScraper | ======================================================================
+2026-06-23 15:00:23 | INFO     | TaiwanScraper | [FONTE 1] Trading Economics...
+2026-06-23 15:00:24 | INFO     | TaiwanScraper |   exports: 2 tabelas encontradas
+2026-06-23 15:00:24 | WARNING  | TaiwanScraper |   Nenhum dado encontrado para exports
+2026-06-23 15:00:24 | INFO     | TaiwanScraper |   imports: 2 tabelas encontradas
+2026-06-23 15:00:24 | WARNING  | TaiwanScraper |   Nenhum dado encontrado para imports
+2026-06-23 15:00:25 | INFO     | TaiwanScraper |   balance: 3 tabelas encontradas
+2026-06-23 15:00:25 | INFO     | TaiwanScraper |   OK balance: 3 registros
+2026-06-23 15:00:25 | INFO     | TaiwanScraper |   gdp_growth: 2 tabelas encontradas
+2026-06-23 15:00:25 | WARNING  | TaiwanScraper |   Nenhum dado encontrado para gdp_growth
+2026-06-23 15:00:26 | INFO     | TaiwanScraper |   inflation: 3 tabelas encontradas
+2026-06-23 15:00:26 | INFO     | TaiwanScraper |   OK inflation: 3 registros
+2026-06-23 15:00:26 | INFO     | TaiwanScraper |   unemployment: 3 tabelas encontradas
+2026-06-23 15:00:26 | INFO     | TaiwanScraper |   OK unemployment: 3 registros
+2026-06-23 15:00:27 | INFO     | TaiwanScraper |   interest_rate: 3 tabelas encontradas
+2026-06-23 15:00:27 | INFO     | TaiwanScraper |   OK interest_rate: 5 registros
+2026-06-23 15:00:27 | INFO     | TaiwanScraper | OK Trading Economics: 7 registros consolidados
+2026-06-23 15:00:27 | INFO     | TaiwanScraper | OK Fonte 'Trading Economics' utilizada: 7 registros
+2026-06-23 15:00:27 | INFO     | TaiwanMain | Dados coletados: 7 registros (fonte: Trading Economics)
+2026-06-23 15:00:27 | INFO     | TaiwanMain | 
+[ETAPA 2/5] PROCESSAMENTO
+2026-06-23 15:00:27 | INFO     | TaiwanProcessor | 
+======================================================================
+2026-06-23 15:00:27 | INFO     | TaiwanProcessor | PROCESSAMENTO DE DADOS
+2026-06-23 15:00:27 | INFO     | TaiwanProcessor | ======================================================================
+2026-06-23 15:00:27 | INFO     | TaiwanProcessor | [1/6] Padronizando colunas...
+2026-06-23 15:00:27 | INFO     | TaiwanProcessor | [2/6] Removendo duplicados...
+2026-06-23 15:00:27 | INFO     | TaiwanProcessor |   Nenhum duplicado encontrado
+2026-06-23 15:00:27 | INFO     | TaiwanProcessor | [3/6] Tratando missing values...
+2026-06-23 15:00:27 | INFO     | TaiwanProcessor |   Missing antes: 14 valores
+2026-06-23 15:00:27 | INFO     | TaiwanProcessor |     balance: 4 valores tratados
+2026-06-23 15:00:27 | INFO     | TaiwanProcessor |     inflation: 4 valores tratados
+2026-06-23 15:00:27 | INFO     | TaiwanProcessor |     unemployment: 4 valores tratados
+2026-06-23 15:00:27 | INFO     | TaiwanProcessor |     interest_rate: 2 valores tratados
+2026-06-23 15:00:27 | INFO     | TaiwanProcessor |   Missing depois: 0 valores
+2026-06-23 15:00:27 | INFO     | TaiwanProcessor | [4/6] Detectando e tratando outliers...
+2026-06-23 15:00:27 | WARNING  | TaiwanProcessor |   Isolation Forest falhou: "['exports', 'imports'] not in index"
+2026-06-23 15:00:27 | INFO     | TaiwanProcessor | [5/6] Engenharia de features...
+2026-06-23 15:00:27 | INFO     | TaiwanProcessor |   Features criadas: 2 novas features
+2026-06-23 15:00:27 | INFO     | TaiwanProcessor | [6/6] Validando dados...
+2026-06-23 15:00:27 | INFO     | TaiwanProcessor |   Validacao OK - Missing remanescentes: 15
+2026-06-23 15:00:27 | INFO     | TaiwanProcessor | OK Processamento concluido!
+2026-06-23 15:00:27 | INFO     | TaiwanProcessor |   Registros: 7
+2026-06-23 15:00:27 | INFO     | TaiwanProcessor |   Colunas: 12
+2026-06-23 15:00:27 | INFO     | TaiwanMain | Dados processados: 7 registros, 12 colunas
+2026-06-23 15:00:27 | INFO     | TaiwanMain | 
+[ETAPA 3/5] ANALISE ESTATISTICA
+2026-06-23 15:00:27 | INFO     | TaiwanAnalyzer | 
+======================================================================
+2026-06-23 15:00:27 | INFO     | TaiwanAnalyzer | ANALISE ESTATISTICA MULTIVARIADA
+2026-06-23 15:00:27 | INFO     | TaiwanAnalyzer | ======================================================================
+2026-06-23 15:00:27 | INFO     | TaiwanAnalyzer | 
+[1/11] ESTATISTICAS DESCRITIVAS
+2026-06-23 15:00:27 | INFO     | TaiwanAnalyzer | 
+          balance  inflation  unemployment
+count         7.0        7.0           7.0
+mean        800.0      800.0         800.0
+std           0.0        0.0           0.0
+min         800.0      800.0         800.0
+25%         800.0      800.0         800.0
+50%         800.0      800.0         800.0
+75%         800.0      800.0         800.0
+max         800.0      800.0         800.0
+skewness      0.0        0.0           0.0
+kurtosis      0.0        0.0           0.0
+range         0.0        0.0           0.0
+cv            0.0        0.0           0.0
+2026-06-23 15:00:27 | INFO     | TaiwanAnalyzer | 
+[2/11] ANALISE DE CORRELACAO
+2026-06-23 15:00:27 | INFO     | TaiwanAnalyzer | 
+Matriz de Correlacao:
+              balance  inflation  unemployment
+balance           NaN        NaN           NaN
+inflation         NaN        NaN           NaN
+unemployment      NaN        NaN           NaN
+2026-06-23 15:00:27 | INFO     | TaiwanAnalyzer | 
+  Testes de Pearson:
+2026-06-23 15:00:27 | INFO     | TaiwanAnalyzer |     balance vs inflation: r=nan, p=nan ns
+2026-06-23 15:00:27 | INFO     | TaiwanAnalyzer |     balance vs unemployment: r=nan, p=nan ns
+2026-06-23 15:00:27 | INFO     | TaiwanAnalyzer |     inflation vs unemployment: r=nan, p=nan ns
+2026-06-23 15:00:27 | INFO     | TaiwanAnalyzer | 
+[3/11] TESTES DE NORMALIDADE
+2026-06-23 15:00:27 | INFO     | TaiwanAnalyzer |   balance:
+2026-06-23 15:00:27 | INFO     | TaiwanAnalyzer |     Shapiro-Wilk: p=1.000000 (Normal)
+2026-06-23 15:00:27 | INFO     | TaiwanAnalyzer |     Jarque-Bera: p=nan
+2026-06-23 15:00:27 | INFO     | TaiwanAnalyzer |     D'Agostino: p=nan
+2026-06-23 15:00:27 | INFO     | TaiwanAnalyzer | 
+[4/11] ANALISE DE TENDENCIA
+2026-06-23 15:00:27 | INFO     | TaiwanAnalyzer |   balance:
+2026-06-23 15:00:27 | INFO     | TaiwanAnalyzer |     Tendencia: 0.00 unidades/mes
+2026-06-23 15:00:27 | INFO     | TaiwanAnalyzer |     R2: 1.0000
+2026-06-23 15:00:27 | INFO     | TaiwanAnalyzer |     Direcao: Decrescente
+2026-06-23 15:00:27 | INFO     | TaiwanAnalyzer | 
+[5/11] ANALISE DE SAZONALIDADE
+2026-06-23 15:00:27 | INFO     | TaiwanAnalyzer | 
+Estatisticas Mensais:
+      balance                   
+         mean  std    min    max
+month                           
+3       800.0  NaN  800.0  800.0
+5       800.0  NaN  800.0  800.0
+6       800.0  NaN  800.0  800.0
+7       800.0  NaN  800.0  800.0
+9       800.0  NaN  800.0  800.0
+12      800.0  0.0  800.0  800.0
+2026-06-23 15:00:27 | INFO     | TaiwanAnalyzer |   balance CV Sazonal: 0.00%
+2026-06-23 15:00:27 | CRITICAL | TaiwanMain | ERRO FATAL: All numbers are identical in kruskal
+Traceback (most recent call last):
+  File "/media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/main.py", line 194, in run_pipeline
+    self.analysis_results = self.analyzer.analyze(self.df_clean)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/analyzer.py", line 59, in analyze
+    self.results['seasonality'] = self._seasonality_analysis(df)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/analyzer.py", line 235, in _seasonality_analysis
+    stat, p = stats.kruskal(*groups)
+              ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paulo/anaconda3/lib/python3.11/site-packages/scipy/stats/_axis_nan_policy.py", line 579, in axis_nan_policy_wrapper
+    res = hypotest_fun_out(*samples, **kwds)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paulo/anaconda3/lib/python3.11/site-packages/scipy/stats/_stats_py.py", line 8676, in kruskal
+    raise ValueError('All numbers are identical in kruskal')
+ValueError: All numbers are identical in kruskal
+2026-06-23 15:00:27 | INFO     | TaiwanDatabase | Conectado ao banco: /media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/data/taiwan_economy.db
+2026-06-23 15:00:27 | INFO     | TaiwanDatabase | 
+======================================================================
+2026-06-23 15:00:27 | INFO     | TaiwanDatabase | CRIANDO SCHEMA DO BANCO DE DADOS
+2026-06-23 15:00:27 | INFO     | TaiwanDatabase | ======================================================================
+2026-06-23 15:00:27 | INFO     | TaiwanDatabase | Schema criado com sucesso!
+2026-06-23 15:00:28 | INFO     | TaiwanDatabase | Conexao com banco fechada
+2026-06-23 15:00:28 | WARNING  | TaiwanMain | Ciclo falhou. Falhas consecutivas: 1
+2026-06-23 15:03:42 | INFO     | TaiwanMain | SIGTERM recebido. Encerrando graciosamente...
+2026-06-23 15:03:42 | INFO     | TaiwanMain | Solicitando parada do daemon...
+2026-06-23 15:03:42 | INFO     | TaiwanMain | Daemon encerrado
+2026-06-23 15:42:43 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 15:42:43 | INFO     | TaiwanMain | EXECUCAO #1 - 2026-06-23 15:42:43
+2026-06-23 15:42:43 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 15:42:43 | INFO     | TaiwanMain | 
+[ETAPA 1/5] COLETA DE DADOS
+2026-06-23 15:42:43 | INFO     | TaiwanScraper | ======================================================================
+2026-06-23 15:42:43 | INFO     | TaiwanScraper | COLETA DE DADOS
+2026-06-23 15:42:43 | INFO     | TaiwanScraper | ======================================================================
+2026-06-23 15:42:43 | INFO     | TaiwanScraper | [FONTE 1] Trading Economics...
+2026-06-23 15:42:43 | INFO     | TaiwanScraper |   exports: 2 tabelas encontradas
+2026-06-23 15:42:43 | WARNING  | TaiwanScraper |   Nenhum dado encontrado para exports
+2026-06-23 15:42:44 | INFO     | TaiwanScraper |   imports: 2 tabelas encontradas
+2026-06-23 15:42:44 | WARNING  | TaiwanScraper |   Nenhum dado encontrado para imports
+2026-06-23 15:42:45 | INFO     | TaiwanScraper |   balance: 3 tabelas encontradas
+2026-06-23 15:42:45 | INFO     | TaiwanScraper |   OK balance: 3 registros
+2026-06-23 15:42:45 | INFO     | TaiwanScraper |   gdp_growth: 2 tabelas encontradas
+2026-06-23 15:42:45 | WARNING  | TaiwanScraper |   Nenhum dado encontrado para gdp_growth
+2026-06-23 15:42:46 | INFO     | TaiwanScraper |   inflation: 3 tabelas encontradas
+2026-06-23 15:42:46 | INFO     | TaiwanScraper |   OK inflation: 3 registros
+2026-06-23 15:42:47 | INFO     | TaiwanScraper |   unemployment: 3 tabelas encontradas
+2026-06-23 15:42:47 | INFO     | TaiwanScraper |   OK unemployment: 3 registros
+2026-06-23 15:42:47 | INFO     | TaiwanScraper |   interest_rate: 3 tabelas encontradas
+2026-06-23 15:42:47 | INFO     | TaiwanScraper |   OK interest_rate: 5 registros
+2026-06-23 15:42:47 | INFO     | TaiwanScraper | OK Trading Economics: 7 registros consolidados
+2026-06-23 15:42:47 | WARNING  | TaiwanScraper | Fonte 'Trading Economics' rejeitada: poucos registros (7 < 12)
+2026-06-23 15:42:47 | INFO     | TaiwanScraper | [FONTE 2] World Bank API...
+2026-06-23 15:42:48 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 15:42:50 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 15:42:54 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 15:42:54 | ERROR    | TaiwanScraper |   ERRO exports: 'NoneType' object is not iterable
+2026-06-23 15:42:54 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 15:42:56 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 15:43:01 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 15:43:01 | ERROR    | TaiwanScraper |   ERRO imports: 'NoneType' object is not iterable
+2026-06-23 15:43:01 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 15:43:03 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 15:43:07 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 15:43:07 | ERROR    | TaiwanScraper |   ERRO balance: 'NoneType' object is not iterable
+2026-06-23 15:43:08 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 15:43:10 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 15:43:14 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 15:43:14 | ERROR    | TaiwanScraper |   ERRO gdp_growth: 'NoneType' object is not iterable
+2026-06-23 15:43:14 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 15:43:16 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 15:43:21 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 15:43:21 | ERROR    | TaiwanScraper |   ERRO inflation: 'NoneType' object is not iterable
+2026-06-23 15:43:21 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 15:43:23 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 15:43:27 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 15:43:27 | ERROR    | TaiwanScraper |   ERRO unemployment: 'NoneType' object is not iterable
+2026-06-23 15:43:27 | INFO     | TaiwanScraper | [FONTE 3] IMF Data...
+2026-06-23 15:43:28 | ERROR    | TaiwanScraper | Erro https://data.imf.org/api/data/DOT/TXG_FOB_USD (tentativa 1): 403 Client Error: Forbidden for url: https://data.imf.org/api/data/DOT/TXG_FOB_USD?freq=M&period=2015-01%3A2026-12
+2026-06-23 15:43:30 | ERROR    | TaiwanScraper | Erro https://data.imf.org/api/data/DOT/TXG_FOB_USD (tentativa 2): 403 Client Error: Forbidden for url: https://data.imf.org/api/data/DOT/TXG_FOB_USD?freq=M&period=2015-01%3A2026-12
+2026-06-23 15:43:34 | ERROR    | TaiwanScraper | Erro https://data.imf.org/api/data/DOT/TXG_FOB_USD (tentativa 3): 403 Client Error: Forbidden for url: https://data.imf.org/api/data/DOT/TXG_FOB_USD?freq=M&period=2015-01%3A2026-12
+2026-06-23 15:43:34 | ERROR    | TaiwanScraper | Erro https://data.imf.org/api/data/DOT/TMG_CIF_USD (tentativa 1): 403 Client Error: Forbidden for url: https://data.imf.org/api/data/DOT/TMG_CIF_USD?freq=M&period=2015-01%3A2026-12
+2026-06-23 15:43:36 | ERROR    | TaiwanScraper | Erro https://data.imf.org/api/data/DOT/TMG_CIF_USD (tentativa 2): 403 Client Error: Forbidden for url: https://data.imf.org/api/data/DOT/TMG_CIF_USD?freq=M&period=2015-01%3A2026-12
+2026-06-23 15:43:40 | ERROR    | TaiwanScraper | Erro https://data.imf.org/api/data/DOT/TMG_CIF_USD (tentativa 3): 403 Client Error: Forbidden for url: https://data.imf.org/api/data/DOT/TMG_CIF_USD?freq=M&period=2015-01%3A2026-12
+2026-06-23 15:43:40 | INFO     | TaiwanScraper | [FONTE 4] MOEA Taiwan...
+2026-06-23 15:43:42 | INFO     | TaiwanScraper |   trade_summary: 0 registros processados
+2026-06-23 15:43:43 | INFO     | TaiwanScraper |   export_by_product: 0 registros processados
+2026-06-23 15:43:43 | INFO     | TaiwanScraper |   import_by_product: 0 registros processados
+2026-06-23 15:43:43 | WARNING  | TaiwanScraper |   Nenhum dado MOEA encontrado
+2026-06-23 15:43:43 | WARNING  | TaiwanScraper | Todas as fontes reais falharam. Usando simulado.
+2026-06-23 15:43:43 | INFO     | TaiwanScraper | [FONTE 5] Dados simulados (Fallback)...
+2026-06-23 15:43:43 | INFO     | TaiwanScraper |   OK Simulado: 138 registros
+2026-06-23 15:43:43 | INFO     | TaiwanMain | Dados coletados: 138 registros (fonte: simulated)
+2026-06-23 15:43:43 | INFO     | TaiwanMain | 
+[ETAPA 2/5] PROCESSAMENTO
+2026-06-23 15:43:43 | INFO     | TaiwanProcessor | 
+======================================================================
+2026-06-23 15:43:43 | INFO     | TaiwanProcessor | PROCESSAMENTO DE DADOS
+2026-06-23 15:43:43 | INFO     | TaiwanProcessor | ======================================================================
+2026-06-23 15:43:43 | INFO     | TaiwanProcessor | [1/6] Padronizando colunas...
+2026-06-23 15:43:43 | INFO     | TaiwanProcessor | [2/6] Removendo duplicados...
+2026-06-23 15:43:43 | INFO     | TaiwanProcessor |   Nenhum duplicado encontrado
+2026-06-23 15:43:43 | INFO     | TaiwanProcessor | [3/6] Tratando missing values...
+2026-06-23 15:43:43 | INFO     | TaiwanProcessor |   Missing antes: 6 valores
+2026-06-23 15:43:43 | INFO     | TaiwanProcessor |     exports: 4 valores tratados
+2026-06-23 15:43:43 | INFO     | TaiwanProcessor |     imports: 2 valores tratados
+2026-06-23 15:43:43 | INFO     | TaiwanProcessor |   Missing depois: 0 valores
+2026-06-23 15:43:43 | INFO     | TaiwanProcessor | [4/6] Detectando e tratando outliers...
+2026-06-23 15:43:43 | INFO     | TaiwanProcessor |     exports: 3 outliers -> winsorizados
+2026-06-23 15:43:43 | INFO     | TaiwanProcessor |     imports: 2 outliers -> winsorizados
+2026-06-23 15:43:44 | INFO     | TaiwanProcessor |   Isolation Forest: 7 outliers multivariados detectados
+2026-06-23 15:43:44 | INFO     | TaiwanProcessor | [5/6] Engenharia de features...
+2026-06-23 15:43:44 | INFO     | TaiwanProcessor |   Features criadas: 43 novas features
+2026-06-23 15:43:44 | INFO     | TaiwanProcessor | [6/6] Validando dados...
+2026-06-23 15:43:44 | INFO     | TaiwanProcessor |   Validacao OK - Missing remanescentes: 128
+2026-06-23 15:43:44 | INFO     | TaiwanProcessor | OK Processamento concluido!
+2026-06-23 15:43:44 | INFO     | TaiwanProcessor |   Registros: 138
+2026-06-23 15:43:44 | INFO     | TaiwanProcessor |   Colunas: 53
+2026-06-23 15:43:44 | INFO     | TaiwanMain | Dados processados: 138 registros, 53 colunas
+2026-06-23 15:43:44 | INFO     | TaiwanMain | 
+[ETAPA 3/5] ANALISE ESTATISTICA
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer | 
+======================================================================
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer | ANALISE ESTATISTICA MULTIVARIADA
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer | ======================================================================
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer | 
+[1/11] ESTATISTICAS DESCRITIVAS
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer | 
+             exports     imports     balance  gdp_growth  inflation  unemployment  industrial_production
+count       138.0000    138.0000    138.0000    138.0000   138.0000      138.0000               138.0000
+mean      35350.9100  27199.0200   8151.8900      2.2700     1.4900        3.6800                98.6900
+std       10178.8800   7500.2400   8536.7700      1.4600     0.6600        0.6100                 5.5300
+min       13047.9400   5569.2100  -5883.7400     -0.8700     0.0900        2.7600                80.9500
+25%       27548.1100  21844.8400   5000.8600      1.1500     0.9600        3.1900                95.4500
+50%       32873.2900  25601.2600   6504.7800      2.2000     1.4700        3.5600                99.4400
+75%       42239.8100  32811.9600   8566.2800      3.4900     1.9900        4.0000               102.5600
+max       73374.8500  41775.9700  67805.6400      5.5100     2.8800        5.3300               109.3600
+skewness      0.8416     -0.0451      4.5888      0.0008     0.0389        0.7484                -0.6096
+kurtosis      1.4639     -0.0322     24.7492     -0.7908    -0.9738       -0.0918                 0.4830
+range     60326.9100  36206.7600  73689.3800      6.3800     2.7900        2.5700                28.4100
+cv           28.7900     27.5800    104.7200     64.4100    44.5500       16.6100                 5.6000
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer | 
+[2/11] ANALISE DE CORRELACAO
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer | 
+Matriz de Correlacao:
+                       exports  imports  balance  gdp_growth  inflation  unemployment  industrial_production
+exports                 1.0000   0.5697   0.6918     -0.2641    -0.0488        0.1943                 0.0502
+imports                 0.5697   1.0000  -0.1993     -0.2295    -0.0391        0.1801                 0.1374
+balance                 0.6918  -0.1993   1.0000     -0.1133    -0.0237        0.0734                -0.0608
+gdp_growth             -0.2641  -0.2295  -0.1133      1.0000     0.0475       -0.5246                 0.3096
+inflation              -0.0488  -0.0391  -0.0237      0.0475     1.0000        0.0513                 0.0445
+unemployment            0.1943   0.1801   0.0734     -0.5246     0.0513        1.0000                -0.4230
+industrial_production   0.0502   0.1374  -0.0608      0.3096     0.0445       -0.4230                 1.0000
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer | 
+  Testes de Pearson:
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     exports vs imports: r=0.5697, p=0.000000 ***
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     exports vs balance: r=0.6918, p=0.000000 ***
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     exports vs gdp_growth: r=-0.2641, p=0.001749 **
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     exports vs inflation: r=-0.0488, p=0.570159 ns
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     exports vs unemployment: r=0.1943, p=0.022415 *
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     exports vs industrial_production: r=0.0502, p=0.558576 ns
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     imports vs balance: r=-0.1993, p=0.019109 *
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     imports vs gdp_growth: r=-0.2295, p=0.006780 **
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     imports vs inflation: r=-0.0391, p=0.648611 ns
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     imports vs unemployment: r=0.1801, p=0.034547 *
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     imports vs industrial_production: r=0.1374, p=0.108123 ns
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     balance vs gdp_growth: r=-0.1133, p=0.185930 ns
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     balance vs inflation: r=-0.0237, p=0.782189 ns
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     balance vs unemployment: r=0.0734, p=0.392080 ns
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     balance vs industrial_production: r=-0.0608, p=0.478623 ns
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     gdp_growth vs inflation: r=0.0475, p=0.579861 ns
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     gdp_growth vs unemployment: r=-0.5246, p=0.000000 ***
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     gdp_growth vs industrial_production: r=0.3096, p=0.000220 ***
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     inflation vs unemployment: r=0.0513, p=0.550086 ns
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     inflation vs industrial_production: r=0.0445, p=0.604342 ns
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     unemployment vs industrial_production: r=-0.4230, p=0.000000 ***
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer | 
+[3/11] TESTES DE NORMALIDADE
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |   exports:
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     Shapiro-Wilk: p=0.000021 (Nao Normal)
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     Jarque-Bera: p=0.000002
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     D'Agostino: p=0.000039
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |   imports:
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     Shapiro-Wilk: p=0.000689 (Nao Normal)
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     Jarque-Bera: p=0.962044
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     D'Agostino: p=0.971620
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |   balance:
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     Shapiro-Wilk: p=0.000000 (Nao Normal)
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     Jarque-Bera: p=0.000000
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     D'Agostino: p=0.000000
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer | 
+[4/11] ANALISE DE TENDENCIA
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |   exports:
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     Tendencia: 181.85 unidades/mes
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     R2: 0.5102
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     Direcao: Crescente
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |   imports:
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     Tendencia: 131.31 unidades/mes
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     R2: 0.4900
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     Direcao: Crescente
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |   balance:
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     Tendencia: 50.54 unidades/mes
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     R2: 0.0560
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     Direcao: Crescente
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer | 
+[5/11] ANALISE DE SAZONALIDADE
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer | 
+Estatisticas Mensais:
+        exports                                 imports                                balance                             
+           mean       std       min       max      mean      std       min       max      mean       std      min       max
+month                                                                                                                      
+1      31844.10  10019.25  13047.94  49029.49  26797.13  7106.13  18767.91  40990.22   5046.97   3775.33 -5719.97   8579.88
+2      36917.82   9157.41  25089.98  53689.32  29239.81  7137.65  19689.55  40190.45   7678.01   2618.11  5334.63  13498.87
+3      37719.04   9089.98  27400.35  53692.49  27159.30  8930.70   6435.68  41117.63  10559.74  11729.16  4396.14  47256.81
+4      37803.75   8991.00  27799.22  55535.60  30515.58  6960.11  22486.09  41775.97   7288.17   2755.63  3471.98  13759.63
+5      39434.33  13914.13  24753.26  73374.85  28160.13  6306.23  20094.06  37437.49  11274.20  12018.75  3559.30  47931.47
+6      35970.63   9310.34  24056.24  51324.27  29098.18  7058.88  20142.93  41247.22   6872.45   3442.67  2558.57  12646.45
+7      34428.24   7763.78  26055.98  46650.07  27691.48  6735.97  20068.18  39824.50   6736.76   2384.50  3478.55  11565.01
+8      36225.60  15539.45  13047.94  73374.85  25191.62  9227.19   5569.21  39133.80  11033.97  19310.92 -5883.74  67805.64
+9      36621.32  10634.99  24123.00  58581.05  26622.59  7575.60  17399.10  41775.97   9998.74  10053.79  4059.25  39342.15
+10     31853.70   8476.68  22709.89  45461.72  25540.59  6933.93  17959.37  36672.73   6313.12   2163.29  4041.65   9905.22
+11     31859.50   8656.69  21483.36  44199.46  25747.53  7659.53  17488.69  39243.22   6111.97   1685.97  3371.84   8549.62
+12     32843.45   8806.65  22606.03  46473.30  23917.39  8875.50   5569.21  38491.98   8926.06   9948.57  3977.35  38308.85
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |   exports CV Sazonal: 7.51%
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |   imports CV Sazonal: 7.03%
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |   balance CV Sazonal: 26.06%
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |   exports Kruskal-Wallis: p=0.644456 (Nao Sazonal)
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |   imports Kruskal-Wallis: p=0.604838 (Nao Sazonal)
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |   balance Kruskal-Wallis: p=0.725022 (Nao Sazonal)
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer | 
+[6/11] ANALISE DE COMPONENTES PRINCIPAIS (PCA)
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |   Variancia explicada:
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     PC1: 31.27%
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     PC2: 22.04%
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     PC3: 17.95%
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     PC4: 14.42%
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     PC5: 8.08%
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     PC6: 6.24%
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     PC7: 0.00%
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |   Variancia acumulada: [ 31.27047718  53.30828323  71.26054757  85.68511819  93.76085322
+ 100.         100.        ]
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer | 
+  Loadings:
+                          PC1     PC2     PC3     PC4     PC5     PC6     PC7
+exports                0.5277  0.4869 -0.0558  0.0343 -0.1838 -0.0348  0.6672
+imports                0.3305  0.2689  0.6849 -0.0042 -0.3145 -0.0928 -0.4916
+balance                0.3388  0.3443 -0.6683  0.0446  0.0572  0.0401 -0.5596
+gdp_growth            -0.4791  0.2925 -0.1163  0.0326 -0.6529  0.4940 -0.0000
+inflation             -0.0480 -0.0458  0.0048  0.9856 -0.0487 -0.1477 -0.0000
+unemployment           0.4536 -0.4134  0.0766  0.1215  0.0601  0.7740  0.0000
+industrial_production -0.2448  0.5599  0.2483  0.0980  0.6571  0.3515 -0.0000
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer | 
+[7/11] TESTES DE ESTACIONARIEDADE
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |   exports:
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     ADF: stat=-0.0775, p=0.951635 (Nao Estacionaria)
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     KPSS: stat=1.6806, p=0.010000
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |   imports:
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     ADF: stat=-1.4506, p=0.557798 (Nao Estacionaria)
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     KPSS: stat=1.6237, p=0.010000
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |   balance:
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     ADF: stat=-7.0295, p=0.000000 (Estacionaria)
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer |     KPSS: stat=0.6653, p=0.016702
+2026-06-23 15:43:44 | INFO     | TaiwanAnalyzer | 
+[8/11] ANALISE DE CLUSTERING
+2026-06-23 15:43:45 | INFO     | TaiwanAnalyzer |   Numero otimo de clusters: 3
+2026-06-23 15:43:45 | INFO     | TaiwanAnalyzer |   Silhouette Score: 0.6108
+2026-06-23 15:43:45 | INFO     | TaiwanAnalyzer | 
+  Resumo dos Clusters:
+          exports                   imports                  balance                
+             mean       std count      mean      std count      mean       std count
+cluster                                                                             
+0.0      27697.74   4117.73    75  22517.12  2887.78    75   5180.62   2375.95    75
+1.0      43072.31   4680.32    58  34524.56  3973.32    58   8547.76   2451.86    58
+2.0      60580.26  12823.85     5  12451.28  9297.58     5  48128.98  11849.20     5
+2026-06-23 15:43:45 | INFO     | TaiwanAnalyzer | 
+[9/11] ANALISE DE VOLATILIDADE
+2026-06-23 15:43:45 | INFO     | TaiwanAnalyzer |   exports:
+2026-06-23 15:43:45 | INFO     | TaiwanAnalyzer |     Volatilidade media: 5588.35
+2026-06-23 15:43:45 | INFO     | TaiwanAnalyzer |     Retorno medio: 3.6705%
+2026-06-23 15:43:45 | INFO     | TaiwanAnalyzer |     Retorno std: 29.9575%
+2026-06-23 15:43:45 | INFO     | TaiwanAnalyzer |   imports:
+2026-06-23 15:43:45 | INFO     | TaiwanAnalyzer |     Volatilidade media: 3781.28
+2026-06-23 15:43:45 | INFO     | TaiwanAnalyzer |     Retorno medio: 8.3832%
+2026-06-23 15:43:45 | INFO     | TaiwanAnalyzer |     Retorno std: 63.9940%
+2026-06-23 15:43:45 | INFO     | TaiwanAnalyzer |   balance:
+2026-06-23 15:43:45 | INFO     | TaiwanAnalyzer |     Volatilidade media: 5615.18
+2026-06-23 15:43:45 | INFO     | TaiwanAnalyzer |     Retorno medio: 17.3499%
+2026-06-23 15:43:45 | INFO     | TaiwanAnalyzer |     Retorno std: 140.2012%
+2026-06-23 15:43:45 | INFO     | TaiwanAnalyzer | 
+[10/11] ANALISE DE COINTEGRACAO
+2026-06-23 15:43:45 | INFO     | TaiwanAnalyzer |   Exports vs Imports:
+2026-06-23 15:43:45 | INFO     | TaiwanAnalyzer |     Score: -4.6579
+2026-06-23 15:43:45 | INFO     | TaiwanAnalyzer |     p-value: 0.000666
+2026-06-23 15:43:45 | INFO     | TaiwanAnalyzer |     Cointegrados: Sim
+2026-06-23 15:43:45 | INFO     | TaiwanAnalyzer | 
+[11/11] FORECASTING SIMPLES
+2026-06-23 15:43:45 | INFO     | TaiwanAnalyzer |   exports:
+2026-06-23 15:43:45 | INFO     | TaiwanAnalyzer |     Ultimo valor: 51324.27
+2026-06-23 15:43:45 | INFO     | TaiwanAnalyzer |     Previsao MA: 49349.68
+2026-06-23 15:43:45 | INFO     | TaiwanAnalyzer |     Previsao Tendencia: 47989.83
+2026-06-23 15:43:45 | INFO     | TaiwanAnalyzer |     Previsao Combinada: 51113.13
+2026-06-23 15:43:45 | INFO     | TaiwanAnalyzer |   imports:
+2026-06-23 15:43:45 | INFO     | TaiwanAnalyzer |     Ultimo valor: 38677.82
+2026-06-23 15:43:45 | INFO     | TaiwanAnalyzer |     Previsao MA: 36447.89
+2026-06-23 15:43:45 | INFO     | TaiwanAnalyzer |     Previsao Tendencia: 36325.35
+2026-06-23 15:43:45 | INFO     | TaiwanAnalyzer |     Previsao Combinada: 37504.56
+2026-06-23 15:43:45 | INFO     | TaiwanAnalyzer |   balance:
+2026-06-23 15:43:45 | INFO     | TaiwanAnalyzer |     Ultimo valor: 12646.45
+2026-06-23 15:43:45 | INFO     | TaiwanAnalyzer |     Previsao MA: 12901.79
+2026-06-23 15:43:45 | INFO     | TaiwanAnalyzer |     Previsao Tendencia: 11664.48
+2026-06-23 15:43:45 | INFO     | TaiwanAnalyzer |     Previsao Combinada: 13608.57
+2026-06-23 15:43:45 | INFO     | TaiwanAnalyzer | 
+Analise estatistica concluida!
+2026-06-23 15:43:45 | INFO     | TaiwanMain | Relatorio salvo: /media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/logs/analysis_report_20260623_154345.txt
+2026-06-23 15:43:45 | INFO     | TaiwanMain | 
+[ETAPA 4/5] BANCO DE DADOS
+2026-06-23 15:43:45 | INFO     | TaiwanDatabase | Conectado ao banco: /media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/data/taiwan_economy.db
+2026-06-23 15:43:45 | INFO     | TaiwanDatabase | 
+======================================================================
+2026-06-23 15:43:45 | INFO     | TaiwanDatabase | CRIANDO SCHEMA DO BANCO DE DADOS
+2026-06-23 15:43:45 | INFO     | TaiwanDatabase | ======================================================================
+2026-06-23 15:43:45 | INFO     | TaiwanDatabase | Schema criado com sucesso!
+2026-06-23 15:43:45 | INFO     | TaiwanDatabase | 138 registros inseridos em economic_data
+2026-06-23 15:43:45 | INFO     | TaiwanDatabase | Estatisticas mensais inseridas
+2026-06-23 15:43:47 | INFO     | TaiwanDatabase | 138 registros MOEA inseridos
+2026-06-23 15:43:47 | INFO     | TaiwanDatabase | 14 parceiros inseridos
+2026-06-23 15:43:47 | INFO     | TaiwanDatabase | Resultados de analise inseridos
+2026-06-23 15:43:47 | INFO     | TaiwanMain | Resumo DB: {'economic_data': 138, 'monthly_stats': 12, 'trade_partners': 14, 'analysis_results': 11, 'execution_log': 7, 'moea_data': 138, 'alerts': 0}
+2026-06-23 15:43:49 | INFO     | TaiwanDatabase | Conexao com banco fechada
+2026-06-23 15:43:49 | INFO     | TaiwanMain | 
+[ETAPA 5/5] DASHBOARD PNG
+2026-06-23 15:43:49 | INFO     | TaiwanDashboardPNG | 
+======================================================================
+2026-06-23 15:43:49 | INFO     | TaiwanDashboardPNG | CONSTRUINDO DASHBOARD PNG
+2026-06-23 15:43:49 | INFO     | TaiwanDashboardPNG | ======================================================================
+2026-06-23 15:44:06 | INFO     | TaiwanDashboardPNG | Dashboard salvo: /media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/assets/taiwan_dashboard.png
+2026-06-23 15:44:06 | INFO     | TaiwanMain | 
+======================================================================
+2026-06-23 15:44:06 | INFO     | TaiwanMain | PIPELINE CONCLUIDO EM 83.65s
+2026-06-23 15:44:06 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 15:44:06 | INFO     | TaiwanMain | DB: /media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/data/taiwan_economy.db
+2026-06-23 15:44:06 | INFO     | TaiwanMain | Dashboard PNG: /media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/assets/taiwan_dashboard.png
+2026-06-23 15:44:06 | INFO     | TaiwanMain | Dashboard Streamlit: streamlit run app.py
+2026-06-23 15:46:59 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 15:46:59 | INFO     | TaiwanMain | INICIANDO DAEMON DE PRODUCAO
+2026-06-23 15:46:59 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 15:46:59 | INFO     | TaiwanMain | Intervalo: 60 minutos
+2026-06-23 15:46:59 | INFO     | TaiwanMain | Banco: /media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/data/taiwan_economy.db
+2026-06-23 15:46:59 | INFO     | TaiwanMain | Dashboard: /media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/assets/taiwan_dashboard.png
+2026-06-23 15:46:59 | INFO     | TaiwanMain | Comandos: Ctrl+C para parar | SIGUSR1 para forcar execucao
+2026-06-23 15:46:59 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 15:46:59 | INFO     | TaiwanMain | 
+======================================================================
+2026-06-23 15:46:59 | INFO     | TaiwanMain | CICLO #1 - 2026-06-23 15:46:59
+2026-06-23 15:46:59 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 15:46:59 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 15:46:59 | INFO     | TaiwanMain | EXECUCAO #1 - 2026-06-23 15:46:59
+2026-06-23 15:46:59 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 15:46:59 | INFO     | TaiwanMain | 
+[ETAPA 1/5] COLETA DE DADOS
+2026-06-23 15:46:59 | INFO     | TaiwanScraper | ======================================================================
+2026-06-23 15:46:59 | INFO     | TaiwanScraper | COLETA DE DADOS
+2026-06-23 15:46:59 | INFO     | TaiwanScraper | ======================================================================
+2026-06-23 15:46:59 | INFO     | TaiwanScraper | [FONTE 1] Trading Economics...
+2026-06-23 15:47:00 | INFO     | TaiwanScraper |   exports: 2 tabelas encontradas
+2026-06-23 15:47:00 | WARNING  | TaiwanScraper |   Nenhum dado encontrado para exports
+2026-06-23 15:47:01 | INFO     | TaiwanScraper |   imports: 2 tabelas encontradas
+2026-06-23 15:47:01 | WARNING  | TaiwanScraper |   Nenhum dado encontrado para imports
+2026-06-23 15:47:01 | INFO     | TaiwanScraper |   balance: 3 tabelas encontradas
+2026-06-23 15:47:01 | INFO     | TaiwanScraper |   OK balance: 3 registros
+2026-06-23 15:47:02 | INFO     | TaiwanScraper |   gdp_growth: 2 tabelas encontradas
+2026-06-23 15:47:02 | WARNING  | TaiwanScraper |   Nenhum dado encontrado para gdp_growth
+2026-06-23 15:47:02 | INFO     | TaiwanScraper |   inflation: 3 tabelas encontradas
+2026-06-23 15:47:02 | INFO     | TaiwanScraper |   OK inflation: 3 registros
+2026-06-23 15:47:02 | INFO     | TaiwanScraper |   unemployment: 3 tabelas encontradas
+2026-06-23 15:47:03 | INFO     | TaiwanScraper |   OK unemployment: 3 registros
+2026-06-23 15:47:03 | INFO     | TaiwanScraper |   interest_rate: 3 tabelas encontradas
+2026-06-23 15:47:03 | INFO     | TaiwanScraper |   OK interest_rate: 5 registros
+2026-06-23 15:47:03 | INFO     | TaiwanScraper | OK Trading Economics: 7 registros consolidados
+2026-06-23 15:47:03 | WARNING  | TaiwanScraper | Fonte 'Trading Economics' rejeitada: poucos registros (7 < 12)
+2026-06-23 15:47:03 | INFO     | TaiwanScraper | [FONTE 2] World Bank API...
+2026-06-23 15:47:03 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 15:47:05 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 15:47:09 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 15:47:09 | ERROR    | TaiwanScraper |   ERRO exports: 'NoneType' object is not iterable
+2026-06-23 15:47:09 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 15:47:11 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 15:47:15 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 15:47:15 | ERROR    | TaiwanScraper |   ERRO imports: 'NoneType' object is not iterable
+2026-06-23 15:47:16 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 15:47:18 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 15:47:22 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 15:47:22 | ERROR    | TaiwanScraper |   ERRO balance: 'NoneType' object is not iterable
+2026-06-23 15:47:22 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 15:47:24 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 15:47:28 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 15:47:28 | ERROR    | TaiwanScraper |   ERRO gdp_growth: 'NoneType' object is not iterable
+2026-06-23 15:47:28 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 15:47:30 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 15:47:34 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 15:47:34 | ERROR    | TaiwanScraper |   ERRO inflation: 'NoneType' object is not iterable
+2026-06-23 15:47:34 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 15:47:36 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 15:47:40 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 15:47:40 | ERROR    | TaiwanScraper |   ERRO unemployment: 'NoneType' object is not iterable
+2026-06-23 15:47:40 | INFO     | TaiwanScraper | [FONTE 3] IMF Data...
+2026-06-23 15:47:41 | ERROR    | TaiwanScraper | Erro https://data.imf.org/api/data/DOT/TXG_FOB_USD (tentativa 1): 403 Client Error: Forbidden for url: https://data.imf.org/api/data/DOT/TXG_FOB_USD?freq=M&period=2015-01%3A2026-12
+2026-06-23 15:47:43 | ERROR    | TaiwanScraper | Erro https://data.imf.org/api/data/DOT/TXG_FOB_USD (tentativa 2): 403 Client Error: Forbidden for url: https://data.imf.org/api/data/DOT/TXG_FOB_USD?freq=M&period=2015-01%3A2026-12
+2026-06-23 15:47:47 | ERROR    | TaiwanScraper | Erro https://data.imf.org/api/data/DOT/TXG_FOB_USD (tentativa 3): 403 Client Error: Forbidden for url: https://data.imf.org/api/data/DOT/TXG_FOB_USD?freq=M&period=2015-01%3A2026-12
+2026-06-23 15:47:47 | ERROR    | TaiwanScraper | Erro https://data.imf.org/api/data/DOT/TMG_CIF_USD (tentativa 1): 403 Client Error: Forbidden for url: https://data.imf.org/api/data/DOT/TMG_CIF_USD?freq=M&period=2015-01%3A2026-12
+2026-06-23 15:47:49 | ERROR    | TaiwanScraper | Erro https://data.imf.org/api/data/DOT/TMG_CIF_USD (tentativa 2): 403 Client Error: Forbidden for url: https://data.imf.org/api/data/DOT/TMG_CIF_USD?freq=M&period=2015-01%3A2026-12
+2026-06-23 15:47:53 | ERROR    | TaiwanScraper | Erro https://data.imf.org/api/data/DOT/TMG_CIF_USD (tentativa 3): 403 Client Error: Forbidden for url: https://data.imf.org/api/data/DOT/TMG_CIF_USD?freq=M&period=2015-01%3A2026-12
+2026-06-23 15:47:53 | INFO     | TaiwanScraper | [FONTE 4] MOEA Taiwan...
+2026-06-23 15:47:54 | INFO     | TaiwanScraper |   trade_summary: 0 registros processados
+2026-06-23 15:47:54 | INFO     | TaiwanScraper |   export_by_product: 0 registros processados
+2026-06-23 15:47:55 | INFO     | TaiwanScraper |   import_by_product: 0 registros processados
+2026-06-23 15:47:55 | WARNING  | TaiwanScraper |   Nenhum dado MOEA encontrado
+2026-06-23 15:47:55 | WARNING  | TaiwanScraper | Todas as fontes reais falharam. Usando simulado.
+2026-06-23 15:47:55 | INFO     | TaiwanScraper | [FONTE 5] Dados simulados (Fallback)...
+2026-06-23 15:47:55 | INFO     | TaiwanScraper |   OK Simulado: 138 registros
+2026-06-23 15:47:55 | INFO     | TaiwanMain | Dados coletados: 138 registros (fonte: simulated)
+2026-06-23 15:47:55 | INFO     | TaiwanMain | 
+[ETAPA 2/5] PROCESSAMENTO
+2026-06-23 15:47:55 | INFO     | TaiwanProcessor | 
+======================================================================
+2026-06-23 15:47:55 | INFO     | TaiwanProcessor | PROCESSAMENTO DE DADOS
+2026-06-23 15:47:55 | INFO     | TaiwanProcessor | ======================================================================
+2026-06-23 15:47:55 | INFO     | TaiwanProcessor | [1/6] Padronizando colunas...
+2026-06-23 15:47:55 | INFO     | TaiwanProcessor | [2/6] Removendo duplicados...
+2026-06-23 15:47:55 | INFO     | TaiwanProcessor |   Nenhum duplicado encontrado
+2026-06-23 15:47:55 | INFO     | TaiwanProcessor | [3/6] Tratando missing values...
+2026-06-23 15:47:55 | INFO     | TaiwanProcessor |   Missing antes: 6 valores
+2026-06-23 15:47:55 | INFO     | TaiwanProcessor |     exports: 4 valores tratados
+2026-06-23 15:47:55 | INFO     | TaiwanProcessor |     imports: 2 valores tratados
+2026-06-23 15:47:55 | INFO     | TaiwanProcessor |   Missing depois: 0 valores
+2026-06-23 15:47:55 | INFO     | TaiwanProcessor | [4/6] Detectando e tratando outliers...
+2026-06-23 15:47:55 | INFO     | TaiwanProcessor |     exports: 3 outliers -> winsorizados
+2026-06-23 15:47:55 | INFO     | TaiwanProcessor |     imports: 2 outliers -> winsorizados
+2026-06-23 15:47:55 | INFO     | TaiwanProcessor |   Isolation Forest: 7 outliers multivariados detectados
+2026-06-23 15:47:55 | INFO     | TaiwanProcessor | [5/6] Engenharia de features...
+2026-06-23 15:47:55 | INFO     | TaiwanProcessor |   Features criadas: 43 novas features
+2026-06-23 15:47:55 | INFO     | TaiwanProcessor | [6/6] Validando dados...
+2026-06-23 15:47:55 | INFO     | TaiwanProcessor |   Validacao OK - Missing remanescentes: 128
+2026-06-23 15:47:55 | INFO     | TaiwanProcessor | OK Processamento concluido!
+2026-06-23 15:47:55 | INFO     | TaiwanProcessor |   Registros: 138
+2026-06-23 15:47:55 | INFO     | TaiwanProcessor |   Colunas: 53
+2026-06-23 15:47:55 | INFO     | TaiwanMain | Dados processados: 138 registros, 53 colunas
+2026-06-23 15:47:55 | INFO     | TaiwanMain | 
+[ETAPA 3/5] ANALISE ESTATISTICA
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer | 
+======================================================================
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer | ANALISE ESTATISTICA MULTIVARIADA
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer | ======================================================================
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer | 
+[1/11] ESTATISTICAS DESCRITIVAS
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer | 
+             exports     imports     balance  gdp_growth  inflation  unemployment  industrial_production
+count       138.0000    138.0000    138.0000    138.0000   138.0000      138.0000               138.0000
+mean      35350.9100  27199.0200   8151.8900      2.2700     1.4900        3.6800                98.6900
+std       10178.8800   7500.2400   8536.7700      1.4600     0.6600        0.6100                 5.5300
+min       13047.9400   5569.2100  -5883.7400     -0.8700     0.0900        2.7600                80.9500
+25%       27548.1100  21844.8400   5000.8600      1.1500     0.9600        3.1900                95.4500
+50%       32873.2900  25601.2600   6504.7800      2.2000     1.4700        3.5600                99.4400
+75%       42239.8100  32811.9600   8566.2800      3.4900     1.9900        4.0000               102.5600
+max       73374.8500  41775.9700  67805.6400      5.5100     2.8800        5.3300               109.3600
+skewness      0.8416     -0.0451      4.5888      0.0008     0.0389        0.7484                -0.6096
+kurtosis      1.4639     -0.0322     24.7492     -0.7908    -0.9738       -0.0918                 0.4830
+range     60326.9100  36206.7600  73689.3800      6.3800     2.7900        2.5700                28.4100
+cv           28.7900     27.5800    104.7200     64.4100    44.5500       16.6100                 5.6000
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer | 
+[2/11] ANALISE DE CORRELACAO
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer | 
+Matriz de Correlacao:
+                       exports  imports  balance  gdp_growth  inflation  unemployment  industrial_production
+exports                 1.0000   0.5697   0.6918     -0.2641    -0.0488        0.1943                 0.0502
+imports                 0.5697   1.0000  -0.1993     -0.2295    -0.0391        0.1801                 0.1374
+balance                 0.6918  -0.1993   1.0000     -0.1133    -0.0237        0.0734                -0.0608
+gdp_growth             -0.2641  -0.2295  -0.1133      1.0000     0.0475       -0.5246                 0.3096
+inflation              -0.0488  -0.0391  -0.0237      0.0475     1.0000        0.0513                 0.0445
+unemployment            0.1943   0.1801   0.0734     -0.5246     0.0513        1.0000                -0.4230
+industrial_production   0.0502   0.1374  -0.0608      0.3096     0.0445       -0.4230                 1.0000
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer | 
+  Testes de Pearson:
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     exports vs imports: r=0.5697, p=0.000000 ***
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     exports vs balance: r=0.6918, p=0.000000 ***
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     exports vs gdp_growth: r=-0.2641, p=0.001749 **
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     exports vs inflation: r=-0.0488, p=0.570159 ns
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     exports vs unemployment: r=0.1943, p=0.022415 *
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     exports vs industrial_production: r=0.0502, p=0.558576 ns
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     imports vs balance: r=-0.1993, p=0.019109 *
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     imports vs gdp_growth: r=-0.2295, p=0.006780 **
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     imports vs inflation: r=-0.0391, p=0.648611 ns
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     imports vs unemployment: r=0.1801, p=0.034547 *
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     imports vs industrial_production: r=0.1374, p=0.108123 ns
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     balance vs gdp_growth: r=-0.1133, p=0.185930 ns
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     balance vs inflation: r=-0.0237, p=0.782189 ns
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     balance vs unemployment: r=0.0734, p=0.392080 ns
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     balance vs industrial_production: r=-0.0608, p=0.478623 ns
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     gdp_growth vs inflation: r=0.0475, p=0.579861 ns
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     gdp_growth vs unemployment: r=-0.5246, p=0.000000 ***
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     gdp_growth vs industrial_production: r=0.3096, p=0.000220 ***
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     inflation vs unemployment: r=0.0513, p=0.550086 ns
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     inflation vs industrial_production: r=0.0445, p=0.604342 ns
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     unemployment vs industrial_production: r=-0.4230, p=0.000000 ***
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer | 
+[3/11] TESTES DE NORMALIDADE
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |   exports:
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     Shapiro-Wilk: p=0.000021 (Nao Normal)
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     Jarque-Bera: p=0.000002
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     D'Agostino: p=0.000039
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |   imports:
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     Shapiro-Wilk: p=0.000689 (Nao Normal)
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     Jarque-Bera: p=0.962044
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     D'Agostino: p=0.971620
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |   balance:
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     Shapiro-Wilk: p=0.000000 (Nao Normal)
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     Jarque-Bera: p=0.000000
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     D'Agostino: p=0.000000
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer | 
+[4/11] ANALISE DE TENDENCIA
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |   exports:
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     Tendencia: 181.85 unidades/mes
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     R2: 0.5102
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     Direcao: Crescente
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |   imports:
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     Tendencia: 131.31 unidades/mes
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     R2: 0.4900
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     Direcao: Crescente
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |   balance:
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     Tendencia: 50.54 unidades/mes
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     R2: 0.0560
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     Direcao: Crescente
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer | 
+[5/11] ANALISE DE SAZONALIDADE
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer | 
+Estatisticas Mensais:
+        exports                                 imports                                balance                             
+           mean       std       min       max      mean      std       min       max      mean       std      min       max
+month                                                                                                                      
+1      31844.10  10019.25  13047.94  49029.49  26797.13  7106.13  18767.91  40990.22   5046.97   3775.33 -5719.97   8579.88
+2      36917.82   9157.41  25089.98  53689.32  29239.81  7137.65  19689.55  40190.45   7678.01   2618.11  5334.63  13498.87
+3      37719.04   9089.98  27400.35  53692.49  27159.30  8930.70   6435.68  41117.63  10559.74  11729.16  4396.14  47256.81
+4      37803.75   8991.00  27799.22  55535.60  30515.58  6960.11  22486.09  41775.97   7288.17   2755.63  3471.98  13759.63
+5      39434.33  13914.13  24753.26  73374.85  28160.13  6306.23  20094.06  37437.49  11274.20  12018.75  3559.30  47931.47
+6      35970.63   9310.34  24056.24  51324.27  29098.18  7058.88  20142.93  41247.22   6872.45   3442.67  2558.57  12646.45
+7      34428.24   7763.78  26055.98  46650.07  27691.48  6735.97  20068.18  39824.50   6736.76   2384.50  3478.55  11565.01
+8      36225.60  15539.45  13047.94  73374.85  25191.62  9227.19   5569.21  39133.80  11033.97  19310.92 -5883.74  67805.64
+9      36621.32  10634.99  24123.00  58581.05  26622.59  7575.60  17399.10  41775.97   9998.74  10053.79  4059.25  39342.15
+10     31853.70   8476.68  22709.89  45461.72  25540.59  6933.93  17959.37  36672.73   6313.12   2163.29  4041.65   9905.22
+11     31859.50   8656.69  21483.36  44199.46  25747.53  7659.53  17488.69  39243.22   6111.97   1685.97  3371.84   8549.62
+12     32843.45   8806.65  22606.03  46473.30  23917.39  8875.50   5569.21  38491.98   8926.06   9948.57  3977.35  38308.85
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |   exports CV Sazonal: 7.51%
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |   imports CV Sazonal: 7.03%
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |   balance CV Sazonal: 26.06%
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |   exports Kruskal-Wallis: p=0.644456 (Nao Sazonal)
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |   imports Kruskal-Wallis: p=0.604838 (Nao Sazonal)
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |   balance Kruskal-Wallis: p=0.725022 (Nao Sazonal)
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer | 
+[6/11] ANALISE DE COMPONENTES PRINCIPAIS (PCA)
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |   Variancia explicada:
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     PC1: 31.27%
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     PC2: 22.04%
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     PC3: 17.95%
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     PC4: 14.42%
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     PC5: 8.08%
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     PC6: 6.24%
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |     PC7: 0.00%
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer |   Variancia acumulada: [ 31.27047718  53.30828323  71.26054757  85.68511819  93.76085322
+ 100.         100.        ]
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer | 
+  Loadings:
+                          PC1     PC2     PC3     PC4     PC5     PC6     PC7
+exports                0.5277  0.4869 -0.0558  0.0343 -0.1838 -0.0348  0.6672
+imports                0.3305  0.2689  0.6849 -0.0042 -0.3145 -0.0928 -0.4916
+balance                0.3388  0.3443 -0.6683  0.0446  0.0572  0.0401 -0.5596
+gdp_growth            -0.4791  0.2925 -0.1163  0.0326 -0.6529  0.4940 -0.0000
+inflation             -0.0480 -0.0458  0.0048  0.9856 -0.0487 -0.1477 -0.0000
+unemployment           0.4536 -0.4134  0.0766  0.1215  0.0601  0.7740  0.0000
+industrial_production -0.2448  0.5599  0.2483  0.0980  0.6571  0.3515 -0.0000
+2026-06-23 15:47:55 | INFO     | TaiwanAnalyzer | 
+[7/11] TESTES DE ESTACIONARIEDADE
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer |   exports:
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer |     ADF: stat=-0.0775, p=0.951635 (Nao Estacionaria)
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer |     KPSS: stat=1.6806, p=0.010000
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer |   imports:
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer |     ADF: stat=-1.4506, p=0.557798 (Nao Estacionaria)
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer |     KPSS: stat=1.6237, p=0.010000
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer |   balance:
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer |     ADF: stat=-7.0295, p=0.000000 (Estacionaria)
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer |     KPSS: stat=0.6653, p=0.016702
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer | 
+[8/11] ANALISE DE CLUSTERING
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer |   Numero otimo de clusters: 3
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer |   Silhouette Score: 0.6108
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer | 
+  Resumo dos Clusters:
+          exports                   imports                  balance                
+             mean       std count      mean      std count      mean       std count
+cluster                                                                             
+0.0      27697.74   4117.73    75  22517.12  2887.78    75   5180.62   2375.95    75
+1.0      43072.31   4680.32    58  34524.56  3973.32    58   8547.76   2451.86    58
+2.0      60580.26  12823.85     5  12451.28  9297.58     5  48128.98  11849.20     5
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer | 
+[9/11] ANALISE DE VOLATILIDADE
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer |   exports:
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer |     Volatilidade media: 5588.35
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer |     Retorno medio: 3.6705%
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer |     Retorno std: 29.9575%
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer |   imports:
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer |     Volatilidade media: 3781.28
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer |     Retorno medio: 8.3832%
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer |     Retorno std: 63.9940%
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer |   balance:
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer |     Volatilidade media: 5615.18
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer |     Retorno medio: 17.3499%
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer |     Retorno std: 140.2012%
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer | 
+[10/11] ANALISE DE COINTEGRACAO
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer |   Exports vs Imports:
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer |     Score: -4.6579
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer |     p-value: 0.000666
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer |     Cointegrados: Sim
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer | 
+[11/11] FORECASTING SIMPLES
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer |   exports:
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer |     Ultimo valor: 51324.27
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer |     Previsao MA: 49349.68
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer |     Previsao Tendencia: 47989.83
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer |     Previsao Combinada: 51113.13
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer |   imports:
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer |     Ultimo valor: 38677.82
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer |     Previsao MA: 36447.89
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer |     Previsao Tendencia: 36325.35
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer |     Previsao Combinada: 37504.56
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer |   balance:
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer |     Ultimo valor: 12646.45
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer |     Previsao MA: 12901.79
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer |     Previsao Tendencia: 11664.48
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer |     Previsao Combinada: 13608.57
+2026-06-23 15:47:56 | INFO     | TaiwanAnalyzer | 
+Analise estatistica concluida!
+2026-06-23 15:47:56 | INFO     | TaiwanMain | Relatorio salvo: /media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/logs/analysis_report_20260623_154756.txt
+2026-06-23 15:47:56 | INFO     | TaiwanMain | 
+[ETAPA 4/5] BANCO DE DADOS
+2026-06-23 15:47:56 | INFO     | TaiwanDatabase | Conectado ao banco: /media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/data/taiwan_economy.db
+2026-06-23 15:47:56 | INFO     | TaiwanDatabase | 
+======================================================================
+2026-06-23 15:47:56 | INFO     | TaiwanDatabase | CRIANDO SCHEMA DO BANCO DE DADOS
+2026-06-23 15:47:56 | INFO     | TaiwanDatabase | ======================================================================
+2026-06-23 15:47:56 | INFO     | TaiwanDatabase | Schema criado com sucesso!
+2026-06-23 15:47:56 | INFO     | TaiwanDatabase | 138 registros inseridos em economic_data
+2026-06-23 15:47:56 | INFO     | TaiwanDatabase | Estatisticas mensais inseridas
+2026-06-23 15:47:56 | INFO     | TaiwanDatabase | 138 registros MOEA inseridos
+2026-06-23 15:47:56 | INFO     | TaiwanDatabase | 14 parceiros inseridos
+2026-06-23 15:47:56 | INFO     | TaiwanDatabase | Resultados de analise inseridos
+2026-06-23 15:47:56 | INFO     | TaiwanMain | Resumo DB: {'economic_data': 138, 'monthly_stats': 12, 'trade_partners': 14, 'analysis_results': 11, 'execution_log': 8, 'moea_data': 138, 'alerts': 0}
+2026-06-23 15:47:58 | INFO     | TaiwanDatabase | Conexao com banco fechada
+2026-06-23 15:47:58 | INFO     | TaiwanMain | 
+[ETAPA 5/5] DASHBOARD PNG
+2026-06-23 15:47:58 | INFO     | TaiwanDashboardPNG | 
+======================================================================
+2026-06-23 15:47:58 | INFO     | TaiwanDashboardPNG | CONSTRUINDO DASHBOARD PNG
+2026-06-23 15:47:58 | INFO     | TaiwanDashboardPNG | ======================================================================
+2026-06-23 15:48:09 | INFO     | TaiwanDashboardPNG | Dashboard salvo: /media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/assets/taiwan_dashboard.png
+2026-06-23 15:48:09 | INFO     | TaiwanMain | 
+======================================================================
+2026-06-23 15:48:09 | INFO     | TaiwanMain | PIPELINE CONCLUIDO EM 69.58s
+2026-06-23 15:48:09 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 15:48:09 | INFO     | TaiwanMain | DB: /media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/data/taiwan_economy.db
+2026-06-23 15:48:09 | INFO     | TaiwanMain | Dashboard PNG: /media/paulo/KINGSTON/taiwan_economic_analyzer_v2.1_FINAL/taiwan_economic_analyzer/assets/taiwan_dashboard.png
+2026-06-23 15:48:09 | INFO     | TaiwanMain | Dashboard Streamlit: streamlit run app.py
+2026-06-23 15:48:09 | INFO     | TaiwanMain | Ciclo concluido com sucesso. Total: 1
+2026-06-23 15:49:57 | INFO     | TaiwanMain | SIGTERM recebido. Encerrando graciosamente...
+2026-06-23 15:49:57 | INFO     | TaiwanMain | Solicitando parada do daemon...
+2026-06-23 15:49:57 | INFO     | TaiwanMain | Daemon encerrado
+2026-06-23 16:02:42 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 16:02:42 | INFO     | TaiwanMain | INICIANDO DAEMON DE PRODUCAO
+2026-06-23 16:02:42 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 16:02:42 | INFO     | TaiwanMain | Intervalo: 60 minutos
+2026-06-23 16:02:42 | INFO     | TaiwanMain | Banco: /media/paulo/KINGSTON/taiwan_economic_analyzer_FINAL/taiwan_economic_analyzer/data/taiwan_economy.db
+2026-06-23 16:02:42 | INFO     | TaiwanMain | Dashboard: /media/paulo/KINGSTON/taiwan_economic_analyzer_FINAL/taiwan_economic_analyzer/assets/taiwan_dashboard.png
+2026-06-23 16:02:42 | INFO     | TaiwanMain | Comandos: Ctrl+C para parar | SIGUSR1 para forcar execucao
+2026-06-23 16:02:42 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 16:02:42 | INFO     | TaiwanMain | 
+======================================================================
+2026-06-23 16:02:42 | INFO     | TaiwanMain | CICLO #1 - 2026-06-23 16:02:42
+2026-06-23 16:02:42 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 16:02:42 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 16:02:42 | INFO     | TaiwanMain | EXECUCAO #1 - 2026-06-23 16:02:42
+2026-06-23 16:02:42 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 16:02:42 | INFO     | TaiwanMain | 
+[ETAPA 1/5] COLETA DE DADOS
+2026-06-23 16:02:42 | INFO     | TaiwanScraper | ======================================================================
+2026-06-23 16:02:42 | INFO     | TaiwanScraper | COLETA DE DADOS
+2026-06-23 16:02:42 | INFO     | TaiwanScraper | ======================================================================
+2026-06-23 16:02:42 | INFO     | TaiwanScraper | [FONTE 1] Trading Economics...
+2026-06-23 16:02:43 | INFO     | TaiwanScraper |   exports: 2 tabelas encontradas
+2026-06-23 16:02:43 | WARNING  | TaiwanScraper |   Nenhum dado encontrado para exports
+2026-06-23 16:02:44 | INFO     | TaiwanScraper |   imports: 2 tabelas encontradas
+2026-06-23 16:02:44 | WARNING  | TaiwanScraper |   Nenhum dado encontrado para imports
+2026-06-23 16:02:45 | INFO     | TaiwanScraper |   balance: 3 tabelas encontradas
+2026-06-23 16:02:45 | INFO     | TaiwanScraper |   OK balance: 3 registros
+2026-06-23 16:02:45 | INFO     | TaiwanScraper |   gdp_growth: 2 tabelas encontradas
+2026-06-23 16:02:45 | WARNING  | TaiwanScraper |   Nenhum dado encontrado para gdp_growth
+2026-06-23 16:02:46 | INFO     | TaiwanScraper |   inflation: 3 tabelas encontradas
+2026-06-23 16:02:46 | INFO     | TaiwanScraper |   OK inflation: 3 registros
+2026-06-23 16:02:46 | INFO     | TaiwanScraper |   unemployment: 3 tabelas encontradas
+2026-06-23 16:02:46 | INFO     | TaiwanScraper |   OK unemployment: 3 registros
+2026-06-23 16:02:47 | INFO     | TaiwanScraper |   interest_rate: 3 tabelas encontradas
+2026-06-23 16:02:47 | INFO     | TaiwanScraper |   OK interest_rate: 5 registros
+2026-06-23 16:02:47 | INFO     | TaiwanScraper | OK Trading Economics: 7 registros consolidados
+2026-06-23 16:02:47 | WARNING  | TaiwanScraper | Fonte 'Trading Economics' rejeitada: poucos registros (7 < 12)
+2026-06-23 16:02:47 | INFO     | TaiwanScraper | [FONTE 2] World Bank API...
+2026-06-23 16:02:47 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 16:02:50 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 16:02:54 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 16:02:54 | ERROR    | TaiwanScraper |   ERRO exports: 'NoneType' object is not iterable
+2026-06-23 16:02:54 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 16:02:56 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 16:03:00 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 16:03:00 | ERROR    | TaiwanScraper |   ERRO imports: 'NoneType' object is not iterable
+2026-06-23 16:03:00 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 16:03:02 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 16:03:06 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 16:03:06 | ERROR    | TaiwanScraper |   ERRO balance: 'NoneType' object is not iterable
+2026-06-23 16:03:06 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 16:03:08 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 16:03:12 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 16:03:12 | ERROR    | TaiwanScraper |   ERRO gdp_growth: 'NoneType' object is not iterable
+2026-06-23 16:03:12 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 16:03:14 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 16:03:18 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 16:03:18 | ERROR    | TaiwanScraper |   ERRO inflation: 'NoneType' object is not iterable
+2026-06-23 16:03:19 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 16:03:21 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 16:03:25 | WARNING  | TaiwanScraper | Resposta curta: 85 bytes
+2026-06-23 16:03:25 | ERROR    | TaiwanScraper |   ERRO unemployment: 'NoneType' object is not iterable
+2026-06-23 16:03:25 | INFO     | TaiwanScraper | [FONTE 3] IMF Data...
+2026-06-23 16:03:25 | ERROR    | TaiwanScraper | Erro https://data.imf.org/api/data/DOT/TXG_FOB_USD (tentativa 1): 403 Client Error: Forbidden for url: https://data.imf.org/api/data/DOT/TXG_FOB_USD?freq=M&period=2015-01%3A2026-12
+2026-06-23 16:03:27 | ERROR    | TaiwanScraper | Erro https://data.imf.org/api/data/DOT/TXG_FOB_USD (tentativa 2): 403 Client Error: Forbidden for url: https://data.imf.org/api/data/DOT/TXG_FOB_USD?freq=M&period=2015-01%3A2026-12
+2026-06-23 16:03:31 | ERROR    | TaiwanScraper | Erro https://data.imf.org/api/data/DOT/TXG_FOB_USD (tentativa 3): 403 Client Error: Forbidden for url: https://data.imf.org/api/data/DOT/TXG_FOB_USD?freq=M&period=2015-01%3A2026-12
+2026-06-23 16:03:31 | ERROR    | TaiwanScraper | Erro https://data.imf.org/api/data/DOT/TMG_CIF_USD (tentativa 1): 403 Client Error: Forbidden for url: https://data.imf.org/api/data/DOT/TMG_CIF_USD?freq=M&period=2015-01%3A2026-12
+2026-06-23 16:03:33 | ERROR    | TaiwanScraper | Erro https://data.imf.org/api/data/DOT/TMG_CIF_USD (tentativa 2): 403 Client Error: Forbidden for url: https://data.imf.org/api/data/DOT/TMG_CIF_USD?freq=M&period=2015-01%3A2026-12
+2026-06-23 16:03:37 | ERROR    | TaiwanScraper | Erro https://data.imf.org/api/data/DOT/TMG_CIF_USD (tentativa 3): 403 Client Error: Forbidden for url: https://data.imf.org/api/data/DOT/TMG_CIF_USD?freq=M&period=2015-01%3A2026-12
+2026-06-23 16:03:37 | INFO     | TaiwanScraper | [FONTE 4] MOEA Taiwan...
+2026-06-23 16:03:54 | INFO     | TaiwanScraper |   trade_summary: 0 registros processados
+2026-06-23 16:03:55 | INFO     | TaiwanScraper |   export_by_product: 0 registros processados
+2026-06-23 16:03:55 | INFO     | TaiwanScraper |   import_by_product: 0 registros processados
+2026-06-23 16:03:55 | WARNING  | TaiwanScraper |   Nenhum dado MOEA encontrado
+2026-06-23 16:03:55 | WARNING  | TaiwanScraper | Todas as fontes reais falharam. Usando simulado.
+2026-06-23 16:03:55 | INFO     | TaiwanScraper | [FONTE 5] Dados simulados (Fallback)...
+2026-06-23 16:03:55 | INFO     | TaiwanScraper |   OK Simulado: 138 registros
+2026-06-23 16:03:55 | INFO     | TaiwanMain | Dados coletados: 138 registros (fonte: simulated)
+2026-06-23 16:03:55 | INFO     | TaiwanMain | 
+[ETAPA 2/5] PROCESSAMENTO
+2026-06-23 16:03:55 | INFO     | TaiwanProcessor | 
+======================================================================
+2026-06-23 16:03:55 | INFO     | TaiwanProcessor | PROCESSAMENTO DE DADOS
+2026-06-23 16:03:55 | INFO     | TaiwanProcessor | ======================================================================
+2026-06-23 16:03:55 | INFO     | TaiwanProcessor | [1/6] Padronizando colunas...
+2026-06-23 16:03:55 | INFO     | TaiwanProcessor | [2/6] Removendo duplicados...
+2026-06-23 16:03:55 | INFO     | TaiwanProcessor |   Nenhum duplicado encontrado
+2026-06-23 16:03:55 | INFO     | TaiwanProcessor | [3/6] Tratando missing values...
+2026-06-23 16:03:55 | INFO     | TaiwanProcessor |   Missing antes: 6 valores
+2026-06-23 16:03:55 | INFO     | TaiwanProcessor |     exports: 4 valores tratados
+2026-06-23 16:03:55 | INFO     | TaiwanProcessor |     imports: 2 valores tratados
+2026-06-23 16:03:55 | INFO     | TaiwanProcessor |   Missing depois: 0 valores
+2026-06-23 16:03:55 | INFO     | TaiwanProcessor | [4/6] Detectando e tratando outliers...
+2026-06-23 16:03:55 | INFO     | TaiwanProcessor |     exports: 3 outliers -> winsorizados
+2026-06-23 16:03:55 | INFO     | TaiwanProcessor |     imports: 2 outliers -> winsorizados
+2026-06-23 16:03:55 | INFO     | TaiwanProcessor |   Isolation Forest: 7 outliers multivariados detectados
+2026-06-23 16:03:55 | INFO     | TaiwanProcessor | [5/6] Engenharia de features...
+2026-06-23 16:03:56 | INFO     | TaiwanProcessor |   Features criadas: 43 novas features
+2026-06-23 16:03:56 | INFO     | TaiwanProcessor | [6/6] Validando dados...
+2026-06-23 16:03:56 | INFO     | TaiwanProcessor |   Validacao OK - Missing remanescentes: 128
+2026-06-23 16:03:56 | INFO     | TaiwanProcessor | OK Processamento concluido!
+2026-06-23 16:03:56 | INFO     | TaiwanProcessor |   Registros: 138
+2026-06-23 16:03:56 | INFO     | TaiwanProcessor |   Colunas: 53
+2026-06-23 16:03:56 | INFO     | TaiwanMain | Dados processados: 138 registros, 53 colunas
+2026-06-23 16:03:56 | INFO     | TaiwanMain | 
+[ETAPA 3/5] ANALISE ESTATISTICA
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer | 
+======================================================================
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer | ANALISE ESTATISTICA MULTIVARIADA
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer | ======================================================================
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer | 
+[1/11] ESTATISTICAS DESCRITIVAS
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer | 
+             exports     imports     balance  gdp_growth  inflation  unemployment  industrial_production
+count       138.0000    138.0000    138.0000    138.0000   138.0000      138.0000               138.0000
+mean      35350.9100  27199.0200   8151.8900      2.2700     1.4900        3.6800                98.6900
+std       10178.8800   7500.2400   8536.7700      1.4600     0.6600        0.6100                 5.5300
+min       13047.9400   5569.2100  -5883.7400     -0.8700     0.0900        2.7600                80.9500
+25%       27548.1100  21844.8400   5000.8600      1.1500     0.9600        3.1900                95.4500
+50%       32873.2900  25601.2600   6504.7800      2.2000     1.4700        3.5600                99.4400
+75%       42239.8100  32811.9600   8566.2800      3.4900     1.9900        4.0000               102.5600
+max       73374.8500  41775.9700  67805.6400      5.5100     2.8800        5.3300               109.3600
+skewness      0.8416     -0.0451      4.5888      0.0008     0.0389        0.7484                -0.6096
+kurtosis      1.4639     -0.0322     24.7492     -0.7908    -0.9738       -0.0918                 0.4830
+range     60326.9100  36206.7600  73689.3800      6.3800     2.7900        2.5700                28.4100
+cv           28.7900     27.5800    104.7200     64.4100    44.5500       16.6100                 5.6000
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer | 
+[2/11] ANALISE DE CORRELACAO
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer | 
+Matriz de Correlacao:
+                       exports  imports  balance  gdp_growth  inflation  unemployment  industrial_production
+exports                 1.0000   0.5697   0.6918     -0.2641    -0.0488        0.1943                 0.0502
+imports                 0.5697   1.0000  -0.1993     -0.2295    -0.0391        0.1801                 0.1374
+balance                 0.6918  -0.1993   1.0000     -0.1133    -0.0237        0.0734                -0.0608
+gdp_growth             -0.2641  -0.2295  -0.1133      1.0000     0.0475       -0.5246                 0.3096
+inflation              -0.0488  -0.0391  -0.0237      0.0475     1.0000        0.0513                 0.0445
+unemployment            0.1943   0.1801   0.0734     -0.5246     0.0513        1.0000                -0.4230
+industrial_production   0.0502   0.1374  -0.0608      0.3096     0.0445       -0.4230                 1.0000
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer | 
+  Testes de Pearson:
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     exports vs imports: r=0.5697, p=0.000000 ***
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     exports vs balance: r=0.6918, p=0.000000 ***
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     exports vs gdp_growth: r=-0.2641, p=0.001749 **
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     exports vs inflation: r=-0.0488, p=0.570159 ns
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     exports vs unemployment: r=0.1943, p=0.022415 *
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     exports vs industrial_production: r=0.0502, p=0.558576 ns
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     imports vs balance: r=-0.1993, p=0.019109 *
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     imports vs gdp_growth: r=-0.2295, p=0.006780 **
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     imports vs inflation: r=-0.0391, p=0.648611 ns
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     imports vs unemployment: r=0.1801, p=0.034547 *
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     imports vs industrial_production: r=0.1374, p=0.108123 ns
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     balance vs gdp_growth: r=-0.1133, p=0.185930 ns
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     balance vs inflation: r=-0.0237, p=0.782189 ns
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     balance vs unemployment: r=0.0734, p=0.392080 ns
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     balance vs industrial_production: r=-0.0608, p=0.478623 ns
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     gdp_growth vs inflation: r=0.0475, p=0.579861 ns
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     gdp_growth vs unemployment: r=-0.5246, p=0.000000 ***
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     gdp_growth vs industrial_production: r=0.3096, p=0.000220 ***
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     inflation vs unemployment: r=0.0513, p=0.550086 ns
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     inflation vs industrial_production: r=0.0445, p=0.604342 ns
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     unemployment vs industrial_production: r=-0.4230, p=0.000000 ***
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer | 
+[3/11] TESTES DE NORMALIDADE
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |   exports:
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     Shapiro-Wilk: p=0.000021 (Nao Normal)
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     Jarque-Bera: p=0.000002
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     D'Agostino: p=0.000039
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |   imports:
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     Shapiro-Wilk: p=0.000689 (Nao Normal)
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     Jarque-Bera: p=0.962044
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     D'Agostino: p=0.971620
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |   balance:
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     Shapiro-Wilk: p=0.000000 (Nao Normal)
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     Jarque-Bera: p=0.000000
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     D'Agostino: p=0.000000
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer | 
+[4/11] ANALISE DE TENDENCIA
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |   exports:
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     Tendencia: 181.85 unidades/mes
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     R2: 0.5102
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     Direcao: Crescente
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |   imports:
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     Tendencia: 131.31 unidades/mes
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     R2: 0.4900
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     Direcao: Crescente
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |   balance:
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     Tendencia: 50.54 unidades/mes
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     R2: 0.0560
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     Direcao: Crescente
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer | 
+[5/11] ANALISE DE SAZONALIDADE
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer | 
+Estatisticas Mensais:
+        exports                                 imports                                balance                             
+           mean       std       min       max      mean      std       min       max      mean       std      min       max
+month                                                                                                                      
+1      31844.10  10019.25  13047.94  49029.49  26797.13  7106.13  18767.91  40990.22   5046.97   3775.33 -5719.97   8579.88
+2      36917.82   9157.41  25089.98  53689.32  29239.81  7137.65  19689.55  40190.45   7678.01   2618.11  5334.63  13498.87
+3      37719.04   9089.98  27400.35  53692.49  27159.30  8930.70   6435.68  41117.63  10559.74  11729.16  4396.14  47256.81
+4      37803.75   8991.00  27799.22  55535.60  30515.58  6960.11  22486.09  41775.97   7288.17   2755.63  3471.98  13759.63
+5      39434.33  13914.13  24753.26  73374.85  28160.13  6306.23  20094.06  37437.49  11274.20  12018.75  3559.30  47931.47
+6      35970.63   9310.34  24056.24  51324.27  29098.18  7058.88  20142.93  41247.22   6872.45   3442.67  2558.57  12646.45
+7      34428.24   7763.78  26055.98  46650.07  27691.48  6735.97  20068.18  39824.50   6736.76   2384.50  3478.55  11565.01
+8      36225.60  15539.45  13047.94  73374.85  25191.62  9227.19   5569.21  39133.80  11033.97  19310.92 -5883.74  67805.64
+9      36621.32  10634.99  24123.00  58581.05  26622.59  7575.60  17399.10  41775.97   9998.74  10053.79  4059.25  39342.15
+10     31853.70   8476.68  22709.89  45461.72  25540.59  6933.93  17959.37  36672.73   6313.12   2163.29  4041.65   9905.22
+11     31859.50   8656.69  21483.36  44199.46  25747.53  7659.53  17488.69  39243.22   6111.97   1685.97  3371.84   8549.62
+12     32843.45   8806.65  22606.03  46473.30  23917.39  8875.50   5569.21  38491.98   8926.06   9948.57  3977.35  38308.85
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |   exports CV Sazonal: 7.51%
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |   imports CV Sazonal: 7.03%
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |   balance CV Sazonal: 26.06%
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |   exports Kruskal-Wallis: p=0.644456 (Nao Sazonal)
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |   imports Kruskal-Wallis: p=0.604838 (Nao Sazonal)
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |   balance Kruskal-Wallis: p=0.725022 (Nao Sazonal)
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer | 
+[6/11] ANALISE DE COMPONENTES PRINCIPAIS (PCA)
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |   Variancia explicada:
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     PC1: 31.27%
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     PC2: 22.04%
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     PC3: 17.95%
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     PC4: 14.42%
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     PC5: 8.08%
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     PC6: 6.24%
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     PC7: 0.00%
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |   Variancia acumulada: [ 31.27047718  53.30828323  71.26054757  85.68511819  93.76085322
+ 100.         100.        ]
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer | 
+  Loadings:
+                          PC1     PC2     PC3     PC4     PC5     PC6     PC7
+exports                0.5277  0.4869 -0.0558  0.0343 -0.1838 -0.0348  0.6672
+imports                0.3305  0.2689  0.6849 -0.0042 -0.3145 -0.0928 -0.4916
+balance                0.3388  0.3443 -0.6683  0.0446  0.0572  0.0401 -0.5596
+gdp_growth            -0.4791  0.2925 -0.1163  0.0326 -0.6529  0.4940 -0.0000
+inflation             -0.0480 -0.0458  0.0048  0.9856 -0.0487 -0.1477 -0.0000
+unemployment           0.4536 -0.4134  0.0766  0.1215  0.0601  0.7740  0.0000
+industrial_production -0.2448  0.5599  0.2483  0.0980  0.6571  0.3515 -0.0000
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer | 
+[7/11] TESTES DE ESTACIONARIEDADE
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |   exports:
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     ADF: stat=-0.0775, p=0.951635 (Nao Estacionaria)
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     KPSS: stat=1.6806, p=0.010000
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |   imports:
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     ADF: stat=-1.4506, p=0.557798 (Nao Estacionaria)
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     KPSS: stat=1.6237, p=0.010000
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |   balance:
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     ADF: stat=-7.0295, p=0.000000 (Estacionaria)
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     KPSS: stat=0.6653, p=0.016702
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer | 
+[8/11] ANALISE DE CLUSTERING
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |   Numero otimo de clusters: 3
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |   Silhouette Score: 0.6108
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer | 
+  Resumo dos Clusters:
+          exports                   imports                  balance                
+             mean       std count      mean      std count      mean       std count
+cluster                                                                             
+0.0      27697.74   4117.73    75  22517.12  2887.78    75   5180.62   2375.95    75
+1.0      43072.31   4680.32    58  34524.56  3973.32    58   8547.76   2451.86    58
+2.0      60580.26  12823.85     5  12451.28  9297.58     5  48128.98  11849.20     5
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer | 
+[9/11] ANALISE DE VOLATILIDADE
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |   exports:
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     Volatilidade media: 5588.35
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     Retorno medio: 3.6705%
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     Retorno std: 29.9575%
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |   imports:
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     Volatilidade media: 3781.28
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     Retorno medio: 8.3832%
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     Retorno std: 63.9940%
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |   balance:
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     Volatilidade media: 5615.18
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     Retorno medio: 17.3499%
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     Retorno std: 140.2012%
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer | 
+[10/11] ANALISE DE COINTEGRACAO
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |   Exports vs Imports:
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     Score: -4.6579
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     p-value: 0.000666
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     Cointegrados: Sim
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer | 
+[11/11] FORECASTING SIMPLES
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |   exports:
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     Ultimo valor: 51324.27
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     Previsao MA: 49349.68
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     Previsao Tendencia: 47989.83
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     Previsao Combinada: 51113.13
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |   imports:
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     Ultimo valor: 38677.82
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     Previsao MA: 36447.89
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     Previsao Tendencia: 36325.35
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     Previsao Combinada: 37504.56
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |   balance:
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     Ultimo valor: 12646.45
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     Previsao MA: 12901.79
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     Previsao Tendencia: 11664.48
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer |     Previsao Combinada: 13608.57
+2026-06-23 16:03:56 | INFO     | TaiwanAnalyzer | 
+Analise estatistica concluida!
+2026-06-23 16:03:57 | INFO     | TaiwanMain | Relatorio salvo: /media/paulo/KINGSTON/taiwan_economic_analyzer_FINAL/taiwan_economic_analyzer/logs/analysis_report_20260623_160356.txt
+2026-06-23 16:03:57 | INFO     | TaiwanMain | 
+[ETAPA 4/5] BANCO DE DADOS
+2026-06-23 16:03:57 | INFO     | TaiwanDatabase | Conectado ao banco: /media/paulo/KINGSTON/taiwan_economic_analyzer_FINAL/taiwan_economic_analyzer/data/taiwan_economy.db
+2026-06-23 16:03:57 | INFO     | TaiwanDatabase | 
+======================================================================
+2026-06-23 16:03:57 | INFO     | TaiwanDatabase | CRIANDO SCHEMA DO BANCO DE DADOS
+2026-06-23 16:03:57 | INFO     | TaiwanDatabase | ======================================================================
+2026-06-23 16:03:57 | INFO     | TaiwanDatabase | Schema criado com sucesso!
+2026-06-23 16:03:57 | INFO     | TaiwanDatabase | 138 registros inseridos em economic_data
+2026-06-23 16:03:58 | INFO     | TaiwanDatabase | Estatisticas mensais inseridas
+2026-06-23 16:03:58 | INFO     | TaiwanDatabase | 138 registros MOEA inseridos
+2026-06-23 16:03:59 | INFO     | TaiwanDatabase | 14 parceiros inseridos
+2026-06-23 16:03:59 | INFO     | TaiwanDatabase | Resultados de analise inseridos
+2026-06-23 16:03:59 | INFO     | TaiwanMain | Resumo DB: {'economic_data': 138, 'monthly_stats': 12, 'trade_partners': 14, 'analysis_results': 11, 'execution_log': 9, 'moea_data': 138, 'alerts': 0}
+2026-06-23 16:04:01 | INFO     | TaiwanDatabase | Conexao com banco fechada
+2026-06-23 16:04:01 | INFO     | TaiwanMain | 
+[ETAPA 5/5] DASHBOARD PNG
+2026-06-23 16:04:01 | INFO     | TaiwanDashboardPNG | 
+======================================================================
+2026-06-23 16:04:01 | INFO     | TaiwanDashboardPNG | CONSTRUINDO DASHBOARD PNG
+2026-06-23 16:04:01 | INFO     | TaiwanDashboardPNG | ======================================================================
+2026-06-23 16:04:20 | INFO     | TaiwanDashboardPNG | Dashboard salvo: /media/paulo/KINGSTON/taiwan_economic_analyzer_FINAL/taiwan_economic_analyzer/assets/taiwan_dashboard.png
+2026-06-23 16:04:20 | INFO     | TaiwanMain | 
+======================================================================
+2026-06-23 16:04:20 | INFO     | TaiwanMain | PIPELINE CONCLUIDO EM 97.52s
+2026-06-23 16:04:20 | INFO     | TaiwanMain | ======================================================================
+2026-06-23 16:04:20 | INFO     | TaiwanMain | DB: /media/paulo/KINGSTON/taiwan_economic_analyzer_FINAL/taiwan_economic_analyzer/data/taiwan_economy.db
+2026-06-23 16:04:20 | INFO     | TaiwanMain | Dashboard PNG: /media/paulo/KINGSTON/taiwan_economic_analyzer_FINAL/taiwan_economic_analyzer/assets/taiwan_dashboard.png
+2026-06-23 16:04:20 | INFO     | TaiwanMain | Dashboard Streamlit: streamlit run app.py
+2026-06-23 16:04:20 | INFO     | TaiwanMain | Ciclo concluido com sucesso. Total: 1
+2026-06-23 16:41:13 | INFO     | TaiwanMain | SIGTERM recebido. Encerrando graciosamente...
+2026-06-23 16:41:13 | INFO     | TaiwanMain | Solicitando parada do daemon...
+2026-06-23 16:41:13 | INFO     | TaiwanMain | Daemon encerrado
