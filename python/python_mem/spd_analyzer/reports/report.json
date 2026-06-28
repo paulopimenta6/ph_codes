@@ -1,0 +1,139 @@
+{
+  "spd_analyzer_version": "1.0",
+  "modules": [
+    {
+      "slot": "Slot A",
+      "memory_type": "DDR3 SDRAM",
+      "spd_size": 146,
+      "spd_revision": "1.2",
+      "memory_type_code": "0xb",
+      "module_type": "SO-DIMM",
+      "module_type_code": "0x3",
+      "capacity_mb": 1536,
+      "capacity_gb": 1.5,
+      "bus_width": 24,
+      "ranks": 1,
+      "banks": 8,
+      "voltage": "1.35V",
+      "supported_voltages": [
+        "1.50V"
+      ],
+      "manufacturer": "SK hynix",
+      "manufacturer_id": [
+        "0x1",
+        "0x94"
+      ],
+      "part_number": "SH5641G8FJ8NWRNSQG",
+      "serial_number": "039E85",
+      "revision_code": [
+        "0x0",
+        "0x0"
+      ],
+      "organization": {
+        "ranks": 1,
+        "bus_width": 24,
+        "chip_width": 8,
+        "chip_count": 3,
+        "rows": 12,
+        "columns": 10,
+        "density": "4096 Mb"
+      },
+      "crc": {
+        "valid": false,
+        "crc_extra_valid": false
+      },
+      "timings": {
+        "taa_ps": 4130812.8,
+        "trcd_ps": 4161000.2,
+        "trp_ps": 120468.8,
+        "tras_ps": 775875.0,
+        "trc_ps": 0.0,
+        "trfc_ps": 0.0,
+        "twr_ps": 0.0,
+        "twtr_ps": 272000.0,
+        "tfaw_ps": 0.0
+      },
+      "cas_latencies": [
+        7,
+        8,
+        9,
+        10,
+        12,
+        15,
+        17,
+        18
+      ],
+      "jedec_profiles": [],
+      "manufacturing_date": {
+        "year": 2000
+      }
+    },
+    {
+      "slot": "Slot B",
+      "memory_type": "DDR3 SDRAM",
+      "spd_size": 146,
+      "spd_revision": "1.2",
+      "memory_type_code": "0xb",
+      "module_type": "SO-DIMM",
+      "module_type_code": "0x3",
+      "capacity_mb": 1536,
+      "capacity_gb": 1.5,
+      "bus_width": 24,
+      "ranks": 1,
+      "banks": 8,
+      "voltage": "1.35V",
+      "supported_voltages": [
+        "1.50V"
+      ],
+      "manufacturer": "SK hynix",
+      "manufacturer_id": [
+        "0x1",
+        "0x94"
+      ],
+      "part_number": "SH5641G8FJ8NWRNSQG",
+      "serial_number": "039E83",
+      "revision_code": [
+        "0x0",
+        "0x0"
+      ],
+      "organization": {
+        "ranks": 1,
+        "bus_width": 24,
+        "chip_width": 8,
+        "chip_count": 3,
+        "rows": 12,
+        "columns": 10,
+        "density": "4096 Mb"
+      },
+      "crc": {
+        "valid": false,
+        "crc_extra_valid": false
+      },
+      "timings": {
+        "taa_ps": 4130812.8,
+        "trcd_ps": 4161000.2,
+        "trp_ps": 120468.8,
+        "tras_ps": 775875.0,
+        "trc_ps": 0.0,
+        "trfc_ps": 0.0,
+        "twr_ps": 0.0,
+        "twtr_ps": 272000.0,
+        "tfaw_ps": 0.0
+      },
+      "cas_latencies": [
+        7,
+        8,
+        9,
+        10,
+        12,
+        15,
+        17,
+        18
+      ],
+      "jedec_profiles": [],
+      "manufacturing_date": {
+        "year": 2000
+      }
+    }
+  ]
+}
