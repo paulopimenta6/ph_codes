@@ -1,4 +1,4 @@
-# Taiwan Economic Trade Analyzer v2.1
+# Taiwan Economic Trade Analyzer - Dashboard
 
 ## CORRECOES DA v2.1
 - **Bug de ordenacao de datas**: Adicionado `.sort_values('date')` em todas as consolidacoes

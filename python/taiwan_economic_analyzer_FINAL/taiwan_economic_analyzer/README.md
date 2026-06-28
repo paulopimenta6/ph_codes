@@ -1,4 +1,4 @@
-# Taiwan Economic Analyzer v2.1
+# Taiwan Economic Analyzer Dashboard
 
 Sistema completo de coleta, processamento, analise e visualizacao de indicadores economicos de Taiwan.
 
