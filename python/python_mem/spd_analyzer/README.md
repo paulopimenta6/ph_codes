@@ -1,114 +1,115 @@
 # SPD Analyzer
 
-Ferramenta profissional para análise de SPD (Serial Presence Detect) de módulos de memória.
+Ferramenta de linha de comando para ler, decodificar, comparar e exportar dados SPD (Serial Presence Detect) de módulos de memória DDR3 e DDR4 via SMBus.
 
-Baseada na especificação oficial **JEDEC Standard No. 21-C**, sem dependência de `decode-dimms`.
+Baseada na especificação **JEDEC Standard No. 21-C**.
 
-## Recursos
+## Requisitos
 
-- **Detecção automática** de módulos via SMBus (endereços 0x50–0x57)
-- **Leitura** do SPD de módulos DDR3, DDR4, DDR5 (em desenvolvimento)
-- **Decodificação completa** dos 256 bytes do SPD:
-  - Tipo, capacidade, organização, largura de barramento
-  - Fabricante do módulo e fabricante dos chips DRAM
-  - Perfis JEDEC (velocidades e timings)
-  - Tensão suportada e tensão nominal
-  - Número de série, part number, data de fabricação
-  - **Validação de CRC** por região
-- **Comparação** entre módulos (capacidade, timings, tensão, perfil JEDEC, rank, CRC)
-- **Exportação** em JSON, CSV e HTML
-- Interface colorida com `rich`
+- Python >= 3.10
+- Para leitura via hardware: `i2c-tools` e módulo `i2c-dev` carregado
+- Apenas para decodificação de arquivos já extraídos: nenhuma dependência de sistema
 
 ## Instalação
 
-### Via pip
-
 ```bash
+# via pip
 pip install spd-analyzer
-```
 
-### Via pipx (recomendado)
-
-```bash
+# via pipx (recomendado, isolado)
 pipx install spd-analyzer
-```
 
-### Desenvolvimento
-
-```bash
+# modo desenvolvimento (editable)
 git clone https://github.com/paulopimenta6/ph_codes.git
-cd /python/python_mem/spd_analyzer
+cd ph_codes/python/python_mem/spd_analyzer
 ./scripts/install.sh dev
-```
 
-### Dependências do sistema
-
-```bash
+# dependências de sistema (para leitura de hardware Linux)
 ./scripts/install.sh deps
 ```
 
-## Uso
+Dependências Python opcionais:
 
-### Detectar módulos
+| Grupo   | Instalação                     | Necessário para          |
+|---------|--------------------------------|--------------------------|
+| smbus   | `pip install spd-analyzer[smbus]` | scan e dump via SMBus |
+| dev     | `pip install spd-analyzer[dev]`   | rodar testes           |
 
-```bash
-spd-analyzer scan
-```
+## Uso rápido (sem hardware)
 
-### Extrair SPD
-
-```bash
-spd-analyzer dump
-```
-
-Os arquivos serão salvos em `data/dimm0.bin`, `data/dimm1.bin`, etc.
-
-### Decodificar
+O repositório já contém dados de exemplo em `data/`. Para decodificar:
 
 ```bash
 spd-analyzer decode
 ```
 
-Para um arquivo específico:
+## Comandos
+
+| Comando                                   | Descrição                                |
+|-------------------------------------------|------------------------------------------|
+| `spd-analyzer scan`                       | Detecta módulos nos barramentos SMBus    |
+| `spd-analyzer dump`                       | Lê o SPD dos módulos e salva em `data/`  |
+| `spd-analyzer decode`                     | Decodifica arquivos em `data/`           |
+| `spd-analyzer decode -i arquivo.bin`      | Decodifica um arquivo específico         |
+| `spd-analyzer decode -i pasta/`           | Decodifica todos os arquivos de uma pasta|
+| `spd-analyzer compare`                    | Compara dois ou mais módulos             |
+| `spd-analyzer export json`                | Exporta para `reports/report.json`       |
+| `spd-analyzer export csv`                 | Exporta para `reports/report.csv`        |
+| `spd-analyzer export html`                | Exporta para `reports/report.html`       |
+| `spd-analyzer hex`                        | Exibe dump hexadecimal raw               |
+| `spd-analyzer info`                       | Exibe informações do sistema e versão    |
+| `spd-analyzer --help`                     | Ajuda completa                           |
+
+## Fluxo típico
+
+### Com hardware (Linux)
 
 ```bash
-spd-analyzer decode -i data/dimm0.bin
+sudo modprobe i2c-dev              # carrega o módulo i2c
+spd-analyzer scan                  # detecta módulos
+spd-analyzer dump                  # extrai dados SPD
+spd-analyzer decode                # decodifica e exibe
+spd-analyzer compare               # compara módulos
+spd-analyzer export html           # gera relatório HTML
 ```
 
-### Comparar módulos
+### Sem hardware
+
+Use os dados de exemplo ou gere dados sintéticos:
 
 ```bash
-spd-analyzer compare
+spd-analyzer decode -i data/       # decodifica exemplos
+python scripts/generate_test_spd.py tests/data/   # gera SPD sintético
+spd-analyzer decode -i tests/data/                # decodifica os gerados
 ```
 
-### Exportar
+## Dados suportados
+
+O leitor aceita dois formatos:
+
+1. **Binário raw** (`.bin`) — 256 bytes crus do SPD
+2. **Texto i2cdump** — saída textual do `i2cdump` (convertido automaticamente)
+
+## Scripts auxiliares
+
+| Script                          | Função                                    |
+|---------------------------------|-------------------------------------------|
+| `scripts/dump_spd.sh`           | Extrai SPD via i2c-tools (shell)          |
+| `scripts/convert_text_dumps.py` | Converte dumps em texto para binário      |
+| `scripts/generate_test_spd.py`  | Gera dados SPD sintéticos para testes     |
+
+## Testes
 
 ```bash
-spd-analyzer export json
-spd-analyzer export csv
-spd-analyzer export html
-```
-
-Os arquivos são salvos em `reports/report.json`, `reports/report.csv`, `reports/report.html`.
-
-### Dump hexadecimal
-
-```bash
-spd-analyzer hex
-```
-
-### Informações do sistema
-
-```bash
-spd-analyzer info
+pip install -e ".[dev]"
+python -m pytest
 ```
 
 ## Estrutura do projeto
 
 ```
 spd-analyzer/
-├── spd_analyzer/
-│   ├── __init__.py
+├── spd_analyzer/       # Código principal
 │   ├── cli.py          # Interface de linha de comando
 │   ├── reader.py       # Leitura via SMBus e arquivos
 │   ├── parser.py       # Parser binário do SPD
@@ -122,26 +123,23 @@ spd-analyzer/
 │   ├── csv_export.py   # Exportação CSV
 │   ├── compare.py      # Comparação entre módulos
 │   └── utils.py        # Utilitários
-├── scripts/
-│   ├── dump_spd.sh     # Dump via shell (i2c-tools)
-│   └── install.sh      # Instalação
-├── tests/
-├── data/               # SPD dumps
+├── scripts/            # Scripts auxiliares
+├── tests/              # Testes automatizados
+├── data/               # Dumps SPD de exemplo
 ├── reports/            # Relatórios exportados
 ├── pyproject.toml
 ├── requirements.txt
-├── README.md
-└── LICENSE
+└── README.md
 ```
 
 ## Formatos SPD suportados
 
 | Tipo | Suporte |
 |------|---------|
-| DDR3 | ✓ Completo |
-| DDR4 | ✓ Básico |
-| DDR5 | △ Planejado |
-| DDR2 | △ Planejado |
+| DDR3 | Completo |
+| DDR4 | Básico |
+| DDR5 | Planejado |
+| DDR2 | Planejado |
 
 ## Licença
 
