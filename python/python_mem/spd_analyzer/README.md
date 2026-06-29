@@ -36,8 +36,8 @@ pipx install spd-analyzer
 ### Desenvolvimento
 
 ```bash
-git clone https://github.com/anomalyco/spd-analyzer.git
-cd spd-analyzer
+git clone https://github.com/paulopimenta6/ph_codes.git
+cd /python/python_mem/spd_analyzer
 ./scripts/install.sh dev
 ```
 
