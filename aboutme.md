@@ -1,119 +1,175 @@
-## Sobre mim
+![banner](https://img.shields.io/badge/%F0%9F%93%8A%20ABOUT%20ME-%231a1a2e.svg?style=for-the-badge)
 
 <p align="center">
   <a href="https://github.com/paulopimenta6">
-    <img src="https://img.shields.io/github/followers/paulopimenta6?label=GitHub&style=social" alt="GitHub Followers">
+    <img src="https://img.shields.io/github/followers/paulopimenta6?label=%E2%9D%A4%20GitHub&style=social" alt="GitHub">
   </a>
   <a href="https://www.linkedin.com/in/paulo-henrique-pimenta/">
-    <img src="https://img.shields.io/badge/LinkedIn-blue?logo=linkedin&style=flat" alt="LinkedIn">
+    <img src="https://img.shields.io/badge/LinkedIn-0A66C2?logo=linkedin&logoColor=white&style=flat" alt="LinkedIn">
   </a>
   <a href="https://www.instagram.com/paulopimenta6/">
     <img src="https://img.shields.io/badge/Instagram-E4405F?logo=instagram&logoColor=white&style=flat" alt="Instagram">
   </a>
   <a href="https://www.youtube.com/@paulopi997">
-    <img src="https://img.shields.io/badge/YouTube-FF0000?logo=youtube&logoColor=white" alt="YouTube">
+    <img src="https://img.shields.io/badge/YouTube-FF0000?logo=youtube&logoColor=white&style=flat" alt="YouTube">
+  </a>
+  <a href="https://500px.com/p/paulopimenta6?view=photos">
+    <img src="https://img.shields.io/badge/500px-0099E5?logo=500px&logoColor=white&style=flat" alt="500px">
+  </a>
+  <a href="mailto:paulopimenta1850@gmail.com">
+    <img src="https://img.shields.io/badge/Email-EA4335?logo=gmail&logoColor=white&style=flat" alt="Email">
   </a>
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white" alt="Python">
   <img src="https://img.shields.io/badge/R-276DC3?logo=r&logoColor=white" alt="R">
-  <img src="https://img.shields.io/badge/Java-007396?logo=java&logoColor=white" alt="Java">
+  <img src="https://img.shields.io/badge/Java-ED8B00?logo=openjdk&logoColor=white" alt="Java">
   <img src="https://img.shields.io/badge/SQLite-003B57?logo=sqlite&logoColor=white" alt="SQLite">
-  <img src="https://img.shields.io/badge/C/C++-00599C?logo=c%2B%2B&logoColor=white" alt="C/C++">
+  <img src="https://img.shields.io/badge/C%2FC%2B%2B-00599C?logo=c%2B%2B&logoColor=white" alt="C/C++">
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black" alt="JS">
+  <img src="https://img.shields.io/badge/PHP-777BB4?logo=php&logoColor=white" alt="PHP">
 </p>
 
 <p align="center">
-  <img src="https://komarev.com/ghpvc/?username=paulopimenta6&style=flat-square&color=blue" alt="visitas no perfil"/>
+  <img src="https://komarev.com/ghpvc/?username=paulopimenta6&style=flat-square&color=blue&label=visitantes" alt="Profile Views">
 </p>
 
 ---
 
-### 📚 Índice
-
-- [Um pouco sobre mim](#um-pouco-sobre-mim)
-- [Um pouco do que venho desenvolvendo](#um-pouco-do-que-venho-desenvolvendo)
-- [Um pouco dos meus gostos](#um-pouco-dos-meus-gostos)
-- [Onde estou?](#onde-estou)
-
----
-
-<details>
-<summary><strong>Um pouco sobre mim</strong></summary>
-
-Sou natural de São Gonçalo, uma "pequena-grande" cidade do Rio de Janeiro, mas que adotou a cidade de São Paulo para viver e para construir sua vida! Iniciei meus estudos na UERJ-Rio em Estatística (IME-UERJ), ciência a qual sou apaixonado, mas devido aos problemas que havia naquela época na universidade optei por prestar vestibular novamente e para outros estados. Passei para a prestigiada Universidade de São Paulo e me formei em Meteorologia (IAG-USP).
-
-Ao contrário do que todos pensam, Meteorologia é um curso de ciências exatas e possui uma grade focada nas áreas de matemática, computação, estatística e física. Ao longo do curso fiz estágios na universidade e fui bolsista PIBIC.
-
-<p align="left">
-  <img src="./aboutme/aluno_1.png" alt="Minha releitura" width="250">
-  <br>
-  <em>Minha releitura feita por mim após assistir "Vidas ao vento" de Hayao Miyazaki</em>
-</p>
-
-<p align="right">
-  <img src="./aboutme/IMG_20190816_134532.jpg" alt="Minha formatura" width="250">
-  <br>
-  <em>Minha formatura na USP em 2019</em>
-</p>
-
-Durante o final do curso, pude trabalhar com a modelagem de dispersão de fluidos utilizando o CMAS (RLINE). Apliquei alguns casos de teste com ele no meu TCC. Naquele momento era preciso ter o processador de dados e o pré-processador. Iniciei um estágio, o qual fui efetivado, na ATECH, uma empresa do grupo Embraer. Fui desenvolvedor de sistemas trabalhando na nova geração do sistema de controle de tráfego aéreo, assim como na produção de automação de testes. Tive a chance de atuar na área de negócios e na célula de inovação tecnológica.
+<br>
 
 <p align="center">
-  <img src="./aboutme/IMG-20180522-WA0002.jpg" alt="Apresentando os resultados das automações em um congresso" width="250">
-  <br>
-  <em>Apresentando em um congresso de engenharia sobre automações de testes usando Python</em>
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&duration=3000&pause=700&color=BD93F9&center=true&vCenter=true&width=500&lines=Paulo+Pimenta;Meteorologista;Estat%C3%ADstico;Mestrando+em+Medicina" alt="typing">
 </p>
 
-Ao longo da jornada passei por outras empresas como AT&M, FBM Brasil e META (uma consultoria de tecnologia). 
-</details>
+<br>
 
 ---
 
-<details>
-<summary><strong>Um pouco do que venho desenvolvendo</strong></summary>
+### 🧬 Perfil
 
-Iniciei uma segunda graduação em Ciência de Dados. Também estou no término de uma especialização em Computação com ênfase em Java, a qual venho me surpreendendo.
+```r
+# carregando bibliotecas
+library(tidyverse)
+library(patchwork)
 
-Por conta destas atividades venho me dedicado a projetos pessoais em linguagens como Java, R e Python, ou seja, tanto em computação quanto em ciência de dados. Há outros projetos que venho realizando com o SQLite, um simples, mas poderoso banco de dados relacional.
+profile <- tibble(
+  nome      = "Paulo Henrique Pimenta",
+  origem    = "São Gonçalo, RJ",
+  residencia = "São Paulo, SP",
+  formacao  = "Meteorologia — USP (IAG)",
+  pos      = "Mestrado em Medicina (Estatística Aplicada)",
+  area     = "Depto. de Nefrologia",
+  foco     = "Ciência de Dados · Estatística · ML · Dev"
+)
 
-Atualmente tenho produzido pouca coisa em C/C++, mas em breve espero fazer alguma coisa...
+profile |> glimpse()
+```
 
-Em relação à ciência de dados venho explorando bastante sobre algoritmos de classificação, métodos inferenciais, modelos não paramétricos, modelos preditivos e métodos de reconstrução de dados. Venho estudando e desenvolvendo bastante coisa tanto em estatística clássica quanto em Machine Learning.
-</details>
+```
+#> Observations: 1
+#> Variables: 7
+#> $ nome       <chr> "Paulo Henrique Pimenta"
+#> $ origem     <chr> "São Gonçalo, RJ → São Paulo, SP"
+#> $ formacao   <chr> "Meteorologia — IAG‑USP"
+#> $ pos        <chr> "Mestrado em Medicina — Estatística Aplicada à Nefrologia"
+#> $ foco       <chr> "Ciência de Dados · Estatística · Machine Learning · Desenvolvimento"
+```
 
 ---
 
-<details>
-<summary><strong>Um pouco dos meus gostos</strong></summary>
+### 🎓 Formação
 
-Posso dizer que tenho gostos um tanto quanto peculiares e dentre eles se encontram: estudar, fazer origamis, desenhar, fotografar, ler, jogar videogame e judô.
+| Período | Curso | Instituição |
+|---------|-------|-------------|
+| 2017–2019 | **Meteorologia (Bacharelado)** | **IAG‑USP** |
+| 2023–presente | Ciência de Dados (2ª graduação) | — |
+| 2025–presente | **Mestrado em Medicina** | **Depto. de Nefrologia — Estatística Aplicada** |
 
-- Estudo por conta própria por acreditar que esta é uma das vertentes de crescimento pessoal.
-- Faço origamis por sempre admirar essa arte e por acreditar que ela possa ajudar no desenvolvimento. 
-- Desenho por ter inspiração.
-- Fotografia é uma das formas de eternizar lembranças e bons momentos.
-- Ler por hábito e gosto.
-- Jogar videogame por gostar e por ser um fã da Nintendo!
-- Judô pela disciplina, força e pela bela cultura japonesa.
+> A Meteorologia na USP tem grade de exatas: matemática, física, computação e estatística. Fui bolsista **PIBIC** e meu TCC envolveu modelagem numérica de dispersão atmosférica (CMAS/RLINE em Fortran).
+>
+> Hoje, no mestrado, aplico métodos estatísticos e computacionais à **pesquisa clínica em nefrologia** — conectando modelagem, análise de dados e saúde.
+
+---
+
+### 🔬 Galeria
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center">
+        <img src="./aboutme/aluno_1.png" width="220" alt="Releitura"><br>
+        <sub><em>Releitura de "Vidas ao Vento" (Miyazaki)</em></sub>
+      </td>
+      <td align="center">
+        <img src="./aboutme/IMG_20190816_134532.jpg" width="220" alt="Formatura USP"><br>
+        <sub><em>Formatura na USP — 2019</em></sub>
+      </td>
+      <td align="center">
+        <img src="./aboutme/IMG-20180522-WA0002.jpg" width="220" alt="Congresso automação"><br>
+        <sub><em>Congresso de engenharia — automação de testes com Python</em></sub>
+      </td>
+    </tr>
+  </table>
+</div>
+
+---
+
+### 🧠 O Que Ando Fazendo
+
+Meus projetos atuais orbitam as interseções entre **estatística**, **computação** e **ciência de dados**:
+
+| Domínio | Atividades |
+|---------|------------|
+| 📊 **Estatística Aplicada** | Métodos inferenciais, modelos não paramétricos, análise de sobrevivência, testes de hipótese aplicados à pesquisa clínica |
+| 🤖 **Machine Learning** | Classificação, regressão, predição, reconstrução de dados — em Python e R |
+| ☕ **Java** | Sistemas, APIs, arquitetura, boas práticas de OOP |
+| 🐍 **Python / R** | Data wrangling, visualização, modelagem, automação |
+| 🗃️ **SQLite** | Bancos relacionais embarcados para protótipos e ferramentas locais |
+
+---
+
+### 🌱 Interesses Pessoais
+
+|  |  |
+|--|--|
+| 📚 **Estudo autodirigido** | Aprendizado contínuo como motor de crescimento |
+| 📐 **Origami** | Paciência, precisão e raciocínio espacial |
+| 🎨 **Desenho** | Expressão criativa e observação |
+| 📸 **Fotografia** | Eternizar momentos — [500px](https://500px.com/p/paulopimenta6?view=photos) |
+| 📖 **Leitura** | Não-ficção, ciência, filosofia |
+| 🎮 **Videogame** | Fã da Nintendo — design, narrativa, arte |
+| 🥋 **Judô** | Disciplina, força, cultura japonesa |
+
+<div align="center">
+  <br>
+  <img src="./aboutme/IMG_20250216_113537.jpg" width="450" alt="Iguaba Grande" style="border-radius: 12px;"><br>
+  <sub><em>Iguaba Grande, Região dos Lagos (RJ) — clique fotográfico</em></sub>
+</div>
+
+---
+
+### 🌐 Onde Me Encontrar
+
+| Plataforma | Link |
+|------------|------|
+| 💼 **LinkedIn** | [linkedin.com/in/paulo-henrique-pimenta](https://www.linkedin.com/in/paulo-henrique-pimenta/) |
+| 📸 **Instagram** | [@paulopimenta6](https://www.instagram.com/paulopimenta6/) |
+| 📘 **Facebook** | [facebook.com/paulo.h.pimenta](https://web.facebook.com/paulo.h.pimenta/) |
+| 🏞️ **500px** | [500px.com/p/paulopimenta6](https://500px.com/p/paulopimenta6?view=photos) |
+| 🎥 **YouTube** | [@paulopi997](https://www.youtube.com/@paulopi997) |
+| 💻 **GitHub** | [github.com/paulopimenta6](https://github.com/paulopimenta6/) |
+| ✉️ **Email** | paulopimenta1850@gmail.com |
+
+---
+
+<br>
 
 <p align="center">
-  <img src="./aboutme/IMG_20250216_113537.jpg" alt="Fotografia da bela cidade da Iguaba Grande, na região dos lagos do Rio de Janeiro" width="250">
-  <br>
-  <em>Fotografia da bela cidade da Iguaba Grande, na região dos lagos do Rio de Janeiro</em>
+  <img src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=dracula" alt="Random quote">
 </p>
-</details>
 
----
-
-<details>
-<summary><strong>Onde estou?</strong></summary>
-
-Gosto bastante de redes sociais, apesar de não viver nelas diariamente. Acredito que sejam diários virtuais, formas de se conectar a pessoas e comunidades legais, fazer novas amizades e trocar conhecimento. Estou nas redes:
-
-- [Linkedin](https://www.linkedin.com/in/paulo-henrique-pimenta/)
-- [Instagram](https://www.instagram.com/paulopimenta6/)
-- [Facebook](https://web.facebook.com/paulo.h.pimenta/)
-- [500px](https://500px.com/p/paulopimenta6?view=photos)
-- [YouTube](https://www.youtube.com/@paulopi997)
-</details>
+<p align="center">
+  <sub><i>"Beyond the mean, there's always a distribution."</i></sub>
+</p>
