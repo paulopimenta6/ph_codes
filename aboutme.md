@@ -83,7 +83,7 @@ profile |> glimpse()
 
 | Período | Curso | Instituição |
 |---------|-------|-------------|
-| 2017–2019 | **Meteorologia (Bacharelado)** | **IAG‑USP** |
+| 2011–2019 | **Meteorologia (Bacharelado)** | **IAG‑USP** |
 | 2024–presente | Ciência de Dados (2ª graduação) | — |
 | 2026–presente | **Mestrado em Medicina** | **Depto. de Nefrologia — Estatística Aplicada** |
 
