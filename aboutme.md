@@ -106,10 +106,6 @@ profile |> glimpse()
         <img src="./aboutme/IMG_20190816_134532.jpg" width="220" alt="Formatura USP"><br>
         <sub><em>Formatura na USP — 2019</em></sub>
       </td>
-      <td align="center">
-        <img src="./aboutme/IMG-20180522-WA0002.jpg" width="220" alt="Congresso automação"><br>
-        <sub><em>Congresso de engenharia — automação de testes com Python</em></sub>
-      </td>
     </tr>
   </table>
 </div>
