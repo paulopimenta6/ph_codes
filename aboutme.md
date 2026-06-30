@@ -84,8 +84,8 @@ profile |> glimpse()
 | Período | Curso | Instituição |
 |---------|-------|-------------|
 | 2017–2019 | **Meteorologia (Bacharelado)** | **IAG‑USP** |
-| 2023–presente | Ciência de Dados (2ª graduação) | — |
-| 2025–presente | **Mestrado em Medicina** | **Depto. de Nefrologia — Estatística Aplicada** |
+| 2024–presente | Ciência de Dados (2ª graduação) | — |
+| 2026–presente | **Mestrado em Medicina** | **Depto. de Nefrologia — Estatística Aplicada** |
 
 > A Meteorologia na USP tem grade de exatas: matemática, física, computação e estatística. Fui bolsista **PIBIC** e meu TCC envolveu modelagem numérica de dispersão atmosférica (CMAS/RLINE em Fortran).
 >
