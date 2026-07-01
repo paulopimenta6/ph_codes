@@ -1,116 +1,113 @@
-# Regressão Logística Binária --- Tutorial Completo
+# Regressão Logística Binária — Tutorial de Análise
 
-**Teoria + Formalismo + Implementação R e Python**
+**Inferência + Interpretação + Implementação R e Python**
 
-> Um tutorial rigoroso cobrindo desde a motivação matemática até
-> implementação prática, com código reutilizável e exemplos interativos.
+> Tutorial rigoroso focado em **análise** (e não predição): interpretação de
+> coeficientes, odds ratios, efeitos marginais, testes de hipóteses,
+> diagnóstico do modelo e inferência estatística.
 
-------------------------------------------------------------------------
+---
 
 ## Sobre este Tutorial
 
-Este é um **tutorial abrangente sobre regressão logística binária** que
-nasceu de notas de aula manuscritas e foi expandido com formalismo
-estatístico completo.
+Este tutorial nasceu de notas de aula manuscritas e foi expandido com
+formalismo estatístico completo. O foco é **análise de regressão
+logística binária** — compreender relações entre variáveis, testar
+hipóteses e quantificar efeitos — e não a mera classificação ou
+predição.
 
 ### Características
 
--   ✅ **Cobertura teórica completa** --- da motivação até implementação
-    prática
--   ✅ **Formalismo matemático rigoroso** --- com LaTeX e equações bem
-    explicadas
--   ✅ **Código pronto para usar** --- R e Python totalmente funcionais
--   ✅ **Dados simulados automáticos** --- não precisa de arquivo
-    externo para começar
--   ✅ **Visualizações profissionais** --- gráficos publicáveis com
-    ggplot2 e matplotlib
--   ✅ **Testes estatísticos completos** --- TRV, Wald, intervalos de
-    confiança
+-   **Foco analítico** — interpretação de coeficientes, OR, efeitos
+    marginais, significância estatística
+-   **Formalismo matemático rigoroso** — derivações completas em LaTeX
+-   **Fundamentação estatística** — suposições, diagnóstico, testes
+-   **Código reutilizável** — R e Python totalmente funcionais
+-   **Dados simulados automáticos** — nenhum arquivo externo necessário
 
-------------------------------------------------------------------------
+---
 
 ## Estrutura do Tutorial
 
-| Seção                                           | Tempo  | Descrição                                         |
-|---------------------|---------------------|------------------------------|
-| [1. Introdução](./01_introducao.md)             | 5 min  | Por que não usar regressão linear? Aplicações.    |
-| [2. Modelo Logístico](./02_modelo_logistico.md) | 10 min | Função sigmoide, transformação logit, odds ratio. |
-| [3. Estimação MV](./03_estimacao.md)            | 15 min | Máxima verossimilhança, exemplo café.             |
-| [4. Avaliação](./04_avaliacao.md)               | 15 min | Pseudo-R², matriz de confusão, ROC-AUC.           |
-| [5. Testes de Hipóteses](./05_testes.md)        | 10 min | TRV global, Teste de Wald.                        |
-| [6. Predição](./06_predicao.md)                 | 5 min  | Como fazer previsões.                             |
-| [7. R](./07_implementacao_r.Rmd)                | 20 min | Script R completo.                                |
-| [8. Python](./08_implementacao_python.py)       | 20 min | Script Python completo.                           |
+| Seção | Descrição |
+|:---|:---|
+| [1. Introdução](./01_introducao.md) | Por que regressão linear falha, suposições do modelo, aplicações |
+| [2. Modelo Logístico](./02_modelo_logistico.md) | Sigmoide, logit, odds ratio, efeitos marginais |
+| [3. Estimação MV](./03_estimacao.md) | Máxima verossimilhança, função de verossimilhança, algoritmo IRLS |
+| [4. Avaliação](./04_avaliacao.md) | Pseudo-R², AIC, BIC, deviance, diagnóstico, Hosmer-Lemeshow |
+| [5. Testes de Hipóteses](./05_testes.md) | TRV global, Teste de Wald, intervalos de confiança |
+| [R](./07_implementacao_r.R) | Script R completo com foco analítico |
+| [Python](./08_implementacao_python.py) | Script Python completo com foco analítico |
 
-------------------------------------------------------------------------
+---
 
 ## Quick Start
 
-### Ler a Teoria
+### Leitura recomendada
 
+1.  Introdução e motivação
+2.  Modelo logístico (entender odds ratio e efeitos marginais)
+3.  Estimação MV
+4.  Avaliação e diagnóstico
+5.  Testes de hipóteses
 
-[**Notas manuscritas da teoria**](./analise_de_regressao_logistica_versao_1.pdf)
-
-### Rodar Código
-
-**Python (sem instalar)**
-[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/paulopimenta6/ph_codes/blob/regressao-logistica-tutorial/notebooks/regressao_logistica.ipynb)
-
-**Localmente**
+### Executar os códigos
 
 ``` bash
+# R
+Rscript 07_implementacao_r.R
+
+# Python
 python 08_implementacao_python.py
 ```
 
-------------------------------------------------------------------------
+---
 
 ## Arquivos
 
-```         
+```
 R/analise_de_regressao_logistica/
-├── 00_README.md (este arquivo)
-├── regressao_logistica_binaria.md (completo)
+├── 00_README.md
 ├── 01_introducao.md
 ├── 02_modelo_logistico.md
 ├── 03_estimacao.md
 ├── 04_avaliacao.md
 ├── 05_testes.md
-├── 06_predicao.md
-├── 07_implementacao_r.Rmd
+├── 07_implementacao_r.R
 ├── 08_implementacao_python.py
-└── 09_comparativo_r_vs_python.md
+└── old/                          # versão anterior do tutorial
 ```
 
-------------------------------------------------------------------------
+---
+
+## Diferença: Análise vs. Predição
+
+| Aspecto | Análise (foco deste tutorial) | Predição |
+|:---|:---|:---|
+| Objetivo | Entender relações, testar teorias | Classificar novos casos |
+| Coeficientes | Interpretados como OR e efeitos marginais | Meio para um fim |
+| Testes | TRV, Wald, Hosmer-Lemeshow | Validação cruzada |
+| Avaliação | Pseudo-R², AIC, deviance | AUC, acurácia em teste |
+| Pergunta | *Qual o efeito de X sobre Y?* | *Qual a classe de Y?* |
+
+---
 
 ## Pré-requisitos
 
--   **R** ≥ 4.0 \| **Python** ≥ 3.8
--   Conhecimento básico de probabilidade e estatística
+- **R** ≥ 4.0 ou **Python** ≥ 3.8
+- Conceitos básicos de probabilidade (distribuição Bernoulli) e
+  estatística (teste de hipóteses, valor-p)
 
-------------------------------------------------------------------------
-
-## FAQ
-
-**Por que Pseudo-R² é diferente?** Não há soma de quadrados em
-logística. Compara log-verossimilhanças.
-
-**Quando usar logística?** - Resposta binária + interpretabilidade ✅ -
-Máxima performance → Random Forest/SVM
-
-**Desbalanceamento de classes?** 1. Estratificação (stratify=y) 2.
-class_weight='balanced' 3. Threshold adaptativo via ROC
-
-------------------------------------------------------------------------
+---
 
 ## Licença
 
-MIT --- Livre para usar e modificar
+MIT — Livre para usar e modificar
 
-------------------------------------------------------------------------
+---
 
 ## Autor
 
-**Paulo Pimenta** --- Baseado em notas de aula revisadas
+**Paulo Pimenta** — Baseado em notas de aula revisadas
 
-**Versão:** 1.0 \| **Data:** 2026-06-06
+**Versão:** 2.0 \| **Data:** 2026-06-06

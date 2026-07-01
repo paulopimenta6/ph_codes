@@ -1,29 +1,29 @@
 #!/usr/bin/env Rscript
-#' ========================================================================
-#' Regressão Logística Binária — Implementação em R
 #'
-#' Análise completa com geração de dados, ajuste de modelo,
-#' testes estatísticos e visualizações.
+#' Regressão Logística Binária — Implementação em R (foco analítico)
 #'
-#' Ajuste as 6 variáveis de configuração no início e execute:
+#' Análise completa: estimação, interpretação de coeficientes/OR,
+#' efeitos marginais, pseudo-R², AIC/BIC, testes TRV e Wald,
+#' Hosmer-Lemeshow, diagnóstico de resíduos e predição.
+#'
+#' Ajuste as variáveis de configuração e execute:
 #'     Rscript 07_implementacao_r.R
-#' ========================================================================
+#'
 
 # ════════════════════════════════════════════════════════════
 #  CONFIGURAÇÃO — ajuste apenas estas variáveis
 # ════════════════════════════════════════════════════════════
-CAMINHO_CSV        <- "dados.csv"
-VARIAVEL_RESPOSTA  <- "y"
-VARIAVEIS_PRED     <- c("x1", "x2")
-LIMIAR_DECISAO     <- 0.5
-PROPORCAO_TESTE    <- 0.30
-SEMENTE            <- 42
+CAMINHO_CSV       <- "dados.csv"
+VARIAVEL_RESPOSTA <- "y"
+VARIAVEIS_PRED    <- c("x1", "x2")
+LIMIAR_DECISAO    <- 0.5
+PROPORCAO_TESTE   <- 0.30
+SEMENTE           <- 42
 # ════════════════════════════════════════════════════════════
 
 # Pacotes necessários
 pacotes_necessarios <- c("tidyverse", "caret", "pROC", "broom", "gridExtra")
 
-# Verificar e instalar pacotes
 for (pkg in pacotes_necessarios) {
   if (!require(pkg, character.only = TRUE, quietly = TRUE)) {
     cat("Instalando", pkg, "...\n")
@@ -32,28 +32,24 @@ for (pkg in pacotes_necessarios) {
   }
 }
 
-# Suprimir avisos desnecessários
 options(warn = -1)
 set.seed(SEMENTE)
 
 # ════════════════════════════════════════════════════════════
-#  1. CRIAR DADOS SIMULADOS (se não existirem)
+#  1. CRIAR DADOS SIMULADOS
 # ════════════════════════════════════════════════════════════
 
 criar_dados_simulados <- function() {
-  if (file.exists(CAMINHO_CSV)) {
-    return()
-  }
-  
+  if (file.exists(CAMINHO_CSV)) return()
+
   cat("Arquivo não encontrado — gerando dados simulados.\n")
-  
   n <- 350
-  x1 <- runif(n, 18, 65) %>% round(1)
-  x2 <- rnorm(n, 50, 10) %>% round(1)
+  x1 <- round(runif(n, 18, 65), 1)
+  x2 <- round(rnorm(n, 50, 10), 1)
   z  <- 0.07 * x1 + 0.06 * x2 - 7.0
   p  <- 1 / (1 + exp(-z))
   y  <- rbinom(n, 1, p)
-  
+
   df <- tibble(y = y, x1 = x1, x2 = x2)
   write_csv(df, CAMINHO_CSV)
   cat("✓", paste0("'", CAMINHO_CSV, "'"), "criado com", n, "observações.\n\n")
@@ -65,39 +61,36 @@ criar_dados_simulados <- function() {
 
 carregar_dados <- function() {
   dados_raw <- read_csv(CAMINHO_CSV, show_col_types = FALSE)
-  
-  cat("Dataset:", nrow(dados_raw), "linhas ×", ncol(dados_raw), "colunas\n")
+
+  cat("Dataset:", nrow(dados_raw), "linhas x", ncol(dados_raw), "colunas\n")
   cat("Colunas:", paste(names(dados_raw), collapse = ", "), "\n\n")
-  
-  # Validação de colunas
+
   cols_necessarias <- c(VARIAVEL_RESPOSTA, VARIAVEIS_PRED)
   cols_faltando <- setdiff(cols_necessarias, names(dados_raw))
-  
   if (length(cols_faltando) > 0) {
-    stop("❌ Colunas ausentes: ", paste(cols_faltando, collapse = ", "), "\n",
-         "Ajuste VARIAVEL_RESPOSTA e VARIAVEIS_PRED.")
+    stop("Colunas ausentes: ", paste(cols_faltando, collapse = ", "),
+         "\nAjuste VARIAVEL_RESPOSTA e VARIAVEIS_PRED.")
   }
-  
-  # Preparação
+
   dados <- dados_raw %>%
     select(all_of(cols_necessarias)) %>%
     rename(y = VARIAVEL_RESPOSTA) %>%
     mutate(y = as.integer(y)) %>%
     drop_na()
-  
+
   n_antes <- nrow(dados_raw)
   n_depois <- nrow(dados)
   if (n_antes > n_depois) {
-    cat("✓ Removidas", n_antes - n_depois, "linha(s) com NA.\n\n")
+    cat("Removidas", n_antes - n_depois, "linha(s) com NA.\n\n")
   }
-  
+
   N1 <- sum(dados$y == 1)
   N0 <- sum(dados$y == 0)
   N  <- nrow(dados)
-  
+
   cat("Classe 1:", N1, paste0("(", round(100 * N1 / N, 1), "%)"),
       "| Classe 0:", N0, paste0("(", round(100 * N0 / N, 1), "%)\n\n"))
-  
+
   return(list(dados = dados, N1 = N1, N0 = N0, N = N))
 }
 
@@ -106,43 +99,38 @@ carregar_dados <- function() {
 # ════════════════════════════════════════════════════════════
 
 analise_exploratoria <- function(dados) {
-  # Preparar dados para plotagem
   cores <- c("0" = "#C0392B", "1" = "#27AE60")
-  
-  # Gráfico de dispersão
-  p1 <- dados %>%
+
+  p_disp <- dados %>%
     mutate(classe = factor(y, labels = c("Fracasso (0)", "Sucesso (1)"))) %>%
     ggplot(aes(x = !!sym(VARIAVEIS_PRED[1]),
                y = !!sym(VARIAVEIS_PRED[2]),
                color = classe)) +
     geom_point(alpha = 0.65, size = 2.5) +
-    scale_color_manual(values = c("Fracasso (0)" = "#C0392B", "Sucesso (1)" = "#27AE60")) +
-    labs(title = "Dispersão por Classe",
-         color = NULL) +
+    scale_color_manual(values = c("Fracasso (0)" = "#C0392B",
+                                  "Sucesso (1)" = "#27AE60")) +
+    labs(title = "Dispersão por Classe", color = NULL) +
     theme_minimal() +
     theme(legend.position = "bottom")
-  
-  # Boxplots para cada preditor
+
   plots_box <- lapply(VARIAVEIS_PRED, function(var) {
     dados %>%
       mutate(classe = factor(y, labels = c("Fracasso (0)", "Sucesso (1)"))) %>%
       ggplot(aes(x = classe, y = !!sym(var), fill = classe)) +
       geom_boxplot(alpha = 0.75, outlier.alpha = 0.5) +
-      scale_fill_manual(values = c("Fracasso (0)" = "#C0392B", "Sucesso (1)" = "#27AE60")) +
-      labs(title = paste("Distribuição de", var),
-           x = NULL,
-           y = var) +
+      scale_fill_manual(values = c("Fracasso (0)" = "#C0392B",
+                                   "Sucesso (1)" = "#27AE60")) +
+      labs(title = paste("Distribuição de", var), x = NULL, y = var) +
       theme_minimal() +
       theme(legend.position = "none")
   })
-  
-  # Combinar gráficos
-  fig <- gridExtra::grid.arrange(p1, plots_box[[1]], plots_box[[2]], nrow = 1)
-  
+
+  fig <- gridExtra::grid.arrange(p_disp, plots_box[[1]], plots_box[[2]],
+                                  nrow = 1)
   ggsave("r_eda.png", fig, width = 13, height = 4.5, dpi = 150)
-  cat("✓ Gráfico: r_eda.png\n\n")
-  
-  return(fig)
+  cat("Grafico: r_eda.png\n\n")
+
+  invisible(fig)
 }
 
 # ════════════════════════════════════════════════════════════
@@ -151,20 +139,14 @@ analise_exploratoria <- function(dados) {
 
 dividir_dados <- function(dados) {
   set.seed(SEMENTE)
-  
-  indice_treino <- createDataPartition(
-    dados$y,
-    times = 1,
-    p = 1 - PROPORCAO_TESTE,
-    list = FALSE
+  indice_treino <- caret::createDataPartition(
+    dados$y, times = 1, p = 1 - PROPORCAO_TESTE, list = FALSE
   )
-  
   dados_tr <- dados[indice_treino, ]
   dados_te <- dados[-indice_treino, ]
-  
-  cat("✓ Treino:", nrow(dados_tr), "obs. | Teste:", nrow(dados_te), "obs.\n\n")
-  
-  return(list(tr = dados_tr, te = dados_te))
+
+  cat("Treino:", nrow(dados_tr), "obs. | Teste:", nrow(dados_te), "obs.\n\n")
+  list(tr = dados_tr, te = dados_te)
 }
 
 # ════════════════════════════════════════════════════════════
@@ -172,272 +154,276 @@ dividir_dados <- function(dados) {
 # ════════════════════════════════════════════════════════════
 
 ajustar_modelo <- function(dados_tr) {
-  # Construir fórmula dinamicamente
   formula_str <- paste("y ~", paste(VARIAVEIS_PRED, collapse = " + "))
-  formula <- as.formula(formula_str)
-  
-  # Ajustar modelo usando glm com família binomial
-  modelo <- glm(formula, data = dados_tr, family = binomial(link = "logit"))
-  
-  cat("✓ Modelo ajustado com sucesso!\n\n")
+  modelo <- glm(as.formula(formula_str), data = dados_tr,
+                family = binomial(link = "logit"))
+
+  cat("Modelo ajustado por MV (IRLS).\n")
+  cat("Formula:", formula_str, "\n\n")
+
   print(summary(modelo))
   cat("\n")
-  
-  return(modelo)
+
+  invisible(modelo)
 }
 
 # ════════════════════════════════════════════════════════════
-#  6. COEFICIENTES E ODDS RATIOS
+#  6. TABELA DE COEFICIENTES E ODDS RATIOS
 # ════════════════════════════════════════════════════════════
 
-coeficientes_odds_ratios <- function(modelo) {
-  # Extrair informações usando tidy do broom
+tabela_coeficientes <- function(modelo) {
   coef_tidy <- tidy(modelo, conf.int = TRUE, exponentiate = FALSE)
-  
-  # Calcular Odds Ratios e ICs
-  tabela <- coef_tidy %>%
+
+  tab <- coef_tidy %>%
     mutate(
-      OR = exp(estimate),
-      IC_25 = exp(conf.low),
-      IC_975 = exp(conf.high)
+      OR    = exp(estimate),
+      IC_OR_2.5  = exp(conf.low),
+      IC_OR_97.5 = exp(conf.high)
     ) %>%
-    select(term, estimate, std.error, OR, IC_25, IC_975, p.value) %>%
+    select(term, estimate, std.error, OR, IC_OR_2.5, IC_OR_97.5, p.value) %>%
     rename(
-      "Variável" = term,
+      "Variavel" = term,
       "Coeficiente" = estimate,
-      "Erro Padrão" = std.error,
+      "Erro_Padrao" = std.error,
       "OR" = OR,
-      "IC 2,5% (OR)" = IC_25,
-      "IC 97,5% (OR)" = IC_975,
-      "Valor-p" = p.value
+      "IC_2.5_OR" = IC_OR_2.5,
+      "IC_97.5_OR" = IC_OR_97.5,
+      "Valor_p" = p.value
     ) %>%
     mutate(across(where(is.numeric), ~ round(., 4)))
-  
-  cat("Tabela: Coeficientes e Odds Ratios\n")
-  print(tabela)
+
+  cat("Tabela 1. Coeficientes e Odds Ratios com IC 95%\n")
+  cat("Interpretacao: OR > 1 aumenta odds; OR < 1 reduz odds.\n")
+  cat("Se o IC 95% do OR excluir 1, efeito significativo (p < 0,05).\n\n")
+  print(tab)
   cat("\n")
-  
-  invisible(tabela)
+
+  invisible(tab)
 }
 
 # ════════════════════════════════════════════════════════════
-#  7. PSEUDO-R² DE MCFADDEN
+#  7. EFEITOS MARGINAIS (AME — Average Marginal Effects)
 # ════════════════════════════════════════════════════════════
 
-pseudo_r2_mcfadden <- function(modelo, dados_tr, N1_tr, N0_tr) {
-  N_tr <- nrow(dados_tr)
-  
-  # Log-verossimilhança do modelo
-  L_star <- logLik(modelo)[1]
-  
-  # Log-verossimilhança do modelo nulo
-  L0 <- N1_tr * log(N1_tr) + N0_tr * log(N0_tr) - N_tr * log(N_tr)
-  
-  # Pseudo-R² de McFadden
-  r2_mcf <- -L_star / L0
-  
-  cat("L* (modelo) =", round(L_star, 4), "\n")
-  cat("L0 (nulo)   =", round(L0, 4), "\n")
-  cat("Pseudo-R² de McFadden:", round(r2_mcf, 4), "\n")
-  
-  # Interpretação
-  avaliacao <- if (r2_mcf < 0.20) {
-    "Fraco"
-  } else if (r2_mcf < 0.40) {
-    "Bom"
-  } else {
-    "Muito bom"
+efeitos_marginais <- function(modelo, dados) {
+  pi_hat <- predict(modelo, type = "response")
+
+  for (j in seq_along(VARIAVEIS_PRED)) {
+    nome_var <- VARIAVEIS_PRED[j]
+    col_idx <- which(colnames(X) == nome_var)
+    if (length(col_idx) == 0) next
+    beta_j <- coef(modelo)[col_idx]
+    ame <- mean(pi_hat * (1 - pi_hat) * beta_j)
+    cat(sprintf("AME(%s) = %.4f\n", nome_var, ame))
   }
-  
-  cat("Avaliação:", avaliacao, "\n\n")
-  
+  cat("Interpretacao: variacao media na probabilidade do evento\n")
+  cat("para aumento de 1 unidade na preditora.\n\n")
+
+  invisible()
+}
+
+# ════════════════════════════════════════════════════════════
+#  8. PSEUDO-R² DE McFADDEN, AIC, BIC
+# ════════════════════════════════════════════════════════════
+
+medidas_ajuste <- function(modelo) {
+  L_star <- logLik(modelo)[1]
+  N <- nrow(modelo$data)
+  N1 <- sum(modelo$data$y == 1)
+  N0 <- N - N1
+  L0 <- N1 * log(N1) + N0 * log(N0) - N * log(N)
+
+  r2_mcf <- 1 - L_star / L0
+  aic <- AIC(modelo)
+  bic <- BIC(modelo)
+
+  cat("Medidas de Ajuste do Modelo\n")
+  cat(sprintf("L* (modelo)          = %.4f\n", L_star))
+  cat(sprintf("L0 (nulo)            = %.4f\n", L0))
+  cat(sprintf("Pseudo-R² McFadden   = %.4f\n", r2_mcf))
+  cat(sprintf("AIC                  = %.2f\n", aic))
+  cat(sprintf("BIC                  = %.2f\n", bic))
+
+  avaliacao <- if (r2_mcf < 0.20) "Fraco" else if (r2_mcf < 0.40) "Bom" else "Muito bom"
+  cat(sprintf("Avaliacao (McFadden): %s\n", avaliacao))
+
+  # Deviance
+  cat(sprintf("Deviance nula        = %.2f (gl = %d)\n",
+              modelo$null.deviance, modelo$df.null))
+  cat(sprintf("Deviance residual    = %.2f (gl = %d)\n",
+              modelo$deviance, modelo$df.residual))
+  cat("\n")
+
   invisible(r2_mcf)
 }
 
 # ════════════════════════════════════════════════════════════
-#  8. TESTE DA RAZÃO DE VEROSSIMILHANÇAS (TRV)
+#  9. TESTE DA RAZÃO DE VEROSSIMILHANÇAS (TRV)
 # ════════════════════════════════════════════════════════════
 
-teste_razao_verossimilhancas <- function(modelo, dados_tr) {
-  # Modelo nulo (apenas intercepto)
-  modelo_nulo <- glm(y ~ 1, data = dados_tr, family = binomial(link = "logit"))
-  
-  # Estatística G
+teste_trv <- function(modelo) {
+  modelo_nulo <- glm(y ~ 1, data = modelo$data, family = binomial(link = "logit"))
   G <- 2 * (logLik(modelo)[1] - logLik(modelo_nulo)[1])
   gl <- length(VARIAVEIS_PRED)
   pval <- 1 - pchisq(G, df = gl)
-  
+
   cat("Teste da Razão de Verossimilhanças (TRV)\n")
-  cat("  H0: Todos os coeficientes = 0\n")
-  cat("  H1: Pelo menos um coeficiente ≠ 0\n")
-  cat("  G-statistic:", round(G, 4), "\n")
-  cat("  Graus de liberdade:", gl, "\n")
-  cat("  Valor-p:", format(pval, scientific = TRUE, digits = 2), "\n")
-  cat("  Decisão:", if (pval < 0.05) "Rejeitar H0 ✓" else "Não rejeitar", "\n\n")
-  
+  cat("  H0: beta_1 = ... = beta_p = 0\n")
+  cat("  H1: existe j com beta_j != 0\n")
+  cat(sprintf("  G (2 * delta L)   = %.4f\n", G))
+  cat(sprintf("  Graus de liberdade = %d\n", gl))
+  cat(sprintf("  Valor-p            = %.4e\n", pval))
+  cat(sprintf("  Decisão (alpha = 0,05): %s\n\n",
+              if (pval < 0.05) "Rejeitar H0" else "Nao rejeitar H0"))
+
   invisible(list(G = G, pval = pval))
 }
 
 # ════════════════════════════════════════════════════════════
-#  9. TESTE DE WALD
+# 10. TESTE DE WALD
 # ════════════════════════════════════════════════════════════
 
 teste_wald <- function(modelo) {
   coef_tidy <- tidy(modelo)
-  
-  # Calcular W-statistic
+
   W <- (coef_tidy$estimate / coef_tidy$std.error)^2
   pw <- 1 - pchisq(W, df = 1)
-  
-  tabela_wald <- coef_tidy %>%
+
+  tab <- coef_tidy %>%
     mutate(
-      W_statistic = W,
+      W_stat = W,
       p_value = pw,
-      Significância = case_when(
+      Signif = case_when(
         p_value < 0.001 ~ "***",
         p_value < 0.01  ~ "**",
         p_value < 0.05  ~ "*",
         TRUE             ~ ""
       )
     ) %>%
-    select(term, estimate, std.error, W_statistic, p_value, Significância) %>%
+    select(term, estimate, std.error, W_stat, p_value, Signif) %>%
     rename(
-      "Variável" = term,
+      "Variavel" = term,
       "Coeficiente" = estimate,
-      "Erro Padrão" = std.error,
-      "W-statistic" = W_statistic,
-      "Valor-p" = p_value
+      "Erro_Padrao" = std.error,
+      "W_statistic" = W_stat,
+      "Valor_p" = p_value
     ) %>%
     mutate(across(where(is.numeric), ~ round(., 4)))
-  
-  cat("Teste de Wald — H0: a_i = 0 | H1: a_i ≠ 0\n")
-  print(tabela_wald)
+
+  cat("Teste de Wald — H0: beta_j = 0 | H1: beta_j != 0\n")
+  print(tab)
   cat("\n")
-  
-  invisible(tabela_wald)
+  cat("Significância: *** p < 0,001 | ** p < 0,01 | * p < 0,05\n\n")
+
+  invisible(tab)
 }
 
 # ════════════════════════════════════════════════════════════
-#  10. AVALIAÇÃO DO MODELO NO CONJUNTO TESTE
+# 11. TESTE DE HOSMER-LEMESHOW
 # ════════════════════════════════════════════════════════════
 
-avaliar_modelo <- function(modelo, dados_te) {
-  # Probabilidades preditas
-  prob_te <- predict(modelo, newdata = dados_te, type = "response")
-  
-  # Classificações
+teste_hosmer_lemeshow <- function(modelo, g = 10) {
+  pi_hat <- fitted(modelo)
+  y <- modelo$y
+  grupos <- cut(pi_hat,
+                breaks = quantile(pi_hat, probs = seq(0, 1, 1/g)),
+                include.lowest = TRUE, labels = FALSE)
+
+  C_hat <- 0
+  for (k in 1:g) {
+    idx <- which(grupos == k)
+    O1 <- sum(y[idx])
+    E1 <- sum(pi_hat[idx])
+    O0 <- length(idx) - O1
+    E0 <- sum(1 - pi_hat[idx])
+    if (E1 > 0) C_hat <- C_hat + (O1 - E1)^2 / E1
+    if (E0 > 0) C_hat <- C_hat + (O0 - E0)^2 / E0
+  }
+
+  pval <- 1 - pchisq(C_hat, df = g - 2)
+
+  cat("Teste de Hosmer-Lemeshow\n")
+  cat(sprintf("  C_hat              = %.4f\n", C_hat))
+  cat(sprintf("  Graus de liberdade = %d\n", g - 2))
+  cat(sprintf("  Valor-p            = %.4f\n", pval))
+  cat("  H0: modelo ajusta-se adequadamente\n")
+  cat(sprintf("  Decisão (alpha = 0,05): %s\n\n",
+              if (pval < 0.05) "Rejeitar H0 (falta de ajuste)" else "Nao rejeitar H0"))
+
+  invisible(list(C_hat = C_hat, pval = pval))
+}
+
+# ════════════════════════════════════════════════════════════
+# 12. AVALIAÇÃO NO CONJUNTO TESTE
+# ════════════════════════════════════════════════════════════
+
+avaliar_modelo <- function(modelo, dados_te, prob_te = NULL) {
+  if (is.null(prob_te)) {
+    prob_te <- predict(modelo, newdata = dados_te, type = "response")
+  }
+
   y_pred <- as.integer(prob_te >= LIMIAR_DECISAO)
-  
-  # Acurácia
   acuracia <- mean(y_pred == dados_te$y)
-  taxa_erro <- 1 - acuracia
-  
-  cat("Limiar de decisão:", LIMIAR_DECISAO, "\n")
-  cat("Acurácia:   ", round(acuracia, 4), "(", round(100 * acuracia, 1), "%)\n")
-  cat("Taxa erro:  ", round(taxa_erro, 4), "(", round(100 * taxa_erro, 1), "%)\n\n")
-  
-  # Matriz de confusão
-  y_fator <- factor(y_pred, levels = c(0, 1), labels = c("Fracasso (0)", "Sucesso (1)"))
-  y_real <- factor(dados_te$y, levels = c(0, 1), labels = c("Fracasso (0)", "Sucesso (1)"))
-  
-  cm <- confusionMatrix(y_fator, y_real)
-  
-  cat("Matriz de Confusão e Métricas:\n")
-  print(cm)
-  cat("\n")
-  
-  return(list(prob = prob_te, pred = y_pred, cm = cm))
+
+  cat("Desempenho no conjunto de teste (uso auxiliar):\n")
+  cat(sprintf("  Limiar de decisão: %.2f\n", LIMIAR_DECISAO))
+  cat(sprintf("  Acurácia:   %.4f (% .1f%%)\n", acuracia, 100 * acuracia))
+  cat(sprintf("  Taxa erro:  %.4f (% .1f%%)\n\n", 1 - acuracia, 100 * (1 - acuracia)))
+
+  invisible(list(prob = prob_te, pred = y_pred))
 }
 
 # ════════════════════════════════════════════════════════════
-#  11. PLOTAR ROC E MATRIZ DE CONFUSÃO
+# 13. CURVA ROC E AUC
 # ════════════════════════════════════════════════════════════
 
-plotar_roc_matriz <- function(dados_te, prob_te, y_pred) {
-  # Calcular ROC
-  roc_obj <- roc(dados_te$y, prob_te)
+plotar_roc <- function(dados_te, prob_te) {
+  roc_obj <- roc(dados_te$y, prob_te, quiet = TRUE)
   auc_val <- auc(roc_obj)
-  
-  # Criar figura
-  png("r_roc_cm.png", width = 1200, height = 450, res = 150)
-  par(mfrow = c(1, 2), mar = c(4, 4, 3, 1))
-  
-  # Matriz de confusão
-  cm <- table(y_pred, dados_te$y)
-  cm_normalized <- cm / rowSums(cm)
-  
-  image(t(cm)[, nrow(cm):1],
-        col = colorRamp(c("white", "#2980B9"))(seq(0, 1, length.out = 256)),
-        xaxt = "n", yaxt = "n",
-        main = "Matriz de Confusão")
-  
-  axis(1, at = c(0, 1), labels = c("Não", "Sim"))
-  axis(2, at = c(0, 1), labels = c("Sim", "Não"))
-  
-  # Adicionar valores
-  text(0, 1, labels = cm[1, 1], cex = 1.5, font = 2)
-  text(1, 1, labels = cm[2, 1], cex = 1.5, font = 2)
-  text(0, 0, labels = cm[1, 2], cex = 1.5, font = 2)
-  text(1, 0, labels = cm[2, 2], cex = 1.5, font = 2)
-  
-  mtext("Predito", side = 1, line = 2.5)
-  mtext("Real", side = 2, line = 2.5)
-  
-  # Curva ROC
-  plot(roc_obj,
-       col = "#2980B9",
-       lwd = 2.5,
-       main = "Curva ROC",
-       xlab = "1 − Especificidade",
+
+  png("r_roc.png", width = 600, height = 500, res = 130)
+  plot(roc_obj, col = "#2980B9", lwd = 2.5,
+       main = "Curva ROC", xlab = "1 - Especificidade",
        ylab = "Sensibilidade")
-  abline(a = 0, b = 1, lty = 2, col = "black", lwd = 1.5)
-  
-  legend("lower right",
-         legend = paste("AUC =", round(auc_val, 3)),
-         bty = "n",
-         cex = 1.2)
-  
+  abline(a = 0, b = 1, lty = 2, col = "gray50", lwd = 1.5)
+  legend("bottomright", legend = paste("AUC =", round(auc_val, 3)),
+         bty = "n", cex = 1.2, text.col = "#2980B9")
   dev.off()
-  cat("✓ Gráfico: r_roc_cm.png\n\n")
-  
-  # Interpretação da AUC
-  cat("AUC:", round(auc_val, 4), "— ", sep = "")
-  if (auc_val >= 0.90) {
-    cat("Excelente ⭐⭐⭐\n\n")
-  } else if (auc_val >= 0.80) {
-    cat("Bom ⭐⭐\n\n")
-  } else if (auc_val >= 0.70) {
-    cat("Aceitável ⭐\n\n")
-  } else {
-    cat("Fraco — revisar modelo\n\n")
-  }
-  
-  invisible(list(roc = roc_obj, auc = auc_val))
+
+  cat("Grafico: r_roc.png\n")
+  cat(sprintf("AUC = %.4f — ", auc_val))
+  if (auc_val >= 0.90)       cat("Excelente\n\n")
+  else if (auc_val >= 0.80)  cat("Bom\n\n")
+  else if (auc_val >= 0.70)  cat("Aceitável\n\n")
+  else                        cat("Fraco\n\n")
+
+  invisible(auc_val)
 }
 
 # ════════════════════════════════════════════════════════════
-#  12. PREDIÇÃO PARA NOVA OBSERVAÇÃO
+# 14. DIAGNÓSTICO DE RESÍDUOS
 # ════════════════════════════════════════════════════════════
 
-predicao_nova_obs <- function(modelo) {
-  # Nova observação
-  valores <- c(45, 55)
-  
-  # Criar data frame com nomes corretos
-  nova_obs <- setNames(data.frame(t(valores)), VARIAVEIS_PRED)
-  
-  # Fazer predição
-  prob_nova <- predict(modelo, newdata = nova_obs, type = "response")
-  classe <- if (prob_nova >= LIMIAR_DECISAO) "Sucesso (1)" else "Fracasso (0)"
-  
-  cat("Predição para Nova Observação:\n")
-  for (i in seq_along(VARIAVEIS_PRED)) {
-    cat(" ", VARIAVEIS_PRED[i], "=", valores[i], "\n")
-  }
-  cat("\n  Probabilidade:", round(prob_nova, 4), "\n")
-  cat("  Classificação:", classe, "\n\n")
-  
-  invisible(list(prob = prob_nova, classe = classe))
+diagnostico_residuos <- function(modelo) {
+  res_pearson <- residuals(modelo, type = "pearson")
+  res_deviance <- residuals(modelo, type = "deviance")
+  hat_values <- hatvalues(modelo)
+
+  cat("Diagnóstico de Resíduos\n")
+  cat("Resíduos de Pearson:\n")
+  cat(sprintf("  Min = %.3f, Max = %.3f\n", min(res_pearson), max(res_pearson)))
+  cat(sprintf("  Proporcao |r| > 2: %.1f%%\n",
+              100 * mean(abs(res_pearson) > 2)))
+
+  cat("Resíduos Deviance:\n")
+  cat(sprintf("  Min = %.3f, Max = %.3f\n", min(res_deviance), max(res_deviance)))
+  cat(sprintf("  Proporcao |d| > 2: %.1f%%\n",
+              100 * mean(abs(res_deviance) > 2)))
+
+  cat("Leverage (hat values):\n")
+  cat(sprintf("  Media = %.4f (esperado = %.4f)\n",
+              mean(hat_values), ncol(model.matrix(modelo)) / length(modelo$y)))
+  cat("\n")
 }
 
 # ════════════════════════════════════════════════════════════
@@ -446,58 +432,58 @@ predicao_nova_obs <- function(modelo) {
 
 main <- function() {
   cat("\n")
-  cat(strrep("=", 70), "\n")
-  cat("  REGRESSÃO LOGÍSTICA BINÁRIA — R\n")
-  cat(strrep("=", 70), "\n")
-  cat("\n")
-  
+  cat(paste(rep("=", 70), collapse = ""), "\n")
+  cat("  REGRESSÃO LOGÍSTICA BINÁRIA — ANÁLISE (R)\n")
+  cat(paste(rep("=", 70), collapse = ""), "\n\n")
+
   # 1. Dados
   criar_dados_simulados()
-  dados_info <- carregar_dados()
-  dados <- dados_info$dados
-  N1 <- dados_info$N1
-  N0 <- dados_info$N0
-  N <- dados_info$N
-  
+  di <- carregar_dados()
+  dados <- di$dados
+
   # 2. EDA
   analise_exploratoria(dados)
-  
-  # 3. Dividir
-  dados_split <- dividir_dados(dados)
-  dados_tr <- dados_split$tr
-  dados_te <- dados_split$te
-  
+
+  # 3. Divisão treino/teste
+  ds <- dividir_dados(dados)
+  dados_tr <- ds$tr
+  dados_te <- ds$te
+
   # 4. Ajuste
   modelo <- ajustar_modelo(dados_tr)
-  
-  # 5. Coeficientes
-  coeficientes_odds_ratios(modelo)
-  
-  # 6. R² McFadden
-  N1_tr <- sum(dados_tr$y == 1)
-  N0_tr <- sum(dados_tr$y == 0)
-  pseudo_r2_mcfadden(modelo, dados_tr, N1_tr, N0_tr)
-  
-  # 7. Testes
-  teste_razao_verossimilhancas(modelo, dados_tr)
+
+  # 5. Coeficientes e OR (ANÁLISE)
+  tabela_coeficientes(modelo)
+
+  # 6. Efeitos Marginais (ANÁLISE)
+  efeitos_marginais(modelo, dados_tr)
+
+  # 7. Medidas de Ajuste (ANÁLISE)
+  medidas_ajuste(modelo)
+
+  # 8. Teste TRV (ANÁLISE)
+  teste_trv(modelo)
+
+  # 9. Teste de Wald (ANÁLISE)
   teste_wald(modelo)
-  
-  # 8. Avaliação
+
+  # 10. Hosmer-Lemeshow (ANÁLISE - diagnóstico)
+  teste_hosmer_lemeshow(modelo)
+
+  # 11. Diagnóstico de Resíduos (ANÁLISE)
+  diagnostico_residuos(modelo)
+
+  # 12. Avaliação no teste (auxiliar)
   avaliacao <- avaliar_modelo(modelo, dados_te)
-  
-  # 9. Visualizações
-  plotar_roc_matriz(dados_te, avaliacao$prob, avaliacao$pred)
-  
-  # 10. Predição nova
-  predicao_nova_obs(modelo)
-  
-  cat(strrep("=", 70), "\n")
-  cat("  ✓ ANÁLISE COMPLETA!\n")
-  cat(strrep("=", 70), "\n")
-  cat("\n")
+
+  # 13. ROC/AUC (auxiliar)
+  plotar_roc(dados_te, avaliacao$prob)
+
+  cat(paste(rep("=", 70), collapse = ""), "\n")
+  cat("  ANALISE COMPLETA\n")
+  cat(paste(rep("=", 70), collapse = ""), "\n\n")
 }
 
-# Executar
 if (!interactive()) {
   main()
 }

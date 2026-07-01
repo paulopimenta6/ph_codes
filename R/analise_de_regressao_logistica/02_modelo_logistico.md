@@ -2,108 +2,138 @@
 
 ## 2.1 A Função Sigmoide
 
-A equação central do modelo de regressão logística binária é a **função sigmoide logística**:
+A equação central do modelo é a **função sigmoide logística**:
 
-$$\hat{y} = P(Y = 1 \mid \mathbf{x}) = \frac{1}{1 + e^{-z}}, \quad z = a_1 x_1 + a_2 x_2 + \cdots + a_p x_p + b$$
-
-onde:
+$$\pi(\mathbf{x}) = P(Y = 1 \mid \mathbf{x}) = \frac{1}{1 + e^{-z}}, \quad z = \beta_0 + \beta_1 x_1 + \cdots + \beta_p x_p$$
 
 | Símbolo | Nome | Descrição |
 |:---:|:---|:---|
-| $x_1, \ldots, x_p$ | Variáveis preditoras | Características observadas |
-| $a_1, \ldots, a_p$ | Coeficientes de regressão | Parâmetros estimados pelo modelo |
-| $b$ | Intercepto | Parâmetro constante (viés) |
-| $z$ | Log-odds (logit) | Combinação linear das preditoras |
-| $\hat{y}$ | Probabilidade predita | $P(Y=1 \mid \mathbf{x}) \in (0,1)$ |
+| $x_1,\ldots,x_p$ | Variáveis preditoras | Características observadas |
+| $\beta_0$ | Intercepto | Log-odds quando todas as $x_j = 0$ |
+| $\beta_1,\ldots,\beta_p$ | Coeficientes de regressão | Parâmetros a estimar |
+| $z$ | Logit (log-odds) | Combinação linear das preditoras |
+| $\pi(\mathbf{x})$ | Probabilidade condicional | $P(Y=1 \mid \mathbf{x}) \in (0,1)$ |
 
-### Propriedade Fundamental
+### Propriedades da Sigmoide
 
-Independentemente do valor de $z$, sempre temos:
-$$0 < \hat{y} < 1$$
-
-O modelo **nunca produz uma probabilidade inválida**, ao contrário da regressão linear ordinária que pode gerar valores fora de $[0,1]$.
+-   **Domínio e imagem:** $\sigma: \mathbb{R} \to (0,1)$
+-   **Monotonicidade:** estritamente crescente
+-   **Ponto de inflexão:** $\sigma(0) = 0{,}5$
+-   **Simetria:** $\sigma(-z) = 1 - \sigma(z)$
+-   **Derivada:** $\sigma'(z) = \sigma(z)(1 - \sigma(z))$ — propriedade
+    computacionalmente importante para estimação
 
 ### Forma Alternativa
 
-A função sigmoide pode ser reescrita como:
 $$\sigma(z) = \frac{e^z}{1 + e^z} = \frac{1}{1 + e^{-z}}$$
 
-E sua inversa — a **transformação logit** — é:
-$$\text{logit}(\hat{y}) = \log_e\left(\frac{\hat{y}}{1-\hat{y}}\right) = z$$
+## 2.2 A Transformação Logit
 
----
+Invertendo a sigmoide, obtemos o **logit** (ou log-odds):
 
-## 2.2 A Transformação Logit e os Odds
+$$\text{logit}(\pi) = \ln\left(\frac{\pi}{1-\pi}\right) = z = \beta_0 + \beta_1 x_1 + \cdots + \beta_p x_p$$
 
-### O Conceito de Odds (Razão de Chances)
+O termo $\dfrac{\pi}{1-\pi}$ são os **odds** (razão de chances):
 
-Invertendo a função sigmoide:
-$$\log_e\!\left(\frac{p}{1-p}\right) = z = a_1 x_1 + \cdots + a_p x_p + b$$
+$$\text{Odds} = \frac{P(\text{evento})}{P(\text{não-evento})} = \frac{\pi}{1-\pi}$$
 
-O termo $\dfrac{p}{1-p}$ é a **razão de chances** (*odds*):
+**Exemplo:** Se $\pi = 0{,}75$, então $\text{Odds} = 0{,}75/0{,}25 = 3$ — as
+chances são "3 para 1" a favor do evento.
 
-$$\text{Odds} = \frac{P(\text{evento ocorre})}{P(\text{evento não ocorre})} = \frac{p}{1-p}$$
+A transformação logit **lineariza** a relação entre as preditoras e os
+log-odds, base da interpretação dos coeficientes.
 
-**Exemplo numérico:** Se a probabilidade de sucesso é $p = 0{,}75$, então:
-$$\text{Odds} = \frac{0{,}75}{0{,}25} = 3$$
-
-Interpretação: as chances são "3 para 1" a favor do evento.
-
-### Linearidade na Escala Logit
-
-A transformação logit **lineariza a relação** entre as preditoras e os odds do evento:
-
-$$\log_e(\text{Odds}) = z = a_1 x_1 + \cdots + a_p x_p + b$$
-
-Esta é a base para interpretar os coeficientes!
-
----
-
-## 2.3 Interpretação dos Coeficientes via Odds Ratio
+## 2.3 Interpretação dos Coeficientes — Odds Ratio
 
 ### Odds Ratio (OR)
 
-Quando aumentamos uma variável preditora $x_i$ em **1 unidade**, os odds se multiplicam por:
+Quando aumentamos $x_j$ em **1 unidade**, mantendo as demais variáveis
+constantes, os odds se multiplicam por:
 
-$$OR_i = e^{a_i}$$
+$$OR_j = e^{\beta_j}$$
 
-### Tabela de Interpretações
-
-| Situação | Interpretação |
+| Situação | Efeito nos Odds |
 |:---|:---|
-| $a_i > 0$ $\Rightarrow$ $OR_i > 1$ | Aumento de 1 unidade em $x_i$ **multiplica** os odds por $e^{a_i}$ |
-| $a_i < 0$ $\Rightarrow$ $OR_i < 1$ | Aumento de 1 unidade em $x_i$ **reduz** os odds por fator $e^{a_i}$ |
-| $a_i = 0$ $\Rightarrow$ $OR_i = 1$ | $x_i$ não tem efeito sobre os odds do evento |
+| $\beta_j > 0 \Rightarrow OR_j > 1$ | Aumento de 1 unidade em $x_j$ **multiplica** os odds por $e^{\beta_j}$ (aumento percentual: $(e^{\beta_j} - 1) \times 100\%$) |
+| $\beta_j < 0 \Rightarrow OR_j < 1$ | Aumento de 1 unidade em $x_j$ **reduz** os odds por fator $e^{\beta_j}$ (redução percentual: $(1 - e^{\beta_j}) \times 100\%$) |
+| $\beta_j = 0 \Rightarrow OR_j = 1$ | Sem efeito nos odds |
 
-### Exemplo Numérico
-
-Se $a_1 = 2{,}44$, então:
-$$OR_1 = e^{2{,}44} \approx 11{,}47$$
-
-**Interpretação:** Um aumento de 1 unidade em $x_1$ eleva os odds do evento em **1047%** (ou multiplica os odds por ~11,5), mantidas as demais variáveis constantes.
+**Exemplo numérico:** Se $\beta_1 = 2{,}44$ e $\beta_2 = -0{,}92$:
+- $OR_1 = e^{2{,}44} \approx 11{,}47$ — aumento de 1 unidade em $x_1$
+  eleva os odds em **1047%**
+- $OR_2 = e^{-0{,}92} \approx 0{,}40$ — aumento de 1 unidade em $x_2$
+  reduz os odds em **60%**
 
 ### Variação em Múltiplas Unidades
 
-Se queremos saber o efeito de um aumento de $\Delta x_i$ unidades:
+Para um aumento de $\Delta$ unidades em $x_j$:
 
-$$OR(\Delta x_i) = e^{a_i \cdot \Delta x_i}$$
+$$OR_j(\Delta) = e^{\beta_j \cdot \Delta}$$
 
-**Exemplo:** Se $a_1 = 0{,}15$ e aumentamos $x_1$ em 5 unidades:
-$$OR(5) = e^{0{,}15 \times 5} = e^{0{,}75} \approx 2{,}12$$
+**Exemplo:** $\beta_1 = 0{,}15$, $\Delta = 5$:
 
-Os odds aumentam em ~112%.
+$$OR_1(5) = e^{0{,}15 \times 5} = e^{0{,}75} \approx 2{,}12$$
+
+Os odds aumentam em **112%**.
+
+### Intervalo de Confiança para OR
+
+O intervalo de $100(1-\alpha)\%$ confiança para o OR é:
+
+$$IC(OR_j) = \exp\left(\hat{\beta}_j \pm z_{\alpha/2} \cdot SE(\hat{\beta}_j)\right)$$
+
+Se o IC **não contiver 1**, rejeita-se $H_0: \beta_j = 0$ ao nível
+$\alpha$.
+
+## 2.4 Efeitos Marginais
+
+Para **análise**, uma interpretação mais intuitiva que o OR é o **efeito
+marginal**: a variação em $P(Y=1)$ decorrente de uma variação unitária
+em $x_j$.
+
+### Efeito Marginal (EM)
+
+Derivando $\pi(\mathbf{x})$ em relação a $x_j$:
+
+$$\frac{\partial \pi(\mathbf{x})}{\partial x_j} = \pi(\mathbf{x})(1 - \pi(\mathbf{x})) \cdot \beta_j$$
+
+Interpretação: a mudança na **probabilidade** do evento para um aumento
+de 1 unidade em $x_j$ depende do nível de $\pi(\mathbf{x})$ — o efeito é
+**máximo** quando $\pi = 0{,}5$ e **mínimo** próximo de 0 ou 1.
+
+### Efeito Marginal na Média (MEM)
+
+Avalia o EM no ponto médio das preditoras:
+
+$$MEM_j = \bar{\pi}(1 - \bar{\pi}) \cdot \beta_j, \quad \bar{\pi} = \frac{1}{n}\sum_{i=1}^n \pi(\mathbf{x}_i)$$
+
+### Efeito Marginal Médio (AME)
+
+Média dos efeitos marginais individuais:
+
+$$AME_j = \frac{1}{n}\sum_{i=1}^n \pi(\mathbf{x}_i)(1 - \pi(\mathbf{x}_i)) \cdot \beta_j$$
+
+**Exemplo comparativo:** Para $\beta_j = 1{,}5$:
+
+| $\pi$ | EM($x_j$) | Interpretação |
+|:---:|:---:|:---|
+| 0,10 | 0,135 | Aumento de 1 un. eleva $P(Y=1)$ em 13,5 pp |
+| 0,50 | 0,375 | Efeito máximo: 37,5 pp |
+| 0,90 | 0,135 | Idem a $\pi=0{,}10$ pela simetria |
+
+> O OR é constante ($e^{\beta_j}$), mas o efeito na **probabilidade**
+> varia com o nível de $\pi$ — daí a importância dos efeitos marginais
+> na análise substantiva.
+
+## 2.5 Comparação: OR vs. Efeito Marginal
+
+| Medida | Escala | Constante? | Uso |
+|:---|:---:|:---:|:---|
+| Odds Ratio | odds | Sim | Quantificação do efeito, comunicação clínica |
+| Efeito Marginal | probabilidade (pp) | Não | Interpretação substantiva, ciências sociais |
+| Log-odds ($\beta$) | log-odds | Sim | Inferência estatística, testes |
 
 ---
 
-## 2.4 Visão Gráfica da Sigmoide
-
-A curva sigmoide tem as seguintes características:
-
-- **Forma de S:** passa monotonicamente de 0 a 1
-- **Ponto de inflexão:** em $z = 0$ (onde $\hat{y} = 0{,}5$)
-- **Simetria:** $\sigma(z) + \sigma(-z) = 1$
-- **Limites assintóticos:** $\lim_{z \to \infty} \sigma(z) = 1$ e $\lim_{z \to -\infty} \sigma(z) = 0$
-
----
-
+**Anterior:** [1. Introdução](./01_introducao.md) |
 **Próximo:** [3. Estimação por Máxima Verossimilhança](./03_estimacao.md)
