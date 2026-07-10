@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Econômico - Taiwan</title>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #0a0e27;
+  color: #e2e8f0;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+  padding: 16px;
+}
+.header {
+  text-align: center;
+  padding: 20px 0 10px;
+  border-bottom: 1px solid #1e293b;
+  margin-bottom: 20px;
+}
+.header h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  background: linear-gradient(135deg, #00d4aa, #4dabf7, #ffd43b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.header .meta {
+  font-size: 0.8rem;
+  color: #64748b;
+  margin-top: 6px;
+}
+.header .meta span { margin: 0 12px; }
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.kpi-card {
+  background: #0f1535;
+  border: 1px solid #1e293b;
+  border-radius: 10px;
+  padding: 12px 10px;
+  text-align: center;
+  transition: border-color 0.2s;
+}
+.kpi-card:hover { border-color: #2a3f5f; }
+.kpi-card .label {
+  font-size: 0.72rem;
+  color: #8899aa;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+.kpi-card .value {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 4px 0;
+}
+.kpi-card .change {
+  font-size: 0.72rem;
+  color: #64748b;
+}
+.chart-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.chart-card {
+  background: #0f1535;
+  border: 1px solid #1e293b;
+  border-radius: 10px;
+  padding: 6px;
+  overflow: hidden;
+}
+.chart-card .plotly-graph-div { width: 100% !important; }
+.full-width { grid-column: 1 / -1; }
+.yoy-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 14px;
+  grid-column: 1 / -1;
+}
+.mid-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 14px;
+  grid-column: 1 / -1;
+}
+.controls {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.controls button {
+  background: #1e293b;
+  color: #e2e8f0;
+  border: 1px solid #2a3f5f;
+  padding: 8px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.82rem;
+  transition: all 0.2s;
+}
+.controls button:hover {
+  background: #2a3f5f;
+  border-color: #4dabf7;
+}
+.status-bar {
+  text-align: center;
+  font-size: 0.78rem;
+  color: #64748b;
+  padding: 12px 0 4px;
+}
+@media (max-width: 600px) {
+  body { padding: 8px; }
+  .header h1 { font-size: 1.2rem; }
+  .kpi-row { grid-template-columns: repeat(2, 1fr); }
+  .kpi-card { padding: 8px 6px; }
+  .kpi-card .value { font-size: 1rem; }
+}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>TAIWAN ECONOMIC DASHBOARD</h1>
+  <div class="meta">
+    <span>📊 {{ records }} registros</span>
+    <span>🔄 Fonte: {{ source }}</span>
+    <span>📅 Atualizado: {{ last_update }}</span>
+  </div>
+</div>
+
+<div class="controls">
+  <button onclick="reloadData()">⟳ Recarregar Dados</button>
+  <button onclick="expandAll()">⛶ Expandir Gráficos</button>
+  <button onclick="resetZoom()">⊡ Resetar Zoom</button>
+</div>
+
+{% if kpi %}
+<div class="kpi-row">
+  <div class="kpi-card">
+    <div class="label">Exportações</div>
+    <div class="value" style="color:#00d4aa">{{ kpi.exports.value }}</div>
+    <div class="change">{{ kpi.exports.change }}</div>
+  </div>
+  <div class="kpi-card">
+    <div class="label">Importações</div>
+    <div class="value" style="color:#ff6b6b">{{ kpi.imports.value }}</div>
+    <div class="change">{{ kpi.imports.change }}</div>
+  </div>
+  <div class="kpi-card">
+    <div class="label">Saldo</div>
+    <div class="value" style="color:#4dabf7">{{ kpi.balance.value }}</div>
+    <div class="change">{{ kpi.balance.change }}</div>
+  </div>
+  <div class="kpi-card">
+    <div class="label">Média Exp.</div>
+    <div class="value" style="color:#00d4aa">{{ kpi.avg_exp.value }}</div>
+    <div class="change">{{ kpi.avg_exp.change }}</div>
+  </div>
+  <div class="kpi-card">
+    <div class="label">Média Imp.</div>
+    <div class="value" style="color:#ff6b6b">{{ kpi.avg_imp.value }}</div>
+    <div class="change">{{ kpi.avg_imp.change }}</div>
+  </div>
+  <div class="kpi-card">
+    <div class="label">Cobertura</div>
+    <div class="value" style="color:#ffd43b">{{ kpi.coverage.value }}</div>
+    <div class="change">{{ kpi.coverage.change }}</div>
+  </div>
+</div>
+{% endif %}
+
+<div class="chart-grid" id="chartGrid">
+  <div class="chart-card full-width"><div id="chart-timeseries"></div></div>
+  <div class="yoy-group">
+    <div class="chart-card"><div id="chart-yoy_exports"></div></div>
+    <div class="chart-card"><div id="chart-yoy_imports"></div></div>
+    <div class="chart-card"><div id="chart-yoy_balance"></div></div>
+  </div>
+  <div class="mid-group">
+    <div class="chart-card"><div id="chart-seasonality"></div></div>
+    <div class="chart-card"><div id="chart-correlation"></div></div>
+    <div class="chart-card"><div id="chart-partners"></div></div>
+  </div>
+  <div class="mid-group">
+    <div class="chart-card"><div id="chart-volatility"></div></div>
+    <div class="chart-card"><div id="chart-scatter"></div></div>
+    <div class="chart-card"><div id="chart-distribution"></div></div>
+  </div>
+</div>
+
+<div class="status-bar" id="statusBar">Carregando gráficos...</div>
+
+<script>
+const CHARTS = [
+  'timeseries', 'yoy_exports', 'yoy_imports', 'yoy_balance',
+  'seasonality', 'correlation', 'partners',
+  'volatility', 'scatter', 'distribution'
+];
+{% if standalone %}
+const EMBEDDED = {{ figures_json|safe }};
+{% endif %}
+const CONFIG = {
+  responsive: true,
+  displayModeBar: true,
+  modeBarButtonsToRemove: ['lasso2d', 'select2d', 'autoScale2d'],
+  displaylogo: false,
+  scrollZoom: true,
+};
+const LAYOUT_OPTS = {
+  autosize: true,
+  margin: { l: 45, r: 15, t: 40, b: 35 },
+};
+
+function renderChart(id, data) {
+  const el = document.getElementById('chart-' + id);
+  if (!el) return;
+  const fig = data[id];
+  if (!fig) return;
+  try {
+    Plotly.newPlot(el, fig.data || [], { ...(fig.layout || {}), ...LAYOUT_OPTS }, CONFIG);
+  } catch(e) {
+    console.error('Erro ao renderizar ' + id + ':', e);
+    el.innerHTML = '<div style="padding:20px;text-align:center;color:#ff6b6b;">Erro ao carregar gráfico: ' + id + '</div>';
+  }
+}
+
+{% if standalone %}
+function loadCharts() {
+  CHARTS.forEach(id => renderChart(id, EMBEDDED));
+  document.getElementById('statusBar').textContent = '✅ Gráficos carregados (standalone)';
+}
+{% else %}
+async function fetchAndRender() {
+  document.getElementById('statusBar').textContent = '⏳ Carregando gráficos...';
+  try {
+    const resp = await fetch('/api/figures');
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    const data = await resp.json();
+    CHARTS.forEach(id => renderChart(id, data));
+    document.getElementById('statusBar').textContent =
+      '✅ Gráficos interativos carregados | Clique e arraste para zoom, passe o mouse para detalhes';
+  } catch(e) {
+    document.getElementById('statusBar').textContent = '❌ Erro ao carregar: ' + e.message;
+    console.error(e);
+  }
+}
+
+async function reloadData() {
+  document.getElementById('statusBar').textContent = '⏳ Recarregando dados...';
+  try {
+    await fetch('/api/reload');
+    await fetchAndRender();
+    document.getElementById('statusBar').textContent = '✅ Dados recarregados!';
+  } catch(e) {
+    document.getElementById('statusBar').textContent = '❌ Erro: ' + e.message;
+  }
+}
+{% endif %}
+
+function expandAll() {
+  CHARTS.forEach(id => {
+    const el = document.getElementById('chart-' + id);
+    if (el && el._fullLayout) {
+      Plotly.relayout(el, { 'xaxis.autorange': true, 'yaxis.autorange': true });
+    }
+  });
+}
+
+function resetZoom() {
+  CHARTS.forEach(id => {
+    const el = document.getElementById('chart-' + id);
+    if (el) Plotly.relayout(el, { autosize: true });
+  });
+}
+
+window.addEventListener('resize', () => {
+  CHARTS.forEach(id => {
+    const el = document.getElementById('chart-' + id);
+    if (el) Plotly.Plots.resize(el);
+  });
+});
+
+{% if standalone %}
+document.addEventListener('DOMContentLoaded', loadCharts);
+{% else %}
+document.addEventListener('DOMContentLoaded', fetchAndRender);
+{% endif %}
+</script>
+</body>
+</html>

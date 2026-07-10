@@ -1,38 +1,122 @@
-# Taiwan Economic Trade Analyzer - Dashboard
+# Taiwan Economic Dashboard
 
-## CORRECOES DA v2.1
-- **Bug de ordenacao de datas**: Adicionado `.sort_values('date')` em todas as consolidacoes
-- **Scraper Trading Economics**: Parsing robusto com multiplas estrategias (tabelas + JSON embed)
-- **Threshold de dados**: Fonte real precisa retornar >5 registros para ser aceita
-- **Validacao**: Verificacao de ordenacao monotonica antes de prosseguir
+Dashboard interativo para análise de comércio exterior de Taiwan. Gera gráficos interativos via web (Flask + Plotly) ou estático PNG.
 
-## Estrutura
-```
-taiwan_trade_analyzer/
-├── taiwan_trade_production.py          # v2.1 CORRIGIDO (982 linhas)
-├── backup/
-│   ├── taiwan_trade_app_v1.py          # v1.0 original
-│   └── taiwan_trade_production_v20.py  # v2.0 (com bug)
-├── data/
-│   ├── taiwan_trade_production.db
-│   └── taiwan_trade.db
-└── output/
-    ├── taiwan_dashboard_production.png
-    └── taiwan_dashboard_v1.png
-```
+## Requisitos
 
-## Instalacao
+- Python 3.9+
+- ~150MB de espaço em disco
+- Conexão com internet (na primeira execução para instalar dependências)
+- Funciona em Raspberry Pi 4B (1GB RAM)
+
+## Instalação
+
 ```bash
-pip install pandas numpy matplotlib requests beautifulsoup4 scipy scikit-learn
+# 1. Instalar dependências
+pip install pandas numpy matplotlib requests beautifulsoup4 scipy scikit-learn lxml flask plotly
+
+# 2. Verificar instalação
+python3 -c "import flask, plotly; print('OK')"
 ```
 
-## Uso
+Se estiver no Raspberry Pi OS, pode precisar do `pip3`:
 ```bash
-python taiwan_trade_production.py --mode full
+sudo apt install python3-pip python3-venv
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
 ```
 
-## Fontes de Dados (prioridade)
-1. Trading Economics (HTML scraping)
-2. World Bank API
-3. IMF Data API
-4. Dados simulados (fallback)
+## Uso no Raspberry Pi 4B
+
+### Opção 1: Dashboard Web Interativo (recomendado)
+
+Inicia um servidor web acessível pelo navegador na mesma rede:
+
+```bash
+# Iniciar servidor (modo otimizado para Pi)
+python3 app.py --host 0.0.0.0 --port 5000 --pi-mode
+
+# Ou usar o script pronto
+./start_pi.sh
+```
+
+Acesse `http://<IP_DO_RASPBERRY>:5000` no navegador.
+
+- Todos os gráficos têm zoom, pan e hover com dados
+- Botão "Recarregar Dados" para buscar novas informações
+- Layout responsivo (funciona no celular)
+
+### Opção 2: HTML Standalone
+
+Gera um arquivo HTML que abre direto no navegador (sem servidor rodando):
+
+```bash
+python3 app.py --no-web --output dashboard.html
+```
+
+Depois é só abrir `dashboard.html` no navegador.
+
+### Opção 3: Dashboard PNG (original)
+
+```bash
+python3 taiwan_trade_production.py --mode dashboard
+```
+
+Gera `taiwan_dashboard.png`.
+
+## Estrutura dos Arquivos
+
+```
+├── app.py                         # Servidor web Flask (dashboard interativo)
+├── taiwan_trade_production.py     # Pipeline original (coleta, análise, PNG)
+├── templates/dashboard.html       # Template HTML com Plotly.js
+├── start_pi.sh                    # Script de inicialização para Raspberry Pi
+├── requirements.txt               # Dependências do projeto
+├── dashboard_interativo.html      # HTML standalone (gerado pelo app.py --no-web)
+├── taiwan_dashboard.png           # Dashboard PNG (gerado pelo pipeline original)
+└── taiwan_trade.db                # Banco SQLite com dados processados
+```
+
+## APIs do Servidor Web
+
+Com o servidor rodando, essas URLs estão disponíveis:
+
+| Rota | Descrição |
+|---|---|
+| `/` | Dashboard completo com todos os gráficos |
+| `/api/figures` | JSON com dados de todos os 10 gráficos Plotly |
+| `/api/data` | JSON com dados brutos (séries temporais) |
+| `/api/health` | Status do servidor e metadados |
+| `/api/reload` | Força recarga dos dados |
+
+## Fontes de Dados
+
+1. **Trading Economics** (scraping HTML)
+2. **World Bank API** (dados anuais)
+3. **IMF Data API**
+4. **Dados simulados** (fallback automático quando não há internet)
+
+O sistema tenta as fontes reais em ordem. Se todas falharem, gera dados sintéticos realistas com sazonalidade, tendência e choques (COVID, guerra, boom de chips).
+
+## Solução de Problemas no Raspberry Pi
+
+**Erro de memória**: Antes de executar, feche outros programas pesados.
+```bash
+# Limitar threads das bibliotecas numéricas
+export OMP_NUM_THREADS=2
+export MKL_NUM_THREADS=2
+export OPENBLAS_NUM_THREADS=2
+```
+
+**Servidor lento para iniciar**: A primeira execução faz várias tentativas de conexão com APIs externas (pode levar ~40s). Use `--pi-mode` para acelerar.
+
+**Porta 5000 ocupada**: Use outra porta:
+```bash
+python3 app.py --port 8080
+```
+
+**HTML standalone não atualiza**: Regere o arquivo:
+```bash
+python3 app.py --no-web --reload
+```
