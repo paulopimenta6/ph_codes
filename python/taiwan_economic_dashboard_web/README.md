@@ -22,6 +22,7 @@ python3 -c "import flask, plotly; print('OK')"
 Se estiver no Raspberry Pi OS, pode precisar do `pip3`:
 ```bash
 sudo apt install python3-pip python3-venv
+cd /home/nottingham/projetos/servidor_dados
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
@@ -29,9 +30,28 @@ pip install -r requirements.txt
 
 ## Uso no Raspberry Pi 4B
 
-### Opção 1: Dashboard Web Interativo (recomendado)
+### Opção 1: Servidor como serviço (recomendado para SSH)
 
-Inicia um servidor web acessível pelo navegador na mesma rede:
+Instala o dashboard como serviço do sistema. Ele sobe sozinho na inicialização do Pi e continua rodando mesmo depois de você fechar o SSH.
+
+```bash
+# Instalar (uma vez, executar dentro do diretório do projeto)
+cd /home/nottingham/projetos/servidor_dados
+chmod +x install_service.sh
+./install_service.sh
+
+# Comandos úteis depois da instalação:
+sudo systemctl status taiwan-dashboard   # Ver se está rodando
+sudo systemctl stop taiwan-dashboard     # Parar
+sudo systemctl start taiwan-dashboard    # Iniciar
+sudo journalctl -u taiwan-dashboard -f   # Ver logs ao vivo
+```
+
+Acesse `http://<IP_DO_RASPBERRY>:5000` no navegador de qualquer computador na mesma rede.
+
+### Opção 2: Dashboard Web Interativo (manual)
+
+Inicia o servidor manualmente (morre quando você fecha o SSH, a menos que use tmux):
 
 ```bash
 # Iniciar servidor (modo otimizado para Pi)
@@ -39,6 +59,14 @@ python3 app.py --host 0.0.0.0 --port 5000 --pi-mode
 
 # Ou usar o script pronto
 ./start_pi.sh
+```
+
+Para manter rodando após desconectar o SSH, use tmux:
+```bash
+tmux new -s dashboard
+python3 app.py --host 0.0.0.0 --port 5000 --pi-mode
+# Ctrl+B, D para desanexar (o servidor continua)
+# tmux attach -t dashboard para voltar
 ```
 
 Acesse `http://<IP_DO_RASPBERRY>:5000` no navegador.
@@ -72,6 +100,7 @@ Gera `taiwan_dashboard.png`.
 ├── taiwan_trade_production.py     # Pipeline original (coleta, análise, PNG)
 ├── templates/dashboard.html       # Template HTML com Plotly.js
 ├── start_pi.sh                    # Script de inicialização para Raspberry Pi
+├── install_service.sh             # Instala o servidor como serviço do sistema
 ├── requirements.txt               # Dependências do projeto
 ├── dashboard_interativo.html      # HTML standalone (gerado pelo app.py --no-web)
 ├── taiwan_dashboard.png           # Dashboard PNG (gerado pelo pipeline original)

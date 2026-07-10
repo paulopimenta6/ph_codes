@@ -92,7 +92,7 @@ class DataCollector:
             logger.warning("requests nao instalado")
             return None
 
-    def _fetch_with_retry(self, url: str, method: str = 'get', **kwargs):
+    def _fetch_with_retry(self, url: str, method: str = 'get', min_content: int = 100, **kwargs):
         if self.session is None:
             return None
         for attempt in range(self.config.max_retries):
@@ -102,8 +102,8 @@ class DataCollector:
                 else:
                     response = self.session.post(url, **kwargs)
                 response.raise_for_status()
-                if len(response.content) < 500:
-                    logger.warning(f"Resposta curta: {len(response.content)} bytes")
+                if len(response.content) < min_content:
+                    logger.warning(f"Resposta curta: {len(response.content)} bytes (min: {min_content})")
                     if attempt < self.config.max_retries - 1:
                         time.sleep(self.config.retry_delay * (attempt + 1))
                         continue
@@ -239,7 +239,86 @@ class DataCollector:
         return df_final
 
     # -------------------------------------------------------------------------
-    # FONTE 2: World Bank API
+    # FONTE 2: MOEA - International Trade Administration (Official)
+    # -------------------------------------------------------------------------
+    def fetch_moea_trade_data(self) -> Optional[pd.DataFrame]:
+        """
+        Extrai dados oficiais de comercio de Taiwan do portal da
+        International Trade Administration (Ministerio da Economia - MOEA).
+        Os dados sao originados da Alfandega (Customs Administration, MOF).
+        Fonte oficial: https://publicinfo.trade.gov.tw
+        """
+        logger.info("[FONTE MOEA] International Trade Administration API...")
+        base_url = "https://publicinfo.trade.gov.tw/cuswebo/FSCE30C0I"
+
+        def _fetch_indicator(ie_code: str, label: str) -> Optional[dict]:
+            data = self._fetch_with_retry(
+                f"{base_url}/FormAGetData",
+                method='post',
+                data={'IE_CODE': ie_code}
+            )
+            if data is None:
+                return None
+            try:
+                result = json.loads(data)
+                logger.info(f"  OK {label}: {len(result.get('DATA_DAY_LIST_FORMA', []))} meses")
+                return result
+            except Exception as e:
+                logger.error(f"  ERRO parse {label}: {e}")
+                return None
+
+        exp = _fetch_indicator('out', 'Exportacoes')
+        imp = _fetch_indicator('in', 'Importacoes')
+
+        if not exp or not imp:
+            logger.warning("MOEA API: dados incompletos")
+            return None
+
+        exp_dates = exp.get('DATA_DAY_LIST_FORMA', [])
+        exp_vals = exp.get('US_AMT_LIST_FORMA', [])
+        imp_dates = imp.get('DATA_DAY_LIST_FORMA', [])
+        imp_vals = imp.get('US_AMT_LIST_FORMA', [])
+
+        if not exp_dates or not imp_dates:
+            return None
+
+        records = []
+        all_dates = sorted(set(exp_dates) | set(imp_dates))
+        for ym in all_dates:
+            year = int(ym[:4])
+            month = int(ym[4:6])
+            date = datetime(year, month, 1)
+            exp_val = None
+            imp_val = None
+            if ym in exp_dates:
+                idx = exp_dates.index(ym)
+                exp_val = exp_vals[idx] / 1000.0  # milhares -> milhoes
+            if ym in imp_dates:
+                idx = imp_dates.index(ym)
+                imp_val = imp_vals[idx] / 1000.0  # milhares -> milhoes
+            if exp_val is not None or imp_val is not None:
+                records.append({
+                    'date': date,
+                    'year': year,
+                    'month': month,
+                    'exports': exp_val if exp_val is not None else 0,
+                    'imports': imp_val if imp_val is not None else 0,
+                    'balance': (exp_val or 0) - (imp_val or 0),
+                    'source': 'moea_ita'
+                })
+
+        if not records:
+            return None
+
+        df = pd.DataFrame(records)
+        df = df.sort_values('date').reset_index(drop=True)
+        logger.info(f"OK MOEA ITA: {len(df)} registros "
+                     f"({df['date'].min().strftime('%Y-%m')} a "
+                     f"{df['date'].max().strftime('%Y-%m')})")
+        return df
+
+    # -------------------------------------------------------------------------
+    # FONTE 3: World Bank API
     # -------------------------------------------------------------------------
     def fetch_world_bank(self) -> Optional[pd.DataFrame]:
         logger.info("[FONTE 2] World Bank API...")
@@ -407,20 +486,37 @@ class DataCollector:
             ('IMF Data', self.fetch_imf_data),
         ]
 
+        df = None
+        source_name = None
+
         if prefer_real:
             for name, func in sources:
                 try:
                     df = func()
-                    if df is not None and len(df) > 5:  # Minimo 5 registros para ser util
+                    if df is not None and len(df) > 5:
                         logger.info(f"OKOKOK Fonte '{name}' utilizada: {len(df)} registros")
-                        self.data_sources.append(name)
-                        return df
+                        source_name = name
+                        break
                 except Exception as e:
                     logger.error(f"ERRO Fonte '{name}': {e}")
 
-        logger.warning("Todas as fontes reais falharam. Usando simulado.")
-        self.data_sources.append('simulated')
-        return self.generate_simulated_data()
+        if df is None or len(df) == 0:
+            logger.warning("Todas as fontes reais falharam. Usando simulado.")
+            source_name = 'simulated'
+            df = self.generate_simulated_data()
+
+        self._moea_raw_merge = None
+        # Coletar dados MOEA para aplicacao apos processamento
+        try:
+            self._moea_raw_merge = self.fetch_moea_trade_data()
+            if self._moea_raw_merge is not None:
+                source_name = f"{source_name} + MOEA ITA"
+                logger.info(f"Dados MOEA coletados para merge pos-processamento")
+        except Exception as e:
+            logger.warning(f"MOEA supplement nao disponivel: {e}")
+
+        self.data_sources.append(source_name)
+        return df
 
 
 # =============================================================================
@@ -430,6 +526,11 @@ class DataProcessor:
     def __init__(self, config: Config = CONFIG):
         self.config = config
         self.original_stats = {}
+        self.moea_overrides = None
+
+    def set_moea_data(self, df_moea: Optional[pd.DataFrame]):
+        """Define dados oficiais MOEA para sobrescrever apos processamento."""
+        self.moea_overrides = df_moea.copy() if df_moea is not None else None
 
     def process(self, df: pd.DataFrame) -> pd.DataFrame:
         logger.info("\n" + "="*70)
@@ -443,8 +544,33 @@ class DataProcessor:
         df = self._handle_missing(df)
         df = self._handle_outliers(df)
         df = self._engineer_features(df)
-        df = self._validate(df)
 
+        # Aplicar dados oficiais MOEA (sobrescreve processamento para dados reais)
+        if self.moea_overrides is not None:
+            logger.info("Aplicando dados oficiais MOEA (pos-processamento)...")
+            df_moea = self.moea_overrides.copy()
+            df['date'] = pd.to_datetime(df['date']).dt.to_period('M').dt.to_timestamp()
+            df_moea['date'] = pd.to_datetime(df_moea['date']).dt.to_period('M').dt.to_timestamp()
+            df_moea = df_moea.set_index('date')
+            df_idx = df.set_index('date')
+            for col in ['exports', 'imports', 'balance']:
+                if col in df_moea.columns:
+                    df_idx[col] = df_moea[col].combine_first(df_idx[col])
+            new_rows = df_moea.index.difference(df_idx.index)
+            if len(new_rows) > 0:
+                df_idx = pd.concat([df_idx, df_moea.loc[new_rows]])
+            df = df_idx.reset_index()
+            df['year'] = df['date'].dt.year
+            df['month'] = df['date'].dt.month
+            # Recalcular features derivadas com dados MOEA
+            df['balance'] = df['exports'] - df['imports']
+            df['coverage_ratio'] = (df['exports'] / df['imports']) * 100
+            df['exports_yoy'] = df['exports'].pct_change(12) * 100
+            df['imports_yoy'] = df['imports'].pct_change(12) * 100
+            df['balance_yoy'] = df['balance'].pct_change(12) * 100
+            logger.info(f"Dados MOEA aplicados: {len(df)} registros")
+
+        df = self._validate(df)
         logger.info("OK Processamento concluido!")
         logger.info(f"  Registros: {len(df)}")
         return df
@@ -927,6 +1053,10 @@ class TaiwanTradeAnalyzer:
                 if self.df_raw is None or len(self.df_raw) == 0:
                     raise ValueError("Falha na coleta!")
             if mode in ('full', 'process') and self.df_raw is not None:
+                # Repassar dados MOEA para o processor aplicar apos tratamento
+                moea_df = getattr(self.collector, '_moea_raw_merge', None)
+                if moea_df is not None:
+                    self.processor.set_moea_data(moea_df)
                 self.df_clean = self.processor.process(self.df_raw)
             if mode in ('full', 'analyze') and self.df_clean is not None:
                 self.analysis_results = self.analyzer.analyze(self.df_clean)

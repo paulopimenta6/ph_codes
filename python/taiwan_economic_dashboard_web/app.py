@@ -5,9 +5,10 @@ import time
 import json
 import logging
 import argparse
+import threading
 from pathlib import Path
 from functools import lru_cache
-from datetime import datetime
+from datetime import datetime, timedelta
 
 import numpy as np
 import pandas as pd
@@ -41,6 +42,12 @@ _df_clean = None
 _df_raw = None
 _analysis_results = None
 _data_loaded = False
+_last_data_date = None
+_update_interval_seconds = 3600  # 1 hora entre verificacoes
+_scheduler_running = False
+
+# URL da API MOEA para verificar se ha dados novos
+_MOEA_CHECK_URL = "https://publicinfo.trade.gov.tw/cuswebo/FSCE30C0I/FormAGetData"
 
 events = [
     ('2020-03-01', 'COVID-19', '#ff6b6b'),
@@ -61,7 +68,7 @@ partner_colors = ['#ff6b6b', '#4dabf7', '#00d4aa', '#ffd43b', '#da77f2', '#ff922
 
 
 def load_data(force: bool = False) -> bool:
-    global _df_clean, _df_raw, _analysis_results, _data_loaded, _analyzer
+    global _df_clean, _df_raw, _analysis_results, _data_loaded, _analyzer, _last_data_date
     if _data_loaded and not force:
         return True
 
@@ -75,17 +82,93 @@ def load_data(force: bool = False) -> bool:
             logger.error("Falha na coleta de dados")
             return False
 
+        # Repassar dados MOEA para processor aplicar apos outlier/filter
+        moea_df = getattr(_analyzer.collector, '_moea_raw_merge', None)
+        if moea_df is not None:
+            _analyzer.processor.set_moea_data(moea_df)
         _df_clean = _analyzer.processor.process(_df_raw)
         if _df_clean is None:
             return False
 
         _analysis_results = _analyzer.analyzer.analyze(_df_clean)
         _data_loaded = True
+        _last_data_date = _df_clean['date'].max()
+        if hasattr(_last_data_date, 'to_pydatetime'):
+            _last_data_date = _last_data_date.to_pydatetime()
         logger.info(f"Dados carregados: {len(_df_clean)} registros")
         return True
     except Exception as e:
         logger.error(f"Erro no carregamento: {e}", exc_info=True)
         return False
+
+
+def check_moea_for_updates() -> bool:
+    """
+    Verifica se existem dados mais recentes na API MOEA.
+    Retorna True se novos dados foram carregados.
+    """
+    global _df_clean, _df_raw, _analysis_results, _data_loaded, _last_data_date
+
+    try:
+        import requests as req
+        resp = req.post(_MOEA_CHECK_URL, data={'IE_CODE': 'out'},
+                        timeout=15,
+                        headers={'User-Agent': 'Mozilla/5.0'})
+        if resp.status_code != 200:
+            return False
+
+        data = resp.json()
+        dates = data.get('DATA_DAY_LIST_FORMA', [])
+        if not dates:
+            return False
+
+        latest_api_date = max(dates)
+        year = int(latest_api_date[:4])
+        month = int(latest_api_date[4:6])
+        latest_api_dt = datetime(year, month, 1)
+
+        if _last_data_date is None and _df_clean is not None:
+            _last_data_date = _df_clean['date'].max()
+            if hasattr(_last_data_date, 'to_pydatetime'):
+                _last_data_date = _last_data_date.to_pydatetime()
+
+        if _last_data_date and latest_api_dt <= _last_data_date:
+            return False
+
+        logger.info(f"Novos dados MOEA detectados: {latest_api_date} "
+                     f"(atual: {_last_data_date.strftime('%Y-%m') if _last_data_date else 'N/A'})")
+        return load_data(force=True)
+
+    except Exception as e:
+        logger.warning(f"Erro na verificacao MOEA: {e}")
+        return False
+
+
+def scheduler_loop():
+    """Loop executado em thread separada para verificar atualizacoes."""
+    global _scheduler_running
+    _scheduler_running = True
+    logger.info(f"Scheduler iniciado (intervalo: {_update_interval_seconds}s)")
+
+    while _scheduler_running:
+        time.sleep(_update_interval_seconds)
+        try:
+            if check_moea_for_updates():
+                logger.info("Dashboard atualizado com novos dados MOEA")
+        except Exception as e:
+            logger.warning(f"Scheduler: erro na verificacao: {e}")
+
+
+def start_scheduler(interval_seconds: int = 3600):
+    """Inicia o scheduler em background."""
+    global _update_interval_seconds, _scheduler_running
+    _update_interval_seconds = interval_seconds
+    if _scheduler_running:
+        logger.info("Scheduler ja esta rodando")
+        return
+    thread = threading.Thread(target=scheduler_loop, daemon=True)
+    thread.start()
+    logger.info(f"Scheduler de atualizacao iniciado (a cada {interval_seconds}s)")
 
 
 def get_df() -> pd.DataFrame:
@@ -356,12 +439,30 @@ def api_reload():
     return jsonify({'status': 'error'}), 500
 
 
+@app.route('/api/check-update')
+def api_check_update():
+    """Verifica manualmente se existem dados novos na MOEA e atualiza se necessario."""
+    logger.info("Verificacao manual de atualizacao...")
+    updated = check_moea_for_updates()
+    last_date = _df_clean['date'].max().strftime('%Y-%m-%d') if _df_clean is not None else 'N/A'
+    return jsonify({
+        'updated': updated,
+        'records': len(_df_clean) if _df_clean is not None else 0,
+        'last_date': last_date,
+        'source': ','.join(_analyzer.collector.data_sources) if _analyzer else 'N/A',
+    })
+
+
 @app.route('/api/health')
 def api_health():
+    last_date = _df_clean['date'].max().strftime('%Y-%m-%d') if _df_clean is not None else 'N/A'
     return jsonify({
         'status': 'ok' if _data_loaded else 'loading',
         'records': len(_df_clean) if _df_clean is not None else 0,
         'source': ','.join(_analyzer.collector.data_sources) if _analyzer else 'N/A',
+        'last_update': last_date,
+        'scheduler_running': _scheduler_running,
+        'check_interval_seconds': _update_interval_seconds,
     })
 
 
@@ -427,16 +528,20 @@ def main():
     parser.add_argument('--no-web', action='store_true',
         help='Apenas gerar HTML standalone (sem servidor web)')
     parser.add_argument('--output', default='dashboard_interativo.html',
-        help='Arquivo de saída para HTML standalone')
+        help='Arquivo de saida para HTML standalone')
     parser.add_argument('--reload', action='store_true',
-        help='Forçar recarga dos dados na inicialização')
+        help='Forcar recarga dos dados na inicializacao')
     parser.add_argument('--pi-mode', action='store_true',
-        help='Modo Raspberry Pi (otimizações de memória)')
+        help='Modo Raspberry Pi (otimizacoes de memoria)')
+    parser.add_argument('--update-interval', type=int, default=3600,
+        help='Intervalo em segundos entre verificacoes de novos dados MOEA (default: 3600)')
+    parser.add_argument('--no-scheduler', action='store_true',
+        help='Desabilitar verificacao automatica de atualizacoes')
 
     args = parser.parse_args()
 
     if args.pi_mode:
-        logger.info("Modo Raspberry Pi ativado - otimizações de memória")
+        logger.info("Modo Raspberry Pi ativado - otimizacoes de memoria")
         os.environ['OMP_NUM_THREADS'] = '2'
         os.environ['MKL_NUM_THREADS'] = '2'
         os.environ['OPENBLAS_NUM_THREADS'] = '2'
@@ -445,7 +550,7 @@ def main():
 
     logger.info("Carregando dados...")
     if not load_data(force=args.reload):
-        logger.error("Falha ao carregar dados. Verifique a conexão com a internet.")
+        logger.error("Falha ao carregar dados. Verifique a conexao com a internet.")
         sys.exit(1)
 
     if args.no_web:
@@ -453,6 +558,9 @@ def main():
         create_standalone_html(args.output)
         logger.info(f"Arquivo gerado: {args.output}")
         return
+
+    if not args.no_scheduler:
+        start_scheduler(interval_seconds=args.update_interval)
 
     logger.info(f"Iniciando servidor em http://{args.host}:{args.port}")
     logger.info("Pressione Ctrl+C para parar")

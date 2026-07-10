@@ -4,7 +4,7 @@
 
 set -e
 
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+SCRIPT_DIR="/home/nottingham/projetos/servidor_dados/taiwan_economic_dashboard_web"
 cd "$SCRIPT_DIR"
 
 echo "=========================================="
@@ -18,12 +18,10 @@ export OPENBLAS_NUM_THREADS=2
 export NUMEXPR_NUM_THREADS=2
 export PYTHONUNBUFFERED=1
 
-# Limitar uso de memória do Python (desliga GC temporário se necessário)
-# Descomente abaixo se estiver com pouca memória:
-# export PYTHONOPTIMIZE=1
+PYTHON="/home/nottingham/projetos/servidor_dados/venv/bin/python"
 
 echo "[1/3] Verificando dependências..."
-python3 -c "
+"$PYTHON" -c "
 import importlib
 pkgs = ['flask', 'plotly', 'pandas', 'numpy', 'requests', 'bs4', 'matplotlib', 'scipy', 'sklearn']
 for p in pkgs:
@@ -40,4 +38,4 @@ echo "  -> Abra http://$(hostname -I | awk '{print $1}'):5000 no navegador"
 echo "  -> Pressione Ctrl+C para parar"
 echo ""
 
-python3 app.py --host 0.0.0.0 --port 5000 --pi-mode "$@"
+"$PYTHON" app.py --host 0.0.0.0 --port 5000 --pi-mode "$@"
