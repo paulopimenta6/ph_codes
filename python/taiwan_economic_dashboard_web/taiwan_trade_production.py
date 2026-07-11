@@ -117,81 +117,83 @@ class DataCollector:
         return None
 
     # -------------------------------------------------------------------------
-    # FONTE 1: Trading Economics (CORRIGIDO)
+    # FONTE 1: Trading Economics
     # -------------------------------------------------------------------------
     def scrape_trading_economics(self) -> Optional[pd.DataFrame]:
         """
-        Extrai dados historicos completos do Trading Economics.
-        CORRECAO: Navega por multiplas tabelas e ordena datas corretamente.
+        Extrai dados do Trading Economics.
+        Usa pd.read_html para detectar automaticamente tabelas, e tenta extrair
+        dados historicos de indicadores relacionados na pagina.
         """
         logger.info("[FONTE 1] Trading Economics...")
 
         indicators = {
             'exports': 'https://tradingeconomics.com/taiwan/exports',
-            'imports': 'https://tradingeconomics.com/taiwan/imports',  
+            'imports': 'https://tradingeconomics.com/taiwan/imports',
             'balance': 'https://tradingeconomics.com/taiwan/balance-of-trade',
         }
 
         all_data = []
 
         for indicator_name, url in indicators.items():
-            html = self._fetch_with_retry(url)
+            html = self._fetch_with_retry(url, min_content=500)
             if html is None:
                 continue
 
             try:
-                from bs4 import BeautifulSoup
-                soup = BeautifulSoup(html, 'html.parser')
-
-                # Trading Economics armazena dados historicos em tabelas com classe especifica
-                # ou em divs com atributos data-*
+                import io
+                tables = pd.read_html(io.StringIO(html))
                 records = []
 
-                # Estrategia 1: Buscar tabelas com classe 'table' ou 'historical-data'
-                tables = soup.find_all('table')
-                logger.info(f"  {indicator_name}: {len(tables)} tabelas encontradas")
+                name_to_indicator = {
+                    'exports': ['export', 'exportation', 'trade balance'],
+                    'imports': ['import'],
+                    'balance': ['balance of trade', 'trade balance', 'balance'],
+                }
+                expected_labels = name_to_indicator.get(indicator_name, [indicator_name])
 
-                for table in tables:
-                    rows = table.find_all('tr')
-                    for row in rows[1:]:  # Pular header
-                        cells = row.find_all(['td', 'th'])
-                        if len(cells) >= 2:
-                            date_text = cells[0].get_text(strip=True)
-                            value_text = cells[1].get_text(strip=True)
-
-                            # Limpar valor (remover unidades, simbolos)
-                            value_text = re.sub(r'[^\d.\-]', '', value_text)
-
-                            try:
-                                # Tentar parsear data em varios formatos
+                for df_t in tables:
+                    if 'Related' not in df_t.columns and 'Last' not in df_t.columns:
+                        continue
+                    related_col = 'Related' if 'Related' in df_t.columns else df_t.columns[0]
+                    last_col = 'Last' if 'Last' in df_t.columns else None
+                    ref_col = 'Reference' if 'Reference' in df_t.columns else None
+                    if last_col is None or ref_col is None:
+                        continue
+                    for _, row in df_t.iterrows():
+                        related_str = str(row.get(related_col, '')).lower().strip()
+                        matched = any(exp in related_str for exp in expected_labels)
+                        if not matched:
+                            continue
+                        val_raw = row.get(last_col, None)
+                        ref_raw = row.get(ref_col, None)
+                        if pd.notna(val_raw) and pd.notna(ref_raw):
+                            val = pd.to_numeric(val_raw, errors='coerce')
+                            if pd.notna(val):
+                                ref_str = str(ref_raw).strip()
                                 date = None
-                                for fmt in ['%Y-%m-%d', '%b/%y', '%b %Y', '%m/%d/%Y', '%d/%m/%Y', '%Y']:
+                                for fmt in ['%b %Y', '%Y-%m', '%Y', '%b/%y', '%Y-%m-%d']:
                                     try:
-                                        date = pd.to_datetime(date_text, format=fmt)
+                                        date = pd.to_datetime(ref_str, format=fmt)
                                         break
                                     except:
                                         continue
-
                                 if date is None:
-                                    date = pd.to_datetime(date_text, errors='coerce')
-
-                                if pd.notna(date) and value_text:
-                                    value = float(value_text)
+                                    date = pd.to_datetime(ref_str, errors='coerce')
+                                if pd.notna(date):
                                     records.append({
                                         'date': date,
-                                        indicator_name: value
+                                        indicator_name: val
                                     })
-                            except (ValueError, TypeError):
-                                continue
 
-                # Estrategia 2: Se nao encontrou em tabelas, buscar em scripts JSON
                 if not records:
+                    from bs4 import BeautifulSoup
+                    soup = BeautifulSoup(html, 'html.parser')
                     scripts = soup.find_all('script')
                     for script in scripts:
-                        text = script.get_text()
-                        if 'historicalData' in text or 'chartData' in text:
-                            # Extrair JSON embedded
-                            json_match = re.search(r'\[\s*\{.*?\}\s*\]', text, re.DOTALL)
+                        sc_text = script.get_text()
+                        if 'historicalData' in sc_text or 'chartData' in sc_text:
+                            json_match = re.search(r'\[\s*\{.*?\}\s*\]', sc_text, re.DOTALL)
                             if json_match:
                                 try:
                                     data_json = json.loads(json_match.group())
@@ -207,7 +209,9 @@ class DataCollector:
                 if records:
                     df_ind = pd.DataFrame(records)
                     df_ind = df_ind.drop_duplicates(subset=['date']).sort_values('date')
-                    logger.info(f"  OK {indicator_name}: {len(df_ind)} registros ({df_ind['date'].min().strftime('%Y-%m')} a {df_ind['date'].max().strftime('%Y-%m')})")
+                    logger.info(f"  OK {indicator_name}: {len(df_ind)} registros "
+                                f"({df_ind['date'].min().strftime('%Y-%m')} a "
+                                f"{df_ind['date'].max().strftime('%Y-%m')})")
                     all_data.append(df_ind)
                 else:
                     logger.warning(f"  Nenhum dado encontrado para {indicator_name}")
@@ -215,21 +219,17 @@ class DataCollector:
             except Exception as e:
                 logger.error(f"  ERRO {indicator_name}: {e}")
 
-        # Consolidar todos os indicadores
         if not all_data:
             return None
 
-        # Merge progressivo com ordenacao garantida
         df_final = all_data[0]
         for df_next in all_data[1:]:
             df_final = pd.merge(df_final, df_next, on='date', how='outer')
 
-        # CORRECAO CRITICA: Ordenar por data e resetar index
         df_final = df_final.sort_values('date').reset_index(drop=True)
         df_final['year'] = df_final['date'].dt.year
         df_final['month'] = df_final['date'].dt.month
 
-        # Calcular balance se nao existir
         if 'balance' not in df_final.columns and 'exports' in df_final.columns and 'imports' in df_final.columns:
             df_final['balance'] = df_final['exports'] - df_final['imports']
 
@@ -318,82 +318,95 @@ class DataCollector:
         return df
 
     # -------------------------------------------------------------------------
-    # FONTE 3: World Bank API
+    # FONTE 4: World Bank API (com timeout curto - pode estar indisponivel)
     # -------------------------------------------------------------------------
     def fetch_world_bank(self) -> Optional[pd.DataFrame]:
-        logger.info("[FONTE 2] World Bank API...")
+        """
+        Busca dados anuais de comercio no World Bank API.
+        Usa timeout curto - nao bloqueia se API estiver lenta.
+        """
+        logger.info("[FONTE 4] World Bank API (timeout curto)...")
         indicators = {
             'exports': 'NE.EXP.GNFS.CD',
             'imports': 'NE.IMP.GNFS.CD',
-            'balance': 'BN.CAB.XOKA.CD',
         }
         data_dict = {'exports': [], 'imports': [], 'balance': []}
 
         for indicator_name, indicator_code in indicators.items():
-            url = f"https://api.worldbank.org/v2/country/TWN/indicator/{indicator_code}"
+            url = f"https://api.worldbank.org/v2/country/TW/indicator/{indicator_code}"
             params = {'format': 'json', 'date': f'{self.config.start_year}:{self.config.end_year}', 'per_page': 500}
-            html = self._fetch_with_retry(url, params=params)
-            if html is None:
-                continue
             try:
-                data = json.loads(html)
-                if isinstance(data, list) and len(data) > 1:
+                if self.session is None:
+                    continue
+                resp = self.session.get(url, params=params, timeout=8)
+                if resp.status_code != 200 or len(resp.content) < 50:
+                    logger.warning(f"  {indicator_name}: resposta invalida ({resp.status_code}, {len(resp.content)}b)")
+                    continue
+                data = resp.json()
+                if isinstance(data, list) and len(data) > 1 and data[1] is not None:
                     records = data[1]
                     for record in records:
                         year = record.get('date')
                         value = record.get('value')
                         if year and value is not None:
                             data_dict[indicator_name].append({
-                                'date': pd.to_datetime(f'{year}-06-15'),  # Meio do ano para dados anuais
+                                'date': pd.to_datetime(f'{year}-06-15'),
                                 indicator_name: float(value) / 1e6
                             })
-                    logger.info(f"  OK {indicator_name}: {len(data_dict[indicator_name])} registros")
+                    if data_dict[indicator_name]:
+                        logger.info(f"  OK {indicator_name}: {len(data_dict[indicator_name])} registros")
+                    else:
+                        logger.warning(f"  Sem dados para {indicator_name}")
             except Exception as e:
-                logger.error(f"  ERRO {indicator_name}: {e}")
+                logger.warning(f"  {indicator_name}: {e}")
 
         return self._consolidate_dict_data(data_dict, 'world_bank')
 
     # -------------------------------------------------------------------------
-    # FONTE 3: IMF Data
+    # FONTE 3: IMF Data (datamapper API)
     # -------------------------------------------------------------------------
     def fetch_imf_data(self) -> Optional[pd.DataFrame]:
-        logger.info("[FONTE 3] IMF Data...")
-        indicators = {'exports': 'TXG_FOB_USD', 'imports': 'TMG_CIF_USD'}
+        """
+        Busca dados de comercio de Taiwan no IMF DataMapper.
+        """
+        logger.info("[FONTE 3] IMF DataMapper...")
+
+        indicators = {
+            'exports': 'TXG_FOB_USD',
+            'imports': 'TMG_CIF_USD',
+        }
         data_dict = {'exports': [], 'imports': [], 'balance': []}
 
         for indicator_name, indicator_code in indicators.items():
-            url = f"https://data.imf.org/api/data/DOT/{indicator_code}"
-            params = {'freq': 'M', 'period': f'{self.config.start_year}-01:{self.config.end_year}-12'}
-            html = self._fetch_with_retry(url, params=params)
+            url = f"https://www.imf.org/external/datamapper/api/v1/{indicator_code}/TWN"
+            html = self._fetch_with_retry(url, min_content=50)
             if html is None:
                 continue
             try:
                 data = json.loads(html)
-                series = data.get('series', {}).get('series', [])
-                for s in series:
-                    for obs in s.get('obs', []):
-                        period = obs.get('@TIME_PERIOD')
-                        value = obs.get('@OBS_VALUE')
-                        if period and value:
+                values = data.get('values', {})
+                indicator_values = values.get(indicator_code, {})
+                country_values = indicator_values.get('TWN', {})
+                if not country_values:
+                    country_values = indicator_values.get('TW', {})
+                for year_str, val in country_values.items():
+                    try:
+                        year = int(year_str)
+                        if self.config.start_year <= year <= self.config.end_year:
                             data_dict[indicator_name].append({
-                                'date': pd.to_datetime(period),
-                                indicator_name: float(value)
+                                'date': pd.to_datetime(f'{year}-06-15'),
+                                indicator_name: float(val) / 1e3
                             })
-                logger.info(f"  OK {indicator_name}: {len(data_dict[indicator_name])} registros")
+                    except (ValueError, TypeError):
+                        continue
+                if data_dict[indicator_name]:
+                    logger.info(f"  OK {indicator_name}: {len(data_dict[indicator_name])} registros anuais")
+                else:
+                    logger.warning(f"  Sem dados para {indicator_name} (codigo TWN)")
             except Exception as e:
                 logger.error(f"  ERRO {indicator_name}: {e}")
 
-        if data_dict['exports'] and data_dict['imports']:
-            df_exp = pd.DataFrame(data_dict['exports']).set_index('date').rename(columns={'value': 'exports'})
-            df_imp = pd.DataFrame(data_dict['imports']).set_index('date').rename(columns={'value': 'imports'})
-            df_merged = df_exp.join(df_imp, how='outer')
-            df_merged['balance'] = df_merged['exports'] - df_merged['imports']
-            df_merged = df_merged.reset_index().sort_values('date').reset_index(drop=True)
-            df_merged['year'] = df_merged['date'].dt.year
-            df_merged['month'] = df_merged['date'].dt.month
-            df_merged['source'] = 'imf'
-            return df_merged
-        return None
+        return self._consolidate_dict_data(data_dict, 'imf')
 
     # -------------------------------------------------------------------------
     # FONTE 5: Dados Simulados (Fallback)
@@ -481,41 +494,71 @@ class DataCollector:
         logger.info("="*70)
 
         sources = [
+            ('MOEA ITA', self.fetch_moea_trade_data),
             ('Trading Economics', self.scrape_trading_economics),
-            ('World Bank', self.fetch_world_bank),
             ('IMF Data', self.fetch_imf_data),
+            ('World Bank', self.fetch_world_bank),
         ]
 
-        df = None
-        source_name = None
+        collected = []
+        source_names = []
 
         if prefer_real:
             for name, func in sources:
                 try:
-                    df = func()
-                    if df is not None and len(df) > 5:
-                        logger.info(f"OKOKOK Fonte '{name}' utilizada: {len(df)} registros")
-                        source_name = name
-                        break
+                    df_src = func()
+                    if df_src is not None and len(df_src) > 0:
+                        logger.info(f"OKOKOK Fonte '{name}': {len(df_src)} registros")
+                        collected.append(df_src)
+                        source_names.append(name)
                 except Exception as e:
                     logger.error(f"ERRO Fonte '{name}': {e}")
 
-        if df is None or len(df) == 0:
-            logger.warning("Todas as fontes reais falharam. Usando simulado.")
-            source_name = 'simulated'
-            df = self.generate_simulated_data()
+        if collected:
+            logger.info(f"Consolidando {len(collected)} fonte(s) de dados...")
+            # Usar MOEA como base se disponivel (dados oficiais), ou a mais completa
+            moea_idx = None
+            for i, src in enumerate(source_names):
+                if src == 'MOEA ITA':
+                    moea_idx = i
+                    break
+            base_idx = moea_idx if moea_idx is not None else 0
+            df = collected[base_idx].copy()
+            for i, df_src in enumerate(collected):
+                if i == base_idx:
+                    continue
+                cols_to_merge = [c for c in ['exports', 'imports', 'balance'] if c in df_src.columns]
+                if not cols_to_merge:
+                    continue
+                df_merge = df_src[['date'] + cols_to_merge].rename(
+                    columns={c: f'{c}_src' for c in cols_to_merge}
+                )
+                df = pd.merge(df, df_merge, on='date', how='outer')
+                for c in cols_to_merge:
+                    src_c = f'{c}_src'
+                    if src_c in df.columns:
+                        df[c] = df[c].fillna(df[src_c])
+                        df = df.drop(columns=[src_c])
+            df = df.sort_values('date').reset_index(drop=True)
+            df['year'] = df['date'].dt.year
+            df['month'] = df['date'].dt.month
+            if 'balance' not in df.columns or df['balance'].isnull().all():
+                df['balance'] = df['exports'] - df['imports']
+            df['source'] = '+'.join(source_names)
+            source_label = '+'.join(source_names)
+            self.data_sources.append(source_label)
+            logger.info(f"OK Consolidado: {len(df)} registros de {source_label}")
 
-        self._moea_raw_merge = None
-        # Coletar dados MOEA para aplicacao apos processamento
-        try:
-            self._moea_raw_merge = self.fetch_moea_trade_data()
+            # MOEA raw para overlay pos-processamento (ja incluso, mas manter para consistencia)
+            self._moea_raw_merge = collected[moea_idx] if moea_idx is not None else None
             if self._moea_raw_merge is not None:
-                source_name = f"{source_name} + MOEA ITA"
-                logger.info(f"Dados MOEA coletados para merge pos-processamento")
-        except Exception as e:
-            logger.warning(f"MOEA supplement nao disponivel: {e}")
+                logger.info("Dados MOEA disponiveis para overlay pos-processamento")
+            return df
 
-        self.data_sources.append(source_name)
+        logger.warning("TODAS as fontes reais falharam. Usando dados simulados (ultimo recurso).")
+        df = self.generate_simulated_data()
+        self._moea_raw_merge = None
+        self.data_sources.append('simulated')
         return df
 
 
