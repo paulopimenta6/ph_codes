@@ -107,20 +107,11 @@
 ### 📈 Estatísticas do GitHub
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=paulopimenta6&show_icons=true&theme=dracula&cache_seconds=21600&border_radius=10" alt="GitHub Stats" height="180em">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=paulopimenta6&layout=compact&theme=dracula&cache_seconds=21600&border_radius=10" alt="Top Languages" height="180em">
-</p>
-
-<p align="center">
-  <img src="https://github-profile-trophy.vercel.app/?username=paulopimenta6&theme=dracula&no-frame=true&row=1&column=6" alt="GitHub Trophies">
-</p>
-
----
-
-<p align="center">
   <img src="https://komarev.com/ghpvc/?username=paulopimenta6&style=flat-square&color=blue&label=visitantes" alt="Profile Views">
 </p>
 
 <p align="center">
   <sub><i>“Statistics is the grammar of science.” — Karl Pearson</i></sub>
 </p>
+
+---
