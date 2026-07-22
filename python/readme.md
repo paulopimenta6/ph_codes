@@ -67,7 +67,6 @@
 |:--------|:----------|:------|
 | <b><a href="taiwan_economic_complete_dashboard/">taiwan_economic_complete_dashboard</a></b> | Plataforma completa de análise econômica de Taiwan — coleta, processa, analisa (PCA, clustering) e visualiza indicadores econômicos. | `Streamlit` `SQLite` `scikit-learn` |
 | <b><a href="taiwan_economic_dashboard_web/">taiwan_economic_dashboard_web</a></b> | Dashboard web interativo de comércio exterior de Taiwan, otimizado para Raspberry Pi 4B com atualização automática. | `Flask` `Plotly` `Raspberry Pi` |
-| <b><a href="servidor_MET/">servidor_MET</a></b> | Servidor meteorológico que baixa, processa e serve dados GFS/NOAA (GRIB2) via API REST — com mapas, matrizes e suporte METAR. | `FastAPI` `GRIB` `Cartopy` `Docker` |
 
 <br>
 
@@ -242,14 +241,12 @@ pip install -r requirements.txt
 ## 🧩 Projetos em Destaque
 
 <p align="center">
-  <img src="https://img.shields.io/badge/servidor_MET-%E2%98%80%EF%B8%8F%20Meteorologia-00BFFF?style=for-the-badge">
   <img src="https://img.shields.io/badge/python_mem-%F0%9F%92%BE%20Hardware-8B008B?style=for-the-badge">
   <img src="https://img.shields.io/badge/Taiwan_Economic-%F0%9F%93%88%20Economia-228B22?style=for-the-badge">
 </p>
 
 | 🌟 Destaque | Motivo |
 |:------------|:-------|
-| **servidor_MET** | Sistema completo que baixa dados GFS/NOAA, processa GRIB2, gera mapas meteorológicos e serve via API FastAPI com deploy Docker |
 | **python_mem** | Ferramenta única que acessa o barramento I2C para ler e decodificar SPD de módulos de memória RAM |
 | **credit_card_ml_project_with_eda** | Pipeline ML profissional: EDA → treinamento → API REST → Docker — pronto para produção |
 | **taiwan_economic_complete_dashboard** | Pipeline completo de inteligência econômica com Streamlit, SQLite e análise estatística avançada |
@@ -275,7 +272,6 @@ pip install -r requirements.txt
 │   ├── ⚙️   python_backend/
 │   ├── 🎨  python_frontend/
 │   └── 📘  think_stats/
-├── ☀️   servidor_MET/
 ├── 🌏  taiwan_economic_complete_dashboard/
 └── 🌐  taiwan_economic_dashboard_web/
 ```
