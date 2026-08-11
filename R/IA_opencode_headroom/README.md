@@ -1,4 +1,4 @@
-# 🎩 OpenCode + Headroom: O Manual do Explorer Iniciante
+# OpenCode + Headroom: O Manual do Explorer Iniciante
 
 > **Bem-vindo(a), Explorer!** 👋
 >
