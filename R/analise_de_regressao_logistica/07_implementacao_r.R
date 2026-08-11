@@ -125,8 +125,8 @@ analise_exploratoria <- function(dados) {
       theme(legend.position = "none")
   })
 
-  fig <- gridExtra::grid.arrange(p_disp, plots_box[[1]], plots_box[[2]],
-                                  nrow = 1)
+  fig <- do.call(gridExtra::grid.arrange,
+                 c(list(p_disp), plots_box, list(nrow = 1)))
   ggsave("r_eda.png", fig, width = 13, height = 4.5, dpi = 150)
   cat("Grafico: r_eda.png\n\n")
 
@@ -205,14 +205,14 @@ tabela_coeficientes <- function(modelo) {
 #  7. EFEITOS MARGINAIS (AME — Average Marginal Effects)
 # ════════════════════════════════════════════════════════════
 
-efeitos_marginais <- function(modelo, dados) {
+efeitos_marginais <- function(modelo) {
   pi_hat <- predict(modelo, type = "response")
+  betas <- coef(modelo)
 
   for (j in seq_along(VARIAVEIS_PRED)) {
     nome_var <- VARIAVEIS_PRED[j]
-    col_idx <- which(colnames(X) == nome_var)
-    if (length(col_idx) == 0) next
-    beta_j <- coef(modelo)[col_idx]
+    beta_j <- betas[nome_var]
+    if (is.na(beta_j)) next
     ame <- mean(pi_hat * (1 - pi_hat) * beta_j)
     cat(sprintf("AME(%s) = %.4f\n", nome_var, ame))
   }
@@ -228,8 +228,9 @@ efeitos_marginais <- function(modelo, dados) {
 
 medidas_ajuste <- function(modelo) {
   L_star <- logLik(modelo)[1]
-  N <- nrow(modelo$data)
-  N1 <- sum(modelo$data$y == 1)
+  dados_ajuste <- model.frame(modelo)
+  N <- nrow(dados_ajuste)
+  N1 <- sum(dados_ajuste$y == 1)
   N0 <- N - N1
   L0 <- N1 * log(N1) + N0 * log(N0) - N * log(N)
 
@@ -262,7 +263,8 @@ medidas_ajuste <- function(modelo) {
 # ════════════════════════════════════════════════════════════
 
 teste_trv <- function(modelo) {
-  modelo_nulo <- glm(y ~ 1, data = modelo$data, family = binomial(link = "logit"))
+  dados_trv <- model.frame(modelo)
+  modelo_nulo <- glm(y ~ 1, data = dados_trv, family = binomial(link = "logit"))
   G <- 2 * (logLik(modelo)[1] - logLik(modelo_nulo)[1])
   gl <- length(VARIAVEIS_PRED)
   pval <- 1 - pchisq(G, df = gl)
@@ -367,8 +369,8 @@ avaliar_modelo <- function(modelo, dados_te, prob_te = NULL) {
 
   cat("Desempenho no conjunto de teste (uso auxiliar):\n")
   cat(sprintf("  Limiar de decisão: %.2f\n", LIMIAR_DECISAO))
-  cat(sprintf("  Acurácia:   %.4f (% .1f%%)\n", acuracia, 100 * acuracia))
-  cat(sprintf("  Taxa erro:  %.4f (% .1f%%)\n\n", 1 - acuracia, 100 * (1 - acuracia)))
+  cat(sprintf("  Acurácia:   %.4f (%.1f%%)\n", acuracia, 100 * acuracia))
+  cat(sprintf("  Taxa erro:  %.4f (%.1f%%)\n\n", 1 - acuracia, 100 * (1 - acuracia)))
 
   invisible(list(prob = prob_te, pred = y_pred))
 }
@@ -401,7 +403,28 @@ plotar_roc <- function(dados_te, prob_te) {
 }
 
 # ════════════════════════════════════════════════════════════
-# 14. DIAGNÓSTICO DE RESÍDUOS
+# 14. PREDIÇÃO PARA NOVA OBSERVAÇÃO
+# ════════════════════════════════════════════════════════════
+
+predicao_nova_obs <- function(modelo) {
+  valores <- c(45, 55)
+  nova_obs <- setNames(as.list(valores), VARIAVEIS_PRED)
+  prob_nova <- predict(modelo, newdata = as.data.frame(nova_obs),
+                       type = "response")
+  classe <- ifelse(prob_nova >= LIMIAR_DECISAO, "Sucesso (1)", "Fracasso (0)")
+
+  cat("Predição para nova observação (uso auxiliar):\n")
+  for (j in seq_along(VARIAVEIS_PRED)) {
+    cat(sprintf("  %s = %s\n", VARIAVEIS_PRED[j], valores[j]))
+  }
+  cat(sprintf("  Probabilidade: %.4f\n", prob_nova))
+  cat(sprintf("  Classificacao: %s\n\n", classe))
+
+  invisible(list(prob = prob_nova, classe = classe))
+}
+
+# ════════════════════════════════════════════════════════════
+# 15. DIAGNÓSTICO DE RESÍDUOS
 # ════════════════════════════════════════════════════════════
 
 diagnostico_residuos <- function(modelo) {
@@ -456,7 +479,7 @@ main <- function() {
   tabela_coeficientes(modelo)
 
   # 6. Efeitos Marginais (ANÁLISE)
-  efeitos_marginais(modelo, dados_tr)
+  efeitos_marginais(modelo)
 
   # 7. Medidas de Ajuste (ANÁLISE)
   medidas_ajuste(modelo)
@@ -478,6 +501,9 @@ main <- function() {
 
   # 13. ROC/AUC (auxiliar)
   plotar_roc(dados_te, avaliacao$prob)
+
+  # 14. Predição para nova observação (auxiliar)
+  predicao_nova_obs(modelo)
 
   cat(paste(rep("=", 70), collapse = ""), "\n")
   cat("  ANALISE COMPLETA\n")

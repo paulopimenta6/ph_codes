@@ -80,6 +80,37 @@ def carregar_dados():
     return dados, N1, N0, N
 
 
+def analise_exploratoria(dados):
+    """Grafico exploratorio: dispersao por classe + boxplots das preditoras"""
+    cores = {0: "#C0392B", 1: "#27AE60"}
+    rotulos = {0: "Fracasso (0)", 1: "Sucesso (1)"}
+
+    fig, axes = plt.subplots(1, 1 + len(VARIAVEIS_PRED),
+                             figsize=(13, 4.5))
+    fig.suptitle("")
+    axes = np.atleast_1d(axes)
+
+    for classe, cor in cores.items():
+        sub = dados[dados["y"] == classe]
+        axes[0].scatter(sub[VARIAVEIS_PRED[0]], sub[VARIAVEIS_PRED[1]],
+                        c=cor, alpha=0.65, s=25, label=rotulos[classe])
+    axes[0].set_xlabel(VARIAVEIS_PRED[0])
+    axes[0].set_ylabel(VARIAVEIS_PRED[1])
+    axes[0].set_title("Dispersão por Classe")
+    axes[0].legend(loc="best")
+
+    for ax, var in zip(axes[1:], VARIAVEIS_PRED):
+        dados.boxplot(column=var, by="y", ax=ax, grid=False)
+        ax.set_title(f"Distribuição de {var}")
+        ax.set_xlabel("Classe")
+        ax.set_ylabel(var)
+
+    plt.tight_layout()
+    plt.savefig("python_eda.png", bbox_inches="tight", dpi=150)
+    plt.close()
+    print("Grafico: python_eda.png\n")
+
+
 def ajustar_modelo(X_tr, y_tr):
     """Ajusta modelo via statsmodels"""
     X_tr_sm = sm.add_constant(X_tr)
@@ -94,16 +125,16 @@ def tabela_coeficientes(modelo):
     """Tabela de coeficientes e odds ratios com IC 95%"""
     params = modelo.params
     ep = modelo.bse
-    ci = modelo.conf_int()
+    ci = np.asarray(modelo.conf_int())
     nomes = ["Intercepto"] + VARIAVEIS_PRED
 
     df_coef = pd.DataFrame({
-        "Coeficiente": params.values.round(4),
-        "Erro_Padrao": ep.values.round(4),
-        "OR": np.exp(params.values).round(4),
-        "IC_2.5_OR": np.exp(ci.iloc[:, 0].values).round(4),
-        "IC_97.5_OR": np.exp(ci.iloc[:, 1].values).round(4),
-        "Valor_p": modelo.pvalues.values.round(6)
+        "Coeficiente": np.asarray(params).round(4),
+        "Erro_Padrao": np.asarray(ep).round(4),
+        "OR": np.exp(np.asarray(params)).round(4),
+        "IC_2.5_OR": np.exp(ci[:, 0]).round(4),
+        "IC_97.5_OR": np.exp(ci[:, 1]).round(4),
+        "Valor_p": np.asarray(modelo.pvalues).round(6)
     }, index=nomes)
 
     print("Tabela 1. Coeficientes e Odds Ratios com IC 95%")
@@ -154,8 +185,8 @@ def medidas_ajuste(modelo, y_tr):
         aval = "Muito bom"
     print(f"  Avaliacao           = {aval}")
 
-    print(f"  Deviance nula      = {modelo.llnull * -2:.2f} (gl = {len(modelo.params) - 1})")
-    print(f"  Deviance residual  = {modelo.deviance:.2f} (gl = {N_tr - len(modelo.params)})")
+    print(f"  Deviance nula      = {-2 * modelo.llnull:.2f} (gl = {len(modelo.params) - 1})")
+    print(f"  Deviance residual  = {-2 * modelo.llf:.2f} (gl = {N_tr - len(modelo.params)})")
     print()
 
 
@@ -185,10 +216,10 @@ def teste_wald(modelo):
     nomes = ["Intercepto"] + VARIAVEIS_PRED
 
     df_wald = pd.DataFrame({
-        "Coeficiente": params.values.round(4),
-        "Erro_Padrao": ep.values.round(4),
-        "W_statistic": w.values.round(4),
-        "Valor_p": pw.values.round(6),
+        "Coeficiente": np.asarray(params).round(4),
+        "Erro_Padrao": np.asarray(ep).round(4),
+        "W_statistic": np.asarray(w).round(4),
+        "Valor_p": np.asarray(pw).round(6),
         "Signif": ["***" if p < 0.001 else "**" if p < 0.01 else "*" if p < 0.05 else ""
                    for p in pw]
     }, index=nomes)
@@ -320,7 +351,10 @@ if __name__ == "__main__":
     criar_dados_simulados()
     dados, N1, N0, N = carregar_dados()
 
-    # 2. Divisão treino/teste
+    # 2. EDA
+    analise_exploratoria(dados)
+
+    # 3. Divisão treino/teste
     X = dados[VARIAVEIS_PRED].values
     y = dados["y"].values
     X_tr, X_te, y_tr, y_te = train_test_split(
@@ -360,6 +394,9 @@ if __name__ == "__main__":
 
     # 12. Curva ROC (auxiliar)
     plotar_roc(y_te, prob_te)
+
+    # 13. Predicao para nova observacao (auxiliar)
+    predicao_nova_obs()
 
     print("=" * 70)
     print("  ANALISE COMPLETA")

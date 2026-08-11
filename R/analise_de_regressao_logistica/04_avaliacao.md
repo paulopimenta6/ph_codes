@@ -1,20 +1,33 @@
-# 4. Avaliação do Modelo
+# 4. Avaliação do Modelo — o Boletim Escolar do Modelo 📊
 
-Na regressão logística, não existe o $R^2$ tradicional (não há
-decomposição de soma de quadrados). A avaliação do modelo é feita por
-medidas de **qualidade do ajuste**, **critérios de informação** e
-**diagnóstico**.
+> **Continuando o caso:** o Seu Bento ajustou o modelo. Mas... ele é
+> bom? Como comparar com um modelo rival? Este capítulo é o "boletim":
+> notas de ajuste (pseudo-R²), custos escondidos (AIC/BIC), teste de
+> comportamento (Hosmer-Lemeshow) e a "inspeção visual" (resíduos).
+
+Na regressão logística **não existe o $R^2$ tradicional** (não há
+decomposição de soma de quadrados). A avaliação é feita por medidas de
+**qualidade do ajuste**, **critérios de informação** e **diagnóstico**.
+
+🎯 **Neste capítulo:**
+
+- **pseudo-R² de McFadden** — a nota do boletim;
+- **deviance** — o "quanto falta ajustar";
+- **AIC e BIC** — comparar modelos pagando imposto por complexidade;
+- métricas de classificação (uso auxiliar) e curva ROC/AUC;
+- **Hosmer-Lemeshow** e **resíduos** — o raio-x do modelo.
+
+---
 
 ## 4.1 Pseudo-R² de McFadden
 
 ### Definição
 
 O **pseudo-R² de McFadden** (1974) compara a log-verossimilhança do
-modelo ajustado com a do modelo nulo (apenas intercepto):
+modelo ajustado com a do modelo nulo (apenas intercepto — "todo mundo
+recebe a mesma chance"):
 
 $$R^2_{\text{McF}} = 1 - \frac{\ell(\hat{\boldsymbol{\beta}})}{\ell_0}$$
-
-onde:
 
 | Símbolo | Definição |
 |:---:|:---|
@@ -34,8 +47,8 @@ $$\ell_0 = N_1 \ln N_1 + N_0 \ln N_0 - N \ln N$$
 
 ### Interpretação
 
-Como $\ell(\hat{\boldsymbol{\beta}}) \geq \ell_0$ (ambos negativos),
-temos $0 \leq R^2_{\text{McF}} \leq 1$.
+Como $\ell(\hat{\boldsymbol{\beta}}) \geq \ell_0$ (ambos $\leq 0$ —
+lembre-se do Capítulo 3), temos $0 \leq R^2_{\text{McF}} \leq 1$.
 
 | Valor | Interpretação |
 |:---:|:---|
@@ -43,10 +56,10 @@ temos $0 \leq R^2_{\text{McF}} \leq 1$.
 | $0{,}20 - 0{,}40$ | Bom ajuste |
 | $> 0{,}40$ | Ajuste muito bom |
 
-> **Atenção:** Na regressão logística, valores de pseudo-R² são
-> geralmente mais baixos que na regressão linear. Um
-> $R^2_{\text{McF}} \approx 0{,}4$ é considerado excelente e equivale
-> aproximadamente a um $R^2 \approx 0{,}9$ em regressão linear.
+> ⚠️ **Atenção:** na logística, o pseudo-R² costuma ser bem mais baixo
+> que o $R^2$ linear. Um $R^2_{\text{McF}} \approx 0{,}4$ é excelente
+> (equivale aproximadamente a um $R^2 \approx 0{,}9$ da regressão
+> linear — heurística didática, não teorema).
 
 ### Exemplo Numérico
 
@@ -56,11 +69,15 @@ $$\ell_0 = 60\ln(0{,}6) + 40\ln(0{,}4) \approx -67{,}3$$
 
 $$R^2_{\text{McF}} = 1 - \frac{-50{,}0}{-67{,}3} = 1 - 0{,}743 = 0{,}257$$
 
-O modelo reduz **25,7%** da deviance nula.
+O modelo reduz **25,7%** do "sofrimento" do modelo nulo.
 
-> 🚩 **Erro comum:** A fórmula **incorreta** $-\ell(\hat{\boldsymbol{\beta}})/\ell_0$ produz valor e sinal errados. A fórmula correta é $1 - \ell(\hat{\boldsymbol{\beta}})/\ell_0$.
+> 🚩 **Erro comum:** a fórmula **incorreta** $-\ell(\hat{\boldsymbol{\beta}})/\ell_0$
+> produz sinal e magnitude errados. A correta é
+> $1 - \ell(\hat{\boldsymbol{\beta}})/\ell_0$.
 
-## 4.2 Deviance
+---
+
+## 4.2 Deviance 🔥
 
 A **deviance** é uma medida de falta de ajuste, análoga à soma de
 quadrados residual na regressão linear:
@@ -68,9 +85,11 @@ quadrados residual na regressão linear:
 $$D = -2\left[\ell(\hat{\boldsymbol{\beta}}) - \ell_{\text{saturado}}\right]$$
 
 onde $\ell_{\text{saturado}}$ é a log-verossimilhança do modelo
-saturado (um parâmetro por observação).
+saturado (um parâmetro por observação — "cada cliente tem sua própria
+teoria").
 
-Na prática, trabalhamos com:
+> 💡 **Sacada:** para dados binários não agrupados, o modelo saturado
+> ajusta perfeitamente ($\ell_{\text{saturado}} = 0$). Por isso:
 
 - **Deviance nula:** $D_0 = -2\ell_0$ (modelo com apenas intercepto)
 - **Deviance residual:** $D = -2\ell(\hat{\boldsymbol{\beta}})$
@@ -79,26 +98,35 @@ A redução de deviance é:
 
 $$\Delta D = D_0 - D = 2\left[\ell(\hat{\boldsymbol{\beta}}) - \ell_0\right] = G$$
 
-## 4.3 Critérios de Informação
+...que é exatamente a estatística do **TRV** do próximo capítulo. Tudo
+se conecta.
 
-Para comparação de modelos (não aninhados ou com penalização por
-complexidade):
+---
+
+## 4.3 Critérios de Informação 💰
+
+Para **comparar modelos** (mesmo não aninhados), com penalização por
+complexidade:
 
 ### AIC (Akaike Information Criterion)
 
 $$\text{AIC} = -2\ell(\hat{\boldsymbol{\beta}}) + 2k$$
 
-Onde $k = p + 1$ (número de parâmetros). **Menor AIC** indica melhor
-modelo.
+onde $k = p + 1$ (número de parâmetros). **Menor AIC** indica melhor
+modelo. A penalização $2k$ é o "imposto" por cada parâmetro extra.
 
 ### BIC (Bayesian Information Criterion)
 
 $$\text{BIC} = -2\ell(\hat{\boldsymbol{\beta}}) + k\ln n$$
 
-Penaliza mais fortemente a complexidade que o AIC. **Menor BIC**
-preferível.
+Penaliza a complexidade **mais fortemente** que o AIC (cresce com o
+tamanho da amostra). **Menor BIC** preferível.
 
-## 4.4 Medidas de Classificação (Uso Auxiliar)
+> ⚠️ **Cilada:** AIC e BIC só servem para **comparar modelos ajustados
+> aos mesmos dados**. Não são notas absolutas — um AIC = 300 nada diz
+> sozinho.
+
+## 4.4 Medidas de Classificação (Uso Auxiliar) 🎯
 
 Embora o foco deste tutorial seja **análise**, métricas de classificação
 auxiliam na compreensão do modelo.
@@ -114,7 +142,7 @@ $$\hat{y}_i = \begin{cases} 1 & \text{se } \hat{\pi}_i \geq \tau \\ 0 & \text{ca
 | **Real: 0** | VN (Verdadeiro Negativo) | FP (Falso Positivo) |
 | **Real: 1** | FN (Falso Negativo) | VP (Verdadeiro Positivo) |
 
-**Métricas derivadas (não são o foco, mas informam):**
+**Métricas derivadas (informam, mas não decidem a análise):**
 
 | Métrica | Fórmula | Pergunta |
 |:---|:---|:---|
@@ -131,32 +159,34 @@ A **AUC** resume o poder discriminante do modelo:
 
 | AUC | Interpretação |
 |:---:|:---|
-| $0{,}5$ | Sem poder discriminante (aleatório) |
+| $0{,}5$ | Sem poder discriminante (aleatório — cara ou coroa) |
 | $0{,}70 - 0{,}80$ | Discriminação aceitável |
 | $0{,}80 - 0{,}90$ | Boa discriminação |
 | $> 0{,}90$ | Excelente discriminação |
 
 AUC $= P(\hat{\pi}_1 > \hat{\pi}_0)$: probabilidade de que, dado um par
 aleatório (positivo, negativo), o modelo atribua maior probabilidade ao
-positivo.
+positivo. É a "goleira": quanto mais longe de 0,5, melhor o pega-pega.
 
-## 4.5 Teste de Hosmer-Lemeshow
+---
 
-Avalia a **qualidade do ajuste** (*goodness-of-fit*) comparando
-frequências observadas e esperadas em grupos de risco.
+## 4.5 Teste de Hosmer-Lemeshow 🧤
+
+Avalia a **qualidade do ajuste** (*goodness-of-fit*): as frequências
+observadas batem com as esperadas em grupos de risco?
 
 **Procedimento:**
 
-1.  As observações são ordenadas por $\hat{\pi}_i$ e divididas em $g = 10$
-    grupos (decis) de aproximadamente igual tamanho.
-2.  Em cada grupo, calcula-se:
-    - $O_{1k}$: número observado de eventos
-    - $E_{1k}$: soma das probabilidades estimadas ($\sum \hat{\pi}_i$)
-    - $O_{0k}$: número observado de não-eventos
-    - $E_{0k}$: soma de $1 - \hat{\pi}_i$
-3.  Estatística:
-    $$\hat{C} = \sum_{k=1}^g \frac{(O_{1k} - E_{1k})^2}{E_{1k}} + \frac{(O_{0k} - E_{0k})^2}{E_{0k}}$$
-    $$\hat{C} \stackrel{H_0}{\sim} \chi^2_{(g-2)}$$
+1. As observações são ordenadas por $\hat{\pi}_i$ e divididas em $g = 10$
+   grupos (decis) de aproximadamente igual tamanho.
+2. Em cada grupo, calcula-se:
+   - $O_{1k}$: número observado de eventos
+   - $E_{1k}$: soma das probabilidades estimadas ($\sum \hat{\pi}_i$)
+   - $O_{0k}$: número observado de não-eventos
+   - $E_{0k}$: soma de $1 - \hat{\pi}_i$
+3. Estatística:
+   $$\hat{C} = \sum_{k=1}^g \frac{(O_{1k} - E_{1k})^2}{E_{1k}} + \frac{(O_{0k} - E_{0k})^2}{E_{0k}}$$
+   $$\hat{C} \stackrel{H_0}{\sim} \chi^2_{(g-2)}$$
 
 **Hipóteses:**
 - $H_0$: modelo ajusta-se adequadamente aos dados
@@ -164,11 +194,13 @@ frequências observadas e esperadas em grupos de risco.
 
 Valor-p $< 0{,}05$ indica falta de ajuste (modelo mal especificado).
 
-> **Limitação:** O teste Hosmer-Lemeshow é sensível ao número de grupos
-> e pode ter baixo poder para detectar certos tipos de falta de ajuste.
-> É uma ferramenta diagnóstica complementar.
+> ⚠️ **Limitação:** o teste H-L é sensível ao número de grupos e pode ter
+> baixo poder para certos tipos de falta de ajuste. É ferramenta
+> **diagnóstica complementar** — não um oráculo.
 
-## 4.6 Análise de Resíduos
+---
+
+## 4.6 Análise de Resíduos 🔬
 
 ### Resíduo de Pearson
 
@@ -183,7 +215,14 @@ $$d_i = \text{sinal}(y_i - \hat{\pi}_i) \sqrt{-2\left[y_i\ln\hat{\pi}_i + (1-y_i
 $$r_{si} = \frac{r_i}{\sqrt{1 - h_{ii}}}$$
 
 onde $h_{ii}$ é o *leverage* (elemento diagonal da matriz de chapéu
-generalizada). Valores $|r_{si}| > 2$ merecem investigação.
+generalizada — "quanto cada ponto segura a régua do modelo"). Valores
+$|r_{si}| > 2$ merecem investigação.
+
+> 💡 **Sacada:** na logística os resíduos têm só dois valores possíveis
+> por ponto — procure **padrões** (desequilíbrio claro, grupos de
+> outliers), não histogramas de normalidade.
+
+---
 
 ## 4.7 Comparação com Regressão Linear
 
@@ -202,5 +241,27 @@ generalizada). Valores $|r_{si}| > 2$ merecem investigação.
 
 ---
 
+## 🧪 Teste seu radar (respostas no fim)
+
+1. McFadden 0,30: o ajuste é fraco, bom ou muito bom?
+2. AIC e BIC são comparáveis entre conjuntos de dados diferentes?
+3. Qual é a hipótese nula do teste de Hosmer-Lemeshow?
+
+**Respostas:** 1) **Bom** (0,20–0,40). 2) **Não** — só entre modelos
+ajustados aos mesmos dados. 3) $H_0$: o modelo se ajusta adequadamente —
+valor-p baixo indica falta de ajuste.
+
+---
+
+## ✅ Para levar
+
+- Sem $R^2$ clássico: use **pseudo-R² de McFadden** (compare com o nulo).
+- **Deviance** mede a falta de ajuste; AIC/BIC comparam modelos pagando
+  imposto por parâmetro.
+- H-L e resíduos são o **diagnóstico**: procure padrões, não perfeição.
+- ROC/AUC são coadjuvantes — o veredito da análise vem dos testes do
+  próximo capítulo.
+
+---
 **Anterior:** [3. Estimação](./03_estimacao.md) |
 **Próximo:** [5. Testes de Hipóteses](./05_testes.md)

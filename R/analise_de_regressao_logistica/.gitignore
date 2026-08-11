@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.venv/
+.serena/
+.Rhistory
+.Rproj.user/
+dados.csv
+r_eda.png
+r_roc.png
+python_eda.png
+python_roc.png
