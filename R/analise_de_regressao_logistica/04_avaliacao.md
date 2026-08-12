@@ -218,6 +218,10 @@ onde $h_{ii}$ é o *leverage* (elemento diagonal da matriz de chapéu
 generalizada — "quanto cada ponto segura a régua do modelo"). Valores
 $|r_{si}| > 2$ merecem investigação.
 
+> 🖥️ **Nos scripts (Capítulo 6):** o diagnóstico reporta os três
+> resíduos (Pearson, deviance e o studentizado acima) com a *proporção*
+> de pontos além de $|r| > 2$ — procure **padrões**, não perfeição.
+
 > 💡 **Sacada:** na logística os resíduos têm só dois valores possíveis
 > por ponto — procure **padrões** (desequilíbrio claro, grupos de
 > outliers), não histogramas de normalidade.

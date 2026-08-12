@@ -3,12 +3,16 @@
 #' Regressão Logística Binária — Implementação em R (foco analítico)
 #'
 #' Análise completa: estimação, interpretação de coeficientes/OR,
-#' efeitos marginais, pseudo-R², AIC/BIC, testes TRV e Wald,
+#' efeitos marginais (AME e MEM), pseudo-R², AIC/BIC, testes TRV e Wald,
 #' Hosmer-Lemeshow, diagnóstico de resíduos e predição.
 #'
 #' Ajuste as variáveis de configuração e execute:
 #'     Rscript 07_implementacao_r.R
 #'
+#' (Parte do tutorial "Regressão Logística Binária — Análise",
+#'  capítulos 1 a 9 na documentação. Rode junto com o script Python
+#'  equivalente na mesma pasta para comparar os resultados — ambos
+#'  compartilham o mesmo dados.csv.)
 
 # ════════════════════════════════════════════════════════════
 #  CONFIGURAÇÃO — ajuste apenas estas variáveis
@@ -95,6 +99,31 @@ carregar_dados <- function() {
 }
 
 # ════════════════════════════════════════════════════════════
+#  2b. REGRA EPV — EVENTOS POR PARÂMETRO (Capítulo 1)
+# ════════════════════════════════════════════════════════════
+
+verificar_epv <- function(N1, N0) {
+  n_param <- length(VARIAVEIS_PRED) + 1
+  minimo  <- 10 * n_param
+  # eventos = categoria minoritária (cenário mais conservador)
+  eventos_dados <- min(N1, N0)
+
+  if (eventos_dados < minimo) {
+    cat(sprintf(
+      "⚠️  CUIDADO (EPV): %d eventos disponíveis para %d parâmetros.\n",
+      eventos_dados, n_param))
+    cat(sprintf(
+      "    Regra do Capítulo 1 pede ~10 eventos por parâmetro (recomendado: >= %d).\n",
+      minimo))
+    cat("    Wald e valor-p perdem confiabilidade — volte ao Capítulo 5.\n\n")
+  } else {
+    cat(sprintf(
+      "✓ EPV ok: %d eventos para %d parâmetros — respeita a regra dos ~10.\n\n",
+      eventos_dados, n_param))
+  }
+}
+
+# ════════════════════════════════════════════════════════════
 #  3. ANÁLISE EXPLORATÓRIA
 # ════════════════════════════════════════════════════════════
 
@@ -125,10 +154,14 @@ analise_exploratoria <- function(dados) {
       theme(legend.position = "none")
   })
 
-  fig <- do.call(gridExtra::grid.arrange,
+  # Monta a figura num device png explícito (o texto é medido ali, evitando
+# que o R abra Rplots.pdf), depois salva via ggsave.
+  png(tempfile(fileext = ".png"), width = 1300, height = 450, res = 150)
+  fig <- do.call(gridExtra::arrangeGrob,
                  c(list(p_disp), plots_box, list(nrow = 1)))
+  dev.off()
   ggsave("r_eda.png", fig, width = 13, height = 4.5, dpi = 150)
-  cat("Grafico: r_eda.png\n\n")
+  cat("Gráfico: r_eda.png\n\n")
 
   invisible(fig)
 }
@@ -159,7 +192,7 @@ ajustar_modelo <- function(dados_tr) {
                 family = binomial(link = "logit"))
 
   cat("Modelo ajustado por MV (IRLS).\n")
-  cat("Formula:", formula_str, "\n\n")
+  cat("Fórmula:", formula_str, "\n\n")
 
   print(summary(modelo))
   cat("\n")
@@ -182,9 +215,9 @@ tabela_coeficientes <- function(modelo) {
     ) %>%
     select(term, estimate, std.error, OR, IC_OR_2.5, IC_OR_97.5, p.value) %>%
     rename(
-      "Variavel" = term,
+      "Variável" = term,
       "Coeficiente" = estimate,
-      "Erro_Padrao" = std.error,
+      "Erro_Padrão" = std.error,
       "OR" = OR,
       "IC_2.5_OR" = IC_OR_2.5,
       "IC_97.5_OR" = IC_OR_97.5,
@@ -193,7 +226,7 @@ tabela_coeficientes <- function(modelo) {
     mutate(across(where(is.numeric), ~ round(., 4)))
 
   cat("Tabela 1. Coeficientes e Odds Ratios com IC 95%\n")
-  cat("Interpretacao: OR > 1 aumenta odds; OR < 1 reduz odds.\n")
+  cat("Interpretação: OR > 1 aumenta os odds; OR < 1 reduz os odds.\n")
   cat("Se o IC 95% do OR excluir 1, efeito significativo (p < 0,05).\n\n")
   print(tab)
   cat("\n")
@@ -202,28 +235,36 @@ tabela_coeficientes <- function(modelo) {
 }
 
 # ════════════════════════════════════════════════════════════
-#  7. EFEITOS MARGINAIS (AME — Average Marginal Effects)
+#  7. EFEITOS MARGINAIS — AME E MEM (Capítulo 2)
 # ════════════════════════════════════════════════════════════
 
 efeitos_marginais <- function(modelo) {
   pi_hat <- predict(modelo, type = "response")
   betas <- coef(modelo)
+  matriz_x <- model.matrix(modelo)
+  x_bar <- colMeans(matriz_x)
+  pi_bar <- 1 / (1 + exp(-sum(x_bar * betas)))
 
+  cat("Efeitos Marginais\n")
+  cat("  AME = média dos efeitos nas observações | MEM = efeito na média das preditoras\n")
   for (j in seq_along(VARIAVEIS_PRED)) {
     nome_var <- VARIAVEIS_PRED[j]
     beta_j <- betas[nome_var]
     if (is.na(beta_j)) next
     ame <- mean(pi_hat * (1 - pi_hat) * beta_j)
-    cat(sprintf("AME(%s) = %.4f\n", nome_var, ame))
+    mem <- pi_bar * (1 - pi_bar) * beta_j
+    cat(sprintf("  AME(%s) = %.4f | MEM(%s) = %.4f\n",
+                nome_var, ame, nome_var, mem))
   }
-  cat("Interpretacao: variacao media na probabilidade do evento\n")
-  cat("para aumento de 1 unidade na preditora.\n\n")
+  cat(sprintf("  Probabilidade prevista na média das preditoras: pi_bar = %.4f\n", pi_bar))
+  cat("  Interpretação: variação média na probabilidade do evento\n")
+  cat("  para aumento de 1 unidade na preditora (em pontos percentuais).\n\n")
 
-  invisible()
+  invisible(list(pi_bar = pi_bar))
 }
 
 # ════════════════════════════════════════════════════════════
-#  8. PSEUDO-R² DE McFADDEN, AIC, BIC
+#  8. PSEUDO-R² DE McFADDEN, AIC, BIC, DEVIANCE
 # ════════════════════════════════════════════════════════════
 
 medidas_ajuste <- function(modelo) {
@@ -246,9 +287,9 @@ medidas_ajuste <- function(modelo) {
   cat(sprintf("BIC                  = %.2f\n", bic))
 
   avaliacao <- if (r2_mcf < 0.20) "Fraco" else if (r2_mcf < 0.40) "Bom" else "Muito bom"
-  cat(sprintf("Avaliacao (McFadden): %s\n", avaliacao))
+  cat(sprintf("Avaliação (McFadden): %s\n", avaliacao))
 
-  # Deviance
+  # Deviance (graus de liberdade corretos: nulo = N-1, residual = N-k)
   cat(sprintf("Deviance nula        = %.2f (gl = %d)\n",
               modelo$null.deviance, modelo$df.null))
   cat(sprintf("Deviance residual    = %.2f (gl = %d)\n",
@@ -272,11 +313,11 @@ teste_trv <- function(modelo) {
   cat("Teste da Razão de Verossimilhanças (TRV)\n")
   cat("  H0: beta_1 = ... = beta_p = 0\n")
   cat("  H1: existe j com beta_j != 0\n")
-  cat(sprintf("  G (2 * delta L)   = %.4f\n", G))
+  cat(sprintf("  G (2 * delta L)    = %.4f\n", G))
   cat(sprintf("  Graus de liberdade = %d\n", gl))
   cat(sprintf("  Valor-p            = %.4e\n", pval))
   cat(sprintf("  Decisão (alpha = 0,05): %s\n\n",
-              if (pval < 0.05) "Rejeitar H0" else "Nao rejeitar H0"))
+              if (pval < 0.05) "Rejeitar H0" else "Não rejeitar H0"))
 
   invisible(list(G = G, pval = pval))
 }
@@ -304,9 +345,9 @@ teste_wald <- function(modelo) {
     ) %>%
     select(term, estimate, std.error, W_stat, p_value, Signif) %>%
     rename(
-      "Variavel" = term,
+      "Variável" = term,
       "Coeficiente" = estimate,
-      "Erro_Padrao" = std.error,
+      "Erro_Padrão" = std.error,
       "W_statistic" = W_stat,
       "Valor_p" = p_value
     ) %>%
@@ -348,15 +389,15 @@ teste_hosmer_lemeshow <- function(modelo, g = 10) {
   cat(sprintf("  C_hat              = %.4f\n", C_hat))
   cat(sprintf("  Graus de liberdade = %d\n", g - 2))
   cat(sprintf("  Valor-p            = %.4f\n", pval))
-  cat("  H0: modelo ajusta-se adequadamente\n")
+  cat("  H0: o modelo se ajusta adequadamente\n")
   cat(sprintf("  Decisão (alpha = 0,05): %s\n\n",
-              if (pval < 0.05) "Rejeitar H0 (falta de ajuste)" else "Nao rejeitar H0"))
+              if (pval < 0.05) "Rejeitar H0 (falta de ajuste)" else "Não rejeitar H0"))
 
   invisible(list(C_hat = C_hat, pval = pval))
 }
 
 # ════════════════════════════════════════════════════════════
-# 12. AVALIAÇÃO NO CONJUNTO TESTE
+# 12. AVALIAÇÃO NO CONJUNTO TESTE (apoio preditivo)
 # ════════════════════════════════════════════════════════════
 
 avaliar_modelo <- function(modelo, dados_te, prob_te = NULL) {
@@ -370,13 +411,13 @@ avaliar_modelo <- function(modelo, dados_te, prob_te = NULL) {
   cat("Desempenho no conjunto de teste (uso auxiliar):\n")
   cat(sprintf("  Limiar de decisão: %.2f\n", LIMIAR_DECISAO))
   cat(sprintf("  Acurácia:   %.4f (%.1f%%)\n", acuracia, 100 * acuracia))
-  cat(sprintf("  Taxa erro:  %.4f (%.1f%%)\n\n", 1 - acuracia, 100 * (1 - acuracia)))
+  cat(sprintf("  Taxa de erro:  %.4f (%.1f%%)\n\n", 1 - acuracia, 100 * (1 - acuracia)))
 
   invisible(list(prob = prob_te, pred = y_pred))
 }
 
 # ════════════════════════════════════════════════════════════
-# 13. CURVA ROC E AUC
+# 13. CURVA ROC E AUC (apoio preditivo)
 # ════════════════════════════════════════════════════════════
 
 plotar_roc <- function(dados_te, prob_te) {
@@ -392,7 +433,7 @@ plotar_roc <- function(dados_te, prob_te) {
          bty = "n", cex = 1.2, text.col = "#2980B9")
   dev.off()
 
-  cat("Grafico: r_roc.png\n")
+  cat("Gráfico: r_roc.png\n")
   cat(sprintf("AUC = %.4f — ", auc_val))
   if (auc_val >= 0.90)       cat("Excelente\n\n")
   else if (auc_val >= 0.80)  cat("Bom\n\n")
@@ -403,7 +444,7 @@ plotar_roc <- function(dados_te, prob_te) {
 }
 
 # ════════════════════════════════════════════════════════════
-# 14. PREDIÇÃO PARA NOVA OBSERVAÇÃO
+# 14. PREDIÇÃO PARA NOVA OBSERVAÇÃO (apoio preditivo)
 # ════════════════════════════════════════════════════════════
 
 predicao_nova_obs <- function(modelo) {
@@ -418,7 +459,7 @@ predicao_nova_obs <- function(modelo) {
     cat(sprintf("  %s = %s\n", VARIAVEIS_PRED[j], valores[j]))
   }
   cat(sprintf("  Probabilidade: %.4f\n", prob_nova))
-  cat(sprintf("  Classificacao: %s\n\n", classe))
+  cat(sprintf("  Classificação: %s\n\n", classe))
 
   invisible(list(prob = prob_nova, classe = classe))
 }
@@ -431,20 +472,26 @@ diagnostico_residuos <- function(modelo) {
   res_pearson <- residuals(modelo, type = "pearson")
   res_deviance <- residuals(modelo, type = "deviance")
   hat_values <- hatvalues(modelo)
+  res_student <- res_pearson / sqrt(1 - hat_values)
 
   cat("Diagnóstico de Resíduos\n")
   cat("Resíduos de Pearson:\n")
   cat(sprintf("  Min = %.3f, Max = %.3f\n", min(res_pearson), max(res_pearson)))
-  cat(sprintf("  Proporcao |r| > 2: %.1f%%\n",
+  cat(sprintf("  Proporção |r| > 2: %.1f%%\n",
               100 * mean(abs(res_pearson) > 2)))
 
   cat("Resíduos Deviance:\n")
   cat(sprintf("  Min = %.3f, Max = %.3f\n", min(res_deviance), max(res_deviance)))
-  cat(sprintf("  Proporcao |d| > 2: %.1f%%\n",
+  cat(sprintf("  Proporção |d| > 2: %.1f%%\n",
               100 * mean(abs(res_deviance) > 2)))
 
+  cat("Resíduos Studentizados (Pearson / sqrt(1 - leverage)):\n")
+  cat(sprintf("  Min = %.3f, Max = %.3f\n", min(res_student), max(res_student)))
+  cat(sprintf("  Proporção |rs| > 2: %.1f%% (investigar esses pontos)\n",
+              100 * mean(abs(res_student) > 2)))
+
   cat("Leverage (hat values):\n")
-  cat(sprintf("  Media = %.4f (esperado = %.4f)\n",
+  cat(sprintf("  Média = %.4f (esperado = %.4f)\n",
               mean(hat_values), ncol(model.matrix(modelo)) / length(modelo$y)))
   cat("\n")
 }
@@ -471,6 +518,9 @@ main <- function() {
   ds <- dividir_dados(dados)
   dados_tr <- ds$tr
   dados_te <- ds$te
+
+  # 3b. Checagem EPV na amostra de treino (Capítulo 1)
+  verificar_epv(sum(dados_tr$y == 1), sum(dados_tr$y == 0))
 
   # 4. Ajuste
   modelo <- ajustar_modelo(dados_tr)
@@ -506,7 +556,7 @@ main <- function() {
   predicao_nova_obs(modelo)
 
   cat(paste(rep("=", 70), collapse = ""), "\n")
-  cat("  ANALISE COMPLETA\n")
+  cat("  ANÁLISE COMPLETA\n")
   cat(paste(rep("=", 70), collapse = ""), "\n\n")
 }
 

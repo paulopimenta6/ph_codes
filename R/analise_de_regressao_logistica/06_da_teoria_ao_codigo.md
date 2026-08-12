@@ -25,9 +25,10 @@ Ambos os scripts executam a mesma jornada do [Capítulo 1](./01_introducao.md):
  2. Carregar e validar (colunas, NAs, classes)
  3. Análise exploratória (gráficos)
  4. Dividir treino/teste (70/30, estratificado)
+ 4b. Regra EPV — eventos por parâmetro         → cap. 1
  5. Ajustar o modelo (MV)                        → cap. 3
  6. Coeficientes e OR com IC 95%                 → cap. 2
- 7. Efeitos marginais (AME)                      → cap. 2
+ 7. Efeitos marginais (AME e MEM)                → cap. 2
  8. Pseudo-R², AIC, BIC, deviance                → cap. 4
  9. TRV global                                   → cap. 5
 10. Wald individual                              → cap. 5
@@ -48,16 +49,17 @@ Ambos os scripts executam a mesma jornada do [Capítulo 1](./01_introducao.md):
 |:---|:---:|:---|:---|
 | Dados simulados | — | `criar_dados_simulados()` | `criar_dados_simulados()` |
 | Validação dos dados | — | `carregar_dados()` | `carregar_dados()` |
+| Regra EPV (10 eventos/parâmetro) | 1 | `verificar_epv()` | `verificar_epv()` |
 | Exploração | 1 | `analise_exploratoria()` | `analise_exploratoria()` |
 | Divisão treino/teste | — | `dividir_dados()` | `train_test_split(...)` |
 | Ajuste por MV | 3 | `glm(family = binomial)` | `sm.Logit(...).fit()` |
 | Coeficientes + OR + IC | 2, 5 | `tabela_coeficientes()` | `tabela_coeficientes()` |
-| Efeitos marginais (AME) | 2 | `efeitos_marginais()` | `efeitos_marginais()` |
-| Pseudo-R², AIC, BIC | 4 | `medidas_ajuste()` | `medidas_ajuste()` |
+| Efeitos marginais (AME e MEM) | 2 | `efeitos_marginais()` | `efeitos_marginais()` |
+| Pseudo-R², AIC, BIC, deviance | 4 | `medidas_ajuste()` | `medidas_ajuste()` |
 | TRV global | 5 | `teste_trv()` | `teste_trv()` |
 | Wald individual | 5 | `teste_wald()` | `teste_wald()` |
 | Hosmer-Lemeshow | 4 | `teste_hosmer_lemeshow()` | `teste_hosmer_lemeshow()` |
-| Resíduos | 4 | `diagnostico_residuos()` | `diagnostico_residuos()` |
+| Resíduos (Pearson, deviance, studentizado) | 4 | `diagnostico_residuos()` | `diagnostico_residuos()` |
 | ROC / AUC | 4 | `plotar_roc()` (`pROC`) | `plotar_roc()` (`sklearn`) |
 | Nova observação | — | `predicao_nova_obs()` | `predicao_nova_obs()` |
 
@@ -74,9 +76,16 @@ python 08_implementacao_python.py
 > ⚠️ **Cilada (o R nunca avisa):** no R, as funções `efeitos_marginais`,
 > `medidas_ajuste` e `teste_trv` liam `modelo$data` e uma variável `X`
 > que não existia — o script quebrava no meio do caminho. A correção usa
-> `model.frame(modelo)` (o quadro de dados real usado no ajuste) e os
-> nomes dos coeficientes via `coef(modelo)`. Se você recortar funções
-> deste script para outro lugar, lembre-se disso!
+> `model.frame(modelo)` e `model.matrix(modelo)` (os objetos reais do
+> ajuste em `glm`) e os nomes dos coeficientes via `coef(modelo)`. Se
+> você recortar funções deste script para outro lugar, lembre-se disso —
+> em `glm`, nem o banco nem a matriz do modelo ficam em `modelo$data`.
+
+Também é bom saber que os dois scripts **compartilham o mesmo
+`dados.csv`**: rode primeiro o R e depois o Python na mesma pasta — o
+Python reutiliza o arquivo e os resultados ficam praticamente idênticos
+(só os gráficos das edições de texto variam). Para dados "virgens" de
+cada linguagem, apague `dados.csv` antes de rodar.
 
 ## 6.3 Leitura Guiada de uma Saída Real 📖
 
@@ -87,7 +96,8 @@ geradores aleatórios diferentes na hora de criar os dados).
 **① Dados:** 350 observações · Classe 1: **102 (29,1%)** · Treino: 245 ·
 Teste: 105.
 → 29% de eventos é um bom equilíbrio para análise (nem raro, nem
-massivo).
+massivo). Ambos os scripts checam a regra EPV (~10 eventos por
+parâmetro) e aprovam.
 
 **② Coeficientes e OR (o coração da análise):**
 
@@ -103,11 +113,15 @@ massivo).
 
 **③ Efeitos marginais:** AME(x1) ≈ 0,0118 e AME(x2) ≈ 0,0107 → na
 probabilidade, 1 unidade a mais em x1 move $P(Y=1)$ em ~**1,2 pontos
-percentuais** (na média das observações). O OR diz "multiplica"; o AME
-diz "quanto na prática".
+percentuais** (na média das observações). Para comparação, os scripts
+também reportam o MEM: MEM(x1) ≈ 0,0133 e MEM(x2) ≈ 0,0121 (avaliados em
+$\pi(\bar{\mathbf{x}}) = 0{,}2423$). O OR diz "multiplica"; o efeito
+marginal diz "quanto na prática".
 
 **④ Medidas de ajuste:** McFadden = 0,1789 (**fraco**), AIC = 248,21,
-BIC = 258,71, deviance nula 294,96 (gl 2) → residual 242,21 (gl 242).
+BIC = 258,71, deviance nula 294,96 (gl = 244) → residual 242,21 (gl =
+242). *(O gl da deviance nula é N−1; o da residual é N−k — cuidado para
+não confundir com o "gl = 2" do modelo, que é o número de preditoras.)*
 
 **⑤ TRV:** $G$ = 52,75, gl = 2, p = 3,5×10⁻¹² → **rejeitar $H_0$**: o
 bloco de preditoras é globalmente significativo.
@@ -118,16 +132,17 @@ coeficientes significativos individualmente.
 **⑦ Hosmer-Lemeshow:** $\hat{C}$ = 9,36, gl = 8, p = 0,3126 → **não
 rejeitar $H_0$**: sem evidência de falta de ajuste.
 
-**⑧ Resíduos:** ~6,5% com $|r| > 2$ (Pearson) e ~4,5% (deviance) →
-proporção típica; nada alarmante.
+**⑧ Resíduos:** ~6,5% com $|r| > 2$ (Pearson), ~4,5% (deviance) e ~6,5%
+nos studentizados → proporção típica; nada alarmante.
 
 **⑨ Apoio preditivo:** acurácia 73,3% no teste · AUC = 0,698
 (discriminação "aceitável"). Coerente com a nota fraca de McFadden — a
 análise aponta efeitos **significativos, porém modestos**.
 
-**⑩ Nova observação (x1=45, x2=55):** $\hat{\pi}$ = 0,3779 → classifica
-como Fracasso (0). (Lembre: prever a classe é uso auxiliar; o que a
-análise entrega são os efeitos e seus ICs.)
+**⑩ Nova observação (x1=45, x2=55):** $\hat{\pi}$ = 0,3790 → classifica
+como Fracasso (0). *(O script usa o modelo ajustado na amostra de
+treino — o mesmo procedimento do R. Lembre: prever a classe é uso
+auxiliar; o que a análise entrega são os efeitos e seus ICs.)*
 
 ---
 
@@ -152,7 +167,8 @@ análise entrega são os efeitos e seus ICs.)
 |:---|:---|:---|
 | `SEMENTE <- 123` | Os dados (geradores diferentes) | Estimativas balançam? Conclusões mudam de sentido? |
 | `n <- 2000` no gerador | Amostra maior | Erros-padrão **diminuem**; p-valores caem |
-| `z <- 0.3*x1 + 0.25*x2 - 7` | Efeitos mais fortes | OR maior, AME maior, McFadden sobe |
+| `n <- 50` no gerador | Poucos eventos | O aviso de **EPV** dispara; Wald fica instável (Caps. 1 e 5) |
+| `z <- 0.3*x1 + 0.25*x2 - 7` | Efeitos mais fortes | OR maior, AME/MEM maiores, McFadden sobe |
 | `LIMIAR_DECISAO <- 0.3` | Limiar de classificação | Acurácia/AUC variam; a análise **não** |
 | Trocar `x2` por outra coluna | Spec errada | H-L e resíduos podem reclamar |
 | Rodar R e Python na mesma pasta | Nada — é o mesmo `dados.csv` | Resultados ficam **quase idênticos** |

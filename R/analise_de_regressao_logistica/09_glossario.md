@@ -13,10 +13,12 @@
 | **AIC / BIC** | "Notas" para comparar modelos **nos mesmos dados**: ajuste menos imposto por parâmetro (o BIC cobra mais caro). |
 | **AME** | Efeito marginal médio: média dos efeitos na probabilidade sobre as observações; o que 1 unidade a mais em $x_j$ move, na prática, em pontos percentuais. |
 | **AUC** | Área sob a curva ROC; 0,5 = cara ou coroa, 1 = discriminador perfeito. |
+| **Acurácia** | Fração de classificações corretas para um limiar; pode enganar com classes desbalanceadas. |
 | **Bernoulli** | Distribuição da resposta binária: $Y \sim \text{Bernoulli}(\pi)$. |
 | **Deviance** | Medida de falta de ajuste (o "resíduo com esteroides" da logística); reduzir deviance = estatística do TRV. |
 | **EPV** | *Events per variable*: mínimo de ~10 eventos por parâmetro. |
 | **Efeito marginal** | Variação em $P(Y=1)$ para +1 unidade em $x_j$: $\pi(1-\pi)\beta_j$. |
+| **Especificidade** | Fração de não-eventos corretamente identificados: VN/(VN+FP). |
 | **Heterocedasticidade** | Variância que muda com o nível; na resposta binária, $\text{Var} = \pi(1-\pi)$. |
 | **Hosmer-Lemeshow** | Teste de qualidade do ajuste: frequências observadas vs. esperadas em 10 grupos de risco. |
 | **IC (intervalo de confiança)** | Faixa plausível para o parâmetro; se o IC do OR exclui 1, efeito significativo. |
@@ -29,7 +31,9 @@
 | **Odds** | Razão de chances: $\pi/(1-\pi)$; "3 para 1" não é probabilidade 3. |
 | **OR (Odds Ratio)** | $e^{\beta_j}$: fator multiplicativo dos odds quando $x_j$ cresce 1 unidade. |
 | **pp** | Pontos percentuais: diferença entre probabilidades (1 pp = 1% de *probabilidade*; não confunda com "% de mudança" dos odds). |
+| **Precisão** | Dentre os previstos como evento, quantos realmente são: VP/(VP+FP). |
 | **ROC** | Curva sensibilidade × (1 − especificidade) para todos os limiares. |
+| **Sensibilidade** | Fração de eventos corretamente identificados: VP/(VP+FN). |
 | **Sigmoide** | $\sigma(z) = 1/(1+e^{-z})$: a "porta" que comprime $\mathbb{R}$ em $(0,1)$. |
 | **TRV (LR test)** | Razão de verossimilhanças: $G = 2[\ell(\hat{\beta}) - \ell_0] \sim \chi^2_{(p)}$ sob $H_0$. |
 | **Wald** | Teste individual: $W_j = (\hat{\beta}_j/SE)^2 \sim \chi^2_{(1)}$ (ou $z = \hat{\beta}_j/SE$). |
@@ -57,6 +61,7 @@
 | Wald | $W_j = (\hat{\beta}_j/SE_j)^2 \sim \chi^2_{(1)}$ |
 | IC do OR | $\exp(\hat{\beta}_j \pm z_{\alpha/2}\,SE_j)$ |
 | Pearson | $r_i = (y_i - \hat{\pi}_i)/\sqrt{\hat{\pi}_i(1-\hat{\pi}_i)}$ |
+| Studentizado | $r_{si} = r_i/\sqrt{1-h_{ii}}$ ($h_{ii}$ = leverage) |
 
 ---
 

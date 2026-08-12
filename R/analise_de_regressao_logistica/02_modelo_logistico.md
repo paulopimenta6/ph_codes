@@ -162,6 +162,10 @@ Média dos efeitos marginais individuais (cada observação "vota"):
 
 $$AME_j = \frac{1}{n}\sum_{i=1}^n \pi(\mathbf{x}_i)(1 - \pi(\mathbf{x}_i)) \cdot \beta_j$$
 
+> 🖥️ **Nos scripts (Capítulo 6):** os scripts R e Python reportam o AME
+> **e** o MEM lado a lado — compare como as duas medidas respondem quando
+> você muda o DGP nos experimentos.
+
 **Exemplo comparativo:** para $\beta_j = 1{,}5$:
 
 | $\pi$ | EM($x_j$) | Interpretação |

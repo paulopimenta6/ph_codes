@@ -93,9 +93,27 @@ source .venv/bin/activate
 pip install numpy pandas scipy scikit-learn statsmodels matplotlib
 ```
 
-A saída inclui tabelas de coeficientes/OR, efeitos marginais, testes
-(TRV, Wald, Hosmer-Lemeshow), diagnóstico de resíduos e gráficos
-(`*_eda.png`, `*_roc.png`).
+A saída inclui tabelas de coeficientes/OR, efeitos marginais (AME e
+MEM), checagem EPV, testes (TRV, Wald, Hosmer-Lemeshow), diagnóstico de
+resíduos (Pearson, deviance, studentizado) e gráficos (`*_eda.png`,
+`*_roc.png`).
+
+---
+
+## Como Estudar por Nível Acadêmico 🎓
+
+Mesma matéria, profundidades diferentes. Escolha a sua altimetria:
+
+| Nível | Trilha sugerida | Foco | Entregável típico |
+|:---|:---|:---|:---|
+| 🎓 **Graduação** | Trilha da calma (1 → 2), rode os scripts, leia o cap. 6 | Intuição: OR, efeito marginal, "por que linear falha", ler a saída | Interpretar uma tabela de OR e contar "o que o Seu Bento descobriu" |
+| 🧠 **Mestrado** | Trilha da calma completa (1 → 6) + rodar R **e** Python | Derivadas (MV, IRLS), teste de hipóteses, diagnóstico, comparar linguagens | Um relatório curto com TRV/Wald, McFadden, H-L e limitações |
+| 🔬 **Doutorado** | Todos os capítulos + experimentos do 6.5 no nível de simulação | Formalismo assintótico, propriedades dos EMV, EPV, diagnóstico fino | Estudo de simulação (variar $n$, verificar cobertura dos ICs, poder do TRV) |
+
+> 💡 No doutorado, encare os scripts como **laboratório de simulação**:
+> troque o DGP (`z = ...` no gerador), varie `n` e `SEMENTE` e veja as
+> propriedades dos estimadores — consistência, cobertura de IC e poder —
+> acontecerem diante dos olhos.
 
 ---
 
@@ -146,4 +164,16 @@ analise_de_regressao_logistica/
 
 **Paulo Pimenta** — Baseado em notas de aula revisadas.
 
-**Versão:** 3.0 \| **Data:** 2026-08-11
+**Versão:** 3.1 \| **Data:** 2026-08-12
+
+### O que mudou na 3.1
+
+- Scripts R e Python: agora também reportam **MEM** (junto do AME),
+  **resíduos studentizados**, **checagem EPV** (regra dos 10 eventos) e
+  corrigem os **graus de liberdade** da deviance (nulo = N−1; residual =
+  N−k) no Python.
+- A predição para nova observação agora usa o **modelo de treino** nos
+  dois scripts (antes o Python reajustava na base completa).
+- Novo guia de estudo **por nível acadêmico** (graduação/mestrado/
+  doutorado), logo acima.
+- Cap. 6 revisado: saída guiada batendo com os scripts refatorados.
