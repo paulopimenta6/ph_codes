@@ -126,7 +126,7 @@ onde $\widehat{\mathbf{W}} = \text{diag}\{\hat{\pi}_i(1 - \hat{\pi}_i)\}$.
 | Precisão | Mais confiável (especialmente em amostras pequenas) | Pode ser instável para $|\hat{\beta}_j| \to \infty$ (efeito Hauck-Donner) |
 | Cálculo | Requer ajustar dois modelos | Apenas o modelo completo |
 | Saída do R | `anova(modelo_nulo, modelo, test="Chisq")` | `summary(modelo)` (z value) |
-| Saída Python | $2 \times (\texttt{modelo\_sm.llf} - \texttt{modelo\_nulo.llf})$ | `modelo_sm.tvalues`² |
+| Saída Python | `2 * (modelo_sm.llf - modelo_nulo.llf)` | `modelo_sm.tvalues`² |
 
 > 💡 **Recomendação:** prefira **TRV** para decisões globais (testar um
 > conjunto de variáveis) e **Wald** como aproximação rápida para
@@ -156,13 +156,16 @@ $$\mathbf{R} = \begin{pmatrix}
 
 ## 5.5 Intervalos de Confiança 🎯
 
+Os intervalos abaixo usam nível de confiança de **95%** ($\alpha = 0{,}05$);
+o subscrito $0{,}95$ em $\mathrm{IC}$ indica essa cobertura de probabilidade.
+
 ### Para Coeficientes $\beta_j$
 
-$$IC_{95\%}(\beta_j) = \hat{\beta}_j \pm z_{0{,}025} \cdot \widehat{SE}(\hat{\beta}_j)$$
+$$\mathrm{IC}_{0{,}95}(\beta_j) = \hat{\beta}_j \pm z_{0{,}025} \cdot \widehat{SE}(\hat{\beta}_j)$$
 
 ### Para Odds Ratios $e^{\beta_j}$
 
-$$IC_{95\%}(OR_j) = \exp\left(\hat{\beta}_j \pm z_{0{,}025} \cdot \widehat{SE}(\hat{\beta}_j)\right)$$
+$$\mathrm{IC}_{0{,}95}(OR_j) = \exp\left(\hat{\beta}_j \pm z_{0{,}025} \cdot \widehat{SE}(\hat{\beta}_j)\right)$$
 
 **Interpretação:** se o IC do OR **excluir 1**, o efeito é
 estatisticamente significativo ao nível $\alpha$. O IC entrega o que o
