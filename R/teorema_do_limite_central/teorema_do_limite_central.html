@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Paulo Pimenta">
+
+<title>Teorema do Limite Central no R</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="teorema_do_limite_central_files/libs/clipboard/clipboard.min.js"></script>
+<script src="teorema_do_limite_central_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="teorema_do_limite_central_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="teorema_do_limite_central_files/libs/quarto-html/popper.min.js"></script>
+<script src="teorema_do_limite_central_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="teorema_do_limite_central_files/libs/quarto-html/anchor.min.js"></script>
+<link href="teorema_do_limite_central_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="teorema_do_limite_central_files/libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="teorema_do_limite_central_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="teorema_do_limite_central_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="teorema_do_limite_central_files/libs/bootstrap/bootstrap-9d1035e469d82a39b48356423aa7941c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução">Introdução</a></li>
+  <li><a href="#o-teorema-do-limite-central" id="toc-o-teorema-do-limite-central" class="nav-link" data-scroll-target="#o-teorema-do-limite-central">O Teorema do Limite Central</a>
+  <ul class="collapse">
+  <li><a href="#população-versus-distribuição-amostral" id="toc-população-versus-distribuição-amostral" class="nav-link" data-scroll-target="#população-versus-distribuição-amostral">População versus distribuição amostral</a></li>
+  <li><a href="#um-exemplo-com-uma-população-não-normal" id="toc-um-exemplo-com-uma-população-não-normal" class="nav-link" data-scroll-target="#um-exemplo-com-uma-população-não-normal">Um exemplo com uma população não Normal</a></li>
+  <li><a href="#o-que-acontece-quando-calculamos-várias-médias" id="toc-o-que-acontece-quando-calculamos-várias-médias" class="nav-link" data-scroll-target="#o-que-acontece-quando-calculamos-várias-médias">O que acontece quando calculamos várias médias?</a></li>
+  </ul></li>
+  <li><a href="#propriedades-da-média-amostral" id="toc-propriedades-da-média-amostral" class="nav-link" data-scroll-target="#propriedades-da-média-amostral">Propriedades da média amostral</a></li>
+  <li><a href="#o-papel-do-tamanho-da-amostra" id="toc-o-papel-do-tamanho-da-amostra" class="nav-link" data-scroll-target="#o-papel-do-tamanho-da-amostra">O papel do tamanho da amostra</a></li>
+  <li><a href="#o-que-o-tlc-não-afirma" id="toc-o-que-o-tlc-não-afirma" class="nav-link" data-scroll-target="#o-que-o-tlc-não-afirma">O que o TLC não afirma</a></li>
+  <li><a href="#por-que-isso-é-tão-importante" id="toc-por-que-isso-é-tão-importante" class="nav-link" data-scroll-target="#por-que-isso-é-tão-importante">Por que isso é tão importante?</a></li>
+  <li><a href="#o-experimento-no-r" id="toc-o-experimento-no-r" class="nav-link" data-scroll-target="#o-experimento-no-r">O experimento no R</a>
+  <ul class="collapse">
+  <li><a href="#uma-demonstração-por-simulação" id="toc-uma-demonstração-por-simulação" class="nav-link" data-scroll-target="#uma-demonstração-por-simulação">Uma demonstração por simulação</a>
+  <ul class="collapse">
+  <li><a href="#importando-as-bibliotecas-importantes" id="toc-importando-as-bibliotecas-importantes" class="nav-link" data-scroll-target="#importando-as-bibliotecas-importantes">Importando as bibliotecas importantes</a></li>
+  <li><a href="#criando-as-variáveis-importantes" id="toc-criando-as-variáveis-importantes" class="nav-link" data-scroll-target="#criando-as-variáveis-importantes">Criando as variáveis importantes</a></li>
+  <li><a href="#garantindo-a-reprodutibilidade" id="toc-garantindo-a-reprodutibilidade" class="nav-link" data-scroll-target="#garantindo-a-reprodutibilidade">Garantindo a reprodutibilidade</a></li>
+  <li><a href="#vetores-com-as-médias-de-600-simulações" id="toc-vetores-com-as-médias-de-600-simulações" class="nav-link" data-scroll-target="#vetores-com-as-médias-de-600-simulações">Vetores com as médias de 600 simulações</a></li>
+  <li><a href="#realizando-as-primeiras-visualizações" id="toc-realizando-as-primeiras-visualizações" class="nav-link" data-scroll-target="#realizando-as-primeiras-visualizações">Realizando as primeiras visualizações</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Teorema do Limite Central no R</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Paulo Pimenta </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introdução" class="level1">
+<h1>Introdução</h1>
+<p>O <strong>Teorema do Limite Central (TLC)</strong> é um dos resultados fundamentais da Estatística. Ele possui um papel central na inferência estatística porque permite compreender o comportamento das médias amostrais mesmo quando a população original não possui uma distribuição Normal.</p>
+<p>Neste tutorial, vamos estudar o TLC tanto do ponto de vista teórico quanto computacional, utilizando o R para realizar simulações e visualizar o comportamento das médias amostrais.</p>
+<p>A ideia principal será simples: começaremos com uma população que não possui distribuição Normal, retiraremos repetidamente amostras dessa população e calcularemos suas médias. Em seguida, observaremos a distribuição dessas médias.</p>
+</section>
+<section id="o-teorema-do-limite-central" class="level1">
+<h1>O Teorema do Limite Central</h1>
+<p>Antes de realizar a simulação, é importante compreender o que estamos tentando observar.</p>
+<p>Considere uma população aleatória representada por uma variável aleatória <span class="math inline">\(X\)</span>, com média populacional <span class="math inline">\(\mu\)</span> e variância <span class="math inline">\(\sigma^2\)</span>. Retiramos dessa população uma amostra aleatória de tamanho <span class="math inline">\(n\)</span>:</p>
+<p><span class="math display">\[
+X_1, X_2, \ldots, X_n
+\]</span></p>
+<p>A média amostral é definida por:</p>
+<p><span class="math display">\[
+\bar{X} = \frac{1}{n}\sum_{i=1}^{n}X_i
+\]</span></p>
+<p>O Teorema do Limite Central estabelece, sob condições apropriadas, que à medida que o tamanho da amostra <span class="math inline">\(n\)</span> aumenta, a distribuição da média amostral <span class="math inline">\(\bar{X}\)</span>, devidamente padronizada, se aproxima de uma distribuição Normal padrão.</p>
+<p>Formalmente:</p>
+<p><span class="math display">\[
+\frac{\bar{X}-\mu}{\sigma/\sqrt{n}}
+\xrightarrow{d}
+N(0,1)
+\]</span></p>
+<p>A notação <span class="math inline">\(\xrightarrow{d}\)</span> significa <strong>convergência em distribuição</strong>.</p>
+<p>Portanto, o resultado não afirma que a população original se torna Normal. O que se aproxima de uma distribuição Normal é a <strong>distribuição amostral da média</strong>.</p>
+<p>Para tamanhos de amostra suficientemente grandes, podemos representar essa aproximação aproximadamente por:</p>
+<p><span class="math display">\[
+\bar{X}
+\overset{\text{aprox.}}{\sim}
+N\left(
+\mu,
+\frac{\sigma^2}{n}
+\right)
+\]</span></p>
+<p>Essa expressão será particularmente importante para compreender os resultados das simulações realizadas neste tutorial.</p>
+<section id="população-versus-distribuição-amostral" class="level2">
+<h2 class="anchored" data-anchor-id="população-versus-distribuição-amostral">População versus distribuição amostral</h2>
+<p>Essa distinção é fundamental para compreender o TLC.</p>
+<p>Imagine uma população cuja distribuição seja claramente não Normal. Podemos retirar dessa população uma amostra, calcular sua média e repetir esse procedimento muitas vezes.</p>
+<p>Por exemplo:</p>
+<ol type="1">
+<li>Retiramos uma amostra de tamanho <span class="math inline">\(n\)</span>.</li>
+<li>Calculamos sua média <span class="math inline">\(\bar{X}_1\)</span>.</li>
+<li>Retiramos outra amostra.</li>
+<li>Calculamos <span class="math inline">\(\bar{X}_2\)</span>.</li>
+<li>Repetimos o procedimento muitas vezes.</li>
+</ol>
+<p>Ao final, teremos várias médias:</p>
+<p><span class="math display">\[
+\bar{X}_1,\bar{X}_2,\bar{X}_3,\ldots,\bar{X}_B
+\]</span></p>
+<p>onde <span class="math inline">\(B\)</span> representa o número de amostras simuladas.</p>
+<p>Essas médias formam uma nova distribuição, chamada <strong>distribuição amostral da média</strong>.</p>
+<p>É essa distribuição que será estudada neste tutorial.</p>
+<blockquote class="blockquote">
+<p><strong>Importante:</strong> a população original e a distribuição amostral da média são objetos diferentes. A população descreve os valores individuais <span class="math inline">\(X\)</span>, enquanto a distribuição amostral descreve o comportamento de <span class="math inline">\(\bar{X}\)</span> quando o processo de amostragem é repetido.</p>
+</blockquote>
+</section>
+<section id="um-exemplo-com-uma-população-não-normal" class="level2">
+<h2 class="anchored" data-anchor-id="um-exemplo-com-uma-população-não-normal">Um exemplo com uma população não Normal</h2>
+<p>Neste tutorial utilizaremos uma população extremamente simples:</p>
+<p><span class="math display">\[
+X \in \{1,2,3\}
+\]</span></p>
+<p>com probabilidades:</p>
+<p><span class="math display">\[
+P(X=1)=P(X=2)=P(X=3)=\frac{1}{3}
+\]</span></p>
+<p>Essa população possui uma <strong>distribuição uniforme discreta</strong>. Portanto, a população original não possui o formato de uma distribuição Normal.</p>
+<p>Sua função de probabilidade pode ser representada por:</p>
+<p><span class="math display">\[
+P(X=x)=
+\begin{cases}
+\frac{1}{3}, &amp; x\in\{1,2,3\} \\
+0, &amp; \text{caso contrário}
+\end{cases}
+\]</span></p>
+<p>A média populacional é:</p>
+<p><span class="math display">\[
+\mu=E(X)
+\]</span></p>
+<p>e, neste caso:</p>
+<p><span class="math display">\[
+\mu =
+1\left(\frac{1}{3}\right)
++
+2\left(\frac{1}{3}\right)
++
+3\left(\frac{1}{3}\right)
+=2
+\]</span></p>
+<p>Portanto:</p>
+<p><span class="math display">\[
+\mu=2
+\]</span></p>
+<p>Esperamos, consequentemente, que as médias amostrais se concentrem ao redor de <span class="math inline">\(2\)</span>.</p>
+</section>
+<section id="o-que-acontece-quando-calculamos-várias-médias" class="level2">
+<h2 class="anchored" data-anchor-id="o-que-acontece-quando-calculamos-várias-médias">O que acontece quando calculamos várias médias?</h2>
+<p>Considere inicialmente amostras de tamanho <span class="math inline">\(n=3\)</span>.</p>
+<p>Uma possível amostra seria:</p>
+<p><span class="math display">\[
+(1,2,3)
+\]</span></p>
+<p>cuja média é:</p>
+<p><span class="math display">\[
+\bar{X}=\frac{1+2+3}{3}=2
+\]</span></p>
+<p>Outra amostra poderia ser:</p>
+<p><span class="math display">\[
+(1,1,2)
+\]</span></p>
+<p>com média:</p>
+<p><span class="math display">\[
+\bar{X}=\frac{1+1+2}{3}=1{,}33
+\]</span></p>
+<p>Outra poderia ser:</p>
+<p><span class="math display">\[
+(3,3,2)
+\]</span></p>
+<p>com média:</p>
+<p><span class="math display">\[
+\bar{X}=\frac{3+3+2}{3}=2{,}67
+\]</span></p>
+<p>Se repetirmos esse processo centenas ou milhares de vezes, obteremos uma grande quantidade de médias amostrais.</p>
+<p>O histograma dessas médias permite visualizar a <strong>distribuição amostral da média</strong>.</p>
+<p>É justamente nesse ponto que o R se torna uma ferramenta estatística poderosa: em vez de apenas afirmar teoricamente que a distribuição das médias se aproxima da Normal, podemos <strong>simular o processo e observar o fenômeno acontecendo</strong>.</p>
+</section>
+</section>
+<section id="propriedades-da-média-amostral" class="level1">
+<h1>Propriedades da média amostral</h1>
+<p>Além da forma da distribuição, o TLC está relacionado a propriedades importantes da média amostral.</p>
+<p>Se as observações são independentes e possuem média <span class="math inline">\(\mu\)</span> e variância <span class="math inline">\(\sigma^2\)</span>, então:</p>
+<p><span class="math display">\[
+E(\bar{X})=\mu
+\]</span></p>
+<p>Ou seja, a média da distribuição amostral das médias é igual à média da população.</p>
+<p>A variância da média amostral é:</p>
+<p><span class="math display">\[
+\operatorname{Var}(\bar{X})=\frac{\sigma^2}{n}
+\]</span></p>
+<p>Consequentemente, o desvio-padrão da distribuição das médias, chamado <strong>erro-padrão da média</strong>, é:</p>
+<p><span class="math display">\[
+SE(\bar{X})=\frac{\sigma}{\sqrt{n}}
+\]</span></p>
+<p>Esse resultado explica por que as médias amostrais ficam cada vez mais concentradas em torno da média populacional quando aumentamos o tamanho da amostra.</p>
+<p>Por exemplo, se aumentarmos <span class="math inline">\(n\)</span> de <span class="math inline">\(4\)</span> para <span class="math inline">\(16\)</span>, teremos inicialmente:</p>
+<p><span class="math display">\[
+SE(\bar{X})
+=
+\frac{\sigma}{\sqrt{4}}
+=
+\frac{\sigma}{2}
+\]</span></p>
+<p>e, posteriormente:</p>
+<p><span class="math display">\[
+SE(\bar{X})
+=
+\frac{\sigma}{\sqrt{16}}
+=
+\frac{\sigma}{4}
+\]</span></p>
+<p>Portanto, aumentar o tamanho da amostra reduz a variabilidade das médias amostrais.</p>
+</section>
+<section id="o-papel-do-tamanho-da-amostra" class="level1">
+<h1>O papel do tamanho da amostra</h1>
+<p>Uma das ideias mais importantes do TLC é que o comportamento da distribuição amostral depende do tamanho da amostra.</p>
+<p>Podemos imaginar o seguinte experimento:</p>
+<ul>
+<li><span class="math inline">\(n=3\)</span>: as médias ainda apresentam uma distribuição relativamente discreta e podem não parecer muito próximas de uma Normal;</li>
+<li><span class="math inline">\(n=10\)</span>: a distribuição das médias começa a adquirir uma forma mais suave;</li>
+<li><span class="math inline">\(n=30\)</span>: a aproximação à Normal pode se tornar bastante evidente;</li>
+<li><span class="math inline">\(n=100\)</span>: a distribuição das médias tende a ficar ainda mais concentrada em torno da média populacional.</li>
+</ul>
+<p>É importante destacar que <strong>não existe um tamanho de amostra universal a partir do qual o TLC “começa a funcionar”</strong>.</p>
+<p>A velocidade da aproximação depende da distribuição da população original. Para populações muito assimétricas ou com caudas pesadas, amostras maiores podem ser necessárias para que a aproximação Normal seja adequada.</p>
+</section>
+<section id="o-que-o-tlc-não-afirma" class="level1">
+<h1>O que o TLC não afirma</h1>
+<p>Um erro comum é interpretar o Teorema do Limite Central da seguinte maneira:</p>
+<blockquote class="blockquote">
+<p>“Para amostras grandes, os dados seguem uma distribuição Normal.”</p>
+</blockquote>
+<p>Isso não é correto.</p>
+<p>O TLC não diz que os valores individuais <span class="math inline">\(X_1,X_2,\ldots,X_n\)</span> se tornam Normais.</p>
+<p>Ele afirma que, sob condições apropriadas, a <strong>distribuição da média amostral</strong> se aproxima de uma distribuição Normal à medida que <span class="math inline">\(n\)</span> aumenta.</p>
+<p>Portanto, não devemos interpretar:</p>
+<p><span class="math display">\[
+X_i \xrightarrow{d} N(\mu,\sigma^2)
+\]</span></p>
+<p>como consequência do TLC.</p>
+<p>O resultado relevante é:</p>
+<p><span class="math display">\[
+\frac{\bar{X}-\mu}{\sigma/\sqrt{n}}
+\xrightarrow{d}
+N(0,1)
+\]</span></p>
+<p>ou, de maneira aproximada para <span class="math inline">\(n\)</span> suficientemente grande:</p>
+<p><span class="math display">\[
+\bar{X}
+\overset{\text{aprox.}}{\sim}
+N\left(
+\mu,
+\frac{\sigma^2}{n}
+\right)
+\]</span></p>
+<p>Assim, o TLC diz respeito à <strong>distribuição amostral da média</strong>, e não à distribuição dos valores individuais da população.</p>
+</section>
+<section id="por-que-isso-é-tão-importante" class="level1">
+<h1>Por que isso é tão importante?</h1>
+<p>O TLC é fundamental porque permite utilizar resultados relacionados à distribuição Normal para fazer inferência sobre populações mesmo quando a distribuição original dos dados não é Normal.</p>
+<p>Ele está relacionado a diversas técnicas estatísticas, incluindo:</p>
+<ul>
+<li>construção de intervalos de confiança;</li>
+<li>testes de hipóteses;</li>
+<li>aproximações de distribuições amostrais;</li>
+<li>estimação de parâmetros;</li>
+<li>cálculo de erros-padrão;</li>
+<li>diversos métodos de inferência estatística.</li>
+</ul>
+<p>Assim, o TLC fornece uma importante ponte entre uma população possivelmente desconhecida e a possibilidade de realizar inferência estatística a partir de amostras.</p>
+</section>
+<section id="o-experimento-no-r" class="level1">
+<h1>O experimento no R</h1>
+<p>Agora que a teoria é conhecida, pode-se reproduzir o fenômeno computacionalmente com os seguintes passos:</p>
+<ol type="1">
+<li>definir uma população que não possui distribuição Normal;</li>
+<li>definir as probabilidades de ocorrência de cada valor;</li>
+<li>retirar repetidamente amostras dessa população;</li>
+<li>calcular a média de cada amostra;</li>
+<li>armazenar todas as médias;</li>
+<li>construir um histograma da distribuição amostral;</li>
+<li>observar sua forma;</li>
+<li>posteriormente, aumentar o tamanho das amostras e observar o efeito sobre a distribuição.</li>
+</ol>
+<p>Dessa maneira, o código R não será apenas uma sequência de comandos. Cada etapa da programação estará diretamente relacionada a um conceito estatístico apresentado anteriormente.</p>
+<section id="uma-demonstração-por-simulação" class="level2">
+<h2 class="anchored" data-anchor-id="uma-demonstração-por-simulação">Uma demonstração por simulação</h2>
+<section id="importando-as-bibliotecas-importantes" class="level3">
+<h3 class="anchored" data-anchor-id="importando-as-bibliotecas-importantes">Importando as bibliotecas importantes</h3>
+<p>Para realizar as visualizações será usado o pacote <code>ggplot2</code>. Primeiramente, será verificado se o pacote <code>pacman</code> está disponível. Caso não esteja, ele será instalado automaticamente. Em seguida, será usado a função <code>p_load()</code> para instalar e carregar os pacotes necessários.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instala o pacman caso não esteja disponível</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"pacman"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">"pacman"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Instala e carrega os pacotes necessários</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  ggplot2</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="criando-as-variáveis-importantes" class="level3">
+<h3 class="anchored" data-anchor-id="criando-as-variáveis-importantes">Criando as variáveis importantes</h3>
+<p>Vamos considerar uma pontuação (amostra) com suas probabilidades de ocorrência. Consideremos também um vetor vazio que irá armazenar as médias de todas as simulações das médias das 3 pontuações. Uma população com probabilidades iguais para os valores 1, 2 e 3 não é Normal, mas isso não significa simplesmente que “a distribuição não seria normal”, ela é uma distribuição uniforme discreta. E justamente isso é ótimo para demonstrar o TLC: começamos com uma população que não é Normal e observamos o comportamento das médias.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>values <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>probabilities <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>, <span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>, <span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>smpl.means <span class="ot">&lt;-</span> <span class="cn">NULL</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="garantindo-a-reprodutibilidade" class="level3">
+<h3 class="anchored" data-anchor-id="garantindo-a-reprodutibilidade">Garantindo a reprodutibilidade</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="vetores-com-as-médias-de-600-simulações" class="level3">
+<h3 class="anchored" data-anchor-id="vetores-com-as-médias-de-600-simulações">Vetores com as médias de 600 simulações</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">600</span>){</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    smpl <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="at">x=</span>values, <span class="at">prob=</span>probabilities, <span class="at">size=</span><span class="dv">3</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    smpl.means <span class="ot">&lt;-</span> <span class="fu">append</span>(smpl.means, <span class="fu">mean</span>(smpl))</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="realizando-as-primeiras-visualizações" class="level3">
+<h3 class="anchored" data-anchor-id="realizando-as-primeiras-visualizações">Realizando as primeiras visualizações</h3>
+<section id="usando-um-gráfico-inicial-para-reconhecer-a-silhueta-da-curva-normal" class="level4">
+<h4 class="anchored" data-anchor-id="usando-um-gráfico-inicial-para-reconhecer-a-silhueta-da-curva-normal">Usando um gráfico inicial para reconhecer a silhueta da curva normal</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="cn">NULL</span>, <span class="fu">aes</span>(<span class="at">x=</span>smpl.means)) <span class="sc">+</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="teorema_do_limite_central_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="especificando-melhor-os-valores-no-gráfico" class="level4">
+<h4 class="anchored" data-anchor-id="especificando-melhor-os-valores-no-gráfico">Especificando melhor os valores no gráfico</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Para rotular melhor os dados é preciso listá-los de forma única</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Para garantir uma legibilidade mais adequada vamos arrendondar para duas casas decimais</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Vamos salvar os resultados em um vetor chamado `m.values` para ser usado na escala x alterada</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>m.values <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">unique</span>(smpl.means),<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="refazendo-o-gráfico-com-as-alterações-nas-escalas-dos-eixos-x-e-y" class="level4">
+<h4 class="anchored" data-anchor-id="refazendo-o-gráfico-com-as-alterações-nas-escalas-dos-eixos-x-e-y">Refazendo o gráfico com as alterações nas escalas dos eixos x e y</h4>
+<p>Distribuição amostral das médias</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="cn">NULL</span>, <span class="fu">aes</span>(<span class="at">x=</span>smpl.means)) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.1</span>) <span class="sc">+</span> <span class="co"># No histograma, o eixo X é dividido em pequenos intervalos (bins). O binwidth determina a largura desses intervalos.</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks=</span>m.values, <span class="at">label=</span>m.values) <span class="sc">+</span> <span class="co"># Ajustando a escala em x</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span> <span class="co"># Ajustando a escala em y</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x=</span><span class="fu">expression</span>(<span class="fu">bar</span>(X)), <span class="at">y=</span><span class="fu">expression</span>(Frequência(<span class="fu">bar</span>(X))) <span class="co">#</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="teorema_do_limite_central_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
