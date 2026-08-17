@@ -425,7 +425,13 @@ N\left(
 </section>
 <section id="criando-as-variáveis-importantes" class="level3">
 <h3 class="anchored" data-anchor-id="criando-as-variáveis-importantes">Criando as variáveis importantes</h3>
-<p>Vamos considerar uma pontuação (amostra) com suas probabilidades de ocorrência. Consideremos também um vetor vazio que irá armazenar as médias de todas as simulações das médias das 3 pontuações. Uma população com probabilidades iguais para os valores 1, 2 e 3 não é Normal, mas isso não significa simplesmente que “a distribuição não seria normal”, ela é uma distribuição uniforme discreta. E justamente isso é ótimo para demonstrar o TLC: começamos com uma população que não é Normal e observamos o comportamento das médias.</p>
+<p>Vamos definir a população utilizada na simulação. Ela possui três valores possíveis, <span class="math inline">\(1\)</span>, <span class="math inline">\(2\)</span> e <span class="math inline">\(3\)</span>, todos com a mesma probabilidade de ocorrência:</p>
+<p><span class="math display">\[
+P(X=1)=P(X=2)=P(X=3)=\frac{1}{3}
+\]</span></p>
+<p>Essa é uma <strong>distribuição uniforme discreta</strong>. Portanto, a população original não possui distribuição Normal.</p>
+<p>Isso é importante para a demonstração do TLC: começamos com uma população que não é Normal e observamos o comportamento da distribuição das médias amostrais.</p>
+<p>Também criaremos um vetor vazio chamado <code>smpl.means</code>, que será utilizado para armazenar as médias calculadas durante as simulações.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>values <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>probabilities <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>, <span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>, <span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>)</span>
@@ -434,6 +440,7 @@ N\left(
 </section>
 <section id="garantindo-a-reprodutibilidade" class="level3">
 <h3 class="anchored" data-anchor-id="garantindo-a-reprodutibilidade">Garantindo a reprodutibilidade</h3>
+<p>Antes de realizar a simulação, vamos utilizar <code>set.seed()</code> para definir a semente do gerador de números pseudoaleatórios. Isso garante que os resultados possam ser reproduzidos posteriormente.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
