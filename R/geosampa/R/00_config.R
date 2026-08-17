@@ -13,7 +13,9 @@ gs_urls <- list(
   wfs         = "https://wfs.geosampa.prefeitura.sp.gov.br/geoserver/geoportal/wfs",
   wms         = "https://wms.geosampa.prefeitura.sp.gov.br/geoserver/geoportal/wms",
   metadados   = "https://metadados.geosampa.prefeitura.sp.gov.br/geonetwork/srv/por",
-  geonet_api  = "https://metadados.geosampa.prefeitura.sp.gov.br/geonetwork/srv/api"
+  geonet_api  = "https://metadados.geosampa.prefeitura.sp.gov.br/geonetwork/srv/api",
+  viacep      = "https://viacep.com.br/ws/{cep}/json/",
+  nominatim   = "https://nominatim.openstreetmap.org/search"
 )
 
 # --- Sistemas de referência cartográfica ----------------------------------
@@ -27,6 +29,15 @@ gs_epsg <- list(
 
 # --- Página padrão do WFS (quantas feições buscar por requisição) ----------
 gs_tamanho_pagina <- 1000
+
+# --- Configurações do módulo de CEP -----------------------------------------
+# Tolerância padrão (metros) para verificar se uma coordenada confere com um CEP.
+gs_tolerancia_cep_m <- 300
+# Pausa (segundos) entre consultas ao Nominatim, respeitando a política de uso
+# (máximo ~1 requisição por segundo).
+gs_pausa_nominatim_s <- 1
+# Raio padrão (metros) para buscar serviços próximos.
+gs_raio_padrao_m <- 2000
 
 # --- Localização da raiz do projeto ----------------------------------------
 # Sobe de diretório em diretório até encontrar a pasta que contém R/ e scripts/.

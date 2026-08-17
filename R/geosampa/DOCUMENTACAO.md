@@ -276,7 +276,103 @@ registros existem — é assim que o robô sabe quando parar de buscar.
 
 ---
 
-## 10. Ideias de próximos passos 🌟
+## 10. Bônus: o módulo de CEP, serviços próximos, mapas e análises 🌟
+
+Além de garimpar os tesouros, o GeoSampa agora sabe responder: *"este CEP bate
+com esta coordenada?"*, *"o que tem por perto deste CEP?"* e *"como estão
+distribuídos os serviços?"* Tudo isso com funções novas na pasta `R/`.
+
+### Como um CEP vira uma coordenada?
+
+Em **cascata de fontes** (a primeira que der certo vence):
+
+1. **Índice local**: os próprios `data/*.csv` já trazem CEP + latitude/
+   longitude dos equipamentos públicos — mais de **7 mil CEPs** de São Paulo.
+   Vantagem: offline, instantâneo e gratuito.
+2. **viaCEP** (`viacep.com.br`): valida o CEP e devolve o endereço
+   (logradouro, bairro, cidade, UF e IBGE). Não exige chave.
+3. **Nominatim/OSM**: geocodifica o CEP pelo código postal quando ele não está
+   no índice local. A política de uso pede um `User-Agent` identificado e
+   **~1 consulta por segundo** — o código já respeita isso.
+
+### As novas ferramentas 🧰
+
+| Função | O que faz |
+|--------|-----------|
+| `gs_indice_cep()` | Monta o índice local CEP → coordenadas a partir de `data/` |
+| `gs_ler_cep(cep)` | Valida o CEP e devolve o endereço via viaCEP |
+| `gs_cep_para_coordenadas(cep)` | Lat/long do CEP (índice local → Nominatim) |
+| `gs_verificar_cep(cep, lat, lon)` | Confere se a coordenada bate com o CEP (tolerância padrão 300 m) |
+| `gs_servicos_proximos(cep\|coordenadas, camadas, raio_m, ...)` | Serviços dentro do raio, mais próximos primeiro |
+| `gs_tipos_distancia()` | Documenta as métricas de distância |
+| `gs_mapa_servicos(...)` | Mapa estático (ggplot2 → PNG/PDF) ou interativo (leaflet → HTML) |
+| `gs_analise_servicos(..., tipo)` | Análises estatísticas e espaciais escolhidas pelo usuário |
+
+### Tipos de distância 📏
+
+| Tipo | Descrição | Quando usar |
+|------|-----------|-------------|
+| `geodesica` (padrão) | Elipsoidal via `sf::st_distance` em CRS geográfico | Referência, mais precisa |
+| `euclidiana` | Metros na projeção UTM/SIRGAS2000 (EPSG:31983) | Rápida, boa até ~20 km |
+| `haversine` | Aproximação esférica sobre WGS84 | Leve, sem transformar CRS |
+| `manhattan` | \|Δx\| + \|Δy\| em metros projetados | "Caminhabilidade" em quadrículas |
+| `rede_viaria` | Rota real de carro via OSRM | Requer pacote `osrm` (opcional) |
+
+> 💡 Para "a pé" ou "de carro" no sentido real (ruas, quarteirões), a métrica
+> mais realista é a de **rede viária (OSRM)**, que usa o grafo de ruas. As
+> demais são "linha reta" e servem para raios e comparações rápidas.
+
+### Análises estatísticas e espaciais 📊
+
+| Tipo | O que devolve |
+|------|---------------|
+| `descritivas` | Contagens por tipo/camada, resumo, histograma e boxplot das distâncias |
+| `vizinho_mais_proximo` | Distância ao serviço mais próximo (geral e por camada) |
+| `voronoi` | Polígonos de Thiessen: áreas de influência de cada serviço |
+| `kde` | Mapa de densidade de kernel dos serviços |
+| `raios_progressivos` | Oportunidades acumuladas em 500 m, 1 km e 2 km |
+| `moran` | Moran's I (autocorrelação espacial) — requer `spdep` |
+| `rede_viaria` | Distância de percurso comparada à linha reta — requer `osrm` |
+
+Os tipos `moran` e `rede_viaria` dependem de pacotes opcionais. Se o pacote
+não estiver instalado, a função **não quebra**: devolve uma mensagem
+orientando a instalação.
+
+### Exemplo completo 🚀
+
+```r
+# 1) Conferir se a coordenada bate com o CEP da UBS Água Rasa
+gs_verificar_cep("03175-001", -23.553640, -46.580180)
+
+# 2) Achar os serviços de saúde e bombeiros a até 2 km do CEP
+proximos <- gs_servicos_proximos(
+  cep     = "03175-001",
+  raio_m  = 2000,
+  camadas = c("equipamento_saude_ubs_posto_centro", "equipamento_bombeiros")
+)
+head(proximos[, c("camada", "nome", "distancia_m")])
+
+# 3) Gerar mapas (HTML interativo e PNG estático)
+gs_mapa_servicos(proximos, interativo = TRUE,  salvar = "mapas/cep_03175001.html")
+gs_mapa_servicos(proximos, interativo = FALSE, salvar = "mapas/cep_03175001.png")
+
+# 4) Análises descritivas + oportunidades por raio
+analises <- gs_analise_servicos(proximos, tipo = c("descritivas", "raios_progressivos"))
+analises$raios_progressivos
+```
+
+### Limitações conhecidas ⚠️
+
+- O índice local cobre apenas os CEPs dos equipamentos públicos (≈7 mil) —
+  CEPs fora dele precisam de internet (viaCEP + Nominatim).
+- Um CEP de faixa de rua pode ter várias coordenadas; a verificação usa a
+  ocorrência mais próxima.
+- CEP de caixa postal não tem coordenada útil.
+- O servidor demo do OSRM tem cobertura e limites próprios.
+
+---
+
+## 11. Ideias de próximos passos 🌟
 
 - 🧭 Cruzar os equipamentos com camadas de distritos/subprefeituras para saber
   **quais regiões têm e quais não têm** determinado serviço.
