@@ -61,6 +61,51 @@ gs_calcular_distancias <- function(ponto_sf, pontos_sf,
   )
 }
 
+# --- Resolve o argumento `camadas` para nomes reais presentes em data/ -------
+# Aceita:
+#   - NULL / "todos" / "all" / "todas" -> todas as camadas locais;
+#   - nomes exatos de camadas (com ou sem o prefixo "geoportal:");
+#   - temas (ex.: "saude") -> expande para todas as camadas daquele tema;
+#   - pedaços do nome (ex.: "ubs") -> casa por substring;
+#   - data.frame vindo de gs_catalogo_equipamentos() (usa a coluna `camada`).
+# Devolve list(resolvidas, nao_encontradas).
+gs_resolver_camadas <- function(camadas, dir = gs_pasta_dados()) {
+  locais <- gs_camadas_local(dir)
+  if (length(locais) == 0) {
+    stop("Nenhum CSV em ", dir,
+         ". Baixe as camadas com gs_baixar_todos_equipamentos().")
+  }
+  if (is.null(camadas)) {
+    return(list(resolvidas = locais, nao_encontradas = character(0)))
+  }
+  if (is.data.frame(camadas)) camadas <- camadas$camada
+  camadas <- as.character(camadas)
+  if (length(camadas) == 1 && tolower(camadas) %in% c("todos", "all", "todas")) {
+    return(list(resolvidas = locais, nao_encontradas = character(0)))
+  }
+
+  resolvidas <- character(0)
+  nao_encontradas <- character(0)
+  temas_locais <- unique(gs_tema_camada(locais))
+
+  for (v in unique(camadas)) {
+    v <- sub("^geoportal:", "", v)
+    if (v %in% locais) {
+      resolvidas <- c(resolvidas, v)
+    } else if (tolower(v) %in% temas_locais) {
+      resolvidas <- c(resolvidas, locais[gs_tema_camada(locais) == tolower(v)])
+    } else {
+      parcial <- locais[grepl(v, locais, ignore.case = TRUE)]
+      if (length(parcial) > 0) {
+        resolvidas <- c(resolvidas, parcial)
+      } else {
+        nao_encontradas <- c(nao_encontradas, v)
+      }
+    }
+  }
+  list(resolvidas = unique(resolvidas), nao_encontradas = unique(nao_encontradas))
+}
+
 # --- Busca serviços próximos a um CEP ou coordenada --------------------------
 # Parâmetros:
 #   cep            CEP (ex.: "03175001" ou "03175-001") — alternativa a coordenadas.
@@ -81,22 +126,20 @@ gs_servicos_proximos <- function(cep = NULL, coordenadas = NULL, camadas = NULL,
   tipo_distancia <- match.arg(tipo_distancia)
   ponto <- gs_resolver_ponto(cep, coordenadas)
 
-  if (is.null(camadas) ||
-      (length(camadas) == 1 && tolower(camadas) %in% c("todos", "all", "todas"))) {
-    camadas <- gs_camadas_local(dir)
+  resolvidas <- gs_resolver_camadas(camadas, dir)
+  if (length(resolvidas$nao_encontradas) > 0) {
+    message("⚠️ Ignorando valores de `camadas` não encontrados em data/: ",
+            paste(resolvidas$nao_encontradas, collapse = ", "),
+            ". Veja as opções com gs_listar_servicos().")
   }
-  camadas <- unique(gsub("^geoportal:", "", camadas))
+  camadas <- resolvidas$resolvidas
   if (length(camadas) == 0) {
-    stop("Nenhuma camada disponível em ", dir,
-         ". Baixe os dados com gs_baixar_todos_equipamentos().")
+    stop("Nenhuma camada válida em data/ para os valores informados. ",
+         "Use gs_listar_servicos() para ver o que está disponível.")
   }
 
   res <- lapply(camadas, function(cam) {
     arq <- file.path(dir, paste0(cam, ".csv"))
-    if (!file.exists(arq)) {
-      message("  [", cam, "] CSV não encontrado em data/ — pulando (baixe com gs_baixar_camada()).")
-      return(NULL)
-    }
     tab <- tryCatch(readr::read_csv(arq, show_col_types = FALSE),
                     error = function(e) NULL)
     if (is.null(tab)) return(NULL)

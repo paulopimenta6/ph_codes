@@ -311,7 +311,9 @@ falamos em "coordenada de referência".
 "Rua Serra de Jairé, 340" em um par de números: latitude e longitude. Nosso
 sistema faz isso em **cascata**: primeiro consulta o índice local (offline,
 instantâneo), depois a internet (viaCEP para o endereço e Nominatim/OSM para
-a coordenada). A primeira fonte que responder, vence. 🏆
+a coordenada). Se o CEP não está no índice local, o sistema usa o **endereço
+do viaCEP** para pedir a **rua** ao Nominatim — e, em último caso, o
+**centróide da cidade**. A primeira fonte que responder, vence. 🏆
 
 **Latitude e longitude — a teia de aranha da Terra.** Imagine uma teia de
 aranha envolvendo o planeta:
@@ -399,7 +401,12 @@ Como funciona por dentro (a **cascata**):
    é a **mediana** deles.
 2. **viaCEP + Nominatim**: se o CEP não está no índice, o sistema consulta a
    internet (com pausa de 1 segundo entre chamadas, respeitando a política do
-   OSM). A coluna `fonte` mostra qual caminho venceu: `local` ou `nominatim`.
+   OSM). O Nominatim tenta primeiro pelo **código postal**; se não achar (muito
+   comum no Brasil, onde o OSM raramente tem `postal_code` por rua), o sistema
+   usa o endereço do **viaCEP** e pede a **rua** (`street + city + state`); se
+   ainda assim não achar, cai para o **centróide da cidade**. A coluna `fonte`
+   mostra qual caminho venceu (`local` ou `nominatim`) e a coluna `precisao`
+   indica o nível: código postal, rua ou cidade.
 
 Você também pode construir/atualizar o índice manualmente:
 
@@ -475,6 +482,17 @@ gs_servicos_proximos(cep = "03175-001", raio_m = 5000, n_por_camada = 3)
 # Trocar a métrica de distância
 gs_servicos_proximos(cep = "03175-001", raio_m = 2000, tipo_distancia = "manhattan")
 ```
+
+> 🎯 **Em `camadas` você pode passar:**
+> - o **tema** inteiro — `"saude"` expande para todas as camadas de saúde
+>   (UBS, ambulatórios, saúde mental, urgência/emergência etc.);
+> - o **nome completo** da camada — `"equipamento_saude_ubs_posto_centro"`;
+> - um **pedaço do nome** — `"ubs"` casa com todas as camadas que contêm "ubs";
+> - um **`data.frame`** vindo de `gs_catalogo_equipamentos()` (usa a coluna
+>   `camada`).
+> Para ver todas as opções locais agrupadas por tema, use `gs_listar_servicos()`
+> (ou `gs_listar_servicos("saude")` para filtrar). Se um valor não bater com
+> nada, o sistema avisa e sugere a listagem.
 
 ### 10.8 Missão 5 — Os tipos de distância 📏
 
@@ -582,6 +600,7 @@ Se um pacote opcional (`spdep` ou `osrm`) não estiver instalado, a análise
 | Função | O que faz | Sai |
 |--------|-----------|-----|
 | `gs_indice_cep()` | Monta o índice local CEP → coordenadas | data.frame |
+| `gs_listar_servicos()` | Lista os serviços locais por tema (o que usar em `camadas`) | data.frame |
 | `gs_ler_cep(cep)` | Valida o CEP e devolve o endereço | data.frame |
 | `gs_cep_para_coordenadas(cep)` | Lat/long do CEP (índice local → Nominatim) | data.frame |
 | `gs_verificar_cep(cep, lat, lon)` | Confere se a coordenada bate com o CEP | lista |

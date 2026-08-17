@@ -124,7 +124,9 @@ data/
   longitude). Nosso sistema faz em **cascata**: primeiro o **índice local**
   (offline, feito dos seus próprios `data/*.csv` — hoje com **+7 mil CEPs**),
   depois **viaCEP** (valida o endereço) e **Nominatim/OSM** (acha a coordenada
-  na internet, com 1s de pausa entre consultas). A primeira que der certo, vence.
+  na internet, com 1s de pausa entre consultas). Se o CEP não estiver no índice
+  local, o sistema usa o **endereço do viaCEP** para pedir a **rua** ao
+  Nominatim — e, em último caso, o centróide da cidade.
 - **Latitude** = norte/sul; **longitude** = leste/oeste. São Paulo fica em
   ~(-23,5°, -46,6°).
 - **Distância**: tem "linha reta" (geodésica, euclidiana, haversine) e tem o
@@ -167,6 +169,11 @@ proximos <- gs_servicos_proximos(cep = "03175-001", raio_m = 2000,
 head(proximos[, c("camada", "nome", "distancia_m")])
 ```
 
+> 🎯 Em `camadas` você pode passar o **tema** (`"saude"` expande para todas as
+> camadas de saúde), o **nome completo** (`"equipamento_saude_ubs_posto_centro"`),
+> um **pedaço do nome** (`"ubs"`), ou até um `data.frame` vindo de
+> `gs_catalogo_equipamentos()`. Para ver todas as opções: `gs_listar_servicos()`.
+
 **5) Desenhe o mapa (interativo HTML ou estático PNG):**
 ```r
 gs_mapa_servicos(proximos, interativo = TRUE,  salvar = "mapas/cep_03175001.html")
@@ -185,6 +192,7 @@ analises$raios_progressivos
 | Função | O que faz | Exemplo |
 |--------|-----------|---------|
 | `gs_indice_cep()` | Monta o índice local CEP → coordenadas (offline) | `gs_indice_cep(force = TRUE)` |
+| `gs_listar_servicos()` | Lista os serviços locais por tema (o que usar em `camadas`) | `gs_listar_servicos("saude")` |
 | `gs_ler_cep(cep)` | Valida o CEP e devolve o endereço | `gs_ler_cep("03175-001")` |
 | `gs_cep_para_coordenadas(cep)` | Lat/long do CEP (índice local → Nominatim) | `gs_cep_para_coordenadas("03175001")` |
 | `gs_verificar_cep(cep, lat, lon)` | Confere se a coordenada bate com o CEP | `gs_verificar_cep("03175-001", -23.5536, -46.5802)` |

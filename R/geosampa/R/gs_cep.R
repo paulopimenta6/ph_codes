@@ -51,10 +51,37 @@ gs_ler_cep <- function(cep) {
   )
 }
 
+# --- Consulta interna ao Nominatim (User-Agent identificado + pausa) ---------
+# Respeita a política de uso (~1 requisição por segundo): espera antes de cada
+# chamada e identifica o usuário. Devolve lista com lat/lon ou NULL se vazio.
+gs_consultar_nominatim <- function(query) {
+  Sys.sleep(gs_pausa_nominatim_s)
+  resp <- httr::GET(
+    gs_urls$nominatim,
+    query = c(query, list(format = "json", limit = "1")),
+    httr::user_agent("geosampaR/1.0 (contato: paulopimenta6@gmail.com)"),
+    httr::timeout(30)
+  )
+  httr::stop_for_status(resp)
+  dados <- jsonlite::fromJSON(
+    httr::content(resp, as = "text", encoding = "UTF-8"),
+    simplifyVector = FALSE
+  )
+  if (length(dados) == 0) return(NULL)
+  list(
+    latitude  = as.numeric(dados[[1]]$lat),
+    longitude = as.numeric(dados[[1]]$lon),
+    nome      = if (is.null(dados[[1]]$display_name)) "" else dados[[1]]$display_name
+  )
+}
+
 # --- Coordenadas (lat/long) de um CEP ----------------------------------------
 # Cascata de fontes:
 #   1. "local"       -> índice local construído dos data/*.csv (offline);
-#   2. "nominatim"   -> busca por código postal no OpenStreetMap (fallback).
+#   2. "nominatim"   -> busca por código postal no OpenStreetMap;
+#   3. viaCEP + Nominatim por rua/cidade -> quando o código postal não existe
+#      na base do OSM (comum no Brasil), usa o endereço do viaCEP para achar
+#      a rua; em último caso, o centróide da cidade.
 # Retorna data.frame com cep, latitude, longitude, fonte e precisão.
 gs_cep_para_coordenadas <- function(cep, fonte = c("local", "nominatim")) {
   fonte <- match.arg(fonte)
@@ -77,30 +104,40 @@ gs_cep_para_coordenadas <- function(cep, fonte = c("local", "nominatim")) {
     message("CEP ", cep_masc, " não está no índice local. Consultando o Nominatim/OSM...")
   }
 
-  # Fallback / fonte direta: Nominatim (política: User-Agent identificado e
-  # ~1 requisição por segundo entre chamadas).
-  resp <- httr::GET(
-    gs_urls$nominatim,
-    query = list(postalcode = cep_masc, country = "Brazil",
-                 format = "json", limit = "1"),
-    httr::user_agent("geosampaR/1.0 (contato: paulopimenta6@gmail.com)"),
-    httr::timeout(30)
-  )
-  httr::stop_for_status(resp)
-  dados <- jsonlite::fromJSON(
-    httr::content(resp, as = "text", encoding = "UTF-8"),
-    simplifyVector = FALSE
-  )
-  if (length(dados) == 0) {
-    stop("Não consegui obter coordenadas para o CEP ", cep_masc, ".")
+  # Fallback / fonte direta: Nominatim. Cascata:
+  #   1) código postal;  2) rua via viaCEP;  3) cidade via viaCEP.
+  r <- gs_consultar_nominatim(list(postalcode = cep_masc, country = "Brazil"))
+  precisao <- "coordenada aproximada do código postal (OpenStreetMap)"
+  if (is.null(r)) {
+    endereco <- tryCatch(gs_ler_cep(cep), error = function(e) NULL)
+    if (!is.null(endereco) && !is.na(endereco$logradouro) &&
+        nzchar(endereco$logradouro)) {
+      r <- gs_consultar_nominatim(list(
+        street = endereco$logradouro,
+        city   = endereco$cidade, state = endereco$uf, country = "Brazil"))
+      precisao <- "coordenada aproximada da rua (OpenStreetMap via viaCEP)"
+    }
   }
-  Sys.sleep(gs_pausa_nominatim_s)
+  if (is.null(r)) {
+    endereco <- tryCatch(gs_ler_cep(cep), error = function(e) NULL)
+    if (!is.null(endereco)) {
+      r <- gs_consultar_nominatim(list(
+        city = endereco$cidade, state = endereco$uf, country = "Brazil"))
+      precisao <- "coordenada aproximada da cidade (OpenStreetMap via viaCEP)"
+    }
+  }
+  if (is.null(r)) {
+    stop("Não consegui obter coordenadas para o CEP ", cep_masc,
+         ". Ele não está no índice local (só cobre CEPs de equipamentos ",
+         "públicos) e o Nominatim não achou o código postal nem o endereço ",
+         "no OpenStreetMap. Confira o CEP ou tente outro.")
+  }
   data.frame(
     cep       = cep_masc,
-    latitude  = as.numeric(dados[[1]]$lat),
-    longitude = as.numeric(dados[[1]]$lon),
+    latitude  = r$latitude,
+    longitude = r$longitude,
     fonte     = "nominatim",
-    precisao  = "coordenada aproximada do código postal (OpenStreetMap)",
+    precisao  = precisao,
     stringsAsFactors = FALSE
   )
 }
