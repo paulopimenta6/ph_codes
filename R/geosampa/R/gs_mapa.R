@@ -56,7 +56,17 @@ gs_mapa_leaflet <- function(resultado, ponto, raio_m) {
   }
   cores <- if ("tipo_servico" %in% names(resultado) &&
                !all(is.na(resultado$tipo_servico))) resultado$tipo_servico else resultado$camada
-  pal <- leaflet::colorFactor("Paired", domain = factor(cores))
+  # "Paired" (RColorBrewer) só vai até 12 níveis; com mais tipos de serviço,
+  # usa uma paleta qualitativa do grDevices (base R) sem limite prático.
+  n_niveis <- length(unique(cores[!is.na(cores)]))
+  pal <- if (n_niveis <= 12) {
+    leaflet::colorFactor("Paired", domain = factor(cores))
+  } else {
+    leaflet::colorFactor(
+      grDevices::hcl.colors(max(n_niveis, 3), palette = "Set 2"),
+      domain = factor(cores)
+    )
+  }
 
   leaflet::leaflet() |>
     leaflet::addTiles() |>
