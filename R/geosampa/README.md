@@ -109,32 +109,88 @@ data/
 
 ---
 
-## 🧭 E o CEP? O que tem por perto?
+## 🧭 E o CEP? O que tem por perto? (o radar mágico)
 
-Além de baixar os tesouros, o GeoSampa agora **lê um CEP**, **confere a
-coordenada** e **descobre os serviços por perto** — e ainda faz mapas e
-análises com isso!
+> Pegue o **radar mágico**: digite um CEP e ele diz onde é, se a coordenada
+> confere, o que tem por perto (com distância!), desenha o mapa e ainda analisa
+> a distribuição dos serviços. É o módulo de **CEP + coordenadas + serviços
+> próximos + mapas + análises espaciais**. 📡✨
 
-### Como o CEP vira coordenada?
+### Os conceitos rapidinhos 🎓
 
-Em **cascata** (a primeira que der certo vence):
+- **CEP** é o "CPF do endereço": 8 dígitos que identificam um lugar (aceitamos
+  `03175-001` ou `03175001`).
+- **Geocodificação** é traduzir o endereço em **coordenada** (latitude e
+  longitude). Nosso sistema faz em **cascata**: primeiro o **índice local**
+  (offline, feito dos seus próprios `data/*.csv` — hoje com **+7 mil CEPs**),
+  depois **viaCEP** (valida o endereço) e **Nominatim/OSM** (acha a coordenada
+  na internet, com 1s de pausa entre consultas). A primeira que der certo, vence.
+- **Latitude** = norte/sul; **longitude** = leste/oeste. São Paulo fica em
+  ~(-23,5°, -46,6°).
+- **Distância**: tem "linha reta" (geodésica, euclidiana, haversine) e tem o
+  "caminho real de carro/pé" (rede viária via OSRM).
+- **Raio** é o círculo mágico ao redor do ponto: tudo dentro dele é "próximo".
+- **Análises espaciais**: contagens, vizinho mais próximo, Voronoi, KDE,
+  raios progressivos, Moran's I e rede viária — tudo com um comando.
 
-1. **Índice local** — os próprios `data/*.csv` já têm CEP + coordenadas dos
-   equipamentos (mais de 7 mil CEPs de São Paulo, 100% offline e rápido);
-2. **viaCEP** — valida o CEP e devolve o endereço (sem chave de acesso);
-3. **Nominatim/OSM** — geocodifica o CEP quando ele não está no índice local
-   (respeitando ~1 consulta por segundo).
+> 🎒 Preparou o ambiente? `source("scripts/carregar_funcoes.R")` — pronto!
+
+### Passo a passo no R 🚀
+
+**1) Valide o CEP e veja o endereço:**
+```r
+gs_ler_cep("03175-001")
+#        cep         logradouro        bairro    cidade uf    ibge
+# 1 03175-001 Rua Serra de Jairé Quarta Parada São Paulo SP 3550308
+```
+
+**2) Transforme o CEP em coordenada (lat/long):**
+```r
+gs_cep_para_coordenadas("03175-001")
+#        cep  latitude longitude fonte
+# 1 03175-001 -23.55334 -46.58032 local
+```
+
+**3) Confira se uma coordenada bate com o CEP:**
+```r
+gs_verificar_cep("03175-001", -23.553640, -46.580180)
+# $confere   : logi TRUE
+# $veredito  : chr "CONFERE"        # tolerância padrão: 300 m
+# $distancia_m: num 0
+```
+
+**4) Ache os serviços próximos (raio em metros):**
+```r
+proximos <- gs_servicos_proximos(cep = "03175-001", raio_m = 2000,
+                                 camadas = c("equipamento_saude_ubs_posto_centro",
+                                             "equipamento_bombeiros"))
+head(proximos[, c("camada", "nome", "distancia_m")])
+```
+
+**5) Desenhe o mapa (interativo HTML ou estático PNG):**
+```r
+gs_mapa_servicos(proximos, interativo = TRUE,  salvar = "mapas/cep_03175001.html")
+gs_mapa_servicos(proximos, interativo = FALSE, salvar = "mapas/cep_03175001.png")
+```
+
+**6) Analise a distribuição (escolha o `tipo`):**
+```r
+analises <- gs_analise_servicos(proximos,
+                                tipo = c("descritivas", "raios_progressivos"))
+analises$raios_progressivos
+```
 
 ### O manual do CEP 🧰
 
 | Função | O que faz | Exemplo |
 |--------|-----------|---------|
-| `gs_ler_cep("03175-001")` | Valida o CEP e devolve o endereço | `gs_ler_cep("03175-001")` |
-| `gs_cep_para_coordenadas("03175-001")` | Lat/long do CEP (índice local → Nominatim) | `gs_cep_para_coordenadas("03175001")` |
+| `gs_indice_cep()` | Monta o índice local CEP → coordenadas (offline) | `gs_indice_cep(force = TRUE)` |
+| `gs_ler_cep(cep)` | Valida o CEP e devolve o endereço | `gs_ler_cep("03175-001")` |
+| `gs_cep_para_coordenadas(cep)` | Lat/long do CEP (índice local → Nominatim) | `gs_cep_para_coordenadas("03175001")` |
 | `gs_verificar_cep(cep, lat, lon)` | Confere se a coordenada bate com o CEP | `gs_verificar_cep("03175-001", -23.5536, -46.5802)` |
-| `gs_servicos_proximos(cep=..., camadas=..., raio_m=...)` | Serviços dentro do raio, mais próximos primeiro | `gs_servicos_proximos(cep="03175-001", raio_m=2000)` |
-| `gs_tipos_distancia()` | Documenta as métricas de distância | `gs_tipos_distancia()` |
-| `gs_mapa_servicos(...)` | Mapa estático (PNG) ou interativo (HTML) | `gs_mapa_servicos(cep="03175-001", raio_m=2000)` |
+| `gs_servicos_proximos(...)` | Serviços dentro do raio, mais próximos primeiro | `gs_servicos_proximos(cep="03175-001", raio_m=2000)` |
+| `gs_tipos_distancia()` | Manual das métricas de distância | `gs_tipos_distancia()` |
+| `gs_mapa_servicos(...)` | Mapa estático (PNG/PDF) ou interativo (HTML) | `gs_mapa_servicos(cep="03175-001", raio_m=2000)` |
 | `gs_analise_servicos(...)` | Análises estatísticas/espaciais | `gs_analise_servicos(cep="03175-001", tipo="descritivas")` |
 
 ### Tipos de distância 📏
@@ -144,7 +200,7 @@ Em **cascata** (a primeira que der certo vence):
 | `geodesica` (padrão) | Elipsoidal, precisa | Em geral |
 | `euclidiana` | Em metros (UTM/SIRGAS2000) | Rápida, até ~20 km |
 | `haversine` | Sobre a esfera | Leve, sem transformar CRS |
-| `manhattan` | |Δx|+|Δy| em metros | Caminhabilidade |
+| `manhattan` | \|Δx\|+\|Δy\| em metros | Caminhabilidade |
 | `rede_viaria` | Rota real de carro (OSRM) | Requer pacote `osrm` (opcional) |
 
 ### Análises disponíveis 📊
@@ -159,25 +215,14 @@ Em **cascata** (a primeira que der certo vence):
 | `moran` | Moran's I — requer pacote `spdep` (instalado sob demanda) |
 | `rede_viaria` | Distância por rede viária — requer pacote `osrm` |
 
-Exemplo completo:
+> 💡 As análises `moran` e `rede_viaria` **não quebram** se o pacote faltar:
+> devolvem uma mensagem orientando a instalação. 
 
-```r
-# CEP da UBS Água Rasa: confere a coordenada e acha os serviços perto
-gs_verificar_cep("03175-001", -23.553640, -46.580180)
+> 📖 Quer o **curso completo** de cada conceito, com explicação lúdica e
+> exemplos passo a passo? É a **seção 10** do **[DOCUMENTACAO.md](DOCUMENTACAO.md)**
+> — do "o que é um CEP?" até Moran's I. 🌟
 
-proximos <- gs_servicos_proximos(cep = "03175-001", raio_m = 2000,
-                                 camadas = c("equipamento_saude_ubs_posto_centro",
-                                             "equipamento_bombeiros"))
-head(proximos[, c("camada", "nome", "distancia_m")])
-
-gs_mapa_servicos(proximos, interativo = TRUE, salvar = "mapas/cep_03175001.html")
-gs_mapa_servicos(proximos, interativo = FALSE, salvar = "mapas/cep_03175001.png")
-
-analises <- gs_analise_servicos(proximos,
-                                tipo = c("descritivas", "raios_progressivos"))
-```
-
-### Bônus: abrindo os tesouros baixados 🧑‍🔬
+### Bônus: abrindo os tesouros baixados 🧑🔬
 
 ```r
 # O mapa (GeoJSON)
