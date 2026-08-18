@@ -534,10 +534,14 @@ gs_mapa_servicos(proximos, interativo = TRUE,  salvar = "mapas/cep_03175001.html
 gs_mapa_servicos(proximos, interativo = FALSE, salvar = "mapas/cep_03175001.png")
 ```
 
-O mapa mostra: o **ponto de interesse** (bolinha vermelha), o **círculo do
+O mapa mostra: o **ponto de interesse** (marcador vermelho), o **círculo do
 raio** (contorno azul tracejado) e os **serviços** coloridos por tipo. No mapa
-interativo, cada serviço tem um popup com nome, endereço, bairro, distância e
-camada. Se você passar `cep`/`camadas` direto, ele calcula tudo sozinho:
+interativo, cada serviço mostra um **tooltip ao passar o mouse** (nome, tipo e
+distância) e um **popup ao clicar** com nome, endereço, bairro, distância e
+camada; há também escala, seletor de camadas e três basemaps (OSM, CartoDB e
+satélite). O mapa estático sai com **legenda no rodapé** em várias linhas e
+**resolução configurável** (`largura`/`altura`/`dpi`; padrão 12×12 polegadas a
+300 dpi). Se você passar `cep`/`camadas` direto, ele calcula tudo sozinho:
 
 ```r
 gs_mapa_servicos(cep = "03175-001",

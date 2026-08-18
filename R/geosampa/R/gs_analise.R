@@ -328,7 +328,7 @@ gs_mapa_grade <- function(grade, titulo) {
     ggplot2::geom_sf(ggplot2::aes(fill = n_servicos), color = "white",
                      linewidth = 0.1) +
     ggplot2::scale_fill_viridis_c(na.value = "grey90") +
-    ggplot2::theme_minimal() +
+    gs_tema_mapa() +
     ggplot2::labs(title = titulo, fill = "Nº de serviços")
 }
 
@@ -340,7 +340,7 @@ gs_mapa_grade_classe <- function(grade, titulo) {
   ggplot2::ggplot(grade) +
     ggplot2::geom_sf(ggplot2::aes(fill = classe), color = "white", linewidth = 0.1) +
     ggplot2::scale_fill_manual(values = cores) +
-    ggplot2::theme_minimal() +
+    gs_tema_mapa() +
     ggplot2::labs(title = titulo, fill = "Classe")
 }
 
@@ -493,7 +493,7 @@ gs_analise_por_distrito <- function(resultado, dir = gs_pasta_dados()) {
     ggplot2::geom_sf(ggplot2::aes(fill = n_servicos), color = "white",
                      linewidth = 0.15) +
     ggplot2::scale_fill_viridis_c(na.value = "grey90") +
-    ggplot2::theme_minimal() +
+    gs_tema_mapa() +
     ggplot2::labs(title = "Serviços por distrito", fill = "Nº de serviços",
                   caption = "Fonte: Prefeitura de São Paulo / GeoSampa")
   list(executado = TRUE,
@@ -547,7 +547,7 @@ gs_analise_moran_distrital <- function(resultado, dir = gs_pasta_dados()) {
     ggplot2::scale_fill_manual(
       values = c("alto-alto" = "#d7301f", "baixo-baixo" = "#0570b0",
                  "não significativo" = "grey85")) +
-    ggplot2::theme_minimal() +
+    gs_tema_mapa() +
     ggplot2::labs(title = "Moran local por distrito (LISA)", fill = "Classe")
   list(executado = TRUE,
        moran_i = unname(teste$estimate["Moran I statistic"]),

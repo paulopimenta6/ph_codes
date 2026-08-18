@@ -185,6 +185,10 @@ gs_mapa_servicos(proximos, interativo = TRUE,  salvar = "mapas/cep_03175001.html
 gs_mapa_servicos(proximos, interativo = FALSE, salvar = "mapas/cep_03175001.png")
 ```
 
+> 🖱️ No HTML: ao passar o mouse aparece um tooltip (nome/tipo/distância) e ao
+> clicar, o popup completo. No PNG: legenda no rodapé em várias linhas, com
+> resolução ajustável via `largura`, `altura` e `dpi` (padrão 12×12 @ 300 dpi).
+
 **6) Analise a distribuição (escolha o `tipo`):**
 ```r
 analises <- gs_analise_servicos(proximos,

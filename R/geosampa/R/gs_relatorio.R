@@ -55,7 +55,7 @@ gs_exportar_resultado <- function(resultado, analises = NULL, dir = "saidas") {
 gs_salvar_fig_tmp <- function(p, nome) {
   arq <- tempfile(pattern = paste0("gs_", gsub("[^A-Za-z0-9]", "_", nome), "_"),
                   fileext = ".png")
-  ggplot2::ggsave(arq, plot = p, width = 7, height = 5, dpi = 130)
+  ggplot2::ggsave(arq, plot = p, width = 9, height = 6, dpi = 200)
   arq
 }
 
@@ -70,7 +70,7 @@ gs_plot_sf <- function(sf_obj, titulo) {
   ggplot2::ggplot(sf_obj) +
     ggplot2::geom_sf(fill = "#41b6c4", color = "white", linewidth = 0.15,
                      alpha = 0.7) +
-    ggplot2::theme_minimal() +
+    gs_tema_mapa() +
     ggplot2::labs(title = titulo)
 }
 
@@ -232,7 +232,7 @@ gs_secao_figura <- function(obj, nome, formato, pasta_figuras = NULL) {
   } else {
     dir.create(pasta_figuras, showWarnings = FALSE, recursive = TRUE)
     arq <- file.path(pasta_figuras, paste0(nome, ".png"))
-    ggplot2::ggsave(arq, plot = obj, width = 7, height = 5, dpi = 130)
+    ggplot2::ggsave(arq, plot = obj, width = 9, height = 6, dpi = 200)
     paste0("\n![", nome, "](assets/", basename(arq), ")\n")
   }
 }
