@@ -26,3 +26,27 @@ test_that("gs_resolver_camadas expande temas para camadas reais", {
   expect_true(length(r$resolvidas) >= 1)
   expect_true(all(grepl("^equipamento_saude", r$resolvidas)))
 })
+
+test_that("gs_osrm_input respeita o formato da API do pacote osrm", {
+  skip_if_not(requireNamespace("osrm", quietly = TRUE))
+  nova <- utils::packageVersion("osrm") >= "4.0.0"
+  x <- gs_osrm_input(c("a", "b"), c(-46.7, -46.8), c(-23.5, -23.6))
+  if (nova) {
+    expect_setequal(names(x), c("lon", "lat"))
+    expect_identical(row.names(x), c("a", "b"))
+  } else {
+    expect_setequal(names(x), c("id", "lon", "lat"))
+    expect_identical(x$id, c("a", "b"))
+  }
+})
+
+test_that("gs_osrm_dist_m converte para metros conforme a versão do osrm", {
+  skip_if_not(requireNamespace("osrm", quietly = TRUE))
+  nova <- utils::packageVersion("osrm") >= "4.0.0"
+  d <- gs_osrm_dist_m(c(1.234, 5.678))
+  if (nova) {
+    expect_equal(d, c(1.2, 5.7))
+  } else {
+    expect_equal(d, c(1234, 5678))
+  }
+})

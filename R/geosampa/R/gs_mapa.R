@@ -6,6 +6,62 @@
 # serviços próximos encontrados por gs_servicos_proximos().
 # ============================================================
 
+# --- Helpers compartilhados de tema, legenda e paleta ------------------------
+# Tema padrão dos mapas: legenda no rodapé em várias linhas, tipografia maior
+# e grid limpo. Usado pelos mapas estáticos e pelas figuras dos relatórios.
+gs_tema_mapa <- function(base_size = 14) {
+  ggplot2::theme_minimal(base_size = base_size) +
+    ggplot2::theme(
+      legend.position = "bottom",
+      legend.title = ggplot2::element_text(face = "bold",
+                                           size = ggplot2::rel(0.9)),
+      legend.text = ggplot2::element_text(size = ggplot2::rel(0.8)),
+      legend.key.width = ggplot2::unit(1.6, "lines"),
+      legend.key.height = ggplot2::unit(1.3, "lines"),
+      legend.spacing.x = ggplot2::unit(0.5, "cm"),
+      legend.spacing.y = ggplot2::unit(0.2, "cm"),
+      legend.margin = ggplot2::margin(t = 8, b = 2),
+      plot.title = ggplot2::element_text(face = "bold",
+                                         size = ggplot2::rel(1.15)),
+      plot.subtitle = ggplot2::element_text(size = ggplot2::rel(0.9),
+                                            colour = "grey30"),
+      plot.caption = ggplot2::element_text(size = ggplot2::rel(0.75),
+                                           colour = "grey50"),
+      panel.grid.minor = ggplot2::element_blank()
+    )
+}
+
+# Guia de legenda para escalas de cor: chaves maiores e, quando pedido,
+# quebra em várias linhas para não sobrepor os itens da legenda.
+gs_guia_legenda_mapa <- function(nrow = NULL) {
+  ggplot2::guides(color = ggplot2::guide_legend(
+    nrow = nrow,
+    keywidth = 0.9,
+    keyheight = 0.9,
+    override.aes = list(size = 3.4, alpha = 1)
+  ))
+}
+
+# Paleta qualitativa por nº de níveis: Paired até 12; hcl "Set 2" acima disso.
+gs_paleta_tipos <- function(n) {
+  n <- max(n, 2L)
+  if (n <= 12 && requireNamespace("RColorBrewer", quietly = TRUE)) {
+    RColorBrewer::brewer.pal(12, "Paired")[seq_len(n)]
+  } else {
+    grDevices::hcl.colors(n, palette = "Set 2")
+  }
+}
+
+# Encurta rótulos longos (legendas interativas e estáticas).
+gs_lab_format_curto <- function(max_chars = 32) {
+  function(s) {
+    s <- as.character(s)
+    ifelse(nchar(s) > max_chars,
+           paste0(substr(s, 1, max_chars - 3), "..."),
+           s)
+  }
+}
+
 # --- Popups HTML dos serviços (mapa interativo) ------------------------------
 gs_popup_servicos <- function(resultado) {
   vapply(seq_len(nrow(resultado)), function(i) {
@@ -13,6 +69,21 @@ gs_popup_servicos <- function(resultado) {
     sprintf("<b>%s</b><br>Tipo: %s<br>Endereço: %s<br>Bairro: %s<br>Distância: %.0f m<br>Camada: %s",
             r$nome, r$tipo_servico, r$endereco, r$bairro,
             r$distancia_m, r$camada)
+  }, character(1))
+}
+
+# Rótulos de hover (curtos) dos serviços — aparecem ao passar o mouse.
+gs_label_servicos <- function(resultado) {
+  tipo <- if ("tipo_servico" %in% names(resultado) &&
+               !all(is.na(resultado$tipo_servico))) {
+    resultado$tipo_servico
+  } else {
+    resultado$camada
+  }
+  vapply(seq_len(nrow(resultado)), function(i) {
+    r <- resultado[i, ]
+    sprintf("<b>%s</b><br>%s<br>%.0f m",
+            ifelse(is.na(r$nome), r$camada, r$nome), tipo[i], r$distancia_m)
   }, character(1))
 }
 
@@ -32,14 +103,27 @@ gs_mapa_ggplot <- function(resultado, ponto, raio_m) {
 
   cores <- if ("tipo_servico" %in% names(resultado) &&
                !all(is.na(resultado$tipo_servico))) "tipo_servico" else "camada"
+  n_niveis <- length(unique(resultado[[cores]][!is.na(resultado[[cores]])]))
+
+  # Enquadra o mapa no raio de busca (com margem) para a legenda não espremer
+  # a área de plotagem e os rótulos não se sobreporem.
+  bb <- sf::st_bbox(buffer)
+  margem <- 0.12 * max(bb["xmax"] - bb["xmin"], bb["ymax"] - bb["ymin"])
+  xlim <- c(bb["xmin"] - margem, bb["xmax"] + margem)
+  ylim <- c(bb["ymin"] - margem, bb["ymax"] + margem)
 
   ggplot2::ggplot() +
     ggplot2::geom_sf(data = buffer, fill = "#2c7fb8", alpha = 0.08,
                      color = "#2c7fb8", linetype = "dashed") +
     ggplot2::geom_sf(data = pts, ggplot2::aes(color = .data[[cores]]),
-                     size = 2, alpha = 0.9) +
-    ggplot2::geom_sf(data = origem, color = "#d7301f", size = 3.5) +
-    ggplot2::theme_minimal() +
+                     size = 2.5, alpha = 0.95) +
+    ggplot2::geom_sf(data = origem, color = "#d7301f", size = 4, shape = 17) +
+    ggplot2::scale_color_manual(values = gs_paleta_tipos(n_niveis),
+                                labels = scales::label_wrap(30),
+                                na.value = "#999999") +
+    ggplot2::coord_sf(xlim = xlim, ylim = ylim) +
+    gs_tema_mapa(base_size = 15) +
+    gs_guia_legenda_mapa() +
     ggplot2::labs(
       title = "Serviços próximos",
       subtitle = sprintf("Ponto: %s | Raio: %s m | %d serviço(s)",
@@ -55,33 +139,68 @@ gs_mapa_leaflet <- function(resultado, ponto, raio_m) {
     stop("Pacote 'leaflet' não instalado. Instale com install.packages('leaflet').")
   }
   cores <- if ("tipo_servico" %in% names(resultado) &&
-               !all(is.na(resultado$tipo_servico))) resultado$tipo_servico else resultado$camada
-  # "Paired" (RColorBrewer) só vai até 12 níveis; com mais tipos de serviço,
-  # usa uma paleta qualitativa do grDevices (base R) sem limite prático.
-  n_niveis <- length(unique(cores[!is.na(cores)]))
-  pal <- if (n_niveis <= 12) {
-    leaflet::colorFactor("Paired", domain = factor(cores))
+               !all(is.na(resultado$tipo_servico))) {
+    resultado$tipo_servico
   } else {
-    leaflet::colorFactor(
-      grDevices::hcl.colors(max(n_niveis, 3), palette = "Set 2"),
-      domain = factor(cores)
-    )
+    resultado$camada
   }
+  n_niveis <- length(unique(cores[!is.na(cores)]))
+  pal <- leaflet::colorFactor(gs_paleta_tipos(n_niveis),
+                              domain = factor(cores), na.color = "#999999")
+
+  estilo_label <- leaflet::labelOptions(
+    style = list("font-family" = "sans-serif",
+                 "box-shadow" = "3px 3px rgba(0,0,0,0.3)",
+                 "font-size" = "12px",
+                 "border-color" = "rgba(0,0,0,0.5)"),
+    textsize = "12px", direction = "auto", sticky = TRUE)
 
   leaflet::leaflet() |>
-    leaflet::addTiles() |>
+    leaflet::addProviderTiles("OpenStreetMap.Mapnik", group = "OSM") |>
+    leaflet::addProviderTiles("CartoDB.Positron", group = "CartoDB") |>
+    leaflet::addProviderTiles("Esri.WorldImagery", group = "Satélite") |>
     leaflet::addCircles(lng = ponto$longitude, lat = ponto$latitude,
-                        radius = raio_m, color = "#2c7fb8", weight = 1,
-                        opacity = 0.6, fillOpacity = 0.08, dashArray = "4 4") |>
+                        radius = raio_m, color = "#2c7fb8", weight = 1.5,
+                        opacity = 0.7, fillOpacity = 0.08, dashArray = "4 4",
+                        group = "Raio de busca",
+                        label = sprintf("Raio de busca: %s m", raio_m),
+                        labelOptions = estilo_label,
+                        highlightOptions = leaflet::highlightOptions(
+                          weight = 3, color = "#2c7fb8", opacity = 1,
+                          fillOpacity = 0.15)) |>
     leaflet::addCircleMarkers(lng = ponto$longitude, lat = ponto$latitude,
-                              color = "#d7301f", radius = 8, fillOpacity = 0.9,
+                              color = "#d7301f", radius = 9, fillOpacity = 0.95,
+                              weight = 2, fillColor = "#d7301f",
+                              group = "Ponto de interesse",
+                              label = sprintf("<b>Ponto de interesse</b><br>%s",
+                                              ponto$origem),
+                              labelOptions = estilo_label,
                               popup = sprintf("<b>Ponto de interesse</b><br>%s",
                                               ponto$origem)) |>
     leaflet::addCircleMarkers(lng = resultado$longitude, lat = resultado$latitude,
-                              color = pal(cores), radius = 5, fillOpacity = 0.8,
+                              color = pal(cores), radius = 6, fillOpacity = 0.9,
+                              weight = 1.5, fillColor = pal(cores),
+                              group = "Serviços",
+                              label = gs_label_servicos(resultado),
+                              labelOptions = estilo_label,
                               popup = gs_popup_servicos(resultado)) |>
-    leaflet::addLegend("bottomright", pal = pal, values = cores,
-                       title = "Tipo de serviço", opacity = 1)
+    leaflet::addLegend("bottomright", pal = pal,
+                       values = cores[!is.na(cores)],
+                       title = "Tipo de serviço", opacity = 1,
+                       labFormat = leaflet::labelFormat(
+                         transform = gs_lab_format_curto(30))) |>
+    leaflet::addScaleBar(position = "bottomleft",
+                         options = leaflet::scaleBarOptions(imperial = FALSE)) |>
+    leaflet::addControl(
+      html = sprintf(
+        "<div style='font-family:sans-serif;font-size:14px;font-weight:bold;padding:6px 10px;background:rgba(255,255,255,0.9);border-radius:4px;border:1px solid #ddd'>Serviços próximos<br><span style='font-weight:normal;font-size:11px;color:#444'>%s · raio %s m · %d serviço(s)</span></div>",
+        ponto$origem, raio_m, nrow(resultado)),
+      position = "topright") |>
+    leaflet::addLayersControl(
+      baseGroups = c("OSM", "CartoDB", "Satélite"),
+      overlayGroups = c("Serviços", "Raio de busca", "Ponto de interesse"),
+      options = leaflet::layersControlOptions(collapsed = FALSE)
+    )
 }
 
 # --- Função principal: gera o mapa (estático ou interativo) ------------------
@@ -89,13 +208,15 @@ gs_mapa_leaflet <- function(resultado, ponto, raio_m) {
 # argumentos (cep/coordenadas/camadas/raio...) são usados para calculá-lo.
 # `salvar`: caminho do arquivo de saída — .html para interativo, .png/.pdf
 # para estático. Se NULL, apenas devolve o objeto de plot invisivelmente.
+# `largura`/`altura`/`dpi` controlam a resolução do mapa estático.
 gs_mapa_servicos <- function(resultado = NULL, cep = NULL, coordenadas = NULL,
                              camadas = NULL, raio_m = gs_raio_padrao_m,
                              tipo_distancia = c("geodesica", "euclidiana",
                                                 "haversine", "manhattan",
                                                 "rede_viaria"),
                              n_por_camada = NULL, interativo = TRUE,
-                             salvar = NULL) {
+                             salvar = NULL, largura = 12, altura = 12,
+                             dpi = 300) {
   if (is.null(resultado)) {
     resultado <- gs_servicos_proximos(
       cep = cep, coordenadas = coordenadas, camadas = camadas,
@@ -125,7 +246,8 @@ gs_mapa_servicos <- function(resultado = NULL, cep = NULL, coordenadas = NULL,
       }
       htmlwidgets::saveWidget(mapa, file = salvar)
     } else {
-      ggplot2::ggsave(salvar, plot = mapa, width = 8, height = 8, dpi = 150)
+      ggplot2::ggsave(salvar, plot = mapa, width = largura, height = altura,
+                      dpi = dpi)
     }
     message("Mapa salvo em: ", salvar)
   }

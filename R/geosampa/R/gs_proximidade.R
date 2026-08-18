@@ -69,16 +69,17 @@ gs_calcular_distancias <- function(ponto_sf, pontos_sf,
         stop("Pacote 'osrm' não instalado para distância por rede viária. ",
              "Instale com: install.packages('osrm')")
       }
-      osrm::osrmOptions(server = gs_osrm_server())
+      options(osrm.server = gs_osrm_server(),
+              osrm.profile = gs_osrm_profile())
       p0 <- sf::st_coordinates(ponto_sf)[1, ]
       qq <- sf::st_coordinates(pontos_sf)
       if (nrow(qq) > 200) {
         message("  rede viária: calculando distâncias para ", nrow(qq),
                 " pontos via OSRM (pode demorar)...")
       }
-      origem <- data.frame(id = "origem", lon = p0[1], lat = p0[2])
-      destinos <- data.frame(id = as.character(seq_len(nrow(qq))),
-                             lon = qq[, 1], lat = qq[, 2])
+      origem <- gs_osrm_input("origem", p0[1], p0[2])
+      destinos <- gs_osrm_input(as.character(seq_len(nrow(qq))),
+                                qq[, 1], qq[, 2])
       tab <- tryCatch(
         osrm::osrmTable(src = origem, dst = destinos, measure = "distance"),
         error = function(e) NULL
@@ -88,7 +89,7 @@ gs_calcular_distancias <- function(ponto_sf, pontos_sf,
              "). Configure outro com options(osrm.server = 'http://...') ",
              "ou use um tipo de distância em linha reta.")
       }
-      as.numeric(tab$distances[1, ]) * 1000
+      gs_osrm_dist_m(tab$distances[1, ])
     }
   )
 }
@@ -184,6 +185,16 @@ gs_servicos_proximos <- function(cep = NULL, coordenadas = NULL, camadas = NULL,
 
     pts <- sf::st_as_sf(tab, coords = c("longitude", "latitude"),
                         crs = gs_epsg$wgs84)
+    if (tipo_distancia == "rede_viaria") {
+      # Pré-filtro por linha reta: a distância por rede é sempre >= a geodésica,
+      # então pontos além de `raio_m` em linha reta nunca entrariam no raio.
+      # Evita requests gigantes ao servidor OSRM.
+      geo <- as.numeric(sf::st_distance(ponto$sf, pts))
+      manter <- geo <= raio_m
+      pts <- pts[manter, , drop = FALSE]
+      tab <- tab[manter, , drop = FALSE]
+      if (nrow(pts) == 0) return(NULL)
+    }
     dists <- gs_calcular_distancias(ponto$sf, pts, tipo_distancia)
     tab$distancia_m <- round(dists, 1)
     tab$camada      <- cam
