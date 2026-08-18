@@ -64,3 +64,57 @@ gs_catalogo_equipamentos <- function(force = FALSE) {
   eq$tema <- gsub("^equipamento_([a-z_]+?)(_.*)?$", "\\1", eq$camada)
   eq[order(eq$tema, eq$titulo), c("camada", "tema", "titulo", "resumo")]
 }
+
+# --- Tema de uma camada local (mesma regra do catálogo) ---------------------
+# "equipamento_saude_ubs_posto_centro" -> "saude"
+gs_tema_camada <- function(camada) {
+  gsub("^equipamento_([a-z_]+?)(_.*)?$", "\\1", camada)
+}
+
+# --- Lista os serviços disponíveis LOCALMENTE, agrupados por tema -----------
+# Mostra exatamente o que usar no argumento `camadas` de gs_servicos_proximos().
+# Só lista camadas de ponto (com latitude/longitude nos CSVs de data/).
+# `termo` filtra por tema ou nome (ex.: gs_listar_servicos("saude")).
+gs_listar_servicos <- function(termo = NULL, dir = gs_pasta_dados()) {
+  camadas <- gs_camadas_local(dir)
+  tem <- vapply(camadas, function(cam) {
+    arq <- file.path(dir, paste0(cam, ".csv"))
+    tab <- tryCatch(readr::read_csv(arq, n_max = 0, show_col_types = FALSE),
+                    error = function(e) NULL)
+    !is.null(tab) && all(c("latitude", "longitude") %in% names(tab))
+  }, logical(1))
+  camadas <- sort(camadas[tem])
+  if (length(camadas) == 0) {
+    stop("Nenhum serviço de ponto (com latitude/longitude) em ", dir,
+         ". Baixe as camadas com gs_baixar_todos_equipamentos().")
+  }
+  tab <- data.frame(
+    tema   = gs_tema_camada(camadas),
+    camada = camadas,
+    stringsAsFactors = FALSE
+  )
+  if (!is.null(termo)) {
+    tab <- tab[grepl(termo, tab$tema, ignore.case = TRUE) |
+               grepl(termo, tab$camada, ignore.case = TRUE), , drop = FALSE]
+    if (nrow(tab) == 0) {
+      stop("Nenhum serviço local encontrado para '", termo,
+           "'. Dica: gs_listar_servicos() mostra todos.")
+    }
+  }
+  tab <- tab[order(tab$tema, tab$camada), , drop = FALSE]
+  rownames(tab) <- NULL
+
+  temas <- split(tab$camada, tab$tema)
+  cat("🎒 Serviços disponíveis em data/ — ",
+      if (is.null(termo)) paste0(length(camadas), " camadas") else
+        paste0(nrow(tab), " de ", length(camadas), " camadas"),
+      ". Use estes nomes no argumento `camadas`:\n\n", sep = "")
+  for (t in names(temas)) {
+    cat("── ", t, " ──\n", sep = "")
+    cat(paste0("   ", temas[[t]]), sep = "\n")
+    cat("\n")
+  }
+  cat("💡 Também funciona passar só o tema (ex.: camadas = \"saude\") ",
+      "ou um pedaço do nome (ex.: \"ubs\").\n", sep = "")
+  invisible(tab)
+}
