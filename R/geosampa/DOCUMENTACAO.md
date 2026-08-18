@@ -673,6 +673,10 @@ gs_exportar_resultado(proximos, analises, dir = "saidas")
 - CEP de caixa postal não tem coordenada útil.
 - O servidor demo do OSRM tem cobertura e limites próprios; configure outro
   com `options(gs.osrm_server = "http://...")` ou `options(osrm.server = ...)`.
+  O perfil de rota também é configurável (`options(gs.osrm_profile = "driving")`).
+- O código OSRM é compatível com o pacote `osrm` ≥ 4.0 (API de entrada com
+  `lon`/`lat` e distâncias em metros) e com versões antigas (coluna `id` e
+  distâncias em km).
 - `cobertura_populacional` precisa de uma camada de população (ex.: setores
   censitários do IBGE) ou de uma densidade média estimada.
 - Análises locais (`lisa`, `getis_ord`, `moran`) dependem de vizinhança e

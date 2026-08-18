@@ -49,6 +49,30 @@ gs_osrm_server <- function() {
             getOption("osrm.server",
                       "https://router.project-osrm.org/"))
 }
+# Perfil OSRM (rota). Configurável por options(gs.osrm_profile = 'driving')
+# ou options(osrm.profile = 'driving').
+gs_osrm_profile <- function() {
+  getOption("gs.osrm_profile",
+            getOption("osrm.profile",
+                      "driving"))
+}
+# Tabela de origem/destino para o pacote osrm, compatível com a API antiga
+# (< 4.0: colunas id/lon/lat) e nova (>= 4.0: apenas lon/lat, id nos row.names).
+gs_osrm_input <- function(ids, lon, lat) {
+  if (utils::packageVersion("osrm") >= "4.0.0") {
+    data.frame(lon = lon, lat = lat, row.names = ids, stringsAsFactors = FALSE)
+  } else {
+    data.frame(id = ids, lon = lon, lat = lat, stringsAsFactors = FALSE)
+  }
+}
+# Converte distâncias do osrmTable para metros: < 4.0 devolve km; >= 4.0 devolve m.
+gs_osrm_dist_m <- function(distancias) {
+  if (utils::packageVersion("osrm") >= "4.0.0") {
+    round(as.numeric(distancias), 1)
+  } else {
+    round(as.numeric(distancias) * 1000, 1)
+  }
+}
 # Nomes das camadas administrativas (baixadas sob demanda do WFS do GeoSampa).
 gs_camadas_apoio <- list(
   distritos = "distrito_municipal",

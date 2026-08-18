@@ -165,10 +165,11 @@ gs_analise_rede <- function(resultado, ponto) {
       mensagem = "Pacote 'osrm' não instalado. Instale com: install.packages('osrm')"
     ))
   }
-  osrm::osrmOptions(server = gs_osrm_server())
-  origem <- data.frame(id = "origem", lon = ponto$longitude, lat = ponto$latitude)
-  destinos <- data.frame(id = as.character(seq_len(nrow(resultado))),
-                         lon = resultado$longitude, lat = resultado$latitude)
+  options(osrm.server = gs_osrm_server(),
+              osrm.profile = gs_osrm_profile())
+  origem <- gs_osrm_input("origem", ponto$longitude, ponto$latitude)
+  destinos <- gs_osrm_input(as.character(seq_len(nrow(resultado))),
+                            resultado$longitude, resultado$latitude)
   if (nrow(resultado) > 200) {
     message("  rede viária: calculando distâncias para ", nrow(resultado),
             " destinos via OSRM (pode demorar)...")
@@ -188,7 +189,7 @@ gs_analise_rede <- function(resultado, ponto) {
         "ou options(gs.osrm_server = 'http://...').")
     ))
   }
-  dist_rede_m <- round(as.numeric(tab$distances[1, ]) * 1000, 1)
+  dist_rede_m <- gs_osrm_dist_m(tab$distances[1, ])
   out <- data.frame(
     camada            = resultado$camada,
     nome              = resultado$nome,
