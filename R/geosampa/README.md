@@ -39,8 +39,11 @@ install.packages(c("httr", "jsonlite", "sf", "readr", "xml2"))
 > também os opcionais:
 > ```r
 > install.packages(c("ggplot2", "leaflet", "htmlwidgets"))   # mapas
-> install.packages(c("spdep"))                               # Moran's I
+> install.packages(c("spdep"))                               # Moran's I, LISA, Getis-Ord
 > install.packages(c("osrm"))                                # distância por rede viária
+> install.packages(c("spatstat"))                            # função K de Ripley
+> install.packages(c("htmltools", "base64enc"))              # relatório HTML
+> install.packages(c("testthat"))                            # testes automatizados
 > ```
 > Tudo funciona sem eles — as funções avisam quando um pacote opcional falta.
 
@@ -132,8 +135,10 @@ data/
 - **Distância**: tem "linha reta" (geodésica, euclidiana, haversine) e tem o
   "caminho real de carro/pé" (rede viária via OSRM).
 - **Raio** é o círculo mágico ao redor do ponto: tudo dentro dele é "próximo".
-- **Análises espaciais**: contagens, vizinho mais próximo, Voronoi, KDE,
-  raios progressivos, Moran's I e rede viária — tudo com um comando.
+- **Análises espaciais**: contagens, vizinho mais próximo, acessibilidade,
+  cobertura, NNI, Voronoi, KDE, raios progressivos, Moran's I, LISA,
+  Getis-Ord, Ripley's K e distritos — tudo com um comando, com direito a
+  relatório consolidado em HTML/Markdown.
 
 > 🎒 Preparou o ambiente? `source("scripts/carregar_funcoes.R")` — pronto!
 
@@ -183,8 +188,19 @@ gs_mapa_servicos(proximos, interativo = FALSE, salvar = "mapas/cep_03175001.png"
 **6) Analise a distribuição (escolha o `tipo`):**
 ```r
 analises <- gs_analise_servicos(proximos,
-                                tipo = c("descritivas", "raios_progressivos"))
+                                tipo = c("descritivas", "raios_progressivos",
+                                         "acessibilidade_media", "nni"))
 analises$raios_progressivos
+```
+
+**7) Gere o relatório consolidado (HTML auto-contido ou Markdown):**
+```r
+gs_relatorio_analises(proximos,
+                      tipo = c("descritivas", "raio_otimo", "nni"),
+                      arquivo = "relatorios/relatorio.html")
+
+# Exporte as tabelas e polígonos em CSV/GeoJSON:
+gs_exportar_resultado(proximos, analises, dir = "saidas")
 ```
 
 ### O manual do CEP 🧰
@@ -200,6 +216,8 @@ analises$raios_progressivos
 | `gs_tipos_distancia()` | Manual das métricas de distância | `gs_tipos_distancia()` |
 | `gs_mapa_servicos(...)` | Mapa estático (PNG/PDF) ou interativo (HTML) | `gs_mapa_servicos(cep="03175-001", raio_m=2000)` |
 | `gs_analise_servicos(...)` | Análises estatísticas/espaciais | `gs_analise_servicos(cep="03175-001", tipo="descritivas")` |
+| `gs_relatorio_analises(...)` | Relatório consolidado (HTML/MD) com as análises | `gs_relatorio_analises(proximos, arquivo="relatorios/r.html")` |
+| `gs_exportar_resultado(...)` | Exporta resultados em CSV/GeoJSON | `gs_exportar_resultado(proximos, analises, dir="saidas")` |
 
 ### Tipos de distância 📏
 
@@ -213,18 +231,28 @@ analises$raios_progressivos
 
 ### Análises disponíveis 📊
 
-| Tipo | O que devolve |
-|------|---------------|
-| `descritivas` | Contagens por tipo/camada, histograma e boxplot das distâncias |
-| `vizinho_mais_proximo` | Distância ao serviço mais próximo (geral e por camada) |
-| `voronoi` | Polígonos de Thiessen (áreas de influência) |
-| `kde` | Mapa de densidade de kernel dos serviços |
-| `raios_progressivos` | Oportunidades acumuladas em 500 m, 1 km e 2 km |
-| `moran` | Moran's I — requer pacote `spdep` (instalado sob demanda) |
-| `rede_viaria` | Distância por rede viária — requer pacote `osrm` |
+| Tipo | O que devolve | Dependência |
+|------|---------------|-------------|
+| `descritivas` | Contagens por tipo/camada, histograma e boxplot das distâncias | nenhuma |
+| `vizinho_mais_proximo` | Distância ao serviço mais próximo (geral e por camada) | nenhuma |
+| `acessibilidade_media` | Resumo das distâncias (média, mediana, P75...) por camada/tipo | nenhuma |
+| `raio_otimo` | Raio que alcança 50%, 75%, 90% dos serviços (quantis) | nenhuma |
+| `cobertura_buffer` | Área coberta por buffers por camada vs casco convexo | nenhuma |
+| `nni` | Índice de Vizinho Mais Próximo (agrupado/aleatório/disperso) | nenhuma |
+| `voronoi` | Polígonos de Thiessen (áreas de influência) | nenhuma |
+| `kde` / `kde_banda` | Mapa de densidade de kernel (banda padrão / estimada) | nenhuma |
+| `raios_progressivos` | Oportunidades acumuladas em 500 m, 1 km e 2 km | nenhuma |
+| `getis_ord` | Getis-Ord G* local (aglomerados quentes/frios por célula hex) | `spdep` (opcional) |
+| `lisa` | Moran local (LISA) por célula hexagonal | `spdep` (opcional) |
+| `ripley_k` | Função K de Ripley (agregação em múltiplas escalas) | `spatstat` (opcional) |
+| `moran` | Moran's I (autocorrelação espacial) | `spdep` (opcional) |
+| `moran_distrital` | Moran's I agregado por distrito (LISA por distrito) | `spdep` (opcional) |
+| `por_distrito` | Contagem e densidade de serviços por distrito (mapa) | internet (1ª vez) |
+| `cobertura_populacional` | População atendida no raio (por camada de população ou densidade) | opcional |
+| `rede_viaria` | Distância de percurso (OSRM) comparada à linha reta | `osrm` (opcional) |
 
-> 💡 As análises `moran` e `rede_viaria` **não quebram** se o pacote faltar:
-> devolvem uma mensagem orientando a instalação. 
+> 💡 As análises que dependem de pacote opcional **não quebram** se o pacote
+> faltar: devolvem uma mensagem orientando a instalação.
 
 > 📖 Quer o **curso completo** de cada conceito, com explicação lúdica e
 > exemplos passo a passo? É a **seção 10** do **[DOCUMENTACAO.md](DOCUMENTACAO.md)**
@@ -270,10 +298,12 @@ geosampa/
 │   ├── gs_cep.R           → ler/geocodificar/verificar CEP
 │   ├── gs_proximidade.R   → serviços próximos + tipos de distância
 │   ├── gs_mapa.R          → mapas estático (ggplot2) e interativo (leaflet)
-│   └── gs_analise.R       → análises estatísticas e espaciais
+│   ├── gs_analise.R       → análises estatísticas e espaciais
+│   └── gs_relatorio.R     → relatório consolidado e exportação
 ├── scripts/
 │   ├── carregar_funcoes.R → atalho: carrega tudo em silêncio
 │   └── baixar_tudo.R      → o botão "baixar tudo" do terminal
+├── tests/                 → testes automatizados (testthat)
 ├── data/                  → os tesouros baixados (GeoJSON + CSV)
 ├── DOCUMENTACAO.md        → a história completa, capítulo por capítulo
 └── README.md              → este guia rapidinho

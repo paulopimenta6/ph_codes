@@ -204,7 +204,24 @@ gs_verificar_cep <- function(cep, latitude, longitude,
     ))
   }
 
-  ref <- gs_cep_para_coordenadas(cep, fonte = "nominatim")
+  ref <- tryCatch(gs_cep_para_coordenadas(cep, fonte = "nominatim"),
+                  error = function(e) NULL)
+  if (is.null(ref)) {
+    return(list(
+      cep                    = gs_cep_mascarado(cep),
+      latitude_cep           = NA_real_,
+      longitude_cep          = NA_real_,
+      distancia_m            = NA_real_,
+      confere                = NA,
+      veredito               = "SEM DADO SUFICIENTE",
+      tolerancia_m           = tolerancia_m,
+      n_ocorrencias          = 0L,
+      equipamento_referencia = NA_character_,
+      camada_referencia      = NA_character_,
+      motivo                 = "CEP fora do índice local e sem coordenada ",
+        "obtida no Nominatim/OSM (nem viaCEP). Não foi possível verificar."
+    ))
+  }
   ref_pt <- sf::st_sfc(sf::st_point(c(ref$longitude, ref$latitude)),
                        crs = gs_epsg$wgs84)
   d <- as.numeric(sf::st_distance(ponto, ref_pt))

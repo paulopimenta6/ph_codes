@@ -92,7 +92,8 @@ gs_mapa_leaflet <- function(resultado, ponto, raio_m) {
 gs_mapa_servicos <- function(resultado = NULL, cep = NULL, coordenadas = NULL,
                              camadas = NULL, raio_m = gs_raio_padrao_m,
                              tipo_distancia = c("geodesica", "euclidiana",
-                                                "haversine", "manhattan"),
+                                                "haversine", "manhattan",
+                                                "rede_viaria"),
                              n_por_camada = NULL, interativo = TRUE,
                              salvar = NULL) {
   if (is.null(resultado)) {
@@ -103,6 +104,10 @@ gs_mapa_servicos <- function(resultado = NULL, cep = NULL, coordenadas = NULL,
     )
   }
   ponto <- attr(resultado, "ponto")
+  if (is.null(ponto)) {
+    stop("`resultado` não tem o atributo 'ponto'. Use a saída de ",
+         "gs_servicos_proximos() ou informe cep/coordenadas para calculá-la.")
+  }
   raio <- attr(resultado, "raio_m")
   if (is.null(raio)) raio <- raio_m
 

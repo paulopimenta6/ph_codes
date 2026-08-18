@@ -38,6 +38,22 @@ gs_tolerancia_cep_m <- 300
 gs_pausa_nominatim_s <- 1
 # Raio padrão (metros) para buscar serviços próximos.
 gs_raio_padrao_m <- 2000
+# Raio padrão (metros) usado nas análises de cobertura por buffer.
+gs_raio_buffer_m <- 1000
+# Tamanho padrão (metros) das células hexagonais das análises LISA/Getis-Ord.
+gs_celula_hex_m <- 1000
+# Servidor OSRM para distância por rede viária. Configurável por
+# options(gs.osrm_server = 'http://...') ou options(osrm.server = ...).
+gs_osrm_server <- function() {
+  getOption("gs.osrm_server",
+            getOption("osrm.server",
+                      "https://router.project-osrm.org/"))
+}
+# Nomes das camadas administrativas (baixadas sob demanda do WFS do GeoSampa).
+gs_camadas_apoio <- list(
+  distritos = "distrito_municipal",
+  setores   = "setor_censitario_2022"
+)
 
 # --- Localização da raiz do projeto ----------------------------------------
 # Sobe de diretório em diretório até encontrar a pasta que contém R/ e scripts/.

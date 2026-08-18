@@ -10,18 +10,20 @@
 # --- Documenta os tipos de distância disponíveis ----------------------------
 gs_tipos_distancia <- function() {
   data.frame(
-    tipo = c("geodesica", "euclidiana", "haversine", "manhattan"),
+    tipo = c("geodesica", "euclidiana", "haversine", "manhattan", "rede_viaria"),
     descricao = c(
       "Geodésica (elipsoidal) via sf::st_distance em CRS geográfico",
       "Euclidiana em metros na projeção oficial UTM/SIRGAS2000 (EPSG:31983)",
       "Haversine sobre a esfera (aproximação leve em WGS84)",
-      "Manhattan (|dx| + |dy|) em metros projetados"
+      "Manhattan (|dx| + |dy|) em metros projetados",
+      "Rota real de carro via OSRM (requer pacote osrm; servidor configurável)"
     ),
     quando_usar = c(
       "Padrão recomendado: precisa e suficiente para raios em geral",
       "Rápida e boa até ~20 km; ideal para buffers em metros",
       "Alternativa leve quando não se quer transformar o CRS",
-      "Métrica de 'caminhabilidade' em quadrículas urbanas"
+      "Métrica de 'caminhabilidade' em quadrículas urbanas",
+      "Caminho real de carro/pé (mais fiel, porém mais lento e limitado)"
     ),
     stringsAsFactors = FALSE
   )
@@ -29,9 +31,13 @@ gs_tipos_distancia <- function() {
 
 # --- Calcula distâncias do ponto de origem até cada ponto -------------------
 # `ponto_sf` e `pontos_sf` são sf/sfc em EPSG:4326. Devolve vetor em metros.
+# Para `rede_viaria` usa o OSRM (pacote `osrm`, instalado sob demanda); o
+# servidor pode ser configurado com options(osrm.server = ...) ou via
+# options(gs.osrm_server = ...).
 gs_calcular_distancias <- function(ponto_sf, pontos_sf,
                                    tipo_distancia = c("geodesica", "euclidiana",
-                                                      "haversine", "manhattan")) {
+                                                      "haversine", "manhattan",
+                                                      "rede_viaria")) {
   tipo_distancia <- match.arg(tipo_distancia)
   switch(
     tipo_distancia,
@@ -57,6 +63,32 @@ gs_calcular_distancias <- function(ponto_sf, pontos_sf,
       p <- sf::st_coordinates(pp)
       q <- sf::st_coordinates(qq)
       abs(q[, "X"] - p[1, "X"]) + abs(q[, "Y"] - p[1, "Y"])
+    },
+    rede_viaria = {
+      if (!requireNamespace("osrm", quietly = TRUE)) {
+        stop("Pacote 'osrm' não instalado para distância por rede viária. ",
+             "Instale com: install.packages('osrm')")
+      }
+      osrm::osrmOptions(server = gs_osrm_server())
+      p0 <- sf::st_coordinates(ponto_sf)[1, ]
+      qq <- sf::st_coordinates(pontos_sf)
+      if (nrow(qq) > 200) {
+        message("  rede viária: calculando distâncias para ", nrow(qq),
+                " pontos via OSRM (pode demorar)...")
+      }
+      origem <- data.frame(id = "origem", lon = p0[1], lat = p0[2])
+      destinos <- data.frame(id = as.character(seq_len(nrow(qq))),
+                             lon = qq[, 1], lat = qq[, 2])
+      tab <- tryCatch(
+        osrm::osrmTable(src = origem, dst = destinos, measure = "distance"),
+        error = function(e) NULL
+      )
+      if (is.null(tab)) {
+        stop("Falha ao consultar o servidor OSRM (", gs_osrm_server(),
+             "). Configure outro com options(osrm.server = 'http://...') ",
+             "ou use um tipo de distância em linha reta.")
+      }
+      as.numeric(tab$distances[1, ]) * 1000
     }
   )
 }
@@ -121,7 +153,8 @@ gs_servicos_proximos <- function(cep = NULL, coordenadas = NULL, camadas = NULL,
                                  raio_m = gs_raio_padrao_m,
                                  n_por_camada = NULL,
                                  tipo_distancia = c("geodesica", "euclidiana",
-                                                    "haversine", "manhattan"),
+                                                    "haversine", "manhattan",
+                                                    "rede_viaria"),
                                  dir = gs_pasta_dados()) {
   tipo_distancia <- match.arg(tipo_distancia)
   ponto <- gs_resolver_ponto(cep, coordenadas)
@@ -177,6 +210,11 @@ gs_servicos_proximos <- function(cep = NULL, coordenadas = NULL, camadas = NULL,
     }))
     rownames(sel) <- NULL
   }
+
+  # Ordenação GLOBAL por distância (mais próximos primeiro), independente
+  # da ordem alfabética das camadas.
+  sel <- sel[order(sel$distancia_m), , drop = FALSE]
+  rownames(sel) <- NULL
 
   cols <- c("camada", "nome", "tipo_servico", "endereco", "bairro",
             "distancia_m", "latitude", "longitude")

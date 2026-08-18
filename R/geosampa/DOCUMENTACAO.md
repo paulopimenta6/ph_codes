@@ -92,7 +92,7 @@ importante para você saber **em quem confiar** na hora de usar o dado.
 A Prefeitura disponibiliza camadas de **equipamentos públicos** — todos aqueles
 pontos da cidade que prestam serviços: UBS, hospitais, CEUs, escolas, CRAS,
 bibliotecas, museus, centros esportivos, feiras livres, mercados, praças, e por
-aí vai. São **47 camadas** e mais de **18 mil equipamentos**!
+aí vai. São **48 camadas** e mais de **18 mil equipamentos**!
 
 Criamos um sistema em **R** que:
 
@@ -224,9 +224,9 @@ Rodamos o sistema e o baú ficou assim (em `data/`):
 | 🌳 Espaços verdes | + | Praças e largos, parques |
 
 **Números reais do último garimpo:**
-- ✅ **47 camadas** baixadas com sucesso
-- 📊 **18.512 equipamentos** catalogados
-- 💾 **54 MB** de dados (47 GeoJSON + 47 CSV)
+- ✅ **48 camadas** baixadas com sucesso
+- 📊 **18.608 equipamentos** catalogados
+- 💾 **~54 MB** de dados (48 GeoJSON + 48 CSV)
 
 > 💡 Nem toda camada chamada de "equipamento" pelo sistema é um ponto de serviço
 > no sentido clássico (por exemplo, há camadas de abrangência/cobertura e de
@@ -356,8 +356,11 @@ Opcionais (o módulo avisa se faltarem):
 
 ```r
 install.packages(c("ggplot2", "leaflet", "htmlwidgets"))  # mapas
-install.packages(c("spdep"))                              # Moran's I
+install.packages(c("spdep"))                              # Moran's I, LISA, Getis-Ord
 install.packages(c("osrm"))                               # rede viária
+install.packages(c("spatstat"))                           # função K de Ripley
+install.packages(c("htmltools", "base64enc"))             # relatório HTML
+install.packages(c("testthat"))                           # testes automatizados
 ```
 
 E carregue as funções:
@@ -559,10 +562,21 @@ analises <- gs_analise_servicos(
 |------|---------------|-------------|
 | `descritivas` | Contagens por tipo/camada, resumo, histograma e boxplot das distâncias | nenhuma |
 | `vizinho_mais_proximo` | Distância ao serviço mais próximo (geral e por camada) | nenhuma |
+| `acessibilidade_media` | Resumo das distâncias (média, mediana, P75...) por camada/tipo | nenhuma |
+| `raio_otimo` | Raio que alcança 50%, 75%, 90% e 95% dos serviços | nenhuma |
+| `cobertura_buffer` | Área coberta por buffers (por camada e geral) vs casco convexo | nenhuma |
+| `nni` | Índice de Vizinho Mais Próximo (padrão agrupado/aleatório/disperso) | nenhuma |
 | `voronoi` | Polígonos de Thiessen: áreas de influência de cada serviço (sf) | nenhuma |
 | `kde` | Mapa de densidade de kernel (concentração) | nenhuma |
+| `kde_banda` | KDE com largura de banda estimada (Silverman) | nenhuma |
 | `raios_progressivos` | Oportunidades acumuladas em 500 m, 1 km e 2 km | nenhuma |
+| `getis_ord` | Getis-Ord G* local em grade hexagonal (pontos quentes/frios) | `spdep` (opcional) |
+| `lisa` | Moran local (LISA) em grade hexagonal (alto-alto/baixo-baixo) | `spdep` (opcional) |
+| `ripley_k` | Função K de Ripley (agregação em múltiplas escalas) | `spatstat` (opcional) |
 | `moran` | Moran's I (autocorrelação espacial) | `spdep` (opcional) |
+| `moran_distrital` | Moran's I e LISA agregados por distrito | `spdep` (opcional) |
+| `por_distrito` | Contagem e densidade de serviços por distrito (mapa) | internet (1ª vez) |
+| `cobertura_populacional` | População atendida no raio (via camada de população ou densidade) | opcional |
 | `rede_viaria` | Distância de percurso (OSRM) comparada à linha reta | `osrm` (opcional) |
 
 Exemplos de saídas:
@@ -586,12 +600,29 @@ Se um pacote opcional (`spdep` ou `osrm`) não estiver instalado, a análise
 
 - `descritivas`: responde *"quantos serviços tem e como são as distâncias?"*
 - `vizinho_mais_proximo`: responde *"qual é o serviço mais perto?"*
+- `acessibilidade_media`: resume as distâncias (média, mediana, P75) por camada.
+- `raio_otimo`: diz o raio que alcança 50%, 75%, 90% dos serviços.
+- `cobertura_buffer`: estima qual fração da área estudada fica "coberta" por
+  buffers ao redor dos serviços.
+- `nni` (Índice de Vizinho Mais Próximo): responde *"os serviços se agrupam?"*
+  comparando a distância média real ao vizinho mais próximo com a esperada
+  num padrão aleatório (R < 1 = agrupado; R > 1 = disperso).
 - `voronoi`: divide a área em "pedaços de influência" — cada pedaço mostra a
   região atendida "primeiro" por aquele serviço.
-- `kde`: faz um "mapa de calor" — onde os serviços se amontoam.
+- `kde` / `kde_banda`: fazem um "mapa de calor" — onde os serviços se amontoam.
 - `raios_progressivos`: mostra quantos serviços você encontra conforme caminha
   500 m, 1 km, 2 km...
-- `moran`: pergunta *"os serviços estão mais agrupados do que o acaso?"*
+- `getis_ord`: aponta **onde** estão os aglomerados (pontos quentes/frios) em
+  células hexagonais.
+- `lisa`: identifica células alto-alto (muitos serviços vizinhos com muitos
+  serviços) e baixo-baixo (o oposto).
+- `ripley_k`: pergunta, em várias escalas, *"os serviços se agrupam mais do que
+  o acaso?"* — útil para escolher o raio de análise.
+- `moran`: pergunta *"os serviços estão mais agrupados do que o acaso?"* (global).
+- `moran_distrital`: o mesmo diagnóstico, mas agregado por distrito — mais
+  estável e interpretável para políticas públicas.
+- `por_distrito`: conta e mapeia os serviços por distrito da cidade.
+- `cobertura_populacional`: estima a população dentro do raio de busca.
 - `rede_viaria`: compara o "voo do pássaro" (linha reta) com o caminho real de
   carro/pé.
 
@@ -608,15 +639,44 @@ Se um pacote opcional (`spdep` ou `osrm`) não estiver instalado, a análise
 | `gs_tipos_distancia()` | Manual das métricas de distância | data.frame |
 | `gs_mapa_servicos(...)` | Mapa estático (PNG/PDF) ou interativo (HTML) | plot/HTML |
 | `gs_analise_servicos(...)` | Análises estatísticas/espaciais | lista |
+| `gs_relatorio_analises(...)` | Relatório consolidado (HTML/MD) com as análises | arquivo |
+| `gs_exportar_resultado(...)` | Exporta tabelas e polígonos em CSV/GeoJSON | caminhos |
 
-### 10.12 Limitações conhecidas ⚠️
+### 10.12 Relatório e exportação 📦
+
+Um comando gera um **relatório consolidado** com as análises escolhidas:
+tabelas, gráficos e mapas num único arquivo HTML auto-contido (as figuras são
+embutidas em base64 — não depende de pandoc/rmarkdown) ou em Markdown.
+
+```r
+gs_relatorio_analises(
+  cep = "03175-001",
+  tipo = c("descritivas", "acessibilidade_media", "raio_otimo", "nni",
+           "voronoi", "getis_ord", "por_distrito"),
+  arquivo = "relatorios/relatorio.html"
+)
+```
+
+E para compartilhar os dados (não só as figuras):
+
+```r
+analises <- gs_analise_servicos(cep = "03175-001", tipo = "descritivas")
+gs_exportar_resultado(proximos, analises, dir = "saidas")
+```
+
+### 10.13 Limitações conhecidas ⚠️
 
 - O índice local cobre apenas os CEPs dos equipamentos públicos (≈7 mil) —
   CEPs fora dele precisam de internet (viaCEP + Nominatim).
 - Um CEP de faixa de rua pode ter várias coordenadas; a verificação usa a
   ocorrência mais próxima.
 - CEP de caixa postal não tem coordenada útil.
-- O servidor demo do OSRM tem cobertura e limites próprios.
+- O servidor demo do OSRM tem cobertura e limites próprios; configure outro
+  com `options(gs.osrm_server = "http://...")` ou `options(osrm.server = ...)`.
+- `cobertura_populacional` precisa de uma camada de população (ex.: setores
+  censitários do IBGE) ou de uma densidade média estimada.
+- Análises locais (`lisa`, `getis_ord`, `moran`) dependem de vizinhança e
+  número de pontos; resultados com poucos pontos devem ser lidos com cautela.
 
 ---
 

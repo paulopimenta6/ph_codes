@@ -60,7 +60,28 @@ gs_indice_cep <- function(dir = gs_pasta_dados(), force = FALSE) {
   idx$latitude  <- as.numeric(idx$latitude)
   idx$longitude <- as.numeric(idx$longitude)
   rownames(idx) <- NULL
+
+  # Colunas do plano: n_ocorrencias (registros por CEP) e representante
+  # (TRUE para a ocorrência mais próxima da mediana daquele CEP).
+  idx$n_ocorrencias <- as.integer(stats::ave(seq_len(nrow(idx)), idx$cep, FUN = length))
+  med <- stats::aggregate(cbind(latitude, longitude) ~ cep, data = idx,
+                          FUN = stats::median)
+  names(med) <- c("cep", "latitude_med", "longitude_med")
+  idx <- merge(idx, med, by = "cep", all.x = TRUE)
+  lat_m <- 111320
+  lon_m <- 111320 * cos(stats::median(idx$latitude) * pi / 180)
+  idx$dist_med_m <- sqrt(((idx$latitude - idx$latitude_med) * lat_m)^2 +
+                         ((idx$longitude - idx$longitude_med) * lon_m)^2)
+  idx$representante <- FALSE
+  i_min <- tapply(seq_len(nrow(idx)), idx$cep,
+                  function(i) i[which.min(idx$dist_med_m[i])])
+  idx$representante[as.integer(i_min)] <- TRUE
+  idx$latitude_med  <- NULL
+  idx$longitude_med <- NULL
+  idx$dist_med_m    <- NULL
+
   idx <- idx[order(idx$cep), , drop = FALSE]
+  rownames(idx) <- NULL
 
   options(gs.indice_cep = idx)
   idx
