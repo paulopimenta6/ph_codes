@@ -55,7 +55,7 @@ gs_exportar_resultado <- function(resultado, analises = NULL, dir = "saidas") {
 gs_salvar_fig_tmp <- function(p, nome) {
   arq <- tempfile(pattern = paste0("gs_", gsub("[^A-Za-z0-9]", "_", nome), "_"),
                   fileext = ".png")
-  ggplot2::ggsave(arq, plot = p, width = 9, height = 6, dpi = 200)
+  ggplot2::ggsave(arq, plot = p, width = 10, height = 8, dpi = 200)
   arq
 }
 
@@ -190,6 +190,16 @@ gs_relatorio_analises <- function(resultado = NULL, cep = NULL, coordenadas = NU
         }
       }
     }
+    # Parágrafo de interpretação automática (leitura dos resultados)
+    interp <- gs_interpretar_analise(analises, resultado, raio)[[nm]]
+    if (!is.null(interp)) {
+      secoes[[length(secoes) + 1]] <-
+        if (formato == "html") {
+          tags$p(class = "interpretacao", interp)
+        } else {
+          paste0("\n> ", interp, "\n")
+        }
+    }
   }
 
   if (formato == "html") {
@@ -204,7 +214,8 @@ gs_relatorio_analises <- function(resultado = NULL, cep = NULL, coordenadas = NU
           "table.tabela th{background:#f0f0f0}",
           ".figura img{max-width:100%;border:1px solid #ddd;margin:.5em 0}",
           "h2{border-bottom:2px solid #2c7fb8;padding-bottom:4px;margin-top:2em}",
-          "h3{color:#2c7fb8}")
+          "h3{color:#2c7fb8}",
+          "p.interpretacao{background:#f2f7fc;border-left:4px solid #2c7fb8;padding:8px 12px;border-radius:3px;color:#333;line-height:1.5}")
         )
       ),
       htmltools::tags$body(secoes)
@@ -232,7 +243,7 @@ gs_secao_figura <- function(obj, nome, formato, pasta_figuras = NULL) {
   } else {
     dir.create(pasta_figuras, showWarnings = FALSE, recursive = TRUE)
     arq <- file.path(pasta_figuras, paste0(nome, ".png"))
-    ggplot2::ggsave(arq, plot = obj, width = 9, height = 6, dpi = 200)
+    ggplot2::ggsave(arq, plot = obj, width = 10, height = 8, dpi = 200)
     paste0("\n![", nome, "](assets/", basename(arq), ")\n")
   }
 }

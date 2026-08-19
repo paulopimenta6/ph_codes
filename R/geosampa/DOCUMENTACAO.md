@@ -539,9 +539,12 @@ raio** (contorno azul tracejado) e os **serviços** coloridos por tipo. No mapa
 interativo, cada serviço mostra um **tooltip ao passar o mouse** (nome, tipo e
 distância) e um **popup ao clicar** com nome, endereço, bairro, distância e
 camada; há também escala, seletor de camadas e três basemaps (OSM, CartoDB e
-satélite). O mapa estático sai com **legenda no rodapé** em várias linhas e
-**resolução configurável** (`largura`/`altura`/`dpi`; padrão 12×12 polegadas a
-300 dpi). Se você passar `cep`/`camadas` direto, ele calcula tudo sozinho:
+satélite). O mapa estático sai com **legenda no rodapé em várias colunas** (o
+número de colunas se ajusta à quantidade de tipos, e rótulos longos são
+quebrados para caber) e **resolução configurável** (`largura`/`altura`/`dpi`;
+largura padrão 12 polegadas a 300 dpi, com a altura ajustada automaticamente
+para a legenda não ser cortada). Se você passar `cep`/`camadas` direto, ele
+calcula tudo sozinho:
 
 ```r
 gs_mapa_servicos(cep = "03175-001",
@@ -564,20 +567,20 @@ analises <- gs_analise_servicos(
 
 | Tipo | O que devolve | Dependência |
 |------|---------------|-------------|
-| `descritivas` | Contagens por tipo/camada, resumo, histograma e boxplot das distâncias | nenhuma |
+| `descritivas` | Contagens por tipo/camada, resumo, histograma e boxplot anotados (mediana/média) | nenhuma |
 | `vizinho_mais_proximo` | Distância ao serviço mais próximo (geral e por camada) | nenhuma |
-| `acessibilidade_media` | Resumo das distâncias (média, mediana, P75...) por camada/tipo | nenhuma |
-| `raio_otimo` | Raio que alcança 50%, 75%, 90% e 95% dos serviços | nenhuma |
+| `acessibilidade_media` | Resumo robusto das distâncias (mediana, P25/P75, IQR, CV) + curva ECDF | nenhuma |
+| `raio_otimo` | Raio que alcança 50%, 75%, 90% e 95% dos serviços + gráfico ECDF | nenhuma |
 | `cobertura_buffer` | Área coberta por buffers (por camada e geral) vs casco convexo | nenhuma |
 | `nni` | Índice de Vizinho Mais Próximo (padrão agrupado/aleatório/disperso) | nenhuma |
 | `voronoi` | Polígonos de Thiessen: áreas de influência de cada serviço (sf) | nenhuma |
 | `kde` | Mapa de densidade de kernel (concentração) | nenhuma |
 | `kde_banda` | KDE com largura de banda estimada (Silverman) | nenhuma |
-| `raios_progressivos` | Oportunidades acumuladas em 500 m, 1 km e 2 km | nenhuma |
+| `raios_progressivos` | Oportunidades acumuladas por raio (tabela + curva) | nenhuma |
 | `getis_ord` | Getis-Ord G* local em grade hexagonal (pontos quentes/frios) | `spdep` (opcional) |
 | `lisa` | Moran local (LISA) em grade hexagonal (alto-alto/baixo-baixo) | `spdep` (opcional) |
 | `ripley_k` | Função K de Ripley (agregação em múltiplas escalas) | `spatstat` (opcional) |
-| `moran` | Moran's I (autocorrelação espacial) | `spdep` (opcional) |
+| `moran` | Moran's I sobre contagens em grade hexagonal (padrão) | `spdep` (opcional) |
 | `moran_distrital` | Moran's I e LISA agregados por distrito | `spdep` (opcional) |
 | `por_distrito` | Contagem e densidade de serviços por distrito (mapa) | internet (1ª vez) |
 | `cobertura_populacional` | População atendida no raio (via camada de população ou densidade) | opcional |
@@ -590,11 +593,14 @@ analises$descritivas$resumo_distancia
 #    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.
 #    36.6   477.7   918.8   918.8  1359.9  1801.0
 
-analises$raios_progressivos
+analises$raios_progressivos$contagem        # tabela de oportunidades
 #   raio_m n_servicos
 # 1    500          1
 # 2   1000          1
 # 3   2000          2
+
+analises$raios_progressivos$grafico         # curva de oportunidades acumuladas
+analises$acessibilidade_media$grafico_ecdf  # curva acumulada das distâncias
 ```
 
 Se um pacote opcional (`spdep` ou `osrm`) não estiver instalado, a análise
@@ -603,26 +609,36 @@ Se um pacote opcional (`spdep` ou `osrm`) não estiver instalado, a análise
 **Mas o que cada análise significa, no dia a dia?**
 
 - `descritivas`: responde *"quantos serviços tem e como são as distâncias?"*
+  — histograma e boxplot trazem linhas da mediana e da média.
 - `vizinho_mais_proximo`: responde *"qual é o serviço mais perto?"*
-- `acessibilidade_media`: resume as distâncias (média, mediana, P75) por camada.
-- `raio_otimo`: diz o raio que alcança 50%, 75%, 90% dos serviços.
+- `acessibilidade_media`: resume as distâncias com medidas **robustas**
+  (mediana, P25/P75, IQR e coeficiente de variação) — preferíveis à média pura
+  em distribuições assimétricas — e mostra a curva ECDF ("X% dos serviços a até
+  Y m").
+- `raio_otimo`: diz o raio que alcança 50%, 75%, 90% dos serviços, com o
+  gráfico ECDF que permite **ver** o percentil correspondente a cada raio.
 - `cobertura_buffer`: estima qual fração da área estudada fica "coberta" por
   buffers ao redor dos serviços.
 - `nni` (Índice de Vizinho Mais Próximo): responde *"os serviços se agrupam?"*
   comparando a distância média real ao vizinho mais próximo com a esperada
-  num padrão aleatório (R < 1 = agrupado; R > 1 = disperso).
+  num padrão aleatório (R < 1 = agrupado; R > 1 = disperso). O resultado traz
+  um aviso sobre efeito de borda.
 - `voronoi`: divide a área em "pedaços de influência" — cada pedaço mostra a
   região atendida "primeiro" por aquele serviço.
 - `kde` / `kde_banda`: fazem um "mapa de calor" — onde os serviços se amontoam.
 - `raios_progressivos`: mostra quantos serviços você encontra conforme caminha
-  500 m, 1 km, 2 km...
+  500 m, 1 km, 2 km... — agora também com a curva de oportunidades acumuladas.
 - `getis_ord`: aponta **onde** estão os aglomerados (pontos quentes/frios) em
-  células hexagonais.
+  células hexagonais (aviso: p-valores locais sem correção para múltiplos
+  testes — trate como exploratório).
 - `lisa`: identifica células alto-alto (muitos serviços vizinhos com muitos
-  serviços) e baixo-baixo (o oposto).
+  serviços) e baixo-baixo (o oposto); mesmo aviso de múltiplos testes.
 - `ripley_k`: pergunta, em várias escalas, *"os serviços se agrupam mais do que
   o acaso?"* — útil para escolher o raio de análise.
-- `moran`: pergunta *"os serviços estão mais agrupados do que o acaso?"* (global).
+- `moran`: pergunta *"os serviços estão mais agrupados do que o acaso?"*. A
+  versão padrão aplica Moran's I às **contagens por célula hexagonal** (a
+  aplicação estatisticamente correta para pontos); a versão sobre a distância
+  radial (argumento `sobre_grade = FALSE`) fica como diagnóstico, com ressalva.
 - `moran_distrital`: o mesmo diagnóstico, mas agregado por distrito — mais
   estável e interpretável para políticas públicas.
 - `por_distrito`: conta e mapeia os serviços por distrito da cidade.
@@ -650,7 +666,11 @@ Se um pacote opcional (`spdep` ou `osrm`) não estiver instalado, a análise
 
 Um comando gera um **relatório consolidado** com as análises escolhidas:
 tabelas, gráficos e mapas num único arquivo HTML auto-contido (as figuras são
-embutidas em base64 — não depende de pandoc/rmarkdown) ou em Markdown.
+embutidas em base64 — não depende de pandoc/rmarkdown) ou em Markdown. Cada
+seção traz **tabela + gráfico + um parágrafo de interpretação automática**
+(`gs_interpretar_analise()`) com a leitura dos principais resultados
+(mediana, percentis, R do NNI, Moran, cobertura etc.) — para as análises
+saírem explicadas, não só calculadas.
 
 ```r
 gs_relatorio_analises(
@@ -685,6 +705,9 @@ gs_exportar_resultado(proximos, analises, dir = "saidas")
   censitários do IBGE) ou de uma densidade média estimada.
 - Análises locais (`lisa`, `getis_ord`, `moran`) dependem de vizinhança e
   número de pontos; resultados com poucos pontos devem ser lidos com cautela.
+- `moran` (sobre grade hexagonal) depende do tamanho da célula
+  (`celula_m`); resultados podem variar com a escolha da grade. A versão
+  sobre a distância radial (`sobre_grade = FALSE`) fica como diagnóstico.
 
 ---
 

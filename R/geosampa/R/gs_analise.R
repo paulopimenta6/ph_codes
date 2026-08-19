@@ -23,6 +23,9 @@ gs_analise_descritivas <- function(resultado) {
     rownames(n_por_tipo) <- NULL
   }
 
+  mediana <- stats::median(resultado$distancia_m)
+  media   <- mean(resultado$distancia_m)
+
   list(
     n_total          = nrow(resultado),
     n_por_camada     = n_por_camada,
@@ -30,13 +33,21 @@ gs_analise_descritivas <- function(resultado) {
     resumo_distancia = summary(resultado$distancia_m),
     histograma = ggplot2::ggplot(resultado, ggplot2::aes(x = distancia_m)) +
       ggplot2::geom_histogram(bins = 20, fill = "#2c7fb8", color = "white") +
+      ggplot2::geom_vline(xintercept = mediana, color = "#d7301f",
+                          linetype = "dashed", linewidth = 0.8) +
+      ggplot2::geom_vline(xintercept = media, color = "#0570b0",
+                          linewidth = 0.8) +
       ggplot2::labs(x = "Distância (m)", y = "Nº de serviços",
-                    title = "Distribuição das distâncias") +
+                    title = "Distribuição das distâncias",
+                    caption = "Vermelho tracejado: mediana | Azul: média") +
       ggplot2::theme_minimal(),
     boxplot = ggplot2::ggplot(resultado, ggplot2::aes(x = camada, y = distancia_m)) +
       ggplot2::geom_boxplot(fill = "#41b6c4") +
+      ggplot2::stat_summary(fun = stats::median, geom = "point",
+                            shape = 18, size = 3, color = "#d7301f") +
       ggplot2::labs(x = NULL, y = "Distância (m)",
-                    title = "Distâncias por camada") +
+                    title = "Distâncias por camada",
+                    caption = "Losango vermelho: mediana") +
       ggplot2::theme_minimal() +
       ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, hjust = 1))
   )
@@ -94,25 +105,78 @@ gs_analise_kde <- function(resultado, ponto) {
 }
 
 # --- Raios progressivos: oportunidades acumuladas ------------------------------
+# Devolve a contagem acumulada por raio (tabela) e a curva correspondente.
 gs_analise_raios <- function(resultado, ponto, raios = c(500, 1000, 2000)) {
-  contagem <- vapply(raios, function(r) sum(resultado$distancia_m <= r), integer(1))
-  data.frame(raio_m = raios, n_servicos = contagem)
+  contagem <- data.frame(
+    raio_m = raios,
+    n_servicos = vapply(raios, function(r) sum(resultado$distancia_m <= r),
+                        integer(1))
+  )
+  grafico <- ggplot2::ggplot(contagem, ggplot2::aes(x = raio_m, y = n_servicos)) +
+    ggplot2::geom_area(alpha = 0.15, fill = "#2c7fb8") +
+    ggplot2::geom_line(color = "#2c7fb8", linewidth = 1) +
+    ggplot2::geom_point(color = "#2c7fb8", size = 2.5) +
+    ggplot2::scale_x_continuous(labels = scales::comma) +
+    ggplot2::labs(x = "Raio de busca (m)", y = "Nº de serviços alcançados",
+                  title = "Oportunidades acumuladas por raio",
+                  subtitle = sprintf("Ponto: %s", ponto$origem)) +
+    ggplot2::theme_minimal()
+  list(contagem = contagem, grafico = grafico)
 }
 
 # --- Autocorrelação espacial (Moran's I) — requer spdep ------------------------
-# Robustez: coordenadas idênticas (muito comuns em equipamentos que dividem
-# o mesmo endereço) são deduplicadas antes do teste, e sub-grafos desconexos
-# são sinalizados. O p-valor vem do teste de Monte Carlo (moran.mc).
-# Nota de interpretação: aplicado à distância de cada serviço até o ponto de
-# origem (radial), costuma indicar agrupamento esperado; para diagnósticos
-# finos, agregue por unidade espacial (ex.: distritos) — veja `moran_distrital`.
-gs_analise_moran <- function(resultado) {
+# A versão padrão (sobre_grade = TRUE) aplica Moran's I às CONTAGENS de
+# serviços por célula hexagonal (via gs_grade_hex), a aplicação estatisticamente
+# correta para pontos. A versão alternativa (sobre_grade = FALSE) aplica às
+# distâncias radiais e é mantida apenas como DIAGNÓSTICO, com ressalva: essa
+# variável tem gradiente espacial construído (distância a um único ponto), o que
+# tende a indicar agrupamento por construção.
+# Nota de interpretação: para diagnósticos finos, agregue por unidade espacial
+# (ex.: distritos) — veja `moran_distrital`.
+gs_analise_moran <- function(resultado, celula_m = gs_celula_hex_m,
+                             sobre_grade = TRUE) {
   if (!requireNamespace("spdep", quietly = TRUE)) {
     return(list(
       executado = FALSE,
       mensagem = "Pacote 'spdep' não instalado. Instale com: install.packages('spdep')"
     ))
   }
+
+  if (sobre_grade) {
+    grade <- gs_grade_hex(resultado, celula_m)
+    ocupadas <- grade[!is.na(grade$camadas), , drop = FALSE]
+    if (nrow(ocupadas) < 4) {
+      return(list(executado = FALSE,
+                  mensagem = "Menos de 4 células com serviços para Moran's I sobre a grade hexagonal."))
+    }
+    nb <- spdep::poly2nb(sf::st_geometry(ocupadas), queen = TRUE)
+    lw <- spdep::nb2listw(nb, style = "W", zero.policy = TRUE)
+    teste <- tryCatch(
+      spdep::moran.test(ocupadas$n_servicos, lw, zero.policy = TRUE),
+      error = function(e) NULL
+    )
+    if (is.null(teste)) {
+      return(list(executado = FALSE,
+                  mensagem = "Falha ao executar Moran's I (configuração de vizinhança inválida)."))
+    }
+    moran_i <- unname(teste$estimate["Moran I statistic"])
+    valor_p <- teste$p.value
+    interpretacao <- if (valor_p < 0.05 && moran_i > 0) {
+      "Há autocorrelação espacial positiva: células vizinhas tendem a ter contagens de serviços semelhantes (agrupamento)."
+    } else if (valor_p < 0.05 && moran_i < 0) {
+      "Há autocorrelação espacial negativa: células vizinhas tendem a ter contagens de serviços distintas (dispersão)."
+    } else {
+      "Não há evidência de autocorrelação espacial significativa na contagem de serviços por célula."
+    }
+    return(list(
+      executado = TRUE, metodo = "grade_hex", celula_m = celula_m,
+      moran_i = round(moran_i, 4), valor_p = round(valor_p, 4),
+      n_celulas = nrow(ocupadas), interpretacao = interpretacao,
+      objeto = teste
+    ))
+  }
+
+  # --- Versão DIAGNÓSTICA: Moran sobre a distância radial ----------------------
   chave <- sprintf("%.6f|%.6f", resultado$longitude, resultado$latitude)
   dup   <- duplicated(chave)
   d     <- resultado[!dup, , drop = FALSE]
@@ -144,13 +208,28 @@ gs_analise_moran <- function(resultado) {
     return(list(executado = FALSE,
                 mensagem = "Falha ao executar Moran's I (configuração de vizinhança inválida)."))
   }
+  moran_i <- unname(teste$statistic)
+  valor_p <- teste$p.value
+  interpretacao <- if (valor_p < 0.05 && moran_i > 0) {
+    "Há autocorrelação espacial positiva na distância radial."
+  } else if (valor_p < 0.05 && moran_i < 0) {
+    "Há autocorrelação espacial negativa na distância radial."
+  } else {
+    "Não há evidência de autocorrelação espacial significativa na distância radial."
+  }
   list(
     executado = TRUE,
-    moran_i   = unname(teste$statistic),
-    valor_p   = teste$p.value,
+    metodo    = "distancia_radial",
+    moran_i   = round(moran_i, 4),
+    valor_p   = round(valor_p, 4),
     n_pontos  = nrow(d),
     n_deduplicados = n_dup,
-    avisos    = avisos,
+    avisos    = c(avisos, paste0(
+      "Moran aplicado à distância radial tem gradiente espacial construído ",
+      "(distância a um único ponto) e tende a indicar agrupamento por ",
+      "construção; use sobre_grade = TRUE (padrão) ou moran_distrital para ",
+      "diagnóstico confiável.")),
+    interpretacao = interpretacao,
     objeto    = teste
   )
 }
@@ -206,11 +285,19 @@ gs_analise_rede <- function(resultado, ponto) {
 # ============================================================
 
 # --- Acessibilidade: resumo das distâncias (geral, por camada, por tipo) -----
+# Medidas robustas para distribuições assimétricas (comuns em distâncias):
+# mediana (destaque), P25/P75, IQR e CV além de média/desvio-padrão.
 gs_analise_acessibilidade <- function(resultado) {
-  resumo <- function(x) c(
-    n = length(x), min = min(x), mediana = unname(stats::median(x)),
-    media = mean(x), p75 = unname(stats::quantile(x, 0.75)),
-    max = max(x), sd = stats::sd(x))
+  resumo <- function(x) {
+    x <- x[!is.na(x)]
+    q25 <- unname(stats::quantile(x, 0.25))
+    q75 <- unname(stats::quantile(x, 0.75))
+    media <- mean(x)
+    sd <- stats::sd(x)
+    c(n = length(x), min = min(x), p25 = q25, mediana = unname(stats::median(x)),
+      media = media, p75 = q75, max = max(x), iqr = q75 - q25,
+      sd = sd, cv = round(100 * sd / max(media, 1e-9), 1))
+  }
   geral <- as.data.frame(t(resumo(resultado$distancia_m)))
   por_camada <- do.call(rbind, lapply(split(resultado, resultado$camada), function(d) {
     data.frame(t(resumo(d$distancia_m)))
@@ -225,7 +312,17 @@ gs_analise_acessibilidade <- function(resultado) {
     por_tipo <- cbind(tipo_servico = rownames(por_tipo), as.data.frame(por_tipo))
     rownames(por_tipo) <- NULL
   }
-  list(geral = geral, por_camada = por_camada, por_tipo = por_tipo)
+  qs <- stats::quantile(resultado$distancia_m, c(0.25, 0.5, 0.75))
+  grafico_ecdf <- ggplot2::ggplot(resultado, ggplot2::aes(x = distancia_m)) +
+    ggplot2::stat_ecdf(geom = "step", color = "#2c7fb8", linewidth = 0.9) +
+    ggplot2::geom_vline(xintercept = unname(qs), linetype = "dashed",
+                        color = "grey55") +
+    ggplot2::labs(x = "Distância (m)", y = "Proporção acumulada de serviços",
+                  title = "Curva acumulada das distâncias (ECDF)",
+                  subtitle = "Linhas tracejadas: P25, mediana e P75") +
+    ggplot2::theme_minimal()
+  list(geral = geral, por_camada = por_camada, por_tipo = por_tipo,
+       grafico_ecdf = grafico_ecdf)
 }
 
 # --- Cobertura por buffer: área coberta pelos buffers dos serviços ------------
@@ -268,10 +365,23 @@ gs_analise_cobertura <- function(resultado, ponto, raio_buffer_m = gs_raio_buffe
 }
 
 # --- Raio ótimo: percentis da distribuição das distâncias ----------------------
-# O menor raio que "alcança" X% dos serviços (quantis da distância).
+# O menor raio que "alcança" X% dos serviços (quantis da distância), com o
+# gráfico ECDF que permite ver visualmente o percentil correspondente a cada
+# raio.
 gs_analise_raio_otimo <- function(resultado, p = c(0.5, 0.75, 0.9, 0.95)) {
   q <- stats::quantile(resultado$distancia_m, probs = p)
-  data.frame(percentil = names(q), raio_m = unname(round(q, 0)))
+  percentis <- data.frame(percentil = names(q), raio_m = unname(round(q, 0)))
+  grafico <- ggplot2::ggplot(resultado, ggplot2::aes(x = distancia_m)) +
+    ggplot2::stat_ecdf(geom = "step", color = "#2c7fb8", linewidth = 0.9) +
+    ggplot2::geom_hline(yintercept = as.numeric(p), linetype = "dashed",
+                        color = "grey50") +
+    ggplot2::geom_vline(xintercept = unname(q), linetype = "dotted",
+                        color = "#d7301f") +
+    ggplot2::labs(x = "Distância (m)", y = "Proporção acumulada de serviços",
+                  title = "Raio necessário para alcançar X% dos serviços",
+                  subtitle = "Vermelho pontilhado: percentis P50, P75, P90 e P95") +
+    ggplot2::theme_minimal()
+  list(percentis = percentis, grafico = grafico)
 }
 
 # --- Índice de Vizinho Mais Próximo (NNI) --------------------------------------
@@ -300,7 +410,10 @@ gs_analise_nni <- function(resultado) {
     distancia_esperada_m = round(esperado, 1),
     indice_nni = round(R, 3), z = round(z, 2),
     valor_p = round(pvalor, 4), area_km2 = round(area / 1e6, 2),
-    interpretacao = interpretacao
+    interpretacao = interpretacao,
+    avisos = c(
+      "O NNI usa a área da caixa envolvente (bbox) dos pontos; pontos próximos à borda sofrem efeito de borda, o que tende a subestimar a dispersão."
+    )
   )
 }
 
@@ -371,7 +484,9 @@ gs_analise_getis_ord <- function(resultado, celula_m = gs_celula_hex_m) {
                      ifelse(ocupadas$gi_z < -1.96, "ponto frio",
                             "não significativo"))
   list(executado = TRUE, celula_m = celula_m,
-       grade = ocupadas, mapa = gs_mapa_grade_classe(ocupadas, "Getis-Ord (G*) por célula"))
+       grade = ocupadas,
+       avisos = "P-valores locais não corrigidos para múltiplos testes; trate os resultados como exploratórios.",
+       mapa = gs_mapa_grade_classe(ocupadas, "Getis-Ord (G*) por célula"))
 }
 
 # --- LISA (Moran local) — aglomerados alto-alto / baixo-baixo — requer spdep ----
@@ -402,7 +517,9 @@ gs_analise_lisa <- function(resultado, celula_m = gs_celula_hex_m) {
                      ifelse(ocupadas$lisa_z < -1.96 & ocupadas$p_valor < 0.05,
                             "baixo-baixo", "não significativo"))
   list(executado = TRUE, celula_m = celula_m,
-       grade = ocupadas, mapa = gs_mapa_grade_classe(ocupadas, "LISA por célula"))
+       grade = ocupadas,
+       avisos = "P-valores locais não corrigidos para múltiplos testes; trate os resultados como exploratórios.",
+       mapa = gs_mapa_grade_classe(ocupadas, "LISA por célula"))
 }
 
 # --- Função K de Ripley — multiescala — requer spatstat -------------------------
@@ -652,4 +769,168 @@ gs_analise_servicos <- function(resultado = NULL, cep = NULL, coordenadas = NULL
   if ("moran_distrital" %in% tipo)        saida$moran_distrital    <- gs_analise_moran_distrital(resultado)
   if ("cobertura_populacional" %in% tipo) saida$cobertura_populacional <- gs_analise_cobertura_populacional(resultado, ponto, raio)
   saida
+}
+
+# --- Interpretação automática das análises (usada no relatório) ----------------
+# Gera, para cada análise disponível em `analises`, um parágrafo curto em
+# português com a leitura dos principais resultados — deixando as análises
+# "corretas e bem explicadas". `resultado` é o data.frame de
+# gs_servicos_proximos(); `raio_m` é o raio de busca usado.
+gs_interpretar_analise <- function(analises, resultado, raio_m) {
+  out <- list()
+  if (is.null(analises) || is.null(resultado)) return(out)
+  fmt <- function(...) sprintf(...)
+  d <- resultado$distancia_m
+
+  if (!is.null(analises$descritivas)) {
+    r <- summary(d)
+    out$descritivas <- fmt(
+      "Foram encontrados %d serviço(s) num raio de %d m. As distâncias vão de %.0f m a %.0f m, com mediana de %.0f m — ou seja, metade dos serviços está a até %.0f m do ponto — e média de %.0f m.",
+      analises$descritivas$n_total, raio_m,
+      r[["Min."]], r[["Max."]], r[["Median"]], r[["Median"]], r[["Mean"]])
+  }
+
+  if (!is.null(analises$vizinho_mais_proximo)) {
+    v <- analises$vizinho_mais_proximo$vizinho_mais_proximo
+    if (!is.null(v) && nrow(v) > 0) {
+      out$vizinho_mais_proximo <- fmt(
+        "O serviço mais próximo é '%s' (camada %s), a %.0f m do ponto de interesse.",
+        v$nome[1], v$camada[1], v$distancia_m[1])
+    }
+  }
+
+  if (!is.null(analises$acessibilidade_media) &&
+      !is.null(analises$acessibilidade_media$geral)) {
+    g <- analises$acessibilidade_media$geral
+    out$acessibilidade_media <- fmt(
+      "Acessibilidade média: distância mediana de %.0f m, com P25 de %.0f m e P75 de %.0f m (IQR = %.0f m). A média é %.0f m com desvio-padrão de %.0f m (CV = %s%%).",
+      g$mediana, g$p25, g$p75, g$iqr, g$media, g$sd, g$cv)
+  }
+
+  if (!is.null(analises$raio_otimo) && !is.null(analises$raio_otimo$percentis)) {
+    p <- analises$raio_otimo$percentis
+    out$raio_otimo <- fmt(
+      "Para alcançar %s dos serviços é preciso um raio de %s, respectivamente.",
+      paste0(p$percentil, collapse = ", "),
+      paste0(round(p$raio_m, 0), " m", collapse = ", "))
+  }
+
+  if (!is.null(analises$raios_progressivos) &&
+      !is.null(analises$raios_progressivos$contagem)) {
+    cg <- analises$raios_progressivos$contagem
+    ult <- cg[nrow(cg), ]
+    out$raios_progressivos <- fmt(
+      "Com um raio de %d m são alcançados %d serviço(s). O acréscimo de oportunidades conforme o raio cresce foi: %s.",
+      ult$raio_m, ult$n_servicos,
+      paste0("+", diff(c(0, cg$n_servicos)), " aos ", cg$raio_m, " m",
+             collapse = "; "))
+  }
+
+  if (!is.null(analises$cobertura_buffer) &&
+      isTRUE(analises$cobertura_buffer$executado)) {
+    cb <- analises$cobertura_buffer
+    out$cobertura_buffer <- fmt(
+      "Os buffers de %d m ao redor dos serviços cobrem %.1f%% da área do casco convexo dos pontos (%.2f de %.2f km²).",
+      cb$raio_buffer_m, cb$pct_cobertura, cb$area_coberta_km2, cb$area_hull_km2)
+  }
+
+  if (!is.null(analises$nni) && isTRUE(analises$nni$executado)) {
+    n <- analises$nni
+    out$nni <- fmt(
+      "Índice de Vizinho Mais Próximo: R = %.2f (%s) com z = %.2f e p = %.3f. A distância média observada ao vizinho mais próximo é %.1f m (esperada: %.1f m).",
+      n$indice_nni, n$interpretacao, n$z, n$valor_p,
+      n$distancia_observada_m, n$distancia_esperada_m)
+  }
+
+  # Nota: usa [[ ]] (não $) para evitar partial matching — "$moran" casaria
+  # também com "moran_distrital" e "$kde" com "kde_banda".
+  if (!is.null(analises[["moran"]]) && isTRUE(analises[["moran"]]$executado)) {
+    m <- analises[["moran"]]
+    out$moran <- fmt(
+      "Moran's I (método: %s): I = %.4f, p = %.4f. %s",
+      m$metodo, m$moran_i, m$valor_p, m$interpretacao)
+  }
+
+  if (!is.null(analises[["moran_distrital"]]) &&
+      isTRUE(analises[["moran_distrital"]]$executado)) {
+    md <- analises[["moran_distrital"]]
+    n_lisa <- sum(md$por_distrito$classe %in% c("alto-alto", "baixo-baixo"))
+    out$moran_distrital <- fmt(
+      "Moran's I agregado por distrito: I = %.4f, p = %.4f. %d distrito(s) foram sinalizados como aglomerado 'alto-alto' ou 'baixo-baixo' no mapa LISA.",
+      md$moran_i, md$valor_p, n_lisa)
+  }
+
+  if (!is.null(analises[["getis_ord"]]) && isTRUE(analises[["getis_ord"]]$executado)) {
+    g <- analises[["getis_ord"]]
+    out$getis_ord <- fmt(
+      "Getis-Ord G* em grade hexagonal de %d m: %d célula(s) de ponto quente e %d de ponto frio (|z| > 1,96). Trate como exploratório.",
+      g$celula_m, sum(g$grade$classe == "ponto quente"),
+      sum(g$grade$classe == "ponto frio"))
+  }
+
+  if (!is.null(analises[["lisa"]]) && isTRUE(analises[["lisa"]]$executado)) {
+    l <- analises[["lisa"]]
+    out$lisa <- fmt(
+      "LISA (Moran local) em grade hexagonal de %d m: %d célula(s) 'alto-alto' e %d 'baixo-baixo' (p < 0,05). Trate como exploratório.",
+      l$celula_m, sum(l$grade$classe == "alto-alto"),
+      sum(l$grade$classe == "baixo-baixo"))
+  }
+
+  if (!is.null(analises[["por_distrito"]]) && isTRUE(analises[["por_distrito"]]$executado)) {
+    pd <- analises[["por_distrito"]]$por_distrito
+    if (nrow(pd) > 0) {
+      top <- pd[which.max(pd$n_servicos), , drop = FALSE]
+      out$por_distrito <- fmt(
+        "Serviços distribuídos em %d distrito(s) da cidade. O distrito com mais serviços é %s (%d serviço(s), densidade de %.2f por km²).",
+        sum(pd$n_servicos > 0), top$distrito, top$n_servicos,
+        top$densidade_por_km2)
+    }
+  }
+
+  if (!is.null(analises[["cobertura_populacional"]]) &&
+      isTRUE(analises[["cobertura_populacional"]]$executado)) {
+    cp <- analises[["cobertura_populacional"]]
+    out$cobertura_populacional <- if (identical(cp$metodo, "densidade")) {
+      fmt("População estimada dentro do raio de %d m: ~%.0f habitantes (área de %.2f km² a %.0f hab/km²).",
+          cp$raio_m, cp$populacao_estimada, cp$area_km2, cp$densidade_km2)
+    } else {
+      fmt("População atendida dentro do raio de %d m: ~%.0f habitantes (área de %.2f km²).",
+          cp$raio_m, cp$populacao_atendida, cp$area_km2)
+    }
+  }
+
+  if (!is.null(analises[["rede_viaria"]]) && isTRUE(analises[["rede_viaria"]]$executado)) {
+    rv <- analises[["rede_viaria"]]$resultado
+    out$rede_viaria <- fmt(
+      "Em média, a distância por rede viária é %.2f× a distância em linha reta (mediana de %.2f×) para %d serviço(s).",
+      round(mean(rv$razao_rede_reta), 2),
+      round(stats::median(rv$razao_rede_reta), 2), nrow(rv))
+  }
+
+  if (!is.null(analises[["kde"]])) {
+    out$kde <- paste0(
+      "O mapa de densidade de kernel mostra as áreas de maior concentração de ",
+      "serviços: quanto mais quente a cor, maior a concentração local.")
+  }
+
+  if (!is.null(analises[["kde_banda"]])) {
+    out$kde_banda <- paste0(
+      "O mapa de densidade de kernel com banda estimada (Silverman) mostra as ",
+      "áreas de maior concentração de serviços, com suavização ajustada aos dados.")
+  }
+
+  if (!is.null(analises[["voronoi"]])) {
+    out$voronoi <- paste0(
+      "Os polígonos de Voronoi (Thiessen) delimitam, para cada serviço, a área ",
+      "em que ele é o mais próximo — uma medida simples de zona de influência.")
+  }
+
+  if (!is.null(analises$ripley_k) && isTRUE(analises$ripley_k$executado)) {
+    out$ripley_k <- paste0(
+      "A função K de Ripley compara a agregação observada com o padrão aleatório ",
+      "em múltiplas escalas: quando a curva observada fica acima da esperada, ",
+      "há agrupamento naquela escala.")
+  }
+
+  out
 }

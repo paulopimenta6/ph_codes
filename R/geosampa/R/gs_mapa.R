@@ -15,12 +15,13 @@ gs_tema_mapa <- function(base_size = 14) {
       legend.position = "bottom",
       legend.title = ggplot2::element_text(face = "bold",
                                            size = ggplot2::rel(0.9)),
-      legend.text = ggplot2::element_text(size = ggplot2::rel(0.8)),
-      legend.key.width = ggplot2::unit(1.6, "lines"),
-      legend.key.height = ggplot2::unit(1.3, "lines"),
-      legend.spacing.x = ggplot2::unit(0.5, "cm"),
-      legend.spacing.y = ggplot2::unit(0.2, "cm"),
-      legend.margin = ggplot2::margin(t = 8, b = 2),
+      legend.text = ggplot2::element_text(size = ggplot2::rel(0.75)),
+      legend.key.width = ggplot2::unit(1.4, "lines"),
+      legend.key.height = ggplot2::unit(1.1, "lines"),
+      legend.spacing.x = ggplot2::unit(0.4, "cm"),
+      legend.spacing.y = ggplot2::unit(0.15, "cm"),
+      legend.margin = ggplot2::margin(t = 6, b = 2),
+      legend.box.spacing = ggplot2::unit(0.25, "cm"),
       plot.title = ggplot2::element_text(face = "bold",
                                          size = ggplot2::rel(1.15)),
       plot.subtitle = ggplot2::element_text(size = ggplot2::rel(0.9),
@@ -32,12 +33,12 @@ gs_tema_mapa <- function(base_size = 14) {
 }
 
 # Guia de legenda para escalas de cor: chaves maiores e, quando pedido,
-# quebra em várias linhas para não sobrepor os itens da legenda.
-gs_guia_legenda_mapa <- function(nrow = NULL) {
+# quebra em várias colunas/linhas para a legenda do rodapé caber sem ser
+# cortada (ncol/nrow — informe apenas um deles).
+gs_guia_legenda_mapa <- function(nrow = NULL, ncol = NULL) {
   ggplot2::guides(color = ggplot2::guide_legend(
-    nrow = nrow,
-    keywidth = 0.9,
-    keyheight = 0.9,
+    nrow = nrow, ncol = ncol,
+    keywidth = 0.9, keyheight = 0.9,
     override.aes = list(size = 3.4, alpha = 1)
   ))
 }
@@ -62,6 +63,22 @@ gs_lab_format_curto <- function(max_chars = 32) {
   }
 }
 
+# Formata rótulos da legenda ESTÁTICA para caber no rodapé sem ser cortada:
+# encurta textos muito longos e quebra palavras sem espaço (ex.: nomes de
+# camada) em pedaços de `largura` caracteres, antes de quebrar nas palavras.
+gs_lab_format_quebra <- function(largura = 18, max_caracteres = 30) {
+  function(s) {
+    s <- as.character(s)
+    s <- ifelse(nchar(s) > max_caracteres,
+                paste0(substr(s, 1, max_caracteres - 3), "..."), s)
+    vapply(s, function(x) {
+      x <- gsub(sprintf("([^ ]{%d})", largura), "\\1 ", x)
+      x <- trimws(x)
+      paste(strwrap(x, width = largura), collapse = "\n")
+    }, character(1))
+  }
+}
+
 # --- Popups HTML dos serviços (mapa interativo) ------------------------------
 gs_popup_servicos <- function(resultado) {
   vapply(seq_len(nrow(resultado)), function(i) {
@@ -73,6 +90,10 @@ gs_popup_servicos <- function(resultado) {
 }
 
 # Rótulos de hover (curtos) dos serviços — aparecem ao passar o mouse.
+# Marcados com a classe "html" para o leaflet NÃO escapar as tags <b>/<br>
+# (a função interna safeLabel() só preserva HTML em objetos da classe "html").
+# Nota: não usar htmltools::HTML() aqui — ele colapsa vetores num único
+# elemento; a classe é aplicada manualmente para manter um vetor por ponto.
 gs_label_servicos <- function(resultado) {
   tipo <- if ("tipo_servico" %in% names(resultado) &&
                !all(is.na(resultado$tipo_servico))) {
@@ -80,11 +101,12 @@ gs_label_servicos <- function(resultado) {
   } else {
     resultado$camada
   }
-  vapply(seq_len(nrow(resultado)), function(i) {
+  label <- vapply(seq_len(nrow(resultado)), function(i) {
     r <- resultado[i, ]
     sprintf("<b>%s</b><br>%s<br>%.0f m",
             ifelse(is.na(r$nome), r$camada, r$nome), tipo[i], r$distancia_m)
   }, character(1))
+  structure(label, class = c("html", "character"))
 }
 
 # --- Mapa estático com ggplot2 ----------------------------------------------
@@ -104,6 +126,10 @@ gs_mapa_ggplot <- function(resultado, ponto, raio_m) {
   cores <- if ("tipo_servico" %in% names(resultado) &&
                !all(is.na(resultado$tipo_servico))) "tipo_servico" else "camada"
   n_niveis <- length(unique(resultado[[cores]][!is.na(resultado[[cores]])]))
+  # Legenda no rodapé em várias COLUNAS: evita que a legenda fique alta demais
+  # e seja cortada na borda inferior da imagem (coord_sf fixa o aspecto do
+  # painel e não "encolhe" para acomodar a legenda).
+  ncol_legenda <- ceiling(sqrt(n_niveis))
 
   # Enquadra o mapa no raio de busca (com margem) para a legenda não espremer
   # a área de plotagem e os rótulos não se sobreporem.
@@ -119,11 +145,11 @@ gs_mapa_ggplot <- function(resultado, ponto, raio_m) {
                      size = 2.5, alpha = 0.95) +
     ggplot2::geom_sf(data = origem, color = "#d7301f", size = 4, shape = 17) +
     ggplot2::scale_color_manual(values = gs_paleta_tipos(n_niveis),
-                                labels = scales::label_wrap(30),
+                                labels = gs_lab_format_quebra(18),
                                 na.value = "#999999") +
     ggplot2::coord_sf(xlim = xlim, ylim = ylim) +
     gs_tema_mapa(base_size = 15) +
-    gs_guia_legenda_mapa() +
+    gs_guia_legenda_mapa(ncol = ncol_legenda) +
     ggplot2::labs(
       title = "Serviços próximos",
       subtitle = sprintf("Ponto: %s | Raio: %s m | %d serviço(s)",
@@ -172,8 +198,9 @@ gs_mapa_leaflet <- function(resultado, ponto, raio_m) {
                               color = "#d7301f", radius = 9, fillOpacity = 0.95,
                               weight = 2, fillColor = "#d7301f",
                               group = "Ponto de interesse",
-                              label = sprintf("<b>Ponto de interesse</b><br>%s",
-                                              ponto$origem),
+                              label = htmltools::HTML(
+                                sprintf("<b>Ponto de interesse</b><br>%s",
+                                        ponto$origem)),
                               labelOptions = estilo_label,
                               popup = sprintf("<b>Ponto de interesse</b><br>%s",
                                               ponto$origem)) |>
@@ -215,7 +242,7 @@ gs_mapa_servicos <- function(resultado = NULL, cep = NULL, coordenadas = NULL,
                                                 "haversine", "manhattan",
                                                 "rede_viaria"),
                              n_por_camada = NULL, interativo = TRUE,
-                             salvar = NULL, largura = 12, altura = 12,
+                             salvar = NULL, largura = 12, altura = NULL,
                              dpi = 300) {
   if (is.null(resultado)) {
     resultado <- gs_servicos_proximos(
@@ -246,6 +273,18 @@ gs_mapa_servicos <- function(resultado = NULL, cep = NULL, coordenadas = NULL,
       }
       htmlwidgets::saveWidget(mapa, file = salvar)
     } else {
+      if (is.null(altura)) {
+        # Altura ajustada à legenda do rodapé: reserva espaço extra
+        # proporcional ao nº de níveis para a legenda não ser cortada.
+        cores <- if ("tipo_servico" %in% names(resultado) &&
+                     !all(is.na(resultado$tipo_servico))) {
+          resultado$tipo_servico
+        } else {
+          resultado$camada
+        }
+        n_niveis <- length(unique(cores[!is.na(cores)]))
+        altura <- largura + 0.5 + 0.35 * ceiling(sqrt(n_niveis))
+      }
       ggplot2::ggsave(salvar, plot = mapa, width = largura, height = altura,
                       dpi = dpi)
     }
