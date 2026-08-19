@@ -186,15 +186,18 @@ gs_mapa_servicos(proximos, interativo = FALSE, salvar = "mapas/cep_03175001.png"
 ```
 
 > 🖱️ No HTML: ao passar o mouse aparece um tooltip (nome/tipo/distância) e ao
-> clicar, o popup completo. No PNG: legenda no rodapé em várias linhas, com
-> resolução ajustável via `largura`, `altura` e `dpi` (padrão 12×12 @ 300 dpi).
+> clicar, o popup completo. No PNG: legenda no rodapé em várias colunas (com
+> rótulos quebrados para caber), resolução ajustável via `largura`, `altura` e
+> `dpi` — a altura padrão se ajusta automaticamente ao número de itens da
+> legenda para ela não ser cortada.
 
 **6) Analise a distribuição (escolha o `tipo`):**
 ```r
 analises <- gs_analise_servicos(proximos,
                                 tipo = c("descritivas", "raios_progressivos",
                                          "acessibilidade_media", "nni"))
-analises$raios_progressivos
+analises$raios_progressivos$contagem   # tabela
+analises$acessibilidade_media$grafico_ecdf  # curva acumulada das distâncias
 ```
 
 **7) Gere o relatório consolidado (HTML auto-contido ou Markdown):**
@@ -206,6 +209,9 @@ gs_relatorio_analises(proximos,
 # Exporte as tabelas e polígonos em CSV/GeoJSON:
 gs_exportar_resultado(proximos, analises, dir = "saidas")
 ```
+> 📝 Cada seção do relatório vem com **tabela + gráfico + parágrafo de
+> interpretação automática** dos principais resultados (mediana, percentis,
+> R do NNI, Moran etc.), para as análises ficarem explicadas.
 
 ### O manual do CEP 🧰
 
@@ -237,19 +243,19 @@ gs_exportar_resultado(proximos, analises, dir = "saidas")
 
 | Tipo | O que devolve | Dependência |
 |------|---------------|-------------|
-| `descritivas` | Contagens por tipo/camada, histograma e boxplot das distâncias | nenhuma |
+| `descritivas` | Contagens por tipo/camada, resumo, histograma e boxplot anotados (mediana/média) | nenhuma |
 | `vizinho_mais_proximo` | Distância ao serviço mais próximo (geral e por camada) | nenhuma |
-| `acessibilidade_media` | Resumo das distâncias (média, mediana, P75...) por camada/tipo | nenhuma |
-| `raio_otimo` | Raio que alcança 50%, 75%, 90% dos serviços (quantis) | nenhuma |
+| `acessibilidade_media` | Resumo robusto das distâncias (mediana, P25/P75, IQR, CV) + curva ECDF | nenhuma |
+| `raio_otimo` | Raio que alcança 50%, 75%, 90% e 95% dos serviços + gráfico ECDF | nenhuma |
 | `cobertura_buffer` | Área coberta por buffers por camada vs casco convexo | nenhuma |
 | `nni` | Índice de Vizinho Mais Próximo (agrupado/aleatório/disperso) | nenhuma |
 | `voronoi` | Polígonos de Thiessen (áreas de influência) | nenhuma |
 | `kde` / `kde_banda` | Mapa de densidade de kernel (banda padrão / estimada) | nenhuma |
-| `raios_progressivos` | Oportunidades acumuladas em 500 m, 1 km e 2 km | nenhuma |
+| `raios_progressivos` | Oportunidades acumuladas por raio (tabela + curva) | nenhuma |
 | `getis_ord` | Getis-Ord G* local (aglomerados quentes/frios por célula hex) | `spdep` (opcional) |
 | `lisa` | Moran local (LISA) por célula hexagonal | `spdep` (opcional) |
 | `ripley_k` | Função K de Ripley (agregação em múltiplas escalas) | `spatstat` (opcional) |
-| `moran` | Moran's I (autocorrelação espacial) | `spdep` (opcional) |
+| `moran` | Moran's I sobre contagens em grade hexagonal (padrão) | `spdep` (opcional) |
 | `moran_distrital` | Moran's I agregado por distrito (LISA por distrito) | `spdep` (opcional) |
 | `por_distrito` | Contagem e densidade de serviços por distrito (mapa) | internet (1ª vez) |
 | `cobertura_populacional` | População atendida no raio (por camada de população ou densidade) | opcional |

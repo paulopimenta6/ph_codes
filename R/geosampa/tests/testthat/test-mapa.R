@@ -41,6 +41,10 @@ test_that("gs_mapa_servicos interativo tem hover (label) e popup nos serviços",
   expect_length(args[[11]], 2)
   expect_true(all(grepl("UBS A|Hospital B", args[[11]])))
   expect_true(all(grepl("100 m|500 m", args[[11]])))
+  # label com classe "html": o leaflet NÃO escapa as tags <b>/<br>
+  expect_true(inherits(args[[11]], "html"))
+  expect_true(all(grepl("<b>", args[[11]], fixed = TRUE)))
+  expect_false(any(grepl("&lt;b&gt;", args[[11]], fixed = TRUE)))
   expect_type(args[[9]], "character")    # popup
   expect_true(all(grepl("Distância", args[[9]])))
   expect_true(all(grepl("endereco|Rua 1|Av 2", args[[9]], ignore.case = TRUE)))
@@ -64,6 +68,24 @@ test_that("gs_mapa_servicos estático usa legenda no rodapé e coord_sf", {
   p <- gs_mapa_servicos(df, interativo = FALSE)
   expect_identical(p$theme$legend.position, "bottom")
   expect_s3_class(p$coordinates, "CoordSf")
+})
+
+test_that("gs_mapa_servicos estático usa legenda em várias colunas", {
+  df <- data.frame(
+    nome = paste("Serviço", 1:9),
+    tipo_servico = paste("Tipo", LETTERS[1:9]),
+    distancia_m = seq(50, 450, by = 50),
+    latitude = rep(-23.55, 9) + (1:9) * 0.001,
+    longitude = rep(-46.58, 9) + (1:9) * 0.001,
+    camada = "equipamento_saude",
+    stringsAsFactors = FALSE
+  )
+  attr(df, "ponto") <- list(latitude = -23.55, longitude = -46.58,
+                            origem = "CEP 05508-090")
+  attr(df, "raio_m") <- 2000
+  p <- gs_mapa_servicos(df, interativo = FALSE)
+  g <- p$guides$guides[["colour"]]
+  expect_true(g$params$ncol > 1)
 })
 
 test_that("gs_paleta_tipos cobre 1..12 (Paired) e >12 níveis", {
